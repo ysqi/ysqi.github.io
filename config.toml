@@ -1,0 +1,24 @@
+baseurl = "http://blog.yushuangqi.com"
+languageCode = "zn-CN"
+title = "虞双齐博客" 
+pygmentsuseclasses =  true
+uglyURLs = true
+
+[author]
+  description = "开源爱好者。6年软件设计与开发经验，专注开源协作、微信平台开发和工作经验的分享。"
+  name = "虞双齐"
+  aboutme_avatar = "https://avatars2.githubusercontent.com/u/2821085?v=3&amp;s=460"
+  aboutme_height = "https://avatars2.githubusercontent.com/u/2821085"
+  email ="devysq@gmail.com"
+  qq = "460857340"
+  weibo = "234665601"
+
+
+[taxonomies]
+    tag = "tags"
+    topic = "topics"
+
+[permalinks]
+	blog = "/blog/:year/:title.html"
+	top = "/:filename/"
+  resource = "/resource/:title.html"

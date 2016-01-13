@@ -1,0 +1,20 @@
+
+{{ partial "header.html" . }}
+<section role="main">
+	<h1 class="writings"><small> 文章标签：</small>{{ .Title }}</h1> 
+		<p class="feature">
+		虞双齐共分享{{len .Data.Pages}}篇文章在{{.Title}}标签下。
+		</p>
+		 {{ range .Data.Pages.GroupByDate "2006年01月" }}
+     <h2 class="hlisting">{{ .Key }}</h1> 
+      <ul class="listing">
+      {{ range .Pages }}
+      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ .Date.Format "2006-01-02" }}</li>
+	{{end}}    
+    </ul>
+  {{ end }}
+</section>
+ 
+{{partial "sidebar.html"}}
+{{partial "nav.html"}}
+{{partial "footer.html"}}

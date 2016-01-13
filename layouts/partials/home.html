@@ -1,0 +1,93 @@
+ <div class="">
+ </div> 
+ <div class="container-fluid ysq-margin-top">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3 home-left">
+                <div class="vcard">
+                    <a href="/account" class="vcard-avatar">
+                        <img alt="" class="avatar" height="140" src="https://avatars2.githubusercontent.com/u/2821085?v=3&amp;s=460" width="140">
+                    </a>
+                    <h1 class="vcard-name">
+			  		<span class="vcard-fullname" >虞双齐</span>     	
+		        </h1>
+                    <div>
+                        <small>Hacking</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 home-right">
+                <div class="row">
+                    <div class="col-md-12 ysq-padding-left-0">
+                        <div class="pl pl-default">
+                            <div class="pl-heading border-left-one">关于我</div>
+                            <div class="pl-body">
+                                <span class="ysq-text-xl">30</span>天软件开发，热爱开源。<a href="/about.html">了解更多...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ysq-padding-left-0">
+                        <div class="pl pl-default">
+                            <div class="pl-heading border-left-two">写作</div>
+                            <div class="pl-body">
+                                <div><span class="ysq-text-xxxl">900</span>篇 IT 技术博文</div>
+                                <div>
+                                    <div class="panel panel-default">
+                                        <ul class="list-group">
+                                        {{ range first 10 .Data.Pages }}
+                                        	<li class="list-group-item">
+                                                <span class="date">{{ .Date.Format "2006-01-02" }}</span> 
+                                                <a href="{{ .RelPermalink }}" class="text-overflow">{{ .Title }}{{ if .Draft }} (Draft){{ end }}</a>
+                                            </li> 
+    									{{ end }}
+                                        </ul>
+                                        <div class="panel-footer text-right"><a href="/more.html">所有</a></div>
+                                    </div>
+                                </div>
+                                <div>
+                                
+{{ with .Site.Taxonomies.topics }}
+    {{ range $name, $value := . }}
+  	<a class="btn btn-default" href="#" role="button">{{title $name}}</a> 
+	{{end}}
+{{ end }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ysq-padding-left-0">
+                        <div class="pl pl-default">
+                            <div class="pl-heading border-left-three">项目</div>
+                            <div class="pl-body">
+                                <div><span class="ysq-text-xxxl">900</span>篇 IT 技术博文</div>
+                                <div>
+                                    <div class="panel panel-default">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span class="date">2015-01-02</span> kkkk
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="date">2015-01-02</span> kkkk
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="date">2015-01-02</span> kkkk
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="date">2015-01-02</span> kkkk
+                                            </li>
+                                        </ul>
+                                        <div class="panel-footer text-right"><a href="/more.html">所有</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>

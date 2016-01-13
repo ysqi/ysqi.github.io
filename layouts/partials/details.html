@@ -1,0 +1,51 @@
+
+<div class="share_sec2">
+<!-- <ul class="share_btns">
+    <li><a class="share_btn" href="http://www.twitter.com/lukew" title="Follow on Twitter"><span class="share_img share_tw"></span>Follow</a></li>
+    <li><a class="share_btn" href="http://feeds.feedburner.com/FunctioningForm" title="Subscribe to News"><span class="share_img share_rss"></span>Subscribe</a></li>
+</ul> -->
+{{ partial "baidu_share.html" . }}
+
+</div>  
+
+<ul class="rel_links"> 
+         {{ range first 3 (where .Site.Pages.ByWeight "Date" "lt" .Date )}} 
+                      {{ $has_common_tags := intersect $.Params.topics  .Params.topics  | len | lt 0  }}
+                        {{ if $has_common_tags }}
+                         <li class="rel_linksli"><a href=""> {{ .Title }}</a></li>
+                        {{ end }}
+                    {{ end }} 
+         {{if .Prev}}
+         <li class="rel_linksli rel_prev"><a href="{{.Prev.Permalink}}">{{.Prev.Title}}</a></li>
+         {{end}}
+         {{if .Next}}
+         <li class="rel_linksli rel_next"><a  href="{{.Next.Permalink}}">{{.Next.Title}}</a></li>
+         {{end}}
+
+        <li class="rel_linksli">
+        <span id="topics">分类:  
+        {{ range   .Params.topics  }}
+        <a  href="/topics/{{.|urlize}}.html" rel="topics">{{title .}}</a>
+        {{end}} 
+        </span>
+
+        {{if .Params.tags}}
+        <span id="tags">标签:
+        {{ range sort .Params.tags }}
+        <a href="/tags/{{.|urlize}}.html"  rel="tag">{{ . }}</a>
+        {{ end }}</span>
+        {{end}}
+
+        </li>
+</ul>
+{{ $baseurl := .Site.BaseURL }}  
+    <div>
+        <section id="author">
+             <h4>About author</h4> 
+
+<p>虞双齐目前任职于某证券公司，系生产运维工作。Go Web 开源框架 <a href="http://beego.me">beego</a> 核心人员，同时维护 Go 静态网站创建工具 <a href="http://hugo.yushuangqi.com">Hugo中文文档</a>网站和开源项目 <a href="https://github.com/ysqi/tokenauth">TokenAuth</a>。
+</p>
+<p>虞双齐是开源爱好者，朝全职开源工作目标奋进。写作方面，动态分享到微博<a href="http://weibo.com/234665601">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi">Github</a>，个人博客<a href="http://yushuangqi.com">http://yushuangqi.com</a> ，分享经验。计划撰写关于 Go 和 Beego 的电子书，希望大家关注虞双齐，相信能给你带来惊喜。</p>
+<p>以 Coding 为乐，闲时和妻子一起嗨。</p>
+        </section>
+    </div> 

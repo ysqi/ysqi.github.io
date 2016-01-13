@@ -1,0 +1,61 @@
+{{ $IsHome := true }}
+{{ partial "header.html" . }}
+<div class="homecontainer">
+<div class=" homelogo vcard">
+                    <a href="/account" class="vcard-avatar">
+                        <img alt="" class="avatar" height="140" src="https://avatars2.githubusercontent.com/u/2821085?v=3&amp;s=460" width="140">
+                    </a>
+                    <h1 class="vcard-name"> <span class="vcard-fullname" >虞双齐</span></h1>
+                    <div>
+                        <small>Hacking</small>
+                    </div>
+                </div>
+<div class="homesecs">
+	<h2 class="homenav"><a href="/about/"><span class="homenav_about">关于我</span></a></h2>
+	<section class="homesec homesecabout">
+	<h3 id="workDays">days</h3>
+	<p>{{.Site.Author.description}}</p>
+	<p style="text-align:right;"><a href="/about/" class="about">进一步了解虞双齐</a></p>
+	</section>
+	
+	<h2 class="homenav homenavor"><a href="/topics/"><span class="homenav_writings">博文</span></a></h2>
+	<section class="homesec homesecwritings">
+	<h3>{{len .Data.Pages }}</h3>
+	<p>篇IT技术文章分享。</p>
+	<ul>
+	 {{ range first 6 .Data.Pages }}
+                                        	<li class="list-group-item">
+                                                <a href="{{ .RelPermalink }}" class="writings text-overflow">
+                                                {{ .Title }}{{ if .Draft }} (Draft){{ end }}
+                                                <span class="date">{{ .Date.Format "2006-01-02" }}</span> 
+                                                </a>
+                                            </li> 
+    									{{ end }}
+	  <li><a href="/topics/" class="writings">全部...</a></li>
+	</ul>
+	<h3>{{len .Site.Taxonomies.topics}}</h3>
+	<p>个文章分类</p>
+	<ul> 
+{{ range $key,$value := .Site.Taxonomies.topics.ByCount }} 
+ <li><a href="/topics/{{ $value.Name | urlize }}" role="button" >{{$value.Name}}</a></li>
+{{ end }} 
+	  <li></li>
+
+	</ul>
+	</section>
+	
+	<!-- <h2 class="homenav homenavbl"><a href="/presos/"><span class="homenav_presos">资源</span></a></h2>
+	<section class="homesec homesecpresos">
+	<h3>339</h3>
+	<p>presentations and workshops at over <b>84</b> cities across the globe.</p>
+	<ul>
+	  <li>Jan 14<br>
+	  <a href="https://ifttt.com/wtf" class="presos">IFTTT Speaker Series —San Francisco, CA</a></li>
+	  <li>Feb 9-12<br>
+	  <a href="http://www.webstock.org.nz/16/" class="presos">Webstock 2016 —Wellington, New Zealand</a></li>
+	  <li><a href="/presos/" class="presos">See all...</a></li>
+	</ul>
+	</section> -->
+</div>
+</div>
+{{ partial "footer.html" . }}
