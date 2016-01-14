@@ -579,12 +579,12 @@ blockquote {
 .footeraction {
     display: block;
     background-color: #fff;
-    border-left: solid 5px #ecedeb;
-    padding: 8px;
-    -moz-box-shadow: 0 1px 2px #8d8d8d;
-    -webkit-box-shadow: 0 1px 2px #8d8d8d;
-    box-shadow: 0 1px 2px #8d8d8d;
-    margin-bottom: 12px
+    /*border-left: solid 5px #ecedeb;*/
+    /*padding: 8px;*/
+    /*-moz-box-shadow: 0 1px 2px #8d8d8d;*/
+    /*-webkit-box-shadow: 0 1px 2px #8d8d8d;*/
+    /*box-shadow: 0 1px 2px #8d8d8d;*/
+    /*margin-bottom: 12px*/
 }
 
 .footeraction span {
@@ -599,9 +599,10 @@ blockquote {
 }
 
 .footeractionTW {
-    width: 30px;
-    height: 22px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat -25px -138px
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+    background: url(http://www.sinaimg.cn/blog/developer/wiki/32x32.png) no-repeat center top;
 }
 
 .feature {
@@ -1661,8 +1662,7 @@ only screen and (min-device-pixel-ratio:1.5) {
     .homenav_about,
     .homenav_writings,
     .homenav_presos,
-    .footeractionRSS,
-    .footeractionTW,
+    .footeractionRSS, 
     .share_img,
     .share_tw,
     .share_fb,

@@ -4,6 +4,10 @@ title = "虞双齐博客"
 pygmentsuseclasses =  true
 uglyURLs = true
 
+[params]
+  #备案号，配置后网页底部将显示链接到备案系统
+  beian = "粤ICP备14032560号-4"
+
 [author]
   description = "开源爱好者。6年软件设计与开发经验，专注开源协作、微信平台开发和工作经验的分享。"
   name = "虞双齐"
