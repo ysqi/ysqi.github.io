@@ -3,6 +3,7 @@ languageCode = "zn-CN"
 title = "虞双齐博客" 
 pygmentsuseclasses =  true
 uglyURLs = true
+metaDataFormat = "toml"
 
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
@@ -23,6 +24,6 @@ uglyURLs = true
     topic = "topics"
 
 [permalinks]
-	blog = "/blog/:year/:title.html"
+	blog = "/blog/:year/:slug.html"
 	top = "/:filename/"
   resource = "/resource/:title.html"
