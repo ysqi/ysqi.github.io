@@ -8,7 +8,7 @@ build:
 deploy:
   steps:
     - leipert/add-ssh-key-gh-bb:
-        keyname: baidu
+        keyname: myblogSSH_KEY
 
     - leipert/git-push:
          host:  https://git.duapp.com
