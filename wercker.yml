@@ -10,7 +10,7 @@ deploy:
     - leipert/add-ssh-key-gh-bb:
         keyname: myblogSSH_KEY
 
-    - leipert/git-push:
+    - krlmlr/git-push:
          host:  https://git.duapp.com
          repo: appid3trdccjj6g
          branch: master
