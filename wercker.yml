@@ -28,11 +28,10 @@ deploy:
   steps:
     # Add SSH-Key to
     - leipert/add-ssh-key-gh-bb:
-        keyname: BAIDU_SSH
-
-	- leipert/git-push@0.7.6:
+        keyname:BAIDU_SSH
+    - leipert/git-push@0.7.6:
          host:  https://git.duapp.com
-		 user: 虞双齐
+         user: 虞双齐
          repo: appid3trdccjj6g
          branch: master
          basedir: public
