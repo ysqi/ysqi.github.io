@@ -29,12 +29,10 @@ deploy:
     # Add SSH-Key to
     - leipert/add-ssh-key-gh-bb:
         keyname: BAIDU_SSH
-    # Add bitbucket to known hosts, so they won't ask us whether we trust bitbucket
-    - add-to-known_hosts:
-        hostname:  https://git.duapp.com
-        fingerprint: 97:8c:1b:f2:6f:14:6b:5c:3b:ec:aa:46:46:74:7c:40
-    - git-push:
+
+	- leipert/git-push@0.7.6:
          host:  https://git.duapp.com
+		 user: 虞双齐
          repo: appid3trdccjj6g
          branch: master
          basedir: public
