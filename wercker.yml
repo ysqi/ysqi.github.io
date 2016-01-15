@@ -31,7 +31,6 @@ deploy:
         keyname:BAIDU_SSH
     - leipert/git-push@0.7.6:
          host:  https://git.duapp.com
-         user: 虞双齐
          repo: appid3trdccjj6g
          branch: master
          basedir: public
