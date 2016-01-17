@@ -1,7 +1,6 @@
 +++
-date = "2015-12-29T20:29:41+08:00"
-draft = false
-title = "about"
+date = "2015-12-29T20:29:41+08:00" 
+title = "关于虞双齐"
 type = "about"
 description ="6年软件开发工程师，擅长 Go,iOS,C# 开发。追求做一名自由职业者。"
 +++
