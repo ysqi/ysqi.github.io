@@ -177,7 +177,7 @@ h5 {
 }
 
 p {
-    margin: 0 0 1.1em 0
+    margin: 0.5em 0 0.5em 0
 }
 
 strong {
@@ -761,6 +761,20 @@ blockquote {
     font-size: .9em;
     line-height: 1.4
 }
+
+.entry a,
+.entry a:link,
+.entry a:active,
+.entry a:visited {
+    color: #36454f;
+    text-decoration: none;
+    border-bottom: dotted 1px #a1a3a1;
+}
+
+.entry a:hover{
+    color: #6fa601;
+}
+
 
 .entry .feature {
     font-size: 1.2em;
@@ -1445,6 +1459,9 @@ blockquote {
         display: inline;
         padding-right: .3em
     }
+     .listing li span{ 
+        display: hidden;
+    }
     .presoimg {
         float: left
     }
@@ -1603,14 +1620,17 @@ blockquote {
         width: 25em
     }
     .listing li {
-        padding: 0 0 0 10px;
+        padding: 0 0 5px 10px;
         margin: 0 5px 0 0;
         background: url(/img/bullet_icon.gif) no-repeat 0 7px;
         font-size: .9em;
         list-style-type: none;
-        font-family: Georgia, "Times New Roman", Times, serif;
-        color: #666;
         border-bottom: 0
+    }
+    .listing li span{
+        float: right;
+        color: #E0E0E0;
+        font-size: 60%; 
     }
     .listing li a {
         font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -1626,9 +1646,9 @@ blockquote {
     .entry {
         line-height: 1.5
     }
-    .writingsentry {
+   /* .writingsentry {
         padding-right: 5em
-    }
+    }*/
     .bookslist li {
         width: 31%
     }
@@ -1926,3 +1946,76 @@ body>aside, body>.content, body>footer, #comments {
 .date{
     font-size: smaller;
 }
+
+
+code{
+    padding: 2px 4px;
+    font-size: 90%;
+    /*color: #c7254e;*/
+    background-color: #f5f5f5;
+    font-weight: 400;
+    border-radius: 4px;
+    padding: 0 10px;
+     /*background: #fdf6e3;*/
+    /*color: #657b83;*/
+}
+pre code{
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #fdf6e3;
+    color: #657b83;    
+    white-space: pre-wrap;
+    border-radius: 6px;
+}
+
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+/* table*/
+table {
+  width: 100%;
+  min-width: 100%;
+  padding: 0;
+   border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+table tr {
+  border-top: 1px solid #cccccc;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+
+    background-color: #e0e0e0;
+}
+table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr th :first-child,
+table tr td :first-child {
+  margin-top: 0;
+}
+table tr th :last-child,
+table tr td :last-child {
+  margin-bottom: 0;
+}
+
+/* table end*/

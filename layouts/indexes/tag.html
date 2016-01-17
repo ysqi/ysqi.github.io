@@ -9,7 +9,7 @@
      <h2 class="hlisting">{{ .Key }}</h1> 
       <ul class="listing">
       {{ range .Pages }}
-      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ .Date.Format "2006-01-02" }}</li>
+      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ .Date.Format "2006-01-02" }}</span></li>
 	{{end}}    
     </ul>
   {{ end }}

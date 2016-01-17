@@ -2,7 +2,7 @@
 <section role="main">
 	<h1 class="writings">虞双齐干货文章</h1>
 		<p class="feature">
-		  自2015年01月01日起，累计分享{{len .Site.Pages}}篇文章。涉及产品设计、软件开发 、微信、摄影、软件工具等范围。
+		  自2013年01月01日起，累计分享{{len .Site.Pages}}篇文章。涉及产品设计、软件开发 、微信、摄影、软件工具等等。
 		</p>
 		
 		<ul class="bookslist group">
@@ -21,10 +21,13 @@
 		</ul>
 
   {{ range .Site.Pages.GroupByDate "2006年" }}
+
      <h2 class="hlisting">{{ .Key }}</h1> 
       <ul class="listing">
       {{ range .Pages }}
-      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ .Date.Format "2006-01-02" }}</li>
+      	{{if eq (eq "/about/" .RelPermalink) false}}
+	      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a><span style="float:right">{{ .Date.Format "2006-01-02" }}</span></li>
+      {{end}}
 	{{end}}    
     </ul>
   {{ end }}
