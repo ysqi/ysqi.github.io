@@ -38,7 +38,7 @@
 	<p>个文章分类</p>
 	<ul> 
 {{ range $key,$value := .Site.Taxonomies.topics.ByCount }} 
- <li><a href="/topics/{{ $value.Name | urlize }}" role="button" >{{$value.Name}}</a></li>
+ <li><a href="/topics/{{ $value.Name | urlize }}.html" role="button" >{{$value.Name}}</a></li>
 {{ end }} 
 	  <li></li>
 
