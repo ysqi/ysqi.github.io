@@ -24,7 +24,10 @@
 		</aside>
 		{{.Content}}
 	</article>
-	
+	<aside id=comments>
+  <div><h2> 评论 </h2></div>
+   {{ template "_internal/disqus.html" . }}
+ </aside>
 </section>
 
 {{partial "sidebar.html"}}

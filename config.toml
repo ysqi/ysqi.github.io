@@ -4,6 +4,7 @@ title = "虞双齐的博客"
 pygmentsuseclasses =  true
 uglyURLs = true
 metaDataFormat = "toml"
+disqusShortname = "yushuangqi"
 
 [params]
   #备案号，配置后网页底部将显示链接到备案系统

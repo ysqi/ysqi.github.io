@@ -38,6 +38,10 @@
 
         </li>
 </ul>
+<aside id=comments>
+  <div><h5> 评论 </h5></div>
+   {{ template "_internal/disqus.html" . }}
+ </aside>
 {{ $baseurl := .Site.BaseURL }}  
     <div>
         <section id="author">
