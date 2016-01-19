@@ -10,6 +10,7 @@ tags:
 - 教程
 books:
 - 老虞学GoLang
+disqus_identifier: 100017
 ---
 
 Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活

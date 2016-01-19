@@ -3,6 +3,7 @@ date = "2015-12-29T20:29:41+08:00"
 title = "关于虞双齐"
 type = "about"
 description ="6年软件开发工程师，擅长 Go,iOS,C# 开发。追求做一名自由职业者。"
+disqus_identifier = 10000
 +++
 
  虞双齐目前任职于某证券公司，系生产运维工作。Go Web 开源框架 [beego](http://beego.me) 核心人员，同时维护 Go 静态网站创建工具 [Hugo中文文档][hugo_cn]网站和开源项目 [TokenAuth](https://github.com/ysqi/tokenauth)。

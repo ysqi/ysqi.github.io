@@ -10,6 +10,7 @@ tags:
 - 教程
 books:
 - 老虞学GoLang
+disqus_identifier: 100013
 ---
 
 ### 变量声明

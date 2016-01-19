@@ -8,6 +8,7 @@ tags:
     - mac
     - wget
     - 教程
+disqus_identifier: 100023
 ---
 
 wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。

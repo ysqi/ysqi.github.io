@@ -7,6 +7,7 @@ topics:
 tags:
     - Go
     - 教程
+disqus_identifier: 100019
 ---
 
 这个Golang示例系列篇旨在给新手提供入门指导，通过直观的代码示例来学习Golang。

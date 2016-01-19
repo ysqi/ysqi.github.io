@@ -10,6 +10,7 @@ tags:
     - WebIDE
     - 百度
     - 问题
+disqus_identifier: 100021
 ---
 
 终于在 Coding.net 上部署搭建了写作环境,同时提交到我的[博客](http://www.superzhu.com),但在deploy到百度应用时有报错,在这里记录下解决方案.

@@ -10,6 +10,7 @@ tags:
 - 教程
 books:
 - 老虞学GoLang
+disqus_identifier: 100012
 ---
 不可或缺的函数，在Go中定义函数的方式如下：
 ```golang

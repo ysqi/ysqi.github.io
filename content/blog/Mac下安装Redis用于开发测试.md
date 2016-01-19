@@ -8,6 +8,7 @@ tags:
     - Redis
     - Mac
     - 教程
+disqus_identifier: 100022
 ---
 
 Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开发程序使用Redis的安装过程。

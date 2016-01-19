@@ -10,6 +10,7 @@ tags:
 - 教程
 books:
 - 老虞学GoLang
+disqus_identifier: 100014
 ---
 
 ### 数组 Arrays

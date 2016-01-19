@@ -9,6 +9,7 @@ tags:
   - sql
   - beego
   - 问题
+disqus_identifier: 100018
 ---
 
 前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。

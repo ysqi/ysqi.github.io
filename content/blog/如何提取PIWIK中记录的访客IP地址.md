@@ -8,6 +8,7 @@ tags :
 - 教程
 Topics: 
 - 大数据
+disqus_identifier: 100004
 ---
 
  最近在使用Piwik做网站数据统计，基于PIWIK做二次开发，各种文档，而昨天死活不知道PIWIK中记录访客IP的格式是什么，拉个粑粑后茅塞顿开，下面记记录下如何在PIWIK中获取访客的IP地址信息。

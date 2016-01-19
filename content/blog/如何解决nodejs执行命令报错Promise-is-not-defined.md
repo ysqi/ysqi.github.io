@@ -7,6 +7,7 @@ tags :
 - NodeJs
 topics: 
 - 开发
+disqus_identifier: 100006
 ---
 
 在使用c9.io时默认的node.js版本是v0.10.35，使得一些模块安装警告版本过低，而执行命令时报错。
