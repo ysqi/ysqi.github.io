@@ -1,18 +1,28 @@
-box: debian
 build:
+  box: samueldebruyn/hugo-build
   steps:
+    - script:
+        name: initialize git submodules
+        code: |
+            git submodule update --init --recursive
+    - samueldebruyn/copy-files:
+        source: staging
+        destination: static
+        ignore_branches: master
     - arjen/hugo-build:
-        version: "0.15" 
-        flags: --buildDrafts=false
-
+        prod_branches: master
+        #dev_flags: --config=config-dev.toml
+    - samueldebruyn/minify:
+        only_on_branches: master
 deploy:
+  box: samueldebruyn/debian-git
   steps:
     - leipert/add-ssh-key-gh-bb:
         keyname: myblogSSH_KEY
-
-    - ysqi/git-push:
-         host:  https://git.duapp.com
-         repo: appid3trdccjj6g
-         gitsuffix: false
-         branch: master
-         basedir: public
+    - leipert/git-push:
+        host: https://git.duapp.com
+        repo: appid3trdccjj6g
+        gitsuffix: false
+        branch: master
+        basedir: public
+        clean_removed_files: true      
