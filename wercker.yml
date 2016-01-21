@@ -22,7 +22,7 @@ deploy:
     - ysqi/git-push:
         host: https://git.duapp.com
         repo: appid3trdccjj6g
-        gitsuffix: false
+        notgitsuffix: true
         branch: master
         basedir: public
         clean_removed_files: true      
