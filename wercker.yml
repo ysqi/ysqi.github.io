@@ -5,10 +5,6 @@ build:
         name: initialize git submodules
         code: |
             git submodule update --init --recursive
-    - samueldebruyn/copy-files:
-        source: staging
-        destination: static
-        ignore_branches: master
     - arjen/hugo-build:
         prod_branches: master
         #dev_flags: --config=config-dev.toml
@@ -17,12 +13,28 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - leipert/add-ssh-key-gh-bb:
-        keyname: myblogSSH_KEY
-    - ysqi/git-push:
-        host: https://git.duapp.com
-        repo: appid3trdccjj6g
-        notgitsuffix: true
-        branch: master
-        basedir: public
-        clean_removed_files: true      
+    - add-to-known_hosts:
+        hostname: $FORTRABBIT_GIT_HOST
+    - script:
+        name: Setup git repository
+        code: |-
+          cd public
+          # Remove existing git repository if exists
+          if [ -d ".git" ]; then rm -rf .git; fi
+          # Configure git user
+          git config --global user.name "wercker"
+          git config --global user.email pleasemailus@wercker.com
+          # Initialize new repository and add everything
+          git init
+          git add --all . > /dev/null
+          if git diff --cached --exit-code --quiet; then
+            echo "Nothing changed. We do not need to push"
+          else
+            git commit -am "DEPLOY FROM WERCKER" --allow-empty > /dev/null
+          fi
+          # Add baidu remote
+          git remote add baidu $BAIDU_GIT_REMOTE
+    - script:
+        name: Git push deploy
+        code: |-
+          git push baidu master -f
