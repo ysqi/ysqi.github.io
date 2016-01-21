@@ -13,8 +13,8 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - add-to-known_hosts:
-        hostname: $BAIDU_GIT_HOST
+    - add-ssh-key:
+        keyname: myblogSSH_KEY: 
     - script:
         name: Setup git repository
         code: |-
