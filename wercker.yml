@@ -13,8 +13,8 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - add-to-known_hosts:
-        hostname: $FORTRABBIT_GIT_HOST
+    - leipert/add-ssh-key-gh-bb:
+        keyname: myblogSSH_KEY
     - script:
         name: Setup git repository
         code: |-
