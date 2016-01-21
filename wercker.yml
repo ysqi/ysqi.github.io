@@ -19,7 +19,7 @@ deploy:
   steps:
     - leipert/add-ssh-key-gh-bb:
         keyname: myblogSSH_KEY
-    - leipert/git-push:
+    - ysqi/git-push:
         host: https://git.duapp.com
         repo: appid3trdccjj6g
         gitsuffix: false
