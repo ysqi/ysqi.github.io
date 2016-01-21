@@ -14,7 +14,7 @@ deploy:
   box: samueldebruyn/debian-git
   steps:
     - add-ssh-key:
-        keyname: myblogSSH_KEY: 
+        keyname: myblogSSH_KEY
     - script:
         name: Setup git repository
         code: |-
