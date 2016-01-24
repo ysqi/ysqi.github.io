@@ -1,4 +1,4 @@
-baseurl = "http://blog.yushuangqi.com"
+baseurl = "http://www.yushuangqi.com"
 languageCode = "zn-CN"
 title = "虞双齐的博客" 
 pygmentsuseclasses =  true

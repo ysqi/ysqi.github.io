@@ -27,5 +27,5 @@ deploy:
           ls -haltr /pipeline/source
     - lukevivier/gh-pages:
         token: $GIT_TOKEN
-        domain: yushuangqi.com
+        domain: www.yushuangqi.com
         basedir: public
