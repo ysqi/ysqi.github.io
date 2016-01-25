@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}"  id="doc" class="no-js">
-<head>
-<meta charset="utf-8"> 
-<title>{{if $.IsHome }}{{ .Title }}{{else}} {{.Title}} |{{ .Site.Title }}{{ end }}</title>
+<head> 
+{{ $isHomepage := (eq  .Site.Title  .Title ) }}  <!-- 通过标题简单判断是否是首页 -->
+<title>{{if $isHomepage }}{{ .Title }}{{else}} {{.Title}} |{{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{if $.IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
 <meta name="keywords" content="{{ if .Keywords }}{{ range .Keywords }}{{ . }}, {{ end }}{{else if isset .Params "tags" }}{{ range .Params.tags }}{{ . }}, {{ end }}{{end}}">
 <meta name="author" content="{{ .Site.Author.name }}">
@@ -84,8 +84,7 @@
 
 </head>
 <body id="page" name="page" class="not-active">
-{{if $.IsHome}}
-{{else}}
+{{if eq $isHomepage false}}
 <div class="container">	
 <header class="header writingsheader">
 <nav class="off-canvas-nav-links">
