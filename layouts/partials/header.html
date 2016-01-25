@@ -3,7 +3,7 @@
 <head> 
 {{ $isHomepage := (eq  .Site.Title  .Title ) }}  <!-- 通过标题简单判断是否是首页 -->
 <title>{{if $isHomepage }}{{ .Title }}{{else}} {{.Title}} |{{ .Site.Title }}{{ end }}</title>
-<meta name="description" content="{{if $.IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
+<meta name="description" content="{{if $isHomepage }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
 <meta name="keywords" content="{{ if .Keywords }}{{ range .Keywords }}{{ . }}, {{ end }}{{else if isset .Params "tags" }}{{ range .Params.tags }}{{ . }}, {{ end }}{{end}}">
 <meta name="author" content="{{ .Site.Author.name }}">
 {{ .Hugo.Generator }}
@@ -67,7 +67,7 @@
 				event.preventDefault();
 			}
 		}
-		{{if $.IsHome}}
+		{{if $isHomepage}}
 		//首页计算工作年限
 		var today = new Date();
   	 	var workDay= new Date("2010-03-11");
