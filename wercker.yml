@@ -9,7 +9,7 @@ build:
         prod_branches: master
     - samueldebruyn/minify:
         only_on_branches: master
-        html_args: --remove-comments --collapse-whitespace --conservative-collapse
+        html_args: --collapse-whitespace --conservative-collapse
     - script:
         name: ls stuff
         code: |
