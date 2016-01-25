@@ -38,10 +38,13 @@
 
         </li>
 </ul>
+{{if  in .Permalink "http://http://localhost/"   }}
+<!--  本地开发模式启用评论 -->
 <aside id=comments>
   <div><h5> 评论 </h5></div>
    {{ template "_internal/disqus.html" . }}
  </aside>
+ {{end}}
 {{ $baseurl := .Site.BaseURL }}  
     <div>
         <section id="author">

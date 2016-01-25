@@ -25,9 +25,11 @@
 		{{.Content}}
 	</article>
 	<aside id=comments>
+{{if  in .Permalink "http://http://localhost/"   }}
   <div><h2> 评论 </h2></div>
    {{ template "_internal/disqus.html" . }}
  </aside>
+{{end}}
 </section>
 
 {{partial "sidebar.html"}}
