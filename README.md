@@ -1,3 +1,6 @@
+[![wercker status](https://app.wercker.com/status/3864458bb94a4d3451d55c5e6534403a/m "wercker status")](https://app.wercker.com/project/bykey/3864458bb94a4d3451d55c5e6534403a)
 
-# 说明
-该文档是虞双齐基于 Hugo 创建的静态博客源码。虞双齐博客地址：http://www.yushuangqi.com
+# www.yushuangqi.com
+基于 [Hugo](http://www.hugo.yushuangqi.com) 创建的静态博客。
+
+虞双齐博客地址：http://www.yushuangqi.com
