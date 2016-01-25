@@ -7,9 +7,8 @@ build:
             git submodule update --init --recursive
     - arjen/hugo-build:
         prod_branches: master
-    #- samueldebruyn/minify:
-    #    only_on_branches: master
-    #    html: false
+    - samueldebruyn/minify:
+        only_on_branches: master
     - script:
         name: ls stuff
         code: |
