@@ -24,12 +24,13 @@
 		</aside>
 		{{.Content}}
 	</article>
-	<aside id=comments>
-{{if  in .Permalink "http://http://localhost/"   }}
-  <div><h2> 评论 </h2></div>
+{{if eq false (in .Permalink "http://localhost" )   }}
+<!--  非编辑模式启用评论 -->
+<aside id=comments>
+  <div><h5> 评论 </h5></div>
    {{ template "_internal/disqus.html" . }}
  </aside>
-{{end}}
+ {{end}}
 </section>
 
 {{partial "sidebar.html"}}
