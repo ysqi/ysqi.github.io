@@ -3,7 +3,7 @@ languageCode = "zn-CN"
 title = "虞双齐的博客" 
 pygmentsuseclasses =  true
 uglyURLs = true
-metaDataFormat = "toml"
+metaDataFormat = "YAML"
 disqusShortname = "yushuangqi"
 
 [params]
