@@ -1,0 +1,61 @@
+{{ partial "book/header.html" . }}
+
+<div class="book  without-animation with-summary font-size-3 font-family-1">
+{{ partial "book/menu.html" .}}
+
+<div class="book-body">
+<div class="body-inner">
+            <div class="book-header" role="navigation">
+                <a class="btn pull-left js-toolbar-action" href="#" onclick="sidebar()">目录</a> 
+
+                <div class="pull-right">{{ partial "baidu_share.html" . }}</div>
+				<h1> {{ .Title }}</h1> 
+ 			</div>
+ 			<div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                	 <section class="normal" id="section-">
+                	  {{ .Content }}
+                	 </section> 
+                </div> 
+            </div>
+            <div class="book-footer" role="navigation"> 
+               
+    {{$bookPages := sort (where .Site.Pages "Params.book_name" "eq" .Params.book_name ) "Params.book_chapter" "desc"  }}
+    <!-- 倒序查找上一篇 -->  
+    {{range $index,$p := $bookPages }} 
+       {{if eq $p.Permalink $.Permalink }}
+            {{$nums := add $index 1}} 
+           {{range first 1 (after $nums $bookPages) }}
+             <span class="btn pull-left"> 上一篇：
+             <a href="{{ .Permalink }}">
+                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+            </span>
+           {{end}}
+       {{end}}
+    {{end}}
+
+      {{$bookPages := sort $bookPages "Params.book_chapter" }}
+      {{range $index,$p := $bookPages }} 
+       {{if eq $p.Permalink $.Permalink }}
+            {{$nums := add $index 1}} 
+           {{range first 1 (after $nums $bookPages) }}
+             <span class="btn pull-right"> 下一篇：<a href="{{ .Permalink }}">
+                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+                </span>
+           {{end}}
+       {{end}}
+    {{end}}
+
+            <!--     <a class="btn pull-left" href="">上一篇</a>
+               <a class="btn pull-right" href="">上一篇</a> -->
+            </div>
+</div>
+ </div>
+ <script>
+     function  sidebar(){
+        var book= document.getElementsByClassName("book")[0];
+        book.classList.toggle("without-animation");
+        book.classList.toggle("with-summary");
+     } 
+ </script>
+{{ partial "book/footer.html" . }}

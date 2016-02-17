@@ -1,0 +1,35 @@
+<div   class="book-summary">
+  <nav role="navigation">
+  {{ range .Site.Pages.GroupByParam "book_name" }} 
+     {{if eq .Key $.Params.book_name}}
+      <ul class="summary">  
+	<li><a href="" class="book-name">{{.Key}}</a></li>
+       <li class="divider"></li> 
+
+			{{ $pages := sort .Pages "Params.book_chapter"}}
+      		{{ range seq 100}} 
+      			<!-- 第一级 -->
+      			{{range $subP := where $pages "Params.book_chapter"  (print .) }}
+      				<li class="chapter">
+      				  <a href="{{ .Permalink }}">
+                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+					     <ul>
+      					{{ range seq 100}}  
+      						 {{range where $pages "Params.book_chapter"  (printf  "%s.%d"  $subP.Params.book_chapter .) }} 
+      							<li class="chapter"> 
+            				<a href="{{ .Permalink }}"> 
+            				<b>{{printf "%s." .Params.book_chapter }} </b>  {{  .Params.book_chapter_name }}
+                    </a>
+      						</li>
+      						 {{end}}
+      					{{end}} 
+					     </ul>
+      				</li>  
+      			{{end}}
+      		{{end}} 
+      </ul>
+      {{end}}
+{{ end }}
+</nav>
+</div> 
+ 
