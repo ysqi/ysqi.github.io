@@ -5,29 +5,47 @@
       <ul class="summary">  
 	<li><a href="" class="book-name">{{.Key}}</a></li>
        <li class="divider"></li> 
+        {{range where .Pages "Params.book_chapter"  "eq" "-" }}
+          {{ partial "book/menuli.html" . }}
+        {{end}}
 
 			{{ $pages := sort .Pages "Params.book_chapter"}}
-      		{{ range seq 100}} 
-      			<!-- 第一级 -->
+      		{{ range seq 100}}
       			{{range $subP := where $pages "Params.book_chapter"  (print .) }}
       				<li class="chapter">
-      				  <a href="{{ .Permalink }}">
-                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+                {{ partial "book/menuli.html" . }}
 					     <ul>
       					{{ range seq 100}}  
       						 {{range where $pages "Params.book_chapter"  (printf  "%s.%d"  $subP.Params.book_chapter .) }} 
-      							<li class="chapter"> 
-            				<a href="{{ .Permalink }}"> 
-            				<b>{{printf "%s." .Params.book_chapter }} </b>  {{  .Params.book_chapter_name }}
-                    </a>
-      						</li>
+                    {{ partial "book/menuli.html" . }}
       						 {{end}}
       					{{end}} 
 					     </ul>
       				</li>  
       			{{end}}
       		{{end}} 
+  <li class="divider"></li>
+  <li >
+            <ul>
+               <li >
+            <a href="http://www.yushuangqi.com" style="padding:5px 10px;">逛虞双齐的博客</a>
+          </li> 
+  <li class="divider"></li>
+
+          <li > <a style="padding:5px 10px;" href="{{printf "%s%s.html" $.Site.BaseURL  $.Section }}">查看所有电子书</a>
+          </li>
+  <li class="divider"></li>
+          
+          <li>
+            本书由虞双齐整理提供，著作版权归原作者。
+          </li>
+            </ul>
+  </li>
+         
+
       </ul>
+      <div>
+      </div>
       {{end}}
 {{ end }}
 </nav>

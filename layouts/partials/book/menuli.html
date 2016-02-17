@@ -1,0 +1,18 @@
+
+{{ $isEmpty := eq .WordCount 0 }}
+ 
+{{if or (in .Params.book_chapter ".") (eq .Params.book_chapter "-") }}
+<li class="chapter"> 
+<a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} >
+	{{if ne .Params.book_chapter "-" }}<b>{{printf "%s." .Params.book_chapter }} </b>{{end}} 
+    {{  .Params.book_chapter_name }}
+  	</a>
+</li>
+{{else}}
+<a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} >
+            				{{if ne .Params.book_chapter "-" }}
+            				<b>{{printf "%s." .Params.book_chapter }} </b> 
+            				{{end}} 
+            				{{  .Params.book_chapter_name }}
+</a>            				
+{{end}}
