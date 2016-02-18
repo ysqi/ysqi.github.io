@@ -608,6 +608,10 @@ table {
 .book .book-summary ul.summary li.done>a i {
     display: inline
 }
+.book .book-summary ul.summary li>a.towrite,
+.book .book-summary ul.summary li>a.towrite:hover{
+    color: #BABABA; 
+}
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
     display: block;

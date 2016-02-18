@@ -1,9 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-    	books index
-    </body>
-</html>
+{{ partial "header.html" . }}
+{{ $books := .Data.Pages.GroupByParam "book_name"}}
+<section role="main">
+	<h1 class="presosh1">{{len $books}}本电子书</h1> 
+		<p class="feature">
+		每本电子书都是精品！
+		</p>
+  <ul class="bookslist group" style="border:0;">
+		{{ range  $books}}  
+    	{{$bookInfo := index $.Site.Data.books .Key }}
+
+    <li class="group"> 
+		<div class="" style="border:1px solid #e5e5e5;min-height: 200px;padding: 15px;border-radius: 2px;">
+		<h4  style="border-bottom: 1px solid #eee;padding-bottom: 15px;    margin-bottom: 15px;">
+		<a  href="{{range first 1 (sort .Pages "Params.book_chapter"  ) }}{{.Permalink}}{{end}}">{{.Key}}</a></h4>
+		<q class="bquote" style="border-bottom: 1px solid #eee;min-height: 120px;    margin-bottom: 15px;"> {{ $bookInfo.desc}}
+		</q>
+		<div style="color:#999;display:inline-block;text-align:center;font-size: xx-small;">
+			最后更新时间：{{ range first 1 (sort .Pages "PublishDate" "desc" ) }}{{.Date.Format "2006年01月02日"}}{{end}}
+		</div>
+
+		</div>
+		</li>
+
+    {{ end }}
+		</ul>
+   	  
+ 
+</section>
+ 
+{{partial "sidebar.html" .}}
+{{partial "nav.html" .}}
+{{partial "footer.html" .}}

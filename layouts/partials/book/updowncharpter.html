@@ -1,0 +1,36 @@
+ {{$bookPages := sort (where .Site.Pages "Params.book_name" "eq" .Params.book_name ) "Params.book_chapter" "desc"  }}
+  <span class="btn pull-left"> 上节：
+   <!-- 倒序查找上一篇 -->  
+    {{range $index,$p := $bookPages }} 
+       {{if eq $p.Permalink $.Permalink }}
+           {{$nums := add $index 1}}
+           {{if ne  $nums (len $bookPages) }}
+           {{range first 1 (after $nums $bookPages) }}
+             <a href="{{ .Permalink }}">
+                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+           {{end}}
+           {{else}}
+             没了
+           {{end}}
+       {{end}}
+    {{end}}
+            </span>
+
+<!-- 正序查找下一篇， 遍历时本章节的下一个为下一章节 -->
+<span class="btn pull-right"> 下节：
+      {{$bookPages := sort $bookPages "Params.book_chapter" }}
+      {{range $index,$p := $bookPages }} 
+       {{if eq $p.Permalink $.Permalink }}
+            {{$nums := add $index 1}} 
+            {{if ne  $nums (len $bookPages) }}
+           {{range first 1 (after $nums $bookPages) }}
+             <a href="{{ .Permalink }}">
+                <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
+          
+           {{end}}
+            {{else}}
+             没了
+           {{end}}
+       {{end}}
+    {{end}}
+</span>

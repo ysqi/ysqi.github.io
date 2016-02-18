@@ -24,10 +24,8 @@
 
      <h2 class="hlisting">{{ .Key }}</h1> 
       <ul class="listing">
-      {{ range .Pages }}
-      	{{if eq (eq "/about/" .RelPermalink) false}}
+      {{ range where .Pages "Section" "blog" }} 
 	      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a><span style="float:right">{{ .Date.Format "2006-01-02" }}</span></li>
-      {{end}}
 	{{end}}    
     </ul>
   {{ end }}
@@ -35,5 +33,5 @@
 </section>
 
 {{partial "sidebar.html"}}
-{{partial "nav.html"}}
+{{partial "nav.html" .}}
 {{ partial "footer.html" . }}
