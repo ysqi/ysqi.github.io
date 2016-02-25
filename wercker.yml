@@ -5,7 +5,7 @@ build:
         name: initialize git submodules
         code: |
             git submodule update --init --recursive
-    - arjen/hugo-build:
+    - arjen/hugo-build@1.8.1:
         prod_branches: master
     - samueldebruyn/minify:
         only_on_branches: master
