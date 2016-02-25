@@ -5,7 +5,8 @@
        {{if eq $p.Permalink $.Permalink }}
            {{$nums := add $index 1}}
            {{if ne  $nums ( len $bookPages ) }}
-           {{range first 1 ( after $nums $bookPages ) }}
+           {{ $bp := after $nums $bookPages }}
+           {{range first 1 $bp }}
              <a href="{{ .Permalink }}">
                 <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
            {{end}}
@@ -23,7 +24,8 @@
        {{if eq $p.Permalink $.Permalink }}
             {{$nums := add $index 1}} 
             {{if ne  $nums ( len $bookPages ) }}
-           {{range first 1 ( after $nums $bookPages ) }}
+           {{ $bp := after $nums $bookPages }}
+           {{range first 1 $bp }}
              <a href="{{ .Permalink }}">
                 <b>{{printf "%s." .Params.book_chapter }} </b>{{  .Params.book_chapter_name }}</a>
           
