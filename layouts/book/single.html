@@ -12,7 +12,19 @@
                 <div class="page-inner">
                   <!-- 内容 -->
                 	 <section class="normal" id="section-">
-                	  {{ .Content }}
+                     {{if isset .Params "codeurl" }}
+                     <!-- 如果存在示例，可以通过分割两列并行显示文字内容和在线运行代码 -->
+                      <div class="row">
+    <div class="span6">
+          {{ .Content }}
+    </div>
+    <div class="span6">
+        <iframe style="border:1px solid" src="{{.Params.codeurl}}?embed=true&from={{.Site.BaseURL}}" width="99%" height="600"></iframe>
+    </div>
+  </div>
+                     {{else}}
+                	      {{ .Content }}
+                    {{end}}
                 	 </section> 
                    <!-- 分享 -->
                    <aside>

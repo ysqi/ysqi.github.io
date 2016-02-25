@@ -29,7 +29,7 @@
 	 {{ range first 6 ( where .Data.Pages "Section" "blog" ) }}
                                         	<li class="list-group-item">
                                                 <a href="{{ .RelPermalink }}" class="writings text-overflow">
-                                                {{ .Title }}{{ if .Draft }} (Draft){{ end }}
+                                                <span >{{ .Title }}{{ if .Draft }} (Draft){{ end }}</span>
                                                 <span class="date">{{ .Date.Format "2006-01-02" }}</span> 
                                                 </a>
                                             </li> 
