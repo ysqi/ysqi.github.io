@@ -2,7 +2,7 @@
 book_chapter: "5.1"
 book_chapter_name: "goroutine"
 book_name: Golang入门指南
-date: "2016-02-26 17:42:50.4965623 +0800 CST"
+date: "2016-02-26T17:42:50.4965623+08:00"
 description: ""
 disqus_identifier: book00010501
 slug: ""

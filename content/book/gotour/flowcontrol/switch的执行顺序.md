@@ -2,7 +2,7 @@
 book_chapter: "2.10"
 book_chapter_name: "switch的执行顺序"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:30.167695 +0800 CST"
+date: "2016-02-26T17:45:30.167695+08:00"
 description: ""
 disqus_identifier: book000102010
 slug: ""

@@ -2,7 +2,7 @@
 book_chapter: "2.11"
 book_chapter_name: "没有条件的switch"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:30.5687179 +0800 CST"
+date: "2016-02-26T17:45:30.5687179+08:00"
 description: ""
 disqus_identifier: book000102011
 slug: ""

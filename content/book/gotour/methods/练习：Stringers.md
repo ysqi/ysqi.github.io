@@ -2,7 +2,7 @@
 book_chapter: "4.7"
 book_chapter_name: "练习：Stringers"
 book_name: Golang入门指南
-date: "2016-02-26 17:53:41.1017748 +0800 CST"
+date: "2016-02-26T17:53:41.1017748+08:00"
 description: ""
 disqus_identifier: book00010407
 slug: ""

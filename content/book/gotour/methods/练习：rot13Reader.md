@@ -2,7 +2,7 @@
 book_chapter: "4.12"
 book_chapter_name: "练习：rot13Reader"
 book_name: Golang入门指南
-date: "2016-02-26 17:53:43.9349368 +0800 CST"
+date: "2016-02-26T17:53:43.9349368+08:00"
 description: ""
 disqus_identifier: book000104012
 slug: ""

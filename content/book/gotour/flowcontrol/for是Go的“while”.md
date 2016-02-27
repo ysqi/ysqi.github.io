@@ -2,7 +2,7 @@
 book_chapter: "2.3"
 book_chapter_name: "for是Go的“while”"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:27.45854 +0800 CST"
+date: "2016-02-26T17:45:27.45854+08:00"
 description: ""
 disqus_identifier: book00010203
 slug: ""

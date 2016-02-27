@@ -2,7 +2,7 @@
 book_chapter: "5.10"
 book_chapter_name: "练习：Web爬虫"
 book_name: Golang入门指南
-date: "2016-02-26 17:42:54.3367819 +0800 CST"
+date: "2016-02-26T17:42:54.3367819+08:00"
 description: ""
 disqus_identifier: book000105010
 slug: ""

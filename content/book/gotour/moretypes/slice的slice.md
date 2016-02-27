@@ -2,7 +2,7 @@
 book_chapter: "3.8"
 book_chapter_name: "slice的slice"
 book_name: Golang入门指南
-date: "2016-02-26 17:46:23.7687608 +0800 CST"
+date: "2016-02-26T17:46:23.7687608+08:00"
 description: ""
 disqus_identifier: book00010308
 slug: ""

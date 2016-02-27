@@ -2,7 +2,7 @@
 book_chapter: "2.13"
 book_chapter_name: "defer栈"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:31.339762 +0800 CST"
+date: "2016-02-26T17:45:31.339762+08:00"
 description: ""
 disqus_identifier: book000102013
 slug: ""

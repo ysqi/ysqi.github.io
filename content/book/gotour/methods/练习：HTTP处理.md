@@ -2,7 +2,7 @@
 book_chapter: "4.14"
 book_chapter_name: "练习：HTTP处理"
 book_name: Golang入门指南
-date: "2016-02-26 17:53:44.8719904 +0800 CST"
+date: "2016-02-26T17:53:44.8719904+08:00"
 description: ""
 disqus_identifier: book000104014
 slug: ""

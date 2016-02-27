@@ -2,7 +2,7 @@
 book_chapter: "2.7"
 book_chapter_name: "if和else"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:28.997628 +0800 CST"
+date: "2016-02-26T17:45:28.997628+08:00"
 description: ""
 disqus_identifier: book00010207
 slug: ""

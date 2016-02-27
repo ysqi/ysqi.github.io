@@ -2,7 +2,7 @@
 book_chapter: "3.19"
 book_chapter_name: "修改map"
 book_name: Golang入门指南
-date: "2016-02-26 17:46:28.057006 +0800 CST"
+date: "2016-02-26T17:46:28.057006+08:00"
 description: ""
 disqus_identifier: book000103019
 slug: ""

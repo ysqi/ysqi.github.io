@@ -2,7 +2,7 @@
 book_chapter: "4.13"
 book_chapter_name: "Web服务器"
 book_name: Golang入门指南
-date: "2016-02-26 17:53:44.3809623 +0800 CST"
+date: "2016-02-26T17:53:44.3809623+08:00"
 description: ""
 disqus_identifier: book000104013
 slug: ""

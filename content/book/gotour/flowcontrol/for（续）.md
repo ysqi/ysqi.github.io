@@ -2,7 +2,7 @@
 book_chapter: "2.2"
 book_chapter_name: "for（续）"
 book_name: Golang入门指南
-date: "2016-02-26 17:45:27.0705178 +0800 CST"
+date: "2016-02-26T17:45:27.0705178+08:00"
 description: ""
 disqus_identifier: book00010202
 slug: ""
