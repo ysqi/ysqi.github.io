@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.11"
+book_chapter: "0211"
 book_chapter_name: "没有条件的switch"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:30.5687179+08:00"
 description: ""
 disqus_identifier: book000102011
-slug: ""
+slug: "switch-with-no-condition"
 title: Golang入门指南-没有条件的switch
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.15"
+book_chapter: "0315"
 book_chapter_name: "练习：slice"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:26.6339246+08:00"
 description: ""
 disqus_identifier: book000103015
-slug: ""
+slug: "exercise-slice"
 title: Golang入门指南-练习：slice
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

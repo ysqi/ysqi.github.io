@@ -1,11 +1,11 @@
 ---
-book_chapter: "4.12"
+book_chapter: "0412"
 book_chapter_name: "练习：rot13Reader"
 book_name: Golang入门指南
 date: "2016-02-26T17:53:43.9349368+08:00"
 description: ""
 disqus_identifier: book000104012
-slug: ""
+slug: "exercise-rot-reader"
 title: Golang入门指南-练习：rot13Reader
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

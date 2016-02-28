@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.12"
+book_chapter: "0312"
 book_chapter_name: "向slice添加元素"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:25.5468625+08:00"
 description: ""
 disqus_identifier: book000103012
-slug: ""
+slug: "mutating-maps"
 title: Golang入门指南-向slice添加元素
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

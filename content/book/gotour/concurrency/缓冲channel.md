@@ -1,11 +1,11 @@
 ---
-book_chapter: "5.3"
+book_chapter: "0503"
 book_chapter_name: "缓冲channel"
 book_name: Golang入门指南
 date: "2016-02-26T17:42:51.9786471+08:00"
 description: ""
 disqus_identifier: book00010503
-slug: ""
+slug: "buffered-channels"
 title: Golang入门指南-缓冲channel
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

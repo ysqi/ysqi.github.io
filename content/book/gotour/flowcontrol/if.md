@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.5"
+book_chapter: "0205"
 book_chapter_name: "if"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:28.2155833+08:00"
 description: ""
 disqus_identifier: book00010205
-slug: ""
+slug: "if"
 title: Golang入门指南-if
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

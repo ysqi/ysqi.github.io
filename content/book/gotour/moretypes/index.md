@@ -1,6 +1,6 @@
 ---
-book_chapter: "3"
-book_chapter_name: "并发"
+book_chapter: "03"
+book_chapter_name: "复杂类型"
 book_name: Golang入门指南
 date: 2016-02-25T15:42:55+08:00
 description: ""

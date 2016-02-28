@@ -1,5 +1,5 @@
 ---
-book_chapter: "4"
+book_chapter: "04"
 book_chapter_name: "方法和接口"
 book_name: Golang入门指南
 date: 2016-02-25T15:42:55+08:00

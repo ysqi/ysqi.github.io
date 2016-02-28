@@ -1,5 +1,5 @@
 ---
-book_chapter: "3.11"
+book_chapter: "0311"
 book_chapter_name: "nilslice"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:25.1968424+08:00"

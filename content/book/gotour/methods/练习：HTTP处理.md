@@ -1,9 +1,9 @@
 ---
-book_chapter: "4.14"
+book_chapter: "0414"
 book_chapter_name: "练习：HTTP处理"
 book_name: Golang入门指南
 date: "2016-02-26T17:53:44.8719904+08:00"
-description: ""
+description: "exercise-http"
 disqus_identifier: book000104014
 slug: ""
 title: Golang入门指南-练习：HTTP处理
@@ -48,7 +48,7 @@ import (
 
 func main() {
 	// your http.Handle calls here
-	log.Fatal(http.ListenAndServe("localhost:4000", nil))
+	log.Fatal(http.ListenAndServe("localhost:40", nil))
 }
 
 ```

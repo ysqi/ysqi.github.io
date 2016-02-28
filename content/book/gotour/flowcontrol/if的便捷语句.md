@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.6"
+book_chapter: "0206"
 book_chapter_name: "if的便捷语句"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:28.6036055+08:00"
 description: ""
 disqus_identifier: book00010206
-slug: ""
+slug: "if-with-a-short-statement"
 title: Golang入门指南-if的便捷语句
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.13"
+book_chapter: "0213"
 book_chapter_name: "defer栈"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:31.339762+08:00"
 description: ""
 disqus_identifier: book000102013
-slug: ""
+slug: "defer-multi"
 title: Golang入门指南-defer栈
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

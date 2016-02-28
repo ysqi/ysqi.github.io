@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.7"
+book_chapter: "0207"
 book_chapter_name: "if和else"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:28.997628+08:00"
 description: ""
 disqus_identifier: book00010207
-slug: ""
+slug: "if-and-else"
 title: Golang入门指南-if和else
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

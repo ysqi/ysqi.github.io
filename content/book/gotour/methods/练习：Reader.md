@@ -1,9 +1,9 @@
 ---
-book_chapter: "4.11"
+book_chapter: "0411"
 book_chapter_name: "练习：Reader"
 book_name: Golang入门指南
 date: "2016-02-26T17:53:43.5089125+08:00"
-description: ""
+description: "exercise-reader"
 disqus_identifier: book000104011
 slug: ""
 title: Golang入门指南-练习：Reader

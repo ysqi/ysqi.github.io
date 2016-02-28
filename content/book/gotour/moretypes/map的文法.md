@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.17"
+book_chapter: "0317"
 book_chapter_name: "map的文法"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:27.3469654+08:00"
 description: ""
 disqus_identifier: book000103017
-slug: ""
+slug: "map-literals"
 title: Golang入门指南-map的文法
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

@@ -1,5 +1,5 @@
 ---
-book_chapter: "5.4"
+book_chapter: "0504"
 book_chapter_name: "range和close"
 book_name: Golang入门指南
 date: "2016-02-26T17:42:52.3466681+08:00"

@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.8"
+book_chapter: "0308"
 book_chapter_name: "slice的slice"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:23.7687608+08:00"
 description: ""
 disqus_identifier: book00010308
-slug: ""
+slug: "slices-of-slice"
 title: Golang入门指南-slice的slice
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

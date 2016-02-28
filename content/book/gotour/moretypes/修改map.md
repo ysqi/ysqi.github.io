@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.19"
+book_chapter: "0319"
 book_chapter_name: "修改map"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:28.057006+08:00"
 description: ""
 disqus_identifier: book000103019
-slug: ""
+slug: "mutating-maps"
 title: Golang入门指南-修改map
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

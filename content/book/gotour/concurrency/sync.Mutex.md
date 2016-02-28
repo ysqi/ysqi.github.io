@@ -1,5 +1,5 @@
 ---
-book_chapter: "5.9"
+book_chapter: "0509"
 book_chapter_name: "sync.Mutex"
 book_name: Golang入门指南
 date: "2016-02-26T17:42:53.9547601+08:00"

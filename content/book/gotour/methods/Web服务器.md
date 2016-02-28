@@ -1,11 +1,11 @@
 ---
-book_chapter: "4.13"
+book_chapter: "0413"
 book_chapter_name: "Web服务器"
 book_name: Golang入门指南
 date: "2016-02-26T17:53:44.3809623+08:00"
 description: ""
 disqus_identifier: book000104013
-slug: ""
+slug: "http-web-server"
 title: Golang入门指南-Web服务器
 codeurl: "https://wide.b3log.org/playground/.go"
 ---
@@ -49,7 +49,7 @@ func (h Hello) ServeHTTP(
 
 func main() {
 	var h Hello
-	err := http.ListenAndServe("localhost:4000", h)
+	err := http.ListenAndServe("localhost:40", h)
 	if err != nil {
 		log.Fatal(err)
 	}

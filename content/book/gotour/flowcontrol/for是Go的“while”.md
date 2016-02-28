@@ -1,11 +1,11 @@
 ---
-book_chapter: "2.3"
+book_chapter: "0203"
 book_chapter_name: "for是Go的“while”"
 book_name: Golang入门指南
 date: "2016-02-26T17:45:27.45854+08:00"
 description: ""
 disqus_identifier: book00010203
-slug: ""
+slug: "for-is-gos-while"
 title: Golang入门指南-for是Go的“while”
 codeurl: "https://wide.b3log.org/playground/.go"
 ---

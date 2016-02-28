@@ -1,11 +1,11 @@
 ---
-book_chapter: "3.20"
+book_chapter: "0320"
 book_chapter_name: "练习：map"
 book_name: Golang入门指南
 date: "2016-02-26T17:46:28.4470283+08:00"
 description: ""
 disqus_identifier: book000103020
-slug: ""
+slug: "exercise-map"
 title: Golang入门指南-练习：map
 codeurl: "https://wide.b3log.org/playground/.go"
 ---
