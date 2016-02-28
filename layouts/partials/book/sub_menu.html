@@ -1,0 +1,19 @@
+{{ $chapter := .Params.book_chapter }} <!-- 当前章节编号 -->
+{{ $firstSub := true }}
+{{ $chaLen := len $chapter }} <!-- 当前章节长度 --> 
+ 
+ <!-- 获取本书所有文章 -->
+ {{$bookPages := sort (where .Site.Pages "Params.book_name" "eq" .Params.book_name ) "Params.book_chapter" }}
+	<!-- 遍历本书，查找已此目录开头的章节作为子目录-->
+	{{range $bookPages}}
+		<!-- 下一节章节名长度+2 且 以本章节编号开头。如 01 子章节编号是：0101、0102、 0111 -->
+		{{if and ( eq (len .Params.book_chapter) (add $chaLen 2) ) (eq $chapter ( substr .Params.book_chapter 0  $chaLen ) ) }}
+			{{if $firstSub}}	
+				<!-- <ul class="summary"> --> {{$firstSub :=false}}
+			{{end}}
+			{{ partial "book/menuli.html" . }}
+		{{end}}
+	{{end}}
+	{{if eq false $firstSub}}
+		
+	{{end}}
