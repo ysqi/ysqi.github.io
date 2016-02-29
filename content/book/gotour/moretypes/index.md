@@ -5,7 +5,7 @@ book_name: Golang入门指南
 date: 2016-02-25T15:42:55+08:00
 description: ""
 disqus_identifier: book00010300
-slug: "index"
+slug: "home"
 title:  Golang入门指南-复杂类型
 ---
 复杂类型： struct、slice 和 map。

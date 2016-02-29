@@ -5,7 +5,7 @@ book_name: Golang入门指南
 date: 2016-02-25T15:00:35+08:00
 description: ""
 disqus_identifier: book00010001
-slug: "index"
+slug: "home"
 title: 欢迎
 codeurl: https://wide.b3log.org/playground/a6087de933207e84f74cd80605bb83a2.go
 ---

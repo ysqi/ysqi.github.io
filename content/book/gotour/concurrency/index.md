@@ -5,7 +5,7 @@ book_name: Golang入门指南
 date: 2016-02-25T15:42:55+08:00
 description: ""
 disqus_identifier: book00010500
-slug: "index"
+slug: "home"
 title: 基础内容
 ---
 
