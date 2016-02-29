@@ -8,7 +8,7 @@
 {{else}}
 <a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} >
             				{{if ne .Params.book_chapter "-" }}
-            				<b>{{printf "%s." (last 2 .Params.book_chapter) }}</b> 
+            				<b>{{printf "%s." (slicestr .Params.book_chapter  (sub (len .Params.book_chapter) 2) ) }}</b> 
             				{{end}} 
             				{{  .Params.book_chapter_name }}
 </a>            				
