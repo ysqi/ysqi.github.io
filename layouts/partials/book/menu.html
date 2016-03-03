@@ -11,12 +11,12 @@
        {{if eq "-" .Params.book_chapter }}
         {{ partial "book/menuli.html" . }}
        {{else}}
-          {{if eq 2 (len .Params.book_chapter)}}
-            {{ $chapter := .Params.book_chapter }} <!-- 当前章节编号 -->
+          {{if eq "00" (slicestr .Params.book_chapter 2)}}
+            {{ $chapter := first 2 .Params.book_chapter }} <!-- 当前章节编号 -->
             {{ partial "book/menuli.html" . }}
             <ul>
-            {{range $bookPages}}
-                <!-- 下一节章节名长度+2 且 以本章节编号开头。如 01 子章节编号是：0101、0102、 0111 -->
+            {{range (where $bookPages "Params.book_chapter" "ne" .Params.book_chapter )}}
+                <!-- 下一节章节名长度+2 且 以本章节编号开头。如 0100 子章节编号是：0101、0102、 0111 -->
                 {{if and ( eq (len .Params.book_chapter) 4 ) (eq $chapter (first 2 .Params.book_chapter) ) }}
                   {{ partial "book/menuli.html" . }}
                 {{end}}

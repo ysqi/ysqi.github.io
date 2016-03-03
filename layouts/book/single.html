@@ -1,11 +1,11 @@
 {{ partial "book/header.html" . }}
-<div class="book  without-animation with-summary font-size-3 font-family-1">
+<div class="book font-size-3 font-family-1">
 {{ partial "book/menu.html" .}}
 
 <div class="book-body">
 <div class="body-inner">
             <div class="book-header" role="navigation">
-                <a class="btn pull-left js-toolbar-action" href="#" onclick="sidebar()">目录</a>
+                <a class="btn pull-left js-toolbar-action" href="#" onclick="sidebar()">本书目录</a>
 				        <h1> {{ .Title }}</h1> 
  			      </div>
  			<div class="page-wrapper" tabindex="-1" role="main">
@@ -16,14 +16,28 @@
                      <!-- 如果存在示例，可以通过分割两列并行显示文字内容和在线运行代码 -->
                       <div class="row">
     <div class="span6">
-          {{ .Content }}
+          {{ .Content }} 
     </div>
     <div class="span6">
         <iframe style="border:1px solid" src="{{.Params.codeurl}}?embed=true&from={{.Site.BaseURL}}" width="99%" height="600"></iframe>
     </div>
   </div>
                      {{else}}
-                	      {{ .Content }}
+                	      {{ .Content }} 
+          <!-- 如果是一级章节，则自动在后面添加子章节列表 -->
+          {{if and (eq 4 (len .Params.book_chapter)) (eq "00" ( slicestr .Params.book_chapter 2) ) }}
+          <div>
+          {{$bookPages := sort (where .Site.Pages "Params.book_name" "eq" .Params.book_name ) "Params.book_chapter" }}  
+            <ul>
+             {{range (where $bookPages "Params.book_chapter" "ne" .Params.book_chapter )}}
+                <!-- 下一节章节名长度+2 且 以本章节编号开头。如 0100 子章节编号是：0101、0102、 0111 -->
+                {{if eq (first 2 $.Params.book_chapter) (first 2 .Params.book_chapter)  }}
+                 {{ partial "book/menuli.html" . }} 
+                {{end}}
+              {{end}}
+              </ul>
+          </div>
+          {{end}}
                     {{end}}
                 	 </section> 
                    <!-- 分享 -->
