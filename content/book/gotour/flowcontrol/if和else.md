@@ -7,19 +7,14 @@ description: ""
 disqus_identifier: book00010207
 slug: "if-and-else"
 title: Golang入门指南-if和else
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/2df3e96a454e45815854a95e0a02f200.go"
 ---
-
-
-
 
 在 `if` 的便捷语句定义的变量同样可以在任何对应的 `else` 块中使用。
 
 （提示：两个 `pow` 调用都在 `main` 调用 `fmt.Println` 前执行完毕了。）
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -44,5 +39,5 @@ func main() {
 	)
 }
 
-```
+``` -->
 

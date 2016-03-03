@@ -7,20 +7,17 @@ description: ""
 disqus_identifier: book00010509
 slug: ""
 title: Golang入门指南-sync.Mutex
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/ef102da0a6051e26674d9073352a6ba6.go"
 ---
-
-
-
 
 我们已经看到 `channel` 用来在各个 goroutine 间进行通信是非常合适的了。
 
 但是如果我们并不需要通信呢？比如说，如果我们只是想保证在每个时刻，只有一个 goroutine
 能访问一个共享的变量从而避免冲突？
 
-这里涉及的概念叫做 _互斥_，通常使用 _互斥锁_(mutex)_来提供这个限制。
+这里涉及的概念叫做 **互斥**，通常使用 _互斥锁_(mutex)_来提供这个限制。
 
-Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 类型及其两个方法：
+Go 标准库中提供了 [`sync.Mutex`](https://go-zh.org/pkg/sync/#Mutex) 类型及其两个方法：
 
 - `Lock`
 - `Unlock`
@@ -30,9 +27,7 @@ Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 类
 
 我们也可以用 `defer` 语句来保证互斥锁一定会被解锁。参见 `Value` 方法。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -73,5 +68,5 @@ func main() {
 	fmt.Println(c.Value("somekey"))
 }
 
-```
+``` -->
 

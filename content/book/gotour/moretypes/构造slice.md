@@ -7,11 +7,8 @@ description: ""
 disqus_identifier: book000103010
 slug: "making-slices"
 title: Golang入门指南-构造slice
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/79560c54adb9e7c8883f12e2b02b0b42.go"
 ---
-
-
-
 
 slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返回一个 slice 指向这个数组：
 
@@ -24,9 +21,7 @@ slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返
 	b = b[:cap(b)] // len(b)=5, cap(b)=5
 	b = b[1:]      // len(b)=4, cap(b)=4
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -47,5 +42,5 @@ func printSlice(s string, x []int) {
 		s, len(x), cap(x), x)
 }
 
-```
+``` -->
 

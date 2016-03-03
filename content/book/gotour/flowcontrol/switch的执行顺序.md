@@ -7,29 +7,21 @@ description: ""
 disqus_identifier: book000102010
 slug: "switch-evaluation-order"
 title: Golang入门指南-switch的执行顺序
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/8ea40df1b2c22c5ee8524b8152f4499c.go"
 ---
-
-
-
 
 switch 的条件从上到下的执行，当匹配成功的时候停止。
 
 （例如，
 
 	switch i {
-	case 0:
-	case f():
+		case 0:
+		case f():
 	}
 
-当 `i==0` 时不会调用 `f` 。）
+当 `i==0` 时不会调用 `f()` ）
 
-#appengine: 注意：Go playground 中的时间总是从 2009-11-10 23:00:00 UTC 开始，
-#appengine: 如何校验这个值作为一个练习留给读者完成。
-
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -52,5 +44,5 @@ func main() {
 	}
 }
 
-```
+``` -->
 

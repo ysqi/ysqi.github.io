@@ -7,12 +7,8 @@ description: ""
 disqus_identifier: book000103019
 slug: "mutating-maps"
 title: Golang入门指南-修改map
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/e1aab18c5beb57151f6c61da1d099a59.go"
 ---
-
-
-
-
 在 map `m` 中插入或修改一个元素：
 
 	m[key] = elem
@@ -29,13 +25,11 @@ codeurl: "https://wide.b3log.org/playground/.go"
 
 	elem, ok = m[key]
 
-如果 `key` 在 `m` 中， `ok` 为 `true`。否则， `ok` 为 `false`，并且 `elem` 是 map 的元素类型的零值。
+如果 `key` 在 `m` 中， `ok`为`true`。否则， `ok` 为`false`，并且`elem`是 map 的元素类型的[零值]({{< ref "零值.md">}})。
 
-同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
+同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的[零值]({{< ref "零值.md">}})。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -56,5 +50,5 @@ func main() {
 	fmt.Println("The value:", v, "Present?", ok)
 }
 
-```
+``` -->
 

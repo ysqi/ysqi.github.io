@@ -7,13 +7,10 @@ description: ""
 disqus_identifier: book000104013
 slug: "http-web-server"
 title: Golang入门指南-Web服务器
-codeurl: "https://wide.b3log.org/playground/.go"
+#codeurl: "https://wide.b3log.org/playground/.go"
 ---
 
-
-
-	
-[[https://go-zh.org/pkg/net/http/][包 http]] 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
+[包 http](https://go-zh.org/pkg/net/http/#Handle) 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
 
 	package http
 
@@ -23,14 +20,12 @@ codeurl: "https://wide.b3log.org/playground/.go"
 
 在这个例子中，类型 `Hello` 实现了 `http.Handler`。
 
-访问 [[http://localhost:4000/][http://localhost:4000/]] 会看到来自程序的问候。
+访问 http://localhost:4000/ 会看到来自程序的问候。
 	
-#appengine: *注意：* 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
-#appengine: web 服务器，可能需要[[https://go-zh.org/doc/install/][安装 Go]]。
+**注意：** 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
+web 服务器，可能需要[安装 Go](https://go-zh.org/doc/install/)。
 
-```
-// +build OMIT
-
+```go
 package main
 
 import (
@@ -49,7 +44,7 @@ func (h Hello) ServeHTTP(
 
 func main() {
 	var h Hello
-	err := http.ListenAndServe("localhost:40", h)
+	err := http.ListenAndServe("localhost:4040", h)
 	if err != nil {
 		log.Fatal(err)
 	}

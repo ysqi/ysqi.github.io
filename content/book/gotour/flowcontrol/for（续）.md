@@ -7,17 +7,13 @@ description: ""
 disqus_identifier: book00010202
 slug: "for-continued"
 title: Golang入门指南-for（续）
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/a6b0b9c42075661a4e8713f48585daa2.go"
 ---
-
-
 
 
 循环初始化语句和后置语句都是可选的。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -30,5 +26,5 @@ func main() {
 	fmt.Println(sum)
 }
 
-```
+``` -->
 

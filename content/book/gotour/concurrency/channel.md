@@ -5,13 +5,10 @@ book_name: Golang入门指南
 date: "2016-02-26T17:42:51.6056257+08:00"
 description: ""
 disqus_identifier: book00010502
-slug: ""
+slug: "channel"
 title: Golang入门指南-channel
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/2f63a33271371ed83eb58dc922569c7b.go"
 ---
-
-
-
 
 channel 是有类型的管道，可以用 channel 操作符 `<-` 对其发送或者接收值。
 
@@ -26,9 +23,7 @@ channel 是有类型的管道，可以用 channel 操作符 `<-` 对其发送或
 
 默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -52,5 +47,5 @@ func main() {
 	fmt.Println(x, y, x+y)
 }
 
-```
+``` -->
 

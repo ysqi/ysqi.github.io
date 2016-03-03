@@ -7,19 +7,14 @@ description: ""
 disqus_identifier: book000103011
 slug: ""
 title: Golang入门指南-nilslice
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/337c4fcdd541d2c98900ac2cb8200c57.go"
 ---
-
-
-
 
 slice 的零值是 `nil` 。
 
 一个 nil 的 slice 的长度和容量是 0。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -32,5 +27,5 @@ func main() {
 	}
 }
 
-```
+``` -->
 

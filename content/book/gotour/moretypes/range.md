@@ -7,20 +7,18 @@ description: ""
 disqus_identifier: book000103013
 slug: ""
 title: Golang入门指南-range
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/15de821b88313f5812de643ec3d2966e.go"
 ---
-
-
-
 
 `for` 循环的 `range` 格式可以对 slice 或者 map 进行迭代循环。
 
 当使用 `for` 循环遍历一个 slice 时，每次迭代 `range` 将返回两个值。
-第一个是当前下标（序号），第二个是该下标所对应元素的一个拷贝。
 
-```
-// +build OMIT
+第一个是当前下标（序号）。
 
+第二个是该下标所对应元素的一个拷贝。
+
+<!-- ```go
 package main
 
 import "fmt"
@@ -35,3 +33,4 @@ func main() {
 
 ```
 
+ -->

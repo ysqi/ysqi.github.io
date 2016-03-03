@@ -7,19 +7,13 @@ description: ""
 disqus_identifier: book000103020
 slug: "exercise-map"
 title: Golang入门指南-练习：map
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/f5974d93879f7dd44635d34c9317d8c3.go"
 ---
+实现 `WordCount`。它应当返回一个含有 `s` 中每个 “词” 个数的 map。 
 
+你会发现[strings.Fields](https://go-zh.org/pkg/strings/#Fields) 很有帮助。
 
-
-
-实现 `WordCount`。它应当返回一个含有 `s` 中每个 “词” 个数的 map。函数 `wc.Test` 针对这个函数执行一个测试用例，并输出成功还是失败。
-
-你会发现 [[https://go-zh.org/pkg/strings/#Fields][strings.Fields]] 很有帮助。
-
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -34,5 +28,5 @@ func main() {
 	wc.Test(WordCount)
 }
 
-```
+``` -->
 

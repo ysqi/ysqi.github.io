@@ -7,19 +7,19 @@ description: ""
 disqus_identifier: book000102011
 slug: "switch-with-no-condition"
 title: Golang入门指南-没有条件的switch
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/b7cb36325458480b83b94f12aec2d68e.go"
 ---
 
 
+没有条件的 switch 同 `switch true` 一样。
 
-
-没有条件的 switch 同 `switch`true` 一样。
+	switch true	{
+		//case ...
+	}
 
 这一构造使得可以用更清晰的形式来编写长的 if-then-else 链。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -39,5 +39,5 @@ func main() {
 	}
 }
 
-```
+``` -->
 

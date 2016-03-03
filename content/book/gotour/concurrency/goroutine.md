@@ -7,11 +7,8 @@ description: ""
 disqus_identifier: book00010501
 slug: ""
 title: Golang入门指南-goroutine
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/87f2ee58b710f3c1c9b65a11ac87d69e.go"
 ---
-
-
-
 
 _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
@@ -23,11 +20,9 @@ _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
 `f`，`x`，`y` 和 `z` 是当前 goroutine 中定义的，但是在新的 goroutine 中运行 `f`。
 
-goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[[https://go-zh.org/pkg/sync/][`sync`]] 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
+goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[`sync`](https://go-zh.org/pkg/sync/) 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import (
@@ -47,5 +42,5 @@ func main() {
 	say("hello")
 }
 
-```
+``` -->
 

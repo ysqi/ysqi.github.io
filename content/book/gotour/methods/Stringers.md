@@ -7,13 +7,9 @@ description: ""
 disqus_identifier: book00010406
 slug: ""
 title: Golang入门指南-Stringers
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/6629a4ad98f772b6a3ef0f7b5cf5d563.go"
 ---
-
-
-
-
-一个普遍存在的接口是 [[https://go-zh.org/pkg/fmt/][`fmt`]] 包中定义的 [[https://go-zh.org/pkg/fmt/#Stringer][`Stringer`]]。
+一个普遍存在的接口是[`fmt`](https://go-zh.org/pkg/fmt/)包中定义的[`Stringer`](https://go-zh.org/pkg/fmt/#Stringer)。
 
 	type Stringer interface {
 		String() string
@@ -22,7 +18,7 @@ codeurl: "https://wide.b3log.org/playground/.go"
 `Stringer` 是一个可以用字符串描述自己的类型。`fmt`包
 （还有许多其他包）使用这个来进行输出。
 
-```
+<!-- ```go
 package main
 
 import "fmt"
@@ -42,5 +38,5 @@ func main() {
 	fmt.Println(a, z)
 }
 
-```
+``` -->
 

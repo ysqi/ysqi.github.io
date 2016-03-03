@@ -7,19 +7,14 @@ description: ""
 disqus_identifier: book000103016
 slug: "map"
 title: Golang入门指南-map
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/3eae4b105abfb940f1ce5e2b87de060f.go"
 ---
-
-
-
 
 map 映射键到值。
 
 map 在使用之前必须用 `make` 来创建；值为 `nil` 的 map 是空的，并且不能对其赋值。
 
-```
-// +build OMIT
-
+<!-- ```go
 package main
 
 import "fmt"
@@ -38,5 +33,5 @@ func main() {
 	fmt.Println(m["Bell Labs"])
 }
 
-```
+``` -->
 

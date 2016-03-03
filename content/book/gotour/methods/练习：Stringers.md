@@ -7,17 +7,13 @@ description: ""
 disqus_identifier: book00010407
 slug: "exercise-stringer"
 title: Golang入门指南-练习：Stringers
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/118a4ceec966aea3068ca36f2de9eea6.go"
 ---
-
-
-
-
 让 `IPAddr` 类型实现 `fmt.Stringer` 以便用点分格式输出地址。
 
 例如，`IPAddr{1,`2,`3,`4}` 应当输出 `"1.2.304"`。
 
-```
+<!-- ```go
 package main
 
 import "fmt"
@@ -36,5 +32,5 @@ func main() {
 	}
 }
 
-```
+``` -->
 
