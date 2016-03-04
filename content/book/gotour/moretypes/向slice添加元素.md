@@ -24,7 +24,7 @@ codeurl: "https://wide.b3log.org/playground/2f183fc2c4d5ee771a0aa3d5c518b065.go"
 
 （了解更多关于 slice 的内容，参阅文章[Go 切片：用法和本质](https://blog.go-zh.org/go-slices-usage-and-internals)。）
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -51,5 +51,5 @@ func printSlice(s string, x []int) {
 		s, len(x), cap(x), x)
 }
 
-``` -->
+```
 

@@ -16,7 +16,7 @@ defer 语句会延迟函数的执行直到上层函数返回。
 
 defer 执行顺序是先进后出。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -27,5 +27,5 @@ func main() {
 	fmt.Println("hello")
 }
 
-``` -->
+```
 

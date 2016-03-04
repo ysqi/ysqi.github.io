@@ -18,7 +18,7 @@ codeurl: "https://wide.b3log.org/playground/15de821b88313f5812de643ec3d2966e.go"
 
 第二个是该下标所对应元素的一个拷贝。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -33,4 +33,3 @@ func main() {
 
 ```
 
- -->

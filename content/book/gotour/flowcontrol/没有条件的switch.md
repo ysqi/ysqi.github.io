@@ -19,7 +19,7 @@ codeurl: "https://wide.b3log.org/playground/b7cb36325458480b83b94f12aec2d68e.go"
 
 这一构造使得可以用更清晰的形式来编写长的 if-then-else 链。
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -39,5 +39,5 @@ func main() {
 	}
 }
 
-``` -->
+```
 

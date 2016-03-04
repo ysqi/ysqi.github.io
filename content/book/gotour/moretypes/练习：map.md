@@ -13,7 +13,7 @@ codeurl: "https://wide.b3log.org/playground/f5974d93879f7dd44635d34c9317d8c3.go"
 
 你会发现[strings.Fields](https://go-zh.org/pkg/strings/#Fields) 很有帮助。
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -28,5 +28,5 @@ func main() {
 	wc.Test(WordCount)
 }
 
-``` -->
+```
 

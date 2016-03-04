@@ -26,7 +26,7 @@ Go 标准库包含了这个接口的[许多实现](https://go-zh.org/search?q=Re
 例子代码创建了一个[`strings.Reader`](https://go-zh.org/pkg/strings/#Reader)。
 并且以每次 8 字节的速度读取它的输出。
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -49,5 +49,5 @@ func main() {
 	}
 }
 
-``` -->
+```
 

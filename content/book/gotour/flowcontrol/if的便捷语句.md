@@ -16,7 +16,7 @@ codeurl: "https://wide.b3log.org/playground/553435814af23eb17ca566ac1d00dbd6.go"
 
 （在最后的 `return` 语句处使用 `v` 看看。）
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -38,5 +38,5 @@ func main() {
 	)
 }
 
-``` -->
+```
 

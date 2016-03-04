@@ -16,7 +16,7 @@ codeurl: "https://wide.b3log.org/playground/7e8efccc7bf9a281b95cc04788d70239.go"
 
 _提示_：你可以用一个 map 来缓存已经获取的 URL，但是需要注意 map 本身并不是并发安全的！
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -101,5 +101,5 @@ var fetcher = fakeFetcher{
 	},
 }
 
-``` -->
+```
 

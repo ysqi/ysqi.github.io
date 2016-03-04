@@ -27,7 +27,7 @@ Go 标准库中提供了 [`sync.Mutex`](https://go-zh.org/pkg/sync/#Mutex) 类�
 
 我们也可以用 `defer` 语句来保证互斥锁一定会被解锁。参见 `Value` 方法。
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -68,5 +68,5 @@ func main() {
 	fmt.Println(c.Value("somekey"))
 }
 
-``` -->
+```
 

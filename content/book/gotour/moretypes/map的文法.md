@@ -12,7 +12,7 @@ codeurl: "https://wide.b3log.org/playground/866bd55dd8ec30d05aa290ffadad0444.go"
 
 map 的文法跟[结构体]({{< ref "结构体.md">}})文法相似，不过必须有键名。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -34,5 +34,5 @@ func main() {
 	fmt.Println(m)
 }
 
-``` -->
+```
 

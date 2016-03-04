@@ -22,7 +22,7 @@ _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
 goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[`sync`](https://go-zh.org/pkg/sync/) 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -42,5 +42,5 @@ func main() {
 	say("hello")
 }
 
-``` -->
+```
 

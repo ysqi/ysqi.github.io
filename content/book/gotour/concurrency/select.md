@@ -14,7 +14,7 @@ codeurl: "https://wide.b3log.org/playground/84b0bcb4362dad7cd68f9ad221c62ef4.go"
 
 `select` 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会**随机**选择一个。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -44,5 +44,5 @@ func main() {
 	fibonacci(c, quit)
 }
 
-``` -->
+```
 

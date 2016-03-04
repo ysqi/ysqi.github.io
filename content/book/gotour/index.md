@@ -34,3 +34,18 @@ codeurl: https://wide.b3log.org/playground/a6087de933207e84f74cd80605bb83a2.go
 
 
 如果你准备好了，请点击页面底部的[下节]进行学习。
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"runtime"
+)
+
+func main() {
+	fmt.Println("Hello, Go 爱好者！")
+	fmt.Println("当前运行时 Go 版本:" + runtime.Version())
+}
+```

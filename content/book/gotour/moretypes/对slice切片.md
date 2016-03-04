@@ -37,7 +37,7 @@ s2 := s[:hi]
 ```
  
 
-<!-- ```go
+```go
 
 package main
 
@@ -55,5 +55,5 @@ func main() {
 	fmt.Println("s[4:] ==", s[4:])
 }
 
-``` -->
+```
 

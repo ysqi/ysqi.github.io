@@ -14,7 +14,7 @@ codeurl: "https://wide.b3log.org/playground/4fa8542f1ba6038e0e74d79dabb9aab2.go"
 
 如果只需要索引值，去掉 **`, value`** 部分即可。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -28,5 +28,5 @@ func main() {
 		fmt.Printf("%d\n", value)
 	}
 }
-``` -->
+```
 

@@ -12,7 +12,7 @@ codeurl: "https://wide.b3log.org/playground/e998f08ff23d425b9889bb4c2d78e602.go"
 
 就像 `for` 循环一样，Go 的 `if` 语句也不要求用 `( )` 将条件括起来，同时， `{ }` 还是必须有的。
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -31,5 +31,5 @@ func main() {
 	fmt.Println(sqrt(2), sqrt(-4))
 }
 
-``` -->
+```
 

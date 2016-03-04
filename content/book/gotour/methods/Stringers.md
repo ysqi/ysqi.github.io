@@ -18,7 +18,7 @@ codeurl: "https://wide.b3log.org/playground/6629a4ad98f772b6a3ef0f7b5cf5d563.go"
 `Stringer` 是一个可以用字符串描述自己的类型。`fmt`包
 （还有许多其他包）使用这个来进行输出。
 
-<!-- ```go
+```go
 package main
 
 import "fmt"
@@ -38,5 +38,5 @@ func main() {
 	fmt.Println(a, z)
 }
 
-``` -->
+```
 
