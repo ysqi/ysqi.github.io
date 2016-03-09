@@ -30,3 +30,10 @@ deploy:
         token: $GIT_TOKEN
         domain: www.yushuangqi.com
         basedir: public
+    - add-ssh-key:
+        keyname: DEPLOY_SSH
+    - ysqi/git-push:
+        host: $DEPLOY_HOST
+        repo: myblog
+        branch: master
+        basedir: public
