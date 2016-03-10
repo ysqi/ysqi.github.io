@@ -17,7 +17,7 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - leipert/git-push:
+    - ysqi/git-push:
         gh_oauth: $GIT_TOKEN
         basedir: public
         clean_removed_files: true
