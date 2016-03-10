@@ -17,26 +17,10 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - script:
-        name: ls output
-        code: |
-          ls -haltr /pipeline/output
-
-    - script:
-        name: ls source
-        code: |
-          ls -haltr /pipeline/source
-    - lukevivier/gh-pages:
-        token: $GIT_TOKEN
-        domain: www.yushuangqi.com
+    - leipert/git-push:
+        gh_oauth: $GIT_TOKEN
         basedir: public
-    - add-ssh-key:
-        keyname: DEPLOY_SSH
-    - add-to-known_hosts:
-        hostname: $DEPLOY_HOST
-        fingerprint: 7e:ea:20:09:33:b9:1b:28:b5:da:96:d4:31:e4:52:cd
-    - ysqi/git-push:
-        host: $DEPLOY_HOST
-        repo: myblog
-        branch: master
-        basedir: public
+        clean_removed_files: true
+        branch: $GIT_BRANCH
+        repo: $GIT_REPO
+        gh_pages_domain: $GIT_DOMAIN
