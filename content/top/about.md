@@ -17,5 +17,5 @@ disqus_identifier = 10000
 [weibo]: http://weibo.com/234665601
 [hugo_cn]: http://hugo.yushuangqi.com
 [mygithub]: http://github.com/ysqi
-[myblog]: http://www.yushuangqi.com
+[myblog]: https://www.yushuangqi.com
 

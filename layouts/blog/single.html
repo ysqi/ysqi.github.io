@@ -1,9 +1,9 @@
 {{ partial "header.html" . }}
 <section role="main">
 <h1> {{ .Title }}</h1> 
-<p class="attribution" itemscope="" itemtype="http://schema.org/Person">by <a href="http://www.lukew.com/about/">
+<p class="attribution" itemscope="" itemtype="http://schema.org/Person">by <a href="/about/">
 <span itemprop="name">{{ .Site.Author.name }}</span></a> <span class="right">{{ .Date.Format "2006年01月02日" }}</span>
-<a href="https://plus.google.com/100817211548713875249" rel="author"></a></p>
+<a href="{{.Site.BaseURL}}" rel="author"></a></p>
  
 <article class="entry writingsentry">
  {{ .Content }}

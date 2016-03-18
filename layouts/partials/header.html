@@ -17,12 +17,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Ysqi"/>
 <link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"> 
-<meta name="msapplication-TileImage" content="/img/i/app-icon64x64@2x.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
 <meta name="msapplication-TileColor" content="#0e90d2">
  <!-- open graph -->
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="{{ .Description }}"/>
-<meta property="og:title" content="{{ .Title }} : yushuangqi.com"/>
+<meta property="og:title" content="{{ .Title }} : {{.Site.BaseURL}}"/>
 <meta property="og:site_name" content="{{ .Site.Title }}"/>
 <!-- <meta property="og:image" content="" /> -->
 <!-- <meta property="og:image:type" content="image/jpeg" /> -->
@@ -41,7 +41,7 @@
 {{ end }}
 {{end}}
 
- <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160316" />
+ <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160318" />
 
 <script type="text/javascript">
 	var doc = document.getElementById('doc');

@@ -3,4 +3,4 @@
 # www.yushuangqi.com
 基于 [Hugo](http://www.hugo.yushuangqi.com) 创建的静态博客。
 
-虞双齐博客地址：http://www.yushuangqi.com
+虞双齐博客地址：https://www.yushuangqi.com
