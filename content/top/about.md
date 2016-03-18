@@ -13,9 +13,6 @@ disqus_identifier = 10000
             
 以 Coding 为乐，闲时和妻子一起嗨。
 
-[
-![虞双齐微博动态](http://service.t.sina.com.cn/widget/qmd/2095082503/524a882f/1.png "虞双齐微博动态")
-][weibo]
 
 [weibo]: http://weibo.com/234665601
 [hugo_cn]: http://hugo.yushuangqi.com

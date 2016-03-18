@@ -91,7 +91,10 @@ h5 {
 }
 
 p {
-    margin: 0.5em 0 0.5em 0
+    margin: 0.5em 0 0.5em 0;
+}
+article p{
+  text-indent: 2em;
 }
 
 strong {
@@ -256,7 +259,7 @@ blockquote {
 
 .homelogo {
     /*text-indent: -4000px;*/
-    /*background: url(/img/homelogo-06062012.png) no-repeat left top;*/
+    /*background: url(https://o4829njmu.qnssl.com/assets/homelogo-06062012.png) no-repeat left top;*/
     width: 100%;
     height: 212px
 }
@@ -553,7 +556,7 @@ blockquote {
     font-size: .9em;
     line-height: 1.5;
     margin: 0;
-    padding: .5em 0 2em 0;
+    padding: .5em 0 0 0;
     border-left: solid 10px #6fa601;
     background-color: #fff
 }
@@ -640,13 +643,19 @@ blockquote {
     list-style-type: none;
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #666;
-    border-bottom: solid 1px #c9c9c9
+    border-bottom: solid 1px #c9c9c9;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
 }
 
 .listing li a {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 1.1em;
     display: block
+}
+.listing li span{
+        float: right;
+        color: #E0E0E0;
+        font-size: 60%; 
 }
 
 .entry,
@@ -1213,7 +1222,7 @@ blockquote {
         margin-top: 4em
     }
     .about .sideimg {
-        /*background: url(/img/aboutimg-06082012.png) no-repeat left bottom;*/
+        /*background: url(https://o4829njmu.qnssl.com/assets/aboutimg-06082012.png) no-repeat left bottom;*/
         border-bottom: 0;
         -moz-border-image: none;
         -webkit-border-image: none;
@@ -1289,7 +1298,7 @@ blockquote {
         display: inline;
         padding-right: .3em
     }
-     .listing li span{ 
+    .listing li span{ 
         display: hidden;
     }
     .presoimg {
@@ -1337,7 +1346,7 @@ blockquote {
         padding-top: 3em;
         padding-bottom: 3em;
         margin-top: 0;
-        background: url(/img/page_fold.gif) repeat-y;
+        background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y;
         border-right: dotted 1px #7d9958;
         max-width: 22em
     }
@@ -1346,7 +1355,7 @@ blockquote {
         margin-top: 2.5em;
         width: 315px;
         height: 240px;
-        /*background: url(/img/homelogobg-06062012.png) no-repeat 0 0*/
+        /*background: url(https://o4829njmu.qnssl.com/assets/homelogobg-06062012.png) no-repeat 0 0*/
     }
 }
 
@@ -1518,15 +1527,15 @@ only screen and (min-device-pixel-ratio:1.5) {
     .share_fb,
     .share_rss,
     .share_li {
-        /*background-image: url(/img/sprite_06072012@2x.png);*/
+        /*background-image: url(https://o4829njmu.qnssl.com/assets/sprite_06072012@2x.png);*/
         -moz-background-size: 168px 170px;
         -ie-background-size: 168px 170px;
         -o-background-size: 168px 170px;
         -webkit-background-size: 168px 170px;
-        background-size: 168px 170px
+        background-size: 168px 170pxs
     }
     .active-sidebar [role="main"] {
-        background-image: url(/img/page_fold@2x.gif);
+        background-image: url(https://o4829njmu.qnssl.com/assets/page_fold@2x.gif);
         -moz-background-size: 6px 20px;
         -ie-background-size: 6px 20px;
         -o-background-size: 6px 20px;
@@ -1534,7 +1543,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 6px 20px
     }
     .homelogo {
-        /*background-image: url(/img/homelogo-06062012@2x.png);*/
+        /*background-image: url(https://o4829njmu.qnssl.com/assets/homelogo-06062012@2x.png);*/
         -moz-background-size: 350px 212px;
         -ie-background-size: 350px 212px;
         -o-background-size: 350px 212px;
@@ -1548,7 +1557,7 @@ only screen and (-o-min-device-pixel-ratio:3/2),
 only screen and (min--moz-device-pixel-ratio:1.5),
 only screen and (min-device-pixel-ratio:1.5) {
     .homelogo {
-        /*background-image: url(/img/homelogobg-06062012@2x.png);*/
+        /*background-image: url(https://o4829njmu.qnssl.com/assets/homelogobg-06062012@2x.png);*/
         -moz-background-size: 410px 240px;
         -ie-background-size: 410px 240px;
         -o-background-size: 410px 240px;
@@ -1556,7 +1565,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 410px 240px
     }
     .sideimg {
-        background-image: url(/img/writingsimgsm-06102012@2x.png);
+        background-image: url(https://o4829njmu.qnssl.com/assets/writingsimgsm-06102012@2x.png);
         -moz-background-size: 164px 132px;
         -ie-background-size: 164px 132px;
         -o-background-size: 164px 132px;
@@ -1564,7 +1573,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 164px 132px
     }
     .about .sideimg {
-        /*background-image: url(/img/aboutimg-06082012@2x.png);*/
+        /*background-image: url(https://o4829njmu.qnssl.com/assets/aboutimg-06082012@2x.png);*/
         -moz-background-size: 199px 274px;
         -ie-background-size: 199px 274px;
         -o-background-size: 199px 274px;
@@ -1572,7 +1581,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 199px 274px
     }
     .sideimpreso {
-        background-image: url(/img/presosimg-06082012@2x.png);
+        background-image: url(https://o4829njmu.qnssl.com/assets/presosimg-06082012@2x.png);
         -moz-background-size: 199px 277px;
         -ie-background-size: 199px 277px;
         -o-background-size: 199px 277px;
@@ -1580,7 +1589,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 199px 277px
     }
     .sideimpresopg {
-        background-image: url(/img/presosimgsm-06072012@2x.png);
+        background-image: url(https://o4829njmu.qnssl.com/assets/presosimgsm-06072012@2x.png);
         -moz-background-size: 167px 132px;
         -ie-background-size: 167px 132px;
         -o-background-size: 167px 132px;
@@ -1588,7 +1597,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 167px 132px
     }
     .sideimgwritings {
-        background-image: url(/img/writingsimg-06082012@2x.png);
+        background-image: url(https://o4829njmu.qnssl.com/assets/writingsimg-06082012@2x.png);
         -moz-background-size: 199px 237px;
         -ie-background-size: 199px 237px;
         -o-background-size: 199px 237px;
@@ -1848,3 +1857,9 @@ table tr td :last-child {
 }
 
 /* table end*/
+
+.split{
+    background: url(https://o4829njmu.qnssl.com/assets/bullet_icon.gif) no-repeat 0 7px;
+    background-position: center;
+    padding: 0 8px 0 8px;
+}
