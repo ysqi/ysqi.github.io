@@ -31,7 +31,7 @@ deploy:
 ```
 又麻利又大方地分享下我的设置：
 
-![wercker 环境变量](http://static.yushuangqi.com/blog20160310171328.png)
+![wercker 环境变量](https://o4829njmu.qnssl.com/blog20160310171328.png)
 
 + __box__ 
 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
@@ -50,10 +50,10 @@ remote URL will be https://oauth-token@github.com/ysqi.github.io.git
 是在 github 添加 token 后将生成的token 保存在 wercker 环境变量中，主要不要直接写在配置文件中，防止泄漏。
 
 __先在 github 上生成 token：__[去设置](https://github.com/settings/tokens/new)
-![在 github 上生成 token](http://static.yushuangqi.com/blog20160310155407.png)
+![在 github 上生成 token](https://o4829njmu.qnssl.com/blog20160310155407.png)
 
 __再在 wecrcker 上添加环境变量 GIT_TOKEN__:
-![在 wecrcker 上添加环境变量](http://static.yushuangqi.com/blog20160310155210.png)
+![在 wecrcker 上添加环境变量](https://o4829njmu.qnssl.com/blog20160310155210.png)
 主要勾选 proteced 这样才能更严格的保护Token
 
 

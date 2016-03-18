@@ -1,91 +1,5 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-family: Verdana, Helvetica Neue, Helvetica, Arial, sans-serif;
-    line-height: 1.4
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+    margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;font-family:Verdana,Helvetica Neue,Helvetica,Arial,sans-serif;line-height:1.4
 }
 
 small{
@@ -296,7 +210,7 @@ blockquote {
 .active-sidebar [role="main"] {
     margin-right: -90%;
     padding-left: 10%;
-    background: url(/img/page_fold.gif) repeat-y;
+    background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y;
     -moz-background-size: 6px 20px;
     -ie-background-size: 6px 20px;
     -o-background-size: 6px 20px;
@@ -318,7 +232,7 @@ blockquote {
     width: 132px;
     height: 33px;
     margin: 16px 5px 10px 10px;
-    /*background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -44px*/
+    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -44px*/
 }
 
 .menuli {
@@ -337,7 +251,7 @@ blockquote {
     width: 45px;
     height: 11px;
     margin: 12px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -78px
+    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -78px
 }
 
 .homelogo {
@@ -381,10 +295,10 @@ blockquote {
     display: block;
     padding: 15px 0 12px 10px;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .homesec {
@@ -472,7 +386,7 @@ blockquote {
     float: right;
     width: 52px;
     height: 10px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -161px
+    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -161px
 }
 
 .navabout:link,
@@ -491,7 +405,7 @@ blockquote {
 .homenav_about {
     /*width: 53px;*/
     /*height: 11px;*/
-    /*background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -90px*/
+    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -90px*/
 }
 
 .navwritings:link,
@@ -510,7 +424,7 @@ blockquote {
 .homenav_writings {
     /*width: 75px;*/
     /*height: 11px;*/
-    /*background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -102px*/
+    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -102px*/
 }
 
 .navpresos:link,
@@ -529,22 +443,7 @@ blockquote {
 .homenav_presos {
     /*width: 120px;*/
     /*height: 11px;*/
-    /*background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -114px*/
-}
-
-.navadmin:link,
-.navadmin:visited {
-    border-left: solid 6px #999
-}
-
-.navadmin:hover {
-    border-left: solid 6px #9fb84c
-}
-
-.navadmin span {
-    width: 50px;
-    height: 11px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -126px
+    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -114px*/
 }
 
 .site-footer {
@@ -578,13 +477,13 @@ blockquote {
 
 .footeraction {
     display: block;
-    background-color: #fff;
-    /*border-left: solid 5px #ecedeb;*/
-    /*padding: 8px;*/
-    /*-moz-box-shadow: 0 1px 2px #8d8d8d;*/
-    /*-webkit-box-shadow: 0 1px 2px #8d8d8d;*/
-    /*box-shadow: 0 1px 2px #8d8d8d;*/
-    /*margin-bottom: 12px*/
+    /*background-color: #fff;*/
+    border-left: solid 5px #ecedeb;
+    padding: 8px;
+    -moz-box-shadow: 0 1px 2px #8d8d8d;
+    -webkit-box-shadow: 0 1px 2px #8d8d8d;
+    box-shadow: 0 1px 2px #8d8d8d;
+    margin-bottom: 12px
 }
 
 .footeraction span {
@@ -592,17 +491,11 @@ blockquote {
     text-indent: -4000px
 }
 
-.footeractionRSS {
-    width: 29px;
-    height: 22px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 5px -138px
-}
-
-.footeractionTW {
+.footeractionWeibo {
     width: 32px;
     height: 32px;
     background-size: 32px 32px;
-    background: url(http://www.sinaimg.cn/blog/developer/wiki/32x32.png) no-repeat center top;
+    background: url(https://o4829njmu.qnssl.com/assets/weibo_32x32.png) no-repeat center top; 
 }
 
 .feature {
@@ -621,10 +514,10 @@ blockquote {
     padding: 0 0 .7em 0;
     margin-top: .9em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .attribution a:link,
@@ -696,10 +589,10 @@ blockquote {
     margin: 0;
     padding: .5em .2em .5em .8em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .postpanel {
@@ -716,10 +609,10 @@ blockquote {
 .bookslist li {
     font-size: .9em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat;
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
     margin-top: 1em
 }
 
@@ -875,40 +768,6 @@ blockquote {
     text-decoration: none
 }
 
-.share_img {
-    width: 30px;
-    height: 22px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 0 -137px;
-    float: left;
-    padding-right: 5px;
-    margin-top: -5px
-}
-
-.share_tw {
-    background: url(/img/lukew_sprite_06072012.png) no-repeat -25px -137px
-}
-
-.share_rss {
-    width: 23px;
-    height: 23px;
-    margin-right: 3px;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat 5px -138px
-}
-
-.share_fb {
-    background: url(/img/lukew_sprite_06072012.png) no-repeat -58px -137px;
-    width: 20px;
-    height: 26px;
-    margin-top: -7px
-}
-
-.share_li {
-    background: url(/img/lukew_sprite_06072012.png) no-repeat -87px -139px;
-    height: 24px;
-    width: 24px;
-    margin-top: -7px
-}
-
 .rel_links {
     padding: 0;
     margin: .3em 0 1em 0
@@ -920,10 +779,10 @@ blockquote {
     margin: 0;
     color: #666;
     border-top: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-    -o-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-    border-image: url(/img/dots.png) 1 0 0 0 repeat;
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
     font-size: .8em;
     line-height: 1.3em
 }
@@ -945,10 +804,10 @@ blockquote {
 .rel_linksgrn .rel_linksli {
     border-top: 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .rel_linksgrn {
@@ -991,7 +850,7 @@ blockquote {
     height: 22px;
     padding: 0;
     margin: 0;
-    background: url(/img/lukew_sprite_06072012.png) no-repeat -98px -83px
+    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat -98px -83px
 }
 
 .sideimg {
@@ -1001,10 +860,10 @@ blockquote {
     padding: 0;
     margin: 0 0 1.5em 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .dquote cite a {
@@ -1072,19 +931,7 @@ blockquote {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #666
 }
-
-.presonotes ul {
-    margin: .75em 0;
-    padding: 0
-}
-
-.presonotes li {
-    padding: 0 0 0 10px;
-    margin: 0;
-    background: url(/img/bullet_icon.gif) no-repeat 0 7px;
-    list-style-type: none
-}
-
+ 
 .preso_links {
     color: #8d8c8c
 }
@@ -1186,10 +1033,10 @@ blockquote {
     font-size: .9em;
     padding: .25em 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-    border-image: url(/img/dots.png) 0 0 1 0 repeat;
+    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
     list-style: none
 }
 
@@ -1305,28 +1152,11 @@ blockquote {
     border: 1px solid #720305
 }
 
-.adminbreak {
-    display: block;
-    padding: 5px 10px 0 5px;
-    margin: 25px 0;
-    background: url(/img/dots.png) repeat-x bottom
-}
-
 .formhelp {
     color: #999;
     margin-top: -7px
 }
 
-.actionbar {
-    padding: 7px 10px;
-    margin: 25px 0;
-    border-top: 1px solid #c3c3c3;
-    background-color: #f0f0ee;
-    background: -moz-linear-gradient(top, rgba(240, 240, 238, 1) 48%, rgba(255, 255, 255, 1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(48%, rgba(240, 240, 238, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
-    background: -webkit-linear-gradient(top, rgba(240, 240, 238, 1) 48%, rgba(255, 255, 255, 1) 100%);
-    background: linear-gradient(top, rgba(240, 240, 238, 1) 48%, rgba(255, 255, 255, 1) 100%)
-}
 
 @media screen and (min-width:35.9em) {
     .js [role="complementary"] {
@@ -1354,11 +1184,11 @@ blockquote {
         margin-left: 2.8%
     }
     .sideimg {
-        background: url(/img/writingsimgsm-06102012.png) no-repeat left bottom;
+        background: url(https://o4829njmu.qnssl.com/assets/writingsimgsm-06102012.png) no-repeat left bottom;
         height: 150px
     }
     .sideimgwritings {
-        background: url(/img/writingsimg-06092012.png) no-repeat left bottom;
+        background: url(https://o4829njmu.qnssl.com/assets/writingsimg-06092012.png) no-repeat left bottom;
         height: 237px;
         border-bottom: 0;
         -moz-border-image: none;
@@ -1368,7 +1198,7 @@ blockquote {
         margin-top: 4em
     }
     .sideimpreso {
-        background: url(/img/presosimg-06082012.png) no-repeat left bottom;
+        background: url(https://o4829njmu.qnssl.com/assets/presosimg-06082012.png) no-repeat left bottom;
         height: 277px;
         border-bottom: 0;
         -moz-border-image: none;
@@ -1378,7 +1208,7 @@ blockquote {
         margin-top: 4em
     }
     .sideimpresopg {
-        background: url(/img/presosimgsm-06072012.png) no-repeat left bottom;
+        background: url(https://o4829njmu.qnssl.com/assets/presosimgsm-06072012.png) no-repeat left bottom;
         height: 132px;
         margin-top: 4em
     }
@@ -1488,10 +1318,10 @@ blockquote {
     .preso_seclt li {
         border-bottom: 0;
         border-top: dotted 1px #7d9958;
-        -moz-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-        -webkit-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-        -o-border-image: url(/img/dots.png) 1 0 0 0 repeat;
-        border-image: url(/img/dots.png) 1 0 0 0 repeat;
+        -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+        -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+        -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+        border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
         list-style: none
     }
 }
@@ -1549,7 +1379,7 @@ blockquote {
     .js [role="main"] {
         width: 70%;
         padding: 6.5em 4% 8% 4%;
-        background: url(/img/page_fold.gif) repeat-y
+        background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y
     }
     .js [role="navigation"] {
         padding: 0;
@@ -1560,10 +1390,10 @@ blockquote {
         top: 2em;
         left: 26%;
         border-bottom: dotted 1px #7d9958;
-        -moz-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-        -webkit-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-        -o-border-image: url(/img/dots.png) 0 0 1 0 repeat;
-        border-image: url(/img/dots.png) 0 0 1 0 repeat
+        -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+        -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+        -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+        border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
     }
     .js [role="navigation"] li {
         float: left;
@@ -1607,7 +1437,7 @@ blockquote {
         width: 167px;
         height: 42px;
         margin: .5em 0 1em 0;
-        background: url(/img/lukew_sprite_06072012.png) no-repeat 0 0
+        background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 0
     }
     .footeractions li {
         float: left;
@@ -1622,7 +1452,7 @@ blockquote {
     .listing li {
         padding: 0 0 5px 10px;
         margin: 0 5px 0 0;
-        background: url(/img/bullet_icon.gif) no-repeat 0 7px;
+        background: url(https://o4829njmu.qnssl.com/assets/bullet_icon.gif) no-repeat 0 7px;
         font-size: .9em;
         list-style-type: none;
         border-bottom: 0
@@ -1648,7 +1478,7 @@ blockquote {
     }
    /* .writingsentry {
         padding-right: 5em
-    }*/
+    }
     .bookslist li {
         width: 31%
     }
@@ -1688,7 +1518,7 @@ only screen and (min-device-pixel-ratio:1.5) {
     .share_fb,
     .share_rss,
     .share_li {
-        /*background-image: url(/img/lukew_sprite_06072012@2x.png);*/
+        /*background-image: url(/img/sprite_06072012@2x.png);*/
         -moz-background-size: 168px 170px;
         -ie-background-size: 168px 170px;
         -o-background-size: 168px 170px;
