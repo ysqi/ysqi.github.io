@@ -9,7 +9,8 @@ build:
         prod_branches: master
         disable_pygments: true
     - samueldebruyn/minify:
-        only_on_branches: master
+        base_dir: _site
+        threads: "3"
     - script:
         name: ls stuff
         code: |
