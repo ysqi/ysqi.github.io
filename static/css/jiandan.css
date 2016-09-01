@@ -347,13 +347,18 @@ blockquote {
     color: #ee9d05
 }
 .homesecwritings ul li:last-child{
-    text-align: right;
-}
+    text-align: right; 
+} 
 
 .homesecpresos a {
     color: #0487c4
 }
-
+.homesecwritings ul.listing {
+    margin-left: 24px; 
+}
+.homesecwritings ul.listing li a {
+    color:#000;
+}
 .navlist {
     margin: 0;
     padding: 0;

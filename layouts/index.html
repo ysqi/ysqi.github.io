@@ -24,16 +24,16 @@
 	<section class="homesec homesecwritings">
 	<h3>{{len .Data.Pages }}</h3>
 	<p>篇IT技术文章分享。</p>
-	<ul>
-	 {{ range first 6 ( where .Data.Pages "Section" "blog" ) }}
+	<ul class="listing">
+	 {{ range first 8 ( where .Data.Pages "Section" "blog" ) }}
                                         	<li class="list-group-item">
-                                                <a href="{{ .RelPermalink }}" class="writings text-overflow">
-                                                <span >{{ .Title }}{{ if .Draft }} (Draft){{ end }}</span>
-                                                <span class="date">{{ .Date.Format "2006-01-02" }}</span> 
+                                                 <a href="{{ .RelPermalink }}" class="writings text-overflow">
+                                                {{ .Title }}{{ if .Draft }} (Draft){{ end }}
+                                               <!-- <span class="date">{{ .Date.Format "2006-01-02" }}</span> -->
                                                 </a>
                                             </li> 
     									{{ end }}
-	  <li><a href="/topics/" class="writings" rel="nofollow">全部...</a></li>
+	  <li><a href="/topics/" title="查看全部博文">全部...</a></li>
 	</ul>
 	<h3>{{len .Site.Taxonomies.topics}}</h3>
 	<p>个文章分类</p>
