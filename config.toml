@@ -1,6 +1,6 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zn-CN"
-title = "虞双齐Golang开发" 
+title = "虞双齐Go语言开发" 
 pygmentsuseclasses =  true
 uglyURLs = true
 metaDataFormat = "YAML"
@@ -9,7 +9,7 @@ disqusShortname = "yushuangqi"
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
-  description= "程序员虞双齐的个人博客，擅长Golang服务器端软件开发"
+  description= "程序员虞双齐的个人博客，擅长Go语言服务器端软件开发"
 
 [author]
   description = "开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。"
