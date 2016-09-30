@@ -210,7 +210,7 @@ blockquote {
 .active-sidebar [role="main"] {
     margin-right: -90%;
     padding-left: 10%;
-    background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y;
+    background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y;
     -moz-background-size: 6px 20px;
     -ie-background-size: 6px 20px;
     -o-background-size: 6px 20px;
@@ -232,7 +232,7 @@ blockquote {
     width: 132px;
     height: 33px;
     margin: 16px 5px 10px 10px;
-    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -44px*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -44px*/
 }
 
 .menuli {
@@ -251,12 +251,12 @@ blockquote {
     width: 45px;
     height: 11px;
     margin: 12px;
-    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -78px
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -78px
 }
 
 .homelogo {
     /*text-indent: -4000px;*/
-    /*background: url(https://o4829njmu.qnssl.com/assets/homelogo-06062012.png) no-repeat left top;*/
+    /*background: url(http://static.yushuangqi.com/assets/homelogo-06062012.png) no-repeat left top;*/
     width: 100%;
     height: 212px
 }
@@ -295,10 +295,10 @@ blockquote {
     display: block;
     padding: 15px 0 12px 10px;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .homesec {
@@ -391,7 +391,7 @@ blockquote {
     float: right;
     width: 52px;
     height: 10px;
-    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -161px
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -161px
 }
 
 .navabout:link,
@@ -410,7 +410,7 @@ blockquote {
 .homenav_about {
     /*width: 53px;*/
     /*height: 11px;*/
-    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -90px*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -90px*/
 }
 
 .navwritings:link,
@@ -429,7 +429,7 @@ blockquote {
 .homenav_writings {
     /*width: 75px;*/
     /*height: 11px;*/
-    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -102px*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -102px*/
 }
 
 .navpresos:link,
@@ -448,7 +448,7 @@ blockquote {
 .homenav_presos {
     /*width: 120px;*/
     /*height: 11px;*/
-    /*background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 -114px*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -114px*/
 }
 
 .site-footer {
@@ -458,7 +458,7 @@ blockquote {
 
 .site-footer p {
     border-top: solid 1px #c9c9c9;
-    padding: 3em 1.5em;
+    padding: 1em 1.5em;
     margin: 0;
     font-size: .75em;
     color: #808180;
@@ -470,8 +470,8 @@ blockquote {
 
 .footeractions {
     float: right;
-    margin: 1em 1em 1em .25em;
-    padding: 0
+    /* margin: 1em 1em 1em .25em; */
+    /* padding: 0 */
 }
 
 .footeractions li {
@@ -481,14 +481,11 @@ blockquote {
 }
 
 .footeraction {
-    display: block;
-    /*background-color: #fff;*/
-    border-left: solid 5px #ecedeb;
-    padding: 8px;
+    display: block; 
+    border-left: solid 5px #ecedeb; 
     -moz-box-shadow: 0 1px 2px #8d8d8d;
     -webkit-box-shadow: 0 1px 2px #8d8d8d;
-    box-shadow: 0 1px 2px #8d8d8d;
-    margin-bottom: 12px
+    box-shadow: 0 1px 2px #8d8d8d; 
 }
 
 .footeraction span {
@@ -497,10 +494,9 @@ blockquote {
 }
 
 .footeractionWeibo {
-    width: 32px;
-    height: 32px;
-    background-size: 32px 32px;
-    background: url(https://o4829njmu.qnssl.com/assets/weibo_32x32.png) no-repeat center top; 
+    width: 81px;
+    height: 33px;   
+    background: url(http://static.yushuangqi.com/assets/weibo.png) no-repeat center top; 
 }
 
 .feature {
@@ -519,10 +515,10 @@ blockquote {
     padding: 0 0 .7em 0;
     margin-top: .9em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .attribution a:link,
@@ -594,10 +590,10 @@ blockquote {
     margin: 0;
     padding: .5em .2em .5em .8em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .postpanel {
@@ -614,10 +610,10 @@ blockquote {
 .bookslist li {
     font-size: .9em;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
     margin-top: 1em
 }
 
@@ -646,7 +642,7 @@ blockquote {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #666;
     border-bottom: solid 1px #c9c9c9;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
 }
 
 .listing li a {
@@ -790,10 +786,10 @@ blockquote {
     margin: 0;
     color: #666;
     border-top: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
     font-size: .8em;
     line-height: 1.3em
 }
@@ -815,10 +811,10 @@ blockquote {
 .rel_linksgrn .rel_linksli {
     border-top: 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .rel_linksgrn {
@@ -861,7 +857,7 @@ blockquote {
     height: 22px;
     padding: 0;
     margin: 0;
-    background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat -98px -83px
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat -98px -83px
 }
 
 .sideimg {
@@ -871,10 +867,10 @@ blockquote {
     padding: 0;
     margin: 0 0 1.5em 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
 }
 
 .dquote cite a {
@@ -1044,10 +1040,10 @@ blockquote {
     font-size: .9em;
     padding: .25em 0;
     border-bottom: dotted 1px #7d9958;
-    -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-    border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
     list-style: none
 }
 
@@ -1195,11 +1191,11 @@ blockquote {
         margin-left: 2.8%
     }
     .sideimg {
-        background: url(https://o4829njmu.qnssl.com/assets/writingsimgsm-06102012.png) no-repeat left bottom;
+        background: url(http://static.yushuangqi.com/assets/writingsimgsm-06102012.png) no-repeat left bottom;
         height: 150px
     }
     .sideimgwritings {
-        background: url(https://o4829njmu.qnssl.com/assets/writingsimg-06092012.png) no-repeat left bottom;
+        background: url(http://static.yushuangqi.com/assets/writingsimg-06092012.png) no-repeat left bottom;
         height: 237px;
         border-bottom: 0;
         -moz-border-image: none;
@@ -1209,7 +1205,7 @@ blockquote {
         margin-top: 4em
     }
     .sideimpreso {
-        background: url(https://o4829njmu.qnssl.com/assets/presosimg-06082012.png) no-repeat left bottom;
+        background: url(http://static.yushuangqi.com/assets/presosimg-06082012.png) no-repeat left bottom;
         height: 277px;
         border-bottom: 0;
         -moz-border-image: none;
@@ -1219,12 +1215,12 @@ blockquote {
         margin-top: 4em
     }
     .sideimpresopg {
-        background: url(https://o4829njmu.qnssl.com/assets/presosimgsm-06072012.png) no-repeat left bottom;
+        background: url(http://static.yushuangqi.com/assets/presosimgsm-06072012.png) no-repeat left bottom;
         height: 132px;
         margin-top: 4em
     }
     .about .sideimg {
-        /*background: url(https://o4829njmu.qnssl.com/assets/aboutimg-06082012.png) no-repeat left bottom;*/
+        /*background: url(http://static.yushuangqi.com/assets/aboutimg-06082012.png) no-repeat left bottom;*/
         border-bottom: 0;
         -moz-border-image: none;
         -webkit-border-image: none;
@@ -1329,10 +1325,10 @@ blockquote {
     .preso_seclt li {
         border-bottom: 0;
         border-top: dotted 1px #7d9958;
-        -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-        -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-        -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
-        border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 1 0 0 0 repeat;
+        -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
         list-style: none
     }
 }
@@ -1348,7 +1344,7 @@ blockquote {
         padding-top: 3em;
         padding-bottom: 3em;
         margin-top: 0;
-        background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y;
+        background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y;
         border-right: dotted 1px #7d9958;
         max-width: 22em
     }
@@ -1357,7 +1353,7 @@ blockquote {
         margin-top: 2.5em;
         width: 315px;
         height: 240px;
-        /*background: url(https://o4829njmu.qnssl.com/assets/homelogobg-06062012.png) no-repeat 0 0*/
+        /*background: url(http://static.yushuangqi.com/assets/homelogobg-06062012.png) no-repeat 0 0*/
     }
 }
 
@@ -1390,7 +1386,7 @@ blockquote {
     .js [role="main"] {
         width: 70%;
         padding: 6.5em 4% 8% 4%;
-        background: url(https://o4829njmu.qnssl.com/assets/page_fold.gif) repeat-y
+        background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y
     }
     .js [role="navigation"] {
         padding: 0;
@@ -1401,10 +1397,10 @@ blockquote {
         top: 2em;
         left: 26%;
         border-bottom: dotted 1px #7d9958;
-        -moz-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-        -webkit-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-        -o-border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat;
-        border-image: url(https://o4829njmu.qnssl.com/assets/dots.png) 0 0 1 0 repeat
+        -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
     }
     .js [role="navigation"] li {
         float: left;
@@ -1448,14 +1444,14 @@ blockquote {
         width: 167px;
         height: 42px;
         margin: .5em 0 1em 0;
-        background: url(https://o4829njmu.qnssl.com/assets/sprite_06072012.png) no-repeat 0 0
+        background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 0
     }
     .footeractions li {
         float: left;
         margin-right: .7em
     }
     .site-footer p {
-        padding: 2.1em 1.5em
+        padding: 1em 1.5em
     }
     .share_sec {
         width: 25em
@@ -1463,7 +1459,7 @@ blockquote {
     .listing li {
         padding: 0 0 5px 10px;
         margin: 0 5px 0 0;
-        background: url(https://o4829njmu.qnssl.com/assets/bullet_icon.gif) no-repeat 0 7px;
+        background: url(http://static.yushuangqi.com/assets/bullet_icon.gif) no-repeat 0 7px;
         font-size: .9em;
         list-style-type: none;
         border-bottom: 0
@@ -1529,7 +1525,7 @@ only screen and (min-device-pixel-ratio:1.5) {
     .share_fb,
     .share_rss,
     .share_li {
-        /*background-image: url(https://o4829njmu.qnssl.com/assets/sprite_06072012@2x.png);*/
+        /*background-image: url(http://static.yushuangqi.com/assets/sprite_06072012@2x.png);*/
         -moz-background-size: 168px 170px;
         -ie-background-size: 168px 170px;
         -o-background-size: 168px 170px;
@@ -1537,7 +1533,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 168px 170pxs
     }
     .active-sidebar [role="main"] {
-        background-image: url(https://o4829njmu.qnssl.com/assets/page_fold@2x.gif);
+        background-image: url(http://static.yushuangqi.com/assets/page_fold@2x.gif);
         -moz-background-size: 6px 20px;
         -ie-background-size: 6px 20px;
         -o-background-size: 6px 20px;
@@ -1545,7 +1541,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 6px 20px
     }
     .homelogo {
-        /*background-image: url(https://o4829njmu.qnssl.com/assets/homelogo-06062012@2x.png);*/
+        /*background-image: url(http://static.yushuangqi.com/assets/homelogo-06062012@2x.png);*/
         -moz-background-size: 350px 212px;
         -ie-background-size: 350px 212px;
         -o-background-size: 350px 212px;
@@ -1559,7 +1555,7 @@ only screen and (-o-min-device-pixel-ratio:3/2),
 only screen and (min--moz-device-pixel-ratio:1.5),
 only screen and (min-device-pixel-ratio:1.5) {
     .homelogo {
-        /*background-image: url(https://o4829njmu.qnssl.com/assets/homelogobg-06062012@2x.png);*/
+        /*background-image: url(http://static.yushuangqi.com/assets/homelogobg-06062012@2x.png);*/
         -moz-background-size: 410px 240px;
         -ie-background-size: 410px 240px;
         -o-background-size: 410px 240px;
@@ -1567,7 +1563,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 410px 240px
     }
     .sideimg {
-        background-image: url(https://o4829njmu.qnssl.com/assets/writingsimgsm-06102012@2x.png);
+        background-image: url(http://static.yushuangqi.com/assets/writingsimgsm-06102012@2x.png);
         -moz-background-size: 164px 132px;
         -ie-background-size: 164px 132px;
         -o-background-size: 164px 132px;
@@ -1575,7 +1571,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 164px 132px
     }
     .about .sideimg {
-        /*background-image: url(https://o4829njmu.qnssl.com/assets/aboutimg-06082012@2x.png);*/
+        /*background-image: url(http://static.yushuangqi.com/assets/aboutimg-06082012@2x.png);*/
         -moz-background-size: 199px 274px;
         -ie-background-size: 199px 274px;
         -o-background-size: 199px 274px;
@@ -1583,7 +1579,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 199px 274px
     }
     .sideimpreso {
-        background-image: url(https://o4829njmu.qnssl.com/assets/presosimg-06082012@2x.png);
+        background-image: url(http://static.yushuangqi.com/assets/presosimg-06082012@2x.png);
         -moz-background-size: 199px 277px;
         -ie-background-size: 199px 277px;
         -o-background-size: 199px 277px;
@@ -1591,7 +1587,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 199px 277px
     }
     .sideimpresopg {
-        background-image: url(https://o4829njmu.qnssl.com/assets/presosimgsm-06072012@2x.png);
+        background-image: url(http://static.yushuangqi.com/assets/presosimgsm-06072012@2x.png);
         -moz-background-size: 167px 132px;
         -ie-background-size: 167px 132px;
         -o-background-size: 167px 132px;
@@ -1599,7 +1595,7 @@ only screen and (min-device-pixel-ratio:1.5) {
         background-size: 167px 132px
     }
     .sideimgwritings {
-        background-image: url(https://o4829njmu.qnssl.com/assets/writingsimg-06082012@2x.png);
+        background-image: url(http://static.yushuangqi.com/assets/writingsimg-06082012@2x.png);
         -moz-background-size: 199px 237px;
         -ie-background-size: 199px 237px;
         -o-background-size: 199px 237px;
@@ -1861,7 +1857,7 @@ table tr td :last-child {
 /* table end*/
 
 .split{
-    background: url(https://o4829njmu.qnssl.com/assets/bullet_icon.gif) no-repeat 0 7px;
+    background: url(http://static.yushuangqi.com/assets/bullet_icon.gif) no-repeat 0 7px;
     background-position: center;
     padding: 0 8px 0 8px;
 }
