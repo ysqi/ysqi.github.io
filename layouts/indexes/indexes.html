@@ -22,7 +22,7 @@
 
   {{ range .Site.Pages.GroupByDate "2006年" }}
 
-     <h2 class="hlisting">{{ .Key }}</h1> 
+     <h2 class="hlisting">{{ .Key }}</h2> 
       <ul class="listing">
       {{ range where .Pages "Section" "blog" }} 
 	      <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a><span style="float:right">{{ .Date.Format "2006-01-02" }}</span></li>

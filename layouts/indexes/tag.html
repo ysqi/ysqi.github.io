@@ -6,7 +6,7 @@
 		虞双齐共分享{{len .Data.Pages}}篇文章在{{.Title}}标签下。
 		</p>
 		 {{ range .Data.Pages.GroupByDate "2006年01月" }}
-     <h2 class="hlisting">{{ .Key }}</h1> 
+     <h2 class="hlisting">{{ .Key }}</h2> 
       <ul class="listing">
       {{ range .Pages }}
       <li ><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ .Date.Format "2006-01-02" }}</span></li>

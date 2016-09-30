@@ -25,14 +25,14 @@
         <li class="rel_linksli">
         <span id="topics">分类:  
         {{ range   .Params.topics  }}
-        <a  href="/topics/{{.|urlize}}.html" rel="topics">{{title .}}</a>
+        <a  href="/topics/{{.|urlize}}.html" rel="category">{{title .}}</a>
         {{end}} 
         </span>
 
         {{if .Params.tags}}
         <span id="tags">标签:
         {{ range sort .Params.tags }}
-        <a href="/tags/{{.|urlize}}.html"  rel="tag">{{ . }}</a>
+        <a href="/tags/{{.|urlize}}.html" rel="tag">{{.}}</a>
         {{ end }}</span>
         {{end}}
 

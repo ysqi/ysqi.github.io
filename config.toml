@@ -1,5 +1,5 @@
 baseurl = "https://yushuangqi.com"
-languageCode = "zn-CN"
+languageCode = "zh"
 title = "虞双齐Go语言开发" 
 pygmentsuseclasses =  true
 uglyURLs = true

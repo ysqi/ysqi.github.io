@@ -8,8 +8,10 @@
 <meta name="author" content="{{ .Site.Author.name }}">
 {{ .Hugo.Generator }}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="renderer" content="webkit"><!-- Set render engine for 360 browser -->
-<meta http-equiv="Cache-Control" content="no-siteapp"/><!-- No Baidu Siteapp-->
+<meta name="renderer" content="webkit"><!-- Set render engine for 360 browser --> 
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
 <!-- <link rel="icon" type="image/png" href="assets/i/favicon.png"> -->
 <meta name="mobile-web-app-capable" content="yes"> <!-- Add to homescreen for Chrome on Android -->
  <link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png">
@@ -83,7 +85,7 @@
 </script>
 
 </head>
-<body id="page" name="page" class="not-active">
+<body id="page" class="not-active">
 {{if eq $isHomepage false}}
 <div class="container">	
 <header class="header writingsheader">
