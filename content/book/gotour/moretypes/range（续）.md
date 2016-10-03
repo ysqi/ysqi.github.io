@@ -7,19 +7,14 @@ description: ""
 disqus_identifier: book000103014
 slug: "range-continued"
 title: Golang入门指南-range（续）
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/4fa8542f1ba6038e0e74d79dabb9aab2.go"
 ---
-
-
-
 
 可以通过赋值给 `_` 来忽略序号和值。
 
-如果只需要索引值，去掉 “ `,`value` ” 的部分即可。
+如果只需要索引值，去掉 **`, value`** 部分即可。
 
-```
-// +build OMIT
-
+```go
 package main
 
 import "fmt"
@@ -33,6 +28,5 @@ func main() {
 		fmt.Printf("%d\n", value)
 	}
 }
-
 ```
 

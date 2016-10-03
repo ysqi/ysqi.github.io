@@ -357,6 +357,11 @@ table {
     color: #7e888b;
     background-color: #f7f7f7; 
 }
+@media (max-width: 600px){
+    .book .book-footer{
+        height: 100px;
+    }
+}
 
 .book .book-header {
     /*position: fixed;*/
@@ -1093,8 +1098,7 @@ body {
 
 /* 行列*/
 
-.row {
-  margin-left: -20px;
+.row { 
   *zoom: 1;
 }
 

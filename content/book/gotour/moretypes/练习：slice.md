@@ -7,11 +7,8 @@ description: ""
 disqus_identifier: book000103015
 slug: "exercise-slice"
 title: Golang入门指南-练习：slice
-codeurl: "https://wide.b3log.org/playground/.go"
+#codeurl: "https://wide.b3log.org/playground/.go"
 ---
-
-
-
 
 实现 `Pic` 。它返回一个长度为 `dy` 的 slice，其中每个元素是一个长度为 `dx`
 且元素类型为8位无符号整数的 slice。当你运行这个程序时，
@@ -23,9 +20,7 @@ codeurl: "https://wide.b3log.org/playground/.go"
 
 （使用 `uint8(intValue)` 来在类型之间进行转换。）
 
-```
-// +build OMIT
-
+```go
 package main
 
 import "golang.org/x/tour/pic"
@@ -38,4 +33,3 @@ func main() {
 }
 
 ```
-

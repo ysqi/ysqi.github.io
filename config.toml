@@ -1,6 +1,6 @@
-baseurl = "http://www.yushuangqi.com"
-languageCode = "zn-CN"
-title = "虞双齐的博客" 
+baseurl = "https://yushuangqi.com"
+languageCode = "zh"
+title = "虞双齐Go语言开发" 
 pygmentsuseclasses =  true
 uglyURLs = true
 metaDataFormat = "YAML"
@@ -9,15 +9,17 @@ disqusShortname = "yushuangqi"
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
-  description= "开源爱好者虞双齐的个人博客"
+  description= "程序员虞双齐的个人博客，擅长Go语言服务器端软件开发"
 
 [author]
-  description = "开源爱好者。6年产品设计与软件开发经验，专注开源协作、微信平台开发和工作经验的分享。"
+  description = "开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。"
   name = "虞双齐"
-  aboutme_avatar = "https://avatars2.githubusercontent.com/u/2821085?v=3&amp;s=460"
-  aboutme_height = "https://avatars2.githubusercontent.com/u/2821085"
+  # 140*140头像
+  aboutme_avatar = "https://o4829njmu.qnssl.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
+  # 高清原始头像
+  aboutme_height = "https://o4829njmu.qnssl.com/assets/touxiang.jpg"
   email ="devysq@gmail.com"
-  qq = "460857340"
+  qq = "535252640"
   weibo = "234665601"
   github = "ysqi"
 

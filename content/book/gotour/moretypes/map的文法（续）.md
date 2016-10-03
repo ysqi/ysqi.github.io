@@ -7,17 +7,31 @@ description: ""
 disqus_identifier: book000103018
 slug: "map-literals-con"
 title: Golang入门指南-map的文法（续）
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/15b79f24a664023b4884fcc6277312ec.go"
 ---
-
-
-
 
 如果顶级的类型只有类型名的话，可以在文法的元素中省略键名。
 
+```go
+var m = map[string]Vertex{
+	"Bell Labs": Vertex{
+		40.68433, -74.39967,
+	},
+	"Google": Vertex{
+		37.42202, -122.08408,
+	},
+}
 ```
-// +build OMIT
+简化成：
+```go
+var m = map[string]Vertex{
+	"Bell Labs": {40.68433, -74.39967},
+	"Google":    {37.42202, -122.08408},
+}
+```
 
+
+```go
 package main
 
 import "fmt"

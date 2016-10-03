@@ -7,10 +7,8 @@ description: ""
 disqus_identifier: book00010201
 slug: ""
 title: Golang入门指南-for
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/b5436a33ab16478ad8bb2f1580d900c6.go"
 ---
-
-
 
 
 Go 只有一种循环结构—— `for` 循环。
@@ -25,12 +23,10 @@ Go 只有一种循环结构—— `for` 循环。
 
 如果条件表达式的值变为 `false`，那么迭代将终止。
 
-_注意_：不像 C，Java，或者 Javascript 等其他语言，`for` 语句的三个组成部分
+**注意**：不像 C，Java，或者 Javascript 等其他语言，`for` 语句的三个组成部分
 并不需要用括号括起来，但循环体必须用 `{`}` 括起来。
 
-```
-// +build OMIT
-
+```go
 package main
 
 import "fmt"

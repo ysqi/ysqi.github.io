@@ -7,11 +7,8 @@ description: ""
 disqus_identifier: book00010206
 slug: "if-with-a-short-statement"
 title: Golang入门指南-if的便捷语句
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/553435814af23eb17ca566ac1d00dbd6.go"
 ---
-
-
-
 
 跟 `for` 一样， `if` 语句可以在条件之前执行一个简单语句。
 
@@ -19,9 +16,7 @@ codeurl: "https://wide.b3log.org/playground/.go"
 
 （在最后的 `return` 语句处使用 `v` 看看。）
 
-```
-// +build OMIT
-
+```go
 package main
 
 import (

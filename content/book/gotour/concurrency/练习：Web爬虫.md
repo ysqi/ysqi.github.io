@@ -7,11 +7,8 @@ description: ""
 disqus_identifier: book000105010
 slug: "exercise-web-crawler"
 title: Golang入门指南-练习：Web爬虫
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/7e8efccc7bf9a281b95cc04788d70239.go"
 ---
-
-
-
 
 在这个练习中，将会使用 Go 的并发特性来并行执行 web 爬虫。
 
@@ -19,9 +16,7 @@ codeurl: "https://wide.b3log.org/playground/.go"
 
 _提示_：你可以用一个 map 来缓存已经获取的 URL，但是需要注意 map 本身并不是并发安全的！
 
-```
-// +build OMIT
-
+```go
 package main
 
 import (

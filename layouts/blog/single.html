@@ -1,14 +1,24 @@
 {{ partial "header.html" . }}
 <section role="main">
-<h1> {{ .Title }}</h1> 
-<p class="attribution" itemscope="" itemtype="http://schema.org/Person">by <a href="http://www.lukew.com/about/">
-<span itemprop="name">{{ .Site.Author.name }}</span></a> <span class="right">{{ .Date.Format "2006年01月02日" }}</span>
-<a href="https://plus.google.com/100817211548713875249" rel="author"></a></p>
- 
-<article class="entry writingsentry">
- {{ .Content }}
-</article>
+<article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"> 
+<header>
+<h2  itemprop="headline"> <a rel="bookmark">{{ .Title }}</a> </h2> 
+<p class="attribution" >
+    <span itemprop="author">
+        <span itemscope itemtype="http://schema.org/Person">
+            文/<a href="{{.Site.BaseURL}}"> <span itemprop="name">{{ .Site.Author.name }}</span></a> 
+        </span>
+    </span>
+    <span class="right">
+        <time itemprop="datePublished" datetime="{{.Date.Format "2006-01-02"}}">{{ .Date.Format "2006年01月02日" }}</time> 
+    </span> 
+</p>
+</header>
+<div itemprop="articleBody">
+ {{ .Content }} 
+</div>
 {{ partial "meta_aside.html" . }}
+</article>
 </section>
 
 {{ partial "sidebar.html" .}}

@@ -1,15 +1,14 @@
 <section id="sidebar" role="complementary">
 <aside class="writings">
-<!-- <a href="/" class="sidelogo">Home</a> -->
 <a href="/" class="sideimg sideimgwritings">Home</a>
 <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q>
 <ul class="rel_links">
 	<!-- <li class="rel_linksli"><a href="http://feeds.feedburner.com/FunctioningForm" title="Subscribe to News">Subscribe to News</a></li> -->
-	<li class="rel_linksli"><a href="http://weibo.com/{{.Site.Author.weibo}}" title="关注虞双齐的微博" rel="nofollow">关注我的微博</a></li>
-	<li class="rel_linksli"><a href="https://github.com/{{.Site.Author.github}}" title="访问虞双齐的Github" rel="nofollow">访问我的Github</a></li>
-</ul>
+	<li class="rel_linksli"><a href="http://weibo.com/{{.Site.Author.weibo}}" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li>
+	<li class="rel_linksli"><a href="https://github.com/{{.Site.Author.github}}" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li>
+</ul> 
 {{ if .Params.toc }}
-{{ .TableOfContents }}
+  {{ .TableOfContents }}
 {{end}}
 </aside>
 </section>

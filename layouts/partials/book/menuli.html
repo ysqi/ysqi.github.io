@@ -1,14 +1,18 @@
 <li class="chapter"> 
 {{ $isEmpty := eq .WordCount 0 }}
 {{if or (in .Params.book_chapter ".") (eq .Params.book_chapter "-") }}
-<a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} >
-	{{if ne .Params.book_chapter "-" }}<b>{{printf "%s." .Params.book_chapter }} </b>{{end}} 
+<a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} > 
     {{  .Params.book_chapter_name }}
   	</a>
 {{else}}
 <a href="{{if $isEmpty}}javascript:void();{{else}}{{ .Permalink }}{{end}}" {{if $isEmpty}}class="towrite"{{end}} >
             				{{if ne .Params.book_chapter "-" }}
-            				<b>{{printf "%s." (last 2 .Params.book_chapter) }}</b> 
+            				{{ $s := (slicestr .Params.book_chapter 2) }}
+            				{{if eq "00" $s}}
+            					<b>{{printf "%s."  (substr .Params.book_chapter 0 2 ) }}</b>
+            				{{else}}
+            					<b>{{printf "%s." $s }}</b>
+            				{{end}} 
             				{{end}} 
             				{{  .Params.book_chapter_name }}
 </a>            				

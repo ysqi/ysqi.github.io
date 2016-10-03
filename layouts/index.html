@@ -2,14 +2,13 @@
 <div class="homecontainer">
 <div class=" homelogo vcard">
                     <a href="/about/" class="vcard-avatar" rel="nofollow" >
-                        <img alt="" class="avatar" height="140" src="https://avatars2.githubusercontent.com/u/2821085?v=3&amp;s=460" width="140">
+                        <img alt="" class="avatar" height="140" src="{{.Site.Author.aboutme_avatar}}" width="140">
                     </a>
                     <h1 class="vcard-name"> <span class="vcard-fullname" >虞双齐</span></h1>
                     <div>
-                    	<p>HACKING</p>
-                        <p><small>产品设计与软件开发</small></p>
+                        <p>敲出人生乐章</p>
                         <div>
-    <a href="http://weibo.com/{{.Site.Author.weibo}}" title="关注虞双齐的微博" rel="nofollow">微博</a>,<a href="https://github.com/{{.Site.Author.github}}" title="访问虞双齐的Github" rel="nofollow">Github</a>
+    <a href="http://weibo.com/{{.Site.Author.weibo}}" title="虞双齐的微博" rel="nofollow">Weibo</a><span class="split"></span><a href="https://github.com/{{.Site.Author.github}}" title="虞双齐的Github" rel="nofollow">Github</a>
                         </div> 
                     </div>
                 </div>
@@ -25,16 +24,16 @@
 	<section class="homesec homesecwritings">
 	<h3>{{len .Data.Pages }}</h3>
 	<p>篇IT技术文章分享。</p>
-	<ul>
-	 {{ range first 6 ( where .Data.Pages "Section" "blog" ) }}
+	<ul class="listing">
+	 {{ range first 8 ( where .Data.Pages "Section" "blog" ) }}
                                         	<li class="list-group-item">
-                                                <a href="{{ .RelPermalink }}" class="writings text-overflow">
-                                                <span >{{ .Title }}{{ if .Draft }} (Draft){{ end }}</span>
-                                                <span class="date">{{ .Date.Format "2006-01-02" }}</span> 
+                                                 <a href="{{ .RelPermalink }}" class="writings text-overflow">
+                                                {{ .Title }}{{ if .Draft }} (Draft){{ end }}
+                                               <!-- <span class="date">{{ .Date.Format "2006-01-02" }}</span> -->
                                                 </a>
                                             </li> 
     									{{ end }}
-	  <li><a href="/topics/" class="writings" rel="nofollow">全部...</a></li>
+	  <li><a href="/topics/" title="查看全部博文">全部...</a></li>
 	</ul>
 	<h3>{{len .Site.Taxonomies.topics}}</h3>
 	<p>个文章分类</p>
@@ -63,6 +62,5 @@
 	</ul>
 	</section>
 	{{end}}
-</div>
 </div>
 {{ partial "footer.html" . }}

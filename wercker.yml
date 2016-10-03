@@ -9,7 +9,8 @@ build:
         prod_branches: master
         disable_pygments: true
     - samueldebruyn/minify:
-        only_on_branches: master
+        base_dir: _site
+        threads: "3"
     - script:
         name: ls stuff
         code: |
@@ -17,16 +18,10 @@ build:
 deploy:
   box: samueldebruyn/debian-git
   steps:
-    - script:
-        name: ls output
-        code: |
-          ls -haltr /pipeline/output
-
-    - script:
-        name: ls source
-        code: |
-          ls -haltr /pipeline/source
-    - lukevivier/gh-pages:
-        token: $GIT_TOKEN
-        domain: www.yushuangqi.com
+    - ysqi/git-push:
+        gh_oauth: $GIT_TOKEN
         basedir: public
+        clean_removed_files: true
+        branch: $GIT_BRANCH
+        repo: $GIT_REPO
+        gh_pages_domain: $GIT_DOMAIN

@@ -7,19 +7,14 @@ description: ""
 disqus_identifier: book00010505
 slug: ""
 title: Golang入门指南-select
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/84b0bcb4362dad7cd68f9ad221c62ef4.go"
 ---
-
-
-
 
 `select` 语句使得一个 goroutine 在多个通讯操作上等待。
 
-`select` 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会随机选择一个。
+`select` 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会**随机**选择一个。
 
-```
-// +build OMIT
-
+```go
 package main
 
 import "fmt"

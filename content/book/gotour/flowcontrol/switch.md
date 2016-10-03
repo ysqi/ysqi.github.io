@@ -7,19 +7,23 @@ description: ""
 disqus_identifier: book00010209
 slug: ""
 title: Golang入门指南-switch
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/e29b6410199f0e04a20ea9f15028f95d.go"
 ---
-
-
-
 
 你可能已经知道 `switch` 语句会长什么样了。
 
 除非以 `fallthrough` 语句结束，否则分支会自动终止。
 
-```
-// +build OMIT
+	age := 1
+	switch {
+	case age == 1:
+		fmt.Println("1 age")
+		fallthrough
+	case age < 5:
+		fmt.Println("age<5")
+	}
 
+```go
 package main
 
 import (

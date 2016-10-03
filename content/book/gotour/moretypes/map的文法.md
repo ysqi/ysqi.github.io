@@ -7,17 +7,12 @@ description: ""
 disqus_identifier: book000103017
 slug: "map-literals"
 title: Golang入门指南-map的文法
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/866bd55dd8ec30d05aa290ffadad0444.go"
 ---
 
+map 的文法跟[结构体]({{< ref "结构体.md">}})文法相似，不过必须有键名。
 
-
-
-map 的文法跟结构体文法相似，不过必须有键名。
-
-```
-// +build OMIT
-
+```go
 package main
 
 import "fmt"

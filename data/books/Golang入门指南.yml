@@ -1,4 +1,4 @@
-desc: "Golang入门指南"
+name: "Golang入门指南"
 author: "虞双齐"
 date: "2016-02-25"
 desc: "整理自Go官方Tour教程,并加入自己的想法"

@@ -8,8 +8,10 @@
 <meta name="author" content="{{ .Site.Author.name }}">
 {{ .Hugo.Generator }}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="renderer" content="webkit"><!-- Set render engine for 360 browser -->
-<meta http-equiv="Cache-Control" content="no-siteapp"/><!-- No Baidu Siteapp-->
+<meta name="renderer" content="webkit"><!-- Set render engine for 360 browser --> 
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
 <!-- <link rel="icon" type="image/png" href="assets/i/favicon.png"> -->
 <meta name="mobile-web-app-capable" content="yes"> <!-- Add to homescreen for Chrome on Android -->
  <link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png">
@@ -17,12 +19,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Ysqi"/>
 <link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"> 
-<meta name="msapplication-TileImage" content="/img/i/app-icon64x64@2x.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
 <meta name="msapplication-TileColor" content="#0e90d2">
  <!-- open graph -->
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="{{ .Description }}"/>
-<meta property="og:title" content="{{ .Title }} : yushuangqi.com"/>
+<meta property="og:title" content="{{ .Title }} : {{.Site.BaseURL}}"/>
 <meta property="og:site_name" content="{{ .Site.Title }}"/>
 <!-- <meta property="og:image" content="" /> -->
 <!-- <meta property="og:image:type" content="image/jpeg" /> -->
@@ -41,7 +43,7 @@
 {{ end }}
 {{end}}
 
- <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160217" />
+ <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160318" />
 
 <script type="text/javascript">
 	var doc = document.getElementById('doc');
@@ -83,14 +85,14 @@
 </script>
 
 </head>
-<body id="page" name="page" class="not-active">
+<body id="page" class="not-active">
 {{if eq $isHomepage false}}
 <div class="container">	
 <header class="header writingsheader">
 <nav class="off-canvas-nav-links">
 <ul>
 <li class="menuli"><a class="menubutton" href="#menu">Menu</a></li>
-<li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">Additional Information</a></li>
+<li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li>
 </ul>
 </nav>	
 </header> 

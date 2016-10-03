@@ -5,16 +5,13 @@ book_name: Golang入门指南
 date: "2016-02-26T17:46:25.5468625+08:00"
 description: ""
 disqus_identifier: book000103012
-slug: "mutating-maps"
+slug: "mutating-slices"
 title: Golang入门指南-向slice添加元素
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/2f183fc2c4d5ee771a0aa3d5c518b065.go"
 ---
 
-
-
-
 向 slice 的末尾添加元素是一种常见的操作，因此 Go 提供了一个内建函数 `append` 。
-内建函数的[[https://go-zh.org/pkg/builtin/#append][文档]]对 `append` 有详细介绍。
+内建函数的[文档](https://go-zh.org/pkg/builtin/#append)对 `append` 有详细介绍。
 
 	func append(s []T, vs ...T) []T
 
@@ -25,9 +22,9 @@ codeurl: "https://wide.b3log.org/playground/.go"
 如果 `s` 的底层数组太小，而不能容纳所有值时，会分配一个更大的数组。
 返回的 slice 会指向这个新分配的数组。
 
-（了解更多关于 slice 的内容，参阅文章[[https://blog.go-zh.org/go-slices-usage-and-internals][Go 切片：用法和本质]]。）
+（了解更多关于 slice 的内容，参阅文章[Go 切片：用法和本质](https://blog.go-zh.org/go-slices-usage-and-internals)。）
 
-```
+```go
 package main
 
 import "fmt"

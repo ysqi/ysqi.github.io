@@ -7,17 +7,14 @@ description: ""
 disqus_identifier: book00010308
 slug: "slices-of-slice"
 title: Golang入门指南-slice的slice
-codeurl: "https://wide.b3log.org/playground/.go"
+codeurl: "https://wide.b3log.org/playground/71a72cd5a31afe7b3d466cb2740467be.go"
 ---
 
+slice 可以包含任意的类型。 即你可以把 slice 当做是一组元素集合，集合的大小可变。
 
+示例中是一个 slice 的元素也是一个 slice。
 
-
-slice 可以包含任意的类型，包括另一个 slice。
-
-```
-// +build OMIT
-
+```go
 package main
 
 import (
