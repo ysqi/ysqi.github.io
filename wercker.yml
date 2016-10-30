@@ -9,10 +9,9 @@ build:
         version: "0.17"
         prod_branches: master
         disable_pygments: true
-    - samueldebruyn/minify:
-        base_dir: public
-        threads: "3"
-        html_args: "--use-short-doctype --remove-comments --minify-css --minify-js --collapse-whitespace --conservative-collapse --remove-cdatasections-from-cdata"
+    #- samueldebruyn/minify:
+    #    base_dir: public
+    #    threads: "3" 
     - script:
         name: ls stuff
         code: |
