@@ -37,16 +37,10 @@
         {{end}}
 
         </li>
-</ul>
-{{if eq false (in .Permalink "http://localhost" )   }}
-<!--  非编辑模式启用评论 -->
-<aside id=comments>
-  <div><h5> 评论 </h5></div>
-   {{ template "_internal/disqus.html" . }}
- </aside>
- {{end}}
-{{ $baseurl := .Site.BaseURL }}  
-    <div>
+</ul>  
+
+{{ partial "comment.html" .}}
+<div>
         <section id="author">
              <h4>About author</h4> 
 
