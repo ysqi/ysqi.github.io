@@ -15,9 +15,9 @@ disqusShortname = "yushuangqi"
   description = "开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。"
   name = "虞双齐"
   # 140*140头像
-  aboutme_avatar = "https://o4829njmu.qnssl.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
+  aboutme_avatar = "http://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像
-  aboutme_height = "https://o4829njmu.qnssl.com/assets/touxiang.jpg"
+  aboutme_height = "http://static.yushuangqi.com/assets/touxiang.jpg"
   email ="devysq@gmail.com"
   qq = "535252640"
   weibo = "234665601"
