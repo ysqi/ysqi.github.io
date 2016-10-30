@@ -6,10 +6,11 @@ build:
         code: |
             git submodule update --init --recursive
     - arjen/hugo-build:
+        version: "0.17"
         prod_branches: master
         disable_pygments: true
     - samueldebruyn/minify:
-        base_dir: _site
+        base_dir: public
         threads: "3"
     - script:
         name: ls stuff
