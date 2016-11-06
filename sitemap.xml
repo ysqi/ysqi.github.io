@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://yushuangqi.com/index.html</loc>
+    <lastmod>2016-10-03T19:51:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</loc>
+    <lastmod>2016-10-03T19:51:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</loc>
+    <lastmod>2016-08-12T09:08:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</loc>
+    <lastmod>2016-03-10T14:21:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</loc>
+    <lastmod>2016-03-08T10:44:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</loc>
+    <lastmod>2016-03-04T13:17:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</loc>
+    <lastmod>2016-03-04T13:13:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</loc>
+    <lastmod>2016-03-04T13:13:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</loc>
+    <lastmod>2016-03-04T13:13:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</loc>
+    <lastmod>2016-03-04T13:13:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</loc>
+    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</loc>
+    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</loc>
+    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</loc>
+    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</loc>
+    <lastmod>2016-03-04T13:13:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</loc>
+    <lastmod>2016-03-04T13:13:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/base64-encoding.html</loc>
+    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sha1-hashes.html</loc>
+    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/url-parsing.html</loc>
+    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/number-parsing.html</loc>
+    <lastmod>2016-03-04T13:13:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/random-numbers.html</loc>
+    <lastmod>2016-03-04T13:13:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/time.html</loc>
+    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/epoch.html</loc>
+    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/time-formatting-parsing.html</loc>
+    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/json.html</loc>
+    <lastmod>2016-03-04T13:13:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/regular-expressions.html</loc>
+    <lastmod>2016-03-04T13:13:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/string-functions.html</loc>
+    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/string-formatting.html</loc>
+    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/collection-functions.html</loc>
+    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/defer.html</loc>
+    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/panic.html</loc>
+    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sorting-by-functions.html</loc>
+    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/stateful-goroutines.html</loc>
+    <lastmod>2016-03-04T13:13:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sorting.html</loc>
+    <lastmod>2016-03-04T13:13:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/mutexes.html</loc>
+    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/atomic-counters.html</loc>
+    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/rate-limiting.html</loc>
+    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/worker-pools.html</loc>
+    <lastmod>2016-03-04T13:13:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/tickers.html</loc>
+    <lastmod>2016-03-04T13:13:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/timers.html</loc>
+    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/closing-channels.html</loc>
+    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/range-over-channels.html</loc>
+    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/timeouts.html</loc>
+    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/select.html</loc>
+    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/non-blocking-channel-operations.html</loc>
+    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-synchronization.html</loc>
+    <lastmod>2016-03-04T13:13:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-directions.html</loc>
+    <lastmod>2016-03-04T13:13:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/goroutines.html</loc>
+    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channels.html</loc>
+    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-buffering.html</loc>
+    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/interfaces.html</loc>
+    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/methods.html</loc>
+    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/errors.html</loc>
+    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/pointers.html</loc>
+    <lastmod>2016-03-04T13:13:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/structs.html</loc>
+    <lastmod>2016-03-04T13:13:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/variadic-functions.html</loc>
+    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/recursion.html</loc>
+    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/closures.html</loc>
+    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/functions.html</loc>
+    <lastmod>2016-03-04T13:13:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/multiple-return-values.html</loc>
+    <lastmod>2016-03-04T13:13:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/range.html</loc>
+    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/maps.html</loc>
+    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/slices.html</loc>
+    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/if-else.html</loc>
+    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/switch.html</loc>
+    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/arrays.html</loc>
+    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/for.html</loc>
+    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/variables.html</loc>
+    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/constants.html</loc>
+    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/hello-world.html</loc>
+    <lastmod>2016-03-04T13:13:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/values.html</loc>
+    <lastmod>2016-03-04T13:13:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/goexamplelib/home.html</loc>
+    <lastmod>2016-03-04T11:57:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/images.html</loc>
+    <lastmod>2016-02-26T17:53:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/exercise-images.html</loc>
+    <lastmod>2016-02-26T17:53:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/http-web-server.html</loc>
+    <lastmod>2016-02-26T17:53:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0%EF%BC%9AHTTP%E5%A4%84%E7%90%86.html</loc>
+    <lastmod>2016-02-26T17:53:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/Readers.html</loc>
+    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0%EF%BC%9AReader.html</loc>
+    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/exercise-rot-reader.html</loc>
+    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/exercise-errors.html</loc>
+    <lastmod>2016-02-26T17:53:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/errors.html</loc>
+    <lastmod>2016-02-26T17:53:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/exercise-stringer.html</loc>
+    <lastmod>2016-02-26T17:53:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/Stringers.html</loc>
+    <lastmod>2016-02-26T17:53:40+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/%E9%9A%90%E5%BC%8F%E6%8E%A5%E5%8F%A3.html</loc>
+    <lastmod>2016-02-26T17:53:40+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/interfaces.html</loc>
+    <lastmod>2016-02-26T17:53:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/methods-with-pointer-receivers.html</loc>
+    <lastmod>2016-02-26T17:53:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/methods-continued.html</loc>
+    <lastmod>2016-02-26T17:53:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/methods.html</loc>
+    <lastmod>2016-02-26T17:53:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/function-closures.html</loc>
+    <lastmod>2016-02-26T17:46:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-fibonacci-closure.html</loc>
+    <lastmod>2016-02-26T17:46:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/mutating-maps.html</loc>
+    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/function-values.html</loc>
+    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-map.html</loc>
+    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/map-literals.html</loc>
+    <lastmod>2016-02-26T17:46:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/map-literals-con.html</loc>
+    <lastmod>2016-02-26T17:46:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/map.html</loc>
+    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/range-continued.html</loc>
+    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-slice.html</loc>
+    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/nilslice.html</loc>
+    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/range.html</loc>
+    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/mutating-slices.html</loc>
+    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/slices-to-slices.html</loc>
+    <lastmod>2016-02-26T17:46:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/making-slices.html</loc>
+    <lastmod>2016-02-26T17:46:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/slice.html</loc>
+    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/slices-of-slice.html</loc>
+    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/array.html</loc>
+    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-pointers.html</loc>
+    <lastmod>2016-02-26T17:46:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-literals.html</loc>
+    <lastmod>2016-02-26T17:46:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/pointer.html</loc>
+    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/struct.html</loc>
+    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-fields.html</loc>
+    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/defer-multi.html</loc>
+    <lastmod>2016-02-26T17:45:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/defer.html</loc>
+    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch-evaluation-order.html</loc>
+    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch-with-no-condition.html</loc>
+    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch.html</loc>
+    <lastmod>2016-02-26T17:45:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/exercise-loops-and-functions.html</loc>
+    <lastmod>2016-02-26T17:45:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if.html</loc>
+    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if-and-else.html</loc>
+    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if-with-a-short-statement.html</loc>
+    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for-is-gos-while.html</loc>
+    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for-continued.html</loc>
+    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/forever.html</loc>
+    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for.html</loc>
+    <lastmod>2016-02-26T17:45:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/exercise-web-crawler.html</loc>
+    <lastmod>2016-02-26T17:42:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/WheretoGofromhere.html</loc>
+    <lastmod>2016-02-26T17:42:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/sync.html</loc>
+    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/exercise-equivalent-binary-trees.html</loc>
+    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/default-selection.html</loc>
+    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/select.html</loc>
+    <lastmod>2016-02-26T17:42:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/channel-close.html</loc>
+    <lastmod>2016-02-26T17:42:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/channel.html</loc>
+    <lastmod>2016-02-26T17:42:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/buffered-channels.html</loc>
+    <lastmod>2016-02-26T17:42:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/goroutine.html</loc>
+    <lastmod>2016-02-26T17:42:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/function.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/init-var.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/package.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/variables.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/named-returns.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/basic-type.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/multi_value_return.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/import.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/import-name.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/const.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/const-number.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/short-variable-declarations.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/type-inference.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/type-conversions.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/zero.html</loc>
+    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/function2.html</loc>
+    <lastmod>2016-02-26T16:56:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</loc>
+    <lastmod>2016-02-26T11:00:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/moretypes/home.html</loc>
+    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/methods/home.html</loc>
+    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/flowcontrol/home.html</loc>
+    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/basics/home.html</loc>
+    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/concurrency/home.html</loc>
+    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/book/gotour/home.html</loc>
+    <lastmod>2016-02-25T15:00:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/gosublime-goimports.html</loc>
+    <lastmod>2016-02-25T13:32:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</loc>
+    <lastmod>2016-02-18T11:05:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</loc>
+    <lastmod>2016-02-15T13:06:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</loc>
+    <lastmod>2016-02-15T12:44:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/beego-webframework-config.html</loc>
+    <lastmod>2016-02-13T08:04:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</loc>
+    <lastmod>2016-02-11T13:14:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/about/</loc>
+    <lastmod>2015-12-29T20:29:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</loc>
+    <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</loc>
+    <lastmod>2015-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</loc>
+    <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</loc>
+    <lastmod>2015-09-18T12:55:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</loc>
+    <lastmod>2015-09-18T08:22:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/mql5-can-use-in-shanghai-a.html</loc>
+    <lastmod>2015-09-14T08:18:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/wang_yuan_zong-xi_zang-xi_kong.html</loc>
+    <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</loc>
+    <lastmod>2015-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</loc>
+    <lastmod>2015-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</loc>
+    <lastmod>2015-08-31T10:01:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</loc>
+    <lastmod>2015-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</loc>
+    <lastmod>2015-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</loc>
+    <lastmod>2015-08-15T09:12:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</loc>
+    <lastmod>2015-08-15T08:45:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</loc>
+    <lastmod>2015-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</loc>
+    <lastmod>2013-04-08T23:31:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</loc>
+    <lastmod>2013-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</loc>
+    <lastmod>2013-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</loc>
+    <lastmod>2013-04-05T23:31:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</loc>
+    <lastmod>2013-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</loc>
+    <lastmod>2013-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</loc>
+    <lastmod>2013-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</loc>
+    <lastmod>2013-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html</loc>
+    <lastmod>2013-01-22T08:33:32+00:00</lastmod>
+  </url>
+  
+</urlset>

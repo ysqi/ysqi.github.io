@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/mysql.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/mysql.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
+      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
+      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
+ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
+安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
+vim /etc/yum.repos.d/nginx.repo  使用 vim 命令去打开 /etc/yum.repos.d/nginx.repo ，如果 nginx.repo 不存在，就会去创建一个这样的文件，打开以后按一下小 i 键，进入编辑模式，然后复制粘贴下面这几行代码，完成以后按 esc 键退出，再输入 :wq （保存并退出）
+[nginx] name=nginx repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=0 enabled=1  完成以后，我们就可以使用 yum 命令去安装 nginx 了，像这样：
+yum install nginx  安装好以后测试一下 nginx 服务： service nginx status  应该会返回：</description>
+    </item>
+    
+    <item>
+      <title>如何进行计数场景的优化</title>
+      <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</guid>
+      <description>社交网络信息爆发，如何衡量你在社交舆论上的影响力？计数！
+计数是应用最方便、简单实现的数据挖掘应用，拿Facebook举例，你的Feed被评论多少次，转发多少次，赞多少次，被浏览多少次，你有多少个好友等等。可以说计数得多少的价值可能超过你本身或者你发布的内容本身。
+今天着重介绍下Redis在计数器场景上的应用。 对于计数器大家肯定还有或多或少的疑问。
+Q1:计数从哪里来？ 通常我们发布的社交内容会存储在数据库中，最常见的如MySQL：
+更新索引：
+insert into user_message(uid,messageid) values(‘xx’，’xx’)  更新内容：
+insert into message_2013_05(messageid,message) values(‘xx’,’xx’);  为什么要进行索引和内容区分我这里就不多熬述了，这时要计算我有发送了多少个message，再mysql库中select count(messageid) where uid=xxx 就可以获得我们想要得计数，也就说大多数情况它源于我们的索引数据。
+Q2:计数和其他数据相比有什么特点？  单key读写频繁，总体读取量我们认为可能比内容模块还要频繁，索引的增删改查都会导致计数器的频繁增减。尤其当某篇twitter,feed,weibo非常火爆时，单key的更新将更加火爆。
+ 需要持久化，所有用户都可能需啊知道自己的计数，这个数据和内容本身一样重要。
+  从上面这两个需求来看选用Redis就是水到渠成了，而应对hotkey从Mysql update count+1 &amp;amp; Memcache 替换成Redis incr更是优雅很多。减少了很多数据一致性的风险。
+优化的思路： 单独维护计数，从获取更新复杂度O(n)到O(1) 我们知道随着单个uid-&amp;gt;message的个数越来越多，而count(message_id)的逻辑复杂度是O(n)，获取这个计数的成本是越来越大。
+如何让其获取变为O(1)？其实很简单，我们只要单独维护一下这个计数就可以了。举一个简单的例子来说明：
+假设我们有个字段，我们需要频繁的获取和更新这个字段的长度，引用Redisbook(http://www.redisbook.com/)中的一段对于redis 用于存储key value的sds的描述好像能简单的叙述这件事情。
+“比如说， hello world 在 C 语言中就可以表示为 &amp;ldquo;hello world\0&amp;rdquo; 。
+这种简单的字符串表示在大多数情况下都能满足要求，但是，它并不能高效地支持长度计算和追加（append）这两种操作：
+每次计算字符串长度（strlen(s)）的复杂度为 θ(N) 。 对字符串进行 N 次追加，必定需要对字符串进行 N 次内存重分配（realloc）。
+struct sdshdr { len = 11; free = 0; buf = “hello world\0″; // buf 的实际长度为 len + 1 };  通过 len 属性， sdshdr 可以实现复杂度为 θ(1) 的长度计算操作。</description>
+    </item>
+    
+  </channel>
+</rss>

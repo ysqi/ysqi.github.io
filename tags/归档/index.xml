@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/%E5%BD%92%E6%A1%A3.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%BD%92%E6%A1%A3.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>日志文件自动归档工具</title>
+      <link>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</guid>
+      <description>&lt;p&gt;公司生产环境日志非常大，且日志需要存档两年，以便检查的。故写了一个小工具来自动打包压缩日志文件。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

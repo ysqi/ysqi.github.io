@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/php.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/php.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
+      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
+      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
+ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
+安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
+vim /etc/yum.repos.d/nginx.repo  使用 vim 命令去打开 /etc/yum.repos.d/nginx.repo ，如果 nginx.repo 不存在，就会去创建一个这样的文件，打开以后按一下小 i 键，进入编辑模式，然后复制粘贴下面这几行代码，完成以后按 esc 键退出，再输入 :wq （保存并退出）
+[nginx] name=nginx repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=0 enabled=1  完成以后，我们就可以使用 yum 命令去安装 nginx 了，像这样：
+yum install nginx  安装好以后测试一下 nginx 服务： service nginx status  应该会返回：</description>
+    </item>
+    
+    <item>
+      <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
+      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
+      <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
+首先看源代码
+package main import ( &amp;quot;bytes&amp;quot; &amp;quot;compress/gzip&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { data := &amp;quot;a&amp;quot; buffer := new(bytes.Buffer) w, _ := gzip.NewWriterLevel(buffer, 9) //php: gzencode($json_data,9) defer w.Close() w.Write([]byte(data)) w.Flush() fmt.Println(buffer.Bytes()[:]) }  不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于RFC 1952 ,gzip数据格式如下：
++---+---+---+---+---+---+---+---+---+---+ |ID1|ID2|CM |FLG| MTIME |XFL|OS | (more--&amp;gt;) +---+---+---+---+---+---+---+---+---+---+  再对比PHP和GoLang的头部定义
+   - PHP Go     D1 31 31   D2 139 139   CM (compression method) 8 8   FLG (flags) 0 0   MTIME (modification time) 0 0 0 0 0 9 110 136   XFL (extra flags) 0 0   OS (operating system) 0 255    上面看到，Go 设置的头信息和PHP有部分差役，Go都设置了MTime（修改时间） 和OS（操作系统，为255 ，不知道代表什么意思），而PHP中的OS＝0表示是 FAT文件系统。</description>
+    </item>
+    
+  </channel>
+</rss>

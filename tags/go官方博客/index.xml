@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go声明语法</title>
+      <link>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</link>
+      <pubDate>Fri, 26 Feb 2016 11:00:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</guid>
+      <description>很多新手对于 Go 不同于 C 系列语言的声明语法感到非常惊讶，本文就为什么 Go 语言声明语法为何不同于其他语言进行说明。
+C 语法 首先来说是 C 语言语法，C 采用不寻常但非常聪明的方式定义语法，反过来使用特殊语法申明明类型。一次写一个表达式来声明，并指明是什么类型的表达式。像这样：
+int x;  申明 x 是一个int，表达式x就有一个类型int，一般情况下需要弄清楚如何确定一个新变量的类型，写一个表达式将涉及变量计算结果的基础数据类型。基础数据类型写在左边，表达式写在右边。像这样写表达式：
+int *p; int a[3];  此时，变量p在表达式中通过*来取指针地址，这样*p就是int类型。同理a[3]是从 int 数组a中取下标为3的元素，故a[3]为int类型。
+那么函数的定义呢？聪明的做法，C 语言函数是在括号中声明参数类型。
+int main(argc, argv) int argc; char *argv[]; { /* ... */ }  我们看到，main就是一个函数，表达式是包含int返回类型和main(argc, argv)，现在写成：
+int main(int argc, char *argv[]) { /* ... */ }  但基本机构是一样的。
+对于简单类型，能很好的工作，这是很棒的语法思想。但是很快就变得混乱，典型的例子是申明一个函数指针，按照语法规范，是这样写的：
+int (*fp)(int a, int b);  这里，fp 是一个函数指针，返回 int 数据的表达式 (*fp)(int a, int b)。如何 fp 入参就是它本身时，是怎样的？</description>
+    </item>
+    
+  </channel>
+</rss>

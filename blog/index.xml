@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog-rsses on 虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/blog.xml</link>
+    <description>在 虞双齐Go语言开发上关于in Blog-rsses 的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <lastBuildDate>Mon, 03 Oct 2016 19:51:14 +0800</lastBuildDate>
+    <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何判断是否是在GolangTest运行代码</title>
+      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
+      <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</guid>
+      <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
+经过各种尝试,总算能非常靠谱的进行Go Test 识别!
+需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息 ini APP = JUSTTest port = 6060 dbName = TESTATOP   解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
+ 运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
+func init() { runMode := flag.</description>
+    </item>
+    
+    <item>
+      <title>如何使用MAC远程连接Win10操作系统</title>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+      <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
+      <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
+那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
+ 提示“远程桌面连接无法验证您希望连接的计算机的身份”。
+ 那么说明是Win10的远程访问权限设置有问题，经过测试可以降低安全级别进行处理，具体操作办法如下：
+ Win 打开开始，点击设置 在右上角的搜索输入窗口，输入允许远程访问你的计算机 按Enter回车键,将弹出窗口显示系统属性 去掉勾选项: 仅允许运行使用网络级别身份验证的远程计算机 点击确定并关闭窗口  MAC远程访问Window桌面工具 如果是简单的远程，可以使用微软官方出品的 Remote Desktop For Mac 工具，下载地址：
+ https://technet.microsoft.com/en-us/library/dn473012(v=ws.11).aspx
+ 上面就是Mac下远程登录Win10的方式，希望能帮到你!</description>
+    </item>
+    
+    <item>
+      <title>Wecrcker自动部署到Github过程中问题记录</title>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
+      <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
+      <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
+wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
+ box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
+ __ysqi/git-push __
+step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
+source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+    </item>
+    
+    <item>
+      <title>理解Go import</title>
+      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</link>
+      <pubDate>Tue, 08 Mar 2016 10:44:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</guid>
+      <description>Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。
+工作目录 在 Go 中代码保持在称之为 workspace 的系统文件夹中。这个工作目录下有三个根目录：
+ bin 包含可执行文件 。 pkg 包含不同操作系统架构的包二进制文件。相当于编译后的库文件。 src 包含按包方式组织的源代码。  其中 bin 和 pkg 文件夹是在调用 go 命令安装和编译源代码时自动生成。而 src 下可组织多个包，且能使用版本控制工具。
+注意，必须让 Go 知道工作目录的位置，这样才能知道包的具体位置。通过设置环境变量 GOPATH 来指定。
+export GOPATH=/home/dev/gowork/  导入包 improt 便是用一个独一无二的字符串路径来指向包，而包的导入路径是基于工作目录或者的。因为 Go 会在 工作目录 src 子目录下查找包。
+标准包使用的是给定的短路径，如“fmt”、“net/http”，但你自己的包，需要在工作目录下指定一个目录，同时预防和以后的代码包路径发生冲突。以便我们作为个人开发者，基于 github 的话，那么我们可以建立自己的代码基目录，github.com/user 。
+improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
+先创建代码库: $GOPATH/src/ysqi/lib/lib.go
+package lib import &amp;quot;fmt&amp;quot; func SayHello() { fmt.Println(&amp;quot;Hello,YSQ :) &amp;quot;) }  再新建一个App：$GOPATH/src/ysqi/app/main.</description>
+    </item>
+    
+    <item>
+      <title>Go声明语法</title>
+      <link>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</link>
+      <pubDate>Fri, 26 Feb 2016 11:00:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</guid>
+      <description>很多新手对于 Go 不同于 C 系列语言的声明语法感到非常惊讶，本文就为什么 Go 语言声明语法为何不同于其他语言进行说明。
+C 语法 首先来说是 C 语言语法，C 采用不寻常但非常聪明的方式定义语法，反过来使用特殊语法申明明类型。一次写一个表达式来声明，并指明是什么类型的表达式。像这样：
+int x;  申明 x 是一个int，表达式x就有一个类型int，一般情况下需要弄清楚如何确定一个新变量的类型，写一个表达式将涉及变量计算结果的基础数据类型。基础数据类型写在左边，表达式写在右边。像这样写表达式：
+int *p; int a[3];  此时，变量p在表达式中通过*来取指针地址，这样*p就是int类型。同理a[3]是从 int 数组a中取下标为3的元素，故a[3]为int类型。
+那么函数的定义呢？聪明的做法，C 语言函数是在括号中声明参数类型。
+int main(argc, argv) int argc; char *argv[]; { /* ... */ }  我们看到，main就是一个函数，表达式是包含int返回类型和main(argc, argv)，现在写成：
+int main(int argc, char *argv[]) { /* ... */ }  但基本机构是一样的。
+对于简单类型，能很好的工作，这是很棒的语法思想。但是很快就变得混乱，典型的例子是申明一个函数指针，按照语法规范，是这样写的：
+int (*fp)(int a, int b);  这里，fp 是一个函数指针，返回 int 数据的表达式 (*fp)(int a, int b)。如何 fp 入参就是它本身时，是怎样的？</description>
+    </item>
+    
+    <item>
+      <title>GoImports安装使用</title>
+      <link>https://yushuangqi.com/blog/2016/gosublime-goimports.html</link>
+      <pubDate>Thu, 25 Feb 2016 13:32:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gosublime-goimports.html</guid>
+      <description>Go开发过程中时候总需要手工引入包和删除没有使用的包，此时有人意识到可以改善下，想Java、C#、Python等等，总能自动的帮你处理下包。现在Go官方提供了 GoImports 工具，而在 Sublime Text 下也提供了相关的插件来支持自动检测。
+这里介绍的是由 Brad Fitz 提供的 GoImport 插件，该插件基于 GoImprots 工具在 Sublime Text 的插件。 非常好用，能在保存 Go 文件时自动帮你格式化文件并检查包的引用使用，如果使用的包没有导入，则自动导入。相反，当导入的包没有被使用时，则自动删除。
+如何配置安装 GoImports 工具  确保路径$GOPATH/bin在环境变量$PATH中。Windows对应：%GOPATH%\bin在环境变量%PATH%中。
+ 运行命令获取 GoImprots 工具包
+go get golang.org/x/tools/cmd/goimports  运行后，能直接运行$ goimprots命令，已检查工具是否安装成功。
+ 在 Sublime Text 中安装插件 GoSublime
+ 安装后打开 GoSublime 的配置文件
+ 在配置文件中添加新的根配置项：
+{ &amp;quot;fmt_cmd&amp;quot; :[ &amp;quot;goimports&amp;quot;] }   总结 现在，你就可以又开心又方便的使用 Sublime Text 编辑 Go 文件，当你保持文件时，都能够自动添加/删除引入包了，再也没有烦人的编译错误。</description>
+    </item>
+    
+    <item>
+      <title>统计文件夹下文件数量</title>
+      <link>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</link>
+      <pubDate>Thu, 18 Feb 2016 11:05:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</guid>
+      <description>今天同事备份数据到NAS，但感觉备份有问题，因为文件过多，所以决定通过命令的方式统计文件夹下的文件数量，来初步判断备份是否完整。而原文件在Window下，而 NAS 是Liunx操作系统，故需要通过不同的命令来统计文件数量。
+Window 统计文件数量 首先，来统计原文件数量。找了半天，发现dir命令就可以用于统计。
+dir /b /a-d | find /v /c &amp;quot;&amp;amp;#@&amp;quot;  怎么文件数量为0? 原来上面命令仅仅是统计当前目录下的文件数，而不包括子目录，那么如何也包含子目录的文件呢？
+原来只需要再添加参数/s即可。
+dir /s /b /a-d | find /v /c &amp;quot;&amp;amp;#@&amp;quot;  当然，这里关键内容是find /v /c &amp;quot;%#@&amp;quot;。
+Window 统计文件和目录数量 只需要去掉选项/a-d 来包含所有类型。
+dir /s /b | find /v /c &amp;quot;&amp;amp;#@&amp;quot;  Liunx 统计文件数量 因为是NAS，故可以将Liunx 共享目录映射到 Window 下，从而使用 Windows 命令统计。下面将的是直接使用Liunx命令来统计。
+直接统计某文件夹下文件数量
+ls -l |grep &amp;quot;^-&amp;quot;|wc -l  统计文件夹下所有文件数量
+ls -lR|grep &amp;quot;^-&amp;quot;|wc -l  命令ls -lR表示列表输出该目录下文件信息，R表示包括子目录，同时列出的文件包括目录、链接、设备文件等)
+命令grep &amp;quot;^-&amp;quot;表示对结果进行过滤，只保留一般文件，如果只保留目录就是 ^d。</description>
+    </item>
+    
+    <item>
+      <title>Liunx查找删除历史备份文件批命令</title>
+      <link>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</link>
+      <pubDate>Mon, 15 Feb 2016 13:06:32 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</guid>
+      <description>NAS作为数据备份中心，但需要经常清理历史备份文件，仅需要保留一部分备份文件即可。由于NAS是改造后的Liunx 操作系统，故有些命令无法直接执行，因此独立写了一个脚本来搜索历史备份文件，并记录待删除文件信息，自动生成脚本删除文件。
+Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
+#!/bin/bash NOW=$(date +&amp;quot;%Y%m%d%M%S&amp;quot;) FILE=&amp;quot;NeedDeleteFile_$NOW.sh&amp;quot; # 遍历文件，写入文件中 function findFile(){ # 记录查找目录 echo &amp;quot;# find from $1 -mtime $2&amp;quot; &amp;gt;&amp;gt; $FILE #遍历目录，将指定日期的 find $1 -mtime $2 -type f \( -iname &amp;quot;*.bak&amp;quot; -o -iname &amp;quot;*.log&amp;quot; -o -iname &amp;quot;*.zip&amp;quot; -o -iname &amp;quot;*.rar&amp;quot; \) -print0 | while IFS= read -r -d $&#39;\0&#39; line; do echo &amp;quot;rm \&amp;quot;$line\&amp;quot;;&amp;quot; &amp;gt;&amp;gt; $FILE done } # 标记sh文件 echo &amp;quot;#!/bin/bash&amp;quot; &amp;gt;&amp;gt; $FILE # 记录创建日期 echo &amp;quot;# $NOW create file.</description>
+    </item>
+    
+    <item>
+      <title>如何按多个文件名查找文件</title>
+      <link>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</link>
+      <pubDate>Mon, 15 Feb 2016 12:44:59 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</guid>
+      <description>一个问题是如何在 Liunx 下按多个文件名或者文件后缀查找文件。例如，我想要查找当前项目下所有的 .go 和 .md 文件。
+此时，你可以使用 Liunx 命令 find ，命名具体用法参见gnu 文档。 使用 find 命令能够通过选项-o ( or 的意思) 来按多个条件查找文件。
+示例：按两个文件名查找文件 我们想查找当前命令目录下的 .go 和 .md 文件。
+find . -type f \( -iname &amp;quot;*.go&amp;quot; -o -iname &amp;quot;*.md&amp;quot; \)  这里的.表示在当前文件夹下查找文件， -type 要查找的文件类型，f表示文件，用-type d表示查找文件夹。 -iname 是 -name 的另一个写法，表示忽略大小写匹配文件名。-o 是 or 或者的意思。 这里，我们使用带转义符的括号来包含两个 or 条件。
+示例：按三个文件名查找文件 同理，可以添加N多个文件名查找文件。
+find . -type f \( -iname &amp;quot;*.txt&amp;quot; -o -iname &amp;quot;*.exe&amp;quot; -o -iname &amp;quot;*.log&amp;quot; \)  总结 上面就是在 Liunx 下如何按多个文件名查找文件的用法，简单明了。liunx find 命令能方便按多个文件名查找文件。可以点击阅读Liunx查找删除历史备份文件批命令来了解具体业务场景用途。</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读 config 模块设计</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-config.html</link>
+      <pubDate>Sat, 13 Feb 2016 08:04:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-config.html</guid>
+      <description>这是关于 beego 的第一篇正式的源代码解读文章，前面文章 beego框架源码解读计划 中已介绍解读计划。而本文主要针对 beego 框架 config 模块展开讨论。通过本文你可掌握 beego config 使用。
+config 简要说明 beego 的各个模块设计基本相同，灵感源于 Go 内部 database/sql 包的 sql库驱动注册 。模块实现后进行注册，使用时通过注册名进行访问初始化。 而 config 模块也相同。分别支持 ini、json、xml、yaml、内存 格式的配置文件管理。使用时调用config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;config path&amp;quot;)来构建不同格式 config 解析器。
+初始化 config 解析器 首先需确认所用的配置文件格式，beego 的 appconfig 默认使用 ini。 再通过类型初始化配置文件解析器对象。
+import ( &amp;quot;github.com/astaxie/beego/config&amp;quot; ) func main() { cfg, err := config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;myconfig.ini&amp;quot;) if err != nil { // error } }  使用 config 模块时需要导入github.com/astaxie/beego/config包 ，再调用config.NewConfig来指定文件类型，并加载解析 myconfig.ini 配置文件。当加载解析失败时，会返回错误信息，故不能忽略该错误信息。
+当然，也可以直接解析 []byte 数据，构建解析器。这样做法不常见，有时能用于解析配置片断。</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读计划</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</link>
+      <pubDate>Thu, 11 Feb 2016 13:14:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</guid>
+      <description>&lt;p&gt;大家新年好，今天大年初四，规划下对于开源 web 框架 beego 源代码解读计划安排。在年前便一直在想如何进行一次明确的源码解析。但一直拖至今日才安排。也在思考如何进行学习是合适的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go开发规范之常见问题汇总</title>
+      <link>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</link>
+      <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</guid>
+      <description>这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是一份规范指引。可以当作一份GO开发规范的补充信息。
+goimports 虽 Go 默认带有 gofmt 工具，但还是强烈推荐增强性工具 goimport ,该工具在 gofmt 工具基础上增强提供自动删除和引入包功能。
+你可在保存文件时，让编辑器自动执行命令，如 Sublime 编辑器插件 GoSublime 和 Atom 编辑器插件 go-plus均可实现。
+在使用前，你需要获取包到本地：
+$ go get golang.org/x/tools/cmd/goimports   在 Sublime 中使用：具体参见: 插件说明文档 在 LiteIDE 中使用：默认支持，如果不起作用，可手工配置：属性配置 -&amp;gt; golangfmt -&amp;gt; 勾选goimports 在 Atom 中使用：具体参见：插件说明文档  注释 注释应该是一个完整的句子，这有利于在 godoc 文档中能看到有效的完整文字。既然是完整的句子，就应该有始有终，末尾以.结束。如：
+// A Request represents a request to run a command. type Request struct { ... // Encode writes the JSON encoding of req to w.</description>
+    </item>
+    
+    <item>
+      <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
+      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
+      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
+ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
+安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
+vim /etc/yum.repos.d/nginx.repo  使用 vim 命令去打开 /etc/yum.repos.d/nginx.repo ，如果 nginx.repo 不存在，就会去创建一个这样的文件，打开以后按一下小 i 键，进入编辑模式，然后复制粘贴下面这几行代码，完成以后按 esc 键退出，再输入 :wq （保存并退出）
+[nginx] name=nginx repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=0 enabled=1  完成以后，我们就可以使用 yum 命令去安装 nginx 了，像这样：
+yum install nginx  安装好以后测试一下 nginx 服务： service nginx status  应该会返回：</description>
+    </item>
+    
+    <item>
+      <title>如何解决nodejs执行命令报错Promise is not defined</title>
+      <link>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</guid>
+      <description>&lt;p&gt;在使用c9.io时默认的node.js版本是v0.10.35，使得一些模块安装警告版本过低，而执行命令时报错。
+Module build failed: ReferenceError: Promise is not defined&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>日志文件自动归档工具</title>
+      <link>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</guid>
+      <description>&lt;p&gt;公司生产环境日志非常大，且日志需要存档两年，以便检查的。故写了一个小工具来自动打包压缩日志文件。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

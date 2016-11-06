@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Top-rsses on 虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/top.xml</link>
+    <description>在 虞双齐Go语言开发上关于in Top-rsses 的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <lastBuildDate>Tue, 29 Dec 2015 20:29:41 +0800</lastBuildDate>
+    <atom:link href="/top.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>关于虞双齐</title>
+      <link>https://yushuangqi.com/about/</link>
+      <pubDate>Tue, 29 Dec 2015 20:29:41 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/about/</guid>
+      <description>社会分工越来越精细，无需精通全部，坚持在一个细小领域摸爬滚打，成长为领域专家！
+写作方面，动态分享到微博@虞双齐，代码存放在 Github，个人博客yushuangqi.com ，分享经验。计划撰写关于 Go 和 Beego 的电子书，希望大家关注虞双齐，相信能给你带来惊喜。
+以 Coding 为乐，闲时和妻子一起嗨。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh" id="doc" class="no-js"><head><title>日志文件自动归档工具 |虞双齐Go语言开发</title><meta name="description" content=""><meta name="keywords" content="压缩, 归档, 7zip, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:type" content="article"><meta property="og:description" content=""><meta property="og:title" content="日志文件自动归档工具 : https://yushuangqi.com"><meta property="og:site_name" content="虞双齐Go语言开发"><meta property="og:url" content="https://yushuangqi.com/blog/2015/log_file-job-archiving.html"><meta property="og:locale" content="zh"><meta property="article:published_time" content="2015-10-05 00:00:00"><meta property="article:modified_time" content="2015-10-05 00:00:00"><meta property="article:tag" content="压缩"><meta property="article:tag" content="归档"><meta property="article:tag" content="7zip"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160318"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h2 itemprop="headline"><a rel="bookmark">日志文件自动归档工具</a></h2><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/<a href="https://yushuangqi.com"> <span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2015-10-05">2015年10月05日</time></span></p></header><div itemprop="articleBody"><p>公司生产环境日志非常大，且日志需要存档两年，以便检查的。故写了一个小工具来自动打包压缩日志文件。</p><h3 id="功能">功能</h3><ul><li>文件过滤</li><li>7Z压缩</li><li>文件删除</li></ul><h3 id="工具原理">工具原理</h3><p>利用7z.dll提到的API进行文件压缩，默认采取的压缩方式是高压，已极限节省磁盘空间。</p><h3 id="工具目的">工具目的</h3><p>实现在生产环境中通过配置系统任务来自动进行日志归档。而日志不需要立即归档，可能一个月内的日志都需要即时获取以便分析日志。 故在生产环境可以将一个月以前的日志进行归档压缩，压缩后上传到备份服务器。而认为处理相对耗时，股通过工具来实现。</p><h3 id="配置内容">配置内容</h3><p>配置文件中按组为单位设置压缩配置信息，组名依次是：ZipGroup2、ZipGroup3、ZipGroup4 &hellip;&hellip; ZipGroup10 （最多支持10组，名称大小写敏感）,那单个组说明</p><pre><code class="language-ini">[ZipGroup1]
+#组标识，压缩包文件名以此为前缀
+Name=AppLog
+#需要压缩的文件地址
+NeedZipFilePath=
+#压缩文件存储位置，默认为exe目录下
+ZipSavePath=
+#正则表达式匹配需要压缩的文件名，如果不设置将对文件不进行过滤
+FilterFile=.*[\.log]|[\.txt]$
+#需要压缩文件的最后写入时间验证，验证包括： LastMonth-本月前，LastWeek-本周前，BeforeToday-今天以前
+FileLastWriteTimeLimit=LastMonth
+#是否在压缩后，删除原文件
+AfterZipToDelFile=F
+</code></pre><h3 id="运行">运行</h3><p>配置后，即可双击exe运行，因exe需要创建文件、文件夹，故需要管理员权限，如果运行报错，请使用管理员权限运行。运行时，将在exe目录下创建logs文件夹用于存放每次运行日志。</p><h3 id="下载">下载</h3><p>工具现在没有上传源代码，先提供工具下载地址： 链接: <a href="http://pan.baidu.com/s/1bnfU9AJ">http://pan.baidu.com/s/1bnfU9AJ</a> 密码: 3srx</p><p>上面就是虞双齐写的一个日志文件自动归档工具，如果你也此需求，可以使用，如有疑问，可在下面留言。</p></div><aside id="meta"><div class="share_sec2"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><ul class="rel_links"><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html">如何解决nodejs执行命令报错Promise is not defined</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html">Golang新手开发需要注意的七个细节</a></li><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E8%BD%AF%E4%BB%B6.html" rel="category">软件</a> </span><span id="tags">标签: <a href="/tags/7zip.html" rel="tag">7zip</a> <a href="/tags/%E5%8E%8B%E7%BC%A9.html" rel="tag">压缩</a> <a href="/tags/%E5%BD%92%E6%A1%A3.html" rel="tag">归档</a></span></li></ul><aside id="comments"><div><h5 style="border-left:4px solid #ee9d05">评论</h5><div class="ds-thread" data-thread-key="95ba8748597fa6d557dfcc48261201ae" data-title="日志文件自动归档工具" data-url="https://yushuangqi.com/blog/2015/log_file-job-archiving.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在<a href="https://yushuangqi.com" title="虞双齐Golang开发博客">个人博客</a>上 ，分享经验。</p></section></div><meta itemprop="wordCount" content="38"><meta itemprop="url" content="https://yushuangqi.com/blog/2015/log_file-job-archiving.html"></aside></article></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2flog_file-job-archiving.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2flog_file-job-archiving.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐产品设计与软件开发，个人诚接软件开发外包。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

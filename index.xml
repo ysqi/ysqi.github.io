@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/index.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <lastBuildDate>Mon, 03 Oct 2016 19:51:14 +0800</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何判断是否是在GolangTest运行代码</title>
+      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
+      <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</guid>
+      <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
+经过各种尝试,总算能非常靠谱的进行Go Test 识别!
+需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息 ini APP = JUSTTest port = 6060 dbName = TESTATOP   解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
+ 运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
+func init() { runMode := flag.</description>
+    </item>
+    
+    <item>
+      <title>如何使用MAC远程连接Win10操作系统</title>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+      <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
+      <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
+那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
+ 提示“远程桌面连接无法验证您希望连接的计算机的身份”。
+ 那么说明是Win10的远程访问权限设置有问题，经过测试可以降低安全级别进行处理，具体操作办法如下：
+ Win 打开开始，点击设置 在右上角的搜索输入窗口，输入允许远程访问你的计算机 按Enter回车键,将弹出窗口显示系统属性 去掉勾选项: 仅允许运行使用网络级别身份验证的远程计算机 点击确定并关闭窗口  MAC远程访问Window桌面工具 如果是简单的远程，可以使用微软官方出品的 Remote Desktop For Mac 工具，下载地址：
+ https://technet.microsoft.com/en-us/library/dn473012(v=ws.11).aspx
+ 上面就是Mac下远程登录Win10的方式，希望能帮到你!</description>
+    </item>
+    
+    <item>
+      <title>Wecrcker自动部署到Github过程中问题记录</title>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
+      <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
+      <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
+wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
+ box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
+ __ysqi/git-push __
+step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
+source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+    </item>
+    
+    <item>
+      <title>理解Go import</title>
+      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</link>
+      <pubDate>Tue, 08 Mar 2016 10:44:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</guid>
+      <description>Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。
+工作目录 在 Go 中代码保持在称之为 workspace 的系统文件夹中。这个工作目录下有三个根目录：
+ bin 包含可执行文件 。 pkg 包含不同操作系统架构的包二进制文件。相当于编译后的库文件。 src 包含按包方式组织的源代码。  其中 bin 和 pkg 文件夹是在调用 go 命令安装和编译源代码时自动生成。而 src 下可组织多个包，且能使用版本控制工具。
+注意，必须让 Go 知道工作目录的位置，这样才能知道包的具体位置。通过设置环境变量 GOPATH 来指定。
+export GOPATH=/home/dev/gowork/  导入包 improt 便是用一个独一无二的字符串路径来指向包，而包的导入路径是基于工作目录或者的。因为 Go 会在 工作目录 src 子目录下查找包。
+标准包使用的是给定的短路径，如“fmt”、“net/http”，但你自己的包，需要在工作目录下指定一个目录，同时预防和以后的代码包路径发生冲突。以便我们作为个人开发者，基于 github 的话，那么我们可以建立自己的代码基目录，github.com/user 。
+improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
+先创建代码库: $GOPATH/src/ysqi/lib/lib.go
+package lib import &amp;quot;fmt&amp;quot; func SayHello() { fmt.Println(&amp;quot;Hello,YSQ :) &amp;quot;) }  再新建一个App：$GOPATH/src/ysqi/app/main.</description>
+    </item>
+    
+    <item>
+      <title>GobyExample中文版</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:17:33 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</guid>
+      <description>此章节收录自 Go by Example 中文 开源项目，虽然作者已提供访问环境，但是对于示例代码还是无法适合于墙内用户在线运行Go。
+感谢@mmcgrana 编写 | everyx中文翻译。</description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-信号</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</guid>
+      <description>有时候，我们希望 Go 能智能的处理 Unix 信号。例如，我们希望当服务器接收到一个 SIGTERM 信号时能够自动关机，或者一个命令行工具在接收到一个 SIGINT 信号时停止处理输入信息。这里讲的就就是在 Go 中如何通过通道来处理信号。
+Go 通过向一个通道发送 os.Signal 值来进行信号通知。我们将创建一个通道来接收这些通知（同时还创建一个用于在程序可以结束时进行通知的通道）。
+signal.Notify 注册这个给定的通道用于接收特定信号。
+这个 Go 协程执行一个阻塞的信号接收操作。当它得到一个值时，它将打印这个值，然后通知程序可以退出。
+程序将在这里进行等待，直到它得到了期望的信号（也就是上面的 Go 协程发送的 done 值）然后退出。
+package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/signal&amp;quot; import &amp;quot;syscall&amp;quot; func main() { sigs := make(chan os.Signal, 1) done := make(chan bool, 1) signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM) go func() { sig := &amp;lt;-sigs fmt.Println() fmt.Println(sig) done &amp;lt;- true }() fmt.Println(&amp;quot;awaiting signal&amp;quot;) &amp;lt;-done fmt.Println(&amp;quot;exiting&amp;quot;) }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-退出</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</guid>
+      <description>使用 os.Exit 来立即进行带给定状态的退出。
+当使用 os.Exit 时 defer 将不会 执行，所以这里的 fmt.Println将永远不会被调用。
+退出并且退出状态为 3。
+注意，不像例如 C 语言，Go 不使用在 main 中返回一个整数来指明退出状态。如果你想以非零状态退出，那么你就要使用 os.Exit。
+package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; func main() { defer fmt.Println(&amp;quot;!&amp;quot;) os.Exit(3) }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-执行进程</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</guid>
+      <description>在前面的例子中，我们了解了生成外部进程的知识，当我们需要访问外部进程时时需要这样做，但是有时候，我们只想用其他的（也许是非 Go 程序）来完全替代当前的 Go 进程。这时候，我们可以使用经典的 exec方法的 Go 实现。
+在我们的例子中，我们将执行 ls 命令。Go 需要提供我们需要执行的可执行文件的绝对路径，所以我们将使用exec.LookPath 来得到它（大概是 /bin/ls）。
+Exec 需要的参数是切片的形式的（不是放在一起的一个大字符串）。我们给 ls 一些基本的参数。注意，第一个参数需要是程序名。
+Exec 同样需要使用环境变量。这里我们仅提供当前的环境变量。
+这里是 os.Exec 调用。如果这个调用成功，那么我们的进程将在这里被替换成 /bin/ls -a -l -h 进程。如果存在错误，那么我们将会得到一个返回值。
+package main import &amp;quot;syscall&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { binary, lookErr := exec.LookPath(&amp;quot;ls&amp;quot;) if lookErr != nil { panic(lookErr) } args := []string{&amp;quot;ls&amp;quot;, &amp;quot;-a&amp;quot;, &amp;quot;-l&amp;quot;, &amp;quot;-h&amp;quot;} env := os.Environ() execErr := syscall.Exec(binary, args, env) if execErr != nil { panic(execErr) } }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-生成进程</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</guid>
+      <description>有时，我们的 Go 程序需要生成其他的，非 Go 进程。例如，这个网站的语法高亮是通过在 Go 程序中生成一个 pygmentize来实现的。让我们看一些关于 Go 生成进程的例子。
+我们将从一个简单的命令开始，没有参数或者输入，仅打印一些信息到标准输出流。exec.Command 函数帮助我们创建一个表示这个外部进程的对象。
+.Output 是另一个帮助我们处理运行一个命令的常见情况的函数，它等待命令运行完成，并收集命令的输出。如果没有出错，dateOut 将获取到日期信息的字节。
+下面我们将看看一个稍复杂的例子，我们将从外部进程的stdin 输入数据并从 stdout 收集结果。
+这里我们明确的获取输入/输出管道，运行这个进程，写入一些输入信息，读取输出的结果，最后等待程序运行结束。
+上面的例子中，我们忽略了错误检测，但是你可以使用if err != nil 的方式来进行错误检查，我们也只收集StdoutPipe 的结果，但是你可以使用相同的方法收集StderrPipe 的结果。
+注意，当我们需要提供一个明确的命令和参数数组来生成命令，和能够只需要提供一行命令行字符串相比，你想使用通过一个字符串生成一个完整的命令，那么你可以使用 bash命令的 -c 选项：
+package main import &amp;quot;fmt&amp;quot; import &amp;quot;io/ioutil&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { dateCmd := exec.Command(&amp;quot;date&amp;quot;) dateOut, err := dateCmd.Output() if err != nil { panic(err) } fmt.Println(&amp;quot;&amp;gt; date&amp;quot;) fmt.Println(string(dateOut)) grepCmd := exec.Command(&amp;quot;grep&amp;quot;, &amp;quot;hello&amp;quot;) grepIn, _ := grepCmd.StdinPipe() grepOut, _ := grepCmd.</description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-命令行参数</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</guid>
+      <description>命令行参数是指定程序运行参数的一个常见方式。例如，go run hello.go，程序 go 使用了 run 和 hello.go 两个参数。
+os.Args 提供原始命令行参数访问功能。注意，切片中的第一个参数是该程序的路径，并且 os.Args[1:]保存所有程序的的参数。
+你可以使用标准的索引位置方式取得单个参数的值。
+package main import &amp;quot;os&amp;quot; import &amp;quot;fmt&amp;quot; func main() { argsWithProg := os.Args argsWithoutProg := os.Args[1:] arg := os.Args[3] fmt.Println(argsWithProg) fmt.Println(argsWithoutProg) fmt.Println(arg) }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-命令行标志</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</guid>
+      <description>命令行标志是命令行程序指定选项的常用方式。例如，在 wc -l 中，这个 -l 就是一个命令行标志。
+Go 提供了一个 flag 包，支持基本的命令行标志解析。我们将用这个包来实现我们的命令行程序示例。
+基本的标记声明仅支持字符串、整数和布尔值选项。这里我们声明一个默认值为 &amp;quot;foo&amp;quot; 的字符串标志 word并带有一个简短的描述。这里的 flag.String 函数返回一个字符串指针（不是一个字符串值），在下面我们会看到是如何使用这个指针的。
+使用和声明 word 标志相同的方法来声明 numb 和 fork 标志。
+用程序中已有的参数来声明一个标志也是可以的。注意在标志声明函数中需要使用该参数的指针。
+所有标志都声明完成以后，调用 flag.Parse() 来执行命令行解析。
+这里我们将仅输出解析的选项以及后面的位置参数。注意，我们需要使用类似 *wordPtr 这样的语法来对指针解引用，从而得到选项的实际值。
+package main import &amp;quot;flag&amp;quot; import &amp;quot;fmt&amp;quot; func main() { wordPtr := flag.String(&amp;quot;word&amp;quot;, &amp;quot;foo&amp;quot;, &amp;quot;a string&amp;quot;) numbPtr := flag.Int(&amp;quot;numb&amp;quot;, 42, &amp;quot;an int&amp;quot;) boolPtr := flag.Bool(&amp;quot;fork&amp;quot;, false, &amp;quot;a bool&amp;quot;) var svar string flag.StringVar(&amp;amp;svar, &amp;quot;svar&amp;quot;, &amp;quot;bar&amp;quot;, &amp;quot;a string var&amp;quot;) flag.Parse() fmt.Println(&amp;quot;word:&amp;quot;, *wordPtr) fmt.Println(&amp;quot;numb:&amp;quot;, *numbPtr) fmt.</description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-环境变量</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</guid>
+      <description>环境变量是一个在为 Unix 程序传递配置信息的普遍方式。让我们来看看如何设置，获取并列举环境变量。
+使用 os.Setenv 来设置一个键值队。使用 os.Getenv获取一个键对应的值。如果键不存在，将会返回一个空字符串。
+使用 os.Environ 来列出所有环境变量键值队。这个函数会返回一个 KEY=value 形式的字符串切片。你可以使用strings.Split 来得到键和值。这里我们打印所有的键。
+package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; import &amp;quot;fmt&amp;quot; func main() { os.Setenv(&amp;quot;FOO&amp;quot;, &amp;quot;1&amp;quot;) fmt.Println(&amp;quot;FOO:&amp;quot;, os.Getenv(&amp;quot;FOO&amp;quot;)) fmt.Println(&amp;quot;BAR:&amp;quot;, os.Getenv(&amp;quot;BAR&amp;quot;)) fmt.Println() for _, e := range os.Environ() { pair := strings.Split(e, &amp;quot;=&amp;quot;) fmt.Println(pair[0]) } }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-行过滤器</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</guid>
+      <description>一个行过滤器 在读取标准输入流的输入，处理该输入，然后将得到一些的结果输出到标准输出的程序中是常见的一个功能。grep 和 sed 是常见的行过滤器。
+这里是一个使用 Go 编写的行过滤器示例，它将所有的输入文字转化为大写的版本。你可以使用这个模式来写一个你自己的 Go行过滤器。
+对 os.Stdin 使用一个带缓冲的 scanner，让我们可以直接使用方便的 Scan 方法来直接读取一行，每次调用该方法可以让 scanner 读取下一行。
+Text 返回当前的 token，现在是输入的下一行。
+写出大写的行。
+检查 Scan 的错误。文件结束符是可以接受的，并且不会被 Scan 当作一个错误。
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-写文件</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</guid>
+      <description>Go 写文件和我们前面看过的读操作有着相似的方式。
+开始，这里是展示如写入一个字符串（或者只是一些字节）到一个文件。
+对于更细粒度的写入，先打开一个文件。
+打开文件后，习惯立即使用 defer 调用文件的 Close操作。
+你可以写入你想写入的字节切片
+WriteString 也是可用的。
+调用 Sync 来将缓冲区的信息写入磁盘。
+bufio 提供了和我们前面看到的带缓冲的读取器一样的带缓冲的写入器。
+使用 Flush 来确保所有缓存的操作已写入底层写入器。
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { d1 := []byte(&amp;quot;hello\ngo\n&amp;quot;) err := ioutil.WriteFile(&amp;quot;/tmp/dat1&amp;quot;, d1, 0644) check(err) f, err := os.Create(&amp;quot;/tmp/dat2&amp;quot;) check(err) defer f.Close() d2 := []byte{115, 111, 109, 101, 10} n2, err := f.Write(d2) check(err) fmt.</description>
+    </item>
+    
+    <item>
+      <title>Go示例大全-读文件</title>
+      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</link>
+      <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</guid>
+      <description>读写文件在很多程序中都是必须的基本任务。首先我们看看一些读文件的例子。
+读取文件需要经常进行错误检查，这个帮助方法可以精简下面的错误检查过程。
+也许大部分基本的文件读取任务是将文件内容读取到内存中。
+你经常会想对于一个文件是怎么读并且读取到哪一部分进行更多的控制。对于这个任务，从使用 os.Open打开一个文件获取一个 os.File 值开始。
+从文件开始位置读取一些字节。这里最多读取 5 个字节，并且这也是我们实际读取的字节数。
+你也可以 Seek 到一个文件中已知的位置并从这个位置开始进行读取。
+io 包提供了一些可以帮助我们进行文件读取的函数。例如，上面的读取可以使用 ReadAtLeast 得到一个更健壮的实现。
+没有内置的回转支持，但是使用 Seek(0, 0) 实现。
+bufio 包实现了带缓冲的读取，这不仅对有很多小的读取操作的能提升性能，也提供了很多附加的读取函数。
+任务结束后要关闭这个文件（通常这个操作应该在 Open操作后立即使用 defer 来完成）。
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { dat, err := ioutil.ReadFile(&amp;quot;/tmp/dat&amp;quot;) check(err) fmt.Print(string(dat)) f, err := os.Open(&amp;quot;/tmp/dat&amp;quot;) check(err) b1 := make([]byte, 5) n1, err := f.</description>
+    </item>
+    
+  </channel>
+</rss>

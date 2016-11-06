@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh" id="doc" class="no-js"><head><title>Go声明语法 |虞双齐Go语言开发</title><meta name="description" content=""><meta name="keywords" content="Go, Go官方博客, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:type" content="article"><meta property="og:description" content=""><meta property="og:title" content="Go声明语法 : https://yushuangqi.com"><meta property="og:site_name" content="虞双齐Go语言开发"><meta property="og:url" content="https://yushuangqi.com/blog/2016/gos-declaration-syntax.html"><meta property="og:locale" content="zh"><meta property="article:published_time" content="2016-02-26 11:00:37"><meta property="article:modified_time" content="2016-02-26 11:00:37"><meta property="article:tag" content="Go"><meta property="article:tag" content="Go官方博客"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20160318"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h2 itemprop="headline"><a rel="bookmark">Go声明语法</a></h2><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/<a href="https://yushuangqi.com"> <span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2016-02-26">2016年02月26日</time></span></p></header><div itemprop="articleBody"><p>很多新手对于 Go 不同于 C 系列语言的声明语法感到非常惊讶，本文就为什么 Go 语言声明语法为何不同于其他语言进行说明。</p><h3 id="c-语法">C 语法</h3><p>首先来说是 C 语言语法，C 采用不寻常但非常聪明的方式定义语法，反过来使用特殊语法申明明类型。一次写一个表达式来声明，并指明是什么类型的表达式。像这样：</p><pre><code class="language-c">int x;
+</code></pre><p>申明 <code>x</code> 是一个int，表达式<code>x</code>就有一个类型<code>int</code>，一般情况下需要弄清楚如何确定一个新变量的类型，写一个表达式将涉及变量计算结果的基础数据类型。基础数据类型写在左边，表达式写在右边。像这样写表达式：</p><pre><code class="language-c">int *p;
+int a[3];
+</code></pre><p>此时，变量<code>p</code>在表达式中通过<code>*</code>来取指针地址，这样<code>*p</code>就是<code>int</code>类型。同理<code>a[3]</code>是从 int 数组<code>a</code>中取下标为<code>3</code>的元素，故<code>a[3]</code>为<code>int</code>类型。</p><p>那么函数的定义呢？聪明的做法，C 语言函数是在括号中声明参数类型。</p><pre><code class="language-c">int main(argc, argv)
+    int argc;
+    char *argv[];
+{ /* ... */ }
+</code></pre><p>我们看到，<code>main</code>就是一个函数，表达式是包含<code>int</code>返回类型和<code>main(argc, argv)</code>，现在写成：</p><pre><code class="language-c">int main(int argc, char *argv[]) { /* ... */ }
+</code></pre><p>但基本机构是一样的。</p><p>对于简单类型，能很好的工作，这是很棒的语法思想。但是很快就变得混乱，典型的例子是申明一个函数指针，按照语法规范，是这样写的：</p><pre><code>int (*fp)(int a, int b);
+</code></pre><p>这里，fp 是一个函数指针，返回 int 数据的表达式 (*fp)(int a, int b)。如何 fp 入参就是它本身时，是怎样的？</p><pre><code class="language-c">int (*fp)(int (*ff)(int x, int y), int b)
+</code></pre><p>这就变得非常难以阅读。当然，我们声明函数时，可以只保留入参类型，如：</p><pre><code class="language-c">int main(int, char *[])
+</code></pre><p>记得，参数值是这样声明的：</p><pre><code class="language-c">char *argv[]
+</code></pre><p>这样，你就将参数名放置在表达式的中间来声明类型，可是非常不明显，即使你是将参数名放在定义类型的符号<code>*[]</code>中间。</p><p>在看看没有参数名的 fp 函数变成什么样了。</p><pre><code class="language-c">int (*fp)(int (*)(int, int), int)
+</code></pre><p>不仅仅不明显的将名字放到中间</p><pre><code class="language-c">int (*)(int, int)
+</code></pre><p>还完全不清楚是一个函数指针申明，如何返回类型也是一个函数指针呢？</p><pre><code class="language-c">int (*(*fp)(int (*)(int, int), int))(int, int)
+</code></pre><p>很难看清楚是关于fp的申明。</p><p>你可以列举些更复杂的示例，但这里已经说明了 C 语言的声明语法有点儿困难。</p><p>多说一点的是，尽管 C 语言数据类型和申明的语法相同，但有时候很难在两者间区分，这就是为什么 C 语言中总是给数据类型用括号圈起来。</p><pre><code class="language-c">(int)M_PI
+</code></pre><h3 id="go语法">Go语法</h3><p>C 语言家族系外的语言，通常使用一个特殊的语法用于声明，虽然它是一个分割点，名字写在前面，名字后面跟着<code>:</code>符号。就像类似于这样的声明：</p><pre><code class="language-c">x: int
+p: pointer to int
+a: array[3] of int
+</code></pre><p>这样定义非常清晰，你只需想平时也要从左到右阅读理解，Go 语言采取这种方式，但为了简洁，丢弃&rdquo;:&ldquo;符号和一些关键字。</p><pre><code class="language-go">x int
+p *int
+a [3]int
+</code></pre><p>这里<code>[3]int</code>和语法表达式没有直接的对应关系，这个后面会详细说明。</p><p>现在思考下函数的声明，先复制下在 Go 中声明 main 函数。虽然 Go 的实际入口函数 main 没有入参。</p><pre><code>func main(argc int, argv []string) int
+</code></pre><p>从表面上看，除了将 char 类型参数换成 string 类型，没有太大的变化。但它更利于从左到右阅读。</p><p>函数 main 包含一个 int 和 一个 string 切片入参，同时返回一个 int 数值。</p><p>去掉参数名，一点儿也不混乱</p><pre><code class="language-go">func main(int, []string) int
+</code></pre><p>从左到右的一个优点是能在很复杂申明下情况下也能看懂含义，如下面示例就声明了一个函数变量，同 C 语言中的函数指针。</p><pre><code class="language-go">f func(func(int,int) int, int) int
+</code></pre><p>又比如返回值是一个函数</p><pre><code class="language-go">f func(func(int,int) int, int) func(int, int) int
+</code></pre><p>从左到右阅读很清晰，一眼就知道定义的变量名<code>f</code>。数据类型和表达式语法间的区别，可以容易的在 Go 中编写和调用。</p><pre><code class="language-go">sum := func(a, b int) int { return a+b } (3, 4)
+</code></pre><h3 id="指针">指针</h3><p>在 Go 中指针是上面所说的语法的一个例外。注意数组和切片，在类型声明中将<code>[]</code>放在类型的左边，但在表达式中是放在类型的右边：</p><pre><code class="language-go">var a []int
+x = a[1]
+</code></pre><p>简单的，Go 指针是参考使用 C 语言中的<code>*</code>，但是我们不能再通过<code>*</code>来反转指针，可以这样使用：</p><pre><code class="language-go">var p *int
+x = *p
+</code></pre><p>但不能这样写：</p><pre><code class="language-go">var p *int
+x = p*
+</code></pre><p>因为会和乘号搞混淆。我们可以使用 Pascal ^ ，比如：</p><pre><code class="language-go">var p ^int
+x = p^
+</code></pre><p>或许我们可以选择其他符号来做或与运算，会变得复杂，尽管可以写成：</p><pre><code>[]int(&quot;hi&quot;)
+</code></pre><p>作为转换，需要使用括号来包含&rdquo;*&ldquo;，</p><pre><code class="language-go">(*int)(nil)
+</code></pre><p>即使我们放弃使用<code>*</code>来当作指针语法，这里的括号也是必须的。</p><p>因此 Go 的指针语法是采用通用的 C 指针语法。可是我们没法通过去掉括号来消除表达式和类型间的歧义。</p><p>虽然如此，但整体上我们还是相信 Go 的类型语法是比 C 语言更容易理解，尤其是在复杂的情况下。</p><h3 id="注意">注意</h3><p>Go 的声明是从左到右的，这里已经指出 C 语言螺旋式阅读，请看： David Anderson写的文章<a href="http://c-faq.com/decl/spiral.anderson.html">The &ldquo;Clockwise/Spiral Rule&rdquo;</a>。</p><p>本文翻译自 Go 文章<a href="http://blog.golang.org/gos-declaration-syntax">Go&rsquo;s Declaration Syntax</a>。翻译有不足之处欢迎指正。</p><p>通过阅读本文，你也许知道 Go 声明语法的缘由。一门新的语言总是能从之前的语言中吸取经验和改善体验。高效编程，化繁为简。</p></div><aside id="meta"><div class="share_sec2"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><ul class="rel_links"><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/book/gotour/basics/function2.html">Golang入门指南-函数（续）</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/book/gotour/moretypes/home.html">Golang入门指南-复杂类型</a></li><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E5%BC%80%E5%8F%91.html" rel="category">开发</a> </span><span id="tags">标签: <a href="/tags/go.html" rel="tag">Go</a> <a href="/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.html" rel="tag">Go官方博客</a></span></li></ul><aside id="comments"><div><h5 style="border-left:4px solid #ee9d05">评论</h5><div class="ds-thread" data-thread-key="f796d49cb866f40e95439e755bbdf5fe" data-title="Go声明语法" data-url="https://yushuangqi.com/blog/2016/gos-declaration-syntax.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在<a href="https://yushuangqi.com" title="虞双齐Golang开发博客">个人博客</a>上 ，分享经验。</p></section></div><meta itemprop="wordCount" content="271"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/gos-declaration-syntax.html"></aside></article></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgos-declaration-syntax.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgos-declaration-syntax.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐产品设计与软件开发，个人诚接软件开发外包。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

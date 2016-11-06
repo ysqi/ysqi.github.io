@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/win10.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/win10.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何使用MAC远程连接Win10操作系统</title>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+      <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
+      <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
+那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
+ 提示“远程桌面连接无法验证您希望连接的计算机的身份”。
+ 那么说明是Win10的远程访问权限设置有问题，经过测试可以降低安全级别进行处理，具体操作办法如下：
+ Win 打开开始，点击设置 在右上角的搜索输入窗口，输入允许远程访问你的计算机 按Enter回车键,将弹出窗口显示系统属性 去掉勾选项: 仅允许运行使用网络级别身份验证的远程计算机 点击确定并关闭窗口  MAC远程访问Window桌面工具 如果是简单的远程，可以使用微软官方出品的 Remote Desktop For Mac 工具，下载地址：
+ https://technet.microsoft.com/en-us/library/dn473012(v=ws.11).aspx
+ 上面就是Mac下远程登录Win10的方式，希望能帮到你!</description>
+    </item>
+    
+  </channel>
+</rss>

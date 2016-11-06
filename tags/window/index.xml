@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/window.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/window.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何解决覆盖网络映射盘失败</title>
+      <link>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</link>
+      <pubDate>Mon, 07 Sep 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</guid>
+      <description>&lt;p&gt;周日重启了服务器，导致网络映射盘断开，现在无法成功映射，在重新映射提示需要先移除现有盘符，但是我已经断开了啊，各种痛，今天总算解决了！
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

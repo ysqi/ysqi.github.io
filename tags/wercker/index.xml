@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言开发</title>
+    <link>https://yushuangqi.com/tags/wercker.xml</link>
+    <description>在 虞双齐Go语言开发上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/wercker.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Wecrcker自动部署到Github过程中问题记录</title>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
+      <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
+      <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
+wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
+ box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
+ __ysqi/git-push __
+step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
+source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+    </item>
+    
+  </channel>
+</rss>

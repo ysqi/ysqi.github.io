@@ -1,0 +1,1863 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+    margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;font-family:Verdana,Helvetica Neue,Helvetica,Arial,sans-serif;line-height:1.4
+}
+
+small{
+    font-size: small;
+}
+
+q:before,
+q:after {
+    content: ''
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+    display: block
+}
+
+html {
+    color: #1c1c1c;
+    background: #fff;
+    -webkit-text-size-adjust: 100%
+}
+
+@-ms-viewport {
+    width: device-width
+}
+
+a img {
+    outline: 0
+}
+
+a:link,
+a:active,
+a:visited {
+    color: #6fa601;
+    text-decoration: none
+}
+
+a:hover,
+a:active {
+    text-decoration: underline
+}
+
+h1 {
+    font: 1.7em Georgia, Times New Roman, Times, serif;
+    line-height: 1;
+    margin: 0
+}
+
+h2,
+h2 a {
+    font-size: 1.1em;
+    line-height: 1.1;
+    margin: 1.2em 0 .1em 0;
+    padding-bottom: 0;
+    font-weight: 600
+}
+
+h3,
+h3 a,
+h4,
+h4 a {
+    font-family: Georgia, "Times New Roman", Times, serif
+}
+
+h3 {
+    font-size: 1.4em;
+    border-bottom: 4px solid #ee9d05;
+    padding: 0 1.5em .2em 0;
+    margin-bottom: .5em;
+    display: inline;
+    line-height: 2.5em
+}
+
+h4 a {
+    font-size: 1.15em;
+    line-height: .5em
+}
+
+h5 {
+    font-weight: 700
+}
+
+p {
+    margin: 0.5em 0 0.5em 0;
+}
+
+strong {
+    font-weight: 600
+}
+
+blockquote {
+    margin: 0 0 1.1em 0
+}
+
+.videobox {
+    position: relative;
+    margin-bottom: 1.5em
+}
+
+.videoplayer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.smgray {
+    font-size: .8em;
+    color: #8d8c8c;
+    margin-top: 0
+}
+
+.bigaction {
+    padding: .5em 2em;
+    font-size: 1.1em;
+    color: #2d1303;
+    text-shadow: 1px 1px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    background: #f8b963;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9c676), color-stop(48%, #fac97a), color-stop(50%, #f6a84d), color-stop(100%, #f6a84d));
+    background-image: -moz-linear-gradient(top, #f9c676 0, #fac97a 48%, #f6a84d 50%, #f6a84d 100%);
+    border: 1px solid #cd8324;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin: 0 0 .5em 0;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap
+}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+    position: relative
+}
+
+.header {
+    display: block;
+    padding: 0 0 0 3%;
+    border-bottom: solid 4px #6fa601
+}
+
+[role="main"]:before {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%
+}
+
+[role="complementary"],
+[role="main"],
+.header {
+    -webkit-transition: .25s all ease-in;
+    -moz-transition: .25s all ease-in;
+    -o-transition: .25s all ease-in;
+    -ms-transition: .25s all ease-in;
+    transition: .25s all ease-in
+}
+
+[role="navigation"],
+[role="main"],
+[role="complementary"] {
+    display: block;
+    position: relative
+}
+
+.js [role="complementary"] {
+    margin-left: -100%;
+    width: 70%;
+    float: left;
+    padding-bottom: 25em;
+    z-index: 2;
+    padding: 5%
+}
+
+.js [role="main"] {
+    margin-left: 0;
+    float: right;
+    z-index: 1;
+    position: relative;
+    width: 90%;
+    padding: 5% 5% 0 5%
+}
+
+.js [role="navigation"] {
+    margin: 0;
+    clear: both;
+    z-index: 2
+}
+
+.active-sidebar [role="complementary"] {
+    margin-left: 0
+}
+
+.active-sidebar [role="main"] {
+    margin-right: -90%;
+    padding-left: 10%;
+    background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y;
+    -moz-background-size: 6px 20px;
+    -ie-background-size: 6px 20px;
+    -o-background-size: 6px 20px;
+    -webkit-background-size: 6px 20px;
+    background-size: 6px 20px
+}
+
+.active-sidebar .navlist {
+    border-top-color: #c9c9c9
+}
+
+.menulogoli {
+    list-style: none
+}
+
+.menulogo {
+    display: block;
+    text-indent: -4000px;
+    width: 132px;
+    height: 33px;
+    margin: 16px 5px 10px 10px;
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -44px*/
+}
+
+.menuli {
+    float: right;
+    border-right: solid 6px #9fb84c;
+    list-style: none
+}
+
+#site-title {
+    list-style: none
+}
+
+.menubutton {
+    display: block;
+    text-indent: -4000px;
+    width: 45px;
+    height: 11px;
+    margin: 12px;
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -78px
+}
+
+.homelogo {
+    /*text-indent: -4000px;*/
+    /*background: url(http://static.yushuangqi.com/assets/homelogo-06062012.png) no-repeat left top;*/
+    width: 100%;
+    height: 212px
+}
+
+.homesecs {
+    margin-top: -1em
+}
+
+.homenav {
+    border-left: solid 11px #a02d24; 
+    /*font-size: 20px*/
+}
+
+.homenav:hover {
+    border-left: solid 11px #9fb84c
+}
+
+.homenavor {
+    border-left: solid 11px #ee9d05
+}
+
+.homenavor:hover {
+    border-left: solid 11px #bfce86
+}
+
+.homenavbl {
+    border-left: solid 11px #3ba1c9
+}
+
+.homenavbl:hover {
+    border-left: solid 11px #cddfa9
+}
+
+.homenav a {
+    color: #000;
+    display: block;
+    padding: 15px 0 12px 10px;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+}
+
+.homesec {
+    padding: 1em .5em .5em 0;
+    font-size: .9em
+}
+
+.homesecpresos {
+    padding-bottom: 5em
+}
+
+.homesec h3 {
+    color: #333;
+    font-size: 2em;
+    line-height: .5;
+    text-align: right;
+    border: 0;
+    width: 2.5em;
+    float: left;
+    margin: 0;
+    padding: 0
+}
+
+.homesec p,
+.homesec ul {
+    margin-left: 5.75em;
+    margin-bottom: .5em;
+    margin-top: 0
+}
+
+.homesec li {
+    font: 1em Georgia, Times New Roman, Times, serif;
+    color: #8d8c8c;
+    list-style: none;
+    margin-top: .35em
+}
+
+.homesecabout a {
+    color: #a80510
+}
+
+.homesecwritings a {
+    color: #ee9d05
+}
+.homesecwritings ul li:last-child{
+    text-align: right; 
+} 
+
+.homesecpresos a {
+    color: #0487c4
+}
+.homesecwritings ul.listing {
+    margin-left: 24px; 
+}
+.homesecwritings ul.listing li a {
+    color:#000;
+}
+.navlist {
+    margin: 0;
+    padding: 0;
+    border-top: solid 1px #fff
+}
+
+.navlist li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-top: solid 1px #c9c9c9
+}
+
+.navlist a {
+    display: block;
+    padding: 18px 10px 15px 10px
+}
+
+.navlist a span,
+.homenav a span {
+    /*text-indent: -4000px;*/
+    display: block
+}
+
+.navlist li.navtop {
+    border-top: 0;
+    text-indent: -4000px;
+    padding: 0 0 12px 0
+}
+
+.navlist li.navtop a span {
+    display: block;
+    float: right;
+    width: 52px;
+    height: 10px;
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -161px
+}
+
+.navabout:link,
+.navabout:visited,
+.navabouthl:hover {
+    border-left: solid 6px #9fb84c
+}
+
+.navabout:hover,
+.navabouthl:link,
+.navabouthl:visited {
+    border-left: solid 6px #a02d24
+}
+
+.navabout span,
+.homenav_about {
+    /*width: 53px;*/
+    /*height: 11px;*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -90px*/
+}
+
+.navwritings:link,
+.navwritings:visited,
+.navwritingshl:hover {
+    border-left: solid 6px #bfce86
+}
+
+.navwritings:hover,
+.navwritingshl:link,
+.navwritingshl:visited {
+    border-left: solid 6px #ee9d05
+}
+
+.navwritings span,
+.homenav_writings {
+    /*width: 75px;*/
+    /*height: 11px;*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -102px*/
+}
+
+.navpresos:link,
+.navpresos:visited,
+.navpresoshl:hover {
+    border-left: solid 6px #cddfa9
+}
+
+.navpresos:hover,
+.navpresoshl:link,
+.navpresoshl:visited {
+    border-left: solid 6px #3ba1c9
+}
+
+.navpresos span,
+.homenav_presos {
+    /*width: 120px;*/
+    /*height: 11px;*/
+    /*background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 -114px*/
+}
+
+.site-footer {
+    overflow: hidden;
+    clear: both
+}
+
+.site-footer p {
+    border-top: solid 1px #c9c9c9;
+    padding: 1em 1.5em;
+    margin: 0;
+    font-size: .75em;
+    color: #808180;
+    background: -moz-linear-gradient(top, rgba(235, 236, 234, 1) 0, rgba(255, 255, 255, 1) 80%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(235, 236, 234, 1)), color-stop(80%, rgba(255, 255, 255, 1)));
+    background: -webkit-linear-gradient(top, rgba(235, 236, 234, 1) 0, rgba(255, 255, 255, 1) 80%);
+    background: linear-gradient(top, rgba(235, 236, 234, 1) 0, rgba(255, 255, 255, 1) 80%)
+}
+
+.footeractions {
+    float: right;
+    /* margin: 1em 1em 1em .25em; */
+    /* padding: 0 */
+}
+
+.footeractions li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0
+}
+
+.footeraction {
+    display: block; 
+    border-left: solid 5px #ecedeb; 
+    -moz-box-shadow: 0 1px 2px #8d8d8d;
+    -webkit-box-shadow: 0 1px 2px #8d8d8d;
+    box-shadow: 0 1px 2px #8d8d8d; 
+}
+
+.footeraction span {
+    display: block;
+    text-indent: -4000px
+}
+
+.footeractionWeibo {
+    width: 81px;
+    height: 33px;   
+    background: url(http://static.yushuangqi.com/assets/weibo.png) no-repeat center top; 
+}
+
+.feature {
+    font-size: 1.1em;
+    padding-bottom: 1.3em;
+    line-height: 1.25;
+    margin: 1em 0;
+    border-bottom: solid 1px #c9c9c9;
+    margin-top: .25em
+}
+
+.attribution {
+    font-size: .75em;
+    line-height: 1.5;
+    color: #999;
+    padding: 0 0 .7em 0;
+    margin-top: .9em;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+}
+
+.attribution a:link,
+.attribution a:visited {
+    text-decoration: none;
+    color: #999
+}
+
+.example {
+    display: block;
+    margin: 0 1em .5em 0
+}
+
+.panel {
+    margin: 0 0 1em 0
+}
+
+.panelimg {
+    float: right;
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: 0
+}
+
+.aboutimg,
+.bigbookimg {
+    border: 1px solid #bebcbc;
+    width: 100px
+}
+
+.panellinks {
+    font-size: .9em;
+    line-height: 1.5;
+    margin: 0;
+    padding: .5em 0 0 0;
+    border-left: solid 10px #6fa601;
+    background-color: #fff
+}
+
+.bookpanel .panellinks {
+    padding-left: 105px;
+    border-left: none
+}
+
+.bookpanel a {
+    color: #ee9d05
+}
+
+.bookpanel .panelimg {
+    float: left
+}
+
+.bookreview {
+    font-family: Verdana, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    margin: 0;
+    border-left: none;
+    padding: .5em 0;
+    display: block
+}
+
+.bookreview a {
+    display: block
+}
+
+.panellink {
+    list-style: none;
+    margin: 0;
+    padding: .5em .2em .5em .8em;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+}
+
+.postpanel {
+    clear: both;
+    padding-top: 1em
+}
+
+.bookslist {
+    padding: 0;
+    margin: 0;
+    list-style: none
+}
+
+.bookslist li {
+    font-size: .9em;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    margin-top: 1em
+}
+
+.bquote {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #666;
+    display: block;
+    padding-bottom: 1em
+}
+
+.hlisting {
+    border-left: 6px solid #97c042;
+    padding: .2em 0 .2em .4em;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: normal;
+    font-family: Georgia, "Times New Roman", Times, serif
+}
+
+.listing li {
+    padding: 1em 0;
+    margin: 0;
+    font-size: .8em;
+    list-style-type: none;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #666;
+    border-bottom: solid 1px #c9c9c9;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+}
+
+.listing li a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    display: block
+}
+.listing li span{
+        float: right;
+        color: #E0E0E0;
+        font-size: 60%; 
+}
+
+.entry,
+.content {
+    font-size: .9em;
+    line-height: 1.4
+}
+
+.entry a,
+.entry a:link,
+.entry a:active,
+.entry a:visited {
+    color: #36454f;
+    text-decoration: none;
+    border-bottom: dotted 1px #a1a3a1;
+}
+
+.entry a:hover{
+    color: #6fa601;
+}
+
+
+.entry .feature {
+    font-size: 1.2em;
+    line-height: 1.25;
+    margin-top: 0
+}
+
+.content .feature {
+    font-size: 1.2em
+}
+
+.entry img {
+    max-width: 100%;
+    width: auto;
+    padding: .5em 0
+}
+
+.entry ul,
+.entry ol {
+    padding: 0;
+    margin: .5em 0 1.1em 1.4em
+}
+
+.entry blockquote {
+    margin: 10px 0 10px 25px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    line-height: 1.4;
+    font-size: 1.05em;
+    color: #3c3c3c;
+    border-left: solid 1px #c9c9c9;
+    padding: 10px 0 10px 15px
+}
+
+.entry blockquote cite {
+    font-size: 1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+.entry blockquote cite a {
+    color: #6fa601
+}
+
+.entry .datatable td,
+.entry .datatable th {
+    padding: 3px 7px;
+    vertical-align: top;
+    border-bottom: 1px solid #c9c9c9
+}
+
+.entry .datatable th {
+    background-color: #cddfa9;
+    padding: 7px 7px;
+    border-right: 1px solid #fff
+}
+
+.share_sec {
+    margin: 2em 0 0 0;
+    padding: 1em 0 1em 0;
+    display: table;
+    width: 100%;
+    max-width: 20em
+}
+
+.share_btns {
+    display: table-row
+}
+
+.share_btns li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-right: .7em;
+    display: table-cell;
+    width: 50%
+}
+
+.share_btns li:last-child {
+    padding-right: 0
+}
+
+.share_btn:link,
+.share_btn:active,
+.share_btn:visited {
+    display: block;
+    background-color: #fff;
+    padding: 13px 2px 11px 4px;
+    -moz-box-shadow: 0 1px 2px #8d8d8d;
+    -webkit-box-shadow: 0 1px 2px #8d8d8d;
+    box-shadow: 0 1px 2px #8d8d8d;
+    font: .7em Helvetica, Arial, sans-serif;
+    color: #666;
+    text-transform: uppercase
+}
+
+.share_btn:hover {
+    text-decoration: none
+}
+
+.rel_links {
+    padding: 0;
+    margin: .3em 0 1em 0
+}
+
+.rel_linksli {
+    list-style-type: none;
+    padding: .8em 0;
+    margin: 0;
+    color: #666;
+    border-top: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+    font-size: .8em;
+    line-height: 1.3em
+}
+
+.rel_linkstop {
+    border-top: 0;
+    -moz-border-image: none;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    padding-top: 10em
+}
+
+.rel_linksli a {
+    color: #ee9d05
+}
+
+
+.rel_linksgrn .rel_linksli {
+    border-top: 0;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+}
+
+.rel_linksgrn {
+    margin-top: 0
+}
+
+.rel_linksgrn .rel_linksli a {
+    color: #6fa601
+}
+
+.rel_linkslilast,
+.rel_linksgrn .rel_linkslilast {
+    border: 0;
+    padding-top: 1.25em;
+    -moz-border-image: none;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none
+}
+
+.dquote {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: .9em;
+    line-height: 1.3em;
+    color: #666;
+    display: block;
+    margin-bottom: 1em
+}
+
+.dquote strong {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: .9em;
+    font-weight: bold
+}
+
+.sidelogo {
+    display: block;
+    text-indent: -4000px;
+    width: 72px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat -98px -83px
+}
+
+.sideimg {
+    display: block;
+    text-indent: -4000px;
+    font-size: .5em;
+    padding: 0;
+    margin: 0 0 1.5em 0;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+}
+
+.dquote cite a {
+    font-size: .85em
+}
+
+.sidepromo {
+    padding-top: 1.5em
+}
+
+.bookimg {
+    float: left;
+    margin-right: .7em;
+    margin-bottom: 1em;
+    border: 1px solid #bebcbc;
+    filter: progid: DXImageTransform.Microsoft.DropShadow(Color=#bfbbbb, OffX=0, OffY=3);
+    -webkit-box-shadow: 0 3px 5px #bfbbbb;
+    -moz-box-shadow: 0 3px 5px #bfbbbb;
+    width: 71px
+}
+
+.about,
+.about a:link,
+.about a:active,
+.about a:visited {
+    color: #a80510
+}
+
+.aboutheader {
+    border-bottom-color: #a80510
+}
+
+.adminheader {
+    border-bottom-color: #999
+}
+
+.writings,
+.writings a:link,
+.writings a:active,
+.writings a:visited {
+    color: #ee9d05
+}
+
+.writingsheader {
+    border-bottom-color: #ee9d05
+}
+
+.presosh1 {
+    color: #0487c4
+}
+
+.presos h3 {
+    border-bottom: 4px solid #0487c4
+}
+
+.presossheader {
+    border-bottom-color: #0487c4
+}
+
+.presossb a {
+    color: #0487c4
+}
+
+.presossb .rel_linksli {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #666
+}
+ 
+.preso_links {
+    color: #8d8c8c
+}
+
+.preso_links p {
+    margin-bottom: .5em
+}
+
+.preso_links h4,
+.presoh4 {
+    font-size: 1.4em;
+    color: #333
+}
+
+.preso_link {
+    text-transform: capitalize;
+    font-size: .7em;
+    padding: .15em .7em;
+    color: #fff;
+    background-color: #ce1e1c;
+    border: solid 1px #9c0004;
+    margin-right: .8em;
+    text-shadow: 1px 1px rgba(156, 0, 4, 1)
+}
+
+.preso_mp3 {
+    background-color: #0077a4;
+    border: solid 1px #03506d;
+    text-shadow: 1px 1px rgba(3, 80, 109, 1)
+}
+
+.presoimg {
+    margin: 0 1em .7em 0;
+    border: 1px solid #bebcbc;
+    filter: progid: DXImageTransform.Microsoft.DropShadow(Color=#bfbbbb, OffX=0, OffY=3);
+    -webkit-box-shadow: 0 3px 5px #bfbbbb;
+    -moz-box-shadow: 0 3px 5px #bfbbbb
+}
+
+.upcominglist {
+    margin: .5em 0 2em 0;
+    padding: 0
+}
+
+.upcominglist li {
+    margin: .25em 0;
+    font-size: .9em;
+    list-style: none;
+    border-bottom: 1px solid #dfdfe0
+}
+
+.update {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    width: 5em;
+    float: left;
+    color: #666;
+    margin: 0;
+    padding: 0;
+    padding: .25em 0 .25em .3em
+}
+
+.upevent {
+    margin-left: 6em;
+    padding: .25em 0 .25em 1em;
+    margin-top: 0;
+    border-left: 4px solid #dfdfe0
+}
+
+.upevent a {
+    color: #0487c4
+}
+
+.upcominglistsm {
+    margin: 0;
+    padding: 0 0 1em 0
+}
+
+.upcominglistsm li:last-child {
+    border-bottom: 0
+}
+
+.preso_sec {
+    font-size: .9em;
+    padding: 1.5em 0 1em 0;
+    border-top: solid 1px #c9c9c9
+}
+
+.presoimgbg {
+    margin: 0 1em .7em 0;
+    border: 1px solid #bebcbc;
+    filter: progid: DXImageTransform.Microsoft.DropShadow(Color=#bfbbbb, OffX=0, OffY=3);
+    -webkit-box-shadow: 0 3px 5px #bfbbbb;
+    -moz-box-shadow: 0 3px 5px #bfbbbb;
+    float: left;
+    width: 150px
+}
+
+.preso_seclt li {
+    font-size: .9em;
+    padding: .25em 0;
+    border-bottom: dotted 1px #7d9958;
+    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+    list-style: none
+}
+
+.preso_secrt h2 {
+    padding-top: .5em;
+    clear: left;
+    margin-top: 0
+}
+
+.preso_secrt h2 a {
+    font-size: 1.3em;
+    font-weight: normal;
+    font-family: Georgia, "Times New Roman", Times, serif
+}
+
+.preso_secrt li {
+    list-style: none;
+    display: table-row
+}
+
+.preso_secrt li div {
+    width: 5.5em;
+    font-size: .9em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #666;
+    display: table-cell
+}
+
+.preso_secrt li a {
+    padding-left: .5em;
+    display: table-cell
+}
+
+.quotelist {
+    max-width: 40em
+}
+
+.quotelist blockquote {
+    margin: .5em 0 1em 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    line-height: 1.4;
+    font-size: 1em;
+    color: #3c3c3c;
+    padding: 0
+}
+
+.quotelist blockquote cite {
+    font-size: .9em;
+    color: #333;
+    margin-top: 0;
+    display: block
+}
+
+.entry blockquote cite a {
+    color: #6fa601
+}
+
+.adminlink:link,
+.adminlink:visited {
+    color: #a80510
+}
+
+.adminsb,
+.adminsb a:link,
+.adminsb a:active,
+.adminsb a:visited {
+    color: #1c1c1c
+}
+
+.admin {
+    padding: 0 0 25px 0
+}
+
+.admin label {
+    display: block;
+    font-size: 1em;
+    padding-bottom: .3em
+}
+
+.admin input,
+.admin textarea,
+.admin select {
+    font-size: 1em;
+    padding: 5px 0;
+    margin-bottom: 15px;
+    width: 90%
+}
+
+.admin input.praction {
+    display: block;
+    padding: .5em 2em;
+    font-size: 1.1em;
+    color: #fff;
+    text-shadow: 1px 1px rgba(50, 70, 33, 0.8);
+    cursor: pointer;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9bc567), color-stop(.5, #62a511), color-stop(1, #62a511));
+    background-image: -moz-linear-gradient(center top, #9bc567 0, #62a511 50%, #62a511 100%);
+    border: 1px solid #4e8906;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin: .5em 0 .5em 0;
+    text-align: center;
+    white-space: nowrap;
+    width: 200px
+}
+
+.admin input.practiondel {
+    background: -moz-linear-gradient(top, rgba(181, 74, 76, 1) 0, rgba(168, 5, 16, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(181, 74, 76, 1)), color-stop(100%, rgba(168, 5, 16, 1)));
+    background: -webkit-linear-gradient(top, rgba(181, 74, 76, 1) 0, rgba(168, 5, 16, 1) 100%);
+    background: linear-gradient(top, rgba(181, 74, 76, 1) 0, rgba(168, 5, 16, 1) 100%);
+    border: 1px solid #720305
+}
+
+.formhelp {
+    color: #999;
+    margin-top: -7px
+}
+
+
+@media screen and (min-width:35.9em) {
+    .js [role="complementary"] {
+        width: 50%;
+        max-width: 20em
+    }
+    h1 {
+        font-size: 2em
+    }
+    .feature {
+        font-size: 1.2em
+    }
+    .entry .feature,
+    .content .feature {
+        font-size: 1.3em
+    }
+    .active-sidebar [role="main"] {
+        margin-right: -90%;
+        padding-left: 5%
+    }
+    .js [role="main"] {
+        padding-top: 3%
+    }
+    .menulogo {
+        margin-left: 2.8%
+    }
+    .sideimg {
+        background: url(http://static.yushuangqi.com/assets/writingsimgsm-06102012.png) no-repeat left bottom;
+        height: 150px
+    }
+    .sideimgwritings {
+        background: url(http://static.yushuangqi.com/assets/writingsimg-06092012.png) no-repeat left bottom;
+        height: 237px;
+        border-bottom: 0;
+        -moz-border-image: none;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        margin-top: 4em
+    }
+    .sideimpreso {
+        background: url(http://static.yushuangqi.com/assets/presosimg-06082012.png) no-repeat left bottom;
+        height: 277px;
+        border-bottom: 0;
+        -moz-border-image: none;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        margin-top: 4em
+    }
+    .sideimpresopg {
+        background: url(http://static.yushuangqi.com/assets/presosimgsm-06072012.png) no-repeat left bottom;
+        height: 132px;
+        margin-top: 4em
+    }
+    .about .sideimg {
+        /*background: url(http://static.yushuangqi.com/assets/aboutimg-06082012.png) no-repeat left bottom;*/
+        border-bottom: 0;
+        -moz-border-image: none;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        height: 274px;
+        padding-top: 2em
+    }
+    .example {
+        display: inline;
+        float: left
+    }
+    .panel {
+        float: right;
+        margin: 0 0 1.5em 2em
+    }
+    .panelimg {
+        float: none;
+        width: auto;
+        padding: 0;
+        width: 175px
+    }
+    .bookpanel .panelimg {
+        float: none
+    }
+    .aboutimg {
+        width: 175px
+    }
+    .bigbookimg {
+        width: 199px
+    }
+    .postpanel {
+        clear: none;
+        padding-top: 0
+    }
+    .panellinks {
+        margin: 0;
+        max-width: 195px
+    }
+    .panellink {
+        padding: .5em 2em .5em .8em
+    }
+    .bookpanel .panellinks {
+        padding-left: 0;
+        border-left: solid 5px #ee9d05
+    }
+    .bookslist {
+        padding-bottom: 1em;
+        border-bottom: solid 1px #c9c9c9
+    }
+    .bookslist li {
+        margin-right: 1em;
+        width: 30%;
+        float: left;
+        border-bottom: 0;
+        -moz-border-image: none;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        margin-top: 0
+    }
+    .bookslist li:last-child {
+        margin-right: 0
+    }
+    .bquote {
+        clear: both;
+        padding-bottom: 0
+    }
+    .listing li {
+        padding: .7em 0
+    }
+    .listing li a {
+        display: inline;
+        padding-right: .3em
+    }
+    .listing li span{ 
+        display: hidden;
+    }
+    .presoimg {
+        float: left
+    }
+    .update {
+        width: 11em
+    }
+    .upevent {
+        margin-left: 12em
+    }
+    .presoimgbg {
+        float: none
+    }
+    .preso_seclt {
+        width: 11em;
+        float: left
+    }
+    .preso_secrt {
+        margin-left: 12em
+    }
+    .preso_secrt h2 {
+        clear: none;
+        padding-top: 0
+    }
+    .preso_seclt li {
+        border-bottom: 0;
+        border-top: dotted 1px #7d9958;
+        -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
+        list-style: none
+    }
+}
+
+@media screen and (min-width:38em) {
+    .homecontainer {
+        max-width: 62.5em;
+        margin: 0 0 0 3%
+    }
+    .homesecs {
+        margin-left: 310px;
+        padding-left: 6px;
+        padding-top: 3em;
+        padding-bottom: 3em;
+        margin-top: 0;
+        background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y;
+        border-right: dotted 1px #7d9958;
+        max-width: 22em
+    }
+    .homelogo {
+        float: left;
+        margin-top: 2.5em;
+        width: 315px;
+        height: 240px;
+        /*background: url(http://static.yushuangqi.com/assets/homelogobg-06062012.png) no-repeat 0 0*/
+    }
+}
+
+@media screen and (min-width:52em) {
+    .container {
+        max-width: 62.5em;
+        margin: 0 auto
+    }
+    .homecontainer {
+        max-width: 62.5em;
+        margin: 0 5% 0 8%
+    }
+    .homesecs {
+        margin-left: 405px
+    }
+    .homelogo {
+        width: 410px;
+        height: 240px
+    }
+    .js .off-canvas-nav-links,
+    .sidebar-button {
+        display: none
+    }
+    .js [role="complementary"] {
+        width: 18%;
+        margin-left: 0;
+        float: right;
+        padding: 3% 2% 3% 0
+    }
+    .js [role="main"] {
+        width: 70%;
+        padding: 6.5em 4% 8% 4%;
+        background: url(http://static.yushuangqi.com/assets/page_fold.gif) repeat-y
+    }
+    .js [role="navigation"] {
+        padding: 0;
+        margin-right: 0;
+        clear: both;
+        position: absolute;
+        width: 70%;
+        top: 2em;
+        left: 26%;
+        border-bottom: dotted 1px #7d9958;
+        -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat;
+        border-image: url(http://static.yushuangqi.com/assets/dots.png) 0 0 1 0 repeat
+    }
+    .js [role="navigation"] li {
+        float: left;
+        border-top: 0
+    }
+    .navtop {
+        display: none
+    }
+    .header {
+        border-bottom: 0
+    }
+    .navabout:link,
+    .navabout:visited,
+    .navabouthl:hover,
+    .navabout:hover,
+    .navabouthl:link,
+    .navabouthl:visited,
+    .navwritings:link,
+    .navwritings:visited,
+    .navwritingshl:hover,
+    .navwritings:hover,
+    .navwritingshl:link,
+    .navwritingshl:visited,
+    .navpresos:link,
+    .navpresos:visited,
+    .navpresoshl:hover,
+    .navpresos:hover,
+    .navpresoshl:link,
+    .navpresoshl:visited,
+    .navadmin:link,
+    .navadmin:visited,
+    .navadmin:hover {
+        border-left-width: 11px;
+        padding: 20px 30px 15px 10px
+    }
+    h1 {
+        font-size: 2.2em
+    }
+    .sidelogo {
+        text-indent: -4000px;
+        width: 167px;
+        height: 42px;
+        margin: .5em 0 1em 0;
+        background: url(http://static.yushuangqi.com/assets/sprite_06072012.png) no-repeat 0 0
+    }
+    .footeractions li {
+        float: left;
+        margin-right: .7em
+    }
+    .site-footer p {
+        padding: 1em 1.5em
+    }
+    .share_sec {
+        width: 25em
+    }
+    .listing li {
+        padding: 0 0 5px 10px;
+        margin: 0 5px 0 0;
+        background: url(http://static.yushuangqi.com/assets/bullet_icon.gif) no-repeat 0 7px;
+        font-size: .9em;
+        list-style-type: none;
+        border-bottom: 0
+    }
+    .listing li span{
+        float: right;
+        color: #E0E0E0;
+        font-size: 60%; 
+    }
+    .listing li a {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1em
+    }
+}
+
+@media screen and (min-width:62em) {
+    .homecontainer {
+        max-width: 62.5em;
+        margin: 0 10% 0 15%
+    }
+    .entry {
+        line-height: 1.5
+    }
+   /* .writingsentry {
+        padding-right: 5em
+    }
+    .bookslist li {
+        width: 31%
+    }
+    .bquote {
+        clear: none
+    }
+    .bookgroup {
+        /*padding-left: 6em*/
+    }
+}
+
+@media screen and (min-width:72em) {
+    .homecontainer {
+        max-width: 62.5em;
+        margin: 0 15% 0 20%
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+only screen and (-o-min-device-pixel-ratio:3/2),
+only screen and (min--moz-device-pixel-ratio:1.5),
+only screen and (min-device-pixel-ratio:1.5) {
+    .menulogo,
+    .menubutton,
+    .sidelogo,
+    .navlist li.navtop a span,
+    .navabout span,
+    .navwritings span,
+    .navpresos span,
+    .navadmin span,
+    .homenav_about,
+    .homenav_writings,
+    .homenav_presos,
+    .footeractionRSS, 
+    .share_img,
+    .share_tw,
+    .share_fb,
+    .share_rss,
+    .share_li {
+        /*background-image: url(http://static.yushuangqi.com/assets/sprite_06072012@2x.png);*/
+        -moz-background-size: 168px 170px;
+        -ie-background-size: 168px 170px;
+        -o-background-size: 168px 170px;
+        -webkit-background-size: 168px 170px;
+        background-size: 168px 170pxs
+    }
+    .active-sidebar [role="main"] {
+        background-image: url(http://static.yushuangqi.com/assets/page_fold@2x.gif);
+        -moz-background-size: 6px 20px;
+        -ie-background-size: 6px 20px;
+        -o-background-size: 6px 20px;
+        -webkit-background-size: 6px 20px;
+        background-size: 6px 20px
+    }
+    .homelogo {
+        /*background-image: url(http://static.yushuangqi.com/assets/homelogo-06062012@2x.png);*/
+        -moz-background-size: 350px 212px;
+        -ie-background-size: 350px 212px;
+        -o-background-size: 350px 212px;
+        -webkit-background-size: 350px 212px;
+        background-size: 350px 212px
+    }
+}
+
+@media only screen and (min-width:38em) and (-webkit-min-device-pixel-ratio:1.5),
+only screen and (-o-min-device-pixel-ratio:3/2),
+only screen and (min--moz-device-pixel-ratio:1.5),
+only screen and (min-device-pixel-ratio:1.5) {
+    .homelogo {
+        /*background-image: url(http://static.yushuangqi.com/assets/homelogobg-06062012@2x.png);*/
+        -moz-background-size: 410px 240px;
+        -ie-background-size: 410px 240px;
+        -o-background-size: 410px 240px;
+        -webkit-background-size: 410px 240px;
+        background-size: 410px 240px
+    }
+    .sideimg {
+        background-image: url(http://static.yushuangqi.com/assets/writingsimgsm-06102012@2x.png);
+        -moz-background-size: 164px 132px;
+        -ie-background-size: 164px 132px;
+        -o-background-size: 164px 132px;
+        -webkit-background-size: 164px 132px;
+        background-size: 164px 132px
+    }
+    .about .sideimg {
+        /*background-image: url(http://static.yushuangqi.com/assets/aboutimg-06082012@2x.png);*/
+        -moz-background-size: 199px 274px;
+        -ie-background-size: 199px 274px;
+        -o-background-size: 199px 274px;
+        -webkit-background-size: 199px 274px;
+        background-size: 199px 274px
+    }
+    .sideimpreso {
+        background-image: url(http://static.yushuangqi.com/assets/presosimg-06082012@2x.png);
+        -moz-background-size: 199px 277px;
+        -ie-background-size: 199px 277px;
+        -o-background-size: 199px 277px;
+        -webkit-background-size: 199px 277px;
+        background-size: 199px 277px
+    }
+    .sideimpresopg {
+        background-image: url(http://static.yushuangqi.com/assets/presosimgsm-06072012@2x.png);
+        -moz-background-size: 167px 132px;
+        -ie-background-size: 167px 132px;
+        -o-background-size: 167px 132px;
+        -webkit-background-size: 167px 132px;
+        background-size: 167px 132px
+    }
+    .sideimgwritings {
+        background-image: url(http://static.yushuangqi.com/assets/writingsimg-06082012@2x.png);
+        -moz-background-size: 199px 237px;
+        -ie-background-size: 199px 237px;
+        -o-background-size: 199px 237px;
+        -webkit-background-size: 199px 237px;
+        background-size: 199px 237px
+    }
+}
+
+.group:after {
+    content: " ";
+    font-size: 0;
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+.bookgroup{
+    margin-bottom: 1em;
+}
+
+* html .group {
+    height: 1%
+}
+
+*:first-child+html .group {
+    min-height: 1px
+}
+
+.right {
+    float: right
+}
+
+.left {
+    float: left
+}
+
+.clear {
+    clear: both
+}
+
+.topmargin {
+    margin-top: .5em
+}
+
+.homecard{
+
+}
+.vcard-avatar{
+  
+}
+
+.avatar{
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    border-radius: 3px;
+    border-radius: 50%;
+}
+
+.vcard { 
+    text-align: center;
+}
+.vcard > .avatar {
+    max-width: 70px;
+    max-height: 70px;
+    display: inline-block;
+}
+/*
+#meta>div>section, #meta>div>ul {
+    width: 33.33333%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    list-style: none outside none;
+}
+@media screen and (min-width: 40em)
+#meta>div>section, #meta>div>ul {
+    width: 33.33333%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+}*/
+
+@media screen and (min-width: 75em)
+body>aside, body>.content, body>footer, #comments {
+    margin: 1em 7.14286% 0 28.57143%;
+    font-size: 1.1875em;
+    line-height: 1.89474em;
+}
+@media screen and (min-width: 64em)
+ body>aside, body>footer, body>.content {
+    font-size: 1.1875em;
+    line-height: 1.89474em;
+}
+
+@media screen and (min-width: 40em)
+#next, #prev {
+    width: 50%!important;
+    padding-top: 2em;
+}
+#next, #prev {
+    width: 100%!important;
+    padding-top: 2em;
+}
+#next {
+    text-align: right;
+}
+
+@media screen and (min-width: 40em)
+#next, #prev {
+    width: 50%!important;
+    padding-top: 2em;
+}
+#next, #prev {
+    width: 100%!important;
+    padding-top: 2em;
+}
+.rel_prev:before{
+    content: "上一篇:";
+}
+.rel_next:before{
+    content: "下一篇:";
+}
+
+#author {
+    width: 100%!important;
+    padding-top: 2em;
+    color: #999;
+    font-size: small;
+}
+#author > h4{
+    font-size: 1.5em;
+}
+#author p{
+    text-indent: 2em;
+    margin: 0 0 0.2em 0;
+}
+#categories a {
+    font-weight: bold;
+}
+#categories a:after{
+    content: ","
+}
+#categories a:last-child:after{
+    content: ""
+}
+
+#tags a {
+    border-radius: 3px;
+    background: #95a5a6;
+    display: inline-block;
+    margin: 0 0px 0 5px;
+    line-height: 1;
+    padding: 2px;
+    /*font-size: 15px;*/
+    -webkit-transition: all 0.25s ease-in;
+    -moz-transition: all 0.25s ease-in;
+    -ms-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+}
+
+#tags  a {
+    color: #FFF;
+}
+#tags a:hover{
+    background: #3498db;
+        text-decoration: none;
+}
+#tags  a:before {
+    content: "#";
+}
+
+.date{
+    font-size: smaller;
+}
+
+
+code{
+    padding: 2px 4px;
+    font-size: 90%;
+    /*color: #c7254e;*/
+    background-color: #fdf6e3;
+    font-weight: 400;
+    border-radius: 4px;
+    padding: 0 10px;
+     /*background: #fdf6e3;*/
+    /*color: #657b83;*/
+} 
+pre code{
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background-color: #f5f5f5;
+    /*color: #657b83;  */
+    white-space: pre-wrap;
+    border-radius: 6px;
+}
+
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+/* table*/
+table {
+  width: 100%;
+  min-width: 100%;
+  padding: 0;
+   border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+table tr {
+  border-top: 1px solid #cccccc;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+
+    background-color: #e0e0e0;
+}
+table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr th :first-child,
+table tr td :first-child {
+  margin-top: 0;
+}
+table tr th :last-child,
+table tr td :last-child {
+  margin-bottom: 0;
+}
+
+/* table end*/
+
+.split{
+    background: url(http://static.yushuangqi.com/assets/bullet_icon.gif) no-repeat 0 7px;
+    background-position: center;
+    padding: 0 8px 0 8px;
+}
