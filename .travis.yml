@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+- node
+sudo: required
+dist: trusty
+
+branches:
+  only:
+  - master
+before_install: 
+# for html-minifier
+- sudo apt-get -y install python3-pygments
+- sudo apt-get -y install ruby 
+install:
+- mkdir work
+- wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}-64bit.deb
+  -O $PWD/work/hugo.deb
+- sudo dpkg -i $PWD/work/hugo.deb
+- npm install
+script:
+- grunt deploy
+
+env:
+  global:
+  - REPO="github.com/ysqi/ysqi.github.io.git"
+  - USER="ysqi"
+  - EMAIL="devysq@gmail.com"
+  - SOURCE_DIR="public"
+  - DEPLOY_BRANCH="gh-pages"
