@@ -1,7 +1,9 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zh"
 title = "虞双齐Go语言开发" 
-pygmentsuseclasses =  true
+pygmentsuseclasses = false
+PygmentsCodeFences = true
+pygmentsstyle = "fruity"
 uglyURLs = true
 metaDataFormat = "YAML"
 disqusShortname = "yushuangqi"
