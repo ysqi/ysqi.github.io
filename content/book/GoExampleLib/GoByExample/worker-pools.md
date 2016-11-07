@@ -31,7 +31,7 @@ codeurl: "https://wide.b3log.org/playground/7ea34ba4552e57c2c6db572c497a2598.go"
 最后，我们收集所有这些人物的返回值。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"  

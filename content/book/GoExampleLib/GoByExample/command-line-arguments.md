@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/ac772340178a375b2c6f548625233a1f.go"
 
  
 
-```go
+```Go
 package main  
 import "os"
 import "fmt"  

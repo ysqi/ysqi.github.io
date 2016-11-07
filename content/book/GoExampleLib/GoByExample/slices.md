@@ -39,7 +39,7 @@ Slice 支持通过 `slice[low:high]` 语法进行“切片”操作。例如，�
 Slice 可以组成多维数据结构。内部的 slice 长度可以不同，这和多位数组不同。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

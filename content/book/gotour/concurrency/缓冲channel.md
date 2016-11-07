@@ -19,7 +19,7 @@ channel 可以是 **带缓冲的**。通过 `make` 提供第二个参数作为�
 
 修改例子使得缓冲区被填满，然后看看会发生什么。
 
-```go
+```Go
 package main
 
 import "fmt"

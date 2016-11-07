@@ -21,7 +21,7 @@ beego 的各个模块设计基本相同，灵感源于 Go 内部 database/sql �
 ### 初始化 config 解析器
 
 首先需确认所用的配置文件格式，beego 的 appconfig 默认使用 ini。 再通过类型初始化配置文件解析器对象。
-```go
+```Go
 import (
 	"github.com/astaxie/beego/config"
 )
@@ -36,7 +36,7 @@ func main() {
 使用 config 模块时需要导入`github.com/astaxie/beego/config`包 ，再调用`config.NewConfig`来指定文件类型，并加载解析 `myconfig.ini` 配置文件。当加载解析失败时，会返回错误信息，故不能忽略该错误信息。
 
 当然，也可以直接解析 []byte 数据，构建解析器。这样做法不常见，有时能用于解析配置片断。
-```go
+```Go
  inicontext = `
 app = app
 ;comment one
@@ -63,7 +63,7 @@ go get -u github.com/astaxie/beego/config/xml
 ```
 2.为了向 config 模块注册 xml 解析器，需要在`config.NewConfigData("xml","data.xml" )` 前导入包进行初始化。
 
-```go
+```Go
 import _ "github.com/astaxie/beego/config/xml"。
 ```
 

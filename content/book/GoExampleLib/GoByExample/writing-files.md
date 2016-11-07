@@ -39,7 +39,7 @@ Go 写文件和我们前面看过的读操作有着相似的方式。
 
  
 
-```go
+```Go
 package main  
 import (
     "bufio"

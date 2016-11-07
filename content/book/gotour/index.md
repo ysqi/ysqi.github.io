@@ -36,7 +36,7 @@ codeurl: https://wide.b3log.org/playground/a6087de933207e84f74cd80605bb83a2.go
 如果你准备好了，请点击页面底部的[下节]进行学习。
 
 
-```go
+```Go
 package main
 
 import (

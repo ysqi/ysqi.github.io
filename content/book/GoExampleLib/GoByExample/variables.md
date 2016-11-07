@@ -29,7 +29,7 @@ Go 将自动推断已经初始化的变量类型。
 `:=` 语句是申明并初始化变量的简写，例如这个例子中的 `var f string = "short"`。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

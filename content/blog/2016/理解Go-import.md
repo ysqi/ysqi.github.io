@@ -39,7 +39,7 @@ improt 便是用一个独一无二的字符串路径来指向包，而包的导�
 improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
 
 先创建代码库: $GOPATH/src/ysqi/lib/lib.go
-```go
+```Go
 package lib
 
 import "fmt"
@@ -50,7 +50,7 @@ func SayHello() {
 ```
 
 再新建一个App：$GOPATH/src/ysqi/app/main.go
-```go
+```Go
 package main
 
 import "ysqi/lib"
@@ -63,7 +63,7 @@ func main() {
 如上，使用`import "ysqi/lib"` 导入包，从而调用 SysHello 方法 。再看看 这个代码`lib.SyaHello`中的`lib`标识的含义。他标示调用包`lib`，而对比 import "ysqi/lib" 中的 `lib`，此 lib 是包路径的一部分，并不代表包名。
 
 也就是说 `ysqi/lib` 和 `lib.SyyHello()` 里的`lib`含义不同。包名和包路径不需要完全一致，如：
-```go
+```Go
 # file Path: $GOPATH/src/ysqi/mylib/lib.go
 
 package lib
@@ -75,7 +75,7 @@ func SayHello() {
 }
 ```
 调用 lib 的方式变成了`import "ysqi/mylib"`：
-```go
+```Go
 package main
 
 import "ysqi/mylib"
@@ -105,14 +105,14 @@ can't load package: package .: found packages lib (lib.go) and mylib (mylib.go) 
 1.包名过于复杂或者意思不明确。
 
 如使用 `mywebapp/libs/mongodb/db`  包时，不确定此 db 是哪种类型，故可以使用别名来明确含义：
-```go
+```Go
 import mongo "mywebapp/libs/mongodb/db"
 ```
 
 2.包名和其他包冲突。
 
 世界之大，变化无穷。现在我们有库 db ,但没过几年出现了另一种DB，叫云DB。但包名是一样的，分别用别名区分：
-```go
+```Go
 import mongo "mywebapp/libs/mongodb/db"
 import ydbgo "mywebapp/libs/yundb/db"
 ```
@@ -121,7 +121,7 @@ import ydbgo "mywebapp/libs/yundb/db"
 + import . "ysqi/lib"
 
 这里的点`.`符号表示，对包 lib 的调用直接省略包名，你我以后就是一家人，不分彼此，你的东西就像我就的一样，随便用。
-```go
+```Go
 package main
 
 import . "ysqi/lib"
@@ -134,7 +134,7 @@ func main() {
 + improt _ "ysqi/lib"
 
 这里说的是我还不准备现在使用你们家的东西，但得提前告诉一声。你先做好准备，先准备好饭菜，等我来就行，也有可能我压根就不来。
-```go
+```Go
 package main
 
 import _ "ysqi/lib"

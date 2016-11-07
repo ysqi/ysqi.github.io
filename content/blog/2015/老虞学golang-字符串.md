@@ -18,7 +18,7 @@ disqus_identifier: 100015
 >需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。**
 
 ## 初始化
-```golang
+```Go
     var str string //声明一个字符串
     str = "laoYu"  //赋值
     ch :=str[0]    //获取第一个字符
@@ -30,7 +30,7 @@ disqus_identifier: 100015
 >**编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中`"老虞"[0]`来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。**
 
 [查看示例代码][stringDemo]
-```golang
+```Go
     str :="laoYu老虞"
 
     for  i:=0;i<len(str);i++ {
@@ -90,7 +90,7 @@ disqus_identifier: 100015
 > + len(Channel) Channel buffer队列中元素个数
 
 [查看示例代码][lenDemo]
-```golang
+```Go
     str :="laoYu老虞"
     str2 :="laoYu"
     fmt.Println("len(",str,")=",len(str))      //len=11=5+6,一个汉字在UTF-8>中占3个字节
@@ -135,7 +135,7 @@ disqus_identifier: 100015
 > 确定是否包含某字符串，这是区分大小写的。实际上内部是通过Index(s,sub string) int 实现的。如果索引!=-1则表示包含该字符串。空字符串""在任何字符串中均存在。
 
 **源代码**
-```golang
+```Go
     // Contains returns true if substr is within s.
     func Contains(s, substr string) bool {
          return Index(s, substr) != -1
@@ -144,7 +144,7 @@ disqus_identifier: 100015
 **示例，使用请需导入包:' import "strings" ' **
 
 [查看示例代码][contiansDemo]
-```golang
+```Go
     str :="laoYuStudyGotrue是否包含某字符串"
     fmt.Println(strings.Contains(str,"go"))         //false
     fmt.Println(strings.Contains(str,"Go"))         //true
@@ -155,13 +155,13 @@ disqus_identifier: 100015
 
 > 在实际工作中常需要在不区分大小写的情况下确认是否包含某字符串,(我们应该减少这种情况，以免每次验证时都需要进行一次大小写转换)。
 > 这里我局部修改源代码提供一个验证字符串中是否包含某字符串的函数,当然你也可以直接使用`strings.Contains(strings.ToLower(s),strings.ToLower(substr))`
-```golang
+```Go
     str := "laoYuStudyGotrue是否包含某字符串"
     fmt.Println(Contains(str, "go", true))  //true
     fmt.Println(Contains(str,"go",false))   //false
 ```
 
- ```golang
+ ```Go
 		//在字符串s中是否包含字符串substr,ignoreCase表示是否忽略大小写
 		func Contains(s string, substr string, ignoreCase bool) bool {
 				return Index(s, substr, ignoreCase) != -1
@@ -206,7 +206,7 @@ disqus_identifier: 100015
 > 注意：如果sep=""，则无论s为何字符串都会返回 len(s)+1
 
 [查看示例代码][countDemo]
-```golang
+```Go
     fmt.Println(strings.Count("laoYuStudyGo", "o"))                 //2
     fmt.Println(strings.Count("laoYuStudyGo", "O"))                 //0
     fmt.Println(strings.Count("laoYuStudyGo", ""))                  //13=12+1
@@ -221,14 +221,14 @@ disqus_identifier: 100015
 > 将字符串分割成数组，其分割符为空格。
 
 [查看示例代码][fieldsDemo]
-```golang
+```Go
     fmt.Println(strings.Fields("lao Yu Study Go ")) //OutPut: [lao Yu Study Go]
     fmt.Println(strings.Fields("   Go    "))        //[Go]
     fmt.Println(strings.Fields(""))                 //[]
     fmt.Println(strings.Fields(" \n go"))           //[go]
 ```
 ** 其实其内部实现调用的是FieldsFunc(s,unicode.IsSpace),我们也可以自定义分割方式 **
-```golang
+```Go
     canSplit := func (c rune)  bool { return c=='#'}
     fmt.Println(strings.FieldsFunc("lao###Yu#Study####Go#G ",canSplit)) //[lao Yu Study Go G<space>]
 ```

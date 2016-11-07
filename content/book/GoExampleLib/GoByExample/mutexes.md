@@ -39,7 +39,7 @@ we'll see later, `ops` will count how manyoperations we perform against the stat
 对 `state` 使用一个最终的锁，显示它是如何结束的。
  
 
-```go
+```Go
 package main  
 import (
     "fmt"

@@ -26,13 +26,13 @@ if
 + if条件表达式的前面可以包含初始化语句，支持平行赋值，但不支持多个赋值语句
 
 赋值+条件判断
-```go
+```Go
 	if a, b := 21, 3; a > b {
 		fmt.Println("a>b ? true")
 	}
 ```
 在if条件表达式前面声明的的变量只能在if-else语句块中使用。
-```go
+```Go
     if a, b := 21, 31; a > b {
 		fmt.Println("a>b ? true")
 	}else {
@@ -42,7 +42,7 @@ if
 ```
 
 还需要注意的是如果在`if-else` 中包含return 时，编译器无法解析出else中的retrun,导致方法缺少return ,目前1.1版本已支持该方式。
-```go
+```Go
 	func getName(id int) string {
 		if id == 1 {
 			return "YourName"
@@ -56,7 +56,7 @@ if
 此代码编译不通过，错误信息：`function ends without a return statement`，这是在设计Go时故意这样的,也可以说是一个Bug（可参见:[https://code.google.com/p/go/issues/detail?id=65](https://code.google.com/p/go/issues/detail?id=65)），这是一种编码风格，即在if语句块中去做return处理,而else中不处理，而是继续执行if-else后面的代码，这样能减少一个代码缩进，不需要在了解代码时去记住else语句块的处理。当然如果想必须这样写,也可以进行特殊处理，在函数的末行添加语句**panic("")**
 
  在if中可以包含初始化语句，这是非常实用的。例如在文件处理，取字典项时需要判断是否执行操作成功，只有在成功时才能继续处理，这样就可以通过if-else处理。
-```go
+```Go
 	if err := file.Chmod(0664); err != nil {
 	    log.Print(err)
 	    return err
@@ -80,13 +80,13 @@ for
 + 死循环           `for {}`
 
 由于Go没有逗号表达式，而++和--是语句而不是表达式，如果想在for中执行多个变量,需要使用平行赋值
-```go
+```Go
 	for i, j := 1, 10; i < j; i,j=i+1,j+1 {  //死循环
 		fmt.Println(i)
 	}
 ```
 而不能写成
-```go
+```Go
 	for i, j := 1, 10; i < j; i++,j++ {
 		fmt.Println(i)
 	}
@@ -112,7 +112,7 @@ for的condition在每执行一次循环体时便会执行一次，因此在实�
 + `for key,value   := range map    {}`
 
 需要注意的是for+rang遍历string时得到的是字节索引位置和UTF-8格式rune类型数据(int32)。
-```go
+```Go
 	for pos, value := range "Go在中国" {
 		fmt.Printf("character '%c' type is %T value is %v, and start at byte position %d \n", value,value,value, pos)
 	 	str :=string(value)  //convert rune to string
@@ -133,7 +133,7 @@ for的condition在每执行一次循环体时便会执行一次，因此在实�
 
 ###break和continue
  另外在循环中使用break和continue，break用于退出循环，continue用于终止本次循环体的执行继续执行下一个循环。
-```go
+```Go
 	sum := 0
 	for {
 		if sum > 10 {
@@ -144,7 +144,7 @@ for的condition在每执行一次循环体时便会执行一次，因此在实�
 	fmt.Println(sum) // sum=12
 ```
 break也可退出指定的循环体
-```go
+```Go
 		sum := 0
 	myforLable:
 		for {
@@ -164,7 +164,7 @@ switch
 switch是最灵活的一种控制语句,表达式可以不是常量或者字符串，也可以沒有表达式，如果没有表达式则如同if-else-else。
 
 一般用法:和其他语言的Switch基本一样，不同的不需要在每个Case中添加Break,而是隐藏了Break,当然你可以显示加入break
-```go
+```Go
 	switch ch {
 		case '0':
 			cl = "Int"
@@ -196,7 +196,7 @@ switch是最灵活的一种控制语句,表达式可以不是常量或者字符�
 
 
 如果多个匹配结果所对应的代码段一样，则可以在一个case中并列出所有的匹配项
-```go
+```Go
 	switch ch {
 		case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
 			cl = "Int"
@@ -207,7 +207,7 @@ switch是最灵活的一种控制语句,表达式可以不是常量或者字符�
 	}
 ```
 同样switch可以没有表达式，在 Case 中使用布尔表达式，这样形如 if-else
-```go
+```Go
 	switch {
 		case '0' <= ch && ch <= '9':
 			cl = "Int"
@@ -219,7 +219,7 @@ switch是最灵活的一种控制语句,表达式可以不是常量或者字符�
 ```
 
 下面是Switch写的一个示例（无实际意义）：
-```go
+```Go
 	func Compare(a, b interface{}) (int, error) {
 		aT := reflect.TypeOf(a)
 		bT := reflect.TypeOf(b)

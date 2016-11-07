@@ -37,13 +37,13 @@ disqus_identifier: 100014
 #### 赋值与使用
 
 数组通过下标访问元素，可修改其元素值
-```go
+```Go
 arr :=[...] int {1,2,3,4,5}
 arr[4]=arr[1]+len(arr)      //arr[4]=2+5
 ```
 
 通过for遍历数组元素,[查看示例代码](arraysForDemo),[在线运行示例代码](arraysForDemo_play)
-```go
+```Go
 arr := [5]int{5, 4, 3}
 
 for index, value := range arr {
@@ -56,7 +56,7 @@ for index := 0; index < len(arr); index++ {
 ```
 
 数组是值类型，将一个数组赋值给另一个数组时将复制一份新的元素,[查看示例代码](arraysValueDemo),[在线运行示例代码](arraysValueDemo_play)
-```go
+```Go
 	arr2 := [5]int{1, 2}
 	arr5 := arr2
 	arr5[0] = 5

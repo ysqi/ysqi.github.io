@@ -31,7 +31,7 @@ _接口_ 是方法特征的命名集合。
 结构体类型 `circle` 和 `rect` 都实现了 `geometry`接口，所以我们可以使用它们的实例作为 `measure` 的参数。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "math"  

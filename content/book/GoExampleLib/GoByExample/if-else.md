@@ -27,7 +27,7 @@ codeurl: "https://wide.b3log.org/playground/5773b3bef48202239d7bb55a892cef8c.go"
 注意，在 Go 中，你可以不适用圆括号，但是花括号是需要的。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

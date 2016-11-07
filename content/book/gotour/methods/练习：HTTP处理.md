@@ -30,7 +30,7 @@ http://localhost:4000/string 和 http://localhost:4000/struct.
 **注意：** 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
 web 服务器，可能需要[安装 Go](https://go-zh.org/doc/install/)。
 
-```go
+```Go
 package main
 
 import (

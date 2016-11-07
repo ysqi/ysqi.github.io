@@ -29,7 +29,7 @@ Go 支持 <em><a href="http://zh.wikipedia.org/wiki/%E6%8C%87%E6%A8%99_(%E9%9B%B
 指针也是可以被打印的。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

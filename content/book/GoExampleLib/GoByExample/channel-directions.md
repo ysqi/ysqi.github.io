@@ -23,7 +23,7 @@ codeurl: "https://wide.b3log.org/playground/4e6c7f3a837ddd646433f08c67ebab90.go"
 
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

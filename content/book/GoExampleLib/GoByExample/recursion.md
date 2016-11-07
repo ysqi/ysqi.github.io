@@ -21,7 +21,7 @@ Go 支持 <a href="http://zh.wikipedia.org/wiki/%E9%80%92%E5%BD%92_(%E8%AE%A1%E7
 
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

@@ -47,7 +47,7 @@ Go 提供内置的[正则表达式](http://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88
 `Func` 变量允许传递匹配内容到一个给定的函数中，
  
 
-```go
+```Go
 package main  
 import "bytes"
 import "fmt"

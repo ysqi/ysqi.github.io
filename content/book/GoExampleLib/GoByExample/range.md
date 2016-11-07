@@ -27,7 +27,7 @@ _range_ 迭代各种各样的数据结构。让我们来看看如何在我们已
 `range` 在字符串中迭代 unicode 编码。第一个返回值是`rune` 的起始字节位置，然后第二个是 `rune` 自己。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

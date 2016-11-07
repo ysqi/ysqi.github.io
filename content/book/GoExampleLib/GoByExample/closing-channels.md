@@ -25,7 +25,7 @@ _关闭_ 一个通道意味着不能再向这个通道发送值了。这个特�
 我们使用前面学到的[通道同步](../channel-synchronization/)方法等待任务结束。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

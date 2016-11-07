@@ -14,7 +14,7 @@ slice 可以包含任意的类型。 即你可以把 slice 当做是一组元素
 
 示例中是一个 slice 的元素也是一个 slice。
 
-```go
+```Go
 package main
 
 import (

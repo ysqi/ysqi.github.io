@@ -27,7 +27,7 @@ codeurl: "https://wide.b3log.org/playground/5ccc5beb24084b1861e66b70e96f888a.go"
 程序将在接收到通道中 worker 发出的通知前一直阻塞。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"  

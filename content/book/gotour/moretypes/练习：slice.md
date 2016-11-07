@@ -20,7 +20,7 @@ title: Golang入门指南-练习：slice
 
 （使用 `uint8(intValue)` 来在类型之间进行转换。）
 
-```go
+```Go
 package main
 
 import "golang.org/x/tour/pic"

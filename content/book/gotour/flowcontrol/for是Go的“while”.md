@@ -12,7 +12,7 @@ codeurl: "https://wide.b3log.org/playground/a6b0b9c42075661a4e8713f48585daa2.go"
 
 基于此可以省略分号：C 的 `while` 在 Go 中叫做 `for` 。
 
-```go
+```Go
 package main
 
 import "fmt"

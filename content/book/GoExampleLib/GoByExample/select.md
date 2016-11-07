@@ -25,7 +25,7 @@ Go 的_通道选择器_ 让你可以同时等待多个通道操作。Go 协程�
 我们使用 `select` 关键字来同时等待这两个值，并打印各自接收到的值。
  
 
-```go
+```Go
 package main  
 import "time"
 import "fmt"  

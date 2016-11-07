@@ -21,7 +21,7 @@ slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返
 	b = b[:cap(b)] // len(b)=5, cap(b)=5
 	b = b[1:]      // len(b)=4, cap(b)=4
 
-```go
+```Go
 package main
 
 import "fmt"

@@ -14,7 +14,7 @@ codeurl: "https://wide.b3log.org/playground/2df3e96a454e45815854a95e0a02f200.go"
 
 （提示：两个 `pow` 调用都在 `main` 调用 `fmt.Println` 前执行完毕了。）
 
-```go
+```Go
 package main
 
 import (

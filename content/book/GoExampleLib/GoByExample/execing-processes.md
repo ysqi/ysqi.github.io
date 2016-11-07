@@ -27,7 +27,7 @@ codeurl: "https://wide.b3log.org/playground/ad046c8e2a5082ef897d9ad63518556f.go"
 这里是 `os.Exec` 调用。如果这个调用成功，那么我们的进程将在这里被替换成 `/bin/ls -a -l -h` 进程。如果存在错误，那么我们将会得到一个返回值。
  
 
-```go
+```Go
 package main  
 import "syscall"
 import "os"

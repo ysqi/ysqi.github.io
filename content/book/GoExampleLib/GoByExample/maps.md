@@ -35,7 +35,7 @@ _map_ 是 Go 内置[关联数据类型](http://zh.wikipedia.org/wiki/关联数�
 你也可以通过这个语法在同一行申明和初始化一个新的map。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

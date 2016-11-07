@@ -17,7 +17,7 @@ TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker
 
 ### wercker 配置
 
-```yml
+```yaml
 deploy:
   box: samueldebruyn/debian-git
   steps:

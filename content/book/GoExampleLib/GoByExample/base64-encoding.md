@@ -27,7 +27,7 @@ Go 同时支持标准的和 URL 兼容的 base64 格式。编码需要使用 `[]
 使用 URL 兼容的 base64 格式进行编解码。
  
 
-```go
+```Go
 package main  
  
 import b64 "encoding/base64"

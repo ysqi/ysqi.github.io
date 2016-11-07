@@ -23,7 +23,7 @@ codeurl: "https://wide.b3log.org/playground/e29b6410199f0e04a20ea9f15028f95d.go"
 		fmt.Println("age<5")
 	}
 
-```go
+```Go
 package main
 
 import (

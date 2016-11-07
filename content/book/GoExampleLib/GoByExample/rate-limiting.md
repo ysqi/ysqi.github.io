@@ -33,7 +33,7 @@ codeurl: "https://wide.b3log.org/playground/6d6430e91c84550cd484de47b6b59c96.go"
 现在模拟超过 5 个的接入请求。它们中刚开始的 3 个将由于受 `burstyLimiter` 的“脉冲”影响。
  
 
-```go
+```Go
 package main  
 import "time"
 import "fmt"  

@@ -51,7 +51,7 @@ JSON 包可以自动的编码你的自定义类型。编码仅输出可导出的
 在上面的例子中，我们经常使用 byte 和 string 作为使用标准输出时数据和 JSON 表示之间的中间值。我们也可以和`os.Stdout` 一样，直接将 JSON 编码直接输出至 `os.Writer`流中，或者作为 HTTP 响应体。
  
 
-```go
+```Go
 package main  
 import "encoding/json"
 import "fmt"

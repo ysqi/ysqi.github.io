@@ -19,14 +19,15 @@ topics:
 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息.
 如:
 + 在 go run 下使用的配置信息
-```ini
+```INI
 APP = DEV开发
 port = 8080
 dbName = DevATOP
 ```
 
 + 在 go test 下使用的配置信息
-```ini
+
+```INI
 APP = JUSTTest
 port = 6060
 dbName = TESTATOP
@@ -44,7 +45,7 @@ dbName = TESTATOP
 
 
 1. 运行时携带参数 `-runmode=test|dev`的方式,解析运行参数来加载
-```go 
+```Go 
 func init() {
     runMode := flag.String("runMode","dev","代码运行模式") 
     flag.Parse()
@@ -58,7 +59,7 @@ func init() {
 此方式不太适运用在 go test 下,因为你比较运行 go test 时基本上基于工具,而非手工执行命令,不方便添加入参
 
 2. 运行时直接携带参数 `-config=/app/app.dev.cfg` 
-```go  
+```Go  
 func init() {
     cfg := flag.String("config","./app.dev.cfg","配置文件路径") 
     flag.Parse() 
@@ -67,7 +68,7 @@ func init() {
 这种方式虽然灵活,但还是同上面一种方式运用在 go test 下
 
 3. 使用环境变量,形式同方案2
-```go 
+```Go 
 func init() {
     cfg := os.Getenv("appConfigPATH") 
 }
@@ -88,7 +89,7 @@ func init() {
 text from Log and Logf calls even if the test succeeds.
 
 因此在代码中的判断如下:
-```go
+```Go
 func init() {
     cfg :="app.dev.cfg"
     if flag.Lookup("test.v") != nil {
@@ -99,7 +100,7 @@ func init() {
 ```
 
 此外完整代码,打印下所有的参数,实际上就是 `go test -help`的参数信息:
-```go
+```Go
 package main
 
 import (
@@ -117,7 +118,7 @@ func sayHello() {
 	}) 
 }
 ```
-```go
+```Go
 package main
 
 import "testing"
@@ -128,7 +129,7 @@ func TestSayHello(t *testing.T) {
 
 ```
 Output:
-```
+```Bash
 === RUN   TestSayHello
 print Flag...
 &flag.Flag{Name:"test.bench", Usage:"regular expression per path component to select benchmarks to run", Value:(*flag.stringValue)(0xc420010390), DefValue:""} 
@@ -160,4 +161,4 @@ Success: Tests passed.
 ### 总结
 
 采用一种巧妙的方式,便能清晰的标识出 go test 场景,无入侵,简洁清晰. 其实此方式也是在 Stackoverflow 看到的:
-http://stackoverflow.com/questions/14249217/how-do-i-know-im-running-within-go-test,在此一记,给大家提供一种思路,如何在运行时判断是否是 go test 运行模式.
+http://stackoverflow.com/questions/14249217/how-do-i-know-im-running-within-go-test ,在此一记,给大家提供一种思路,如何在运行时判断是否是 go test 运行模式.

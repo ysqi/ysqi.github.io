@@ -27,7 +27,7 @@ Go 在多个 `crypto/*` 包中实现了一系列散列函数。
 SHA1 值经常以 16 进制输出，例如在 git commit 中。使用`%x` 来将散列结果格式化为 16 进制字符串。
  
 
-```go
+```Go
 package main  
  
 import "crypto/sha1"

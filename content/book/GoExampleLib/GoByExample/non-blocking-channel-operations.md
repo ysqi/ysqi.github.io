@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/d99e0e39ee9c478bc5b919d5dc9e1507.go"
 我们可以在 `default` 前使用多个 `case` 子句来实现一个多路的非阻塞的选择器。这里我们视图在 `messages`和 `signals` 上同时使用非阻塞的接受操作。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {

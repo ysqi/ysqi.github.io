@@ -27,7 +27,7 @@ Go 支持通过 <a href="http://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_(%E8%AE
 为了确认这个状态对于这个特定的函数是唯一的，我们重新创建并测试一下。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

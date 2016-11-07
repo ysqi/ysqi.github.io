@@ -23,7 +23,7 @@ codeurl: "https://wide.b3log.org/playground/90c2c8d716b95b173abb509e8bdacce4.go"
 一切都准备好了，我们现在可以通过将原始的 `fruits` 切片转型成 `ByLength` 来实现我们的自定排序了。然后对这个转型的切片使用 `sort.Sort` 方法。
  
 
-```go
+```Go
 package main  
 import "sort"
 import "fmt"  

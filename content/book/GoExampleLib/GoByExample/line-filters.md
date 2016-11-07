@@ -29,7 +29,7 @@ codeurl: "https://wide.b3log.org/playground/47951d92a664c25d155bd4e392910663.go"
 检查 `Scan` 的错误。文件结束符是可以接受的，并且不会被 `Scan` 当作一个错误。
  
 
-```go
+```Go
  
 package main  
 import (

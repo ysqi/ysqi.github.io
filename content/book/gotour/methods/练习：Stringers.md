@@ -13,7 +13,7 @@ codeurl: "https://wide.b3log.org/playground/118a4ceec966aea3068ca36f2de9eea6.go"
 
 例如，`IPAddr{1,`2,`3,`4}` 应当输出 `"1.2.304"`。
 
-```go
+```Go
 package main
 
 import "fmt"

@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/7224c5b1199cbc1f6999512ef2bd3997.go"
 如果你的 slice 已经有了多个值，想把它们作为变参使用，你要这样调用 `func(slice...)`。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

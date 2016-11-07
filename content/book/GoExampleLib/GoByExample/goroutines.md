@@ -29,7 +29,7 @@ _Go 协程_ 在执行上来说是轻量级的线程。
 现在这两个 Go 协程在独立的 Go 协程中异步的运行，所以我们需要等它们执行结束。这里的 `Scanln` 代码需要我们在程序退出前按下任意键结束。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func f(from string) {

@@ -13,7 +13,7 @@ codeurl: "https://wide.b3log.org/playground/a6b0b9c42075661a4e8713f48585daa2.go"
 
 循环初始化语句和后置语句都是可选的。
 
-```go
+```Go
 package main
 
 import "fmt"

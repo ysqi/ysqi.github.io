@@ -25,7 +25,7 @@ _switch_ ，方便的条件分支语句。
 不带表达式的 `switch` 是实现 if/else 逻辑的另一种方式。这里展示了 `case` 表达式是如何使用非常量的。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"  

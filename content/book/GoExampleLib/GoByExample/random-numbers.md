@@ -31,7 +31,7 @@ Go 的 `math/rand` 包提供了[伪随机数生成器（英）](http://en.wikipe
 如果使用相同的种子生成的随机数生成器，将会产生相同的随机数序列。
  
 
-```go
+```Go
 package main  
 import "time"
 import "fmt"

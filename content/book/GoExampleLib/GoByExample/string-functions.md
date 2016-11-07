@@ -27,7 +27,7 @@ codeurl: "https://wide.b3log.org/playground/2a599f3a5b4dee503470f5fa2bef9e41.go"
 虽然不是 `strings` 的一部分，但是仍然值得一提的是获取字符串长度和通过索引获取一个字符的机制。
  
 
-```go
+```Go
 package main  
 import s "strings"
 import "fmt"  

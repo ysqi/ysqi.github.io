@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/353ab4d4326488bfb63f93873e88b1e0.go"
 不带条件的 `for` 循环将一直执行，直到在循环体内使用了 `break` 或者 `return` 来跳出循环。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

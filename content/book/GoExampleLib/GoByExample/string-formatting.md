@@ -65,7 +65,7 @@ Go 为常规 Go 值的格式化设计提供了多种打印方式。例如，这�
 你可以使用 `Fprintf` 来格式化并输出到 `io.Writers`而不是 `os.Stdout`。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "os"  

@@ -22,7 +22,7 @@ codeurl: "https://wide.b3log.org/playground/1e67961e1ec6d1f423575d59d40b7677.go"
 已经帮你构造了 `rot13Reader` 类型。
 通过实现 `Read` 方法使其匹配 `io.Reader`。
 
-```go
+```Go
 package main
 
 import (

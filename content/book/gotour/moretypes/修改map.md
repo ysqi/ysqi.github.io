@@ -29,7 +29,7 @@ codeurl: "https://wide.b3log.org/playground/e1aab18c5beb57151f6c61da1d099a59.go"
 
 同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的[零值]({{< ref "零值.md">}})。
 
-```go
+```Go
 package main
 
 import "fmt"

@@ -88,7 +88,7 @@ p: pointer to int
 a: array[3] of int
 ```
 这样定义非常清晰，你只需想平时也要从左到右阅读理解，Go 语言采取这种方式，但为了简洁，丢弃":"符号和一些关键字。
-```go
+```Go
 x int
 p *int
 a [3]int
@@ -104,41 +104,41 @@ func main(argc int, argv []string) int
 函数 main 包含一个 int 和 一个 string 切片入参，同时返回一个 int 数值。
 
 去掉参数名，一点儿也不混乱
-```go
+```Go
 func main(int, []string) int
 ```
 从左到右的一个优点是能在很复杂申明下情况下也能看懂含义，如下面示例就声明了一个函数变量，同 C 语言中的函数指针。
-```go
+```Go
 f func(func(int,int) int, int) int
 ```
 又比如返回值是一个函数
-```go
+```Go
 f func(func(int,int) int, int) func(int, int) int
 ```
 从左到右阅读很清晰，一眼就知道定义的变量名`f`。数据类型和表达式语法间的区别，可以容易的在 Go 中编写和调用。
-```go
+```Go
 sum := func(a, b int) int { return a+b } (3, 4)
 ```
 
 ### 指针
 
 在 Go 中指针是上面所说的语法的一个例外。注意数组和切片，在类型声明中将`[]`放在类型的左边，但在表达式中是放在类型的右边：
-```go
+```Go
 var a []int
 x = a[1]
 ```
 简单的，Go 指针是参考使用 C 语言中的`*`，但是我们不能再通过`*`来反转指针，可以这样使用：
-```go
+```Go
 var p *int
 x = *p
 ```
 但不能这样写：
-```go
+```Go
 var p *int
 x = p*
 ```
 因为会和乘号搞混淆。我们可以使用 Pascal ^ ，比如：
-```go
+```Go
 var p ^int
 x = p^
 ```
@@ -147,7 +147,7 @@ x = p^
 []int("hi")
 ```
 作为转换，需要使用括号来包含"*"，
-```go
+```Go
 (*int)(nil)
 ```
 即使我们放弃使用`*`来当作指针语法，这里的括号也是必须的。

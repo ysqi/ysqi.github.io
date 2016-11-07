@@ -26,7 +26,7 @@ codeurl: https://wide.b3log.org/playground/a6087de933207e84f74cd80605bb83a2.go
 **注意**为加快示例显示速度，默认是不加载在线编辑环境。用户可以点击按钮【在线运行】来加载编辑环境。
 
 
-```go
+```Go
 package main
 
 import (

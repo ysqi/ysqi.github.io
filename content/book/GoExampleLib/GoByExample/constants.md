@@ -27,7 +27,7 @@ Go 支持字符、字符串、布尔和数值 _常量_ 。
 当上下文需要时，一个数可以被给定一个类型，比如变量赋值或者函数调用。举个例子，这里的 `math.Sin`函数需要一个 `float64` 的参数。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "math"  

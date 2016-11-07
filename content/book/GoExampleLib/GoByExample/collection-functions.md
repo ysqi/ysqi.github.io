@@ -51,7 +51,7 @@ codeurl: "https://wide.b3log.org/playground/a798234ef6cd171f7bdbf103cdbd1bfb.go"
 
  
 
-```go
+```Go
  
  
 package main  

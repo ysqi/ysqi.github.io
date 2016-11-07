@@ -25,7 +25,7 @@ _通道_ 是连接多个 Go 协程的管道。你可以从一个 Go 协程将值
 使用 `<-channel` 语法从通道中 _接收_ 一个值。这里将接收我们在上面发送的 `"ping"` 消息并打印出来。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

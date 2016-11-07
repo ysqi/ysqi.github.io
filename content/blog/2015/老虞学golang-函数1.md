@@ -13,7 +13,7 @@ books:
 disqus_identifier: 100012
 ---
 不可或缺的函数，在Go中定义函数的方式如下：
-```golang
+```Go
 func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 	return
 }
@@ -36,7 +36,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
  在Go中通过给函数标明所属类型，来给该类型定义方法，上面的 `p myType` 即表示给myType声明了一个方法， `p myType` 不是必须的。如果没有，则纯粹是一个函数，通过包名称访问。packageName.funcationName
 
 如：
-```golang
+```Go
 	//定义新的类型double，主要目的是给float64类型扩充方法
 	type double float64
 
@@ -87,7 +87,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
  前面我们定义函数时返回值有两个r,s 。这是非常有用的，我在写C#代码时，常常为了从已有函数中获得更多的信息，需要修改函数签名，使用out ,ref 等方式去获得更多返回结果。而现在使用Go时则很简单，直接在返回值后面添加返回参数即可。
 
 如,在C#中一个字符串转换为int类型时逻辑代码
-```golang
+```Go
     int v=0;
 	if ( int.TryPase("123456",out v) )
 	{
@@ -95,7 +95,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 	}
 ```
 而在Go中，则可以这样实现,逻辑精简而明确
-```golang
+```Go
 	if v,isOk :=int.TryPase("123456") ; isOk {
 		//code
 	}
@@ -106,7 +106,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 + func Sincos(x float64) (sin, cos float64)
 
 那么如果我只需要某一个返回值，而不关心其他返回值的话，我该如何办呢？ 这时可以简单的使用符号下划线”_“ 来忽略不关心的返回值。如：
-```golang
+```Go
 	_, cos = math.Sincos(3.1415) //只需要cos计算的值
 ```
 #### 命名返回值
@@ -114,7 +114,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
   前面我们说了函数可以有多个返回值，这里我还要说的是，在函数定义时可以给所有的返回值分别命名，这样就能在函数中任意位置给不同返回值复制，而不需要在return语句中才指定返回值。同时也能增强可读性，也提高godoc所生成文档的可读性
 
 如果不支持命名返回值，我可能会是这样做的
-```golang
+```Go
 	func ReadFull(r Reader, buf []byte) (int, error) {
 		var n int
 		var err error
@@ -133,7 +133,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 ```
 但支持给返回值命名后，实际上就是省略了变量的声明，return时无需写成`return n,err`
 而是将直接将值返回
-```golang
+```Go
 	func ReadFull(r Reader, buf []byte) (n int, err error) {
 	    for len(buf) > 0 && err == nil {
 	        var nr int
@@ -149,7 +149,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
    和Go中其他东西一样，函数也是值，这样就可以声明一个函数类型的变量，将函数作为参数传递。
 
 声明函数为值的变量(匿名函数:可赋值个变量，也可直接执行)
-```golang
+```Go
 	//赋值
 	fc := func(msg string) {
 		fmt.Println("you say :", msg)
@@ -162,13 +162,13 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 	}("I love to code")
 ```
 输出结果如下，这里表明fc 的类型为：func(string)
-```golang
+```Go
     func(string)
 	you say : hello,my love
 	say : I love to code
 ```
 将函数作为入参（回调函数），能带来便利。如日志处理，为了统一处理，将信息均通过指定函数去记录日志，且是否记录日志还有开关
-```golang
+```Go
 	func Log(title string, getMsg func() string) {
 		//如果开启日志记录,则记录日志
 		if true {
@@ -187,7 +187,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 	fmt.Println(count)
 ```
 这里输出结果如下，count 也发生了变化
-```golang
+```Go
 	error : 您没有即使提醒我,已触犯法律
 	warring : 您没有即使提醒我,已触犯法律
 	info : 您没有即使提醒我,已触犯法律
@@ -195,7 +195,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 #### 函数也是“类型”
 你有没有注意到上面示例中的 `fc := func(msg string)...` ，既然匿名函数可以赋值给一个变量，同时我们经常这样给int赋值 ` value := 2` ,是否我们可以声明func(string)
 类型	呢，当然是可以的。
-```golang
+```Go
 	//一个记录日志的类型：func(string)
 	type saveLog func(msg string)
 
@@ -226,7 +226,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) {
 defer 又是一个创新，它的作用是：延迟执行，在声明时不会立即执行，而是在函数return后时按照后进先出的原则依次执行每一个defer。这样带来的好处是，能确保我们定义的函数能百分之百能够被执行到，这样就能做很多我们想做的事，如释放资源，清理数据，记录日志等
 
 这里我们重点来说明下defer的执行顺序
-```golang
+```Go
 	func deferFunc() int {
 		index := 0
 
@@ -272,7 +272,7 @@ defer 又是一个创新，它的作用是：延迟执行，在声明时不会�
 + defer 后进先执行
 
 另外，我们常使用defer去关闭IO,在正常打开文件后，就立刻声明一个defer，这样就不会忘记关闭文件，也能保证在出现异常等不可预料的情况下也能关闭文件。而不像其他语言：`try-catch` 或者 `using()` 方式进行处理。
-```golang
+```Go
 	file , err :=os.Open(file)
 	if err != nil {
 		return err

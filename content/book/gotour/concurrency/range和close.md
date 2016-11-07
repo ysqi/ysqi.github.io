@@ -27,7 +27,7 @@ codeurl: "https://wide.b3log.org/playground/cd8448053f2dafbc766386a4c9d011ff.go"
 
 **还要注意：** channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 `range`。
 
-```go
+```Go
 package main
 
 import (

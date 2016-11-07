@@ -35,7 +35,7 @@ codeurl: "https://wide.b3log.org/playground/1d65969ac286da2f59ad9049b235607b.go"
 最后，获取并报告 `ops` 值。
  
 
-```go
+```Go
 package main  
 import (
     "fmt"

@@ -23,7 +23,7 @@ codeurl: "https://wide.b3log.org/playground/09670eddf680fe79a8962a8aab59cbb4.go"
 使用 `os.Environ` 来列出所有环境变量键值队。这个函数会返回一个 `KEY=value` 形式的字符串切片。你可以使用`strings.Split` 来得到键和值。这里我们打印所有的键。
  
 
-```go
+```Go
 package main  
 import "os"
 import "strings"

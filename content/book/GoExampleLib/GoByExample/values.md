@@ -25,7 +25,7 @@ Go 拥有各值类型，包括字符串，整形，浮点型，布尔型等。�
 布尔型，还有你想要的逻辑运算符。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

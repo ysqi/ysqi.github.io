@@ -31,7 +31,7 @@ Go 中最主要的状态管理方式是通过通道间的沟通来完成的，�
 为了在计数器还在被其它 Go 协程更新时，安全的使用它，我们通过 `LoadUint64` 将当前值得拷贝提取到 `opsFinal`中。和上面一样，我们需要给这个函数所取值的内存地址 `&ops`
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"

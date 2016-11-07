@@ -31,7 +31,7 @@ codeurl: "https://wide.b3log.org/playground/1ed63b5355a932644ab1fae9ede67d40.go"
 注意，当我们需要提供一个明确的命令和参数数组来生成命令，和能够只需要提供一行命令行字符串相比，你想使用通过一个字符串生成一个完整的命令，那么你可以使用 `bash`命令的 `-c` 选项：
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "io/ioutil"

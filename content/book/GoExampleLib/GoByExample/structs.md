@@ -35,7 +35,7 @@ Go 的_结构体_ 是各个字段字段的类型的集合。这在组织数据�
 结构体是可变的。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

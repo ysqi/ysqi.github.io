@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/8ecfa0a5429391139e084ec927e57d6b.go"
 然后我们可以像前面一样接收这两个值。
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

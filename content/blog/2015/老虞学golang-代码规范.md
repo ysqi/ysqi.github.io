@@ -21,7 +21,7 @@ disqus_identifier: 100011
 ### 注释
 Go支持C语言风格的“//”块注释，也支持C++风格的行注释，同时可使用/**/进行包的 注释. 我们看string包的源代码，使用//注释了包，方法以及行。我们需要养成好的习惯，尽量去多写些注释，这样不但有利于自己以后的回顾，已给他人阅读你的代码提供了方便，当然Go下的源代码使用Go命令能够生成文档，而文档的描述内容源自注释，在编码阶段就同步书写注释，而不要在整理代码时书写注释(此时的思维没有编码时清晰，补救中总容易丢失些东西)。
 
-```golang
+```Go
 // Copyright 2009 The Go Authors. All rights reserved.
 // Use of this source code is Governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -75,7 +75,7 @@ Go支持C语言风格的“//”块注释，也支持C++风格的行注释，同
 Go和C语言一样使用`;`来结束一个语句，但不一样的是，在Go中由编译器去处理`;`，所以你必须在编写代码是省略`;`。当然也有例外，for循环(使用;将初始部分、条件部分和遍历元素区分)，一行中有多个语句，多赋值语句等。
 
 需要注意，不能将控制语句(for,if else,switch,select)的左括号另起一行。如
-```golang
+```Go
 //错误的方式
 if(1==2)
 {

@@ -33,7 +33,7 @@ URL 提供了一个[统一资源定位方式](http://adam.heroku.com/past/2010/3
 要得到字符串中的 `k=v` 这种格式的查询参数，可以使用 `RawQuery` 函数。你也可以将查询参数解析为一个map。已解析的查询参数 map 以查询字符串为键，对应值字符串切片为值，所以如何只想得到一个键对应的第一个值，将索引位置设置为 `[0]` 就行了。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "net/url"

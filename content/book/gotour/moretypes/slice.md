@@ -20,7 +20,7 @@ codeurl: "https://wide.b3log.org/playground/8dc0bb52d6e710727d4b2dfd5ab24bb0.go"
 
 `[]T` 是一个元素类型为 `T` 的 slice。 
 
-```go
+```Go
 package main
 
 import "fmt"

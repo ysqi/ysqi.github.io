@@ -29,7 +29,7 @@ _Defer_ 被用来确保一个函数调用在程序执行结束前执行。同样
 
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "os"  

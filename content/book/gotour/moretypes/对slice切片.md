@@ -22,22 +22,22 @@ slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
 
 
 1. 重建全部元素的 slice
-```go
+```Go
 s2 := s[:]
 ```
 
 2. 缺省hi时, hi=len(s)
-```go
+```Go
 s2 := s[lo:]
 ```
 
 3. 缺省lo时,lo=0
-```go	
+```Go	
 s2 := s[:hi]
 ```
  
 
-```go
+```Go
 
 package main
 

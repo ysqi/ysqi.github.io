@@ -31,7 +31,7 @@ codeurl: "https://wide.b3log.org/playground/8d618fdfd830ff10406eff81d2b4d8a5.go"
 在输入错误时，解析函数会返回一个错误。
  
 
-```go
+```Go
 package main  
  
 import "strconv"

@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/48c8fdbc1f1f242831665516e534ff80.go"
 如果你需要的仅仅是单纯的等待，你需要使用 `time.Sleep`。定时器是有用原因之一就是你可以在定时器失效之前，取消这个定时器。这是一个例子
  
 
-```go
+```Go
 package main  
 import "time"
 import "fmt"  

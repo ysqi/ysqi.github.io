@@ -20,7 +20,7 @@ Go中使用全新的关键字var来声明变量。var我们并不陌生，在Jav
 
 
 **声明变量有多种形态:**
-```golang
+```Go
 var a int //声明一个int类型的变量
 
 var b struct { //声明一个结构体
@@ -44,7 +44,7 @@ var { //批量声明变量，简洁
 
 在方法中声明一个临时变量并赋初值
 
-```golang
+```Go
 var tmpStr = “”
 var tmpStr string = “”
 tmpStr :=””
@@ -52,7 +52,7 @@ tmpStr :=””
 
 全局中已声明变量直接赋值
 
-```golang
+```Go
 tmpStr = “<body>”
 ```
 
@@ -65,7 +65,7 @@ tmpStr = “<body>”
 `name := value`
 
 这里省略了关键字var，我很喜欢这种方式（可以少写代码，而没有任何坏处）。 但这有需要注意的是“ :=” 是在声明和初始化变量，因此该变量必须是第一次出现，如下初始化是错误的。但是要注意赋值时要确定你想要的类型，在Go中不支持隐式转换的。如果是定义个float64类型的变量，请写为 `v1 :=8.0` 而不是`v1 :=8` 。
-```golang
+```Go
 var a int
 
 a := 8
@@ -79,7 +79,7 @@ a := 8
 初始化语句，在编译器上是如何进行自动类型推导的。一些字面常量是如何归类的？
 
 如 8 → int , 8.0 → float64
-```golang
+```Go
 package main
 
 import (
@@ -112,7 +112,7 @@ func main() {
 
 官方文档： http://golang.org/ref/spec#Constant_expressions
 
-```golang
+```Go
 const a = 2 + 3.0          // a == 5.0   (untyped floating-point constant)
 const b = 15 / 4           // b == 3     (untyped integer constant)
 const c = 15 / 4.0         // c == 3.75  (untyped floating-point constant)
@@ -150,7 +150,7 @@ int8(^1)   // same as int8(-2)
 ```
 
 ------------------------2013-04-14补充----------------------------------------
-```golang
+```Go
 func  main(){
         v1 :=8
         v1 =8.0       // 编译可通过，运行无错误

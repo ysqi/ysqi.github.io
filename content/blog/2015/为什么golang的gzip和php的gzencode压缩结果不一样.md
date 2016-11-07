@@ -17,7 +17,7 @@ disqus_identifier: 100001
 
 **首先看源代码**
 
-```go
+```Go
 package main
 
 import (
@@ -67,7 +67,7 @@ func main() {
 
 不同语言，默认的压缩级别不一样，也会导致压缩结果不一样，Go中默认级别是-1(DefaultCompression)。
 
-```go
+```Go
 func NewWriter(w io.Writer) *Writer {
     z, _ := NewWriterLevel(w, DefaultCompression)
     return z

@@ -29,7 +29,7 @@ Go 支持通过基于描述模板的时间格式化和解析。
 `Parse` 函数在输入的时间格式不正确是会返回一个错误。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"  

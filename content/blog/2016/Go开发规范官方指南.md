@@ -27,7 +27,7 @@ $ go get golang.org/x/tools/cmd/goimports
 ### 注释
 
 注释应该是一个完整的句子，这有利于在 `godoc` 文档中能看到有效的完整文字。既然是完整的句子，就应该有始有终，末尾以`.`结束。如：
-```go
+```Go
 // A Request represents a request to run a command.
 type Request struct { ...
 
@@ -37,11 +37,11 @@ func Encode(w io.Writer, req *Request) { ...
 
 ### 定义空Slices
 当定义一个空的 Slices 时，应该写成：
-```go
+```Go
 var t []string
 ```
 而不是：
-```go
+```Go
 t := []string{}
 ```
 这样的好处是避免在正式使用前分配内存。
@@ -65,7 +65,7 @@ error 错误信息作为和上下文相关的信息不需要大写(除非是特�
 ### 导入包
 
 对导入包进行特定分组，按标准包, 项目包，第三方包 依次分组，组与组间用空行隔开，其中标准包放在最前面。
-```go
+```Go
 package main
 
 import (
@@ -84,7 +84,7 @@ import (
 
 ### 精简错误处理
 尽量让代码按常规逻辑处理，先处理错误信息，缩短和精简错误处理范围，有利于提高代码可读性。不要写成：
-```go
+```Go
 if err != nil {
     // 错误处理
 } else {
@@ -92,7 +92,7 @@ if err != nil {
 }
 ```
 而应写成：
-```go
+```Go
 if err != nil {
     // 错误处理
     return // 或者继续.
@@ -100,7 +100,7 @@ if err != nil {
 // 常规逻辑
 ```
 如果包含变量赋值，大部分人会写成：
-```go
+```Go
 if x, err := f(); err != nil {
   // 错误处理
   return
@@ -108,7 +108,7 @@ if x, err := f(); err != nil {
   // 使用变量 x
 }
 这时可以将赋值放到前面，精简错误处理：
-```go
+```Go
 x, err := f();
 if  err != nil {
   // 错误处理
@@ -130,21 +130,21 @@ if  err != nil {
 ### 返回参数命名
 
 根据实际情况给返还参数命名，想想看如果在 godoc 中看到：
-```go
+```Go
 func (n *Node) Parent1() (node *Node)
 func (n *Node) Parent2() (node *Node, err error)
 ```
 这个命名就完全没必要，还不如写成：
-```go
+```Go
 func (n *Node) Parent1() *Node
 func (n *Node) Parent2() (*Node, error)
 ```
 实际上一两个参数，通过返回类型就能明白含义的话，就没必要给返回参数命名。但另一方面，如果返回参数包含多个相同类型，或者没法推断含义的话，则需要给返回参数命名，如：
-```go
+```Go
 func (f *Foo) Location() (float64, float64, error)
 ```
 此时，更好的写法是：
-```go
+```Go
 // Location returns f's latitude and longitude.
 // Negative values mean south and west, respectively.
 func (f *Foo) Location() (lat ,long float64, err error)
@@ -153,7 +153,7 @@ func (f *Foo) Location() (lat ,long float64, err error)
 
 ### 包注释
 包注释是完整的现实在 godoc 中，用于描述此包的用途，可包含包使用指南。注释内容和包之间不能有空行，单号注释使用`//`，多行注释使用`/*  */`包裹。
-```go
+```Go
 // Package math provides basic constants and mathematical functions.
 package math
 
@@ -191,7 +191,7 @@ package regexp
 
 ### 对象方法
 在定义对象方法时，对象名应该对象类型简称，一两个单词表示即可。如：
-```go
+```Go
 func (cl *Client) Say(){...}
 ```
 不要使用面向对象语言中常来指向自己的特定词，`this`，`me`，`self`等。这个命名不是描述方法的一部分，它的作用非常明显，该类型下所有方法定义时都应该使用一致的简称。不要在一个方法中定义为`cl`，而在其他方法中定义为`c`。在 Go 中应该保持代码的一致和精简。

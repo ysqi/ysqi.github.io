@@ -30,7 +30,7 @@ code_run_disable: true
 数组的存储类型是单一的，但是你可以组合这些数据来构造多维的数据结构。
 
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {  

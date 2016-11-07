@@ -25,7 +25,7 @@ codeurl: "https://wide.b3log.org/playground/d194e03b7a8134efff491f21741e01b9.go"
 你也可以将协调世界时起的整数秒或者纳秒转化到相应的时间。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "time"  

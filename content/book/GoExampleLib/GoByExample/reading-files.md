@@ -39,7 +39,7 @@ codeurl: "https://wide.b3log.org/playground/cd1964268d42a730e57c69f2e435a185.go"
 
  
 
-```go
+```Go
 package main  
 import (
     "bufio"

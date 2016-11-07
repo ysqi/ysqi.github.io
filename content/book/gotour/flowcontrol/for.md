@@ -26,7 +26,7 @@ Go 只有一种循环结构—— `for` 循环。
 **注意**：不像 C，Java，或者 Javascript 等其他语言，`for` 语句的三个组成部分
 并不需要用括号括起来，但循环体必须用 `{`}` 括起来。
 
-```go
+```Go
 package main
 
 import "fmt"

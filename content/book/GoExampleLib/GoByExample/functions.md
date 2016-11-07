@@ -25,7 +25,7 @@ Go 需要明确的返回值，例如，它不会自动返回最后一个表达�
 正如你期望的那样，通过 `name(args)` 来调用一个函数，
  
 
-```go
+```Go
 package main  
 import "fmt"  
  

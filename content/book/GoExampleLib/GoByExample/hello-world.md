@@ -17,7 +17,7 @@ codeurl: "https://wide.b3log.org/playground/e6516cffb48dcab0447365aa5228b76f.go"
 
  
 
-```go
+```Go
 package main  
 import "fmt"  
  func main() {

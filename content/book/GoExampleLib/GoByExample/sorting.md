@@ -25,7 +25,7 @@ Go 的 `sort` 包实现了内置和用户自定义数据类型的排序功能。
 我们也可以使用 `sort` 来检查一个序列是不是已经是排好序的。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "sort"  

@@ -23,7 +23,7 @@ codeurl: "https://wide.b3log.org/playground/256e34198d173429b7a15e01b396ebf8.go"
 打点器可以和定时器一样被停止。一旦一个打点停止了，将不能再从它的通道中接收到值。我们将在运行后 1600ms停止这个打点器。
  
 
-```go
+```Go
 package main  
 import "time"
 import "fmt"  

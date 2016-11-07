@@ -27,7 +27,7 @@ Go 通过向一个通道发送 `os.Signal` 值来进行信号通知。我们将�
 程序将在这里进行等待，直到它得到了期望的信号（也就是上面的 Go 协程发送的 `done` 值）然后退出。
  
 
-```go
+```Go
 package main  
 import "fmt"
 import "os"
