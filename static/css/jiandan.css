@@ -73,12 +73,13 @@ h4 a {
 }
 
 h3 {
-    font-size: 1.4em;
-    border-bottom: 4px solid #ee9d05;
-    padding: 0 1.5em .2em 0;
-    margin-bottom: .5em;
+    font-size: 1.4em; 
+    padding: 0 1.5em .2em 0; 
     display: inline;
-    line-height: 2.5em
+    line-height: 2.5em;
+    border-left: solid 10px #9fb84c;
+    border-bottom: solid 1px #9fb84c;
+    border-top: solid 1px #9fb84c; 
 }
 
 h4 a {
@@ -1860,4 +1861,24 @@ table tr td :last-child {
     background: url(http://static.yushuangqi.com/assets/bullet_icon.gif) no-repeat 0 7px;
     background-position: center;
     padding: 0 8px 0 8px;
+}
+
+pre {
+    font-family: 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.015em;
+    line-height: 120%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 2px; 
+}
+
+#comments  h5{ 
+        font-size: 1.4em; 
+    padding: 0 1.5em .2em 0; 
+    display: inline;
+    line-height: 2.5em;
+    border-left: solid 10px #9fb84c;
+    border-bottom: solid 1px #9fb84c;
+    border-top: solid 1px #9fb84c; 
 }
