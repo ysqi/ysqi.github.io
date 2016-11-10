@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         },
         exec: {
             buildContent: {
-                cmd: "hugo",
+                cmd: "hugo -v",
             }
         },
         htmlmin: {                                          // Task
