@@ -4,31 +4,30 @@ case i := &lt;-c:
 default:
     // 从 c 读取会阻塞
 }
-</code></pre><pre><code class="language-go">package main
+</code></pre><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;time&quot;</span>
 )
 
-func main() {
-	tick := time.Tick(100 * time.Millisecond)
-	boom := time.After(500 * time.Millisecond)
-	for {
-		select {
-		case &lt;-tick:
-			fmt.Println(&quot;tick.&quot;)
-		case &lt;-boom:
-			fmt.Println(&quot;BOOM!&quot;)
-			return
-		default:
-			fmt.Println(&quot;    .&quot;)
-			time.Sleep(50 * time.Millisecond)
+<span style="color:#007020;font-weight:700">func</span> main() {
+	tick <span style="color:#666">:=</span> time.Tick(<span style="color:#40a070">100</span> <span style="color:#666">*</span> time.Millisecond)
+	boom <span style="color:#666">:=</span> time.After(<span style="color:#40a070">500</span> <span style="color:#666">*</span> time.Millisecond)
+	<span style="color:#007020;font-weight:700">for</span> {
+		<span style="color:#007020;font-weight:700">select</span> {
+		<span style="color:#007020;font-weight:700">case</span> <span style="color:#666">&lt;-</span>tick:
+			fmt.Println(<span style="color:#4070a0">&quot;tick.&quot;</span>)
+		<span style="color:#007020;font-weight:700">case</span> <span style="color:#666">&lt;-</span>boom:
+			fmt.Println(<span style="color:#4070a0">&quot;BOOM!&quot;</span>)
+			<span style="color:#007020;font-weight:700">return</span>
+		<span style="color:#007020;font-weight:700">default</span>:
+			fmt.Println(<span style="color:#4070a0">&quot;    .&quot;</span>)
+			time.Sleep(<span style="color:#40a070">50</span> <span style="color:#666">*</span> time.Millisecond)
 		}
 	}
 }
-
-</code></pre></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/51513ca095d5584de450dbd1c2442f68.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/concurrency/select.html">Golang入门指南-select</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/concurrency/exercise-equivalent-binary-trees.html">Golang入门指南-练习：等价二叉树</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/51513ca095d5584de450dbd1c2442f68.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/concurrency/select.html">Golang入门指南-select</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/concurrency/exercise-equivalent-binary-trees.html">Golang入门指南-练习：等价二叉树</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book00010506';
     var disqus_title = 'Golang入门指南-默认选择';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/concurrency\/default-selection.html';

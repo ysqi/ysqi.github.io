@@ -20,10 +20,10 @@
       <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
 经过各种尝试,总算能非常靠谱的进行Go Test 识别!
 需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
-APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息 ini APP = JUSTTest port = 6060 dbName = TESTATOP   解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
 代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
  运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
-func init() { runMode := flag.</description>
+func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
     </item>
     
     <item>
@@ -133,7 +133,7 @@ ls -lR|grep &amp;quot;^-&amp;quot;|wc -l  命令ls -lR表示列表输出该目�
       <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</guid>
       <description>NAS作为数据备份中心，但需要经常清理历史备份文件，仅需要保留一部分备份文件即可。由于NAS是改造后的Liunx 操作系统，故有些命令无法直接执行，因此独立写了一个脚本来搜索历史备份文件，并记录待删除文件信息，自动生成脚本删除文件。
 Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
-#!/bin/bash NOW=$(date +&amp;quot;%Y%m%d%M%S&amp;quot;) FILE=&amp;quot;NeedDeleteFile_$NOW.sh&amp;quot; # 遍历文件，写入文件中 function findFile(){ # 记录查找目录 echo &amp;quot;# find from $1 -mtime $2&amp;quot; &amp;gt;&amp;gt; $FILE #遍历目录，将指定日期的 find $1 -mtime $2 -type f \( -iname &amp;quot;*.bak&amp;quot; -o -iname &amp;quot;*.log&amp;quot; -o -iname &amp;quot;*.zip&amp;quot; -o -iname &amp;quot;*.rar&amp;quot; \) -print0 | while IFS= read -r -d $&#39;\0&#39; line; do echo &amp;quot;rm \&amp;quot;$line\&amp;quot;;&amp;quot; &amp;gt;&amp;gt; $FILE done } # 标记sh文件 echo &amp;quot;#!/bin/bash&amp;quot; &amp;gt;&amp;gt; $FILE # 记录创建日期 echo &amp;quot;# $NOW create file.</description>
+#!/bin/bash NOW=$(date +&amp;quot;%Y%m%d%M%S&amp;quot;) FILE=&amp;quot;NeedDeleteFile_$NOW.sh&amp;quot; # 遍历文件，写入文件中 function findFile(){ # 记录查找目录 echo &amp;quot;# find from $1-mtime $2&amp;quot; &amp;gt;&amp;gt; $FILE #遍历目录，将指定日期的 find $1 -mtime $2 -type f \( -iname &amp;quot;*.bak&amp;quot; -o -iname &amp;quot;*.log&amp;quot; -o -iname &amp;quot;*.zip&amp;quot; -o -iname &amp;quot;*.rar&amp;quot; \) -print0 | while IFS= read -r -d $&amp;#39;\0&amp;#39; line; do echo &amp;quot;rm \&amp;quot;$line\&amp;quot;;&amp;quot; &amp;gt;&amp;gt; $FILE done } # 标记sh文件 echo &amp;quot;#!/bin/bash&amp;quot; &amp;gt;&amp;gt; $FILE # 记录创建日期 echo &amp;quot;# $NOWcreate file.</description>
     </item>
     
     <item>

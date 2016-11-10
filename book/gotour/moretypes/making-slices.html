@@ -3,27 +3,26 @@
 
 b = b[:cap(b)] // len(b)=5, cap(b)=5
 b = b[1:]      // len(b)=4, cap(b)=4
-</code></pre><pre><code class="language-go">package main
+</code></pre><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import &quot;fmt&quot;
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;fmt&quot;</span>
 
-func main() {
-	a := make([]int, 5)
-	printSlice(&quot;a&quot;, a)
-	b := make([]int, 0, 5)
-	printSlice(&quot;b&quot;, b)
-	c := b[:2]
-	printSlice(&quot;c&quot;, c)
-	d := c[2:5]
-	printSlice(&quot;d&quot;, d)
+<span style="color:#007020;font-weight:700">func</span> main() {
+	a <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">int</span>, <span style="color:#40a070">5</span>)
+	printSlice(<span style="color:#4070a0">&quot;a&quot;</span>, a)
+	b <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">int</span>, <span style="color:#40a070">0</span>, <span style="color:#40a070">5</span>)
+	printSlice(<span style="color:#4070a0">&quot;b&quot;</span>, b)
+	c <span style="color:#666">:=</span> b[:<span style="color:#40a070">2</span>]
+	printSlice(<span style="color:#4070a0">&quot;c&quot;</span>, c)
+	d <span style="color:#666">:=</span> c[<span style="color:#40a070">2</span>:<span style="color:#40a070">5</span>]
+	printSlice(<span style="color:#4070a0">&quot;d&quot;</span>, d)
 }
 
-func printSlice(s string, x []int) {
-	fmt.Printf(&quot;%s len=%d cap=%d %v\n&quot;,
-		s, len(x), cap(x), x)
+<span style="color:#007020;font-weight:700">func</span> printSlice(s <span style="color:#902000">string</span>, x []<span style="color:#902000">int</span>) {
+	fmt.Printf(<span style="color:#4070a0">&quot;%s len=%d cap=%d %v\n&quot;</span>,
+		s, <span style="color:#007020">len</span>(x), <span style="color:#007020">cap</span>(x), x)
 }
-
-</code></pre></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/79560c54adb9e7c8883f12e2b02b0b42.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/moretypes/slices-to-slices.html">Golang入门指南-对slice切片</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/moretypes/nilslice.html">Golang入门指南-nilslice</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/79560c54adb9e7c8883f12e2b02b0b42.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/moretypes/slices-to-slices.html">Golang入门指南-对slice切片</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/moretypes/nilslice.html">Golang入门指南-nilslice</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book000103010';
     var disqus_title = 'Golang入门指南-构造slice';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/moretypes\/making-slices.html';

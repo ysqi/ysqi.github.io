@@ -19,10 +19,10 @@
       <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
 经过各种尝试,总算能非常靠谱的进行Go Test 识别!
 需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
-APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息 ini APP = JUSTTest port = 6060 dbName = TESTATOP   解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
 代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
  运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
-func init() { runMode := flag.</description>
+func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
     </item>
     
     <item>
@@ -174,9 +174,9 @@ package main import ( &amp;quot;bytes&amp;quot; &amp;quot;compress/gzip&amp;quot
       <description>Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活
 if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执行语句块，否则则执行else语句块(如果存在else时)，此逻辑和其他语言中的if一样，但是在Go中还是有一些不同之处。
  if条件表达式不能使用花括号()包含 if语句代码段必须使用{}，并且左括号必须和if在同一行 if条件表达式的前面可以包含初始化语句，支持平行赋值，但不支持多个赋值语句  赋值+条件判断
-if a, b := 21, 3; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }  在if条件表达式前面声明的的变量只能在if-else语句块中使用。
-if a, b := 21, 31; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }else { fmt.Println(a,b) //Ok } fmt.Println(a,b) //error: undefined a ,undefined b  还需要注意的是如果在if-else 中包含return 时，编译器无法解析出else中的retrun,导致方法缺少return ,目前1.1版本已支持该方式。
-func getName(id int) string { if id == 1 { return &amp;quot;YourName&amp;quot; }else { return &amp;quot;MyName&amp;quot; } //panic(&amp;quot;&amp;quot;) }  此代码编译不通过，错误信息：function ends without a return statement，这是在设计Go时故意这样的,也可以说是一个Bug（可参见:https://code.</description>
+	if a, b := 21, 3; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }  在if条件表达式前面声明的的变量只能在if-else语句块中使用。
+ if a, b := 21, 31; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }else { fmt.Println(a,b) //Ok } fmt.Println(a,b) //error: undefined a ,undefined b  还需要注意的是如果在if-else 中包含return 时，编译器无法解析出else中的retrun,导致方法缺少return ,目前1.1版本已支持该方式。
+	func getName(id int) string { if id == 1 { return &amp;quot;YourName&amp;quot; }else { return &amp;quot;MyName&amp;quot; } //panic(&amp;quot;&amp;quot;) }  此代码编译不通过，错误信息：function ends without a return statement，这是在设计Go时故意这样的,也可以说是一个Bug（可参见:https://code.</description>
     </item>
     
     <item>
@@ -190,7 +190,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
 共性  关键字——func 方法名——funcName 入参——— a,b int,b string 返回值—— r,s int 函数体—— {}  特性 Go中函数的特性是非常酷的，给我们带来不一样的编程体验。
 为特定类型定义函数，即为类型对象定义方法 在Go中通过给函数标明所属类型，来给该类型定义方法，上面的 p myType 即表示给myType声明了一个方法， p myType 不是必须的。如果没有，则纯粹是一个函数，通过包名称访问。packageName.funcationName
 如：
-//定义新的类型double，主要目的是给float64类型扩充方法 type double float64 //判断a是否等于b func (a double) IsEqual(b double) bool { var r = a - b if r == 0.</description>
+	//定义新的类型double，主要目的是给float64类型扩充方法 type double float64 //判断a是否等于b func (a double) IsEqual(b double) bool { var r = a - b if r == 0.</description>
     </item>
     
     <item>
@@ -200,9 +200,9 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
       <author>devysq@gmail.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
       <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
- 初始化 var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
+ 初始化  var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
  查看示例代码
-str :=&amp;quot;laoYu老虞&amp;quot; for i:=0;i&amp;lt;len(str);i++ { fmt.Println(str[i]) } for i,s := range str { fmt.Println(i,&amp;quot;Unicode(&amp;quot;,s,&amp;quot;) string=&amp;quot;,string(s)) } r := []rune(str) fmt.Println(&amp;quot;rune=&amp;quot;,r) for i:=0;i&amp;lt;len(r) ; i++ { fmt.Println(&amp;quot;r[&amp;quot;,i,&amp;quot;]=&amp;quot;,r[i],&amp;quot;string=&amp;quot;,string(r[i])) } Outut： 108 97 111 89 117 232 128 129 232 153 158 0 Unicode( 108 ) string= l 1 Unicode( 97 ) string= a 2 Unicode( 111 ) string= o 3 Unicode( 89 ) string= Y 4 Unicode( 117 ) string= u 5 Unicode( 32769 ) string= 老 8 Unicode( 34398 ) string= 虞 rune= [108 97 111 89 117 32769 34398] r[ 0 ]= 108 string= l r[ 1 ]= 97 string= a r[ 2 ]= 111 string= o r[ 3 ]= 89 string= Y r[ 4 ]= 117 string= u r[ 5 ]= 32769 string= 老 r[ 6 ]= 34398 string= 虞  对字符串的操作非常重要，来了解下strings包中提供了哪些函数 获取总字节数 func Len(v type) int</description>
+ str :=&amp;quot;laoYu老虞&amp;quot; for i:=0;i&amp;lt;len(str);i++ { fmt.Println(str[i]) } for i,s := range str { fmt.Println(i,&amp;quot;Unicode(&amp;quot;,s,&amp;quot;) string=&amp;quot;,string(s)) } r := []rune(str) fmt.Println(&amp;quot;rune=&amp;quot;,r) for i:=0;i&amp;lt;len(r) ; i++ { fmt.Println(&amp;quot;r[&amp;quot;,i,&amp;quot;]=&amp;quot;,r[i],&amp;quot;string=&amp;quot;,string(r[i])) } Outut： 108 97 111 89 117 232 128 129 232 153 158 0 Unicode( 108 ) string= l 1 Unicode( 97 ) string= a 2 Unicode( 111 ) string= o 3 Unicode( 89 ) string= Y 4 Unicode( 117 ) string= u 5 Unicode( 32769 ) string= 老 8 Unicode( 34398 ) string= 虞 rune= [108 97 111 89 117 32769 34398] r[ 0 ]= 108 string= l r[ 1 ]= 97 string= a r[ 2 ]= 111 string= o r[ 3 ]= 89 string= Y r[ 4 ]= 117 string= u r[ 5 ]= 32769 string= 老 r[ 6 ]= 34398 string= 虞  对字符串的操作非常重要，来了解下strings包中提供了哪些函数 获取总字节数 func Len(v type) int</description>
     </item>
     
     <item>

@@ -10,27 +10,26 @@ rune // int32 的别名 ,代表一个Unicode码
 
 float32 float64
 complex64 complex128
-</code></pre><p>这个例子演示了具有不同类型的变量。 同时与导入语句一样，变量的定义“打包”在一个语法块中。</p><p><code>int</code>，<code>uint</code> 和 <code>uintptr</code> 类型在32位的系统上一般是32位，而在64位系统上是64位。当你需要使用一个整数类型时，你应该首选 <code>int</code>，仅当有特别的理由才使用定长整数类型或者无符号整数类型。</p><pre><code class="language-go">package main
+</code></pre><p>这个例子演示了具有不同类型的变量。 同时与导入语句一样，变量的定义“打包”在一个语法块中。</p><p><code>int</code>，<code>uint</code> 和 <code>uintptr</code> 类型在32位的系统上一般是32位，而在64位系统上是64位。当你需要使用一个整数类型时，你应该首选 <code>int</code>，仅当有特别的理由才使用定长整数类型或者无符号整数类型。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import (
-	&quot;fmt&quot;
-	&quot;math/cmplx&quot;
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;math/cmplx&quot;</span>
 )
 
-var (
-	ToBe   bool       = false
-	MaxInt uint64     = 1&lt;&lt;64 - 1
-	z      complex128 = cmplx.Sqrt(-5 + 12i)
+<span style="color:#007020;font-weight:700">var</span> (
+	ToBe   <span style="color:#902000">bool</span>       = <span style="color:#007020;font-weight:700">false</span>
+	MaxInt <span style="color:#902000">uint64</span>     = <span style="color:#40a070">1</span><span style="color:#666">&lt;&lt;</span><span style="color:#40a070">64</span> <span style="color:#666">-</span> <span style="color:#40a070">1</span>
+	z      <span style="color:#902000">complex128</span> = cmplx.Sqrt(<span style="color:#666">-</span><span style="color:#40a070">5</span> <span style="color:#666">+</span> <span style="color:#40a070">12i</span>)
 )
 
-func main() {
-	const f = &quot;%T(%v)\n&quot;
+<span style="color:#007020;font-weight:700">func</span> main() {
+	<span style="color:#007020;font-weight:700">const</span> f = <span style="color:#4070a0">&quot;%T(%v)\n&quot;</span>
 	fmt.Printf(f, ToBe, ToBe)
 	fmt.Printf(f, MaxInt, MaxInt)
 	fmt.Printf(f, z, z)
 }
-
-</code></pre></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/278c652869b8046f83ce3f4794391faa.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/basics/init-var.html">Golang入门指南-初始化变量</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/basics/zero.html">Golang入门指南-零值</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/278c652869b8046f83ce3f4794391faa.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/basics/init-var.html">Golang入门指南-初始化变量</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/basics/zero.html">Golang入门指南-零值</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book000101011';
     var disqus_title = 'Golang入门指南-基本类型';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/basics\/basic-type.html';

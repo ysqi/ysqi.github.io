@@ -3,31 +3,30 @@
 type Handler interface {
     ServeHTTP(w ResponseWriter, r *Request)
 }
-</code></pre><p>在这个例子中，类型 <code>Hello</code> 实现了 <code>http.Handler</code>。</p><p>访问 <a href="http://localhost:4000/">http://localhost:4000/</a> 会看到来自程序的问候。</p><p><strong>注意：</strong> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 web 服务器，可能需要<a href="https://go-zh.org/doc/install/">安装 Go</a>。</p><pre><code class="language-go">package main
+</code></pre><p>在这个例子中，类型 <code>Hello</code> 实现了 <code>http.Handler</code>。</p><p>访问 <a href="http://localhost:4000/">http://localhost:4000/</a> 会看到来自程序的问候。</p><p><strong>注意：</strong> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 web 服务器，可能需要<a href="https://go-zh.org/doc/install/">安装 Go</a>。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import (
-	&quot;fmt&quot;
-	&quot;log&quot;
-	&quot;net/http&quot;
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;log&quot;</span>
+	<span style="color:#4070a0">&quot;net/http&quot;</span>
 )
 
-type Hello struct{}
+<span style="color:#007020;font-weight:700">type</span> Hello <span style="color:#007020;font-weight:700">struct</span>{}
 
-func (h Hello) ServeHTTP(
+<span style="color:#007020;font-weight:700">func</span> (h Hello) ServeHTTP(
 	w http.ResponseWriter,
-	r *http.Request) {
-	fmt.Fprint(w, &quot;Hello!&quot;)
+	r <span style="color:#666">*</span>http.Request) {
+	fmt.Fprint(w, <span style="color:#4070a0">&quot;Hello!&quot;</span>)
 }
 
-func main() {
-	var h Hello
-	err := http.ListenAndServe(&quot;localhost:4040&quot;, h)
-	if err != nil {
+<span style="color:#007020;font-weight:700">func</span> main() {
+	<span style="color:#007020;font-weight:700">var</span> h Hello
+	err <span style="color:#666">:=</span> http.ListenAndServe(<span style="color:#4070a0">&quot;localhost:4040&quot;</span>, h)
+	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
 		log.Fatal(err)
 	}
 }
-
-</code></pre></section><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/methods/exercise-rot-reader.html">Golang入门指南-练习：rot13Reader</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0%EF%BC%9AHTTP%E5%A4%84%E7%90%86.html">Golang入门指南-练习：HTTP处理</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></section><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/methods/exercise-rot-reader.html">Golang入门指南-练习：rot13Reader</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0%EF%BC%9AHTTP%E5%A4%84%E7%90%86.html">Golang入门指南-练习：HTTP处理</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book000104013';
     var disqus_title = 'Golang入门指南-Web服务器';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/methods\/http-web-server.html';

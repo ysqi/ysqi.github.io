@@ -2,29 +2,28 @@
     case 0:
     case f():
 }
-</code></pre><p>当 <code>i==0</code> 时不会调用 <code>f()</code> ）</p><pre><code class="language-go">package main
+</code></pre><p>当 <code>i==0</code> 时不会调用 <code>f()</code> ）</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;time&quot;</span>
 )
 
-func main() {
-	fmt.Println(&quot;When's Saturday?&quot;)
-	today := time.Now().Weekday()
-	switch time.Saturday {
-	case today + 0:
-		fmt.Println(&quot;Today.&quot;)
-	case today + 1:
-		fmt.Println(&quot;Tomorrow.&quot;)
-	case today + 2:
-		fmt.Println(&quot;In two days.&quot;)
-	default:
-		fmt.Println(&quot;Too far away.&quot;)
+<span style="color:#007020;font-weight:700">func</span> main() {
+	fmt.Println(<span style="color:#4070a0">&quot;When&#39;s Saturday?&quot;</span>)
+	today <span style="color:#666">:=</span> time.Now().Weekday()
+	<span style="color:#007020;font-weight:700">switch</span> time.Saturday {
+	<span style="color:#007020;font-weight:700">case</span> today <span style="color:#666">+</span> <span style="color:#40a070">0</span>:
+		fmt.Println(<span style="color:#4070a0">&quot;Today.&quot;</span>)
+	<span style="color:#007020;font-weight:700">case</span> today <span style="color:#666">+</span> <span style="color:#40a070">1</span>:
+		fmt.Println(<span style="color:#4070a0">&quot;Tomorrow.&quot;</span>)
+	<span style="color:#007020;font-weight:700">case</span> today <span style="color:#666">+</span> <span style="color:#40a070">2</span>:
+		fmt.Println(<span style="color:#4070a0">&quot;In two days.&quot;</span>)
+	<span style="color:#007020;font-weight:700">default</span>:
+		fmt.Println(<span style="color:#4070a0">&quot;Too far away.&quot;</span>)
 	}
 }
-
-</code></pre></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/8ea40df1b2c22c5ee8524b8152f4499c.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/flowcontrol/switch.html">Golang入门指南-switch</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/flowcontrol/switch-with-no-condition.html">Golang入门指南-没有条件的switch</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/8ea40df1b2c22c5ee8524b8152f4499c.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/flowcontrol/switch.html">Golang入门指南-switch</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/flowcontrol/switch-with-no-condition.html">Golang入门指南-没有条件的switch</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book000102010';
     var disqus_title = 'Golang入门指南-switch的执行顺序';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/flowcontrol\/switch-evaluation-order.html';

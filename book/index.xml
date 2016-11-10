@@ -130,7 +130,7 @@ package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; im
 Text 返回当前的 token，现在是输入的下一行。
 写出大写的行。
 检查 Scan 的错误。文件结束符是可以接受的，并且不会被 Scan 当作一个错误。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
+ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
     </item>
     
     <item>
@@ -182,7 +182,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quo
 Go 同时支持标准的和 URL 兼容的 base64 格式。编码需要使用 []byte 类型的参数，所以要将字符串转成此类型。
 解码可能会返回错误，如果不确定输入信息格式是否正确，那么，你就需要进行错误检查了。
 使用 URL 兼容的 base64 格式进行编解码。
-package main import b64 &amp;quot;encoding/base64&amp;quot; import &amp;quot;fmt&amp;quot; func main() { data := &amp;quot;abc123!?$*&amp;amp;()&#39;-=@~&amp;quot; sEnc := b64.StdEncoding.EncodeToString([]byte(data)) fmt.Println(sEnc) sDec, _ := b64.StdEncoding.DecodeString(sEnc) fmt.Println(string(sDec)) fmt.Println() uEnc := b64.URLEncoding.EncodeToString([]byte(data)) fmt.Println(uEnc) uDec, _ := b64.URLEncoding.DecodeString(uEnc) fmt.Println(string(uDec)) }  </description>
+package main import b64 &amp;quot;encoding/base64&amp;quot; import &amp;quot;fmt&amp;quot; func main() { data := &amp;quot;abc123!?$*&amp;amp;()&amp;#39;-=@~&amp;quot; sEnc := b64.StdEncoding.EncodeToString([]byte(data)) fmt.Println(sEnc) sDec, _ := b64.StdEncoding.DecodeString(sEnc) fmt.Println(string(sDec)) fmt.Println() uEnc := b64.URLEncoding.EncodeToString([]byte(data)) fmt.Println(uEnc) uDec, _ := b64.URLEncoding.DecodeString(uEnc) fmt.Println(string(uDec)) }  </description>
     </item>
     
     <item>

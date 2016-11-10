@@ -20,10 +20,10 @@
       <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
 经过各种尝试,总算能非常靠谱的进行Go Test 识别!
 需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
-APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息 ini APP = JUSTTest port = 6060 dbName = TESTATOP   解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
 代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
  运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
-func init() { runMode := flag.</description>
+func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
     </item>
     
     <item>
@@ -191,7 +191,7 @@ package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; im
 Text 返回当前的 token，现在是输入的下一行。
 写出大写的行。
 检查 Scan 的错误。文件结束符是可以接受的，并且不会被 Scan 当作一个错误。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
+ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
     </item>
     
     <item>

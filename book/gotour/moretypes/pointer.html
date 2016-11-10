@@ -3,24 +3,23 @@
 p = &amp;i
 </code></pre><p><code>*</code> 符号表示指针指向的底层的值。</p><pre><code>fmt.Println(*p) // 通过指针 p 读取 i
 *p = 21         // 通过指针 p 设置 i
-</code></pre><p>这也就是通常所说的“间接引用”或“非直接引用”。</p><p>与 C 不同，Go 没有指针运算。</p><pre><code class="language-go">package main
+</code></pre><p>这也就是通常所说的“间接引用”或“非直接引用”。</p><p>与 C 不同，Go 没有指针运算。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
 
-import &quot;fmt&quot;
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;fmt&quot;</span>
 
-func main() {
-	i, j := 42, 2701
+<span style="color:#007020;font-weight:700">func</span> main() {
+	i, j <span style="color:#666">:=</span> <span style="color:#40a070">42</span>, <span style="color:#40a070">2701</span>
 
-	p := &amp;i         // point to i
-	fmt.Println(*p) // read i through the pointer
-	*p = 21         // set i through the pointer
-	fmt.Println(i)  // see the new value of i
+	p <span style="color:#666">:=</span> <span style="color:#666">&amp;</span>i         <span style="color:#60a0b0;font-style:italic">// point to i</span>
+	fmt.Println(<span style="color:#666">*</span>p) <span style="color:#60a0b0;font-style:italic">// read i through the pointer</span>
+	<span style="color:#666">*</span>p = <span style="color:#40a070">21</span>         <span style="color:#60a0b0;font-style:italic">// set i through the pointer</span>
+	fmt.Println(i)  <span style="color:#60a0b0;font-style:italic">// see the new value of i</span>
 
-	p = &amp;j         // point to j
-	*p = *p / 37   // divide j through the pointer
-	fmt.Println(j) // see the new value of j
+	p = <span style="color:#666">&amp;</span>j         <span style="color:#60a0b0;font-style:italic">// point to j</span>
+	<span style="color:#666">*</span>p = <span style="color:#666">*</span>p <span style="color:#666">/</span> <span style="color:#40a070">37</span>   <span style="color:#60a0b0;font-style:italic">// divide j through the pointer</span>
+	fmt.Println(j) <span style="color:#60a0b0;font-style:italic">// see the new value of j</span>
 }
-
-</code></pre></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/b6a15deaeb5d92fbbef7198b7c80155f.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/moretypes/home.html">Golang入门指南-复杂类型</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/moretypes/struct.html">Golang入门指南-结构体</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
+</pre></div></div><div class="span6 left" date-code-url="https://wide.b3log.org/playground/b6a15deaeb5d92fbbef7198b7c80155f.go" style="background:#f7f7f7"><div class="pull-right"><button style="width:100px" id="btn_seecode" disabled="disabled">源代码</button> <button style="width:100px" id="btn_runline">在线运行</button></div></div></div></section></div><aside><div style="padding-left:20px"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div></aside><aside role="navigation"><div class="book-footer" role="navigation"><span class="btn pull-left">上节： <a href="https://yushuangqi.com/book/gotour/moretypes/home.html">Golang入门指南-复杂类型</a> </span><span class="btn pull-right">下节： <a href="https://yushuangqi.com/book/gotour/moretypes/struct.html">Golang入门指南-结构体</a></span></div></aside><aside id="comments"><div><h5>评论</h5></div><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'yushuangqi';
     var disqus_identifier = 'book00010301';
     var disqus_title = 'Golang入门指南-指针';
     var disqus_url = 'https:\/\/yushuangqi.com\/book\/gotour\/moretypes\/pointer.html';
