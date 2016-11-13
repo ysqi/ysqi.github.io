@@ -6,7 +6,8 @@ PygmentsCodeFences = true
 pygmentsstyle = "friendly"
 uglyURLs = true
 metaDataFormat = "YAML"
-disqusShortname = "yushuangqi"
+disqusShortname = "yushuangqi" 
+publishdir = "public"
 
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
