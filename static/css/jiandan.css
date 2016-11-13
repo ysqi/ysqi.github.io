@@ -676,7 +676,10 @@ blockquote {
     color: #6fa601;
 }
 
-
+.entry header a,
+.entry header a:link{
+    border-bottom: 0px;
+}
 .entry .feature {
     font-size: 1.2em;
     line-height: 1.25;
@@ -783,15 +786,10 @@ blockquote {
 
 .rel_linksli {
     list-style-type: none;
-    padding: .8em 0;
+    padding: .2em 0;
     margin: 0;
     color: #666;
-    border-top: dotted 1px #7d9958;
-    -moz-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
-    -webkit-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
-    -o-border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
-    border-image: url(http://static.yushuangqi.com/assets/dots.png) 1 0 0 0 repeat;
-    font-size: .8em;
+   font-size: .8em;
     line-height: 1.3em
 }
 
@@ -1494,8 +1492,8 @@ blockquote {
         clear: none
     }
     .bookgroup {
-        /*padding-left: 6em*/
-    }
+        /*padding-left: 6em
+    }*/
 }
 
 @media screen and (min-width:72em) {
@@ -1882,3 +1880,4 @@ pre {
     border-bottom: solid 1px #9fb84c;
     border-top: solid 1px #9fb84c; 
 }
+ 
