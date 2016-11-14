@@ -52,14 +52,8 @@
                       {{ partial "book/updowncharpter.html" . }}
                       </div>
                    </aside>
-                   <!-- 评论 -->
-                   {{if eq false (in .Permalink "http://localhost" )   }}
-                    <!--  非编辑模式启用评论 -->
-                    <aside id=comments>
-                      <div><h5> 评论 </h5></div>
-                       {{ template "_internal/disqus.html" . }}
-                     </aside>
-                     {{end}}
+                   <!-- 评论 --> 
+                   {{ partial "comment.html" .}}
                 </div> 
             </div>
 </div>
