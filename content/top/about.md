@@ -2,7 +2,7 @@
 date = "2015-12-29T20:29:41+08:00" 
 title = "关于虞双齐"
 type = "about"
-description ="软件开发工程师，擅长 Golang,iOS,C# 开发。"
+description ="开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。"
 disqus_identifier = 10000
 +++
  
@@ -12,7 +12,7 @@ disqus_identifier = 10000
 
 以技会友，以玩做学。
             
-以 Coding 为乐，闲时和妻子一起嗨。
+以 Coding 为乐。
 
 
 [weibo]: http://weibo.com/234665601 

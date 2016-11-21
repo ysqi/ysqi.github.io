@@ -1,21 +1,21 @@
 {{ partial "header.html" . }}
 <section role="main" itemscope="" itemtype="http://schema.org/Person">
-	<h1 class="about" itemprop="name">虞双齐</h1>
+	<h1 class="about" itemprop="name">{{.Site.Author.name}}</h1>
 	<p class="feature">
 		{{.Site.Author.description}}
 	</p>
 	<article class="content">
 		<aside class="panel">
-			<a href="{{.Site.Author.aboutme_height}}" class="panelimg" rel="nofollow"><img itemprop="image" src="{{.Site.Author.aboutme_avatar}}" class="aboutimg" alt="me"></a>
+			<a href="{{.Site.Author.aboutme_height}}" class="panelimg" rel="nofollow"><img itemprop="image" src="{{.Site.Author.aboutme_avatar}}" class="aboutimg" alt="{{.Site.Author.name}}"></a>
 			<ul class="panellinks">
 				<li class="panellink">
-					<a target="_blank" href="http://weibo.com/{{.Site.Author.weibo}}" rel="nofollow">微博主页</a>
+					<a target="_blank" href="http://weibo.com/{{.Site.Author.weibo}}" rel="nofollow" title="{{.Site.Author.name}}的微博主页">微博主页</a>
 				</li>
 				<li class="panellink">
-					<a href="mailto:{{.Site.Author.email}}" style="text-decoration:none;" rel="nofollow">写邮件</a> 
+					<a href="mailto:{{.Site.Author.email}}" style="text-decoration:none;" rel="nofollow" title="写邮件给{{.Site.Author.name}}">写邮件</a> 
 				</li>
 				<li class="panellink">
-					<a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin={{.Site.Author.qq}}&site=qq&menu=yes" rel="nofollow">QQ联系</a>
+					<a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin={{.Site.Author.qq}}&site=qq&menu=yes" rel="nofollow" title="QQ联系{{.Site.Author.name}}" >QQ联系</a>
 				</li>
 			</ul>
 		</aside>

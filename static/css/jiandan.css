@@ -1880,4 +1880,12 @@ pre {
     border-bottom: solid 1px #9fb84c;
     border-top: solid 1px #9fb84c; 
 }
- 
+
+a.text-normal{
+    color: #1c1c1c;
+    background: #fff;
+    -webkit-text-size-adjust: 100%; 
+}
+.text-small{
+    font-size: small;
+}

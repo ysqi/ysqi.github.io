@@ -4,11 +4,12 @@
                     <a href="/about/" class="vcard-avatar" rel="nofollow" >
                         <img alt="" class="avatar" height="140" src="{{.Site.Author.aboutme_avatar}}" width="140">
                     </a>
-                    <h1 class="vcard-name"> <span class="vcard-fullname" >虞双齐</span></h1>
+                    <h1 class="vcard-name"> <span class="vcard-fullname" >{{.Site.Author.name}}</span></h1>
                     <div>
-                        <p>敲出人生乐章</p>
+                        <p><a href="{{.Site.BaseURL}}">{{.Site.Author.title}}</a> </p>
                         <div>
-    <a href="http://weibo.com/{{.Site.Author.weibo}}" title="虞双齐的微博" rel="nofollow">Weibo</a><span class="split"></span><a href="https://github.com/{{.Site.Author.github}}" title="虞双齐的Github" rel="nofollow">Github</a>
+    <a class="text-normal text-small" href="http://weibo.com/{{.Site.Author.weibo}}" title="{{.Site.Author.name}}的微博" rel="nofollow">Weibo</a><span class="split"></span>
+	<a class="text-normal text-small" href="https://github.com/{{.Site.Author.github}}" title="{{.Site.Author.name}}的Github" rel="nofollow">Github</a>
                         </div> 
                     </div>
                 </div>
@@ -17,7 +18,7 @@
 	<section class="homesec homesecabout">
 	<h3 id="workDays">days</h3>
 	<p>{{.Site.Author.description}}</p>
-	<p style="text-align:right;"><a href="/about/" class="about" rel="nofollow" >进一步了解虞双齐</a></p>
+	<p style="text-align:right;"><a href="/about/" class="about" rel="nofollow" >进一步了解{{.Site.Author.name}}</a></p>
 	</section>
 	
 	<h2 class="homenav homenavor"><a href="/topics/"><span class="homenav_writings">博文</span></a></h2>

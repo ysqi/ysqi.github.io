@@ -1,6 +1,6 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zh"
-title = "虞双齐Go语言开发" 
+title = "虞双齐Go语言技术独立咨询顾问" 
 pygmentsuseclasses = false
 PygmentsCodeFences = true
 pygmentsstyle = "friendly"
@@ -12,11 +12,12 @@ publishdir = "public"
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
-  description= "程序员虞双齐的个人博客，擅长Go语言服务器端软件开发"
+  description= "Go语言技术独立咨询顾问-虞双齐的个人博客"
 
 [author]
-  description = "开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。"
+  description = "开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。"
   name = "虞双齐"
+  title= "Go语言技术独立咨询顾问"
   # 140*140头像
   aboutme_avatar = "http://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像

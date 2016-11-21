@@ -25,10 +25,9 @@
 <div>
     <section id="author">
         <h4>About author</h4>
-        <p><strong>虞双齐</strong>，开源爱好者，个人承接Golang语言开发。专注Golang、开源协作、微信平台开发和工作经验的分享。
+        <p><strong>{{.Site.Author.name}}</strong>，{{.Site.Author.description}}
         </p>
-        <p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在
-            <a
-                href="https://yushuangqi.com" title="虞双齐Golang开发博客">个人博客</a>上 ，分享经验。</p>
+        <p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@{{.Site.Author.name}}</a>，代码存放在 <a href="http://github.com/{{.Site.Author.github}}" rel="nofollow">Github</a>，博文分享在
+            <a href="{{.Site.BaseURL}}" title="{{.Site.Title}}">个人博客</a>上。</p>
     </section>
 </div>
