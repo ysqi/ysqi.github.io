@@ -6,7 +6,7 @@
                     </a>
                     <h1 class="vcard-name"> <span class="vcard-fullname" >{{.Site.Author.name}}</span></h1>
                     <div>
-                        <p><a href="{{.Site.BaseURL}}">{{.Site.Author.title}}</a> </p>
+                        <p><h2><a href="{{.Site.BaseURL}}">{{.Site.Author.title}}</a> </h2> </p>
                         <div>
     <a class="text-normal text-small" href="http://weibo.com/{{.Site.Author.weibo}}" title="{{.Site.Author.name}}的微博" rel="nofollow">Weibo</a><span class="split"></span>
 	<a class="text-normal text-small" href="https://github.com/{{.Site.Author.github}}" title="{{.Site.Author.name}}的Github" rel="nofollow">Github</a>
@@ -16,7 +16,7 @@
 <div class="homesecs">
 	<h2 class="homenav"><a href="/about/" ><span class="homenav_about">关于我</span></a></h2>
 	<section class="homesec homesecabout">
-	<h3 id="workDays">days</h3>
+	<h3 id="workDays" title="踏入IT行业天数">days</h3>
 	<p>{{.Site.Author.description}}</p>
 	<p style="text-align:right;"><a href="/about/" class="about" rel="nofollow" >进一步了解{{.Site.Author.name}}</a></p>
 	</section>
@@ -38,7 +38,7 @@
 	</ul>
 	<h3>{{len .Site.Taxonomies.topics}}</h3>
 	<p>个文章分类</p>
-	<ul> 
+	<ul class="blogcategroup"> 
 {{ range $key,$value := .Site.Taxonomies.topics.ByCount }} 
  <li><a href="/topics/{{ $value.Name | urlize }}.html" role="button" >{{$value.Name}}</a></li>
 {{ end }} 
@@ -64,8 +64,8 @@
 	</section>
 	{{end}}
 	<h2 class="homenav">热评博文</h2>
-	<section class="homesec homesecwritings">
-		<div class="ds-top-threads listing" data-range="monthly" data-num-items="5"></div>
+	<section class="homesec">
+		<ul class="ds-top-threads listing" data-range="monthly" data-num-items="5"></ul>
 	</section>
 </div>
 {{ partial "footer.html" . }}

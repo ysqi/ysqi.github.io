@@ -56,7 +56,7 @@ h1 {
     margin: 0
 }
 
-h2,
+h2, 
 h2 a {
     font-size: 1.1em;
     line-height: 1.1;
@@ -1888,4 +1888,8 @@ a.text-normal{
 }
 .text-small{
     font-size: small;
+}
+
+ul.blogcategroup li a{
+   font-size: 1.2em;
 }
