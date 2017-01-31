@@ -3,7 +3,7 @@ date: 2013-04-04
 title: 老虞学Golang-数组和切片
 slug: ysqi-golang-array-slice
 topics:
-- 开发
+- 编程语言与开发
 tags:
 - Go
 - 笔记

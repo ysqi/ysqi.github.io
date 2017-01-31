@@ -10,7 +10,7 @@ tags:
 - github
 title: Wecrcker自动部署到Github过程中问题记录
 topics:
-- 开发
+- 编程语言与开发
 ---
 
 TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。

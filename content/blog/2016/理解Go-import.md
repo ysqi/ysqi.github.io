@@ -9,7 +9,7 @@ tags:
 - package
 title: 理解Go import
 topics:
-- 开发
+- 编程语言与开发
 ---
 
 Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。

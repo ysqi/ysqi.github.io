@@ -3,7 +3,7 @@ date: 2013-04-03
 title: 老虞学golang-变量声明与初始化
 slug: ysqi-golang-var-init
 topics:
-- 开发
+- 编程语言与开发
 tags:
 - Go
 - 笔记

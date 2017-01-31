@@ -3,7 +3,7 @@ date: 2013-04-05T23:31:47
 title: 老虞学Golang-常量
 slug: ysqi-golang-const
 topics:
-- 开发
+- 编程语言与开发
 tags:
 - Go
 - 笔记

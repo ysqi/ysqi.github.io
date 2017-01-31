@@ -8,7 +8,7 @@ tags:
 - Go Test
 title: 如何判断是否是在GolangTest运行代码
 topics:
-- 开发
+- 编程语言与开发
 ---
 
 在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?

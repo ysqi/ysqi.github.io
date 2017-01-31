@@ -3,7 +3,7 @@ date: 2015-09-18T08:22:13
 title: BeegoOrmInsert记录时报错
 slug: beego-orm-insert-error
 topics:
-- 开发
+- 编程语言与开发
 tags: 
   - Go
   - sql

@@ -9,7 +9,7 @@ tags:
 - Sublime
 title: GoImports安装使用
 topics:
-- 开发
+- 编程语言与开发
 ---
 
 Go开发过程中时候总需要手工引入包和删除没有使用的包，此时有人意识到可以改善下，想Java、C#、Python等等，总能自动的帮你处理下包。现在Go官方提供了 GoImports 工具，而在 Sublime Text 下也提供了相关的插件来支持自动检测。

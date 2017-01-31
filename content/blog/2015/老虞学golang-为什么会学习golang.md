@@ -3,7 +3,7 @@ date: 2013-04-01
 title: 老虞学GoLang-为什么会学习goLang
 slug: ysqi-why_studay_golang
 topics:
-- 开发
+- 编程语言与开发
 tags:
 - Go
 - 笔记

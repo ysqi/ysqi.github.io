@@ -3,7 +3,7 @@ date: 2015-09-18T12:55:08
 title: Golang新手开发需要注意的七个细节
 slug: 7_things-you-may-not-pay-attation-to-in-go
 topics:
-    - 开发
+    - 编程语言与开发
 tags:
     - 技巧
     - 优化

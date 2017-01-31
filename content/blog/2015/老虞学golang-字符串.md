@@ -3,7 +3,7 @@ date: 2013-04-06
 title: 老虞学golang-字符串
 slug: ysqi-golang-string
 topics:
-- 开发
+- 编程语言与开发
 tags:
 - Go
 - 笔记

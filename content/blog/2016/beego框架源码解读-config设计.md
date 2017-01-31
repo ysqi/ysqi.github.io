@@ -8,7 +8,7 @@ tags:
 - beego
 title: beego框架源码解读 config 模块设计
 topics:
-- 开发
+- 编程语言与开发
 ---
 
 这是关于 beego 的第一篇正式的源代码解读文章，前面文章 [beego框架源码解读计划] 中已介绍解读计划。而本文主要针对 beego 框架 config 模块展开讨论。通过本文你可掌握 beego config 使用。
