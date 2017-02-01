@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/http.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/http.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>用Go语言写HTTP中间件</title>
+      <link>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</guid>
+      <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极了。
+其一，一个好的中间件拥有单一的功能，可插拔并且是自我约束的。这就意味着你可以在接口的层次上把它放到应用中，并能很好的工作。中间件并不影响你的代码风格，它也不是一个框架，仅仅是你处理请求流程中额外一层罢了。根本不需要重写代码：如果你想用一个中间件，就把它加上应用中；如果你改变主意了，去掉就好了。就这么简单。
+来看看Go，HTTP中间件非常流行，标准库中也是这样。或许咋看上去并不明显，net/http包中的函数，如StripPrefix 和TimeoutHandler 正是我们上面定义的中间件：封装处理过程并在处理输入或输出时增加额外的动作。
+我最近的Go包 nosurf 也是一个中间件。我从一开始就有意的这样设计。大多数情况下，你根本不必在应用层关心CSRF检查。nosurf，和其他中间件一样，非常独立，可以和实现标准库net/http接口的工具配合使用。
+你也可以使用中间件做这些：
+* 通过隐藏长度缓解BREACH攻击
+* 频率限制
+* 屏蔽恶意自动程序
+* 提供调试信息
+* 添加HSTS, X-Frame-Options头
+* 从异常中优雅恢复
+* 以及其他等等。
+写一个简单的中间件 第一个例子中，我写了一个中间件，只允许用户从特定的域（在HTTP的Host头中有域信息）来访问服务器。这样的中间件可以保护应用程序不受“主机欺骗攻击”
+定义类型 为了方便，让我们为这个中间件定义一种类型，叫做SingleHost。
+type SingleHost struct { handler http.Handler allowedHost string }  只包含两个字段：
+* 封装的Handler。如果是有效的Host访问，我们就调用这个Handler。
+* 允许的主机值。
+由于我们把字段名小写了，使得该字段只对我们自己的包可见。我们还应该写一个初始化函数。
+func NewSingleHost(handler http.Handler, allowedHost string) *SingleHost { return &amp;amp;SingleHost{handler: handler, allowedHost: allowedHost} }  处理请求 现在才是实际的逻辑。为了实现http.Handler，我们的类型秩序实现一个方法：
+type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们实现的方法：</description>
+    </item>
+    
+    <item>
+      <title>Go标准库剖析1(transporthttp请求的承载者)</title>
+      <link>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</guid>
+      <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法
+type RoundTripper interface { RoundTrip(*Request) (*Response, error) }  RoundTrip executes a single HTTP transaction, returning the Response for the request req. (RoundTrip 代表一个http事务，给一个请求返回一个响应)
+说白了，就是你给它一个request,它给你一个response
+下面我们来看一下他的实现，对应源文件net/http/transport.go，我感觉这里是http package里面的精髓所在，go里面一个struct就跟一个类一样，transport这个类长这样的
+type Transport struct { idleMu sync.Mutex wantIdle bool // user has requested to close all idle conns idleConn map[connectMethodKey][]*persistConn idleConnCh map[connectMethodKey]chan *persistConn reqMu sync.Mutex reqCanceler map[*Request]func() altMu sync.RWMutex altProto map[string]RoundTripper // nil or map of URI scheme =&amp;gt; RoundTripper //Dial获取一个tcp 连接，也就是net.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习笔记-标准库&amp;amp;quot;net_http&amp;amp;quot;的简析及自制简单路由框架</title>
+      <link>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:09 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</guid>
+      <description>原文链接：http://targetliu.com/golang-http-router/
+ 还是在继续学习Go的路上，曾经在使用PHP的时候吃过过度依赖框架的亏。现在学习Go的时候决定先打好基础，从标准库学起走。
+ 源码分析 我们知道最简单的建立http服务器代码基本上都是这样的：
+http.HandleFunc(&#39;/&#39;, func(w http.ResponseWriter, r *http.Request){ fmt.Fprint(w, &amp;quot;Hello world&amp;quot;) }) http.ListenAndServe(&amp;quot;:8080&amp;quot;, nil)  这样就成功的建立了一个监听 8080 端口的http服务器，当访问的时候输出 Hello world
+我们顺藤摸瓜来看看 HandleFunc 做了些什么事：
+func HandleFunc(pattern string, handler func(ResponseWriter, *Request)) { DefaultServeMux.HandleFunc(pattern, handler) }  这里继续通过调用 DefaultServeMux 的 HandleFunc 方法注册路由，这个 DefaultServeMux 又是何方圣神：
+type ServeMux struct { mu sync.RWMutex m map[string]muxEntry hosts bool // whether any patterns contain hostnames } type muxEntry struct { explicit bool h Handler pattern string } // NewServeMux allocates and returns a new ServeMux.</description>
+    </item>
+    
+  </channel>
+</rss>

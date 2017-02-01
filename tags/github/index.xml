@@ -11,6 +11,146 @@
     <atom:link href="/tags/github.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>途牛原创｜途牛周刊</title>
+      <link>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</guid>
+      <description>Tuniu Weekly  Inspired By 《湾区日报》
+我们团队也想基于这种模式，让大家感受到技术的人文。
+ 《Tuniu Weekly》就这样产生了。
+《Tuniu Weekly》的本质是团队博客，关注互联网、创业、技术，每周推荐5篇优质文章。
+独特  精选：我们不是传统小编的复制粘贴、应付任务的拼凑。《Tuniu Weekly》推荐的阅读内容，我们坚信一定是优质的。
+ 原文：中英汇集，鼓励大家锻炼一下自己，坚持阅读，每天提高一点点。
+ 坚持：争取做到每周更新，与读者一起进步。
+ 专注：只做一件事情：每周推荐5篇优质文章。
+  运营日志 累计运营【77】天，推荐好文【63】篇。
+ 05/12/2016：第十一期
+ 05/05/2016：第十期
+ 04/28/2016：第九期
+ 04/20/2016：第八期
+ 04/13/2016：第七期
+ 04/06/2016：第六期
+ 03/31/2016：第五期
+ 03/23/2016：第四期
+ 03/09/2016：第三期
+ 03/03/2016：切换至github，第二期 发布。
+ 02/24/2016：第一期发布。
+ 02/22/2016：创刊，用git.tuniu.org发布了第一次commit。
+  如何支持  如果我们写的、推荐的东西让大家有收获，那我们就很开心了。
+ 如果您觉得《Tuniu Weekly》的内容很有意思，那可以在微博或者微信等社交网络上向更多愿意每天进步一点点的朋友推荐。
+  每周要花多少时间准备  世界上有太多看起来简单的东西，其实都不简单。只有自己做了才知道。
+ 一些好文  为何猿/媛们喜欢在晚上 Coding? 链接   深夜还在 coding 的肯定是大神</description>
+    </item>
+    
+    <item>
+      <title>Go学习【二】学习资料</title>
+      <link>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:25 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html</guid>
+      <description>接触go也已经有一个星期多了 相比与java 感觉最大的不足就是没有强大的IDE其他方面都还不错 然后 把自己最今一段时间学习Go的资料整理了一下
+快速入门
+Go指南
+书籍：
+《Go 入门指南》(《The Way to Go》中文版)
+《Go 编程基础》
+《GO 标准库》:
+《Go Web 编程》
+《Go语言编程》 比较老的一本书
+《Go学习笔记》
+视频：
+Go编程基础
+Go Web 基础
+Go名库讲解
+beego入门教程
+Go语言第一课
+网站社区：
+Go语言中文网
+Go友团
+更多：
+无闻大神的更多视频
+云盘书籍
+Go语言圣经（中文版）
+极客学院</description>
+    </item>
+    
+    <item>
+      <title>一步一步教你写BT种子嗅探器之一---原理篇</title>
+      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html</guid>
+      <description>之前看到 lantern 这个十分火的翻墙工具，其利用了P2P的思想，就想了解一下P2P相关的协议。看了下最流行的BT协议官方文档，就产生了实现BT协议的想法，顺便根据协议实现了一个BT种子嗅探器。
+也有人将BT种子嗅探器称为BT种子爬虫，个人觉得其行为特性和传统的web爬虫相差较大，反而和嗅探器很类似，因此暂且称之为BT种子嗅探器吧。
+接下来将写一系列文章来介绍其原理和具体实现方式。这篇文章先提纲挈领，介绍其工作原理，以对全局有一个把握。后序的文章再介绍具体细节。
+背景知识 在讲原理之前首先你得具备BitTorrent(简称BT)协议的一些基本知识，以便于理解接下来要讲的嗅探器。BT协议其实是一个协议簇，BEP-3 是其基本协议内容，其他的大部分都是围绕这个来进行扩展或补充。要想从BT网络中下载一个资源，必须具备以下部分：
+ 种子文件（也就是我们常说的种子，后缀是 .torrent，本质上是一个由bencode编码的文本文件，其把资源分成很多虚拟块，并记录每个块的hash值，另外上面还记录着其他信息，比如文件大小、名字、Tracker服务器等）
+ BT客户端（需要有专门解析BT协议的程序，这样才能下载，比如迅雷，电驴）
+ Tracker服务器 （记录着peer和种子相关信息，起着中心调控的作用）
+  下载资源的时候，客户端首先根据bencode（bencode是BT协议中的编码方式）解码种子文件，得到Tracker服务器的地址和资源信息，通过和Tracker服务器沟通得到其他已经下载该资源的peers信息（其他已经拥有该资源的客户端或者发布该资源的人），然后再和这些peers沟通得到自己想要的部分，即互通有无。由于把文件分成很多块来同时从不同的地方下载，这也就是为什么BT通常下载快的原因。
+DHT协议 通过上面我们知道，Tracker服务器在资源下载的过程中起着至关重要的作用，只有通过它我们才能得到其他peers的信息，才能够下载，但这同时也成了BT协议的一个弱点，如果Tracker服务器挂掉了或者被封被屏蔽，整个网络也就瘫痪了。由于一些资源都是有版权的，还有一些资源是限制级的，比如色情资源，Tracker服务器很容易被迫关闭或被墙。后来聪明的人类发明了另外一种协议，就是 Distributed hash table, 简称DHT，这个协议就是用来弥补这个弱点的。
+BT协议簇中的DHT协议 是基于 Kademlia协议 建立的，其基本思想很好理解。DHT 由很多节点组成，每个节点保存一张表，表里边记录着自己的好友节点。当你向一个节点A查询另外一个节点B的信息的时候，A就会查询自己的好友表，如果里边包含B，那么A就返回B的信息，否则A就返回距离B距离最近的k个节点。然后你再向这k个节点再次查询B的信息，这样循环一直到查询到B的信息，查询到B的信息后你应该向之前所有查询过的节点发个通知，告诉他们，你有B的信息。
+举个例子，比如我现在想要Angelababy的微信号（额…我要干嘛），我就从自己的微信好友中挑出k个最可能认识她的人，然后依次问他们有没有Angelababy的微信号，假如其中一个认识，那么他就会给我Angelababy的微信号，我也就不继续问其他人了。假如他不认识，他就给我推荐k个他微信好友中最有可能认识Angelababy的k个人，然后我再继续这k个人，就这样循环一直到我问到为止。OK，现在我已经得到了Angelababy的微信号，我就会告诉之前所有我问过的人，我有Angelababy的微信号。
+当客户端下载资源的时候，他会利用上述方式查找peers信息，这样每个人都充当了Tracker的作用，也就解决了上面那个问题。
+嗅探器原理 终于到核心部分了。
+BT种子嗅探器就是利用了DHT协议得到peer信息后会向他之前查询过的节点发送通知这一点，这就是嗅探器的核心。
+剩下的工作就是我们要让更多的节点发给我们通知。那么如何让更多的节点发给我们通知呢？
+ 我们要不断的查询自己的好友节点表，并对返回回来的节点进行查询，这样才会有更多的人认识我们
+ 别人向我们查询Target的时候，我们要伪装成Target的好友，返回结果里边包括自己，这样会有更多被查询、收到通知的机会
+  这就是BT种子嗅探器的原理，简单吧 :)
+种子下载器 在BT网络中，通过上述原理收到信息并不是种子，而是发送消息者的ip和port、种子infohash（可以理解为种子的id）。我们如果想要得到种子的话，还需要做一番工作。这里涉及到另外一个非常重要的协议 BEP-09，BEP-09规定了如何通过种子infohash得到种子。
+这里不铺开讲，仅说下大致过程。首先同我们收到的消息里边的 ip:port 建立TCP连接，然后发送握手消息，并告知对方自己支持BEP-09协议，然后向对方请求种子的信息，收到对方返回的种子信息后，依次或同时请求每一个块。最有所有块收集完后，对其进行拼接并通过sha1算法计算其infohash，如果和我们请求的infohash值相同则保存起来，否则丢掉。
+应用 这样你可以得到非常多的种子信息，你可以对其进行索引建立自己的BT种子搜索引擎，建立自己的海盗湾。但你需要注意版权问题和色情资源问题。
+最后 https://github.com/shiyanhui/dht 这个是Go实现的一个BT种子嗅探器，你可以参照一下其具体实现，喜欢这篇文章的话就到github上给个Star呗。
+http://bthub.io 是基于上面这个嗅探器写的一个BT种子搜索引擎。
+有任何问题可以在这里提问：https://github.com/shiyanhui/&amp;hellip;
+关注我的公众号，及时获得下一篇推送。</description>
+    </item>
+    
+    <item>
+      <title>一步一步教你写BT种子嗅探器之二---DHT篇</title>
+      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html</guid>
+      <description>之前写了原理篇，在原理篇里简单的介绍了一下DHT，但是还不够详细。今天我们就专门详细的讲一下嗅探器的核心-DHT，这里默认原理篇你已经读了。
+背景知识 DHT全称 Distributed Hash Table，中文翻译过来就是分布式哈希表。它是一种去中心化的分布式系统，特点主要有自动去中心化，强大的容错能力，支持扩展。另外它规定了自己的架构，包括keyspace和overlay network（覆盖网络）两部分。但是他没有规定具体的算法细节，所以出现了很多不同的实现方式，比如Chord，Pastry，Kademlia等。BitTorrent中的DHT是基于Kademlia的一种变形，它的官方名称叫做 Mainline DHT。
+DHT人如其名，把它看成一个整体，从远处看它，它就是一张哈希表，只不过这张表是分布式的，存在于很多机器上。它同时支持set(key, val)，get(key)操作。DHT可以用于很多方面，比如分布式文件系统，DNS，即时消息(IM)，以及我们最熟悉的点对点文件共享（比如BT协议）等。
+下面我们提到的DHT默认都是Mainline DHT，例子都是用伪代码来表示。读下面段落的时候要时刻记着，DHT是一个哈希表。
+Mainline DHT Mainline DHT遵循DHT的架构，下面我们分别从Keyspace和Overlay network两方面具体说明。
+Keyspace keyspace主要是关于key的一些规定。
+Mainline dht里边的key长度为160bit，注意是bit，不是byte。在常见的编译型编程语言中，最长的整型也才是64bit，所以用整型是表示不了key的，我们得想其他的方式。我们可以用数组方式表示它，数组类型你可以选用长度不同的整型，比如int8，int16，int32等。这里为了下边方便计算，我们采用长度为20的byte数组来表示。
+在mainline dht中，key之间唯一的一种计算是xor，即异或（还记得异或的知识吧？）。我们的key是用长度为20的byte数组来表示，因此我们应该从前往后依次计算两个key的相对应的byte的异或值，最终结果得到的是另外一个长度为20的byte数组。算法如下：
+​for i = 0; i &amp;lt; 20; i++ { ​ result[i] = key1[i] ^ key2[i]; ​}  读到这里，你是不是要问xor有啥用？还记得原理篇中DHT的工作方式吗？
+xor是为了找到好友表中离key最近的k个节点，什么样的节点最近？就是好友中每个节点和key相异或，得到的结果越小就越近。这里又衍生另外一个问题，byte数组之间怎么比较大小？很简单，从前往后，依次比较每一个byte的大小即可。
+在Mainline DHT中，我们用160bit的key来代表每个节点和每个资源的ID，我们查找节点或者查找资源的时候实际上就是查找他们的ID。回想一下，这是不是很哈希表? :)
+另外聪明的你可能又该问了，我们怎么样知道每个节点或者每个资源的ID是多少？在Mainline DHT中，节点的ID一般是随机生成的，而资源的ID是用sha1算法加密资源的内容后得到的。
+OK，关于key就这么多，代码实现你可以查考这里。
+Overlay network Overlay network主要是关于DHT内部节点是怎么存储数据的，不同节点之间又是怎样通信的。
+首先我们回顾一下原理篇中DHT的工作方式:
+ DHT 由很多节点组成，每个节点保存一张表，表里边记录着自己的好友节点。当你向一个节点A查询另外一个节点B的信息的时候，A就会查询自己的好友表，如果里边包含B，那么A就返回B的信息，否则A就返回距离B距离最近的k个节点。然后你再向这k个节点再次查询B的信息，这样循环一直到查询到B的信息，查询到B的信息后你应该向之前所有查询过的节点发个通知，告诉他们，你有B的信息。
+ 整个DHT是一个哈希表，它把自己的数据化整为零分散在不同的节点里。OK，现在我们看下，一个节点内部是用什么样的数据结构存储数据的。
+节点内部数据存储 - Routing Table 用什么样的数据结构得看支持什么样的操作，还得看各种操作的频繁程度。从上面工作方式我们知道，操作主要有两个：
+ 在我（注意：“我”是一个节点）的好友节点中查询离一个key最近的k个节点（在Mainline DHT中，k=8），程度为频繁
+ 把一个节点保存起来，也就是插入操作，程度为频繁</description>
+    </item>
+    
+    <item>
+      <title>TiKV源码解析系列-PlacementDriver</title>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</guid>
+      <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
+TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
+本文为本系列文章第三节。
+介绍 Placement Driver (后续以 PD 简称) 是 TiDB 里面全局中心总控节点，它负责整个集群的调度，负责全局 ID 的生成，以及全局时间戳 TSO 的生成等。PD 还保存着整个集群 TiKV 的元信息，负责给 client 提供路由功能。
+作为中心总控节点，PD 通过集成 etcd ，自动的支持 auto failover，无需担心单点故障问题。同时，PD 也通过 etcd 的 raft，保证了数据的强一致性，不用担心数据丢失的问题。
+在架构上面，PD 所有的数据都是通过 TiKV 主动上报获知的。同时，PD 对整个 TiKV 集群的调度等操作，也只会在 TiKV 发送 heartbeat 命令的结果里面返回相关的命令，让 TiKV 自行去处理，而不是主动去给 TiKV 发命令。这样设计上面就非常简单，我们完全可以认为 PD 是一个无状态的服务（当然，PD 仍然会将一些信息持久化到 etcd），所有的操作都是被动触发，即使 PD 挂掉，新选出的 PD leader 也能立刻对外服务，无需考虑任何之前的中间状态。</description>
+    </item>
+    
+    <item>
       <title>Wecrcker自动部署到Github过程中问题记录</title>
       <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
       <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>

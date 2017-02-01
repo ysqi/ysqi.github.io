@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/influxdb.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/influxdb.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kubernetes监控之InfluxDB</title>
+      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
+      <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
+该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
+InfluxDB特征：
+ 无结构(无模式)：可以是任意数量的列
+ 可以设置metric的保存时间
+ 支持与时间有关的相关函数(如min、max、sum、count、mean、median等)，方便统计
+ 支持存储策略:可以用于数据的删改。(influxDB没有提供数据的删除与修改方法)
+ 支持连续查询:是数据库中自动定时启动的一组语句，和存储策略搭配可以降低InfluxDB的系统占用量。
+ 原生的HTTP支持，内置HTTP API
+ 支持类似sql语法
+ 支持设置数据在集群中的副本数
+ 支持定期采样数据，写入另外的measurement，方便分粒度存储数据。
+ 自带web管理界面，方便使用(登入方式：http://%3C InfluxDB-IP &amp;gt;:8083)
+  关键概念 InfluxDB关键概念列表：
+database
+field key
+field set
+field value
+measurement
+point
+retention policy
+series
+tag key
+tag set
+tag value
+timestamp
+下面举个例子进行概念介绍：
+我们虚拟一组数据，其中有一张数据表(measurement)为census，该表记录了由两个科学家(langstroth和perpetua)在两个不同的位置(1和2)，统计了butterflies和honeybees的数据，时间段是2015-08-18 00: 00:00 &amp;ndash; 2015-08-18 06: 12:00. 我们假设这些数据属于叫my_database的数据库(database)，且该数据存储在autogen的存储策略(retention policy)中。
+数据展示如下：
+name: census --------------------- time butterflies honeybees location scientist 2015-08-18T00:00:00Z 12 23 1 langstroth 2015-08-18T00:00:00Z 1 30 1 perpetua 2015-08-18T00:06:00Z 11 28 1 langstroth 2015-08-18T00:06:00Z 3 28 1 perpetua 2015-08-18T05:54:00Z 2 11 2 langstroth 2015-08-18T06:00:00Z 1 10 2 langstroth 2015-08-18T06:06:00Z 8 23 2 perpetua 2015-08-18T06:12:00Z 7 22 2 perpetua  我们针对数据来进行概念分析：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E5%8F%8D%E5%B0%84.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%8F%8D%E5%B0%84.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go语言反射三定律</title>
+      <link>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html</guid>
+      <description>简介 Reflection（反射）在计算机中表示 程序能够检查自身结构的能力，尤其是类型。它是元编程的一种形式，也是最容易让人迷惑的一部分。
+本文中，我们将解释Go语言中反射的运作机制。每个编程语言的反射模型不大相同，很多语言索性就不支持反射（C、C++）。由于本文是介绍Go语言的，所以当我们谈到“反射”时，默认为是Go语言中的反射。
+阅读建议 本文中，我们将解释Go语言中反射的运作机制。每个编程语言的反射模型不大相同，很多语言索性就不支持反射（C、C++）。
+由于本文是介绍Go语言的，所以当我们谈到“反射”时，默认为是Go语言中的反射。
+虽然Go语言没有继承的概念，但为了便于理解，如果一个struct A 实现了 interface B的所有方法时，我们称之为“继承”。
+类型和接口 反射建立在类型系统之上，因此我们从类型基础知识说起。
+Go是静态类型语言。每个变量都有且只有一个静态类型，在编译时就已经确定。比如 int、float32、*MyType、[]byte。 如果我们做出如下声明：
+type MyInt int var i int var j MyInt  上面的代码中，变量 i 的类型是 int，j 的类型是 MyInt。 所以，尽管变量 i 和 j 具有共同的底层类型 int，但它们的静态类型并不一样。不经过类型转换直接相互赋值时，编译器会报错。
+关于类型，一个重要的分类是 接口类型（interface），每个接口类型都代表固定的方法集合。一个接口变量就可以存储（或“指向”，接口变量类似于指针）任何类型的具体值，只要这个值实现了该接口类型的所有方法。一组广为人知的例子是 io.Reader 和 io.Writer， Reader 和 Writer 类型来源于 io包，声明如下：
+// Reader is the interface that wraps the basic Read method. type Reader interface { Read(p []byte) (n int, err error) } // Writer is the interface that wraps the basic Write method.</description>
+    </item>
+    
+  </channel>
+</rss>

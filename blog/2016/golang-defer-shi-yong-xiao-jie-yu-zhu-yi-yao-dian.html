@@ -1,0 +1,131 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>golangdefer使用小结与注意要点 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="https://segmentfault.com/a/
+关于延时调用函数(Deferred Func"><meta name="keywords" content="defer, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html"><meta property="og:title" content="golangdefer使用小结与注意要点"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:07"><meta property="article:modified_time" content="2016-12-31 11:33:07"><meta property="article:tag" content="defer"><meta property="article:tag" content="golang"><meta name="og:description" content="https://segmentfault.com/a/
+关于延时调用函数(Deferred Func"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html">golangdefer使用小结与注意要点</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000006823652" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><a href="https://segmentfault.com/a/">https://segmentfault.com/a/</a></p><h2 id="关于延时调用函数-deferred-function-calls">关于延时调用函数(Deferred Function Calls)</h2><p>延时调用函数的语法如下:</p><pre><code>defer func_name(param-list)
+</code></pre><p>当一个函数调用前有关键字 <strong>defer</strong> 时, 那么这个函数的执行会推迟到包含这个 defer 语句的函数即将返回前才执行. 例如:</p><pre><code>func main() {
+    defer fmt.Println(&quot;Fourth&quot;)
+    fmt.Println(&quot;First&quot;)
+    fmt.Println(&quot;Third&quot;)
+}
+</code></pre><p>最后打印顺序如下:</p><pre><code>First
+Second
+Third
+</code></pre><p><code>需要注意的是, defer 调用的函数参数的值 defer 被定义时就确定了.</code><br>例如:</p><pre><code>i := 1
+defer fmt.Println(&quot;Deferred print:&quot;, i)
+i++
+fmt.Println(&quot;Normal print:&quot;, i)
+</code></pre><p>打印的内容如下:</p><pre><code>Normal print: 2
+Deferred print: 1
+</code></pre><p>因此我们知道, 在 &ldquo;defer fmt.Println(&ldquo;Deferred print:&ldquo;, i)&rdquo; 调用时, i 的值已经确定了, 因此相当于 <strong>defer fmt.Println(&ldquo;Deferred print:&ldquo;, 1)</strong> 了.<br><code>需要强调的时, defer 调用的函数参数的值在 defer 定义时就确定了, 而 defer 函数内部所使用的变量的值需要在这个函数运行时才确定.</code> 例如:</p><pre><code>func f1() (r int) {
+    r = 1
+    defer func() {
+        r++
+        fmt.Println(r)
+    }()
+    r = 2
+    return
+}
+
+func main() {
+    f1()
+}
+</code></pre><p>上面的例子中, 最终打印的内容是 &ldquo;3&rdquo;, 这是因为在 &ldquo;r = 2&rdquo; 赋值之后, 执行了 defer 函数, 因此在这个函数内, r 的值是2了, 自增后变为3.</p><h3 id="defer-顺序">defer 顺序</h3><p>如果有多个defer 调用, 则调用的顺序是先进后出的顺序, 类似于入栈出栈一样:</p><pre><code>func main() {
+    defer fmt.Println(1)
+    defer fmt.Println(2)
+    defer fmt.Println(3)
+    defer fmt.Println(4)
+}
+</code></pre><p>最先执行的是 &ldquo;fmt.Println(4)&rdquo;, 接着是 &ldquo;fmt.Println(3)&rdquo; 依次类推, 最后的输出如下:</p><pre><code>4
+3
+2
+1
+</code></pre><h3 id="defer-注意要点">defer 注意要点</h3><p><code>defer 函数调用的执行时机是外层函数设置返回值之后, 并且在即将返回之前</code>.<br>例如:</p><pre><code>func f1() (r int) {
+    defer func() {
+        r++
+    }()
+    return 0
+}
+func main() {
+    fmt.Println(f1())
+}
+</code></pre><p>上面 <strong>fmt.Println(f1())</strong> 打印的是什么呢? 很多朋友可能会认为打印的是0, 但是正确答案是 1. 这是为什么呢?<br>要弄明白这个问题, 我们需要牢记两点</p><ul><li><p><code>defer 函数调用的执行时机是外层函数设置返回值之后, 并且在即将返回之前</code></p></li><li><p><code>return XXX 操作并不是原子的.</code></p></li></ul><p>我们将上面的例子改写一下大家就很明白了:</p><pre><code>func f1() (r int) {
+    defer func() {
+        r++
+    }()
+    r = 0
+    return
+}
+</code></pre><p>当进行赋值操作 &ldquo;r = 0&rdquo; 后, 才调用 defer 函数, 最后才是返回语句.<br>因此上面的代码等效于:</p><pre><code>func f1() (r int) {
+    r = 0
+    func() {
+        r++
+    }()
+    return
+}
+</code></pre><p>接下来我们再来看一个更有意思的例子:</p><pre><code>func double(x int) int {
+    return x + x
+}
+
+func triple(x int) (r int) {
+    defer func() {
+        r += x
+    }()
+    return double(x)
+}
+
+func main() {
+    fmt.Println(triple(3))
+}
+</code></pre><p>如果我们已经理解了上面所说的内容的话, 那么 triple 函数就很好理解了, 它实际上是:</p><pre><code>func triple(x int) (r int) {
+    r = double(x)
+    func() {
+        r += x
+    }()
+    return
+}
+</code></pre><h3 id="defer-表达式的使用场景">defer 表达式的使用场景</h3><p>defer 通常用于 open/close, connect/disconnect, lock/unlock 等这些成对的操作, 来保证在任何情况下资源都被正确释放. 在这个角度来说, defer 操作和 Java 中的 try &hellip; finally 语句块有异曲同工之处.<br>例如:</p><pre><code>var mutex sync.Mutex
+var count = 0
+
+func increment() {
+    mutex.Lock()
+    defer mutex.Unlock()
+    count++
+}
+</code></pre><p>在increment 函数中, 我们为了避免竞态条件的出现, 而使用了 Mutex 进行加锁. 而在进行并发编程时, 加锁了却忘记(或某种情况下 unlock 没有被执行), 往往会造成灾难性的后果. 为了在任意情况下, 都要保证在加锁操作后, 都进行对应的解锁操作, 我们可以使用 defer 调用解锁操作.</p><blockquote><p>本文由 yongshun 发表于个人博客, 采用署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议.<br>非商业转载请注明作者及出处. 商业转载请联系作者本人<br>Email: yongshun1228@gmail.com<br>本文标题为: golang defer 使用小结与注意要点<br>本文链接为: segmentfault.com/a/1190000006823652</p></blockquote></div><aside id="meta"><meta itemprop="wordCount" content="341"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/defer.html" rel="tag">defer</a> <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html">Go语言并发模型:使用select</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/golang-shu-zu-yu-qie-pian.html">golang数组与切片</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="b8747b235f1221afe0bb3799ee6d0d60" data-title="golangdefer使用小结与注意要点" data-url="https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

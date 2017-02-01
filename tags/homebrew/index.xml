@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/homebrew.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/homebrew.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang在MacOS上的环境配置</title>
+      <link>https://yushuangqi.com/blog/2016/golangzai-mac-osshang-de-huan-jing-pei-zhi.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:11 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golangzai-mac-osshang-de-huan-jing-pei-zhi.html</guid>
+      <description>Golang是Google开发的一种编译型，平行化，具有垃圾回收功能的编译语言,还和C一样有指针。
+Golang是天生的网络编程语言，学习使用Golang先从环境配置开始。
+环境要求:
+ Homerbrew 安装参考:http://brew.sh/  安装Golang Golang可以通过源代码自己编译安装https://golang.org/project/,为了管理和升级建议使用Homerbrew安装。
+使用命令行直接安装Golang:
+ brew install go
+ ==&amp;gt; Downloading https://homebrew.bintray.com/bottles/go-1.7.el_capitan.bottle.tar.gz ######################################################################## 100.0% ==&amp;gt; Pouring go-1.7.el_capitan.bottle.tar.gz ==&amp;gt; Caveats As of go 1.2, a valid GOPATH is required to use the `go get` command: https://golang.org/doc/code.html#GOPATH You may wish to add the GOROOT-based install location to your PATH: export PATH=$PATH:/usr/local/opt/go/libexec/bin ==&amp;gt; Summary 🍺 /usr/local/Cellar/go/1.7: 6,435 files, 250.6M  从提示中可以看出需要设置GOPATH和GOROOT的环境变量，以及设置PATH.
+配置GOPATH 查看go 的环境变量设置的命令
+ go env</description>
+    </item>
+    
+  </channel>
+</rss>

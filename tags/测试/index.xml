@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E6%B5%8B%E8%AF%95.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E6%B5%8B%E8%AF%95.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>编写可测试的Go代码</title>
+      <link>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:51 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</guid>
+      <description>原文链接：http://tabalt.net/blog/golang&amp;hellip;
+Golang作为一门标榜工程化的语言，提供了非常简便、实用的编写单元测试的能力。本文通过Golang源码包中的用法，来学习在实际项目中如何编写可测试的Go代码。
+第一个测试 “Hello Test!” 首先，在我们$GOPATH/src目录下创建hello目录，作为本文涉及到的所有示例代码的根目录。
+然后，新建名为hello.go的文件，定义一个函数hello()，功能是返回一个由若干单词拼接成句子：
+package hello func hello() string { words := []string{&amp;quot;hello&amp;quot;, &amp;quot;func&amp;quot;, &amp;quot;in&amp;quot;, &amp;quot;package&amp;quot;, &amp;quot;hello&amp;quot;} wl := len(words) sentence := &amp;quot;&amp;quot; for key, word := range words { sentence += word if key &amp;lt; wl-1 { sentence += &amp;quot; &amp;quot; } else { sentence += &amp;quot;.&amp;quot; } } return sentence }  接着，新建名为hello_test.go的文件，填入如下内容：
+package hello import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; ) func TestHello(t *testing.T) { got := hello() expect := &amp;quot;hello func in package hello.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/method.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/method.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>[go]method的指针声明及非指针声明</title>
+      <link>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:17 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html</guid>
+      <description>刚入手golang，大概弄清楚了method在go里的概念。
+以下大部分为搬运过程重写代码。
+method可以为一个type添加(声明)一个方法，例如：
+type Cat struct { } func (c Cat) Hwo() { fmt.Println(&amp;quot;Miah!&amp;quot;) }  即对Cat类型(结构体)添加Hwo方法，使其在叫唤的时候可以发出声音。
+这种添加方法的代码表现比java好很多(extend)，也比python好(需重新声明一个Class)。
+按官方的spec可以对应到如上的例子的两种声明：
+func (c Cat) Hwo() func (c *Cat) Hwo()  两种有什么区别呢？
+package main import ( &amp;quot;fmt&amp;quot; ) type Cat struct { age int } func (c Cat) AddAge() { fmt.Println(&amp;quot;add age!&amp;quot;) fmt.Println(c.age + 10) c.age += 1 } func (c *Cat) AddOneAge() { c.age += 1 fmt.Println(&amp;quot;add one age!&amp;quot;) } func main() { cat := &amp;amp;Cat{1} fmt.</description>
+    </item>
+    
+  </channel>
+</rss>

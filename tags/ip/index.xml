@@ -11,6 +11,31 @@
     <atom:link href="/tags/ip.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>基于Golang的IP地址信息查询服务</title>
+      <link>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:33 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html</guid>
+      <description>原文链接：http://tabalt.net/blog/ipquer&amp;hellip;
+工作中经常会有通过IP匹配用户信息的需求，如确定用户所在的地区（国家/省份/城市）、运营商、时区、经纬度等等。前一阵有个Golang开发的项目也有这样的需求，于是简单实现了一个包，最近忙里偷闲又包了一个支持HTTP和GRPC方式调用的服务，并开源在GitHub上了。本文主要介绍IP地址信息查询的实现细节和使用方式。
+首先交代一下GitHub地址：
+ IpQuery Golang Package：https://github.com/tabalt/ipquery
+ IP地址信息查询服务：https://github.com/tabalt/ipqueryd
+  欢迎大家在项目中使用（已通过N亿日PV服务的考验），有任何问题或建议，请提交Issue反馈或Fork到自己名下修改后提交Pull Request。
+IP数据文件 IP数据文件存放IP地址段和数据信息的映射关系，是IP地址信息查询中最重要的部分，格式上要求可扩展，数据上则需要准确甚至精确。真正意义上完美的IP数据文件是不存在的，而要想让数据文件保持可用，需要定期对数据文件做维护更新。
+数据格式 IP数据文件通常是纯文本形式的，映射关系按行存放，每行的各项之间用&amp;rdquo;t&amp;rdquo;分隔，前面两列是IP段的起始和结束点转换成无符号32位整型的值（只考虑IPV4），后面的部分则是各项信息，可根据实际需要扩充；各行之间要求是按IP段从小到大升序排列的。示例格式如下：
+1033224192 1033228287 北京 北京 朝阳 联通 1033228288 1033232383 北京 北京 海淀 联通 1033232384 1033233407 北京 北京 昌平 联通  数据来源 IP信息数据主要有3个来源：
+ 具有一定规模的公司大都会自己维护一份IP库，如果你在这些公司工作，可以直接使用
+ 网络上有一些免费的IP库（如纯真IP库）
+ 购买商业的IP库（如IPIP.NET）
+  此外也能通过一定的技术或人工手段自行获取维护IP信息数据库，但是成本会非常高。
+IP地址信息查询的原理 有了数据文件，要实现信息查询并不难，简单方式是直接将数据文件加载到内存数组中，查找时将IP地址转换成无符号32位整型，然后用二分查找法查找整型所在的区间，找到后则返回对应的数据，没找到则返回失败。Golang中核心代码如下：
+将IP地址字符串转成无符号32位整型：
+func ip2Long(ip string) uint32 { var long uint32 binary.Read(bytes.NewBuffer(net.ParseIP(ip).To4()), binary.BigEndian, &amp;amp;long) return long }  主要结构体：
+type IpRange struct { Begin uint32 End uint32 Data []byte } type IpData []*IpRange  二分查找：</description>
+    </item>
+    
+    <item>
       <title>如何提取Piwik中记录的访客IP地址</title>
       <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</link>
       <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/haproxy.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/haproxy.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>使用Etcd和Haproxy做Docker服务发现</title>
+      <link>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</guid>
+      <description>使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service
+ 本文作者是 jwilder，本文的原文是 Docker Service Discovery Using Etcd and Haproxy
+ 在前一篇文章中，我们展示了一种为 Docker 容器在同一台主机上创建一个自动化 Nginx 反向代理的方式。那个设置对于前端 web app 来说工作的很好，但是对于后端服务来说它不是一个好的点子，因为通常它们跨越多个主机。
+这篇文章描述了一个为后端服务的 Docker 容器提供服务发现的解决方案。
+我们将构建的架构体系是模仿 SmartStack，但是使用 etcd 代替 Zookeeper，和两个 docker 容器运行 docker-gen 和 haproxy 代替 nerve 和 synapse。
+它怎样工作的 类似于 SmartStack，我们的组件服务作为一个注册（etcd），一个注册伙伴进程（docker-register），发现伙伴进程（docker-discover），一些后端服务（whoami）以及最后一个消费者（ubuntu/curl）。
+注册和发现组件作为设备与应用程序容器工作，因此在后端或消费者容器的注册或发现代码不是被嵌入的。它们仅仅监听端口或连接其他本地端口。
+服务注册 - Etcd 在任何事情被注册之前，我们需要一些地方跟踪注册条目（比如，服务的 IP 和端口）。我们使用 etcd，因为它由服务注册的简单程序模型和支持键的 TTLs 以及目录。
+通常，你将运行 3到5个 etcd 节点，但是我们仅仅使用一个来保持事情简化。</description>
+    </item>
+    
+  </channel>
+</rss>

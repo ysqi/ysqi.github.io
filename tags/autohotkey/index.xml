@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/autohotkey.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/autohotkey.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>用go实现跨平台Autoit_AutoHotkey和按键精灵功能示例代码</title>
+      <link>https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:50 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html</guid>
+      <description>Robotgo v0.40.0对鼠标键盘操作进行了大幅度的完善,由于跨平台切换测试麻烦(合并几个平台的代码到对比上传代码都浪费了不少时间)和C代码生产效率与Go和JavaScript不在一个级别上,没有支持窗口和进程对应窗口的选择以及窗口Bounds,将在下一个版本完善,键盘操作可能在某些输入法上有些问题请切换到系统输入法(目前优先完成窗口句柄的问题,后面会解决该问题).
+项目地址:https://github.com/go-vgo/rob&amp;hellip;
+下面整理本机测试部分的代码,将会在以后版本陆续完善,并附上注释(请看清代码再运行):
+package main import ( . &amp;quot;fmt&amp;quot; &amp;quot;github.com/go-vgo/robotgo&amp;quot; ) func main() { //键盘控制 robotgo.TypeString(&amp;quot;Hello World&amp;quot;)//输入Hello World robotgo.KeyTap(&amp;quot;enter&amp;quot;)//按下enter键 robotgo.KeyTap(&amp;quot;a&amp;quot;, &amp;quot;control&amp;quot;) robotgo.KeyTap(&amp;quot;h&amp;quot;, &amp;quot;command&amp;quot;) //隐藏窗口 robotgo.KeyTap(&amp;quot;i&amp;quot;, &amp;quot;alt&amp;quot;, &amp;quot;command&amp;quot;) //按下&amp;quot;i&amp;quot;, &amp;quot;alt&amp;quot;, &amp;quot;command&amp;quot;组合键 arr := []string{&amp;quot;alt&amp;quot;, &amp;quot;command&amp;quot;} robotgo.KeyTap(&amp;quot;i&amp;quot;, arr) //按下&amp;quot;i&amp;quot;, &amp;quot;alt&amp;quot;, &amp;quot;command&amp;quot;组合键 robotgo.KeyTap(&amp;quot;w&amp;quot;, &amp;quot;command&amp;quot;) //关闭窗口 robotgo.KeyTap(&amp;quot;m&amp;quot;, &amp;quot;command&amp;quot;) //最小化窗口 robotgo.KeyTap(&amp;quot;f1&amp;quot;, &amp;quot;control&amp;quot;) robotgo.KeyTap(&amp;quot;a&amp;quot;, &amp;quot;control&amp;quot;) robotgo.KeyToggle(&amp;quot;a&amp;quot;, &amp;quot;down&amp;quot;)//切换a键 robotgo.KeyToggle(&amp;quot;a&amp;quot;, &amp;quot;down&amp;quot;, &amp;quot;alt&amp;quot;) robotgo.KeyToggle(&amp;quot;a&amp;quot;, &amp;quot;down&amp;quot;, &amp;quot;alt&amp;quot;, &amp;quot;command&amp;quot;) robotgo.KeyToggle(&amp;quot;enter&amp;quot;, &amp;quot;down&amp;quot;) robotgo.TypeString(&amp;quot;en&amp;quot;) //鼠标控制 robotgo.MoveMouse(100, 200)//移动鼠标到100, 200位置 robotgo.MouseClick()//鼠标左键单击 robotgo.MouseClick(&amp;quot;right&amp;quot;, false) //右键单击 robotgo.</description>
+    </item>
+    
+  </channel>
+</rss>

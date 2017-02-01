@@ -8,227 +8,272 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Mon, 03 Oct 2016 19:51:14 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Dec 2016 11:35:12 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>如何判断是否是在GolangTest运行代码</title>
-      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
-      <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
+      <title>Gox:简单实在的Go平台交叉编译工具</title>
+      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</guid>
-      <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
-经过各种尝试,总算能非常靠谱的进行Go Test 识别!
-需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
-APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
-代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
- 运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
-func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
+      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</guid>
+      <description>Gox 是一个简单的，不花俏的Go平台交叉编译工具，它的用处就和标准的 go build 一样。Gox 会并行地为多种平台编译。Gox 同时也提供了一套交叉编译工具链。
+Gox 项目地址：https://github.com/mitchellh/gox
+安装 为了安装 Gox，请使用 go get。我们已经为版本打上了标签，所以可以随便切换标签进行编译：
+ \$ go get github.com/mitchellh/gox
+&amp;hellip;
+\$ gox -h
+&amp;hellip;
+ 用法 在你使用 Gox 之前，你必须先有一套交叉编译工具链。Gox 可以自动帮你完成这个。你需要做的只是运行(每次更新 Go 都要这样做这步)：
+ \$ gox -build-toolchain
+&amp;hellip;
+ 当你完成这个，你可以已经准备好进行交叉编译了。
+如果你知道怎么去使用 go build, 那么你也知道怎么去使用 Gox 了。例如，编译当前的项目，无需提供参数，只需要调用 gox。Gox 就会根据 CPU 的数量并行地为各个平台编译：
+ \$ gox
+Number of parallel builds: 4
+&amp;ndash;&amp;gt; darwin/386: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; darwin/amd64: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; linux/386: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; linux/amd64: github.com/mitchellh/gox</description>
     </item>
     
     <item>
-      <title>如何使用MAC远程连接Win10操作系统</title>
-      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
-      <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
+      <title>MacOS10_9[Mavericks]编译支持ZeroMQ4_0_1版本的gozmq</title>
+      <link>https://yushuangqi.com/blog/2016/mac-os-10_9-mavericks-bian-yi-zhi-chi--zeromq-4_0_1-ban-ben-de--gozmq.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
-      <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
-那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
- 提示“远程桌面连接无法验证您希望连接的计算机的身份”。
- 那么说明是Win10的远程访问权限设置有问题，经过测试可以降低安全级别进行处理，具体操作办法如下：
- Win 打开开始，点击设置 在右上角的搜索输入窗口，输入允许远程访问你的计算机 按Enter回车键,将弹出窗口显示系统属性 去掉勾选项: 仅允许运行使用网络级别身份验证的远程计算机 点击确定并关闭窗口  MAC远程访问Window桌面工具 如果是简单的远程，可以使用微软官方出品的 Remote Desktop For Mac 工具，下载地址：
- https://technet.microsoft.com/en-us/library/dn473012(v=ws.11).aspx
- 上面就是Mac下远程登录Win10的方式，希望能帮到你!</description>
+      <guid>https://yushuangqi.com/blog/2016/mac-os-10_9-mavericks-bian-yi-zhi-chi--zeromq-4_0_1-ban-ben-de--gozmq.html</guid>
+      <description>https://segmentfault.com/a/
+下载 4.0.1 版本的 ZeroMQ 代码后解压到任意目录。
+tar -xzvf zeromq-4.0.1.tar.gz cd zeromq-4.0.1 ./configure --prefix=/usr make make install go get -tags zmq_4_x github.com/alecthomas/gozmq  测试程序
+package main import ( &amp;quot;fmt&amp;quot; zmq &amp;quot;github.com/alecthomas/gozmq&amp;quot; &amp;quot;os&amp;quot; ) func main() { major, minor, patch := zmq.Version() fmt.Printf(&amp;quot;Current 0MQ version is %d.%d.%d\n&amp;quot;, major, minor, patch) os.Exit(0) }  运行测试程序
+$ go run version.go $ Current 0MQ version is 4.0.1  </description>
     </item>
     
     <item>
-      <title>Wecrcker自动部署到Github过程中问题记录</title>
-      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
-      <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
+      <title>使用Go语言编写的跨平台的emlog整站(首页&#43;文章)静态化工具</title>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-bian-xie-de-kua-ping-tai-de-emlogzheng-zhan-shou-xie-wen-zhang-jing-tai-hua-gon.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
-      <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
-wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
- box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
- __ysqi/git-push __
-step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
-source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-bian-xie-de-kua-ping-tai-de-emlogzheng-zhan-shou-xie-wen-zhang-jing-tai-hua-gon.html</guid>
+      <description> emlog_static.go 项目地址： https://github.com/johnlui/emlog_static.go ====================
+功能  新闻博客类非数据交互网站通用首页静态化 emlog博客系统文章页静态化 使用Go语言编写，跨平台  条件  需要能够管理服务器，需要编译、运行软件 需要Go语言编译环境，请去The Go Programming Language 下载  使用方法  两个文件单独编译，分别运行 emlog_static_homepage 首页静态化 使用方法为：
+./emlog_static_homepage -url=http://example.com/index.php -t=30
+t为间隔时间，单位是秒
+ emlog_static_articles 文章页静态化 使用方法为：
+./emlog_static_articles -url=http://example.com/index.php -c=10 -n=100
+c为并发数，n为总文章数，即文章id最大值
+  </description>
     </item>
     
     <item>
-      <title>理解Go import</title>
-      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</link>
-      <pubDate>Tue, 08 Mar 2016 10:44:36 +0800</pubDate>
+      <title>使用golang在与数据库访问过程中的一点想法</title>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:11 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</guid>
-      <description>Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。
-工作目录 在 Go 中代码保持在称之为 workspace 的系统文件夹中。这个工作目录下有三个根目录：
- bin 包含可执行文件 。 pkg 包含不同操作系统架构的包二进制文件。相当于编译后的库文件。 src 包含按包方式组织的源代码。  其中 bin 和 pkg 文件夹是在调用 go 命令安装和编译源代码时自动生成。而 src 下可组织多个包，且能使用版本控制工具。
-注意，必须让 Go 知道工作目录的位置，这样才能知道包的具体位置。通过设置环境变量 GOPATH 来指定。
-export GOPATH=/home/dev/gowork/  导入包 improt 便是用一个独一无二的字符串路径来指向包，而包的导入路径是基于工作目录或者的。因为 Go 会在 工作目录 src 子目录下查找包。
-标准包使用的是给定的短路径，如“fmt”、“net/http”，但你自己的包，需要在工作目录下指定一个目录，同时预防和以后的代码包路径发生冲突。以便我们作为个人开发者，基于 github 的话，那么我们可以建立自己的代码基目录，github.com/user 。
-improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
-先创建代码库: $GOPATH/src/ysqi/lib/lib.go
-package lib import &amp;quot;fmt&amp;quot; func SayHello() { fmt.Println(&amp;quot;Hello,YSQ :) &amp;quot;) }  再新建一个App：$GOPATH/src/ysqi/app/main.</description>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</guid>
+      <description> https://segmentfault.com/a/
+遇到的问题 golang对于基本类型初始化的处理，是自动给基本类型赋值为默认值。比如：
+var i int//在这里如果不对i做任何赋值，那么i的值为零  这个特性在很多地方能够避免访问到未初始化变量的尴尬，但是由此也引出了另外一个问题，就是在进行数据库访问操作时应该如果对待这样的默认值。
+现在我们假设一个场景，表A有3个字段{AID int,AField1 string,AField2 string}，表B也有3个字段{ID int,BField1 string,REF_AID int}，其中表B中的REF_AID是外键对应表A中的AID。对应在GO中的数据结构应该为：
+type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BID int//主键 BField1 string REF_AID int//外键，对应AID }  在new对象B的时候，B中的三个值就分别被默认的初始化为{0,&amp;ldquo;&amp;rdquo;,0}，如果此时不对内容做任何操作，直接执行插入，问题就可能会变得很严重，因为A中很可能并没有任何一条记录的ID值为0，数据库报错，这条插入是一定会失败。但是仅仅在数据库层面上来看，数据库的结构是没问题的，表B中的REF_AID可以为空，在其他的语言中，如果没有对具体数据进行初始化，该属性会为空，对应插入的时候也会为空，但是在golang中，由于语言级别的默认初始化，使得这个插入过程会有大量的0的存在，触犯到原本表的约束规则而导致插入失败。
+在orm中也没有看到能够解决这个问题的办法，可能是我用的不够仔细，这个留待以后再说。
+自己的一点想法  把所有的数据库中相关的表都添加一条默认的以0为id的记录，该记录不需要有意义，只是用来防止歧义以及违反约束引起的操作失败，特别是一些ref_表，因为其中数据变动不大，却经常与其他一些表存在外键关系。这样做会给数据库带来一些额外的开销，但是作为一个临时的解决办法似乎还不错，至少能让数据处理流程正确的运行。 从orm中解决问题。这个只是一个想法，不过这很可能变成一种无理的要求，因为这需要orm去判断你的Field中存放的这个0到底是你自己就想指定的0值，还是你不想要却被语言默认初始化出来的0。 自己写SQL语句执行，这可能是最傻的一种方法了，不过却能保证事情完全按照自己的想法执行。  </description>
     </item>
     
     <item>
-      <title>GobyExample中文版</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:17:33 +0800</pubDate>
+      <title>深入GoPlayground内幕</title>
+      <link>https://yushuangqi.com/blog/2016/shen-ru--go-playground-nei-mu.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</guid>
-      <description>此章节收录自 Go by Example 中文 开源项目，虽然作者已提供访问环境，但是对于示例代码还是无法适合于墙内用户在线运行Go。
-感谢@mmcgrana 编写 | everyx中文翻译。</description>
+      <guid>https://yushuangqi.com/blog/2016/shen-ru--go-playground-nei-mu.html</guid>
+      <description>简介 2010年9月，我们介绍了Go Playground，这是一个完全由Go代码组成和返回程序运行结果的web服务器。
+如果你是一位Go程序员，那你很可能已经通过阅读Go教程或执行Go文档中的示例程序的途径使用过Go Playground了。
+你也可以通过点击 talks.golang.org上幻灯片中的“Run” 按钮或某个博客上的程序(比如最近一篇关于字符串的blog)而使用之.
+本文我们将学习Go playground是如何实现并与其它服务整合的。其实现涉及到不同的操作系统和运行时间，这里我们假设大家用来编写Go的系统都基本相同。
+概览 
+playground服务有三部分：
+* 一个运行于Google服务之上的后端。它接收RPC请求，使用gc工具编译用户程序，执行，并将程序的输出（或编译错误）作为RPC响应返回。
+* 一个运行在 GAE上的前端。它接收来自客户端的HTTP请求并生成相应的RPC请求到后端。它也做一些缓存。
+* 一个JavaScript客户端实现的用户界面，并生成到前端的HTTP请求。
+后端 后端程序本身很简单，所以这里我们不讨论它的实现。有趣的部分是我们如何在一个安全环境下安全地执行任意用户代码，于此同时还提供如时间、网络及文件系统等的核心功能。
+为从Google的基础设施隔离用户程序，后端将它们运行在原生客户端（或“NaCl”）中，原生客户端（NaCl）—一个Google开发的技术，允许x86程序在Web浏览器中安全执行。后端使用一个能生成NaCl可执行文件的特殊版gc工具。
+（这个特殊的工具将合并到Go 1.3中。想了解更多，阅读设计文档。如果你想提前体验NaCl，你可以检出一个包含所有变更的分支。）
+本地客户端会限制程序占用CPU和RAM的使用量,此外还会阻止程序访问网络和文件系统。然而这会导致一个问题，Go程序的许多关键优势，比如并发和网络访问。此外访问文件系统，对于许多程序也是至关重要的。我们需要时间功能，才展现高效的并发性能。显然我们需要网络和文件系统，才能显示出来访问网络和文件系统方面的优势。
+尽管现在这些功能都被支持了，但是2010年发布的第一版playground时，没有一项被支持的。当前时间功能是在2009年11月10的被支持的，可是 time.Sleep 却不能使用，而且多数与系统和网络有关的包都不被支持的
+一年后，我们在playground上面实现了一个伪时间，这才使得程序可以有个正确的休眠行为。较新的playground更新引入了伪网络和伪文件系统，这使得playground的工具链与正常的Go工具链相同。这些新引入的功能会在下面具体阐述。
+伪时间 playground里面的程序可用CPU时间和内存都是有限的。除此以外程序实际使用时间也是有限制的。这是因为每个运行在playground的程序都消耗着后台资源，以及占据客户端和后台间的基础设施。限制每个程序的运行时间让我们的维护更加可遇见，而且可以保护我们免受拒绝服务攻击。
+但是当程序使用时间功能函数的时候，这些限制将变得非常不合适。在 Go Concurrency Patterns 讲话中通过一个例子来演示这个糟糕的问题。这是一个使用时间功能函数比如 time.Sleep 和time.After的例子程序，当运行在早期的playground中时，这些程序的休眠会失效而且行为很奇怪（有时甚至出现错误）
+通过使用一个高明的小把戏，我们可以使得Go程序认为它是在休眠，而实际上这个休眠没有花费任何时间。在介绍这个小把戏之前，我们需要了解调度程序是管理goroutine的休眠的原理。
+当一个goroutine调用time.Sleep（或者其他相似函数），调度器会在挂起的计时器堆中添加中增加一个计时器，并让goroutine休眠。在这期间，一个特殊的goroutine计算器管理着这个堆。当这个特殊的goroutine计算器开始工作时，首先，它告诉调度器，当堆中的下一个挂起的计时器准备计时的时候唤醒自己，然后它自己就开始休眠了。当这个特殊计时器被唤醒后首先是检测是否有计时器超时了，如果有那么就唤醒相应的goroutine，然后又回到休眠状态。
+明白了这个原理后，那个小把戏只是改变唤醒goroutine的计时器的条件。调度器并不是经过一段时间后进行唤醒，而且仅仅等待一个所有goroutines 都阻塞的死锁产生后就进行唤醒。
+playground运行时版本中维护着一个内部时钟。当修改后的调度器检测到一个死锁，那么它将检查是否有一些挂起的计时器。如果有的话，它会将内部时钟的时间调整到最早计时器的促发时间，然后唤醒goroutine计时器。这样一直循环往复，程序都认为时间过去了，而实际上休眠几乎没有耗时。
+这些调度器的改变细节详见 proc.c 和 time.goc。
+伪时间解决了后台资源耗尽的问题，但是程序的输出该怎么办呢？看见一个在休眠的程序，却几乎不耗时地正确完成工作了，这是得多么的奇怪啊！
+下面的程序每秒输出当前时间，然后三秒后退出.试着运行一下。
+func main() { stop := time.After(3 * time.Second) tick := time.NewTicker(1 * time.Second) defer tick.Stop() for { select { case &amp;lt;-tick.</description>
     </item>
     
     <item>
-      <title>Go示例大全-信号</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
+      <title>用Go语言写HTTP中间件</title>
+      <link>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</guid>
-      <description>有时候，我们希望 Go 能智能的处理 Unix 信号。例如，我们希望当服务器接收到一个 SIGTERM 信号时能够自动关机，或者一个命令行工具在接收到一个 SIGINT 信号时停止处理输入信息。这里讲的就就是在 Go 中如何通过通道来处理信号。
-Go 通过向一个通道发送 os.Signal 值来进行信号通知。我们将创建一个通道来接收这些通知（同时还创建一个用于在程序可以结束时进行通知的通道）。
-signal.Notify 注册这个给定的通道用于接收特定信号。
-这个 Go 协程执行一个阻塞的信号接收操作。当它得到一个值时，它将打印这个值，然后通知程序可以退出。
-程序将在这里进行等待，直到它得到了期望的信号（也就是上面的 Go 协程发送的 done 值）然后退出。
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/signal&amp;quot; import &amp;quot;syscall&amp;quot; func main() { sigs := make(chan os.Signal, 1) done := make(chan bool, 1) signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM) go func() { sig := &amp;lt;-sigs fmt.Println() fmt.Println(sig) done &amp;lt;- true }() fmt.Println(&amp;quot;awaiting signal&amp;quot;) &amp;lt;-done fmt.Println(&amp;quot;exiting&amp;quot;) }  </description>
+      <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</guid>
+      <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极了。
+其一，一个好的中间件拥有单一的功能，可插拔并且是自我约束的。这就意味着你可以在接口的层次上把它放到应用中，并能很好的工作。中间件并不影响你的代码风格，它也不是一个框架，仅仅是你处理请求流程中额外一层罢了。根本不需要重写代码：如果你想用一个中间件，就把它加上应用中；如果你改变主意了，去掉就好了。就这么简单。
+来看看Go，HTTP中间件非常流行，标准库中也是这样。或许咋看上去并不明显，net/http包中的函数，如StripPrefix 和TimeoutHandler 正是我们上面定义的中间件：封装处理过程并在处理输入或输出时增加额外的动作。
+我最近的Go包 nosurf 也是一个中间件。我从一开始就有意的这样设计。大多数情况下，你根本不必在应用层关心CSRF检查。nosurf，和其他中间件一样，非常独立，可以和实现标准库net/http接口的工具配合使用。
+你也可以使用中间件做这些：
+* 通过隐藏长度缓解BREACH攻击
+* 频率限制
+* 屏蔽恶意自动程序
+* 提供调试信息
+* 添加HSTS, X-Frame-Options头
+* 从异常中优雅恢复
+* 以及其他等等。
+写一个简单的中间件 第一个例子中，我写了一个中间件，只允许用户从特定的域（在HTTP的Host头中有域信息）来访问服务器。这样的中间件可以保护应用程序不受“主机欺骗攻击”
+定义类型 为了方便，让我们为这个中间件定义一种类型，叫做SingleHost。
+type SingleHost struct { handler http.Handler allowedHost string }  只包含两个字段：
+* 封装的Handler。如果是有效的Host访问，我们就调用这个Handler。
+* 允许的主机值。
+由于我们把字段名小写了，使得该字段只对我们自己的包可见。我们还应该写一个初始化函数。
+func NewSingleHost(handler http.Handler, allowedHost string) *SingleHost { return &amp;amp;SingleHost{handler: handler, allowedHost: allowedHost} }  处理请求 现在才是实际的逻辑。为了实现http.Handler，我们的类型秩序实现一个方法：
+type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们实现的方法：</description>
     </item>
     
     <item>
-      <title>Go示例大全-退出</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
+      <title>golang标准库的分析os包(6)</title>
+      <link>https://yushuangqi.com/blog/2016/golangbiao-zhun-ku-de-fen-xi-osbao-6.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</guid>
-      <description>使用 os.Exit 来立即进行带给定状态的退出。
-当使用 os.Exit 时 defer 将不会 执行，所以这里的 fmt.Println将永远不会被调用。
-退出并且退出状态为 3。
-注意，不像例如 C 语言，Go 不使用在 main 中返回一个整数来指明退出状态。如果你想以非零状态退出，那么你就要使用 os.Exit。
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; func main() { defer fmt.Println(&amp;quot;!&amp;quot;) os.Exit(3) }  </description>
+      <guid>https://yushuangqi.com/blog/2016/golangbiao-zhun-ku-de-fen-xi-osbao-6.html</guid>
+      <description>这个还是在我的博客首发的，但是我感觉人流量太小，我们写博客的目的不仅是记录我们再用的时候遇到的问题，是为了更好的让大家在以后的学习和开发中也用到~~为go语言的宣传尽自己一点微薄的力量
+今天我们讲golang标准库的os包type File struct{},还是废话少说直接上代码
+(1)os.Create()这个函数是创见一个文件，函数的原型是func Create(name string) (file *File, err error)输入的是名称字符串类型，返回的是一个File的指针和一个error import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;reflect&amp;quot; ) func main() { f, _ := os.Create(&amp;quot;widuu_2.go&amp;quot;) defer f.Close() fmt.Println(reflect.ValueOf(f).Type()) //*os.File }   这个函数的原理其实是这样的OpenFile(name, O_RDWR|O_CREATE|O_TRUNC, 0666) O_RDWR也就是说用读写的权限，O_CREATE然后文件存在忽略，不存在创建它，O_TRUNC文件存在截取长度为0，这就解释了为什么我们明明有这个文件，我擦，创建之后哭了~啥都没有了~~用的时候需谨慎，先判断文件是否存在~
+ (2)os.OpenFile函数的原型是func OpenFile(name string, flag int, perm FileMode) (file *File, err error)要指定文件权限和打开的方式,就是我们上边所用到的 import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.OpenFile(&amp;quot;10.go&amp;quot;, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777) defer f.Close() fmt.Println(f.Stat()) }   这个就是上边的Create()只不过权限是0777以及下边的操作等大部分用到OpenFile()
+ (3)os.</description>
     </item>
     
     <item>
-      <title>Go示例大全-执行进程</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
+      <title>golang讲解(go语言)标准库分析之os(7)</title>
+      <link>https://yushuangqi.com/blog/2016/golangjiang-jie-goyu-yan-biao-zhun-ku-fen-xi-zhi-os7.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</guid>
-      <description>在前面的例子中，我们了解了生成外部进程的知识，当我们需要访问外部进程时时需要这样做，但是有时候，我们只想用其他的（也许是非 Go 程序）来完全替代当前的 Go 进程。这时候，我们可以使用经典的 exec方法的 Go 实现。
-在我们的例子中，我们将执行 ls 命令。Go 需要提供我们需要执行的可执行文件的绝对路径，所以我们将使用exec.LookPath 来得到它（大概是 /bin/ls）。
-Exec 需要的参数是切片的形式的（不是放在一起的一个大字符串）。我们给 ls 一些基本的参数。注意，第一个参数需要是程序名。
-Exec 同样需要使用环境变量。这里我们仅提供当前的环境变量。
-这里是 os.Exec 调用。如果这个调用成功，那么我们的进程将在这里被替换成 /bin/ls -a -l -h 进程。如果存在错误，那么我们将会得到一个返回值。
-package main import &amp;quot;syscall&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { binary, lookErr := exec.LookPath(&amp;quot;ls&amp;quot;) if lookErr != nil { panic(lookErr) } args := []string{&amp;quot;ls&amp;quot;, &amp;quot;-a&amp;quot;, &amp;quot;-l&amp;quot;, &amp;quot;-h&amp;quot;} env := os.Environ() execErr := syscall.Exec(binary, args, env) if execErr != nil { panic(execErr) } }  </description>
+      <guid>https://yushuangqi.com/blog/2016/golangjiang-jie-goyu-yan-biao-zhun-ku-fen-xi-zhi-os7.html</guid>
+      <description>今天我们继续讲golang标准库的os包，依然是没有废话直接来
+ (1)(f *File).Name()这个函数是返回文件的名称，函数原型func (f *File) Name() string要文件的指针操作，返回字符串，感觉比较鸡助的方法底层实现 func (f *File) Name() string { return f.name } import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.Open(&amp;quot;1.go&amp;quot;) fmt.Println(f.Name()) //输出1.go }  (2)(f *File).Read()这个是函数的指针来操作的,属于*FIlE的method,函数原型func (f *File) Read(b []byte) (n int, err error)输入读取的字节数，返回字节的长度和error信息 import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { b := make([]byte, 100) //设置读取的字节数 f, _ := os.Open(&amp;quot;11.go&amp;quot;) n, _ := f.Read(b) fmt.Println(n) fmt.Println(string(b[:n])) //输出内容 为什么是n而不直接输入100呢？底层这样实现的 /* n, e := f.</description>
     </item>
     
     <item>
-      <title>Go示例大全-生成进程</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
+      <title>分享基本golang学习的书</title>
+      <link>https://yushuangqi.com/blog/2016/fen-xiang-ji-ben-golangxue-xi-de-shu.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</guid>
-      <description>有时，我们的 Go 程序需要生成其他的，非 Go 进程。例如，这个网站的语法高亮是通过在 Go 程序中生成一个 pygmentize来实现的。让我们看一些关于 Go 生成进程的例子。
-我们将从一个简单的命令开始，没有参数或者输入，仅打印一些信息到标准输出流。exec.Command 函数帮助我们创建一个表示这个外部进程的对象。
-.Output 是另一个帮助我们处理运行一个命令的常见情况的函数，它等待命令运行完成，并收集命令的输出。如果没有出错，dateOut 将获取到日期信息的字节。
-下面我们将看看一个稍复杂的例子，我们将从外部进程的stdin 输入数据并从 stdout 收集结果。
-这里我们明确的获取输入/输出管道，运行这个进程，写入一些输入信息，读取输出的结果，最后等待程序运行结束。
-上面的例子中，我们忽略了错误检测，但是你可以使用if err != nil 的方式来进行错误检查，我们也只收集StdoutPipe 的结果，但是你可以使用相同的方法收集StderrPipe 的结果。
-注意，当我们需要提供一个明确的命令和参数数组来生成命令，和能够只需要提供一行命令行字符串相比，你想使用通过一个字符串生成一个完整的命令，那么你可以使用 bash命令的 -c 选项：
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;io/ioutil&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { dateCmd := exec.Command(&amp;quot;date&amp;quot;) dateOut, err := dateCmd.Output() if err != nil { panic(err) } fmt.Println(&amp;quot;&amp;gt; date&amp;quot;) fmt.Println(string(dateOut)) grepCmd := exec.Command(&amp;quot;grep&amp;quot;, &amp;quot;hello&amp;quot;) grepIn, _ := grepCmd.StdinPipe() grepOut, _ := grepCmd.</description>
+      <guid>https://yushuangqi.com/blog/2016/fen-xiang-ji-ben-golangxue-xi-de-shu.html</guid>
+      <description>第一本是《goweb编程》-为什么先推荐这本呢？因为这本书是从浅显到深的方式，适合初学者个人感觉是一本很棒的书，是国内的AStaxie写的一本golang的书，盛大云分发的研究员，有Beego这个框架大家可以去感受一下！
+第二本是《go语言编程》&amp;ndash;是七牛云存储许式伟写的,七牛是国内一个99%的程序都是用GO开发的公司对于golang有深入的了解和实践&amp;ndash;为什么是第二本&amp;ndash;因为里边讲解的东西需要第一本做基础
+第三本是国外的《the way to go》很棒的一本书，但是我只有英文版的，如果有兴趣的同志们可以翻译成中文版，网盘分享地址http://pan.baidu.com/s/1bnGeBeR</description>
     </item>
     
     <item>
-      <title>Go示例大全-命令行参数</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <title>jquery和angular的ajax请求的区别</title>
+      <link>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:08 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</guid>
-      <description>命令行参数是指定程序运行参数的一个常见方式。例如，go run hello.go，程序 go 使用了 run 和 hello.go 两个参数。
-os.Args 提供原始命令行参数访问功能。注意，切片中的第一个参数是该程序的路径，并且 os.Args[1:]保存所有程序的的参数。
-你可以使用标准的索引位置方式取得单个参数的值。
-package main import &amp;quot;os&amp;quot; import &amp;quot;fmt&amp;quot; func main() { argsWithProg := os.Args argsWithoutProg := os.Args[1:] arg := os.Args[3] fmt.Println(argsWithProg) fmt.Println(argsWithoutProg) fmt.Println(arg) }  </description>
+      <guid>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</guid>
+      <description>最近用angular替换我blog的部分页面。结果悲剧的发现，post请求到revel以后，revel的ParamsFilter解析不粗来参数。
+看了下请求信息，发现jquery和angular的post请求是有些不同的。
+jquery的content type是application/x-www-form-urlencoded，会把post的参数拼接到url上，格式如foo=bar&amp;amp;baz=moe这样的。
+而angular里，默认content type 是application/json，数据是以json格式发过去的。
+但是在revel的params.go里面，没有对json格式的请求做参数处理。
+用作者的原话说，这个json的处理没有什么用，而且在controller里用encoding/json处理也只是几行代码的事情。所以，就没有所以了。。。
+关于这个问题的解决方法，有很多，可以从angular层面解决，把angular的post请求也按照jquery的方法做些改变，如下：
+[](http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/)http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
+[](https://github.com/petersirka/total.js/issues/26)https://github.com/petersirka/total.js/issues/26
+也可以从revel服务端解决。
+[](https://github.com/robfig/revel/issues/97)https://github.com/robfig/revel/issues/97
+本页的代码修改如下：
+func (c *Task) NewTask() revel.Result { decoder := json.NewDecoder(c.Request.Body) var content ToDoContent if err := decoder.Decode(&amp;amp;content); err != nil { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;err:&amp;quot;, err) } else { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;content:&amp;quot;, content.Content) } json.Marshal(content) return c.RenderJson(content) }  虽然这样代码确实不多，不过瞬间感觉比rails弱爆了。。。
+顺带的提一下，如果是jquery的请求，也需要稍微改动一下的，否则，revel一样的解析不粗来。
+在jquery里要把post的jsonstringify一下。
+具体参考这里[](https://github.com/robfig/revel/issues/126)https://github.com/robfig/revel/issues/126
+$.ajax({ type:&amp;quot;POST&amp;quot;, url:&amp;quot;/Application/Index&amp;quot;, data:JSON.stringify({ name: &amp;quot;John&amp;quot;, time: &amp;quot;2pm&amp;quot; }), contentType:&amp;quot;application/json&amp;quot;, dataType:&amp;quot;json&amp;quot; } )  </description>
     </item>
     
     <item>
-      <title>Go示例大全-命令行标志</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <title>150行Go代码实现gitcheckout功能</title>
+      <link>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:07 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</guid>
-      <description>命令行标志是命令行程序指定选项的常用方式。例如，在 wc -l 中，这个 -l 就是一个命令行标志。
-Go 提供了一个 flag 包，支持基本的命令行标志解析。我们将用这个包来实现我们的命令行程序示例。
-基本的标记声明仅支持字符串、整数和布尔值选项。这里我们声明一个默认值为 &amp;quot;foo&amp;quot; 的字符串标志 word并带有一个简短的描述。这里的 flag.String 函数返回一个字符串指针（不是一个字符串值），在下面我们会看到是如何使用这个指针的。
-使用和声明 word 标志相同的方法来声明 numb 和 fork 标志。
-用程序中已有的参数来声明一个标志也是可以的。注意在标志声明函数中需要使用该参数的指针。
-所有标志都声明完成以后，调用 flag.Parse() 来执行命令行解析。
-这里我们将仅输出解析的选项以及后面的位置参数。注意，我们需要使用类似 *wordPtr 这样的语法来对指针解引用，从而得到选项的实际值。
-package main import &amp;quot;flag&amp;quot; import &amp;quot;fmt&amp;quot; func main() { wordPtr := flag.String(&amp;quot;word&amp;quot;, &amp;quot;foo&amp;quot;, &amp;quot;a string&amp;quot;) numbPtr := flag.Int(&amp;quot;numb&amp;quot;, 42, &amp;quot;an int&amp;quot;) boolPtr := flag.Bool(&amp;quot;fork&amp;quot;, false, &amp;quot;a bool&amp;quot;) var svar string flag.StringVar(&amp;amp;svar, &amp;quot;svar&amp;quot;, &amp;quot;bar&amp;quot;, &amp;quot;a string var&amp;quot;) flag.Parse() fmt.Println(&amp;quot;word:&amp;quot;, *wordPtr) fmt.Println(&amp;quot;numb:&amp;quot;, *numbPtr) fmt.</description>
+      <guid>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</guid>
+      <description>由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单了，配上github、bitbucket等hosting,已接近完美。
+git其实挺简单的，本文用了约150行golang代码实现了git checkout功能，阅读代码之前，您应该读过《Git Pro》中的git内部原理一节。
+ 数据定义： type blob struct { sha1 string filename string } type tree struct { b []*blob name string child []*tree } type commit struct { sha1 string tree *tree parent *commit }
+  其中blob定义一个文件 ,sha1是文件的sha1值,filename是不包括路径的文件名。
+tree定义相当于目录，b是目录下的文件，name是当前目录名，不包括父路径，child是目录下的目录。
+commit是一次提交，sha1是提交的sha1值，tree指向一要树形的根节点，沿此根结点可以检出所有的文件。
+对照下面这副图就比较容易理解:
+ 工具函数 func readSha1FileReader(sha1 string) (reader io.Reader, err error) {
+f, err := os.Open(getSha1FilePath(sha1)) if err != nil{ return } return zlib.NewReader(f)  }
+func readSha1FileContent(sha1 string) (content []byte, err error) {</description>
     </item>
     
     <item>
-      <title>Go示例大全-环境变量</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <title>PDO批量并发执行SSH工具介绍</title>
+      <link>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:06 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</guid>
-      <description>环境变量是一个在为 Unix 程序传递配置信息的普遍方式。让我们来看看如何设置，获取并列举环境变量。
-使用 os.Setenv 来设置一个键值队。使用 os.Getenv获取一个键对应的值。如果键不存在，将会返回一个空字符串。
-使用 os.Environ 来列出所有环境变量键值队。这个函数会返回一个 KEY=value 形式的字符串切片。你可以使用strings.Split 来得到键和值。这里我们打印所有的键。
-package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; import &amp;quot;fmt&amp;quot; func main() { os.Setenv(&amp;quot;FOO&amp;quot;, &amp;quot;1&amp;quot;) fmt.Println(&amp;quot;FOO:&amp;quot;, os.Getenv(&amp;quot;FOO&amp;quot;)) fmt.Println(&amp;quot;BAR:&amp;quot;, os.Getenv(&amp;quot;BAR&amp;quot;)) fmt.Println() for _, e := range os.Environ() { pair := strings.Split(e, &amp;quot;=&amp;quot;) fmt.Println(pair[0]) } }  </description>
+      <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</guid>
+      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具.
+本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离出其中都可以使用的部分.
+ 工具名称: pdo(parallel do something) https://github.com/ohlinux/pdo  安装 依赖  需要有一个中控机与被管理机器建立了无密码的密钥关系. 需要有go语言的环境,进行编译安装.这里没有提供bin文件. 自己所测试的环境有,centos macos.  编译 先获取依赖的第三方库:
+go get github.com/cihub/seelog go get github.com/robfig/config  安装go 环境.
+go build pdo.go  配置文件目录,默认在~/.pdo.如果不在此处指定.
+pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三种途径.(这里去掉了数据库这种特定的)
+ -f 文件,host的列表文件,可以是一列,也可以是两列有相关的目录依赖.后面有例子. -a app名字;-p 产品名;-a支持多app采用 app1,app2逗号分隔. (这个是数据库的来源,因为是特定环境的所以不再有) 标准输入 cat 1.host | pdo -R当使用的时候,可以自动生成失败的列表.详细查看例子&amp;rdquo;Retry功能&amp;rdquo;  pdo 列表过滤 如果列表名称是这样的结构,xxx.yyy 那么过滤的就是yyy,如果没有这个需要,可以忽略.
+ -i yf01,dbl01,cq02 过滤物理机房名称,多个可用逗号隔开. -I JX/TC 过滤逻辑机房,配置在-c configure file 中  配置文件中:</description>
     </item>
     
     <item>
-      <title>Go示例大全-行过滤器</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
+      <title>LRU算法</title>
+      <link>https://yushuangqi.com/blog/2016/lru-suan-fa.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:05 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</guid>
-      <description>一个行过滤器 在读取标准输入流的输入，处理该输入，然后将得到一些的结果输出到标准输出的程序中是常见的一个功能。grep 和 sed 是常见的行过滤器。
-这里是一个使用 Go 编写的行过滤器示例，它将所有的输入文字转化为大写的版本。你可以使用这个模式来写一个你自己的 Go行过滤器。
-对 os.Stdin 使用一个带缓冲的 scanner，让我们可以直接使用方便的 Scan 方法来直接读取一行，每次调用该方法可以让 scanner 读取下一行。
-Text 返回当前的 token，现在是输入的下一行。
-写出大写的行。
-检查 Scan 的错误。文件结束符是可以接受的，并且不会被 Scan 当作一个错误。
- package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
+      <guid>https://yushuangqi.com/blog/2016/lru-suan-fa.html</guid>
+      <description>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。
+原理 添加元素时，放到链表头 缓存命中，将元素移动到链表头 缓存满了之后，将链表尾的元素删除  LRU算法实现  可以用一个双向链表保存数据 使用hash实现O(1)的访问  groupcache中LRU算法实现（Go语言）
+https://github.com/golang/groupcache/blob/master/lru/lru.go
+源码简单注释：
+package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定义lru cache 不是线程安全的 type Cache struct { // 数目限制，0是无限制 MaxEntries int // 删除时, 可以添加可选的回调函数 OnEvicted func(key Key, value interface{}) ll *list.List // 使用链表保存数据 cache map[interface{}]*list.Element // map } // Key 是任何可以比较的值 http://golang.org/ref/spec#Comparison_operators type Key interface{} type entry struct { key Key value interface{} } // 创建新的cache 对象 func New(maxEntries int) *Cache { return &amp;amp;Cache{ MaxEntries: maxEntries, ll: list.</description>
     </item>
     
     <item>
-      <title>Go示例大全-写文件</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
+      <title>100行代码写一个golang上传下载静态服务器</title>
+      <link>https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:04 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</guid>
-      <description>Go 写文件和我们前面看过的读操作有着相似的方式。
-开始，这里是展示如写入一个字符串（或者只是一些字节）到一个文件。
-对于更细粒度的写入，先打开一个文件。
-打开文件后，习惯立即使用 defer 调用文件的 Close操作。
-你可以写入你想写入的字节切片
-WriteString 也是可用的。
-调用 Sync 来将缓冲区的信息写入磁盘。
-bufio 提供了和我们前面看到的带缓冲的读取器一样的带缓冲的写入器。
-使用 Flush 来确保所有缓存的操作已写入底层写入器。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { d1 := []byte(&amp;quot;hello\ngo\n&amp;quot;) err := ioutil.WriteFile(&amp;quot;/tmp/dat1&amp;quot;, d1, 0644) check(err) f, err := os.Create(&amp;quot;/tmp/dat2&amp;quot;) check(err) defer f.Close() d2 := []byte{115, 111, 109, 101, 10} n2, err := f.Write(d2) check(err) fmt.</description>
+      <guid>https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html</guid>
+      <description>许多朋友开始加入golang的大本营，然后呢都是去看看golang的一些特性，问golang足够简单吗？有什么特性？能做什么？
+上边那些回答不了，有些学基础的朋友很想做一些东西，然后我就写了这个静态文件服务器，可以上传下载，麻雀虽小，但是包含了很多零碎的小知识点大家一起来巩固一下基础知识吧
+  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;html/template&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;path/filepath&amp;quot; &amp;quot;regexp&amp;quot; &amp;quot;strconv&amp;quot; &amp;quot;time&amp;quot; ) var mux map[string]func(http.ResponseWriter, *http.Request) type Myhandler struct{} type home struct { Title string } const ( Template_Dir = &amp;quot;./view/&amp;quot; Upload_Dir = &amp;quot;./upload/&amp;quot; ) func main() { server := http.Server{ Addr: &amp;quot;:9090&amp;quot;, Handler: &amp;amp;Myhandler{}, ReadTimeout: 10 * time.Second, } mux = make(map[string]func(http.ResponseWriter, *http.Request)) mux[&amp;quot;/&amp;quot;] = index mux[&amp;quot;/upload&amp;quot;] = upload mux[&amp;quot;/file&amp;quot;] = StaticServer server.</description>
     </item>
     
     <item>
-      <title>Go示例大全-读文件</title>
-      <link>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</link>
-      <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
+      <title>golint---golang代码质量检测</title>
+      <link>https://yushuangqi.com/blog/2016/golint---golangdai-ma-zhi-liang-jian-ce.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:04 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</guid>
-      <description>读写文件在很多程序中都是必须的基本任务。首先我们看看一些读文件的例子。
-读取文件需要经常进行错误检查，这个帮助方法可以精简下面的错误检查过程。
-也许大部分基本的文件读取任务是将文件内容读取到内存中。
-你经常会想对于一个文件是怎么读并且读取到哪一部分进行更多的控制。对于这个任务，从使用 os.Open打开一个文件获取一个 os.File 值开始。
-从文件开始位置读取一些字节。这里最多读取 5 个字节，并且这也是我们实际读取的字节数。
-你也可以 Seek 到一个文件中已知的位置并从这个位置开始进行读取。
-io 包提供了一些可以帮助我们进行文件读取的函数。例如，上面的读取可以使用 ReadAtLeast 得到一个更健壮的实现。
-没有内置的回转支持，但是使用 Seek(0, 0) 实现。
-bufio 包实现了带缓冲的读取，这不仅对有很多小的读取操作的能提升性能，也提供了很多附加的读取函数。
-任务结束后要关闭这个文件（通常这个操作应该在 Open操作后立即使用 defer 来完成）。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { dat, err := ioutil.ReadFile(&amp;quot;/tmp/dat&amp;quot;) check(err) fmt.Print(string(dat)) f, err := os.Open(&amp;quot;/tmp/dat&amp;quot;) check(err) b1 := make([]byte, 5) n1, err := f.</description>
+      <guid>https://yushuangqi.com/blog/2016/golint---golangdai-ma-zhi-liang-jian-ce.html</guid>
+      <description>github: https://github.com/golang/lint
+golint是类似javascript中的jslint的工具，主要功能就是检测代码中不规范的地方。golint用于检测go代码。
+使用 $ go get github.com/golang/lint $ go install github.com/golang/lint  golint 文件名或者目录
+检测对应的代码。
+golint会输出一些代码存在的问题：
+比如：
+recorder.go:55:5: exported var RecordBind should have comment or be unexported recorder.go:158:1: exported function Record_ErrorRecord should have comment or be unexported recorder.go:173:6: don&#39;t use underscores in Go names; type Data_MemStats should be DataMemStats recorder.go:179:2: struct field FreeRam should be FreeRAM  上面的输出中文件recorder.go，179行，在struct中字段FreeRam应该是 FreeRAM,输出信息非常的详细
+golint 会检测的方面：
+ 变量名规范 变量的声明，像var str string = &amp;ldquo;test&amp;rdquo;，会有警告，应该var str = &amp;ldquo;test&amp;rdquo; 大小写问题，大写导出包的要有注释 x += 1 应该 x++  等等</description>
     </item>
     
   </channel>

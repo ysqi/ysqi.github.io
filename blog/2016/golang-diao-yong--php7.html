@@ -1,0 +1,201 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>golang调用php7 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="使用 https://github.com/taowen/go-php7
+基于 https://gi"><meta name="keywords" content="golang, php, php7, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html"><meta property="og:title" content="golang调用php7"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:47"><meta property="article:modified_time" content="2016-12-31 11:32:47"><meta property="article:tag" content="golang"><meta property="article:tag" content="php"><meta property="article:tag" content="php7"><meta name="og:description" content="使用 https://github.com/taowen/go-php7
+基于 https://gi"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html">golang调用php7</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007619087" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>使用 <a href="https://github.com/taowen/go-php7"><code>https://github.com/taowen/go-php7</code></a><br>基于 <a href="https://github.com/deuill/go-php">https://github.com/deuill/go-php</a> 修改而来，fork缘由（<a href="https://github.com/deuill/go-php/issues/32">https://github.com/deuill/go-&hellip;</a>）</p><h1 id="执行php文件">执行php文件</h1><pre><code>func Test_exec(t *testing.T) {
+    engine.Initialize()
+    ctx := &amp;engine.Context{
+        Output: os.Stdout,
+    }
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    err = ctx.Exec(&quot;/tmp/index.php&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+</code></pre><p>其中 <code>/tmp/index.php</code> 的内容为</p><pre><code>&lt;?php
+echo(&quot;hello\n&quot;);
+</code></pre><h1 id="eval-返回值">Eval，返回值</h1><pre><code>func Test_eval(t *testing.T) {
+    engine.Initialize()
+    ctx := &amp;engine.Context{}
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    val, err := ctx.Eval(&quot;return 'hello';&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.DestroyValue(val)
+    if engine.ToString(val) != &quot;hello&quot; {
+        t.FailNow()
+    }
+}
+</code></pre><p>返回的value的生命周期所有权是golang程序，所以我们要负责DestroyValue</p><h1 id="设置全局变量来传参">设置全局变量来传参</h1><pre><code>func Test_argument(t *testing.T) {
+    engine.Initialize()
+    ctx := &amp;engine.Context{}
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    err = ctx.Bind(&quot;greeting&quot;, &quot;hello&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+    val, err := ctx.Eval(&quot;return $greeting;&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.DestroyValue(val)
+    if engine.ToString(val) != &quot;hello&quot; {
+        t.FailNow()
+    }
+}
+</code></pre><p>传递进去的参数的生命周期是php控制的，在request shutdown的时候内存会被释放。</p><h1 id="php-回调-golang">PHP 回调 Golang</h1><pre><code>type greetingProvider struct {
+    greeting string
+}
+
+func (provider *greetingProvider) GetGreeting() string {
+    return provider.greeting
+}
+
+func newGreetingProvider(args []interface{}) interface{} {
+    return &amp;greetingProvider{
+        greeting: args[0].(string),
+    }
+}
+
+func Test_callback(t *testing.T) {
+    engine.Initialize()
+    ctx := &amp;engine.Context{}
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    err = engine.Define(&quot;GreetingProvider&quot;, newGreetingProvider)
+    if err != nil {
+        fmt.Println(err)
+    }
+    val, err := ctx.Eval(`
+    $greetingProvider = new GreetingProvider('hello');
+    return $greetingProvider-&gt;GetGreeting();`)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.DestroyValue(val)
+    if engine.ToString(val) != &quot;hello&quot; {
+        t.FailNow()
+    }
+}
+</code></pre><h1 id="php-错误日志">PHP 错误日志</h1><pre><code>func Test_log(t *testing.T) {
+    engine.PHP_INI_PATH_OVERRIDE = &quot;/tmp/php.ini&quot;
+    engine.Initialize()
+    ctx := &amp;engine.Context{
+        Log: os.Stderr,
+    }
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    _, err = ctx.Eval(&quot;error_log('hello', 4); trigger_error('sent from golang', E_USER_ERROR);&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+</code></pre><p>其中 <code>/tmp/php.ini</code> 的内容为</p><pre><code>error_reporting = E_ALL
+error_log = &quot;/tmp/php-error.log&quot;
+</code></pre><p>错误会被输出到 /tmp/php-error.log。直接调用error_log会同时再输出一份到stderr</p><h1 id="http-输入输出">HTTP 输入输出</h1><pre><code>func Test_http(t *testing.T) {
+    engine.Initialize()
+    recorder := httptest.NewRecorder()
+    ctx := &amp;engine.Context{
+        Request: httptest.NewRequest(&quot;GET&quot;, &quot;/hello&quot;, nil),
+        ResponseWriter: recorder,
+    }
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    _, err = ctx.Eval(&quot;echo($_SERVER['REQUEST_URI']);&quot;)
+    if err != nil {
+        fmt.Println(err)
+    }
+    body, err := ioutil.ReadAll(recorder.Result().Body)
+    if err != nil {
+        fmt.Println(err)
+    }
+    if string(body) != &quot;/hello&quot; {
+        t.FailNow()
+    }
+}
+</code></pre><p>所有的PHP超级全局变量都会被初始化为传递进去的Request的值，包括</p><pre><code>$_SERVER
+$_GET
+$_POST
+$_FILE
+$_COOKIE
+$_ENV
+</code></pre><p>echo的内容，http code和http header会被写回到传入的ResponseWriter</p><h1 id="fastcgi-finish-request">fastcgi_finish_request</h1><p>PHP-FPM 很常用的一个功能是<code>fastcgi_finish_request</code>，用于在php里做一些异步完成的事情。这个特殊的全局函数必须支持</p><pre><code>func Test_fastcgi_finish_reqeust(t *testing.T) {
+    engine.Initialize()
+    buffer := &amp;bytes.Buffer{}
+    ctx := &amp;engine.Context{
+        Output: buffer,
+    }
+    err := engine.RequestStartup(ctx)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer engine.RequestShutdown(ctx)
+    ctx.Eval(&quot;ob_start(); echo ('hello');&quot;)
+    if buffer.String() != &quot;&quot; {
+        t.FailNow()
+    }
+    ctx.Eval(&quot;fastcgi_finish_request();&quot;)
+    if buffer.String() != &quot;hello&quot; {
+        t.FailNow()
+    }
+}
+</code></pre><p>实际的作用就是把output提前输出到 ResposneWriter 里去，让调用方知道结果。对于当前进程的执行其实是没有影响的，只是影响了output。</p></div><aside id="meta"><meta itemprop="wordCount" content="412"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/php.html" rel="tag">php</a> <a href="/tags/php7.html" rel="tag">php7</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang-zui-xin-ban-.html">Beego自动化文档(最新版)</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html">go实现高性能直播服务</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="b7f9af48e94c9862d346299b79f4b9c5" data-title="golang调用php7" data-url="https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-diao-yong--php7.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-diao-yong--php7.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

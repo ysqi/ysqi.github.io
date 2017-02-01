@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/select.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/select.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GoByExample系列:非阻塞Channels操作</title>
+      <link>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html</guid>
+      <description>注：该系列文章全部来自 Go By Example 系列翻译而来，个人翻译水平以及理解水平有限，如要更加精确的理解，请看原文Go by Example: Non-Blocking Channel Operations。
+ 在 channels （信道？） 上基本的 sends （发送） 和 receives （接收）是阻塞模式的。尽管如此， 我们可以使用 select 和一个 default 子句来非阻塞的 sends、receives，甚至是非阻塞的多路选择。
+ 注：感谢@lidashuang的说明提醒，文章没有描述清楚，修改如下：select默认是阻塞的，但在select里面还有default语法，这类似于switch，default就是当监听的channel都没有准备好的时候，默认执行的（select不再阻塞等待channel）
+同时，有时候会出现goroutine阻塞的情况，可以利用select设置超时来避免整个程序进入阻塞状态
+ 代码版本一 代码如下：
+package main import &amp;quot;fmt&amp;quot; func main() { messages := make(chan string) signals := make(chan bool) /** 这里是一个非阻塞 receive。如果在 messages 上的值是可用的，那 select 将 &amp;lt;-messages 的值带上，执行 &amp;lt;-messages 下面的println语句。如果不是，它将立即带上 default 的值，执行 default 下面的println语句 **/ select { case msg := &amp;lt;-messages: fmt.</description>
+    </item>
+    
+    <item>
+      <title>Go语言并发模型:使用select</title>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:07 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</guid>
+      <description>简介 作为一种现代语言，go语言实现了对并发的原生支持。上几期文章中，我们对goroutine 和 channel进行了详细的讲解。但是要实现对 channel 的控制，从语言层面上来说，select 语句是必不可少的部分。本文中，我们就 select 语句的行为和使用方法进行深入讨论。
+阅读建议 本文中的内容是 Go语言并发模型的一篇，但是与上几期关系不是特别密切，可以独立阅读。本文的内容源自于 [go language specifications]() 和 Rob Pike 在2012年进行的一场名为&amp;ldquo;concurrency&amp;rdquo; 的演讲。如果有时间的话，建议在 YouTube 上看一下他本人的演讲。
+select 语句的行为 为了便于理解，我们首先给出一个代码片段：
+// https://talks.golang.org/2012/concurrency.slide#32 select { case v1 := &amp;lt;-c1: fmt.Printf(&amp;quot;received %v from c1\n&amp;quot;, v1) case v2 := &amp;lt;-c2: fmt.Printf(&amp;quot;received %v from c2\n&amp;quot;, v1) case c3 &amp;lt;- 23: fmt.Printf(&amp;quot;sent %v to c3\n&amp;quot;, 23) default: fmt.Printf(&amp;quot;no one was ready to communicate\n&amp;quot;) }  上面这段代码中，select 语句有四个 case 子语句，前两个是 receive 操作，第三个是 send 操作，最后一个是默认操作。代码执行到 select 时，case 语句会按照源代码的顺序被评估，且只评估一次，评估的结果会出现下面这几种情况：</description>
+    </item>
+    
+  </channel>
+</rss>

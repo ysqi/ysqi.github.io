@@ -1,0 +1,133 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>golang中几种加密方式的处理 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="缘由 在与第三方平台进行接入的时候，通常会存在一些签名或者加密的处理，在进行开发的时候，因为语言的
+"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html"><meta property="og:title" content="golang中几种加密方式的处理"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:03"><meta property="article:modified_time" content="2016-12-31 11:34:03"><meta property="article:tag" content="golang"><meta name="og:description" content="缘由 在与第三方平台进行接入的时候，通常会存在一些签名或者加密的处理，在进行开发的时候，因为语言的
+"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html">golang中几种加密方式的处理</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000004151272" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h2 id="缘由">缘由</h2><p>在与第三方平台进行接入的时候，通常会存在一些签名或者加密的处理，在进行开发的时候，因为语言的<br>不同，需要按照规范进行相应处理。</p><h2 id="des加解密">DES加解密</h2><p>DES：<a href="https://en.wikipedia.org/wiki/Data_Encryption_Standard">https://en.wikipedia.org/wiki/Data_Encryption_Standard</a></p><p>golang中的标准库crypto/des中有DES的实现，但是golang库的描述比较简单，如果不熟悉DES的加密规则，是不容易<br>进行相应代码编写的，与第三方进行不同语言之间的加密与解密时，也容易混淆，出现错误。</p><p>DES区分为CBC和EBC加密模式，并且有不同的填充方式。</p><p>CBC（等）：<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation</a><br>Padding：<a href="https://en.wikipedia.org/wiki/Padding_(cryptography)">https://en.wikipedia.org/wiki/Padding_(cryptography)</a></p><p>注意 <strong>PKCS#5 padding is identical to PKCS#7 padding</strong></p><p>所以对不同的平台与语言进行DES加解密对接时，需要知道对方的是采用何种加密模式以及何种填充方式：</p><ul><li><p>Windows 默认是CBC模式，CryptSetKeyParam函数，openssl 函数名中直接表明</p></li><li><p>Java 中如果Cipher.getInstance()中不填写，默认是DES/ECB/PKCS5Padding</p></li><li><p>C# 中默认是CBC模式，PKCS7Padding(PKCS5Padding)</p></li></ul><p>golang默认提供的是CBC模式，所以对于ECB模式，需要自己编写代码</p><p>PKCS5Padding与PKCS5Unpadding</p><pre><code>    func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
+        padding := blockSize - len(ciphertext)%blockSize
+        padtext := bytes.Repeat([]byte{byte(padding)}, padding)
+        return append(ciphertext, padtext...)
+    }
+
+    func PKCS5Unpadding(origData []byte) []byte {
+        length := len(origData)
+        unpadding := int(origData[length-1])
+        return origData[:(length - unpadding)]
+    }
+</code></pre><p>ECB加密模式</p><pre><code>        block, err := des.NewCipher(key)
+        if err != nil {
+            ...
+        }
+        bs := block.BlockSize()
+        src = PKCS5Padding(src, bs)
+        if len(src)%bs != 0 {
+            ....
+        }
+        out := make([]byte, len(src))
+        dst := out
+        for len(src) &gt; 0 {
+            block.Encrypt(dst, src[:bs])
+            src = src[bs:]
+            dst = dst[bs:]
+        }
+        ...
+    }
+</code></pre><p>ECB下的解密</p><pre><code>    block, err := des.NewCipher(key)
+    if err != nil {
+        ...
+    }
+
+    out := make([]byte, len(src))
+    dst := out
+    bs := block.BlockSize()
+    if len(src)%bs != 0 {
+        ...
+    }
+
+    for len(src) &gt; 0 {
+        block.Decrypt(dst, src[:bs])
+        src = src[bs:]
+        dst = dst[bs:]
+    }
+    out = PKCS5UnPadding(out)
+</code></pre><h2 id="rsa加解密">RSA加解密</h2><p>与其他语言默认有更高级的封装不同，golang中需要依据不同的概念，自己组合进行封装处理，为此，需要先理解几个不同的概念。</p><p>PEM: <a href="https://en.wikipedia.org/wiki/Privacy-enhanced_Electronic_Mail">https://en.wikipedia.org/wiki/Privacy-enhanced_Electronic_Mail</a>，通常是以.pem结尾的文件，在密钥存储和X.509证书体系中使用比较多，下面是一个X509证书下的PEM格式:</p><pre><code>-----BEGIN CERTIFICATE-----
+    base64
+-----END CERTIFICATE-----
+</code></pre><p>PKCS：<a href="https://en.wikipedia.org/wiki/PKCS">https://en.wikipedia.org/wiki/PKCS</a>，这是一个庞大的体系，不同的密钥采用不同的pkcs文件格式。如私钥采用pkcs8。</p><p>X.509：<a href="https://en.wikipedia.org/wiki/X.509">https://en.wikipedia.org/wiki/X.509</a>，这是一个公钥管理基础（public key infrastructure, pki)，在IETF中通常对应PKIX。</p><p>说明：</p><p>使用 openssl（如<code>openssl genrsa -out rsa_private_key.pem 1024</code>)生成的pem文件，就是符合PEM格式的，以<code>-----BEGIN RSA PRIVATE KEY-----</code>开头，<code>-----END RSA PRIVATE KEY-----</code>结尾。</p><p>也可以转换为pkcs8:</p><pre><code>openssl pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt
+</code></pre><p>注意，虽然数据格式pkcs8格式，但是-outform也表明了，文件格式仍旧是符合PEM格式的，只是两个PEM文件是存在差异的。</p><p>清楚了上面几种概念与格式之后，编写golang对应的公钥与私钥加解密方式，就相对容易一些，首先是将pem文件解码，然后进行对应的密码解码为golang支持的结构体，再进行相应的处理。</p><p>如对于私钥，可以进行如下操作进行签名：</p><pre><code>    block, _ := pem.Decode([]byte(key))
+    if block == nil {       // 失败情况
+        ....
+    }
+
+    private, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+    if err != nil {
+        ...
+    }
+
+    h := crypto.Hash.New(crypto.SHA1)
+    h.Write(data)
+    hashed := h.Sum(nil)
+
+    // 进行rsa加密签名
+    signedData, err := rsa.SignPKCS1v15(rand.Reader, private.(*rsa.PrivateKey), crypto.SHA1, hashed)
+    ...
+</code></pre><p>通过私钥进行解密，代码格式如下；</p><pre><code>    block, _ := pem.Decode([]byte(key))
+    if block == nil {       // 失败情况
+        ....
+    }
+
+    private, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+    if err != nil {
+        ...
+    }
+
+    v, err := rsa.DecryptPKCS1v15(rand.Reader, private, data)
+    ...
+</code></pre><p>对于公钥对数据进行加密：</p><pre><code>    block, _ := pem.Decode([]byte(key))
+    if block == nil {       // 失败情况
+        ....
+    }
+
+    pub, err := x509.ParsePKIXPublicKey(block.Bytes)
+    if err != nil {
+        ...
+    }
+
+    encryptedData, err := rsa.EncryptPKCS1v15(rand.Reader, pub.(*rsa.PublicKey), data)
+    ...
+</code></pre><h2 id="小结">小结</h2><p>搞清楚具体的加密方式，然后再在golang里面编写，代码还是很清晰也不难看懂。</p><p>文章发布于 <a href="https://segmentfault.com/a/1190000004151272">https://segmentfault.com/a/1190000004151272</a>，作者：Damon</p></div><aside id="meta"><meta itemprop="wordCount" content="309"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html">golang中cannotuse**(typeinterface{})astype**解决方案</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html">Golang时间格式化的奇怪设定-为什么你一直出错</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="7ed590d5233e3679bf0c1fb4d7315f64" data-title="golang中几种加密方式的处理" data-url="https://yushuangqi.com/blog/2016/golangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

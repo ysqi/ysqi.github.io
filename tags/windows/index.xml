@@ -11,6 +11,26 @@
     <atom:link href="/tags/windows.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>深入体验bashonwindows在windows上搭建原生的linux开发环境酷！</title>
+      <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</guid>
+      <description>今年微软Build 2016大会最让开发人员兴奋的消息之一，就是在Windows上可以原生运行Linux bash，对开发人员来说，这是一个喜闻乐见的消息。
+1 安装 你必须安装开发者预览版本，才能使用windows的linux subsystem功能。
+ 首先打开你的Windows 10的设置，在&amp;rdquo;更新和安全&amp;rdquo;选项中（我的机器是英文操作系统，但中文操作系统类似），选择&amp;rdquo;开发者&amp;rdquo;，然后选择&amp;rdquo;开发者模式&amp;rdquo;：
+ 在Windows 更新和安全选项中，选择&amp;rdquo;Windows 更新&amp;rdquo;，在&amp;rdquo;更新设置&amp;rdquo;中选择高级选项，你必须打开&amp;rdquo;内部预览版本&amp;rdquo;选项，并且将内部预览的级别设置为最快：
+ 在&amp;rdquo;设置&amp;rdquo;-&amp;gt;&amp;ldquo;系统&amp;rdquo;选项中，查看当前系统信息，你的OS版本必须是14316，如果不是这个版本，请运行在线升级，升级到这个版本：
+ 升级完成后，打开&amp;rdquo;控制面板&amp;rdquo;-》&amp;rdquo;程序&amp;rdquo;，选择&amp;rdquo;打开或者关闭Windows特性&amp;rdquo;，找到Windows Subsystem for Linux(beta)点选并确定，系统会下载更新并提示重启机器：
+ 重启完成后，进入命令行程序，激动人心的时刻来临了，在命令行下敲bash，会提示你是否继续，选择yes，系统会安装Ubuntu文件系统等待完成后，系统会切换到你熟悉的Linux bash模式，试试你熟悉的ls等命令：
+ 打开Windows菜单，你会发现系统中多了一个Ubuntu的图标，这个就是bash on Ubuntu on Windows：
+ 简单测试一下python，perl等语言，发现已经装好了，当然，这个就是Ubuntu的bash，你可以安装Java，Ruby等等：
+  下面来实际测试下ubuntu on windows环境！
+2 系统检测和更新 2.1 版本检测 运行 uname -a 结果如下
+webmaster@FEKETERIGO-PC:~$ uname -a Linux FEKETERIGO-PC 3.4.0+ #1 PREEMPT Thu Aug 1 17:06:05 CST 2013 x86_64 x86_64 x86_64 GNU/Linux webmaster@FEKETERIGO-PC:~$  运行 lsb_release -a 结果如下</description>
+    </item>
+    
+    <item>
       <title>统计文件夹下文件数量</title>
       <link>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</link>
       <pubDate>Thu, 18 Feb 2016 11:05:55 +0800</pubDate>

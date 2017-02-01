@@ -11,6 +11,154 @@
     <atom:link href="/tags/php.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>近十年来最好的语言是什么？-来GopherChina大会找答案</title>
+      <link>https://yushuangqi.com/blog/2016/jin-shi-nian-lai-zui-hao-de-yu-yan-shi-shen-me--lai-gopher-chinada-hui-zhao-da-an.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:32 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/jin-shi-nian-lai-zui-hao-de-yu-yan-shi-shen-me--lai-gopher-chinada-hui-zhao-da-an.html</guid>
+      <description>https://segmentfault.com/a/
+2015年2月，眼看着Gopher 大会先后在国外多地举行，而使用 Golang 最多的国家居然还在静悄悄地各自开发系统，我们意识到Gopher China的正式启动势在必行了。经过这两个月的筹备，Gopher China就要在4月25-26日跟各位开发者们正式见面了。不负众望，本次大会门票提前一个多月就售罄了。作为第一届中国的Gopher大会，到底是什么吸引开发者们这么积极参与呢？今天小编就带大家提前一睹这次会议的亮点。
+如果你还不知道Go语言是什么？
+“PHP是最好的语言。”过去，PHP因为其简单好学，性能和安全性也基本够用被大家喜欢。但是随着互联网时代网民的大大增加，开发者需要一门语言可以支撑更高的性能。Go适时地出现，良好的语言设计使其简单好学，并发性与执行性能都很好，并且部署简单。因此，继2011年七牛第一个吃螃蟹在商业化产品中全面选用Go语言后，越来越多的国内一线公司，例如360、京东、豌豆荚、华为等都开始大规模使用Go。Go语言官方称，之所以开发Go语言，是因为“近 10年来开发程序之难让我们有点沮丧”。这一定位暗示了Go语言希望取代C和Java的地位，成为最流行的通用开发语言。
+Gopher China 大会亮点抢先看
+Go语言创始人之一Robert Griesemer将亲临现场，讲述Gofmt的文化演变。在发明Go语言之前，Robert曾经是Google V8 JavaScript引擎以及牛逼的分布式文件系统Chubby的作者。他非常支持Gopher大会在中国举办，因此也专门从美国飞来分享Gofmt是如何被设计出来的。小小八卦一下，Robert的夫人是一位中国美女哦。
+邀请到国内一线团队的Go开发者大牛从不同角度谈Go的实践。例如，七牛的如何用Go进行HTTP测试，360的如何用Go做消息推送，华为的Go语言在NFV场景下的应用研究，等等。技术大牛们济济一堂，希望能带来干货的同时，也能喷出精彩，喷出中国。
+Gopher China组委会特供“中国版土拨鼠T-shirt”作为礼物。不解释，看图。
+晚场Party，让交流来得更彻底一些。4月25日晚上，组委会将邀请一部分幸运观众到七牛团队支持的晚场Party上。大家一起喝点小酒，交流技术，畅谈人生，基情四射。
+力争成为男女比例最黄金的语言类会议。
+考虑到报名开发者中男性的比例，组委会体贴地找来了各大开发者服务的市场部的妹子们作为志愿者，签到接待，引导入场，晚场Party，她们无处不在，努力做好Gopher China听会鼓励师的工作。
+说到这里，各位是不是后悔没有早点报名呢？没关系，我们也给没有来得及报名的开发者们提供了视频直播渠道。关注七牛微信公众账号，我们将在4月25日一早放出直播链接，敬请期待！
+最后附上Gopher China的日程安排供参考。</description>
+    </item>
+    
+    <item>
+      <title>PHP编程中的并发</title>
+      <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</guid>
+      <description>PHP编程中的并发  周末去北京面了两个公司，认识了几位技术牛人，面试中聊了很多，感觉收获颇丰。认识到了自己的不足之处，也坚定了自己对计算机学习的信心。本文是对其中一道面试题的总结。
+ 面试中有一个问题没有很好的回答出来，题目为：并发3个http请求，只要其中一个请求有结果，就返回，并中断其他两个。
+当时考虑的内容有些偏离题目原意， 一直在考虑如何中断http请求，大概是在 client-&amp;gt;recv() 之前去判断结果是否已经产生，所以回答的是用 socket 去发送一个 http 请求，把 socket 加入 libevent 循环监听，在callback中判断是否已经得到结果，如果已经得到结果，就直接 return。
+后来自己越说越觉得不对，既然已经recv到结果，就不能算是中断http请求。何况自己从来没用过libevent。后来说了还说了两种实现，一个是用 curl_multi_init, 另一个是用golang实现并发。
+golang的版本当时忘了close的用法，结果并不太符合题意。
+这题没答上来，考官也没为难我。但是心里一直在考虑，直到面试完走到楼下有点明白什么意思了，可能考的是并发，进程线程的应用。所以总结了这篇文章，来讲讲PHP中的并发。
+本文大约总结了PHP编程中的五种并发方式，最后的Golang的实现纯属无聊，可以无视。如果有空，会再补充一个libevent的版本。
+curl_multi_init 文档中说的是 Allows the processing of multiple cURL handles asynchronously. 确实是异步。这里需要理解的是select这个方法，文档中是这么解释的Blocks until there is activity on any of the curl_multi connections.。了解一下常见的异步模型就应该能理解，select, epoll，都很有名，这里引用一篇非常好的文章，有兴趣看下解释吧。
+&amp;lt;?php // build the individual requests as above, but do not execute them $ch_1 = curl_init(&#39;http://www.baidu.com/&#39;); $ch_2 = curl_init(&#39;http://www.baidu.com/&#39;); curl_setopt($ch_1, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch_2, CURLOPT_RETURNTRANSFER, true); // build the multi-curl handle, adding both $ch $mh = curl_multi_init(); curl_multi_add_handle($mh, $ch_1); curl_multi_add_handle($mh, $ch_2); // execute all queries simultaneously, and continue when all are complete $running = null; do { curl_multi_exec($mh, $running); $ch = curl_multi_select($mh); if($ch !</description>
+    </item>
+    
+    <item>
+      <title>途牛原创｜途牛周刊</title>
+      <link>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</guid>
+      <description>Tuniu Weekly  Inspired By 《湾区日报》
+我们团队也想基于这种模式，让大家感受到技术的人文。
+ 《Tuniu Weekly》就这样产生了。
+《Tuniu Weekly》的本质是团队博客，关注互联网、创业、技术，每周推荐5篇优质文章。
+独特  精选：我们不是传统小编的复制粘贴、应付任务的拼凑。《Tuniu Weekly》推荐的阅读内容，我们坚信一定是优质的。
+ 原文：中英汇集，鼓励大家锻炼一下自己，坚持阅读，每天提高一点点。
+ 坚持：争取做到每周更新，与读者一起进步。
+ 专注：只做一件事情：每周推荐5篇优质文章。
+  运营日志 累计运营【77】天，推荐好文【63】篇。
+ 05/12/2016：第十一期
+ 05/05/2016：第十期
+ 04/28/2016：第九期
+ 04/20/2016：第八期
+ 04/13/2016：第七期
+ 04/06/2016：第六期
+ 03/31/2016：第五期
+ 03/23/2016：第四期
+ 03/09/2016：第三期
+ 03/03/2016：切换至github，第二期 发布。
+ 02/24/2016：第一期发布。
+ 02/22/2016：创刊，用git.tuniu.org发布了第一次commit。
+  如何支持  如果我们写的、推荐的东西让大家有收获，那我们就很开心了。
+ 如果您觉得《Tuniu Weekly》的内容很有意思，那可以在微博或者微信等社交网络上向更多愿意每天进步一点点的朋友推荐。
+  每周要花多少时间准备  世界上有太多看起来简单的东西，其实都不简单。只有自己做了才知道。
+ 一些好文  为何猿/媛们喜欢在晚上 Coding? 链接   深夜还在 coding 的肯定是大神</description>
+    </item>
+    
+    <item>
+      <title>Service层的是否必要性分析及案例</title>
+      <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</guid>
+      <description>序言 此前，我看过这样的一个提问“Yii2框架中，有必要再分离service层么？”，从别人的回答中，自己也收获了答案，但我觉得还需要有个活生生的粟子，才具有更加清晰明了和强有力的说服力。如对我的实战经历感兴趣的继续往下看，喜欢的还可以点击推荐和收藏。在举粟子前，我先讲讲service是什么？有什么作用吧？免得还有人糊涂。
+1、service是什么？
+在面向OO的系统里，service就是biz manager，在面向过程的系统里service就是TS脚本。
+2、service有什么作用？
+service层的作用就是把这些需要多个model参与的复杂业务逻辑单独封装出来，这些model之间不再发生直接的依赖，而是在service层内协同完成逻辑。service层的第一个目的其实就是对model层进行解耦。
+需求分析 1、在Yii2框架中建立service层，专门处理公共且复杂的业务逻辑。
+效果图 1、在common下建立个service层。
+2、部分公共数据处理逻辑（主要的数据处理都写在这里）。
+代码分析 1、在commonservice下写个CluesBranchService.php文件，CluesBranchService类继承本模块主要的models类Chance。凡是关于Chance的公共业务逻辑都往这个文件里写。
+namespace common\service; use Yii; use api\modules\v1\models\Sales; use api\modules\v1\chance\models\Chance; /** * //下属的线索公共数据处理逻辑 */ class CluesBranchService extends Chance { //下属的线索列表 public static function getIndex() { $SalesModel = new Sales(); $uids = $SalesModel-&amp;gt;sevenChild(Yii::$app-&amp;gt;user-&amp;gt;id); if(count($uids)){ $query = Chance::find()-&amp;gt;where([&#39;in&#39;,&#39;owner_id&#39;,$uids]); }else{ $query = Chance::find()-&amp;gt;where([&#39;owner_id&#39;=&amp;gt;&#39;-1&#39;]); } return $query; } }  2、Controllers里调用。
+use common\service\CluesBranchService; $query = CluesBranchService::getIndex();  注释：这里返回的是\$query，而不是查询的结果，用过Yii2的都知道列表实现分页用的是ActiveDataProvider，不需要查出结果，为了统一起来所以这里直接返回\$query。如有特殊需要加where、andWhere或者获取数据结果的可以这样\$query-&amp;gt;where([&amp;lsquo;条件&amp;rsquo;]);\$query-&amp;gt;all()。
+分析总结 以上是一个业务逻辑比较简单的service层的实现方式，看到这里可能还有人疑惑，到底应不应该分离service层？
+简单粗暴的总结来说，如果你的某个业务逻辑，需要用到多个model，就放到service层里面去，如果只是这个model自己的事，跟其它的model没有任何关系，放到model里面就好。</description>
+    </item>
+    
+    <item>
+      <title>Golang实现RSA加密解密(附带php)</title>
+      <link>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</guid>
+      <description>https://segmentfault.com/a/
+安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES加密算法本身，请查阅相关资料）
+在PHP中，很多功能经常是一个函数解决；而Go中的却不是。本文会通过PHP加密，Go解密；Go加密，PHP解密来学习Go的RSA和DES相关的API。
+该文讨论Go RSA加密解密。所有操作在linux下完成。
+一、概要 这是一个非对称加密算法，一般通过公钥加密，私钥解密。
+在加解密过程中，使用openssl生产密钥。执行如下操作：
+1）创建私钥：
+openssl genrsa -out private.pem 1024 //密钥长度，1024觉得不够安全的话可以用2048，但是代价也相应增大  2）创建公钥：
+openssl rsa -in private.pem -pubout -out public.pem  这样便生产了密钥。
+一般地，各个语言也会提供API，用于生成密钥。在Go中，可以查看encoding/pem包和crypto/x509包。具体怎么产生，可查看《GO加密解密RSA番外篇：生成RSA密钥》。
+加密解密这块，涉及到很多标准，个人建议需要的时候临时学习一下。
+二、Go RSA加密解密 1、rsa加解密，必然会去查crypto/ras这个包
+ Package rsa implements RSA encryption as specified in PKCS#1.
+ 这是该包的说明：实现RSA加密技术，基于PKCS#1规范。
+对于什么是PKCS#1，可以查阅相关资料。PKCS（公钥密码标准），而#1就是RSA的标准。可以查看：PKCS系列简介
+从该包中函数的名称，可以看到有两对加解密的函数。
+EncryptOAEP和DecryptOAEP EncryptPKCS1v15和DecryptPKCS1v15  这称作加密方案，详细可以查看，PKCS #1 v2.1 RSA 算法标准
+可见，当与其他语言交互时，需要确定好使用哪种方案。
+PublicKey和PrivateKey两个类型分别代表公钥和私钥，关于这两个类型中成员该怎么设置，这涉及到RSA加密算法，本文中，这两个类型的实例通过解析文章开头生成的密钥得到。
+2、解析密钥得到PublicKey和PrivateKey的实例
+这个过程，我也是花了好些时间（主要对各种加密的各种东东不熟）：怎么将openssl生成的密钥文件解析到公钥和私钥实例呢？
+在encoding/pem包中，看到了—–BEGIN Type—–这样的字样，这正好和openssl生成的密钥形式差不多，那就试试。
+在该包中，一个block代表的是PEM编码的结构，关于PEM，请查阅相关资料。我们要解析密钥，当然用Decode方法：
+func Decode(data []byte) (p *Block, rest []byte)  这样便得到了一个Block的实例（指针）。</description>
+    </item>
+    
+    <item>
+      <title>PHP混合Go协程并发</title>
+      <link>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:57 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</guid>
+      <description>想法很简单。通过设置 runtime.GOMAXPROCS(1) 让 golang 的进程变成单线程执行的。类似python用gevent的效果。然后通过调度多个协程实现异步I/O并发。php作为一个子函数跑在go的进程内，php需要yield到其他协程时，通过回调到golang函数来实现。从php里调用go提供的子函数时，go保证保存php的当前上下文。当协程执行权让渡回来的时候，把原来的php上下文恢复。关键的代码在：
+ // 保存当前协程上的php上下文 oldServerCtx := engine.ServerContextGet() fmt.Println(oldServerCtx) defer engine.ServerContextSet(oldServerCtx) oldExecutorCtx := engine.ExecutorContextGet() fmt.Println(oldExecutorCtx) defer engine.ExecutorContextSet(oldExecutorCtx) oldCoreCtx := engine.CoreContextGet() fmt.Println(oldCoreCtx) defer engine.CoreContextSet(oldCoreCtx) // 放弃全局的锁，使得其他的协程可以开始执行php engineLock.Unlock() defer engineLock.Lock()  ServerContextGet 这几个函数是我加的，获得的是php的（EG/SG/PG）这三个全局context（参见：http://www.cnblogs.com/chance&amp;hellip;）。修改过的github.com/deuill/go-php的源代码在：https://github.com/taowen/go-&amp;hellip;
+完整的php/go混合协程的demo：
+ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/deuill/go-php/engine&amp;quot; &amp;quot;os&amp;quot; &amp;quot;runtime&amp;quot; &amp;quot;time&amp;quot; &amp;quot;sync&amp;quot; ) type TestObj struct{} func newTestObj(args []interface{}) interface{} { return &amp;amp;TestObj{} } var engineLock *sync.Mutex func (self *TestObj) Hello() { oldServerCtx := engine.ServerContextGet() fmt.Println(oldServerCtx) defer engine.</description>
+    </item>
+    
+    <item>
+      <title>golang调用php7</title>
+      <link>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</guid>
+      <description>使用 https://github.com/taowen/go-php7
+基于 https://github.com/deuill/go-php 修改而来，fork缘由（https://github.com/deuill/go-&amp;hellip;）
+执行php文件 func Test_exec(t *testing.T) { engine.Initialize() ctx := &amp;amp;engine.Context{ Output: os.Stdout, } err := engine.RequestStartup(ctx) if err != nil { fmt.Println(err) } defer engine.RequestShutdown(ctx) err = ctx.Exec(&amp;quot;/tmp/index.php&amp;quot;) if err != nil { fmt.Println(err) } }  其中 /tmp/index.php 的内容为
+&amp;lt;?php echo(&amp;quot;hello\n&amp;quot;);  Eval，返回值 func Test_eval(t *testing.T) { engine.Initialize() ctx := &amp;amp;engine.Context{} err := engine.RequestStartup(ctx) if err != nil { fmt.Println(err) } defer engine.RequestShutdown(ctx) val, err := ctx.</description>
+    </item>
+    
+    <item>
       <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
       <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>

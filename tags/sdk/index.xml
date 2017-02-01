@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/sdk.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/sdk.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>用Golang写了个简单易用的微信SDK</title>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-le-ge-jian-chan-yi-yong-de-wei-xin-sdk.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:04 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-le-ge-jian-chan-yi-yong-de-wei-xin-sdk.html</guid>
+      <description>WeChat SDK for Go 使用Golang开发的微信SDK，简单、易用。
+项目地址：https://github.com/silenceper/wechat
+文档地址：DOCS
+快速开始 以下是一个处理消息接收以及回复的例子：
+//配置微信参数 config := &amp;amp;wechat.Config{ AppID: &amp;quot;xxxx&amp;quot;, AppSecret: &amp;quot;xxxx&amp;quot;, Token: &amp;quot;xxxx&amp;quot;, EncodingAESKey: &amp;quot;xxxx&amp;quot;, Cache: memCache } wc := wechat.NewWechat(config) // 传入request和responseWriter server := wc.GetServer(request, responseWriter) server.SetMessageHandler(func(msg message.MixMessage) *message.Reply { //回复消息：演示回复用户发送的消息 text := message.NewText(msg.Content) return &amp;amp;message.Reply{message.MsgText, text} }) server.Serve() server.Send()  完整代码：examples/http/http.go
+和主流框架配合使用 主要是request和responseWriter在不同框架中获取方式可能不一样：
+ Beego: ./examples/beego/beego.go
+ Gin Framework: ./examples/gin/gin.go
+  基本配置 memcache := cache.NewMemcache(&amp;quot;127.0.0.1:11211&amp;quot;) wcConfig := &amp;amp;wechat.Config{ AppID: cfg.AppID, AppSecret: cfg.</description>
+    </item>
+    
+  </channel>
+</rss>

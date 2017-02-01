@@ -11,42 +11,266 @@
     <atom:link href="/tags/mysql.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
-      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
-      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      <title>kingshard--一个支持sharding的MySQLProxy项目</title>
+      <link>https://yushuangqi.com/blog/2016/kingshard--yi-ge-zhi-chi-shardingde-mysql-proxyxiang-mu.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:25 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
-      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
-ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
-安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
-vim /etc/yum.repos.d/nginx.repo  使用 vim 命令去打开 /etc/yum.repos.d/nginx.repo ，如果 nginx.repo 不存在，就会去创建一个这样的文件，打开以后按一下小 i 键，进入编辑模式，然后复制粘贴下面这几行代码，完成以后按 esc 键退出，再输入 :wq （保存并退出）
-[nginx] name=nginx repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=0 enabled=1  完成以后，我们就可以使用 yum 命令去安装 nginx 了，像这样：
-yum install nginx  安装好以后测试一下 nginx 服务： service nginx status  应该会返回：</description>
+      <guid>https://yushuangqi.com/blog/2016/kingshard--yi-ge-zhi-chi-shardingde-mysql-proxyxiang-mu.html</guid>
+      <description>kingshard简介 kingshard（https://github.com/flike/kingshard）是一个由Go开发高性能MySQL Proxy项目，kingshard在满足基本的读写分离的功能上，致力于简化MySQL分库分表操作；能够让DBA通过kingshard轻松平滑地实现MySQL数据库扩容。
+主要功能： 1.读写分离。 2.跨节点分表。 3.客户端IP访问控制。 4.平滑上线DB或下线DB，前端应用无感知。  kingshard sharding介绍 现在开源的MySQL Proxy已经有几款了，并且有的已经在生产环境上广泛应用。但这些proxy在sharding方面，都是不能分子表的。也就是说一个node节点只能分一张表。但我们的线上需求通常是这样的：
+我有一张非常大的表，行数超过十亿，需要进行拆分处理。假设拆分因子是512。
+如果采用单node单数据库的分表方式，那其实这512个子表还是存在一个物理节点上，意义不大。
+如果采用他们的sharding功能，就需要512个物理节点，也不现实。
+面对这种需求，现有的proxy就不能很好地满足要求了。通常我们希望将512张子表均分在几个MySQL节点上，从而达到系统的横向扩展。
+然而kingshard较好地实现了这种典型的需求。简单来说，kingshard的分表方案采用两级映射的方式：
+1.kingshard将该表分成512张子表，例如：test_0000,test_0001,... test_511。 2.将shardKey通过hash或range方式定位到其要操作的记录在哪张子表上。 3.子表落在哪个node上通过配置文件设置。  sharding支持的操作 目前kingshard sharding支持insert, delete, select, update和replace语句, 所有这五类操作都支持跨子表。但写操作仅支持单node上的跨子表，select操作则可以跨node，跨子表。
+sharding方式 range方式 基于整数范围划分来得到子表下标。该方式的优点：基于范围的查询或更新速度快，因为查询（或更新）的范围有可能落在同一张子表中。这样可以避免全部子表的查询（更新）。缺点：数据热点问题。因为在一段时间内整个集群的写压力都会落在一张子表上。此时整个mysql集群的写能力受限与单台mysql server的性能。并且，当正在集中写的mysql 节点如果宕机的话，整个mysql集群处于不可写状态。基于range方式的分表字段类型受限。
+hash方式 kingshard采用（shardKey%子表个数）的方式得到子表下标。优点：数据分布均匀，写压力会比较平均地落在后端的每个MySQL节点上，整个集群的写性能不会受限于单个MySQL节点。并且当某个分片节点宕机，只会影响到写入该节点的请求，其他节点的写入请求不受影响。分表字段类型不受限。因为任何一个类型的分表字段，都可以通过一个hash函数计算得到一个整数。缺点：基于范围的查询或更新，都需要将请求发送到全部子表，对性能有一定影响。但如果不是基于范围的查询或更新，则性能不会受到影响。
+sharding相关的配置介绍 在配置文件中，有关sharding设置是通过scheam设置：
+```
+schemas : db : kingshard nodes: [node1,node2] rules: default: node1 shard: - #分表名字 table: test_shard_hash #sharding key key: id #子表分布的节点名字 nodes: [node1, node2] #sharding类型 type: hash #子表个数分布，表示[test_shard_hash_0000, test_shard_hash_0001, test_shard_hash_0002, test_shard_hash_003]在node1上。 #[test_shard_hash_0004, test_shard_hash_0005, test_shard_hash_0006, test_shard_hash_007]在node2上 locations: [4,4] - #分表名字 table: test_shard_range #sharding key key: id #sharding类型 type: range #子表分布的节点名字 nodes: [node1, node2] #子表个数分布，表示[test_shard_hash_0000, test_shard_hash_0001, test_shard_hash_0002, test_shard_hash_003]在node1上。 #[test_shard_hash_0004, test_shard_hash_0005, test_shard_hash_0006, test_shard_hash_007]在node2上 locations: [4,4] #每张子表的记录数。[0,10000)在test_shard_hash_0000上，[10000,20000)在test_shard_hash_0001上。.</description>
     </item>
     
     <item>
-      <title>如何进行计数场景的优化</title>
-      <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
-      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&amp;amp;lt;一&amp;amp;gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:15 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</guid>
-      <description>社交网络信息爆发，如何衡量你在社交舆论上的影响力？计数！
-计数是应用最方便、简单实现的数据挖掘应用，拿Facebook举例，你的Feed被评论多少次，转发多少次，赞多少次，被浏览多少次，你有多少个好友等等。可以说计数得多少的价值可能超过你本身或者你发布的内容本身。
-今天着重介绍下Redis在计数器场景上的应用。 对于计数器大家肯定还有或多或少的疑问。
-Q1:计数从哪里来？ 通常我们发布的社交内容会存储在数据库中，最常见的如MySQL：
-更新索引：
-insert into user_message(uid,messageid) values(‘xx’，’xx’)  更新内容：
-insert into message_2013_05(messageid,message) values(‘xx’,’xx’);  为什么要进行索引和内容区分我这里就不多熬述了，这时要计算我有发送了多少个message，再mysql库中select count(messageid) where uid=xxx 就可以获得我们想要得计数，也就说大多数情况它源于我们的索引数据。
-Q2:计数和其他数据相比有什么特点？  单key读写频繁，总体读取量我们认为可能比内容模块还要频繁，索引的增删改查都会导致计数器的频繁增减。尤其当某篇twitter,feed,weibo非常火爆时，单key的更新将更加火爆。
- 需要持久化，所有用户都可能需啊知道自己的计数，这个数据和内容本身一样重要。
-  从上面这两个需求来看选用Redis就是水到渠成了，而应对hotkey从Mysql update count+1 &amp;amp; Memcache 替换成Redis incr更是优雅很多。减少了很多数据一致性的风险。
-优化的思路： 单独维护计数，从获取更新复杂度O(n)到O(1) 我们知道随着单个uid-&amp;gt;message的个数越来越多，而count(message_id)的逻辑复杂度是O(n)，获取这个计数的成本是越来越大。
-如何让其获取变为O(1)？其实很简单，我们只要单独维护一下这个计数就可以了。举一个简单的例子来说明：
-假设我们有个字段，我们需要频繁的获取和更新这个字段的长度，引用Redisbook(http://www.redisbook.com/)中的一段对于redis 用于存储key value的sds的描述好像能简单的叙述这件事情。
-“比如说， hello world 在 C 语言中就可以表示为 &amp;ldquo;hello world\0&amp;rdquo; 。
-这种简单的字符串表示在大多数情况下都能满足要求，但是，它并不能高效地支持长度计算和追加（append）这两种操作：
-每次计算字符串长度（strlen(s)）的复杂度为 θ(N) 。 对字符串进行 N 次追加，必定需要对字符串进行 N 次内存重分配（realloc）。
-struct sdshdr { len = 11; free = 0; buf = “hello world\0″; // buf 的实际长度为 len + 1 };  通过 len 属性， sdshdr 可以实现复杂度为 θ(1) 的长度计算操作。</description>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</guid>
+      <description>前言 很久前就想学习GO，但是由于准备读研和要实习就一直耽搁没动手，只是偶尔看一下相关的基本语法，并没有将其具体地运用到实际的编码中。大四了，课程一下子少了很多，于是决定用它从网上抓一些图片数据，然后提供接口，为后面学习iOS提供一些网络数据。
+有关GO的介绍我就不在这里说了，对于我这种初学者本来说得就不清不楚，多给自己落下话柄。
+我要实现的功能主要有如下几点：
+ 从精美图片网站抓取图片链接等数据；
+ 将获取的数据存入MySQL数据库；
+ 提供一个简单的json接口使得自己能通过某链接获取json数据。
+  准备工作 安装GO并配置环境 因为我自己使用的时OS X，也写了一个mac安装GO的文章,如果使用mac的话可以参考一下。windows下百度也会很好解决。
+分析小程序 在$GOPATH/src下的创建一个项目文件夹indiepic作为这次小程序的目录。GO的每一个项目有且仅有一个package main，在项目文件夹下新建一个GO文件indiepic.go作为主文件：
+package main import &amp;quot;fmt&amp;quot; func main () { fmt.Println(&amp;quot;Hello World&amp;quot;) }  因为后面会启动该文件，然后提供HTTP接口提供数据，所以为了可读性将抓取数据并存入数据库等操作放入该项目的一个包中，而且抓取数据的操作会很少被操作，不需要在每次启动都执行，所以将其组织到一个package中是不错的方法，这样只需在需要抓取的时候在main函数中调用接口。
+因此，在项目文件夹中新建一个crawldata文件夹，该文件就是我们需要的package。下面需要的抓取数据和将数据存入数据库以及从数据库中获取数据都写为该包下的一个函数。
+在crawldata文件夹下新建crawldata.go和database.go文件。一个与抓取数据有关，一个与数据库存取数据有关。
+文件夹结构如下：
+indiepic ├── README.md ├── crawldata │ ├── crawldata.go │ └── database.go └── indiepic.go  下一步就开始实现数据抓取部分的功能。
+主要抓取图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;二&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</guid>
+      <description>上一节已经说明了要做什么，以及整个小程序的目录结构，接下来就开始编码部分。
+首先在入口文件中引入项目下的包crawldata,然后调用其中抓取数据的函数，暂时取名为Crawl:
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;indiepic/crawldata&amp;quot; ) func main () { // 使用crawldata包里面的Crawl()抓取需要的数据存到数据库 crawldata.Crawl() fmt.Println(&amp;quot;主函数&amp;quot;) }  然后就是实现包crawldata里面的Crawl函数。将该函数放在crawldata.go文件中：
+package crawldata import ( &amp;quot;fmt&amp;quot; ) func Crawl() { fmt.Println(&amp;quot;包crawldata中的Crawl函数&amp;quot;) }  查看网站 [](http://www.gratisography.com/)http://www.gratisography.com/，然后审查元素找到某张图片，在图片主要包含了src、data-original、width、height、alt等信息，首先要明确一点的是这个网站使用了图片的lazy加载（在每个li标签上可以看出来），所以真正的图片URL是data-original指定的值而不是src，src值会在图片加载完成之后被赋为data-original的值。另外在网站上有一个分类，所以需存储一下每一张图片的分类，在抓取的时候也是直接通过分类去抓取。
+因此我们需要定义一个结构体来表示每一条数据包含的数据,以及用于存储全部数据的一个切片，然后在Crawl函数中使用。如下：
+package crawldata import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/PuerkitoBio/goquery&amp;quot; &amp;quot;strconv&amp;quot; s &amp;quot;strings&amp;quot; ) // 定义一个存储一条数据的结构体 type ImageData struct { Src string Tp string Title string Width int Height int } // 定义切片用于存储抓取的全部数据 type ImageDatas []ImageData func Crawl() { fmt.</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;三&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</guid>
+      <description>上一节主要实现了使用 goquery 从图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/ 抓取数据。主要抓取图片的data-original、width、height、alt、type 五项数据。因此需要先创建数据库和相应的表，在mac上我使用 Sequel Pro 数据库管理软件，连接之后创建新的数据库indiepic,然后创建表gratisography:
+CREATE TABLE `gratisography` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `img_url` varchar(255) DEFAULT NULL, `type_name` varchar(50) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;  创建完数据库之后，就开始使用GO来实现连接数据库等操作了。在GO中使用Go-MySQL-Driver is a lightweight and fast MySQL-Driver for Go&amp;rsquo;s (golang) database/sql package
+文档：[](http://godoc.org/github.com/go-sql-driver/mysql)http://godoc.org/github.com/go-sql-driver/mysql
+在使用之前需要先使用以下命令获取该包：
+go get github.com/go-sql-driver/mysql  然后在database.</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;四&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</guid>
+      <description>上一节已将将需要的数据从网站[](http://www.gratisography.com/)http://www.gratisography.com/ 抓取并存入数据库【使用crawldata.go中的InsertData(&amp;amp;imageDatas)函数】，现在需要将数据从数据库indiepic的表gratisography中取出并然会json格式的数据。
+项目文件夹结构如下：
+indiepic ├── README.md ├── crawldata │ ├── crawldata.go │ └── database.go └── indiepic.go  现在将获取数据的函数写在database.go中：
+func GetAllImages() (imageDatas ImageDatas, err error) { // 连接数据库 db, err := OpenDatabase() if err != nil { fmt.Printf(s.Join([]string{&amp;quot;连接数据库失败&amp;quot;, err.Error()}, &amp;quot;--&amp;gt;&amp;quot;)) return nil, err } defer db.Close() // Prepare statement for inserting data imgOut, err := db.Query(&amp;quot;SELECT * FROM gratisography&amp;quot;) if err != nil { fmt.Println(s.Join([]string{&amp;quot;获取数据失败&amp;quot;, err.Error()}, &amp;quot;--&amp;gt;&amp;quot;)) return nil, err } defer imgOut.</description>
+    </item>
+    
+    <item>
+      <title>Go语言项目(kingshard)性能优化实例剖析</title>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-xiang-mu-kingshardxing-neng-you-hua-shi-li-pou-xi.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:10 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-xiang-mu-kingshardxing-neng-you-hua-shi-li-pou-xi.html</guid>
+      <description>kingshard性能优化网络篇 最近kingshard的功能开发节奏慢了许多。一方面是工作确实比较忙，另一方面是我觉得kingshard的功能已经比较完善了，下一步的开发重点应该是性能优化。毕竟作为一个MySQL proxy,如果转发SQL的性能很差，再多的功能都无济于事。所以这个周末一直宅在家里优化kingshard的转发性能。经过两天的探索发现，将kingshard的转发SQL性能提升了18%左右，在这个过程中学到了一下知识。借此机会分享一下，同时也是督促一下自己写博客的积极性。：）
+ 发现kingshard的性能瓶颈 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  首选，对kingshard进行性能优化，我们必须要找到kingshard的性能瓶颈在哪里。Go语言在性能优化支持方面做的非常好，借助于go语言的pprof工具，我们可以通过简单的几个步骤，就能得到kingshard在转发SQL请求时的各个函数耗时情况。
+1.1 环境搭建 根据kingshard使用指南搭建一个kingshard代理环境。我是用macbook搭建的环境，硬件参数如下所示：
+CPU： 2.2GHZ * 4 内存：16GB 硬盘: 256GB  1.2 性能测试步骤 具体步骤如下所述：
+1.获取一个性能分析的封装库
+go get github.com/davecheney/profile  2.在工程内import这个组件
+3.在kingshard/cmd/kingshard/main.go的main函数开始部分添加CPU监控的启动和停止入口
+func main() { defer profile.Start(profile.CPUProfile).Stop() fmt.Print(banner) runtime.GOMAXPROCS(runtime.NumCPU()) flag.Parse() .... }  4.重新编译工程, 运行kingshard
+./bin/kingshard -config=etc/ks.yaml  5.kingshard启动后会在终端输出下面一段提示：
+2015/10/31 10:28:06 profile: cpu profiling enabled, /var/folders/4q/zzb55sfj377b6vdyz2brt6sc0000gn/T/profile205276958/cpu.pprof  后面的路径就是pprof性能分析文件的位置，Ctrl+C中断服务器
+6.这时候用sysbench对kingshard进行压力测试，得到QPS（有关sysbench的安装和使用，请自行Google解决）。具体的代码如下所示：
+sysbench --test=oltp --num-threads=16 --max-requests=160000 --oltp-test-mode=nontrx --db-driver=mysql --mysql-db=kingshard --mysql-host=127.0.0.1 --mysql-port=9696 --mysql-table-engine=innodb --oltp-table-size=10000 --mysql-user=kingshard --mysql-password=kingshard --oltp-nontrx-mode=select --db-ps-mode=disable run  得到如下结果:</description>
+    </item>
+    
+    <item>
+      <title>kingshardSQL黑名单功能介绍</title>
+      <link>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</guid>
+      <description>https://segmentfault.com/a/
+kingshard SQL黑名单功能介绍  应用场景介绍 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  在kingshard开源之后，有用户多次提到能不能在kingshard中加入SQL黑名单机制，让kingshard能够根据特定的规则来拦截在黑名单中的SQL。有几个比较典型的应用场景：
+ DBA定义一些比较危险的SQL，放在SQL黑名单文件中。可以避免前端应用发过来的SQL对数据库造成危害。这种SQL有可能是开发者粗心编写的，也有可能是被SQL注入生成的SQL。例如：delete from mytable，这种不带where条件的SQL，会把整个表删除。
+ 在kingshard项目上线后，通过log发现存在大量某条SQL给DB造成了很大的压力。这时候可以动态地将这条SQL加入黑名单，阻止该SQL的执行，从而使数据库压力降低。例如:select count(*) from mytable where xxxx,这类SQL如果没有优化得当，是很容易造成系统的IO过高的。
+ 功能介绍  在kingshard如果想使用SQL黑名单功能，只需要在配置中添加：
+blacklist_sql_file: /Users/flike/blacklist  然后我们在blacklist定义SQL黑名单，这样kingshard在转发的时候，就会阻止黑名单中SQL的转发。
+黑名单SQL以正则表达式的形式定义。对于SQL中的值用?或?+代替。为保证黑名单有效，最好手动验证一下，kingshard是否正确拦截了黑名单中的SQL。定义规则（上一条是原SQL，对应的下一条是黑名单形式的SQL）可以参考下列例子：
+SELECT c FROM t WHERE id=1 select c from t where id=? SELECT * FROM prices.rt_5min where id=1 select * from prices.rt_5min where id=? select null, 5.001, 5001. from foo select ?, ?, ? from foo select &#39;hello&#39;, &#39;\nhello\n&#39;, \&amp;quot;hello\&amp;quot;, &#39;\\&#39;&#39; from foo select ?</description>
+    </item>
+    
+    <item>
+      <title>kingshard按时间分表功能介绍</title>
+      <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</guid>
+      <description>kingshard按时间分表功能介绍 在文档中主要介绍了kingshard的Hash和Range方式的分表，最近又开发了按时间维度的分表方式。按时间维度分表的场景非常普遍，下面介绍一下kingshard的时间分表功能
+ 支持的时间类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard中的分表字段支持MySQL中三种类型的时间格式
+ date类型，格式：YYYY-MM-DD，例如:2016-03-04,注意：2016-3-04，2016-03-4，2016-3-4等格式kingshard都是不支持的。
+ datetime类型，格式：YYYY-MM-DD HH:MM:SS，例如:2016-03-04,注意：2016-3-04 13:23:43，2016-03-4 13:23:43，2016-3-4 13:23:43等格式kingshard都是不支持的，必须严格按照规定的格式，kingshard才支持。
+ timestamp类型，整数类型，例如：1457165568，对应的是：2016-3-5 16:12:48。
+   支持的时间分表类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  kingshard支持MySQL中三种格式的时间类型
+ date类型，格式：YYYY-MM-DD，例如:2016-03-04,注意：2016-3-04，2016-03-4，2016-3-4等格式kingshard都是不支持的。
+ datetime，格式：YYYY-MM-DD HH:MM:SS，例如:2016-03-04,注意：2016-3-04 13:23:43，2016-03-4 13:23:43，2016-3-4 13:23:43等格式kingshard都是不支持的，必须严格按照规定的格式，kingshard才支持。
+ timestamp，整数类型。
+   功能演示 &amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard的配置文件如下所示：
+# server listen addr addr : 0.0.0.0:9696 # server user and password user : kingshard password : kingshard # if set log_path, the sql log will write into log_path/sql.</description>
+    </item>
+    
+    <item>
+      <title>GolangSQL操作初体验</title>
+      <link>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</guid>
+      <description>https://segmentfault.com/a/
+简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了.
+对于 sql.DB, 我们需要强调的是, 它并不代表一个数据库连接, 它是一个已存在的数据库的抽象访问接口. sql.DB 为我们提供了两个重要的功能:
+ sql.DB 通过数据库驱动为我们管理底层数据库连接的打开和关闭操作.
+ sql.DB 为我们管理数据库连接池
+  有一点需要注意的是, 正因为 sql.DB 是以连接池的方式管理数据库连接, 我们每次进行数据库操作时, 都需要从连接池中取出一个连接, 当操作任务完成时, 我们需要将此连接返回到连接池中, 因此如果我们没有正确地将连接返回给连接池, 那么会造成 db.SQL 打开过多的数据库连接, 使数据库连接资源耗尽.
+MySQL 数据库的基本操作 数据库驱动的导入 有过数据库开发经验的朋友就知道了, 我们需要借助于一个数据库驱动才能和具体的数据库进行连接. 这在 Golang 中也不例外. 例如以 MySQL 数据库为例:
+import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; )  需要注意的是, 通常来说, 我们不应该直接使用驱动所提供的方法, 而是应该使用 sql.DB, 因此在导入 mysql 驱动时, 我们使用了匿名导入的方式(在包路径前添加 _).
+当导入了一个数据库驱动后, 此驱动会自行初始化并注册自己到 Golang 的 database/sql 上下文中, 因此我们就可以通过 database/sql 包提供的方法访问数据库了.</description>
+    </item>
+    
+    <item>
+      <title>开源一个Golang写的Excel(xlsx)导入MySQL小工具</title>
+      <link>https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html</guid>
+      <description>简介 这是工作中用到的一个小工具，将Excel(xlsx)表导入MySQL表中，用Golang写的，每条记录单独一条 goroutine 处理，提高效率。支持随机数生成、密码生成、时间戳；支持关联查询、附表操作等。
+使用方法  使用Go编译安装或直接下载：https://github.com/TargetLiu/xlsxtomysql/releases
+ 使用命令： xlsxtomysql [DSN] [数据表名称] [*.xlsx]
+  DSN 格式：
+[username[:password]@][protocol[(address)]]/dbname[?param1=value1&amp;amp;...&amp;amp;paramN=valueN]  示例：
+root:123@tcp(127.0.0.1:3306)/dbname  注意：
+Linux、Mac下可能需要输入 \( \)
+Excel表导入结构说明  只支持单Sheet
+ 第一行对应数据库表字段
+ 通过 | 分割
+ 字段名|unique 判断重复，重复的自动跳过
+ 字段名|password|[md5|bcrypt] 密码生成，第二个参数[md5|bcrypt]
+ 字段名|find|表名|需要获取的字段|查询字段 根据内容从其它表查询并获取字段，格式 SELECT 需要获取的字段 FROM 表名 WHERE 查询字段 = 内容
+ :other 附表操作
+  内容行
+ :random 生成随机字符串
+ :time 当前unix时间戳
+ :null 空值，自动跳过该值，一般可用于自增id
+ 如果该列为 password ，内容为[明文密码]或[明文密码|盐]，盐可以通过[:字段名]获取之前的字段名。密码将自动根据字段名中填写的加密方式进行加密</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿-理念</title>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
+      <description>https://segmentfault.com/a/
+本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
+文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。
+今天主要是介绍分布式系统测试。对于 PingCAP 目前的现状来说，我们是觉得做好分布式系统测试比做一个分布式系统更难。就是你把它写出来不是最难的，把它测好才是最难的。大家肯定会觉得有这么夸张吗？那我们先从一个最简单的、每个人都会写的 Hello world 开始。
+ A simple “Hello world” is a miracle
+We should walk through all of the bugs in:
+ Compiler
+ Linker
+ VM (maybe)
+ OS
+  其实这个 Hello world 能够每次都正确运行已经是一个奇迹了，为什么呢？首先，编译器得没 bug，链接器得没 bug ；然后我们可能跑在 VM 上，那 VM 还得没 bug；并且 Hello world 那还有一个 syscall，那我们还得保证操作系统没有 bug；到这还不算吧，我们还得要硬件没有 bug。所以一个最简单程序它能正常运行起来，我们要穿越巨长的一条路径，然后这个路径里面所有的东西都不能出问题，我们才能看到一个最简单的 Hello world。
+ 但是分布式系统里面呢，就更加复杂了。比如大家现在用的很典型的微服务。假设你提供了一个微服务，然后在微服务提供的功能就是输出一个 Hello world ，然后让别人来 Call。
+ A RPC “Hello world” is a miracle</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿-错误注入</title>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
+      <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
+接上篇：
+当然测试可能会让你代码变得没有那么漂亮，举个例子：
+这是知名的 Kubernetes 的代码，就是说它有一个 DaemonSetcontroller，这 controller 里面注入了三个测试点，比如这个地方注入了一个 handler ，你可以认为所有的注入都是 interface。比如说你写一个简单的 1+1=2 的程序，假设我们写一个计算器，这个计算器的功能就是求和，那这就很难注入错误。所以你必须要在你正确的代码里面去注入测试逻辑。再比如别人 call 你的这个 add 的 function，然后你是不是有一个 error？这个 error 的问题是它可能永远不会返回一个 error，所以你必须要人肉的注进去，然后看应用程序是不是正确的行为。说完了加法，再说我们做一个除法。除法大家知道可能有处理异常，那上面是不是能正常处理呢？上面没有，上面写着一个比如说 6 ÷ 3，然后写了一个 test，coverage 100%，但是一个除零异常，系统就崩掉了，所以这时候就需要去注入错误。大名鼎鼎的 Kubernetes 为了测试各种异常逻辑也采用类似的方式，这个结构体不算长，大概是十几个成员，然后里面就注入了三个点，可以在里面注入错误。
+那么在设计 TiDB 的时候，我们当时是怎么考虑 test 这个事情的？首先一个百万级的 test 不可能由人肉来写，也就是说你如果重新定义一个自己的所谓的 SQL 语法，或者一个 query language，那这个时候你需要构建百万级的 test，即使全公司去写，写个两年都不够，所以这个事情显然是不靠谱的。但是除非说我的 query language 特别简单，比如像 MongoDB 早期的那种，那我一个“大于多少”的这种，或者 equal 这种条件查询特别简单的，那你确实是不需要构建这种百万级的 test。但是如果做一个 SQL 的 database 的话，那是需要构建这种非常非常复杂的 test 的。这时候这个 test 又不能全公司的人写个两年，对吧？所以有什么好办法呢？MySQL 兼容的各种系统都是可以用来 test 的，所以我们当时兼容 MySQL 协议，那意味着我们能够取得大量的 MySQL test。不知道有没有人统计过 MySQL 有多少个 test，产品级的 test 很吓人的，千万级。然后还有很多 ORM， 支持 MySQL 的各种应用都有自己的测试。大家知道，每个语言都会 build 自己的 ORM，然后甚至是一个语言的 ORM 都有好几个。比如说对于 MySQL 可能有排第一的、排第二的，那我们可以把这些全拿过来用来测试我们的系统。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿-信心的毁灭与重建</title>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</guid>
+      <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。
+接中篇：
+ScyllaDB 有一个开源的东西，是专门用来给文件系统做 Failure Injection 的, 名字叫做 CharybdeFS。如果你想测试你的系统，就是文件系统在哪不断出问题，比如说写磁盘失败了，驱动程序分配内存失败了，文件已经存在等等，它都可以测模拟出来。
+ CharybdeFS: A new fault-injecting file system for software testing
+Simulate the following errors:
+ disk IO error (EIO)
+ driver out of memory error (ENOMEM)
+ file already exists (EEXIST)
+ disk quota exceeded (EDQUOT)
+  再来看看 Cloudera，下图是整个 Cloudera 的一个 Failure Injection 的结构。
+ 一边是 Tools，一边是它的整个的 Level 划分。比如说整个 Cluster， Cluster 上面有很多 Host，Host 上面又跑了各种 Service，整个系统主要用于测试 HDFS， HDFS 也是很努力的在做有效的测试。然后每个机器上部署一个 AgenTEST，就用来注射那些可能出现的错误。</description>
+    </item>
+    
+    <item>
+      <title>TiKV源码解析系列-multi-raft设计与实现</title>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</guid>
+      <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
+需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
+TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
+本文为本系列文章第二节。
+Placement Driver 在继续之前，我们先简单介绍一下 Placement Driver(PD)。PD 是 TiKV 的全局中央控制器，存储整个 TiKV 集群的元数据信息，负责整个 TiKV 集群的调度，全局 ID 的生成，以及全局 TSO 授时等。
+PD 是一个非常重要的中心节点，它通过集成 etcd，自动的支持了分布式扩展以及 failover，解决了单点故障问题。关于 PD 的详细介绍，后续我们会新开一篇文章说明。
+在 TiKV 里面，跟 PD 的交互是放在源码的 pd 目录下，现在跟 PD 的交互都是通过自己定义的 RPC 实现，协议非常简单，在 pd/mod.rs 里面我们直接提供了用于跟 PD 进行交互的 Client trait，以及实现了 RPC Client。</description>
+    </item>
+    
+    <item>
+      <title>TiKV源码解析系列-如何使用Raft</title>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</guid>
+      <description>TiKV 源码解析系列——如何使用 Raft 本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
+需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
+TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
+概述 本文档主要面向 TiKV 社区开发者，主要介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读文档之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
+需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本文档并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
+TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。</description>
     </item>
     
   </channel>

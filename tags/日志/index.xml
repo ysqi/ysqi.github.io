@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E6%97%A5%E5%BF%97.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E6%97%A5%E5%BF%97.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>RemoteTail-集群日志同步查看小工具</title>
+      <link>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:03 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</guid>
+      <description>RemoteTail 是一款支持同步显示多台远程服务器的日志文件内容更新的工具，使用它可以让你同时监控多台服务器中某个（某些）日志文件的变更，将多台服务器的tail -f xxx.log命令的输出合并展示。
+使用场景 假设公司有两台web服务器A和B，由于初期没有专业运维进行配置集中式的日志服务系统，两台服务器上分别部署了两套相同的代码提供web服务，使用nginx作为负载均衡，请求根据设定的策略转发的这两台web服务器上。
+AB两台服务器中的项目均将日志写到文件系统的/home/data/logs/laravel.log文件。这种情况下如果我们需要查看web日志是否正常，一般情况下就需要分别登陆两台服务器，然后分别执行tail -f /home/data/logs/laravel.log查看日志文件的最新内容，这在排查问题的时候是非常不方便的。RemoteTail就是为了解决这种问题的，开发人员可以使用它同步显示两台（多台）服务器的日志信息。
+安装 下载项目bin/下对应的remote-tail-平台可执行文件，将该文件加入到系统的PATH环境变量指定的目录中即可。
+比如，Centos下可以放到/usr/local/bin目录。
+mv remote-tail-linux /usr/local/bin/remote-tail  使用方法 使用前需要宿主机建立与远程主机之间的ssh公钥免密码登陆。
+remote-tail -hosts &#39;watcher@192.168.1.226,watcher@192.168.1.225&#39; \ -file &#39;/usr/local/openresty/nginx/logs/access.log&#39;  指定配置文件 通过使用-conf参数可以为命令指定读取的配置文件，配置文件为TOML格式，请参考example.toml文件。
+配置文件example.toml：
+# 全局配置,所有的servers中tail_file配置的默认值 tail_file=&amp;quot;/data/logs/laravel.log&amp;quot; # 服务器配置,可以配置多个 # 如果不提供password,则使用当前用户的ssh公钥,建议采用该方式,使用密码方式不安全 # server_name, hostname, user 配置为必选,其它可选 [servers] [servers.1] server_name=&amp;quot;测试服务器1&amp;quot; hostname=&amp;quot;test1.server.aicode.cc&amp;quot; user=&amp;quot;root&amp;quot; tail_file=&amp;quot;/var/log/messages&amp;quot; [servers.2] server_name=&amp;quot;测试服务器2&amp;quot; hostname=&amp;quot;test2.server.aicode.cc&amp;quot; user=&amp;quot;root&amp;quot; tail_file=&amp;quot;/var/log/messages&amp;quot; [servers.3] server_name=&amp;quot;测试服务器3&amp;quot; hostname=&amp;quot;test2.server.aicode.cc&amp;quot; user=&amp;quot;demo&amp;quot; password=&amp;quot;123456&amp;quot;  执行命令：
+remote-tail -conf=example.toml  如果对本项目感兴趣，欢迎关注 https://github.com/mylxsw/remote-tail。</description>
+    </item>
+    
+  </channel>
+</rss>

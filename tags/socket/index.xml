@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/socket.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/socket.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang服务器的网络层实现</title>
+      <link>https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html</guid>
+      <description>原文：Golang服务器的网络层实现
+由于最近有接触到一些长连接的服务器实现，对网络模型有所学习。对基于C/C++的网络模型实现和基于GoLang的实现对比下来，发现Golang的网络模型编程难度大大降低，这得益于Golang的goroutine，可以在编程的时候肆无忌惮的创建并发&amp;rdquo;线程&amp;rdquo;，当服务器能为每一个客户端都开启若干&amp;rdquo;线程&amp;rdquo;的话，编程变的简单很多。
+传统语言的网络层处理 服务需要同时服务N个客户端，所以传统的编程方式是采用IO复用，这样在一个线程中对N个套接字进行事件捕获，当读写事件产生后再真正read()或者write()，这样才能提高吞吐：
+上图中：
+ 绿色线程为接受客户端TCP链接的线程，使用阻塞的调用socket.accept()，当有新的连接到来后，将socket对象conn加入IO复用队列。
+ 紫色线程为IO复用的阻塞调用，通常采用epoll等系统调用实现IO复用。当IO复用队列中的任意socket有数据到来，或者写缓冲区空闲时可触发epoll调用的返回，否则阻塞epoll调用。数据的实际发送和接收都在紫色线程中完成。所以为了提高吞吐，对某个socket的read和write都应该使用非阻塞的模式，这样才能最大限度的提高系统吞吐。例如，假设正在对某个socket调用阻塞的write，当数据没有完全发送完成前，write将无法返回，从而阻止了整个epoll进入下一个循环，如果这个时候其他的socket有读就绪的话，将无法第一时间响应。所以非阻塞的读写将在某个fd读写较慢的时候，立刻返回，而不会一直等到读写结束。这样才能提高吞吐。然而，采用非阻读写将大大提高编程难度。
+ 紫色线程负责将数据进行解码并放入队列中，等待工作线程处理；工作线程有数据要发送时，也将数据放入发送队列，并通过某种机制通知紫色线程对应的socket有数据要写，进而使得数据在紫色线程中写入socket。
+  这种模型的编程难度主要体现在：
+ 线程少（也不能太多），导致一个线程需要处理多个描述符，从而存在对描述符状态的维护问题。甚至，业务层面的会话等都需要小心维护
+ 非阻塞IO调用，使描述符的状态更为复杂
+ 队列的同步处理
+  不得不说，能用C或C++来写服务器的是真大神！
+Golang的goroutine Golang是一门比较新的语言，正在快速的发展。Golang从语言层面支持一种叫协程的轻量级线程模型，称为goroutine。当我们创建协程时，实际并不会创建操作系统的线程，Golang会使用现有的线程来调度协程。也就是说，从程序员的角度，协程是并发执行的，好像线程一下，而从操作系统的角度来看，程序可能只有几个线程在运行。在同一个应用程序中，协程可以有成千上万个！所以可以有成千上万个并发任务，而这些任务的调度又十分轻量，比线程调度轻量的多的多。所以从程序员的角度，使用Golang就可以在一个应用程序中同时开启成千上万个并发任务。简直逆天！
+在Golang中使用go关键字来开启一个goroutine：
+func main() { log.Println(&amp;quot;Hello, world&amp;quot;) netListen, err := net.Listen(&amp;quot;tcp&amp;quot;, &amp;quot;localhost:4000&amp;quot;) if err != nil { fmt.Fprintf(os.Stderr, &amp;quot;Fatal error: %s&amp;quot;, err.Error()) os.Exit(1) } defer netListen.Close() log.Println(&amp;quot;Waiting for clients&amp;quot;) for { conn, err := netListen.Accept() if err != nil { continue } log.Println(conn.RemoteAddr().String(), &amp;quot; tcp connect success&amp;quot;) go handleConnection(conn) } } func handleConnection(conn net.</description>
+    </item>
+    
+    <item>
+      <title>Golangtransferfilewithsocket</title>
+      <link>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:24 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</guid>
+      <description>https://segmentfault.com/a/
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;code.google.com/p/mahonia&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net&amp;quot; &amp;quot;os&amp;quot; ) func main() { fmt.Println(&amp;quot;create a server or client?&amp;quot;) reader := bufio.NewReader(os.Stdin) input, _, _ := reader.ReadLine() if string(input) == &amp;quot;server&amp;quot; { Server() } if string(input) == &amp;quot;client&amp;quot; { Client() } else { fmt.Println(Show(&amp;quot;err arguments,entering again!.\r\n alternaltive argument is server or client&amp;quot;)) os.Exit(0) } } func Show(s string) string { enc := mahonia.NewEncoder(&amp;quot;gbk&amp;quot;) //中文转码有错误的函数。 return enc.ConvertString(s) } func Server() { exit := make(chan bool) ip := net.</description>
+    </item>
+    
+    <item>
+      <title>通过拆分多帧的方式WebSocket发送图片</title>
+      <link>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:24 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html</guid>
+      <description>https://segmentfault.com/a/
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/net/websocket&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;time&amp;quot; ) var ( dirPath string test byte lenFile int ) func check(e error) { if e != nil { panic(e) } } func ChatServer(ws *websocket.Conn) { defer ws.Close() var test []byte var payload []byte for { err := websocket.Message.Receive(ws, &amp;amp;payload) if err != nil { log.Println(err) } fmt.Println(&amp;quot;Payload: &amp;quot;, len(payload)) test = append(test, payload...) fmt.Println(&amp;quot;Test: &amp;quot;, len(test)) fo, err := os.</description>
+    </item>
+    
+  </channel>
+</rss>

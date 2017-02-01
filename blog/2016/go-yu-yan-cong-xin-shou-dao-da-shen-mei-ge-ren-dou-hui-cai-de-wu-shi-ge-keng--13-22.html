@@ -1,0 +1,204 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go语言从新手到大神:每个人都会踩的五十个坑(13-22) |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="https://segmentfault.com/a/
+Slice 和 Array 维度是一维 级别"><meta name="keywords" content="大神, 新手, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html"><meta property="og:title" content="Go语言从新手到大神:每个人都会踩的五十个坑(13-22)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:29"><meta property="article:modified_time" content="2016-12-31 11:34:29"><meta property="article:tag" content="大神"><meta property="article:tag" content="新手"><meta property="article:tag" content="golang"><meta name="og:description" content="https://segmentfault.com/a/
+Slice 和 Array 维度是一维 级别"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html">Go语言从新手到大神:每个人都会踩的五十个坑(13-22)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000002847761" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><a href="https://segmentfault.com/a/">https://segmentfault.com/a/</a></p><h3 id="slice-和-array-维度是一维">Slice 和 Array 维度是一维</h3><p>级别：新手入门级</p><p>Go 看上去支持多维的 Array 和 Slice，但是其实不然。尽管可以创建 Array 的 Array，也可以创建 Slice 的 Slice。对于依赖多维 Array 的计算密集型的程序，无论是从性能还是复杂程度，Go 都不是最佳选择。</p><p>当然，如果你选择创建嵌套的 Array 与嵌套的 Slice，那么你就得自己负责进行索引、进行下表检查、以及 Array 增长时的内存分配。嵌套 Slice 分为两种，Slice 中嵌套独立的 Slice，或者 Slice 中嵌套共享数据的 Slice。</p><p>使用嵌套的独立 Slice 创建多维的 Array 需要两步。第一步，创建外围 Slice，然后分配每个内部的 Slice。内部的 Slice 是独立的，可以对每个单独的内部 Slice 进行缩放。</p><pre><code>package main
+
+func main() {  
+    x := 2
+    y := 4
+
+    table := make([][]int,x)
+    for i:= range table {
+        table[i] = make([]int,y)
+    }
+}
+</code></pre><p>使用嵌套、共享数据的 Slice 创建多维 Array 需要三步。第一，创建数据“容器”，第二部，创建外围 Slice，第三部，对内部的 Slice 进行初始化。</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    h, w := 2, 4
+
+    raw := make([]int,h*w)
+    for i := range raw {
+        raw[i] = i
+    }
+    fmt.Println(raw,&amp;raw[4])
+    //prints: [0 1 2 3 4 5 6 7] &lt;ptr_addr_x&gt;
+
+    table := make([][]int,h)
+    for i:= range table {
+        table[i] = raw[i*w:i*w + w]
+    }
+
+    fmt.Println(table,&amp;table[1][0])
+    //prints: [[0 1 2 3] [4 5 6 7]] &lt;ptr_addr_x&gt;
+}
+</code></pre><p>Go 语言也有对于支持多维 Array 和 Slice 的提案，不过不要期待太多。Go 语言官方将这些需求分在“低优先级”组中。</p><h3 id="试图访问不存在的-map-键值">试图访问不存在的 Map 键值</h3><p>级别：新手入门级</p><p>并不能在所有情况下都能通过判断 map 的记录值是不是 nil 判断记录是否存在。在 Go 语言中，对于“零值”是 nil 的数据类型可以这样判断，但是其他的数据类型不可以。简而言之，这种做法并不可靠（例如布尔变量的“零值”是 false）。最可靠的做法是检查 map 记录的第二返回值。<br>错误代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
+
+    if v := x[&quot;two&quot;]; v == &quot;&quot; { //incorrect
+        fmt.Println(&quot;no entry&quot;)
+    }
+}
+</code></pre><p>修正代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
+
+    if _,ok := x[&quot;two&quot;]; !ok {
+        fmt.Println(&quot;no entry&quot;)
+    }
+}
+</code></pre><h3 id="string-不可变">String 不可变</h3><p>级别：新手入门级</p><p>对于 String 中单个字符的操作会导致编译失败。String 是带有一些附加属性的只读的字节片（Byte Slices）。所以如果想要对 String 操作的话，应当使用字节片操作，而不是将它转换为 String 类型。</p><p>错误信息：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    x[0] = 'T'
+
+    fmt.Println(x)
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox305565531/main.go:7: cannot assign to x[0]
+</code></pre><p>修正代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    xbytes := []byte(x)
+    xbytes[0] = 'T'
+
+    fmt.Println(string(xbytes)) //prints Text
+}
+</code></pre><p>注意这里的操作并不就是最正确的操作，因为有些字符可能会存储在多个字节中。如果你的开发情景有这种情况的话，需要先把 String 转换为 rune 格式。即便是 rune，一个字符也可能会保存在多个 rune 中，因此 Go String 也表现为字节序列（String Sequences）。Rune 一般理解为“字符”，“一个字符也可能会保存在多个 rune 中”的情况我们将会在下面提到。</p><h3 id="string-与-byte-slice-的转换">String 与 Byte Slice 的转换</h3><p>级别：新手入门级</p><p>当将 String 类型和 Byte Slice 类型互相转化的时候，得到的新数据都是原数据的拷贝，而不是原数据。类型转化和切片重组（Resliciing）不一样，切片重组后的变量仍然指向原变量，而类型转换后的变量指向原变量的拷贝。</p><p>Go 语言已经对 []byte 和 String 类型的互相转化做了优化，并且还会继续优化。</p><p>The first optimization avoids extra allocations when []byte keys are used to lookup entries in map[string] collections: m[string(key)].<br>一个优化是</p><p>The second optimization avoids extra allocations in for range clauses where strings are converted to []byte: for i,v := range []byte(str) {&hellip;}.</p><h3 id="string-与下标">String 与下标</h3><p>级别：新手入门级</p><p>和其他语言不同，String 的下表返回值是 Byte 类型的值，而不是字符类型。</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    fmt.Println(x[0]) //print 116
+    fmt.Printf(&quot;%T&quot;,x[0]) //prints uint8
+}
+</code></pre><p>如果需要在 UTF8 类型的 String 中取出指定字符，那么需要用到 unicode/utf8 与实验性的 [utf8string]() 包。utf8string 包包含 AT() 方法，可以取出字符，也可以将 String 转换为 Rune SLice。</p><h3 id="string并不一定是utf8格式">String并不一定是UTF8格式</h3><p>级别：新手入门级</p><p>String 类型不一定是 UTF8 格式，String 中也可以包含自定义的文字/字节。只有需要将字符串显示出来的时候才需要用 UTF8 格式，其他情况下可以随便用转义来表示任意字符。</p><p>可以使用 unicode/utf8 包中体重的 ValidString() 方法判断是否是 UTF8 类型的文本。</p><pre><code>package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data1 := &quot;ABC&quot;
+    fmt.Println(utf8.ValidString(data1)) //prints: true
+
+    data2 := &quot;A\xfeC&quot;
+    fmt.Println(utf8.ValidString(data2)) //prints: false
+}
+</code></pre><h3 id="string-长度">String 长度</h3><p>级别：新手入门级</p><p>Python 开发者的代码：</p><pre><code>data = u'♥'  
+print(len(data)) #prints: 1  
+</code></pre><p>转换成类似的 Go 代码如下：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := &quot;♥&quot;
+    fmt.Println(len(data)) //prints: 3
+}
+</code></pre><p>Go 的 len() 方法和 Python 的并不相同，和 Python 的 len 方法等价的 Go 方法是 RuneCountInString。</p><pre><code>package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data := &quot;♥&quot;
+    fmt.Println(utf8.RuneCountInString(data)) //prints: 1
+}
+</code></pre><p>当然有些情况（例如法语）的情况，RuneCountInString 也并不能完全返回字符数目，因为有些字符是使用多个字符的方式进行存储的。</p><pre><code>package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data := &quot;é&quot;
+    fmt.Println(len(data))                    //prints: 3
+    fmt.Println(utf8.RuneCountInString(data)) //prints: 2
+}
+</code></pre><h3 id="多行的-slice-arry-和-map-赋值中缺少逗号">多行的 Slice Arry 和 Map 赋值中缺少逗号</h3><p>Missing Comma In Multi-Line Slice, Array, and Map Literals</p><p>级别：新手入门级<br>错误信息：</p><pre><code>package main
+
+func main() {  
+    x := []int{
+    1,
+    2 //error
+    }
+    _ = x
+}
+</code></pre><p>Compile Errors:</p><pre><code>/tmp/sandbox367520156/main.go:6: syntax error: need trailing comma before newline in composite literal /tmp/sandbox367520156/main.go:8: non-declaration statement outside function body /tmp/sandbox367520156/main.go:9: syntax error: unexpected }
+</code></pre><p>修正代码：</p><pre><code>package main
+
+func main() {  
+    x := []int{
+    1,
+    2,
+    }
+    x = x
+
+    y := []int{3,4,} //no error
+    y = y
+}
+</code></pre><p>当然，如果把这些东西写在一行中，可以不加最后的逗号。</p><h3 id="log-fatal-与-log-panic-在后台悄悄做了一些事情">log.Fatal 与 log.Panic 在后台悄悄做了一些事情</h3><p>级别：新手入门级</p><p>日志库提供了不同级别的日志记录，如果使用 Fatal 和 Panic 级别的日志，那么记录完这条日志后，应用程序便会退出而不会继续执行。</p><pre><code>package main
+
+import &quot;log&quot;
+
+func main() {  
+    log.Fatalln(&quot;Fatal Level: log entry&quot;) //app exits here
+    log.Println(&quot;Normal Level: log entry&quot;)
+}
+</code></pre><h3 id="内置的数据结构操作是无锁的">内置的数据结构操作是无锁的</h3><p>级别：新手入门级</p><p>虽然 Go 语言天生高并发，但是 Go 并没有考虑到数据安全。为了实现“原子化”的数据操作，开发者需要自己对数据操作进行加锁。当然， goroutine 和 channel 以及 sync 都是手动加锁的好方案。</p></div><aside id="meta"><meta itemprop="wordCount" content="618"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/%E5%A4%A7%E7%A5%9E.html" rel="tag">大神</a> <a href="/tags/%E6%96%B0%E6%89%8B.html" rel="tag">新手</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html">Go语言从新手到大神:每个人都会踩的五十个坑(1-12)</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html">不是语言之争---GovsErlang</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="31919082736cb208cb7d927a14868ae9" data-title="Go语言从新手到大神:每个人都会踩的五十个坑(13-22)" data-url="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

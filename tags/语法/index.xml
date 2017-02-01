@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E8%AF%AD%E6%B3%95.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>为什么Go语言把类型放在后面？</title>
+      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
+      <description>本文整理自知乎，原文作者 @林建入。
+不是为了与众不同。而是为了更加清晰易懂。
+Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blog.golang.org/gos-declaration-syntax），简略翻译如下（水平有限翻译的不对的地方见谅）：
+引言 Go语言新人常常会很疑惑为什么这门语言的声明语法（declaration syntax）会和传统的C家族语言不同。在这篇博文里，我们会进行一个比较，并做出解答。
+C 的语法 首先，先看看 C 的语法。C 采用了一种聪明而不同寻常的声明语法。声明变量时，只需写出一个带有目标变量名的表达式，然后在表达式里指明该表达式本身的类型即可。比如：
+int x;  上面的代码声明了 x 变量，并且其类型为 int——即，表达式 x 为 int 类型。一般而言，为了指明新变量的类型，我们得写出一个表达式，其中含有我们要声明的变量，这个表达式运算的结果值属于某种基本类型，我们把这种基本类型写到表达式的左边。所以，下述声明：
+int *p; int a[3];  指明了 p 是一个int类型的指针，因为 *p 的类型为 int。而 a 是一个 int 数组，因为 a[3] 的类型为 int（别管这里出现的索引值，它只是用于指明数组的长度）。
+我们接下来看看函数声明的情况。C 的函数声明中关于参数的类型是写在括号外的，像下面这样：
+int main(argc, argv) int argc; char *argv[]; { /* ... */ }  如前所述，我们可以看到 main 之所以是函数，是因为表达式 main(argc, argv) 返回 int。在现代记法中我们是这么写的：
+int main(int argc, char *argv[]) { /* .</description>
+    </item>
+    
+  </channel>
+</rss>

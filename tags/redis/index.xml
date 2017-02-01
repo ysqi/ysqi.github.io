@@ -11,6 +11,58 @@
     <atom:link href="/tags/redis.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go操作Redis</title>
+      <link>https://yushuangqi.com/blog/2016/gocao-zuo-redis.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:10 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gocao-zuo-redis.html</guid>
+      <description>https://segmentfault.com/a/
+Start 在SF文章中，关于PHP，python操作redis的文章已经很多了。可是少了go对redis的操作。最近也是刚开始学Go,由于对redis的偏爱，也顺便学习了一下，并总结下来。
+Go-Redis包管理  很明显，我们Go是没有这个包的，那么我们可以利用GO的命令。首先我们得先配置GOPATH的路径，我选择的是/data/go/goSource作为我包的路径，所以shell执行如下  export GOPATH=/data/go/goSource
+ go get github.com/alphazero/Go-Redis这样就载下了Go-Redis包了  代码验证  确认redis服务已经开启
+ redis.conf注意bind ip 确认可以被连接
+ code
+  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/alphazero/Go-Redis&amp;quot; ) func main() { //DefaultSpec()创建一个连接 //选择host,若需要auth,则password填写 //spec := redis.DefaultSpec().Host(&amp;quot;192.168.1.111&amp;quot;).Db(0).Password(&amp;quot;&amp;quot;); //若连接的本机redis-server,则host可以省略 spec := redis.DefaultSpec().Db(0).Password(&amp;quot;&amp;quot;); client, err := redis.NewSynchClientWithSpec (spec); if err != nil { fmt.Println(&amp;quot;Connect redis server fail&amp;quot;); return } dbkey := &amp;quot;test&amp;quot;; value :=[]byte(&amp;quot;Hello world!&amp;quot;); client.Set(dbkey, value); getValue ,err:= client.</description>
+    </item>
+    
+    <item>
+      <title>统一配置管理工具confd</title>
+      <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:09 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</guid>
+      <description>confd Github: https://github.com/sumory/confd
+confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。
+你可以用它：
+ 统一管理各种配置文件，配置文件模板和数据是分离的，可各自单独管理
+ 动态修改配置属性，然后重新生成相关的配置文件
+ 提供cli方式修改数据
+  Features  [x] 基础解析：配置文件使用toml格式，模板数据分离
+ [x] 多种存储支持：local file、redis、zookeeper
+ [x] 两种运行模式：Debug或Daemon
+ [x] cli工具：修改store，批量更新配置
+ [ ] 更友好的交互方式，比如通过web界面
+ [ ] 分离server和client，提供客户端cli或API供拉取指定配置
+ [ ] 加密支持：store中存储的配置可加密，防止泄露
+  Usage 安装
+#假设安装路径为/data/server/confd #go get获取依赖的第三方库 sh build.sh linux /data/server/confd #执行以上构建脚本后，在docs目录下生成了安装所需的文件 #若build.sh增加了参数$2，则默认加载$2/data/config.toml作为confd运行所需的配置文件 cd docs sh install.sh /data/server/confd cd /data/server/confd #注意修改${path}/data/config.toml里的ConfDir和ConnectAddr，前缀为/data/server/confd #然后使用confd、confd-cli即可  使用
+. ├── confd ├── confd-cli ├── data │ ├── config.</description>
+    </item>
+    
+    <item>
+      <title>Golangredis操作初体验</title>
+      <link>https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:01 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html</guid>
+      <description>安装 我使用的是 https://github.com/go-redis/r&amp;hellip; 这个 golang 客户端, 因此安装方式如下:
+go get gopkg.in/redis.v4  接着在代码中导入此包即可:
+import &amp;quot;gopkg.in/redis.v4&amp;quot;  基本操作 创建客户端 通过 redis.NewClient 函数即可创建一个 redis 客户端, 这个方法接收一个 redis.Options 对象参数, 通过这个参数, 我们可以配置 redis 相关的属性, 例如 redis 服务器地址, 数据库名, 数据库密码等.
+下面是一个连接的例子:
+// 创建 redis 客户端 func createClient() *redis.Client { client := redis.NewClient(&amp;amp;redis.Options{ Addr: &amp;quot;localhost:6379&amp;quot;, Password: &amp;quot;&amp;quot;, DB: 0, }) // 通过 cient.Ping() 来检查是否成功连接到了 redis 服务器 pong, err := client.Ping().Result() fmt.Println(pong, err) return client }  String 操作 redis 的 String 操作有:</description>
+    </item>
+    
+    <item>
       <title>如何进行计数场景的优化</title>
       <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
       <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>

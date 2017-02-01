@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/zookeeper.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/zookeeper.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>_gozk_zookeeper_zk_gofatalerror:zookeeper_hfilenotfound</title>
+      <link>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:52 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html</guid>
+      <description>这个错误查了好久，最后在medium上找到了答案，遂记于此！
+系统： mac os
+错误信息：
+ /launchpad.net/gozk/zookeeper/zk.go:15:10: fatal error: &amp;lsquo;zookeeper.h&amp;rsquo; file not found
+ solution：
+文件$GOPATH/src/launchpad.net/gozk/zookeeper/zk.go中
+... package zookeeper /* #cgo CFLAGS: -I/usr/include/c-client-src -I/usr/include/zookeeper #cgo LDFLAGS: -lzookeeper_mt ...  修改为
+... package zookeeper /* #cgo CFLAGS: -I/usr/include/c-client-src -I/usr/include/zookeeper -I/usr/local/include/zookeeper #cgo LDFLAGS: /usr/local/lib/libzookeeper_mt.a ...  参考：https://medium.com/@robiplus/&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

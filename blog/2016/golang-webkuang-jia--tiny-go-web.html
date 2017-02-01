@@ -1,0 +1,103 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>GolangWeb框架TinyGoWeb |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架"><meta name="keywords" content="微框架, web, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html"><meta property="og:title" content="GolangWeb框架TinyGoWeb"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:56"><meta property="article:modified_time" content="2016-12-31 11:34:56"><meta property="article:tag" content="微框架"><meta property="article:tag" content="web"><meta property="article:tag" content="golang"><meta name="og:description" content="Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html">GolangWeb框架TinyGoWeb</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000000489480" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架，TGW的诞生是因为作者在使用beego时有种挫败感，决定自己重新写一个适合自己网站用的(<a href="http://www.4jieshu.com">私人借书网</a>，因为网站没有完成备案，暂时由托管在US的vps进行反向代理到ucloud主机，访问可能会有一定的延时)，从构思到完成总共只花了一天时间，因为觉得它已经够用了，就没有继续添加新的功能。</p><p>项目地址:[](<a href="http://github.com/icattlecoder/tgw">http://github.com/icattlecoder/tgw</a>)<a href="http://github.com/icattlecoder/tgw">http://github.com/icattlecoder/tgw</a></p><h2 id="qiuck-start">Qiuck Start</h2><pre><code>&gt; go get github.com/icattlecoder/tgw
+&gt; cd src/github.com/icattlecoder/tgw/example
+&gt; go build
+&gt; ./example 
+</code></pre><h2 id="控制器">控制器</h2><p>控制器实现自动路由注册，例如有以下的结构</p><pre><code>type Server struct {
+    //成员由业务逻辑而定，如mgo的数据库连接信息等
+}
+
+func NewServer( /*入参，例如从配置文件中读取*/) *Server {
+    return &amp;Server{}
+}
+
+//对应模板为index.html ,返回值data用于渲染模板
+func (s *Server) Index() (data map[string]interface{}) {
+    data = map[string]interface{}{}
+    author := Author{
+        Name:  &quot;icattlecoder&quot;,
+        Email: []string{&quot;icattlecoder@gmail.com&quot;, &quot;iwangming@hotmail.com&quot;},
+        QQ:    &quot;405283013&quot;,
+        Blog:  &quot;http://blog.segmentfault.com/icattlecoder&quot;,
+    }
+    data[&quot;author&quot;] = author
+    return
+}
+
+//由于没有json.html模板，但是却有data返回值，此data将以json字符串的格式返回
+func (s *Server) Json() (data map[string]interface{}) {
+    data = map[string]interface{}{}
+    author := Author{
+        Name:  &quot;icattlecoder&quot;,
+        Email: []string{&quot;icattlecoder@gmail.com&quot;, &quot;iwangming@hotmail.com&quot;},
+        QQ:    &quot;405283013&quot;,
+        Blog:  &quot;http://blog.segmentfault.com/icattlecoder&quot;,
+    }
+    data[&quot;author&quot;] = author
+    return
+}
+
+//这里根据请求自动解析出args
+//例如可将 /hello?msg=hello world的函数解析为TestArgs{Msg:&quot;hello world&quot;}
+//由于没有hello.html模板，并且没有返回值，可以通过env中的RW成员写入返回数据
+func (s *Server) Hello(args TestArgs, env tgw.ReqEnv) {
+
+    env.RW.Write([]byte(args.Msg))
+    err = env.Session.Set(&quot;key&quot;, args)
+    if err != nil {
+        log.Println(err)
+    }
+}
+
+func (s *Server) AdminIndex(){}
+</code></pre><p>以下是程序启动代码</p><pre><code>func main() {
+    ser := controllers.NewServer()
+    t:=tgw.NewTGW()
+    log.Fatal(t.Register(&amp;ser).Run(&quot;:8080&quot;))
+}
+</code></pre><p>tgw的Register方法会自动注册以下的路由：</p><pre><code>/hello       ===&gt; func (s *Server) Hello(args TestArgs, env tgw.ReqEnv)
+/index       ===&gt; func (s *Server) Index() (data map[string]interface{}) 
+/Json        ===&gt; func (s *Server) Json() (data map[string]interface{})
+/admin/index ===&gt; func (s *Server) AdminIndex()
+</code></pre><p>即<code>localhost:8080/index</code>的处理函数是<code>service.Index</code>,<code>localhost:8080/admin/index</code>的处理函数是<code>service.AdminIndex</code></p><h2 id="视图">视图</h2><p>视图默认放在view文件夹中，其文件名与url有关，例如：<code>/index</code>对应 <code>view/index.html</code><br>如果某个url没有对应的视图，但是它的处理函数却有返回值，那么将返回对象JOSN序列化的结果。<br>视图中可以通过<code>&lt;include src=&quot;&lt;src&gt;&quot; /&gt;</code>指令包含其它文件，如公共头区域。</p><h2 id="参数解析">参数解析</h2><p>以下面的代码为例：</p><pre><code>type TestArgs struct {
+    Msg string
+}
+func (s *Server) Hello(args TestArgs, env tgw.ReqEnv)
+</code></pre><p>对于请求<code>localhost:8080/Hello?msg=Hello world</code>，tgw将自动根据请求方法(POST或GET)识别并解析出TestArgs变量.<br>当前能够自动解析的类型有<code>int</code>、<code>string</code>、<code>bool</code>、<code>float64</code></p><h3 id="扩展参数解析">扩展参数解析</h3><p>tgw自带<code>*Args</code>参数解析，即结构名符合<code>*Args</code>的参数都可以自动解析。如果需要定制解析，实现Parser接口即可</p><h2 id="session支持">Session支持</h2><p>框架实现了一个简单的session管理,基本满足一般的需求，如果需要使用session，处理函数必须有一个类型为tgw.ReqEnv的参数,通过此函数可访问Session。另外，Session的值由memcached存储，因此实际运行时需要一个memecached服务。</p><h2 id="自定义输出">自定义输出</h2><p>如果函数包含类型为tgw.ReqEnv参数，且无返回值，可以直接向ReqEnv.RW中写入返回结果。</p></div><aside id="meta"><meta itemprop="wordCount" content="200"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/web.html" rel="tag">web</a> <a href="/tags/%E5%BE%AE%E6%A1%86%E6%9E%B6.html" rel="tag">微框架</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/how-to-install-go-1_2-on-ubuntu-12_04-lts.html">Howtoinstallgo1_2onUbuntu12_04LTS</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html">采用一门新编程语言或不采用</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="ce9500ac1a79c4969f23f211464c5ee3" data-title="GolangWeb框架TinyGoWeb" data-url="https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-webkuang-jia--tiny-go-web.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-webkuang-jia--tiny-go-web.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

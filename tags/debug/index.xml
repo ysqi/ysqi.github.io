@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/debug.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/debug.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go程序的性能调试问题-CPU篇</title>
+      <link>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:53 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</guid>
+      <description>注：本文的原文 Debugging performance issues in Go programs 由 Dmitry Vyukov 在 05/10/2014 - 07:06 编写
+注：原文太长，大家要看全部的请看原文，其他的部分，后续慢慢翻译。
+ 让我们假设你想提升你的GO程序的性能。这里有一些工具可以帮助你完成这个任务。这些工具能帮助你定位多种类型的热点（CPU，IO，内存），你为了能够显著提升程序性能，你必须专注于热点发生的地方。尽管如此，另外一个结果是可能的&amp;ndash;这些工具能帮助你确定程序中明显的性能缺陷。例如，当你在每个程序启动的时候，你可以在每次查询的之前准备一个 SQL 语句。另外一个例子是如果一个 O(N^2) 算法在某种程度上陷入了一个明显存在并且期望的 O(N) 情况。为了确定这样的情况，你需要完整性的检查你在 profiles 中看到的。例如第一种情况下大量的时间花费在 SQL 语句的准备上，这已经超越了告警线了。
+同样重要的是要理解性能影响的各种边界因素。例如，一个程序通过 100 Mbps 的带宽连接通讯，并且它已经使用超过 90 Mbps，这里就没有什么可以对这程序做的来提升它的性能了。这些类似的边界因素包括 磁盘 IO，内存消耗和计算任务。
+考虑到这一点，我们可以查看这些可用的工具。
+ 注意：这些工具可能相互干扰，例如，精确的内存分析可能影响CPU分析。goroutine 阻塞分析可能影响调度追踪等等，隔离地使用这些工具以便得到更加精确的信息。
+注意：这里所有的描述都是基于 Go1.3 版本的
+ CPU 分析器 Go runtime 包含了内建的 CPU 分析器，这显示了函数消耗的 CPU 时间百分比，这里你有3种方式访问它：
+ 最简单的一个方式是使用 go test 命令的 -cpuprofile 标记。例如，如下命令：
+$ go test -run=none -bench=ClientServerParallel4 -cpuprofile=cprof net/http
+将配置给出的基准和 CPU 的概要分析写入 cprof 文件。</description>
+    </item>
+    
+    <item>
+      <title>介绍GDB调试Go</title>
+      <link>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:43 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html</guid>
+      <description>注：本文作者是 YANN，原文是 Introduction to Go Debugging with GDB
+ 在过去的 4 年中，我花了我绝大部分的时间用来写，读以及调试 Python 或 JavaScript 代码。在学习 Go 的过程中，像穿着一双有小石子的鞋子在美丽的山中远行。很多事情给我留下了深刻的印象，但是使用 println 调试我的代码在过去走的太远了。在 Python 中，当代码在运行的时候，我们使用 pdb/ipdb 调试它，JavaScript 提供了类似的工具。在这些年中，这个模式已经变成了我工作流中非常重要的一部分了。
+今天，我认识到 Go 已经内建支持 Gnu debugger (aka GDB)。
+为了这篇文章，我们使用以下这个简单的程序：
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func counting(c chan&amp;lt;- int) { for i := 0; i &amp;lt; 10; i++ { time.Sleep(2 * time.Second) c &amp;lt;- i } close(c) } func main() { msg := &amp;quot;Starting main&amp;quot; fmt.</description>
+    </item>
+    
+  </channel>
+</rss>

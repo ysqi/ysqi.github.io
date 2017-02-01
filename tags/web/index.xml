@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/web.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/web.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GolangWeb框架TinyGoWeb</title>
+      <link>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</guid>
+      <description>Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架，TGW的诞生是因为作者在使用beego时有种挫败感，决定自己重新写一个适合自己网站用的(私人借书网，因为网站没有完成备案，暂时由托管在US的vps进行反向代理到ucloud主机，访问可能会有一定的延时)，从构思到完成总共只花了一天时间，因为觉得它已经够用了，就没有继续添加新的功能。
+项目地址:[](http://github.com/icattlecoder/tgw)http://github.com/icattlecoder/tgw
+Qiuck Start &amp;gt; go get github.com/icattlecoder/tgw &amp;gt; cd src/github.com/icattlecoder/tgw/example &amp;gt; go build &amp;gt; ./example  控制器 控制器实现自动路由注册，例如有以下的结构
+type Server struct { //成员由业务逻辑而定，如mgo的数据库连接信息等 } func NewServer( /*入参，例如从配置文件中读取*/) *Server { return &amp;amp;Server{} } //对应模板为index.html ,返回值data用于渲染模板 func (s *Server) Index() (data map[string]interface{}) { data = map[string]interface{}{} author := Author{ Name: &amp;quot;icattlecoder&amp;quot;, Email: []string{&amp;quot;icattlecoder@gmail.com&amp;quot;, &amp;quot;iwangming@hotmail.com&amp;quot;}, QQ: &amp;quot;405283013&amp;quot;, Blog: &amp;quot;http://blog.segmentfault.com/icattlecoder&amp;quot;, } data[&amp;quot;author&amp;quot;] = author return } //由于没有json.html模板，但是却有data返回值，此data将以json字符串的格式返回 func (s *Server) Json() (data map[string]interface{}) { data = map[string]interface{}{} author := Author{ Name: &amp;quot;icattlecoder&amp;quot;, Email: []string{&amp;quot;icattlecoder@gmail.</description>
+    </item>
+    
+  </channel>
+</rss>
