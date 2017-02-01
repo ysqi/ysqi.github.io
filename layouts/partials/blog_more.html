@@ -3,7 +3,7 @@
 </div>
 <div>
     <ul class="rel_links">
-        <li class="rel_linksli">
+        <li class="rel_linksli"> 
             <span id="topics">分类:  
         {{ range   .Params.topics  }}
         <a  href="/topics/{{.|urlize}}.html" rel="category">{{title .}}</a>
@@ -14,6 +14,7 @@
         <a href="/tags/{{.|urlize}}.html" rel="tag">{{.}}</a>
         {{ end }}</span> {{end}}
         </li>
+       
         {{if .Prev}}
         <li class="rel_linksli rel_prev"><a href="{{.Prev.Permalink}}">{{.Prev.Title}}</a></li>
         {{end}} {{if .Next}}

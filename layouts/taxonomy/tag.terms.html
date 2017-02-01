@@ -1,0 +1,26 @@
+{{ partial "header.html" . }}
+<section role="main">
+	<h1 class="writings">{{.Site.Author.name}}干货文章标签云</h1>
+		<p class="feature">
+		  自2013年01月01日起，累计分享{{len .Site.Pages}}篇文章。涉及产品设计、软件开发 、微信、摄影、软件工具等等。
+		</p> 
+		<ul class="bookslist group">
+  {{ $data := .Data }}
+    {{ range $key,$value := .Data.Index.ByCount }} 
+    <li class="group"> 
+		<div class="bookgroup">
+		<h4 class="writings"><a href="/tags/{{ $value.Name }}.html" title="文章标签：{{ $value.Name }}" >{{ $value.Name }}</a></h4>
+		<q class="bquote"><strong>{{ $value.Count }}</strong>篇
+		<!-- <cite><a href="http://www.abookapart.com/products/mobile-first">—Ethan Marcotte</a></cite> -->
+		</q>
+		</div>
+		</li>
+
+    {{ end }}
+		</ul> 
+		
+</section>
+
+{{partial "sidebar.html"}}
+{{partial "nav.html" .}}
+{{ partial "footer.html" . }}

@@ -2,11 +2,17 @@
 <section role="main">
 <article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"> 
 <header>
-<h2  itemprop="headline"> <a rel="bookmark">{{ .Title }}</a> </h2> 
+<h1  itemprop="headline"> <a rel="bookmark" href="{{.Permalink}}">{{ .Title }}</a> </h1> 
 <p class="attribution" >
     <span itemprop="author">
         <span itemscope itemtype="http://schema.org/Person">
-            文/<a href="{{.Site.BaseURL}}"> <span itemprop="name">{{ .Site.Author.name }}</span></a> 
+            文/
+ {{if .Params.source}} 
+          <a href="{{.Params.source}}" rel="nofollow" target="_blank">属转载,查看原文
+          <span itemprop="name" style="display: none;">{{ .Site.Author.name }}</span></a></span>
+           {{else}}
+            <a href="{{.Site.BaseURL}}"> <span itemprop="name">{{ .Site.Author.name }}</span></a> 
+        {{end}}
         </span>
     </span>
     <span class="right">
