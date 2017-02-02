@@ -24,7 +24,7 @@ go提供了基于goroutine的同步网络接口,所以对每个网络连接可�
 与之前的chuck-lua类似,为了让使用者可以方便定制自己的包结构,我提供了packet和decoder的抽象.
 
 packet.go
-
+```Go
     package packet
 
     const (
@@ -43,9 +43,9 @@ packet.go
         Buffer()   (*ByteBuffer)
         GetType()  (byte)
     }
-
+```
 decoder.go
-
+```Go
     package packet
 
     import(
@@ -112,7 +112,7 @@ decoder.go
         }
         return NewRawPacket(NewBufferByBytes(buff,(uint32)(n))),nil     
     }
-
+```
 内置了2种包的类型,分别是rawpacket,rpacket/wpacket.
 
 rawpacket其实就是原始二进制数据流,没有区分逻辑界限.
@@ -122,7 +122,7 @@ rpacket/wpacket则提供了一种4字节包头,的二进制流包结构.
 eventpacket则作为内部使用,目前用来向逻辑通告连接关闭,错误等事件.
 
 下面就是整个网络库的核心部分tcpsession,它提供了对tcp连接的处理.
-
+```Go
     package tcpsession
 
     import(
@@ -229,7 +229,7 @@ eventpacket则作为内部使用,目前用来向逻辑通告连接关闭,错误�
         this.socket_close = true
         this.Conn.Close()
     }
-
+```
 代码十分简短只有一百行出头点,这里关键地方时,dorecv,Send和ProcessSession三个函数.
 
 dorecv所做的就是不断调用decoder.DoRecv从网络中提取网络包,然后将其写入到Packet\_que中.
@@ -239,7 +239,7 @@ Send函数则保证需要发送的数据被写入到内湖缓冲或出错才会�
 ProcessSession则是整个库的核心所在,接收到新连接之后,用新建连接作为参数调用ProcessSession,当网络包到达或出错时将会回调使用者提供的回调函数.从实现看它只是简单的创建一个goroutine执行dorecv,然后在一个for循环中不断读取到达的网络包然后调用回调函数.
 
 下面是一个使用示例,更多的示例请参考:<https://github.com/sniperHW/kendynet-go>
-
+```Go
     package main
 
     import(
@@ -277,4 +277,4 @@ ProcessSession则是整个库的核心所在,接收到新连接之后,用新建�
                })
         }
     }
-
+```

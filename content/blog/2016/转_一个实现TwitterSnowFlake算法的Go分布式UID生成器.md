@@ -54,7 +54,7 @@ Installation
 
 Example
 -------
-
+```Go
     import (
             "fmt"
             "github.com/zheng-ji/goSnowFlake"
@@ -72,7 +72,7 @@ Example
             }
             }
     }
-
+```
 Documentation
 -------------
 
