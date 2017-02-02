@@ -27,7 +27,7 @@ Go语言惯用法。
 不使用迭代器的方案 首先要指出的是，绝大多数情况下Go程序是不需要用迭代器的。因为内置的slice和map两种容器都可以通过range进行遍历，并且这两种容器在性能方面做了足够的优化。只要没有特殊的需求，通常是直接用这两种容器解决问题。即使不得不写了一个自定义容器，我们几乎总是可以实现一个函数，把所有元素（的引用）拷贝到一个slice之后返回，这样调用者又可以直接用range进行遍历了。
 当然某些特殊场合迭代器还是有用武之地。比如迭代器的Next()是个耗时操作，不能一口气拷贝所有元素；再比如某些条件下需要中断遍历。
 经典实现 经典实现完全采用面向对象的思路。为了简化问题，下面的例子中容器就是简单的[]int，我们在main函数中使用迭代器进行遍历操作并打印取到的值，迭代器的接口设计参考java。
-package main import &amp;quot;fmt&amp;quot; type Ints []int func (i Ints) Iterator() *Iterator { return &amp;amp;Iterator{ data: i, index: 0, } } type Iterator struct { data Ints index int } func (i *Iterator) HasNext() bool { return i.index &amp;lt; len(i.data) } func (i *Iterator) Next() (v int) { v = i.data[i.index] i.index++ return v } func main() { ints := Ints{1, 2, 3} for it := ints.</description>
+ package main import &amp;quot;fmt&amp;quot; type Ints []int func (i Ints) Iterator() *Iterator { return &amp;amp;Iterator{ data: i, index: 0, } } type Iterator struct { data Ints index int } func (i *Iterator) HasNext() bool { return i.index &amp;lt; len(i.data) } func (i *Iterator) Next() (v int) { v = i.data[i.index] i.index++ return v } func main() { ints := Ints{1, 2, 3} for it := ints.</description>
     </item>
     
   </channel>
