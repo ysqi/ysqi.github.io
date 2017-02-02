@@ -40,7 +40,7 @@ go语言中没有对象(object)这个关键词。对象（object）仅仅是一�
 > struct是一种包含了命名域和方法的类型
 
 让我们从一个例子中来理解它：
-
+```Go
     type rect struct {
         width int
         height int
@@ -54,7 +54,7 @@ go语言中没有对象(object)这个关键词。对象（object）仅仅是一�
         r := rect{width: 10, height: 5}
         fmt.Println("area: ", r.area())
     }
-
+```
 我们一行行来解释一下上面的代码。代码的第一块定义了一个叫做rect的struct类型，该struct含有两个int类型的域；接下来定义了一个绑定在rect
 struct类型上的area方法。严格来说，area方法是绑定在指向rectct
 struct的指针上。如果方法绑定在rect
@@ -115,7 +115,7 @@ go语言中的多态和组合
 go语言严格遵守[composition over inheritance
 principle](http://en.wikipedia.org/wiki/Composition_over_inheritance)的原则。go通过在struct和interface上使用组合和多态来实现继承关系。\
 Person和Address之间的关系是这种实现的一个很好的例子：<http://play.golang.org/p/LigPIVT2mf>。
-
+```Go
     type Person struct {
        Name string
        Address Address
@@ -152,7 +152,7 @@ Person和Address之间的关系是这种实现的一个很好的例子：<http:/
         p.Talk()
         p.Location()
     }
-
+```
 **Output**
 
 > Hi, my name is Steve\
@@ -176,7 +176,7 @@ go中的伪多态
 > behaves in some ways like subtyping, but isn’t.
 
 我们通过扩展上面的例子来说明go中的伪多态。注意这里“伪”字说明实际上go是没有多态的概念的，只不过伪多态表现得像多态一样。下面的例子中，Person可以说话(Talk），一个Citizen也同时是一个Person，因此他也能说话(Talk）。在上面的例子中加入如下内容，完整代码见：<http://play.golang.org/p/eCEpLkQPR3>。
-
+```Go
     type Citizen struct {
        Country string
        Person
@@ -193,7 +193,7 @@ go中的伪多态
         c.Talk()
         c.Nationality()
     }
-
+```
 上面的例子通过引入匿名域（Person）实现了is-a关系。Person是Citizen的一个匿名域（anonymous
 field），匿名域只给出了对象类型，而不给出类型的名字。通过匿名域，Citizen可以访问Person中的所有属性（域）和方法。
 
@@ -201,11 +201,11 @@ field），匿名域只给出了对象类型，而不给出类型的名字。通
 --------------
 
 上述例子，Citizen可以和Person执行一样的Talk()方法。但如果想要Citizen的Talk()表现出不同的行为该怎么做呢？我们只需要在Citizen上定义方法Talk()即可。当调用c.Talk()的时候，调用的则是Citizen的Talk()方法而非Person的Talk()方法，<http://play.golang.org/p/jafbVPv5H9>。
-
+```Go
     func (c *Citizen) Talk() {
         fmt.Println("Hello, my name is", c.Name, "and I'm from", c.Country)
     }
-
+```
 **Output**
 
 > Hello, my name is Steve and I'm from America\
@@ -217,7 +217,7 @@ field），匿名域只给出了对象类型，而不给出类型的名字。通
 有两个原因：\
 1. 匿名域仍然能被访问，就好像它们是被嵌入的对象一样。\
 这并不是一件坏事，多继承存在的一个问题就是当多个父类具有相同的方法的时候，会产生歧义。然而go语言可以通过访问跟匿名类型同名的属性来访问嵌入的匿名对象。实际上当使用匿名域的时候，go会创建一个跟匿名类型同名的对象。上面的例子中，修改main方法如下，我们能很清楚得看出这一点：
-
+```Go
     func main() {
     //    c := Citizen{}
         c.Name = "Steve"
@@ -226,7 +226,7 @@ field），匿名域只给出了对象类型，而不给出类型的名字。通
         c.Person.Talk()  // <- Notice both are accessible
         c.Nationality()
     }
-
+```
 **Output**
 
 > Hello, my name is Steve and I'm from America\
@@ -236,8 +236,7 @@ field），匿名域只给出了对象类型，而不给出类型的名字。通
 1.  真正的多态，派生对象就是父对象\
     如果匿名对象能实现多态，则外层对象应该等同于嵌入的对象，而实际上并非如此，它们仍然是不同的存在。下面的例子印证了这一点：
 
-<!-- -->
-
+```Go
     package main
 
     type A struct{
@@ -255,7 +254,7 @@ field），匿名域只给出了对象类型，而不给出类型的名字。通
         b := B
         save(&b);  //OOOPS! b IS NOT A
     }
-
+```
 **Output:**
 
 > prog.go:17: cannot use b (type \*B) as type A in function argument\
@@ -275,7 +274,7 @@ go语言定义一个接口并不是使用using关键字，而是通过在对象�
 Go](http://golang.org/doc/effective_go.html#interfaces_and_types)中指出，这种关系就像“如果某个东西能做这件事，那么就把它应用到这里”（不管黑猫白猫，只要能抓到老鼠，我就养这只猫）。这一点很重要，因为这允许一个定义在package外的类型也能实现该接口。
 
 我们接着上面的例子，增加一个新函数SpeakTo，然后修改main函数，将该方法应用到Citizen和Person上,<http://play.golang.org/p/lvEjaMQ25D>。
-
+```Go
     func SpeakTo(p *Person) {
         p.Talk()
     }
@@ -287,7 +286,7 @@ Go](http://golang.org/doc/effective_go.html#interfaces_and_types)中指出，这
         SpeakTo(&p)
         SpeakTo(&c)
     }
-
+```
 **Output**
 
 > Running it will result in\
@@ -296,7 +295,7 @@ Go](http://golang.org/doc/effective_go.html#interfaces_and_types)中指出，这
 > \[process exited with non-zero status\]
 
 跟预期的结果一样，编译失败。Citizen并不是Person类型，尽管他们拥有同样的属性。然而我们定义一个接口（interface）Human，然后将这个接口作为SpeakTo函数的输入参数，上面的例子就可以正常运行了，<http://play.golang.org/p/ifcP2mAOnf>。
-
+```Go
     type Human interface {
         Talk()
     }
@@ -312,7 +311,7 @@ Go](http://golang.org/doc/effective_go.html#interfaces_and_types)中指出，这
         SpeakTo(&p)
         SpeakTo(&c)
     }
-
+```
 **Output**
 
 > Hi, my name is Dave\

@@ -22,7 +22,7 @@ GitCafe 上的 Go 语言 package 都可以直接在项目中使用，通过 go g
 工具安装和更新。
 
 例如，我们可以在本机创建一个 hello\_world.go 文件，内容如下：
-
+```Go
     package main
 
     import "gitcafe.com/rainux/go-hello"
@@ -30,7 +30,7 @@ GitCafe 上的 Go 语言 package 都可以直接在项目中使用，通过 go g
     func main() {
         hello.World()
     }
-
+```
 执行 go get -d 命令可以将 GitCafe 上托管的 go-hello 项目源代码安装到
 \$GOPATH 中；执行 go run hello\_world.go 可以输出经典的 "Hello world!"
 信息。
