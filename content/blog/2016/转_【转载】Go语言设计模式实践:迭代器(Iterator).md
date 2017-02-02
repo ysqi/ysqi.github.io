@@ -42,7 +42,7 @@ Go语言惯用法。\
 --------
 
 经典实现完全采用面向对象的思路。为了简化问题，下面的例子中容器就是简单的\[\]int，我们在main函数中使用迭代器进行遍历操作并打印取到的值，迭代器的接口设计参考java。
-
+```Go
     package main
 
     import "fmt"
@@ -77,7 +77,7 @@ Go语言惯用法。\
             fmt.Println(it.Next())
         }
     }
-
+```
 闭包实现
 --------
 
@@ -88,7 +88,7 @@ functions、高阶函数、闭包、多返回值函数。用上这些特性可�
 Next()两个函数定义为Iterator的方法从而和数据绑定了起来；闭包实现中迭代器是一个匿名函数，它所需要的数据i
 Ints和index以闭包up
 value的形式绑定了起来，匿名函数返回的两个值正好对应经典实现中的Next()和HasNext()。
-
+```Go
     package main
 
     import "fmt"
@@ -119,7 +119,7 @@ value的形式绑定了起来，匿名函数返回的两个值正好对应经典
             fmt.Println(val)
         }
     }
-
+```
 channel实现
 -----------
 
@@ -131,7 +131,7 @@ way的，使用了一个channel在新的goroutine中将容器内的元素依次�
 顺便说一下，“在函数中创建一个channel返回，同时创建一个goroutine往channel中塞数据”这是一个重要的惯用法（Channel
 Factory pattern，见the way to go
 18.8节），可以用来做序列发生器、fan-out、fan-in等。
-
+```Go
     package main
 
     import "fmt"
@@ -155,14 +155,14 @@ Factory pattern，见the way to go
             fmt.Println(v)
         }
     }
-
+```
 Do实现
 ------
 
 这份迭代器实现是最简洁的，代码也很直白，无须多言。如果想加上中断迭代的功能，可以将func(int)改为func(int)bool，Do中根据返回值决定是否退出迭代。
 
 标准库中的container/ring中有Do()用法的例子。
-
+```Go
     package main
 
     import "fmt"
@@ -181,7 +181,7 @@ Do实现
             fmt.Println(v)
         })
     }
-
+```
 总结
 ----
 
