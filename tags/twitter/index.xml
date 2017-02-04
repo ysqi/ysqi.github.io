@@ -23,7 +23,7 @@ Feature  线程安全的 UID 生成器
  适合分布式系统
  实现 Twitter SnowFlake 理论
   Description 0 41 51 64 +---------------+----------------+-----------+ |timestamp(ms) | worker node id | sequence | +---------------+----------------+-----------+ id = timestamp | workerid | sequence (eg. 1451063443347648410)  由三部分与运算组合而成，分别是毫秒级别的时间戳，机器 workerid, 以及为了解决冲突的序列号
-Installation go get github.com/zheng-ji/goSnowFlake  Example import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/zheng-ji/goSnowFlake&amp;quot; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024 iw, err := goSnowFlake.</description>
+Installation go get github.com/zheng-ji/goSnowFlake  Example  import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/zheng-ji/goSnowFlake&amp;quot; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024 iw, err := goSnowFlake.</description>
     </item>
     
   </channel>
