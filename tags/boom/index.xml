@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/boom.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/boom.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>开源了一个简单的http服务压测工具Alex自带webuigolang实现</title>
+      <link>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:33 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html</guid>
+      <description>Alex Alex是基于vegeta library和boom封装的压力测试web UI。Vegeta提供稳定的qps压力源，boom提供稳定的并发数压力源。
+github地址 https://github.com/ireaderlab/alex
+English
+Alex架构图 Alex 主要功能  保存压力测试参数以便反复压测
+ 保存压力测试报告以便后续查看和分享
+ 提供了简单直接的图形和文字报告
+ 可以同时对多个http接口进行压力测试
+ 可以同时对集群内多个host:port对进行压测
+ 使用多组调用参数避免压测时出现的数据热点问题
+ 使用步骤设置，生成渐进式的压力源
+ 提供简单的压测机器系统状态实时显示功能
+  Alex Limitations  Alex运行在单一进程里，如果你需要分布式的压测环境，就得部署多个节点，压测时需要多人同时操作。
+ Vegeta在压力过载时没有提供立即停止的方法。这就需要你细心设计压测步骤，仔细观察系统状态避免系统过载。
+ Qps和并发数不宜过大。我曾经使用Alex工具单进程测试了HelloWorld的web程序每个请求吐出1500字节，qps最多可以达到60000，基本让千兆网卡打满。
+ 在大型压力测试下，尽量避免Gzip解压缩。解压缩会消耗大量的cpu资源，会导致压测报告不准确。你可以通过部署多个节点来进行大型压力测试。
+ 只支持Http协议。Https协议不打算支持，因为加密解密也同样会消耗大量cpu资源，导致报告不准确。
+ 报告只是提供一种性能参考，要勇于对报告进行质疑。
+ Alex虽然有如此诸多限制，这不影响它的日常使用。
+  安装 install mongodb install golang # 1.4+ is required go get github.com/go-martini/martini go get github.com/tsenart/vegeta go get gopkg.in/mgo.v2 go get github.com/shirou/gopsutil # godep restore git clone https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

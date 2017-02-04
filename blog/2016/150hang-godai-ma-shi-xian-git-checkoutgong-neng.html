@@ -1,0 +1,151 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>150行Go代码实现gitcheckout功能 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单"><meta name="keywords" content="git, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html"><meta property="og:title" content="150行Go代码实现gitcheckout功能"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:35:07"><meta property="article:modified_time" content="2016-12-31 11:35:07"><meta property="article:tag" content="git"><meta property="article:tag" content="golang"><meta name="og:description" content="由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html">150行Go代码实现gitcheckout功能</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000000403067" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单了，配上github、bitbucket等<a href="https://git.wiki.kernel.org/index.php/GitHosting">hosting</a>,已接近完美。<br>git其实挺简单的，本文用了约150行golang代码实现了git checkout功能，阅读代码之前，您应该读过<a href="http://git-scm.com/book/en/Git-Internals">《Git Pro》中的git内部原理</a>一节。</p><ol><li><h1 id="数据定义">数据定义：</h1><p>type blob struct { sha1 string filename string } type tree struct { b []*blob name string child []*tree } type commit struct { sha1 string tree *tree parent *commit }</p></li></ol><p>其中blob定义一个文件 ,sha1是文件的sha1值,filename是不包括路径的文件名。<br>tree定义相当于目录，b是目录下的文件，name是当前目录名，不包括父路径，child是目录下的目录。<br>commit是一次提交，sha1是提交的sha1值，tree指向一要树形的根节点，沿此根结点可以检出所有的文件。<br>对照下面这副图就比较容易理解:</p><ol><li><h1 id="工具函数">工具函数</h1><p>func readSha1FileReader(sha1 string) (reader io.Reader, err error) {</p><pre><code>f, err := os.Open(getSha1FilePath(sha1))
+if err != nil{
+    return
+}
+return zlib.NewReader(f)
+</code></pre><p>}</p><p>func readSha1FileContent(sha1 string) (content []byte, err error) {</p><pre><code>if reader, err := readSha1FileReader(sha1);err == nil{
+    buf := new(bytes.Buffer)
+    buf.ReadFrom(reader)
+    content = buf.Bytes()
+}
+return
+</code></pre><p>}</p><p>func getSha1FileContentBody(content []byte) []byte { i := bytes.IndexByte(content, 0) return content[i+1:] }</p><p>func getSha1FilePath(sha1 string) string { return &ldquo;.git/objects/&rdquo; + sha1[0:2] + &ldquo;/&rdquo; + sha1[2:] }</p></li></ol><ul><li>getSha1FilePath 根据sha1值取得对应的object路径。</li><li>readSha1FileReader 根据sha1值读取object内容，注意原始内容是经过压缩的，调用zlib是为了对其解压。</li><li>readSha1FileContent 对readSha1FileReader的一层封装，返回的是byte数组</li><li>getSha1FileContentBody 返回object的内容的body部分，header的内容我们直接忽略了</li></ul><blockquote><p>上面提到的object是位于路径.git/objects/路径下的文件</p></blockquote><ol><li><h1 id="构建树">构建树</h1><p>func BuildTree(sha1 string) *tree { all, err := readSha1FileContent(sha1) if err != nil { log.Fatal(&ldquo;BuildTree error:&ldquo;, err) return nil }</p><pre><code>content := getSha1FileContentBody(all)
+start := 0
+tree := tree{}
+for i := 0; i &lt; len(content); {
+    if content[i] == 0 {
+        line := content[start : i+21]
+        _type := line[:6]
+        id := line[i-start+1:]
+        obj_sha1 := fmt.Sprintf(&quot;%x&quot;, id)
+        switch string(_type[0:3]) {
+        //BLOB
+        case &quot;100&quot;:
+            name := string(line[7 : i-start])
+            b := blob{sha1: obj_sha1, filename: name}
+            tree.b = append(tree.b, &amp;b)
+            break
+        //TREE
+        case &quot;400&quot;:
+            name := string(line[6 : i-start])
+            child := BuildTree(obj_sha1)
+            child.name = name
+            tree.child = append(tree.child, child)
+            break
+        }
+        i += 21
+        start = i
+    } else {
+        i++
+    }
+}
+return &amp;tree
+</code></pre><p>}</p></li></ol><p>以上便是检出git的库的核心函数，其入参是一次Commit的Sha1值。要理解这个函数，需要知道<a href="http://icattlecoder.qiniudn.com/Git_Data_Formats.txt.zip">tree文件的格式定义</a>（《Git Pro》一书中没有）：</p><pre><code>&lt;TREE&gt;
+    :   _deflate_( &lt;OBJECT_HEADER&gt; &lt;TREE_CONTENTS&gt; )
+    |   &lt;COMPACT_OBJECT_HEADER&gt; _deflate_( &lt;TREE_CONTENTS&gt; )
+    ;
+
+&lt;TREE_CONTENTS&gt;
+    :   &lt;TREE_ENTRIES&gt;
+    ;
+
+&lt;TREE_ENTRIES&gt;
+    # Tree entries are sorted by the byte sequence that comprises
+    # the entry name. However, for the purposes of the sort
+    # comparison, entries for tree objects are compared as if the
+    # entry name byte sequence has a trailing ASCII '/' (0x2f).
+    :   ( &lt;TREE_ENTRY&gt; )*
+    ;
+
+&lt;TREE_ENTRY&gt;
+    # The type of the object referenced MUST be appropriate for
+    # the mode. Regular files and symbolic links reference a BLOB
+    # and directories reference a TREE.
+    :   &lt;OCTAL_MODE&gt; &lt;SP&gt; &lt;NAME&gt; &lt;NUL&gt; &lt;BINARY_OBJ_ID&gt;
+    ;
+</code></pre><p>通过<code>getSha1FileContentBody</code>函数即可取得<code>TREE_CONTENTS</code>,<code>TREE_CONTENTS</code>包括一个或多个<code>TREE_ENTRY</code>,<code>TREE_ENTRY</code>的格式如下：</p><pre><code>&lt;OCTAL_MODE&gt; &lt;SP&gt; &lt;NAME&gt; &lt;NUL&gt; &lt;BINARY_OBJ_ID&gt;
+</code></pre><p><code>OCTAL_MODE</code>的前三个字节定义了object类型，<code>&quot;100&quot;</code>为Blob，<code>&quot;400&quot;</code>为Tree，如果是Tree对像，则需要递归调用。</p><ol><li>检出文件 ===========</li></ol><p>BuildTree根据指定的Commit构建出所有文件形成的树型结构，有了它，就很容易检出文件。</p><pre><code>func (b *blob) checkout(prefix string) {
+    if content, err := readSha1FileContent(b.sha1);err!=nil{
+        log.Fatal(&quot;blob checkout error:&quot;, err)
+    }else{
+        body := getSha1FileContentBody(content)
+        filename := prefix + &quot;/&quot; + b.filename
+        log.Println(&quot;WriteFile:&quot;,filename)
+        if err = ioutil.WriteFile(filename, body, 0644);err!=nil{
+            log.Fatal(&quot;blob checkout error:&quot;, err)
+        }
+    }
+}
+
+func (t *tree) checkout(path string) {
+    if _, err := os.Stat(path); os.IsNotExist(err) {
+        log.Println(&quot;Mkdir:&quot;,path)
+        if err := os.Mkdir(path, 0777); err != nil {
+            log.Fatal(&quot;mkdir error:&quot;, err)
+            return
+        }
+    }
+    for _, v := range t.b {
+        v.checkout(path)    //BLOB checkout
+    }
+    for _, v := range t.child {
+        v.checkout(path + &quot;/&quot; + v.name)     //TREE checkout
+    }
+}
+
+func (c *commit) CheckOut() {
+    if pwd, err := os.Getwd();err==nil{
+        c.tree.checkout(pwd)
+    }else{
+        log.Fatal(&quot;commit checkout error:&quot;, err)
+    }
+}
+</code></pre><p>以上三个函数的调用顺序为<code>commit.CheckOUt</code>-&gt;<code>tree.checkout</code>-&gt;<code>blob.checkout</code>.<br>如果有目录，<code>tree.checkout</code>会生成目录。<code>blob.checkout</code>则会生成文件。</p><ol><li>示例 =======</li></ol><p>完整的代码见<a href="http://github.com/icattlecoder/gogit.git">这里</a></p><h2 id="编译">编译</h2><pre><code>~/tmp$ git clone git@github.com:icattlecoder/gogit.git
+~/tmp$ cd gogit
+~/tmp$ go build gogit.go
+</code></pre><h2 id="检出示例库的代码">检出示例库的代码</h2><pre><code>~/tmp$ git clone git@github.com:icattlecoder/jsfiddle.git
+~/tmp$ cd jsfiddle
+~/tmp$ rm -Rf ajaxupload/ formupload/ resumbleupload/ uptoken/
+~/tmp$ mv ../gogit/gogit .
+~/tmp$ ./gogit
+~/tmp$ ls
+ajaxupload     formupload   resumbleupload uptoken
+</code></pre><p>在运行gogit之前，删除了本地文件，而运行gogit后，所有文件又恢复了，因此实现了<code>git checkout</code>功能。</p><p><strong>注意：本文的git checkout不能处理压缩过的git库</strong></p></div><aside id="meta"><meta itemprop="wordCount" content="514"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/git.html" rel="tag">git</a> <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html">jquery和angular的ajax请求的区别</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html">PDO批量并发执行SSH工具介绍</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="88389791bc579566952c9351d3de5a11" data-title="150行Go代码实现gitcheckout功能" data-url="https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2f150hang-godai-ma-shi-xian-git-checkoutgong-neng.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2f150hang-godai-ma-shi-xian-git-checkoutgong-neng.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

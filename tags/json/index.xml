@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/json.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/json.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang中JSON的使用</title>
+      <link>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:25 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html</guid>
+      <description>https://segmentfault.com/a/
+GO Json  author: qcliu
+date: 2015/07/21
+ Abstrct 介绍go语言中json的使用
+json json是一种传输格式，类似与XML，与XML相比可读性略差，但是传输效率高。
+GO Json go语言中提供了json的encoder，可以将数据结构转换为json格式。在使用之前，需要导入包
+import &amp;quot;encoding/json&amp;quot;  Encode 使用
+func NewEncoder(w io.Writer) *Encoder  创建一个json的encode。
+file, _ := os.Create(&amp;quot;json.txt&amp;quot;) enc := json.NewEncoder(file) err := enc.Encode(&amp;amp;v)  数据结构v会以json格式写入json.txt文件。
+Decode 使用
+func NewDecoder(r io.Reader) *Decoder  创建一个json的decode。
+fp, _ os.Open(&amp;quot;json.txt&amp;quot;) dec := json.NewDecoder(fp) for { var V v err := dec.Decode(&amp;amp;v) if err != nil { break } //use v }  v是一个数据结构空间，decoder会将文件中的json格式按照v的定义转化，存在v中。</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&amp;amp;lt;一&amp;amp;gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</guid>
+      <description>前言 很久前就想学习GO，但是由于准备读研和要实习就一直耽搁没动手，只是偶尔看一下相关的基本语法，并没有将其具体地运用到实际的编码中。大四了，课程一下子少了很多，于是决定用它从网上抓一些图片数据，然后提供接口，为后面学习iOS提供一些网络数据。
+有关GO的介绍我就不在这里说了，对于我这种初学者本来说得就不清不楚，多给自己落下话柄。
+我要实现的功能主要有如下几点：
+ 从精美图片网站抓取图片链接等数据；
+ 将获取的数据存入MySQL数据库；
+ 提供一个简单的json接口使得自己能通过某链接获取json数据。
+  准备工作 安装GO并配置环境 因为我自己使用的时OS X，也写了一个mac安装GO的文章,如果使用mac的话可以参考一下。windows下百度也会很好解决。
+分析小程序 在$GOPATH/src下的创建一个项目文件夹indiepic作为这次小程序的目录。GO的每一个项目有且仅有一个package main，在项目文件夹下新建一个GO文件indiepic.go作为主文件：
+package main import &amp;quot;fmt&amp;quot; func main () { fmt.Println(&amp;quot;Hello World&amp;quot;) }  因为后面会启动该文件，然后提供HTTP接口提供数据，所以为了可读性将抓取数据并存入数据库等操作放入该项目的一个包中，而且抓取数据的操作会很少被操作，不需要在每次启动都执行，所以将其组织到一个package中是不错的方法，这样只需在需要抓取的时候在main函数中调用接口。
+因此，在项目文件夹中新建一个crawldata文件夹，该文件就是我们需要的package。下面需要的抓取数据和将数据存入数据库以及从数据库中获取数据都写为该包下的一个函数。
+在crawldata文件夹下新建crawldata.go和database.go文件。一个与抓取数据有关，一个与数据库存取数据有关。
+文件夹结构如下：
+indiepic ├── README.md ├── crawldata │ ├── crawldata.go │ └── database.go └── indiepic.go  下一步就开始实现数据抓取部分的功能。
+主要抓取图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;二&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</guid>
+      <description>上一节已经说明了要做什么，以及整个小程序的目录结构，接下来就开始编码部分。
+首先在入口文件中引入项目下的包crawldata,然后调用其中抓取数据的函数，暂时取名为Crawl:
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;indiepic/crawldata&amp;quot; ) func main () { // 使用crawldata包里面的Crawl()抓取需要的数据存到数据库 crawldata.Crawl() fmt.Println(&amp;quot;主函数&amp;quot;) }  然后就是实现包crawldata里面的Crawl函数。将该函数放在crawldata.go文件中：
+package crawldata import ( &amp;quot;fmt&amp;quot; ) func Crawl() { fmt.Println(&amp;quot;包crawldata中的Crawl函数&amp;quot;) }  查看网站 [](http://www.gratisography.com/)http://www.gratisography.com/，然后审查元素找到某张图片，在图片主要包含了src、data-original、width、height、alt等信息，首先要明确一点的是这个网站使用了图片的lazy加载（在每个li标签上可以看出来），所以真正的图片URL是data-original指定的值而不是src，src值会在图片加载完成之后被赋为data-original的值。另外在网站上有一个分类，所以需存储一下每一张图片的分类，在抓取的时候也是直接通过分类去抓取。
+因此我们需要定义一个结构体来表示每一条数据包含的数据,以及用于存储全部数据的一个切片，然后在Crawl函数中使用。如下：
+package crawldata import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/PuerkitoBio/goquery&amp;quot; &amp;quot;strconv&amp;quot; s &amp;quot;strings&amp;quot; ) // 定义一个存储一条数据的结构体 type ImageData struct { Src string Tp string Title string Width int Height int } // 定义切片用于存储抓取的全部数据 type ImageDatas []ImageData func Crawl() { fmt.</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;三&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</guid>
+      <description>上一节主要实现了使用 goquery 从图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/ 抓取数据。主要抓取图片的data-original、width、height、alt、type 五项数据。因此需要先创建数据库和相应的表，在mac上我使用 Sequel Pro 数据库管理软件，连接之后创建新的数据库indiepic,然后创建表gratisography:
+CREATE TABLE `gratisography` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `img_url` varchar(255) DEFAULT NULL, `type_name` varchar(50) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;  创建完数据库之后，就开始使用GO来实现连接数据库等操作了。在GO中使用Go-MySQL-Driver is a lightweight and fast MySQL-Driver for Go&amp;rsquo;s (golang) database/sql package
+文档：[](http://godoc.org/github.com/go-sql-driver/mysql)http://godoc.org/github.com/go-sql-driver/mysql
+在使用之前需要先使用以下命令获取该包：
+go get github.com/go-sql-driver/mysql  然后在database.</description>
+    </item>
+    
+    <item>
+      <title>Go抓取网页数据并存入MySQL和返回json数据&lt;四&gt;</title>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</guid>
+      <description>上一节已将将需要的数据从网站[](http://www.gratisography.com/)http://www.gratisography.com/ 抓取并存入数据库【使用crawldata.go中的InsertData(&amp;amp;imageDatas)函数】，现在需要将数据从数据库indiepic的表gratisography中取出并然会json格式的数据。
+项目文件夹结构如下：
+indiepic ├── README.md ├── crawldata │ ├── crawldata.go │ └── database.go └── indiepic.go  现在将获取数据的函数写在database.go中：
+func GetAllImages() (imageDatas ImageDatas, err error) { // 连接数据库 db, err := OpenDatabase() if err != nil { fmt.Printf(s.Join([]string{&amp;quot;连接数据库失败&amp;quot;, err.Error()}, &amp;quot;--&amp;gt;&amp;quot;)) return nil, err } defer db.Close() // Prepare statement for inserting data imgOut, err := db.Query(&amp;quot;SELECT * FROM gratisography&amp;quot;) if err != nil { fmt.Println(s.Join([]string{&amp;quot;获取数据失败&amp;quot;, err.Error()}, &amp;quot;--&amp;gt;&amp;quot;)) return nil, err } defer imgOut.</description>
+    </item>
+    
+    <item>
+      <title>Golang流式解析Json</title>
+      <link>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:46 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html</guid>
+      <description>json-iterator 库：https://github.com/json-iterator/go
+动机 现有的golang解析json的库都是push模式的，缺少一种基于pull api的库。另外就是看一下golang解析json的速度到底如何，还有多少的提高空间。
+API 风格 api 风格上是以 StAX 为基础，但是针对 JSON 做了特别的优化。比 StAX 和 SAX 都更简单可控。当然如果需要最简单，还是 DOM 类的 api 最简单。使用流式pull的api为的就是最大化控制解析过程。
+解析 Array iter := ParseString(`[1,2,3]`) for iter.ReadArray() { iter.ReadUint64() }  可以看到，pull api 的风格非常不同。整个解析流程是调用者驱动的
+解析 Object type TestObj struct { Field1 string Field2 uint64 } iter := ParseString(`{&amp;quot;field1&amp;quot;: &amp;quot;1&amp;quot;, &amp;quot;field2&amp;quot;: 2}`) obj := TestObj{} for field := iter.ReadObject(); field != &amp;quot;&amp;quot;; field = iter.ReadObject() { switch field { case &amp;quot;field1&amp;quot;: obj.</description>
+    </item>
+    
+    <item>
+      <title>golangjson解析器哪家强？</title>
+      <link>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:43 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html</guid>
+      <description>全文链接： https://github.com/json-iterator/go-benchmark
+目的不是推销 json-iterator 。而是证明 json-iterator 不比其他的库更慢，从而使得大家可以把吐槽点放到其他方面：比如特性是不是齐全， api 是不是友好。重新发明 json 解析器是因为经常需要处理奇怪格式的 json ，而又不想把数据转两遍。市面上没有 api 满足我的需求的，后面我会专门写一篇 api 介绍的文章来演示 json-iterator 的独特性。（ https://github.com/json-itera&amp;hellip; ）
+ jsonparser: https://github.com/buger/jsonparser
+ jsoniter pull-api: https://github.com/json-iterator/go
+ jsoniter reflect-api: https://github.com/json-iterator/go/blob/master/jsoniter_reflect.go
+ encoding/json: golang standard lib
+ easy json: https://github.com/mailru/easyjson
+  测试设备
+ CPU: i7-6700K @ 4.0G
+ Level 1 cache size: 4 x 32 KB 8-way set associative instruction caches
+ Level 2 cache size: 4 x 256 KB 4-way set associative caches</description>
+    </item>
+    
+  </channel>
+</rss>

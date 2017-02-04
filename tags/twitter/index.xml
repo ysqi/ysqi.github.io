@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/twitter.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/twitter.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>一个实现TwitterSnowFlake算法的Go分布式UID生成器</title>
+      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</guid>
+      <description>goSnowFlake [](https://travis-ci.org/zheng-ji/goSnowFlake)https://godoc.org/github.com/zheng-ji/goSnowFlake)
+根据 Twitter SnowFlake 算法, 实现的分布式线程安全 UID 生成器
+Feature  线程安全的 UID 生成器
+ 绿色可插拔，无需依赖 Redis,Mysql,无状态
+ 适合分布式系统
+ 实现 Twitter SnowFlake 理论
+  Description 0 41 51 64 +---------------+----------------+-----------+ |timestamp(ms) | worker node id | sequence | +---------------+----------------+-----------+ id = timestamp | workerid | sequence (eg. 1451063443347648410)  由三部分与运算组合而成，分别是毫秒级别的时间戳，机器 workerid, 以及为了解决冲突的序列号
+Installation go get github.com/zheng-ji/goSnowFlake  Example  import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/zheng-ji/goSnowFlake&amp;quot; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024 iw, err := goSnowFlake.</description>
+    </item>
+    
+  </channel>
+</rss>

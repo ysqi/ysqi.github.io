@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E4%BA%92%E8%81%94%E7%BD%91.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E4%BA%92%E8%81%94%E7%BD%91.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ECUGCon邀您共议服务端开发最深度实践</title>
+      <link>https://yushuangqi.com/blog/2016/ecug-con-yao-nin-gong-yi-fu-wu-duan-kai-fa-zui-shen-du-shi-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/ecug-con-yao-nin-gong-yi-fu-wu-duan-kai-fa-zui-shen-du-shi-jian.html</guid>
+      <description>ECUG 全称为 Effective Cloud User Group （实效云计算用户组），由七牛云 CEO 许式伟于 2007 年发起，集结了一批具有高端视角并仍醉心于技术本身的同仁，共同关注云计算前沿技术的最新成果和分布式开发、运维的最佳实践。在过去的八年中， ECUG 社区每年都会组织一场全国性的 ECUG Con 大会，期间众多技术大神纷纷参与，他们或许在大众技术会议已经鲜少露面，但会在 ECUG Con 畅谈心得，共同奉献一场半公开的高规格技术分享盛会。
+ECUG Con 发展历程
+ECUG Con 2015 将于 2016 年 1 月 22 ~ 23 日在新疆大厦举行，作为具有重要意义的第十期聚会，我们落地北京，同时首次面向所有技术人群公开报名。本届大会仍然以交流云计算产业的最前沿技术探索和服务端开发运维的最成熟实践为宗旨，围绕各讲师过去一年内的技术演变和项目实践进行互动和分享。本届聚会将交流以下内容：
+公司基础设施建设方面的经验，比如分布式编程框架、自动化运维实践等；
+云计算领域的实战经验分享，如 OpenStack 、 Docker 、 CoreOS 、 MongoDB 、 Redis 、 RabbitMQ 等相关；
+大数据领域的实战经验分享，如 Hadoop 、 Spark 等相关；
+云安全相关的实践，如渗透测试、 DDoS 攻击与防护等。
+时间： 2016 年 1 月 22 ～ 23 日
+地点：北京海淀区新疆大厦
+活动报名请点击： http://www.huodongxing.com/event/5316188717200
+会议日程安排：</description>
+    </item>
+    
+    <item>
+      <title>ECUG2015｜许式伟:对编程语言的选择无关阵营关乎品味</title>
+      <link>https://yushuangqi.com/blog/2016/ecug-2015hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:00 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/ecug-2015hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</guid>
+      <description>编者按：许式伟，七牛云 CEO ， ECUG 社区发起人， Go 语言专家，著有国内第一本 Go 语言图书《 Go 语言编程》。有超过 15 年互联网从业经验，曾在金山、盛大等知名公司担任重要技术岗位从事核心产品研发。 2011 年创立七牛云，现仍然活跃在技术前沿领域。
+近日，图灵社区对许式伟进行了专访，所采访的主要话题并不是他作为技术牛人的开发经历或是他作为创始人的奋斗史，而关于他在 2007 年创建的 ECUG 社区（全称为 Effective Cloud User Group ，曾用名是 Erlang China User Group ）。这样一个曾经关于 Erlang 语言的社区是如何成为云计算领域技术交流的“神圣场合”的呢？我们来看看他是如何回答的吧。
+ECUG 最初名为 Erlang China User Group ，于 2010 年更名为 Effective Cloud User Group ，想了解一下名称的改变主要基于哪些考虑？这样的变化是否也代表了技术环境上，一个时代的变迁？
+Erlang 是一门小众语言，我们在成立 ECUG 的时候，国内没有几个人对它感兴趣。这门语言特色鲜明，是服务端编程实践的一面旗帜。所以 ECUG 最早叫 Erlang China User Group ，是因为我们想推广 Erlang 。但哪怕如此，从第一届的 ECUG 大会开始我们也没有限制一定必须是 Erlang 语言的编程实践，只要服务端开发的实践分享都可以。
+2009 年的 ECUG 大会上，我们讨论了改名的事宜，最后确定了 Effective Cloud User Group 这个名字，在 2010 年我们正式进行了调整。这个改名一方面是由于 ECUG 探讨 Erlang 的话题已经越来越少，坚持老的名字已经非常名不符实。另一方面云计算时代已经明确来临，我们希望吸引到更多人参与到服务端开发的最佳实践的分享中来。到 2011 年时，我们进一步扩大了 ECUG 的话题范畴，不再限制只是服务端开发的实践，只要是服务端领域的话题都可以，比如说服务器运维、服务器安全等等。</description>
+    </item>
+    
+  </channel>
+</rss>

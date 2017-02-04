@@ -1,0 +1,744 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang新手开发需要注意的七个细节 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="Go以简洁著称，但简洁中不乏值得玩味的细节。这些小细节不如goroutine、interface和c"><meta name="keywords" content="技巧, 优化, Go, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html"><meta property="og:title" content="Golang新手开发需要注意的七个细节"><meta property="og:type" content="article"><meta property="article:published_time" content="2015-09-18 12:55:08"><meta property="article:modified_time" content="2015-09-18 12:55:08"><meta property="article:tag" content="技巧"><meta property="article:tag" content="优化"><meta property="article:tag" content="Go"><meta name="og:description" content="Go以简洁著称，但简洁中不乏值得玩味的细节。这些小细节不如goroutine、interface和c"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html">Golang新手开发需要注意的七个细节</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2015-09-18">2015年09月18日</time></span></p></header><div itemprop="articleBody"><p>Go以简洁著称，但简洁中不乏值得玩味的细节。这些小细节不如goroutine、interface和channel那样&rdquo;高大上&rdquo;，&rdquo;屌丝&rdquo;得可能不经常被人注意到，但它们却对理解Go语言有着重要的作用。这里大家一起通过详实的例子来逐一展开和理解一些细节内容。</p><p></p><h3 id="一-源文件字符集和字符集编码">一、源文件字符集和字符集编码</h3><p>Go源码文件默认采用Unicode字符集，Unicode码点(code point)和内存中字节序列（byte sequence）的变换实现使用了UTF-8：一种变长多字节编码，同时也是一种事实字符集编码标准，为Linux、MacOSX 上的默认字符集编码，因此使用Linux或MacOSX进行Go程序开发，你会省去很多字符集转换方面的烦恼。但如果你是在Windows上使用 默认编辑器编辑Go源码文本，当你编译以下代码时会遇到编译错误：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;fmt&quot;</span>
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    fmt.Println(<span style="color:#4070a0">&quot;中国人&quot;</span>)
+}
+</pre></div><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>$ go build hello.go
+<span style="color:#60a0b0;font-style:italic"># command-line-arguments</span>
+hello.go:6 illegal UTF-8 sequence d6 d0
+hello.go:6 illegal UTF-8 sequence b9
+hello.go:6 illegal UTF-8 sequence fa c8
+hello.go:6 illegal UTF-8 sequence cb <span style="color:#40a070">22</span>
+hello.go:6 newline in string
+hello.go:7 syntax error: unexpected <span style="color:#666">}</span>, expected <span style="color:#666">)</span>
+</pre></div><p>这是因为Windows默认采用的是CP936字符集编码，也就是GBK编码，“中国人”三个字的内存字节序列为：</p><pre><code>“d0d6    fab9    cbc8    000a” （通过iconv转换，然后用od -x查看）
+</code></pre><p>这个字节序列并<strong>非utf-8</strong>字节序列，Go编译器因此无法识别。要想通过编译，需要将该源文件转换为UTF-8编码格式。</p><p>字符集编码对字符和字符串字面值(Literal)影响最大，在Go中对于字符串我们可以有三种写法：</p><p>1) 字面值</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> s = <span style="color:#4070a0">&quot;中国人&quot;</span>
+</pre></div><p>2) 码点表示法</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> s1 = <span style="color:#4070a0">&quot;\u4e2d\u56fd\u4eba&quot;</span>
+
+<span style="color:#60a0b0;font-style:italic">//or </span>
+
+<span style="color:#007020;font-weight:700">var</span> s2 = <span style="color:#4070a0">&quot;\U00004e2d\U000056fd\U00004eba&quot;</span>
+</pre></div><p>3) 字节序列表示法（二进制表示法）</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> s3 = <span style="color:#4070a0">&quot;\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba&quot;</span>
+</pre></div><p>这三种表示法中，除字面值转换为字节序列存储时根据编辑器保存的源码文件编码格式之外，其他两种均不受编码格式影响。我们可以通过逐字节输出来查 看字节序列的内容：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    fmt.Println(<span style="color:#4070a0">&quot;s byte sequence:&quot;</span>)
+    <span style="color:#007020;font-weight:700">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i &lt; <span style="color:#007020">len</span>(s); i<span style="color:#666">++</span> {
+        fmt.Printf(<span style="color:#4070a0">&quot;0x%x &quot;</span>, s[i])
+    }
+    fmt.Println(<span style="color:#4070a0">&quot;&quot;</span>)
+</pre></div><h3 id="二-续行">二、续行</h3><p>良好的代码style一般会要求代码中不能有太long的代码行，否则会影响代码阅读者的体验。在C中有续行符&rdquo;\&ldquo;专门用于代码续行处理；但在 Go中没有专属续行符，如何续行需要依据Go的语法规则（参见Go spec）。</p><p>Go与C一样，都是以分号(<code>;</code>)作为语句结束的标识。不过大多数情况下，分号无需程序员手工输入，而是由编译器自动识别语句结束位置，并插入 分号。因此续行要选择合法的位置。下面代码展示了一些合法的续行位置：(别嫌太丑，这里仅仅是展示合法位置的demo)</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/2/newline.go</span>
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+<span style="color:#007020;font-weight:700">var</span> (
+    s = <span style="color:#4070a0">&quot;This is an example about code newline,&quot;</span> <span style="color:#666">+</span>
+        <span style="color:#4070a0">&quot;for string as right value&quot;</span>
+    d = <span style="color:#40a070">5</span> <span style="color:#666">+</span> <span style="color:#40a070">4</span> <span style="color:#666">+</span> <span style="color:#40a070">7</span> <span style="color:#666">+</span>
+        <span style="color:#40a070">4</span>
+    a = [<span style="color:#666">...</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">5</span>, <span style="color:#40a070">6</span>, <span style="color:#40a070">7</span>,
+        <span style="color:#40a070">8</span>}
+    m = <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>]<span style="color:#902000">int</span>,
+        <span style="color:#40a070">100</span>)
+    c <span style="color:#007020;font-weight:700">struct</span> {
+        m1     <span style="color:#902000">string</span>
+        m2, m3 <span style="color:#902000">int</span>
+        m4     <span style="color:#666">*</span><span style="color:#902000">float64</span>
+    }
+
+    f <span style="color:#007020;font-weight:700">func</span>(<span style="color:#902000">int</span>,
+        <span style="color:#902000">float32</span>) (<span style="color:#902000">int</span>,
+        <span style="color:#902000">error</span>)
+)
+
+<span style="color:#007020;font-weight:700">func</span> foo(<span style="color:#902000">int</span>, <span style="color:#902000">int</span>) (<span style="color:#902000">string</span>, <span style="color:#902000">error</span>) {
+    <span style="color:#007020;font-weight:700">return</span> <span style="color:#4070a0">&quot;&quot;</span>,
+        <span style="color:#007020;font-weight:700">nil</span>
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">:=</span> d; i &gt;
+        <span style="color:#40a070">100</span> {
+    }
+
+    <span style="color:#007020;font-weight:700">var</span> sum <span style="color:#902000">int</span>
+    <span style="color:#007020;font-weight:700">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i &lt; <span style="color:#40a070">100</span>; i = i <span style="color:#666">+</span>
+        <span style="color:#40a070">1</span> {
+        sum <span style="color:#666">+=</span> i
+    }
+
+    foo(<span style="color:#40a070">1</span>,
+        <span style="color:#40a070">6</span>)
+
+    <span style="color:#007020;font-weight:700">var</span> i <span style="color:#902000">int</span>
+    fmt.Printf(<span style="color:#4070a0">&quot;%s, %d\n&quot;</span>,
+        <span style="color:#4070a0">&quot;this is a demo&quot;</span><span style="color:#666">+</span>
+            <span style="color:#4070a0">&quot; of fmt Printf&quot;</span>,
+        i)
+}
+</pre></div><p>实际编码中，我们可能经常遇到的是fmt.Printf系列方法中format string太长的情况，但由于Go不支持相邻字符串自动连接(concatenate)，只能通过+来连接fmt字符串，且+必须放在前一行末尾。另外Gofmt工具会自动调整一些不合理的续行处理，主要针对 for, if等控制语句。</p><h3 id="三-method-set">三、Method Set</h3><p>Method Set是Go语法中一个重要的隐式概念，在为interface变量做动态类型赋值、embeding struct/interface、type alias、method expression时都会用到Method Set这个重要概念。</p><p>1、interface的Method Set</p><p>根据Go spec，interface类型的Method Set就是其interface（An interface type specifies a method set called its interface）。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> I <span style="color:#007020;font-weight:700">interface</span> {
+    Method1()
+    Method2()
+}
+</pre></div><p>I的Method Set包含的就是其literal中的两个方法：Method1和Method2。我们可以通过reflect来获取interface类型的 Method Set：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/3/interfacemethodset.go</span>
+<span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> (
+    <span style="color:#4070a0">&quot;fmt&quot;</span>
+    <span style="color:#4070a0">&quot;reflect&quot;</span>
+)
+
+<span style="color:#007020;font-weight:700">type</span> I <span style="color:#007020;font-weight:700">interface</span> {
+    Method1()
+    Method2()
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">var</span> i <span style="color:#666">*</span>I
+    elemType <span style="color:#666">:=</span> reflect.TypeOf(i).Elem()
+    n <span style="color:#666">:=</span> elemType.NumMethod()
+    <span style="color:#007020;font-weight:700">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i &lt; n; i<span style="color:#666">++</span> {
+        fmt.Println(elemType.Method(i).Name)
+    }
+}
+</pre></div><p>运行结果：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run interfacemethodset.go
+Method1
+Method2
+</pre></div><p>2、除interface type外的类型的Method Set</p><p>对于非interface type的类型T，其Method Set为所有receiver为T类型的方法组成；而类型*T的Method Set则包含所有receiver为T和*T类型的方法。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">// details-in-go/3/othertypemethodset.go</span>
+<span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;./utils&quot;</span>
+
+<span style="color:#007020;font-weight:700">type</span> T <span style="color:#007020;font-weight:700">struct</span> {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (t T) Method1() {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (t <span style="color:#666">*</span>T) Method2() {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (t <span style="color:#666">*</span>T) Method3() {
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">var</span> t T
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>t)
+
+    <span style="color:#007020;font-weight:700">var</span> pt <span style="color:#666">*</span>T
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>pt)
+}
+</pre></div><p>我们要dump出T和*T各自的Method Set，运行结果如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run othertypemethodset.go
+main.T<span style="color:#4070a0">&#39;s method sets:</span>
+<span style="color:#4070a0">     Method1</span>
+
+<span style="color:#4070a0">*main.T&#39;</span>s method sets:
+     Method1
+     Method2
+     Method3
+</pre></div><p>可以看出类型T的Method set仅包含一个receiver类型为T的方法：Method1，而*T的Method Set则包含了T的Method Set以及所有receiver类型为*T的Method。</p><p>如果此时我们有一个interface type如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> I <span style="color:#007020;font-weight:700">interface</span> {
+    Method1()
+    Method2()
+}
+</pre></div><p>那下面哪个赋值语句合法呢？合不合法完全依赖于右值类型是否实现了interface type I的所有方法，即右值类型的Method Set是否包含了I的 所有方法。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> t T
+<span style="color:#007020;font-weight:700">var</span> pt <span style="color:#666">*</span>T
+
+<span style="color:#007020;font-weight:700">var</span> i I = t
+
+or
+
+<span style="color:#007020;font-weight:700">var</span> i I = pt
+</pre></div><p>编译错误告诉我们：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>     <span style="color:#007020;font-weight:700">var</span> i I = t <span style="color:#60a0b0;font-style:italic">// cannot use t (type T) as type I in assignment:</span>
+                  T does not implement I (Method2 method has pointer receiver)
+</pre></div><p>T的Method Set中只有Method1一个方法，没有实现I接口中的 Method2，因此不能用t赋值给i；而*T实现了I的所有接口，赋值合 法。不过Method set校验仅限于在赋值给interface变量时进行，无论是T还是*T类型的方法集中的方法，对于T或*T类型变量都是可见且可以调用的，如下面代码 都是合法的：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    pt.Method1()
+    t.Method3()
+</pre></div><p>因为Go编译器会自动为你的代码做receiver转换：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    pt.Method1() <span style="color:#666">&lt;=</span>&gt; (<span style="color:#666">*</span>pt).Method1()
+    t.Method3() <span style="color:#666">&lt;=</span>&gt; (<span style="color:#666">&amp;</span>t).Method3()
+</pre></div><p>很多人纠结于method定义时receiver的类型（T or *T），个人觉得有两点考虑：</p><ul><li><p>效率 Go方法调用receiver是以传值的形式传入方法中的。如果类型size较大，以value形式传入消耗较大，这时指针类型就是首选。</p></li><li><p>是否赋值给interface变量、以什么形式赋值 就像本节所描述的，由于T和*T的Method Set可能不同，我们在设计Method receiver type时需要考虑在interface赋值时通过对Method set的校验。</p></li></ul><p>3、embeding type的Method Set</p><p>【interface embeding】</p><p>我们先来看看interface类型embeding。例子如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/3/embedinginterface.go</span>
+<span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;./utils&quot;</span>
+
+<span style="color:#007020;font-weight:700">type</span> I1 <span style="color:#007020;font-weight:700">interface</span> {
+    I1Method1()
+    I1Method2()
+}
+<span style="color:#007020;font-weight:700">type</span> I2 <span style="color:#007020;font-weight:700">interface</span> {
+    I2Method()
+}
+
+<span style="color:#007020;font-weight:700">type</span> I3 <span style="color:#007020;font-weight:700">interface</span> {
+    I1
+    I2
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    utils.DumpMethodSet((<span style="color:#666">*</span>I1)(<span style="color:#007020;font-weight:700">nil</span>))
+    utils.DumpMethodSet((<span style="color:#666">*</span>I2)(<span style="color:#007020;font-weight:700">nil</span>))
+    utils.DumpMethodSet((<span style="color:#666">*</span>I3)(<span style="color:#007020;font-weight:700">nil</span>))
+}
+</pre></div><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run embedinginterface.go
+main.I1<span style="color:#4070a0">&#39;s method sets:</span>
+<span style="color:#4070a0">     I1Method1</span>
+<span style="color:#4070a0">     I1Method2</span>
+
+<span style="color:#4070a0">main.I2&#39;</span>s method sets:
+     I2Method
+
+main.I3<span style="border:1px solid red">&#39;</span>s method sets:
+     I1Method1
+     I1Method2
+     I2Method
+</pre></div><p>可以看出嵌入interface type的interface type I3的Method Set包含了被嵌入的interface type：I1和I2的Method Set。很多情况下，我们Go的interface type中仅包含有少量方法，常常仅是一个Method，通过interface type embeding来定义一个新interface，这是Go的一个惯用法，比如我们常用的io包中的Reader, Writer以及ReadWriter接口：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> Reader <span style="color:#007020;font-weight:700">interface</span> {
+    Read(p []<span style="color:#902000">byte</span>) (n <span style="color:#902000">int</span>, err <span style="color:#902000">error</span>)
+}
+
+<span style="color:#007020;font-weight:700">type</span> Writer <span style="color:#007020;font-weight:700">interface</span> {
+    Write(p []<span style="color:#902000">byte</span>) (n <span style="color:#902000">int</span>, err <span style="color:#902000">error</span>)
+}
+
+<span style="color:#007020;font-weight:700">type</span> ReadWriter <span style="color:#007020;font-weight:700">interface</span> {
+    Reader
+    Writer
+}
+</pre></div><p>【struct embeding interface】</p><p>在struct中嵌入interface type后，struct的Method Set中将包含interface的Method Set：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> T <span style="color:#007020;font-weight:700">struct</span> {
+    I1
+}
+
+<span style="color:#007020;font-weight:700">func</span> (T) Method1() {
+
+}
+
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+    <span style="color:#007020;font-weight:700">var</span> t T
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>t)
+    <span style="color:#007020;font-weight:700">var</span> pt = <span style="color:#666">&amp;</span>T{
+        I1: I1Impl{},
+    }
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>pt)
+}
+</pre></div><p>输出结果与预期一致：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>main.T<span style="border:1px solid red">&#39;</span>s method sets:
+     I1Method1
+     I1Method2
+     Method1
+
+<span style="color:#666">*</span>main.T<span style="border:1px solid red">&#39;</span>s method sets:
+     I1Method1
+     I1Method2
+     Method1
+</pre></div><p>【struct embeding struct】</p><p>在struct中embeding struct提供了一种“继承”的手段，外部的Struct可以“继承”嵌入struct的所有方法（无论receiver是T还是*T类型）实现，但 Method Set可能会略有不同。看下面例子：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/3/embedingstructinstruct.go</span>
+<span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;./utils&quot;</span>
+
+<span style="color:#007020;font-weight:700">type</span> T <span style="color:#007020;font-weight:700">struct</span> {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (T) InstMethod1OfT() {
+
+}
+
+<span style="color:#007020;font-weight:700">func</span> (T) InstMethod2OfT() {
+
+}
+
+<span style="color:#007020;font-weight:700">func</span> (<span style="color:#666">*</span>T) PtrMethodOfT() {
+
+}
+
+<span style="color:#007020;font-weight:700">type</span> S <span style="color:#007020;font-weight:700">struct</span> {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (S) InstMethodOfS() {
+
+}
+
+<span style="color:#007020;font-weight:700">func</span> (<span style="color:#666">*</span>S) PtrMethodOfS() {
+}
+
+<span style="color:#007020;font-weight:700">type</span> C <span style="color:#007020;font-weight:700">struct</span> {
+    T
+    <span style="color:#666">*</span>S
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">var</span> c = C{S: <span style="color:#666">&amp;</span>S{}}
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>c)
+    <span style="color:#007020;font-weight:700">var</span> pc = <span style="color:#666">&amp;</span>C{S: <span style="color:#666">&amp;</span>S{}}
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>pc)
+
+    c.InstMethod1OfT()
+    c.PtrMethodOfT()
+    c.InstMethodOfS()
+    c.PtrMethodOfS()
+    pc.InstMethod1OfT()
+    pc.PtrMethodOfT()
+    pc.InstMethodOfS()
+    pc.PtrMethodOfS()
+}
+</pre></div><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run embedingstructinstruct.go
+main.C<span style="color:#4070a0">&#39;s method sets:</span>
+<span style="color:#4070a0">     InstMethod1OfT</span>
+<span style="color:#4070a0">     InstMethod2OfT</span>
+<span style="color:#4070a0">     InstMethodOfS</span>
+<span style="color:#4070a0">     PtrMethodOfS</span>
+
+<span style="color:#4070a0">*main.C&#39;</span>s method sets:
+     InstMethod1OfT
+     InstMethod2OfT
+     InstMethodOfS
+     PtrMethodOfS
+     PtrMethodOfT
+</pre></div><p>可以看出： 类型C的Method Set = T的Method Set + *S的Method Set 类型*C的Method Set = *T的Method Set + *S的Method Set</p><p>同时通过例子可以看出，无论是T还是*S的方法，C或*C类型变量均可调用（编译器甜头），不会被局限在Method Set中。</p><p>4、alias type的Method Set</p><p>Go支持为已有类型定义alias type，如：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> MyInterface I
+<span style="color:#007020;font-weight:700">type</span> Mystruct T
+</pre></div><p>对于alias type, Method Set是如何定义的呢？我们看下面例子：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/3/aliastypemethodset.go</span>
+<span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&quot;./utils&quot;</span>
+
+<span style="color:#007020;font-weight:700">type</span> I <span style="color:#007020;font-weight:700">interface</span> {
+    IMethod1()
+    IMethod2()
+}
+
+<span style="color:#007020;font-weight:700">type</span> T <span style="color:#007020;font-weight:700">struct</span> {
+}
+
+<span style="color:#007020;font-weight:700">func</span> (T) InstMethod() {
+
+}
+<span style="color:#007020;font-weight:700">func</span> (<span style="color:#666">*</span>T) PtrMethod() {
+
+}
+
+<span style="color:#007020;font-weight:700">type</span> MyInterface I
+<span style="color:#007020;font-weight:700">type</span> MyStruct T
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    utils.DumpMethodSet((<span style="color:#666">*</span>I)(<span style="color:#007020;font-weight:700">nil</span>))
+
+    <span style="color:#007020;font-weight:700">var</span> t T
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>t)
+    <span style="color:#007020;font-weight:700">var</span> pt = <span style="color:#666">&amp;</span>T{}
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>pt)
+
+    utils.DumpMethodSet((<span style="color:#666">*</span>MyInterface)(<span style="color:#007020;font-weight:700">nil</span>))
+
+    <span style="color:#007020;font-weight:700">var</span> m MyStruct
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>m)
+    <span style="color:#007020;font-weight:700">var</span> pm = <span style="color:#666">&amp;</span>MyStruct{}
+    utils.DumpMethodSet(<span style="color:#666">&amp;</span>pm)
+}
+</pre></div><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run aliastypemethodset.go
+main.I<span style="color:#4070a0">&#39;s method sets:</span>
+<span style="color:#4070a0">     IMethod1</span>
+<span style="color:#4070a0">     IMethod2</span>
+
+<span style="color:#4070a0">main.T&#39;</span>s method sets:
+     InstMethod
+
+*main.T<span style="color:#4070a0">&#39;s method sets:</span>
+<span style="color:#4070a0">     InstMethod</span>
+<span style="color:#4070a0">     PtrMethod</span>
+
+<span style="color:#4070a0">main.MyInterface&#39;</span>s method sets:
+     IMethod1
+     IMethod2
+
+main.MyStruct<span style="color:#4070a0">&#39;s method set is empty!</span>
+<span style="color:#4070a0">*main.MyStruct&#39;</span>s method <span style="color:#007020">set</span> is empty!
+</pre></div><p>从例子的结果上来看，Go对于interface和struct的alias type给出了“不一致”的结果：</p><p>MyInterface的Method Set与接口类型I Method Set一致； 而MyStruct并未得到T的哪怕一个Method，MyStruct的Method Set为空。</p><h3 id="四-method-type-method-expression-method-value">四、Method Type、Method Expression、Method Value</h3><p>Go中没有class，方法与对象通过receiver联系在一起，我们可以为任何非builtin类型定义method：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> T <span style="color:#007020;font-weight:700">struct</span> {
+    a <span style="color:#902000">int</span>
+}
+
+<span style="color:#007020;font-weight:700">func</span> (t T) Get() <span style="color:#902000">int</span>       { <span style="color:#007020;font-weight:700">return</span> t.a }
+<span style="color:#007020;font-weight:700">func</span> (t <span style="color:#666">*</span>T) Set(a <span style="color:#902000">int</span>) <span style="color:#902000">int</span> { t.a = a; <span style="color:#007020;font-weight:700">return</span> t.a }
+</pre></div><p>在C++等OO语言中，对象在调用方法时，编译器会自动在方法的第一个参数中传入this/self指针，而对于Go来 说，receiver也是同样道理，将T的method转换为普通function定义：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">func</span> Get(t T) <span style="color:#902000">int</span>       { <span style="color:#007020;font-weight:700">return</span> t.a }
+<span style="color:#007020;font-weight:700">func</span> Set(t <span style="color:#666">*</span>T, a <span style="color:#902000">int</span>) <span style="color:#902000">int</span> { t.a = a; <span style="color:#007020;font-weight:700">return</span> t.a }
+</pre></div><p>这种function形式被称为Method Type，也可以称为Method的signature。</p><p>Method的一般使用方式如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> t T
+t.Get()
+t.Set(<span style="color:#40a070">1</span>)
+</pre></div><p>不过我们也可以像普通function那样使用它，根据上面的Method Type定义：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> t T
+T.Get(t)
+(<span style="color:#666">*</span>T).Set(<span style="color:#666">&amp;</span>t, <span style="color:#40a070">1</span>)
+</pre></div><p>这种以直接以类型名T调用方法M的表达方法称为Method Expression。类型T只能调用T的Method Set中的方法；同理*T只能调用*T的Method Set中的方法。上述例子中T的Method Set中只有Get，因此T.Get是合法的。但T.Set则不合法：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    T.Set(<span style="color:#40a070">2</span>) <span style="color:#60a0b0;font-style:italic">//invalid method expression T.Set (needs pointer receiver: (*T).Set)</span>
+</pre></div><p>我们只能使用(*T).Set(&amp;t, 11)。</p><p>这样看来Method Expression有些类似于C++中的static方法(以该类的某个对象实例作为第一个参数)。</p><p>另外Method express自身类型就是一个普通function，可以作为右值赋值给一个函数类型的变量：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    f1 <span style="color:#666">:=</span> (<span style="color:#666">*</span>T).Set <span style="color:#60a0b0;font-style:italic">//函数类型：func (t *T, int)int</span>
+    f2 <span style="color:#666">:=</span> T.Get <span style="color:#60a0b0;font-style:italic">//函数类型：func(t T)int</span>
+    f1(<span style="color:#666">&amp;</span>t, <span style="color:#40a070">3</span>)
+    fmt.Println(f2(t))
+</pre></div><p>Go中还定义了一种与Method有关的语法：如果一个表达式t具有静态类型T，M是T的Method Set中的一个方法，那么t.M即为Method Value。注意这里是t.M而不是T.M。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    f3 <span style="color:#666">:=</span> (<span style="color:#666">&amp;</span>t).Set <span style="color:#60a0b0;font-style:italic">//函数类型：func(int)int</span>
+    f3(<span style="color:#40a070">4</span>)
+    f4 <span style="color:#666">:=</span> t.Get<span style="color:#60a0b0;font-style:italic">//函数类型：func()int   </span>
+    fmt.Println(f4())
+</pre></div><p>可以看出，Method value与Method Expression不同之处在于，Method value绑定了T对象实例，它的函数原型并不包含Method Expression函数原型中的第一个参数。完整例子参见：details-in-go/4/methodexpressionandmethodvalue.go。</p><h3 id="五-for-range-坑-大阅兵">五、for range“坑”大阅兵</h3><p>for range的引入提升了Go的表达能力，但for range显然不是”免费的午餐“，在享用这个美味前，需要搞清楚for range的一些坑。</p><p>1、iteration variable重用</p><p>for range的idiomatic的使用方式是使用short variable declaration（:=）形式在for expression中声明iteration variable，但需要注意的是这些variable在每次循环体中都会被重用，而不是重新声明。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/5/iterationvariable.go</span>
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+    <span style="color:#007020;font-weight:700">var</span> m = [<span style="color:#666">...</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>, <span style="color:#40a070">3</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">5</span>}
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> m {
+        <span style="color:#007020;font-weight:700">go</span> <span style="color:#007020;font-weight:700">func</span>() {
+            time.Sleep(time.Second <span style="color:#666">*</span> <span style="color:#40a070">3</span>)
+            fmt.Println(i, v)
+        }()
+    }
+
+    time.Sleep(time.Second <span style="color:#666">*</span> <span style="color:#40a070">10</span>)
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+</pre></div><p>在我的Mac上，输出结果如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run iterationvariable.go
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>
+</pre></div><p>各个goroutine中输出的i,v值都是for range循环结束后的i, v最终值，而不是各个goroutine启动时的i, v值。一个可行的fix方法：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> m {
+        <span style="color:#007020;font-weight:700">go</span> <span style="color:#007020;font-weight:700">func</span>(i, v <span style="color:#902000">int</span>) {
+            time.Sleep(time.Second <span style="color:#666">*</span> <span style="color:#40a070">3</span>)
+            fmt.Println(i, v)
+        }(i, v)
+    }
+</pre></div><p>2、range expression副本参与iteration</p><p>range后面接受的表达式的类型包括：array, pointer to array, slice, string, map和channel(有读权限的)。我们以array为例来看一个简单的例子：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/5/arrayrangeexpression.go</span>
+<span style="color:#007020;font-weight:700">func</span> arrayRangeExpression() {
+    <span style="color:#007020;font-weight:700">var</span> a = [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>, <span style="color:#40a070">3</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">5</span>}
+    <span style="color:#007020;font-weight:700">var</span> r [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>
+
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> a {
+        <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            a[<span style="color:#40a070">1</span>] = <span style="color:#40a070">12</span>
+            a[<span style="color:#40a070">2</span>] = <span style="color:#40a070">13</span>
+        }
+        r[i] = v
+    }
+
+    fmt.Println(<span style="color:#4070a0">&quot;r = &quot;</span>, r)
+}
+</pre></div><p>我们期待输出结果：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">r</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+</pre></div><p>但实际输出结果却是：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">r</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+</pre></div><p>我们原以为在第一次iteration，也就是i = 0时，我们对a的修改(a[1] = 12，a[2] = 13)会在第二次、第三次循环中被v取出，但结果却是v取出的依旧是a被修改前的值：2和3。这就是for range的一个不大不小的坑：range expression副本参与循环。也就是说在上面这个例子里，真正参与循环的是a的副本，而不是真正的a，伪代码如 下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> a<span style="border:1px solid red">&#39;</span> {<span style="color:#60a0b0;font-style:italic">//a&#39; is copy from a</span>
+        <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            a[<span style="color:#40a070">1</span>] = <span style="color:#40a070">12</span>
+            a[<span style="color:#40a070">2</span>] = <span style="color:#40a070">13</span>
+        }
+        r[i] = v
+    }
+</pre></div><p>Go中的数组在内部表示为连续的字节序列，虽然长度是Go数组类型的一部分，但长度并不包含的数组的内部表示中，而是由编译器在编译期计算出 来。这个例子中，对range表达式的拷贝，即对一个数组的拷贝，a&rsquo;则是Go临时分配的连续字节序列，与a完全不是一块内存。因此无论a被 如何修改，其副本a&rsquo;依旧保持原值，并且参与循环的是a&rsquo;，因此v从a&rsquo;中取出的仍旧是a的原值，而非修改后的值。</p><p>我们再来试试pointer to array：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">func</span> pointerToArrayRangeExpression() {
+    <span style="color:#007020;font-weight:700">var</span> a = [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>, <span style="color:#40a070">3</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">5</span>}
+    <span style="color:#007020;font-weight:700">var</span> r [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>
+
+    fmt.Println(<span style="color:#4070a0">&quot;pointerToArrayRangeExpression result:&quot;</span>)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> <span style="color:#666">&amp;</span>a {
+        <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            a[<span style="color:#40a070">1</span>] = <span style="color:#40a070">12</span>
+            a[<span style="color:#40a070">2</span>] = <span style="color:#40a070">13</span>
+        }
+
+        r[i] = v
+    }
+
+    fmt.Println(<span style="color:#4070a0">&quot;r = &quot;</span>, r)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+    fmt.Println(<span style="color:#4070a0">&quot;&quot;</span>)
+}
+</pre></div><p>这回的输出结果如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>pointerToArrayRangeExpression result:
+<span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">r</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+<span style="color:#bb60d5">a</span> <span style="color:#666">=</span>  <span style="color:#666">[</span><span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span><span style="color:#666">]</span>
+</pre></div><p>我们看到这次r数组的值与最终a被修改后的值一致了。这个例子中我们使用了*[5]int作为range表达式，其副本依旧是一个指向原数组 a的指针，因此后续所有循环中均是&amp;a指向的原数组亲自参与的，因此v能从&amp;a指向的原数组中取出a修改后的值。</p><p>idiomatic go建议我们尽可能的用slice替换掉array的使用，这里用slice能否实现预期的目标呢？我们来试试：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">func</span> sliceRangeExpression() {
+    <span style="color:#007020;font-weight:700">var</span> a = [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>, <span style="color:#40a070">3</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">5</span>}
+    <span style="color:#007020;font-weight:700">var</span> r [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>
+
+    fmt.Println(<span style="color:#4070a0">&quot;sliceRangeExpression result:&quot;</span>)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> a[:] {
+        <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            a[<span style="color:#40a070">1</span>] = <span style="color:#40a070">12</span>
+            a[<span style="color:#40a070">2</span>] = <span style="color:#40a070">13</span>
+        }
+
+        r[i] = v
+    }
+
+    fmt.Println(<span style="color:#4070a0">&quot;r = &quot;</span>, r)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+    fmt.Println(<span style="color:#4070a0">&quot;&quot;</span>)
+}
+
+pointerToArrayRangeExpression result:
+a =  [<span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span>]
+r =  [<span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span>]
+a =  [<span style="color:#40a070">1</span> <span style="color:#40a070">12</span> <span style="color:#40a070">13</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span>]
+</pre></div><p>显然用slice也能实现预期要求。我们可以分析一下slice是如何做到的。slice在go的内部表示为一个struct，由(*T, len, cap)组成，其中*T指向slice对应的underlying array的指针，len是slice当前长度，cap为slice的最大容量。当range进行expression复制时，它实际上复制的是一个 slice，也就是那个struct。副本struct中的*T依旧指向原slice对应的array，为此对slice的修改都反映到 underlying array a上去了，v从副本struct中*T指向的underlying array中获取数组元素，也就得到了被修改后的元素值。</p><p>slice与array还有一个不同点，就是其len在运行时可以被改变，而array的len是一个常量，不可改变。那么len变化的 slice对for range有何影响呢？我们继续看一个例子：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">func</span> sliceLenChangeRangeExpression() {
+    <span style="color:#007020;font-weight:700">var</span> a = []<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>, <span style="color:#40a070">3</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">5</span>}
+    <span style="color:#007020;font-weight:700">var</span> r = <span style="color:#007020">make</span>([]<span style="color:#902000">int</span>, <span style="color:#40a070">0</span>)
+
+    fmt.Println(<span style="color:#4070a0">&quot;sliceLenChangeRangeExpression result:&quot;</span>)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> a {
+        <span style="color:#007020;font-weight:700">if</span> i <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            a = <span style="color:#007020">append</span>(a, <span style="color:#40a070">6</span>, <span style="color:#40a070">7</span>)
+        }
+
+        r = <span style="color:#007020">append</span>(r, v)
+    }
+
+    fmt.Println(<span style="color:#4070a0">&quot;r = &quot;</span>, r)
+    fmt.Println(<span style="color:#4070a0">&quot;a = &quot;</span>, a)
+}
+
+输出结果<span style="border:1px solid red">：</span>
+
+a =  [<span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span>]
+r =  [<span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span>]
+a =  [<span style="color:#40a070">1</span> <span style="color:#40a070">2</span> <span style="color:#40a070">3</span> <span style="color:#40a070">4</span> <span style="color:#40a070">5</span> <span style="color:#40a070">6</span> <span style="color:#40a070">7</span>]
+<span style="color:#4070a0">```Go</span>
+
+<span style="color:#4070a0">在这个例子中，原slice a在for range过程中被附加了两个元素6和7，其len由5增加到7，但这对于r却没有产生影响。这里的原因就在于a的副本a&#39;的内部表示struct中的 len字段并没有改变，依旧是5，因此for range只会循环5次，也就只获取a对应的underlying数组的前5个元素。</span>
+
+<span style="color:#4070a0">range的副本行为会带来一些性能上的消耗，尤其是当range expression的类型为数组时，range需要复制整个数组；而当range expression类型为pointer to array或slice时，这个消耗将小得多，仅仅需要复制一个指针或一个slice的内部表示（一个struct）即可。我们可以通过 benchmark test来看一下三种情况的消耗情况对比：</span>
+
+<span style="color:#4070a0">对于元素个数为100的int数组或slice，测试结果如下：</span>
+<span style="color:#4070a0">```</span>shell
+<span style="color:#60a0b0;font-style:italic">//details-in-go/5/arraybenchmark</span>
+<span style="color:#007020;font-weight:700">go</span> test <span style="color:#666">-</span>bench=.
+testing: warning: no tests to run
+PASS
+BenchmarkArrayRangeLoop<span style="color:#666">-</span><span style="color:#40a070">4</span>             <span style="color:#40a070">20000000</span>           <span style="color:#40a070">116</span> ns<span style="color:#666">/</span>op
+BenchmarkPointerToArrayRangeLoop<span style="color:#666">-</span><span style="color:#40a070">4</span>    <span style="color:#40a070">20000000</span>            <span style="color:#40a070">64.5</span> ns<span style="color:#666">/</span>op
+BenchmarkSliceRangeLoop<span style="color:#666">-</span><span style="color:#40a070">4</span>             <span style="color:#40a070">20000000</span>            <span style="color:#40a070">70.9</span> ns<span style="color:#666">/</span>op
+</pre></div><p>可以看到range expression类型为slice或pointer to array的性能相近，消耗都近乎是数组类型的1/2。</p><p>3、其他range expression类型</p><p>对于range后面的其他表达式类型，比如string, map, channel，for range依旧会制作副本。</p><p>【string】 对string来说，由于string的内部表示为struct {*byte, len)，并且string本身是immutable的，因此其行为和消耗和slice expression类似。不过for range对于string来说，每次循环的单位是rune(code point的值)，而不是byte，index为迭代字符码点的第一个字节的position：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    <span style="color:#007020;font-weight:700">var</span> s = <span style="color:#4070a0">&quot;中国人&quot;</span>
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> s {
+        fmt.Printf(<span style="color:#4070a0">&quot;%d %s 0x%x\n&quot;</span>, i, <span style="color:#007020">string</span>(v), v)
+    }
+</pre></div><p>输出结果： 0 中 0x4e2d 3 国 0x56fd 6 人 0x4eba</p><p>如果s中存在非法utf8字节序列，那么v将返回0xFFFD这个特殊值，并且在接下来一轮循环中，v将仅前进一个字节：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//byte sequence of s: 0xe4 0xb8 0xad 0xe5 0x9b 0xbd 0xe4 0xba 0xba</span>
+    <span style="color:#007020;font-weight:700">var</span> sl = []<span style="color:#902000">byte</span>{<span style="color:#40a070">0xe4</span>, <span style="color:#40a070">0xb8</span>, <span style="color:#40a070">0xad</span>, <span style="color:#40a070">0xe5</span>, <span style="color:#40a070">0x9b</span>, <span style="color:#40a070">0xbd</span>, <span style="color:#40a070">0xe4</span>, <span style="color:#40a070">0xba</span>, <span style="color:#40a070">0xba</span>}
+    <span style="color:#007020;font-weight:700">for</span> _, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> sl {
+        fmt.Printf(<span style="color:#4070a0">&quot;0x%x &quot;</span>, v)
+    }
+    fmt.Println(<span style="color:#4070a0">&quot;\n&quot;</span>)
+
+    sl[<span style="color:#40a070">3</span>] = <span style="color:#40a070">0xd0</span>
+    sl[<span style="color:#40a070">4</span>] = <span style="color:#40a070">0xd6</span>
+    sl[<span style="color:#40a070">5</span>] = <span style="color:#40a070">0xb9</span>
+
+    <span style="color:#007020;font-weight:700">for</span> i, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> <span style="color:#007020">string</span>(sl) {
+        fmt.Printf(<span style="color:#4070a0">&quot;%d %x\n&quot;</span>, i, v)
+    }
+
+输出结果<span style="border:1px solid red">：</span>
+
+<span style="color:#40a070">0xe4</span> <span style="color:#40a070">0xb8</span> <span style="color:#40a070">0xad</span> <span style="color:#40a070">0xe5</span> <span style="color:#40a070">0x9b</span> <span style="color:#40a070">0xbd</span> <span style="color:#40a070">0xe4</span> <span style="color:#40a070">0xba</span> <span style="color:#40a070">0xba</span>
+
+<span style="color:#40a070">0</span> <span style="color:#40a070">4e2</span>d
+<span style="color:#40a070">3</span> fffd
+<span style="color:#40a070">4</span> <span style="color:#40a070">5</span>b9
+<span style="color:#40a070">6</span> <span style="color:#40a070">4</span>eba
+</pre></div><p>以上例子源码在details-in-go/5/stringrangeexpression.go中可以找到。</p><p>【map】</p><p>对于map来说，map内部表示为一个指针，指针副本也指向真实map，因此for range操作均操作的是源map。</p><p>for range不保证每次迭代的元素次序，对于下面代码：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span> <span style="color:#007020;font-weight:700">var</span> m = <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>]<span style="color:#902000">int</span>{
+        <span style="color:#4070a0">&quot;tony&quot;</span>: <span style="color:#40a070">21</span>,
+        <span style="color:#4070a0">&quot;tom&quot;</span>:  <span style="color:#40a070">22</span>,
+        <span style="color:#4070a0">&quot;jim&quot;</span>:  <span style="color:#40a070">23</span>,
+    }
+
+    <span style="color:#007020;font-weight:700">for</span> k, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> m {
+        fmt.Println(k, v)
+    }
+</pre></div><p>输出结果可能是：</p><p>tom 22 jim 23 tony 21</p><p>也可能是：</p><p>tony 21 tom 22 jim 23</p><p>或其他可能。</p><p>如果map中的某项在循环到达前被在循环体中删除了，那么它将不会被iteration variable获取到。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    counter <span style="color:#666">:=</span> <span style="color:#40a070">0</span>
+    <span style="color:#007020;font-weight:700">for</span> k, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> m {
+        <span style="color:#007020;font-weight:700">if</span> counter <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            <span style="color:#007020">delete</span>(m, <span style="color:#4070a0">&quot;tony&quot;</span>)
+        }
+        counter<span style="color:#666">++</span>
+        fmt.Println(k, v)
+    }
+    fmt.Println(<span style="color:#4070a0">&quot;counter is &quot;</span>, counter)
+</pre></div><p>反复运行多次，我们得到的两个结果：</p><p>tony 21 tom 22 jim 23 counter is 3</p><p>tom 22 jim 23 counter is 2</p><p>如果在循环体中新创建一个map元素项，那该项元素可能出现在后续循环中，也可能不出现：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>    m[<span style="color:#4070a0">&quot;tony&quot;</span>] = <span style="color:#40a070">21</span>
+    counter = <span style="color:#40a070">0</span>
+
+    <span style="color:#007020;font-weight:700">for</span> k, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> m {
+        <span style="color:#007020;font-weight:700">if</span> counter <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+            m[<span style="color:#4070a0">&quot;lucy&quot;</span>] = <span style="color:#40a070">24</span>
+        }
+        counter<span style="color:#666">++</span>
+        fmt.Println(k, v)
+    }
+    fmt.Println(<span style="color:#4070a0">&quot;counter is &quot;</span>, counter)
+</pre></div><p>执行结果：</p><p>tony 21 tom 22 jim 23 lucy 24 counter is 4</p><p>or</p><p>tony 21 tom 22 jim 23 counter is 3</p><p>以上代码可以在details-in-go/5/maprangeexpression.go中可以找到。</p><p>【channel】</p><p>对于channel来说，channel内部表示为一个指针，channel的指针副本也指向真实channel。</p><p>for range最终以阻塞读的方式阻塞在channel expression上（即便是buffered channel，当channel中无数据时，for range也会阻塞在channel上），直到channel关闭：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/5/channelrangeexpression.go</span>
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">var</span> c = <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span>)
+
+    <span style="color:#007020;font-weight:700">go</span> <span style="color:#007020;font-weight:700">func</span>() {
+        time.Sleep(time.Second <span style="color:#666">*</span> <span style="color:#40a070">3</span>)
+        c <span style="color:#666">&lt;-</span> <span style="color:#40a070">1</span>
+        c <span style="color:#666">&lt;-</span> <span style="color:#40a070">2</span>
+        c <span style="color:#666">&lt;-</span> <span style="color:#40a070">3</span>
+        <span style="color:#007020">close</span>(c)
+    }()
+
+    <span style="color:#007020;font-weight:700">for</span> v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> c {
+        fmt.Println(v)
+    }
+}
+</pre></div><p>运行结果：</p><p>1 2 3</p><p>如果channel变量为nil，则for range将永远阻塞。</p><p>六、select求值</p><p>golang引入的select为我们提供了一种在多个channel间实现“多路复用”的一种机制。select的运行机制这里不赘述，但select的case expression的求值顺序我们倒是要通过一个例子来了解一下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">// details-in-go/6/select.go</span>
+
+<span style="color:#007020;font-weight:700">func</span> takeARecvChannel() <span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span> {
+    fmt.Println(<span style="color:#4070a0">&quot;invoke takeARecvChannel&quot;</span>)
+    c <span style="color:#666">:=</span> <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span>)
+
+    <span style="color:#007020;font-weight:700">go</span> <span style="color:#007020;font-weight:700">func</span>() {
+        time.Sleep(<span style="color:#40a070">3</span> <span style="color:#666">*</span> time.Second)
+        c <span style="color:#666">&lt;-</span> <span style="color:#40a070">1</span>
+    }()
+
+    <span style="color:#007020;font-weight:700">return</span> c
+}
+
+<span style="color:#007020;font-weight:700">func</span> getAStorageArr() <span style="color:#666">*</span>[<span style="color:#40a070">5</span>]<span style="color:#902000">int</span> {
+    fmt.Println(<span style="color:#4070a0">&quot;invoke getAStorageArr&quot;</span>)
+    <span style="color:#007020;font-weight:700">var</span> a [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>
+    <span style="color:#007020;font-weight:700">return</span> <span style="color:#666">&amp;</span>a
+}
+
+<span style="color:#007020;font-weight:700">func</span> takeASendChannel() <span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span> {
+    fmt.Println(<span style="color:#4070a0">&quot;invoke takeASendChannel&quot;</span>)
+    <span style="color:#007020;font-weight:700">return</span> <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span>)
+}
+
+<span style="color:#007020;font-weight:700">func</span> getANumToChannel() <span style="color:#902000">int</span> {
+    fmt.Println(<span style="color:#4070a0">&quot;invoke getANumToChannel&quot;</span>)
+    <span style="color:#007020;font-weight:700">return</span> <span style="color:#40a070">2</span>
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    <span style="color:#007020;font-weight:700">select</span> {
+    <span style="color:#60a0b0;font-style:italic">//recv channels</span>
+    <span style="color:#007020;font-weight:700">case</span> (getAStorageArr())[<span style="color:#40a070">0</span>] = <span style="color:#666">&lt;-</span>takeARecvChannel():
+        fmt.Println(<span style="color:#4070a0">&quot;recv something from a recv channel&quot;</span>)
+
+        <span style="color:#60a0b0;font-style:italic">//send channels</span>
+    <span style="color:#007020;font-weight:700">case</span> takeASendChannel() <span style="color:#666">&lt;-</span> getANumToChannel():
+        fmt.Println(<span style="color:#4070a0">&quot;send something to a send channel&quot;</span>)
+    }
+}
+</pre></div><p>运行结果：</p><p>$go run select.go invoke takeARecvChannel invoke takeASendChannel invoke getANumToChannel</p><p>invoke getAStorageArr recv something from a recv channel</p><p>通过例子我们可以看出： 1) select执行开始时，首先所有case expression的表达式都会被求值一遍，按语法先后次序。</p><p>invoke takeARecvChannel invoke takeASendChannel invoke getANumToChannel</p><p>例外的是recv channel的位于赋值等号左边的表达式（这里是：(getAStorageArr())[0]）不会被求值。</p><p>2) 如果选择要执行的case是一个recv channel，那么它的赋值等号左边的表达式会被求值：如例子中当goroutine 3s后向recvchan写入一个int值后，select选择了recv channel执行，此时对=左侧的表达式 (getAStorageArr())[0] 开始求值，输出“invoke getAStorageArr”。</p><h3 id="七-panic的recover过程">七、panic的recover过程</h3><p>Go没有提供“try-catch-finally”这样的异常处理设施，而仅仅提供了panic和recover，其中recover还要结合 defer使用。最初这也是被一些人诟病的点。但和错误码返回值一样，渐渐的大家似乎适应了这些，征讨之声渐稀，即便有也是排在“缺少generics” 之后了。</p><p>【panicking】</p><p>在没有recover的时候，一旦panic发生，panic会按既定顺序结束当前进程，这一过程成为panicking。下面的例子模拟了这一过程：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/7/panicking.go</span>
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+<span style="color:#007020;font-weight:700">func</span> foo() {
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        fmt.Println(<span style="color:#4070a0">&quot;foo defer func invoked&quot;</span>)
+    }()
+    fmt.Println(<span style="color:#4070a0">&quot;foo invoked&quot;</span>)
+
+    bar()
+    fmt.Println(<span style="color:#4070a0">&quot;do something after bar in foo&quot;</span>)
+}
+
+<span style="color:#007020;font-weight:700">func</span> bar() {
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        fmt.Println(<span style="color:#4070a0">&quot;bar defer func invoked&quot;</span>)
+    }()
+    fmt.Println(<span style="color:#4070a0">&quot;bar invoked&quot;</span>)
+
+    zoo()
+    fmt.Println(<span style="color:#4070a0">&quot;do something after zoo in bar&quot;</span>)
+}
+
+<span style="color:#007020;font-weight:700">func</span> zoo() {
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        fmt.Println(<span style="color:#4070a0">&quot;zoo defer func invoked&quot;</span>)
+    }()
+
+    fmt.Println(<span style="color:#4070a0">&quot;zoo invoked&quot;</span>)
+    <span style="color:#007020">panic</span>(<span style="color:#4070a0">&quot;runtime exception&quot;</span>)
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+    foo()
+}
+</pre></div><p>执行结果：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run panicking.go
+foo invoked
+bar invoked
+zoo invoked
+zoo defer func invoked
+bar defer func invoked
+foo defer func invoked
+panic: runtime exception
+
+goroutine <span style="color:#40a070">1</span> <span style="color:#666">[</span>running<span style="color:#666">]</span>:
+… …
+<span style="color:#007020">exit</span> status <span style="color:#40a070">2</span>
+</pre></div><p>从结果可以看出： panic在zoo中发生，在zoo真正退出前，zoo中注册的defer函数会被逐一执行(FILO)，由于zoo defer中没有捕捉panic，因此panic被抛向其caller：bar。 这时对于bar而言，其函数体中的zoo的调用就好像变成了panic调用似的，zoo有些类似于“黑客帝国3”中里奥被史密斯(panic)感 染似的，也变成了史密斯(panic)。panic在bar中扩展开来，bar中的defer也没有捕捉和recover panic，因此在bar中的defer func执行完毕后，panic继续抛给bar的caller: foo； 这时对于foo而言，bar就变成了panic，同理，最终foo将panic抛给了main main与上述函数一样，没有recover，直接异常返回，导致进程异常退出。</p><p>【recover】</p><p>recover只有在defer函数中调用才能起到recover的作用，这样recover就和defer函数有了紧密联系。我们在zoo的defer函数中捕捉并recover这个panic：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//details-in-go/7/recover.go</span>
+<span style="border:1px solid red">…</span> <span style="border:1px solid red">…</span>
+<span style="color:#007020;font-weight:700">func</span> zoo() {
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        fmt.Println(<span style="color:#4070a0">&quot;zoo defer func1 invoked&quot;</span>)
+    }()
+
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        <span style="color:#007020;font-weight:700">if</span> x <span style="color:#666">:=</span> <span style="color:#007020">recover</span>(); x <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+            log.Printf(<span style="color:#4070a0">&quot;recover panic: %v in zoo recover defer func&quot;</span>, x)
+        }
+    }()
+
+    <span style="color:#007020;font-weight:700">defer</span> <span style="color:#007020;font-weight:700">func</span>() {
+        fmt.Println(<span style="color:#4070a0">&quot;zoo defer func2 invoked&quot;</span>)
+    }()
+
+    fmt.Println(<span style="color:#4070a0">&quot;zoo invoked&quot;</span>)
+    <span style="color:#007020">panic</span>(<span style="color:#4070a0">&quot;zoo runtime exception&quot;</span>)
+}
+</pre></div><p>这回的执行结果如下：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#bb60d5">$go</span> run recover.go
+foo invoked
+bar invoked
+zoo invoked
+zoo defer func2 invoked
+<span style="color:#40a070">2015</span>/09/17 <span style="color:#40a070">16</span>:28:00 recover panic: zoo runtime exception in zoo recover defer func
+zoo defer func1 invoked
+<span style="color:#007020;font-weight:700">do</span> something after zoo in bar
+bar defer func invoked
+<span style="color:#007020;font-weight:700">do</span> something after bar in foo
+foo defer func invoked
+</pre></div><p>由于zoo在defer里恢复了panic，这样在zoo返回后，bar不会感知到任何异常，将按正常逻辑输出函数执行内容，比如：“do something after zoo in bar”,以此类推。</p><p>但若如果在zoo defer func中recover panic后，又raise another panic，那么zoo对于bar来说就又会变成panic了。</p><h3 id="last-参考资料">Last、参考资料</h3><p>1、The Go Programming Language Specification (Version of August 5, 2015，Go 1.5)； 2、Effective Go (Go 1.5)； 3、Rob Pike： Go Course Day 1~3。</p><p>本文实验环境：Go 1.5 darwin_amd64。</p><p>本文作者博文地址：<a href="http://tonybai.com/2015/09/17/7-things-you-may-not-pay-attation-to-in-go/">http://tonybai.com/2015/09/17/7-things-you-may-not-pay-attation-to-in-go/</a></p></div><aside id="meta"><meta itemprop="wordCount" content="2169"><meta itemprop="url" content="https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/go.html" rel="tag">Go</a> <a href="/tags/%E4%BC%98%E5%8C%96.html" rel="tag">优化</a> <a href="/tags/%E6%8A%80%E5%B7%A7.html" rel="tag">技巧</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2015/log_file-job-archiving.html">日志文件自动归档工具</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2015/beego-orm-insert-error.html">BeegoOrmInsert记录时报错</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="30231fd0657200477b81c2e5e775bd69" data-title="Golang新手开发需要注意的七个细节" data-url="https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2f7_things-you-may-not-pay-attation-to-in-go.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2f7_things-you-may-not-pay-attation-to-in-go.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gox:简单实在的Go平台交叉编译工具</title>
+      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</guid>
+      <description>Gox 是一个简单的，不花俏的Go平台交叉编译工具，它的用处就和标准的 go build 一样。Gox 会并行地为多种平台编译。Gox 同时也提供了一套交叉编译工具链。
+Gox 项目地址：https://github.com/mitchellh/gox
+安装 为了安装 Gox，请使用 go get。我们已经为版本打上了标签，所以可以随便切换标签进行编译：
+ \$ go get github.com/mitchellh/gox
+&amp;hellip;
+\$ gox -h
+&amp;hellip;
+ 用法 在你使用 Gox 之前，你必须先有一套交叉编译工具链。Gox 可以自动帮你完成这个。你需要做的只是运行(每次更新 Go 都要这样做这步)：
+ \$ gox -build-toolchain
+&amp;hellip;
+ 当你完成这个，你可以已经准备好进行交叉编译了。
+如果你知道怎么去使用 go build, 那么你也知道怎么去使用 Gox 了。例如，编译当前的项目，无需提供参数，只需要调用 gox。Gox 就会根据 CPU 的数量并行地为各个平台编译：
+ \$ gox
+Number of parallel builds: 4
+&amp;ndash;&amp;gt; darwin/386: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; darwin/amd64: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; linux/386: github.com/mitchellh/gox
+&amp;ndash;&amp;gt; linux/amd64: github.com/mitchellh/gox</description>
+    </item>
+    
+    <item>
+      <title>heartbleeder自动检测OpenSSL心脏出血漏洞(附修复指南)</title>
+      <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:00 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</guid>
+      <description>heartbleeder 可以探测你的服务器是否存在 OpenSSL CVE-2014-0160 漏洞 （心脏出血漏洞）。
+什么是心脏出血漏洞？ CVE-2014-0160，心脏出血漏洞，是一个非常严重的 OpenSSL 漏洞。这个漏洞使得攻击者可以从存在漏洞的服务器上读取64KB大小的内存信息。这些信息中可能包含非常敏感的信息，包括用户请求、密码甚至证书的私钥。
+据称，已经有攻击者在某宝上尝试使用漏洞读取数据，在读取200次后，获取了40多个用户名和7个密码。
+如何使用 heartbleeder 检测心脏出血漏洞？ 安装 可以在gobuild.io下载编译好的二进制文件的压缩包。包括Windows、Linux、MacOSX。
+由于服务器操作系统最常用的是Linux，因此这里提供一下下载Linux二进制压缩包的命令：
+Linux(amd64)
+wget http://gobuild.io/github.com/titanous/heartbleeder/master/linux/amd64 -O output.zip  Linux(i386)
+wget http://gobuild.io/github.com/titanous/heartbleeder/master/linux/386 -O output.zip  下载后解压缩即可。
+也可以自行编译安装（Go版本需在1.2以上）， 使用如下命令：
+go get github.com/titanous/heartbleeder  二进制文件会放置在 $GOPATH/bin/heartbleeder。
+使用 $ heartbleeder example.com INSECURE - example.com:443 has the heartbeat extension enabled and is vulnerable  Postgres 默认在 5432 端口使用 OpenSSL，如果你使用Postgres服务器，则需使用如下命令：
+$ heartbleeder -pg example.com SECURE - example:5432 does not have the heartbeat extension enabled  如何手工检测心脏出血漏洞 如果不方便安装heartbleeder，或者不放心自动检测的结果，也可以手动检测。</description>
+    </item>
+    
+    <item>
+      <title>Goji-基于Go语言的微型web框架</title>
+      <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</guid>
+      <description>Goji 是一个基于 Go 的微型 web 框架，其设计受到了 Sinatra 的启发。
+示例 一个简单的 Hello World 示例
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;github.com/zenazn/goji&amp;quot; &amp;quot;github.com/zenazn/goji/web&amp;quot; ) func hello(c web.C, w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello, %s!&amp;quot;, c.URLParams[&amp;quot;name&amp;quot;]) } func main() { goji.Get(&amp;quot;/hello/:name&amp;quot;, hello) goji.Serve() }  Goji 的代码的 example 目录下包含了一个示例应用
+特性  兼容 net/http URL 模式（同时支持 Sinatra 风格的 /foo/:bar 和 正则表达式） 可再配置的中间件栈 自动支持 Einhorn、 systemd 渐进停止，配合 Einhorn 可实现零下线时间的渐进重载 Ruby on Rails / jQuery 风格的参数解析  理念  简单。 Sinatra 风格，而不是 Rails 风格。没有魔法。 可组合的。可与 net/http 组合，可以作为 http.</description>
+    </item>
+    
+  </channel>
+</rss>

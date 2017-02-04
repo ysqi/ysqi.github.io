@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/piwik.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/piwik.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何提取Piwik中记录的访客IP地址</title>
+      <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</link>
+      <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</guid>
+      <description>最近在使用Piwik做网站数据统计，基于PIWIK做二次开发，各种文档，而昨天死活不知道PIWIK中记录访客IP的格式是什么，拉个粑粑后茅塞顿开，下面记记录下如何在PIWIK中获取访客的IP地址信息。
+### 访客IP地址Piwik存储在哪里？ Piwk将访客信息记录在表log_visit中，当然访客IP也是跟随访客继续记录的，也在这个表中，字段是location_ip ,该表的表结构如下：
+ idsite:the ID of the the website it was tracked for idvisitor:a visitor ID (an 8 byte binary string) visitor_localtime:the visit datetime in the visitor&amp;rsquo;s time of day visitor_returning:whether the visit is the first visit for this visitor or not visitor_count_visits:the number of visits the visitor has made up to this one visitor_days_since_last:the number of days since this visitor&amp;rsquo;s last visit (if any) visitor_days_since_order:the number of days since this visitor&amp;rsquo;s last order (if any) visitor_days_since_first:the number of days since this visitors&amp;rsquo; first visit visit_first_action_time:the datetime of the visit&amp;rsquo;s first action visit_last_action_time:the datetime of the visit&amp;rsquo;s last action visit_exit_idaction_url:the ID of the URL action type of the visit&amp;rsquo;s last action visit_exit_idaction_name:the ID of the page title action type of the visit&amp;rsquo;s last action visit_entry_idaction_url:the ID of the URL action type of the visit&amp;rsquo;s first action visit_entry_idaction_name:the ID of the page title action type of this visit&amp;rsquo;s first action visit_total_actions:the count of actions performed during this visit visit_total_searches:the count of site searches performed during this visit visit_total_events:the count of custom events performed during this visit visit_total_time:the total elapsed time of the visit visit_goal_converted:whether this visit converted a goal or not visit_goal_buyer:whether the visitor ordered something during this visit or not referer_type:the type of this visitor&amp;rsquo;s referrer.</description>
+    </item>
+    
+  </channel>
+</rss>

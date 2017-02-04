@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/atom.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/atom.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>使用Atom配置Golang开发环境</title>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</guid>
+      <description>Golang作为一种新的编程语言，也有着非常多的IDE，其中个人觉得使用IntelliJ开发是一种很不错的选择，但是免费版有功能是缺失的，如果又不想付费购买专业版的，Atom就是一种不错的选择。
+Atom是更为先进的文本代码编辑器，是由Github打造的下一代编程开发利器，Atom是开源的，美观，各种炫酷效果,还有有各种强大的插件。
+Atom上面配置Golang的开发环境，使用Atom作用IDE,发现效果很不错，下面记录下配置的步骤。
+首先要先安装下Atom,可以直接下载安装。
+安装Golang，Mac上面的安装可以参考：http://www.jianshu.com/p/358cbc939569
+go-plus插件 go-plus是Atom上面的一款开源的Golang开发环境插件，项目地址:
+https://github.com/joefitzgerald/go-plus
+他需要依赖一些的Golang工具:
+ autocomplete-go ：gocode的代码自动提示
+ gofmt ：使用goftm,goimports,goturns
+ builder-go: go-install 和go-test,验证代码，给出建议
+ gometalinet-linter: goline,vet,gotype的检查
+ navigator-godef: godef
+ tester-goo : go test
+ gorename : rename工具
+  安装go-plus 在*Atom*中的Preference中可以找到install菜单,输入go-plus:
+点击:install，就会开始安装go-plus，go-plus插件会自动安装对应的依赖插件，如果没有安装对应的Golang类库可以使用go get安装。
+快捷键设置 每个人对于自己熟悉的快捷键都不太一样，Atom以及其插件对于的快捷键并不是我习惯的快捷键，因此需要对快捷键进行修改，打开Preference,选中Keybindings：
+可以找到你需要的快捷键的命令点击左边的copy按钮，可以拷贝对应的keymap配置，然后点击your keymap file可以看到keymap.cson,keymap.cson就是自己的Atom快捷键配置文件:
+&#39;atom-text-editor[data-grammar~=&amp;quot;go&amp;quot;]:not([mini])&#39;: &#39;alt-r&#39;: &#39;golang:gorename&#39;  可以修改为自己熟悉的快捷键:
+&#39;atom-text-editor[data-grammar~=&amp;quot;go&amp;quot;]:not([mini])&#39;: &#39;cmd-r&#39;: &#39;golang:gorename&#39;  命令行 go-plus没有提供编译工具,可以在命令行中直接运行go程序，需要安装atom-terminal-panel，在install中直接输入atom-terminal-panel`安装。
+直接使用快捷键control+`就可以呼出terminal。
+我个人习惯了fish shell还是用不惯atom里面的termianl，所以尝试了下Terminal Plus,对于fish的支持很好，快捷键是cmd+shift+t，可以直接呼出Terminal Plus。</description>
+    </item>
+    
+  </channel>
+</rss>

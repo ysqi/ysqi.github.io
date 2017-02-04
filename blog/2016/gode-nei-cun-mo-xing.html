@@ -1,0 +1,192 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go的内存模型 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="说明 翻译自The Go Memory Model
+介绍 如何保证在一个goroutine中看到在另"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/gode-nei-cun-mo-xing.html"><meta property="og:title" content="Go的内存模型"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:26"><meta property="article:modified_time" content="2016-12-31 11:32:26"><meta property="article:tag" content="golang"><meta name="og:description" content="说明 翻译自The Go Memory Model
+介绍 如何保证在一个goroutine中看到在另"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/gode-nei-cun-mo-xing.html">Go的内存模型</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000008230146" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h4 id="说明">说明</h4><p>翻译自<a href="https://golang.org/ref/mem">The Go Memory Model</a></p><h4 id="介绍">介绍</h4><p>如何保证在一个goroutine中看到在另一个goroutine修改的变量的值，这篇文章进行了详细说明。</p><h4 id="建议">建议</h4><p>如果程序中修改数据时有其他goroutine同时读取，那么必须将读取串行化。为了串行化访问，请使用channel或其他同步原语，例如<a href="https://golang.org/pkg/sync/">sync</a>和<a href="https://golang.org/pkg/sync/atomic/">sync/atomic</a>来保护数据。</p><h4 id="先行发生">先行发生</h4><p>在一个gouroutine中，读和写一定是按照程序中的顺序执行的。即编译器和处理器只有在不会改变这个goroutine的行为时才可能修改读和写的执行顺序。由于重排，不同的goroutine可能会看到不同的执行顺序。例如，一个goroutine执行<code>a = 1;b = 2;</code>，另一个goroutine可能看到<code>b</code>在<code>a</code>之前更新。<br>为了说明读和写的必要条件，我们定义了<code>先行发生（Happens Before）</code>&ndash;Go程序中执行内存操作的偏序。如果事件<code>e1</code>发生在<code>e2</code>前，我们可以说<code>e2</code>发生在<code>e1</code>后。如果<code>e1</code>不发生在<code>e2</code>前也不发生在<code>e2</code>后，我们就说<code>e1</code>和<code>e2</code>是并发的。<br><strong><em>在单独的goroutine中先行发生的顺序即是程序中表达的顺序。</em></strong><br>当下面条件满足时，对变量<strong><em>v</em></strong>的读操作<strong><em>r</em></strong>是<strong><em>被允许</em></strong>看到对<strong><em>v</em></strong>的写操作<strong><em>w</em></strong>的：</p><ol><li><p><strong><em>r</em></strong>不先行发生于<strong><em>w</em></strong></p></li><li><p>在<strong><em>w</em></strong>后<strong><em>r</em></strong>前没有对<strong><em>v</em></strong>的其他写操作</p></li></ol><p>为了保证对变量<strong><em>v</em></strong>的读操作<strong><em>r</em></strong>看到对<strong><em>v</em></strong>的写操作<strong><em>w</em></strong>,要确保<strong><em>w</em></strong>是<strong><em>r</em></strong>允许看到的唯一写操作。即当下面条件满足时，<strong><em>r</em></strong> <strong><em>被保证</em></strong>看到<strong><em>w</em></strong>：</p><ol><li><p><strong><em>w</em></strong>先行发生于<strong><em>r</em></strong></p></li><li><p>其他对共享变量<strong><em>v</em></strong>的写操作要么在<strong><em>w</em></strong>前，要么在<strong><em>r</em></strong>后。<br>这一对条件比前面的条件更严格，需要没有其他写操作与<strong><em>w</em></strong>或<strong><em>r</em></strong>并发发生。</p></li></ol><p>单独的goroutine中没有并发，所以上面两个定义是相同的：读操作<strong><em>r</em></strong>看到最近一次的写操作<strong><em>w</em></strong>写入<strong><em>v</em></strong>的值。当多个goroutine访问共享变量<strong><em>v</em></strong>时，它们必须使用同步事件来建立先行发生这一条件来保证读操作能看到需要的写操作。<br>对变量<strong><em>v</em></strong>的零值初始化在内存模型中表现的与写操作相同。<br>对大于一个字的变量的读写操作表现的像以不确定顺序对多个一字大小的变量的操作。</p><h4 id="同步">同步</h4><h5 id="初始化">初始化</h5><p>程序的初始化在单独的goroutine中进行，但这个goroutine可能会创建出并发执行的其他goroutine。<br><strong><em>如果包p引入（import）包q，那么q的init函数的结束先行发生于p的所有init函数开始</em></strong><br><strong><em>main.main函数的开始发生在所有init函数结束之后</em></strong></p><h5 id="创建goroutine">创建goroutine</h5><p><code>go</code>关键字开启新的goroutine，先行发生于这个goroutine开始执行，例如下面程序：</p><pre><code>var a string
+
+func f() {
+    print(a)
+}
+
+func hello() {
+    a = &quot;hello, world&quot;
+    go f()
+}
+</code></pre><p>调用<code>hello</code>会在之后的某时刻打印出&rdquo;hello, world&rdquo;（可能在<code>hello</code>返回之后）</p><h5 id="销毁goroutine">销毁goroutine</h5><p>gouroutine的退出并不会保证先行发生于程序的任何事件。例如下面程序：</p><pre><code>var a string
+
+func hello() {
+    go func() { a = &quot;hello&quot; }()
+    print(a)
+}
+</code></pre><p>没有用任何同步操作限制对a的赋值，所以并不能保证其他goroutine能看到a的变化。实际上，一个激进的编译器可能会删掉整个go语句。<br>如果想要在一个goroutine中看到另一个goroutine的执行效果，请使用锁或者channel这种同步机制来建立程序执行的相对顺序。</p><h5 id="channel通信">channel通信</h5><p>channel通信是goroutine同步的主要方法。每一个在特定channel的发送操作都会匹配到通常在另一个goroutine执行的接收操作。<br><strong><em>在channel的发送操作先行发生于对应的接收操作完成</em></strong><br>例如：</p><pre><code>var c = make(chan int, 10)
+var a string
+
+func f() {
+    a = &quot;hello, world&quot;
+    c &lt;- 0
+}
+
+func main() {
+    go f()
+    &lt;-c
+    print(a)
+}
+</code></pre><p>这个程序能保证打印出&rdquo;hello, world&rdquo;。对a的写先行发生于在c上的发送，先行发生于在c上的对应的接收完成，先行发生于<code>print</code>。<br><strong><em>对channel的关闭先行发生于接收到零值，因为channel已经被关闭了。</em></strong><br>在上面的例子中，将<code>c &lt;- 0</code>替换为<code>close(c)</code>还会产生同样的结果。<br><strong><em>无缓冲channel的接收先行发生于发送完成</em></strong><br>如下程序（和上面类似，只交换了对channel的读写位置并使用了非缓冲channel）：</p><pre><code>var c = make(chan int)
+var a string
+
+func f() {
+    a = &quot;hello, world&quot;
+    &lt;-c
+}
+
+func main() {
+    go f()
+    c &lt;- 0
+    print(a)
+}
+</code></pre><p>此程序也能保证打印出&rdquo;hello, world&rdquo;。对<strong><em>a</em></strong>的写先行发生于从<strong><em>c</em></strong>接收，先行发生于向<strong><em>c</em></strong>发送完成，先行发生于<code>print</code>。</p><p>如果是带缓冲的channel（例如<code>c = make(chan int, 1)</code>），程序不保证打印出&rdquo;hello, world&rdquo;(可能打印空字符，程序崩溃或其他行为)。<br><strong><em>在容量为C的channel上的第k个接收先行发生于从这个channel上的第k+C次发送完成。</em></strong><br>这条规则将前面的规则推广到了带缓冲的channel上。可以通过带缓冲的channel来实现计数信号量：channel中的元素数量对应着活动的数量，channel的容量表示同时活动的最大数量，发送元素获取信号量，接收元素释放信号量，这是限制并发的通常用法。<br>下面程序为<code>work</code>中的每一项开启一个goroutine，但这些goroutine通过有限制的channel来确保最多同时执行三个工作函数（w）。</p><pre><code>var limit = make(chan int, 3)
+
+func main() {
+    for _, w := range work {
+        go func(w func()) {
+            limit &lt;- 1
+            w()
+            &lt;-limit
+        }(w)
+    }
+    select{}
+}
+</code></pre><h5 id="锁">锁</h5><p>sync包实现了两个锁的数据类型sync.Mutex和sync.RWMutex。<br><strong><em>对任意的sync.Mutex或sync.RWMutex变量l和n &lt; m，n次调用l.Unlock()先行发生于m次l.Lock()返回</em></strong><br>下面程序：</p><pre><code>var l sync.Mutex
+var a string
+
+func f() {
+    a = &quot;hello, world&quot;
+    l.Unlock()
+}
+
+func main() {
+    l.Lock()
+    go f()
+    l.Lock()
+    print(a)
+}
+</code></pre><p>能保证打印出&rdquo;hello, world&rdquo;。第一次调用l.Unlock()（在f()中）先行发生于main中的第二次l.Lock()返回, 先行发生于print。<br><strong><em>对于sync.RWMutex变量l，任意的函数调用l.RLock满足第n次l.RLock后发生于第n次调用l.Unlock，对应的l.RUnlock先行发生于第n+1次调用l.Lock。</em></strong></p><h5 id="once">Once</h5><p>sync包的<code>Once</code>为多个goroutine提供了安全的初始化机制。能在多个线程中执行<code>once.Do(f)</code>，但只有一个<code>f()</code>会执行，其他调用会一直阻塞直到<code>f()</code>返回。<br><strong><em>通过<code>once.Do(f)</code>执行<code>f()</code>先行发生（指f()返回）于其他的<code>once.Do(f)</code>返回。</em></strong><br>如下程序：</p><pre><code>var a string
+var once sync.Once
+
+func setup() {
+    a = &quot;hello, world&quot;
+}
+
+func doprint() {
+    once.Do(setup)
+    print(a)
+}
+
+func twoprint() {
+    go doprint()
+    go doprint()
+}
+</code></pre><p>调用<code>twoprint</code>会打印&rdquo;hello, world&rdquo;两次。<code>setup</code>只在第一次<code>doprint</code>时执行。</p><h5 id="错误的同步方法">错误的同步方法</h5><p>注意，读操作<strong><em>r</em></strong>可能会看到并发的写操作<strong><em>w</em></strong>。即使这样也不能表明<strong><em>r</em></strong>之后的读能看到<strong><em>w</em></strong>之前的写。<br>如下程序：</p><pre><code>var a, b int
+
+func f() {
+    a = 1
+    b = 2
+}
+
+func g() {
+    print(b)
+    print(a)
+}
+
+func main() {
+    go f()
+    g()
+}
+</code></pre><p><code>g</code>可能先打印出2然后是0。<br>这个事实证明一些旧的习惯是错误的。<br>双重检查锁定是为了避免同步的资源消耗。例如twoprint程序可能会错误的写成：</p><pre><code>var a string
+var done bool
+
+func setup() {
+    a = &quot;hello, world&quot;
+    done = true
+}
+
+func doprint() {
+    if !done {
+        once.Do(setup)
+    }
+    print(a)
+}
+
+func twoprint() {
+    go doprint()
+    go doprint()
+}
+</code></pre><p>在<code>doprint</code>中看到<code>done</code>被赋值并不保证能看到对<code>a</code>赋值。此程序可能会错误地输出空字符而不是&rdquo;hello, world&rdquo;。<br>另一个错误的习惯是忙等待 例如：</p><pre><code>var a string
+var done bool
+
+func setup() {
+    a = &quot;hello, world&quot;
+    done = true
+}
+
+func main() {
+    go setup()
+    for !done {
+    }
+    print(a)
+}
+</code></pre><p>和之前程序类似，在main中看到<code>done</code>被赋值不能保证看到<code>a</code>被赋值，所以此程序也可能打印出空字符。更糟糕的是因为两个线程间没有同步事件，在main中可能永远不会看到<code>done</code>被赋值，所以main中的循环不保证能结束。<br>对程序做一个微小的改变：</p><pre><code>type T struct {
+    msg string
+}
+
+var g *T
+
+func setup() {
+    t := new(T)
+    t.msg = &quot;hello, world&quot;
+    g = t
+}
+
+func main() {
+    go setup()
+    for g == nil {
+    }
+    print(g.msg)
+}
+</code></pre><p>即使main看到了<code>g != nil</code>并且退出了循环，也不能保证看到g.msg的初始化值。<br>在上面所有的例子中，解决办法都是相同的：明确的使用同步。</p></div><aside id="meta"><meta itemprop="wordCount" content="393"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/gode-nei-cun-mo-xing.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/go-1_8rc3-yuan-dai-ma-xue-xi-cong-yuan-dai-ma-bian-yi--go.html">Go1_8rc3源代码学习:从源代码编译go</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html">Golang 并发模式超时和继续 Go Concurrency Patterns: Timing out moving on</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="2ebd1eae86800c3ff60b31b4695624d8" data-title="Go的内存模型" data-url="https://yushuangqi.com/blog/2016/gode-nei-cun-mo-xing.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgode-nei-cun-mo-xing.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgode-nei-cun-mo-xing.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

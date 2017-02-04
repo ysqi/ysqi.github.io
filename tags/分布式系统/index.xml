@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>一个实现TwitterSnowFlake算法的Go分布式UID生成器</title>
+      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</guid>
+      <description>goSnowFlake [](https://travis-ci.org/zheng-ji/goSnowFlake)https://godoc.org/github.com/zheng-ji/goSnowFlake)
+根据 Twitter SnowFlake 算法, 实现的分布式线程安全 UID 生成器
+Feature  线程安全的 UID 生成器
+ 绿色可插拔，无需依赖 Redis,Mysql,无状态
+ 适合分布式系统
+ 实现 Twitter SnowFlake 理论
+  Description 0 41 51 64 +---------------+----------------+-----------+ |timestamp(ms) | worker node id | sequence | +---------------+----------------+-----------+ id = timestamp | workerid | sequence (eg. 1451063443347648410)  由三部分与运算组合而成，分别是毫秒级别的时间戳，机器 workerid, 以及为了解决冲突的序列号
+Installation go get github.com/zheng-ji/goSnowFlake  Example  import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/zheng-ji/goSnowFlake&amp;quot; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024 iw, err := goSnowFlake.</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿-错误注入</title>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
+      <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
+接上篇：
+当然测试可能会让你代码变得没有那么漂亮，举个例子：
+这是知名的 Kubernetes 的代码，就是说它有一个 DaemonSetcontroller，这 controller 里面注入了三个测试点，比如这个地方注入了一个 handler ，你可以认为所有的注入都是 interface。比如说你写一个简单的 1+1=2 的程序，假设我们写一个计算器，这个计算器的功能就是求和，那这就很难注入错误。所以你必须要在你正确的代码里面去注入测试逻辑。再比如别人 call 你的这个 add 的 function，然后你是不是有一个 error？这个 error 的问题是它可能永远不会返回一个 error，所以你必须要人肉的注进去，然后看应用程序是不是正确的行为。说完了加法，再说我们做一个除法。除法大家知道可能有处理异常，那上面是不是能正常处理呢？上面没有，上面写着一个比如说 6 ÷ 3，然后写了一个 test，coverage 100%，但是一个除零异常，系统就崩掉了，所以这时候就需要去注入错误。大名鼎鼎的 Kubernetes 为了测试各种异常逻辑也采用类似的方式，这个结构体不算长，大概是十几个成员，然后里面就注入了三个点，可以在里面注入错误。
+那么在设计 TiDB 的时候，我们当时是怎么考虑 test 这个事情的？首先一个百万级的 test 不可能由人肉来写，也就是说你如果重新定义一个自己的所谓的 SQL 语法，或者一个 query language，那这个时候你需要构建百万级的 test，即使全公司去写，写个两年都不够，所以这个事情显然是不靠谱的。但是除非说我的 query language 特别简单，比如像 MongoDB 早期的那种，那我一个“大于多少”的这种，或者 equal 这种条件查询特别简单的，那你确实是不需要构建这种百万级的 test。但是如果做一个 SQL 的 database 的话，那是需要构建这种非常非常复杂的 test 的。这时候这个 test 又不能全公司的人写个两年，对吧？所以有什么好办法呢？MySQL 兼容的各种系统都是可以用来 test 的，所以我们当时兼容 MySQL 协议，那意味着我们能够取得大量的 MySQL test。不知道有没有人统计过 MySQL 有多少个 test，产品级的 test 很吓人的，千万级。然后还有很多 ORM， 支持 MySQL 的各种应用都有自己的测试。大家知道，每个语言都会 build 自己的 ORM，然后甚至是一个语言的 ORM 都有好几个。比如说对于 MySQL 可能有排第一的、排第二的，那我们可以把这些全拿过来用来测试我们的系统。</description>
+    </item>
+    
+    <item>
+      <title>分布式系统测试那些事儿-信心的毁灭与重建</title>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</guid>
+      <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。
+接中篇：
+ScyllaDB 有一个开源的东西，是专门用来给文件系统做 Failure Injection 的, 名字叫做 CharybdeFS。如果你想测试你的系统，就是文件系统在哪不断出问题，比如说写磁盘失败了，驱动程序分配内存失败了，文件已经存在等等，它都可以测模拟出来。
+ CharybdeFS: A new fault-injecting file system for software testing
+Simulate the following errors:
+ disk IO error (EIO)
+ driver out of memory error (ENOMEM)
+ file already exists (EEXIST)
+ disk quota exceeded (EDQUOT)
+  再来看看 Cloudera，下图是整个 Cloudera 的一个 Failure Injection 的结构。
+ 一边是 Tools，一边是它的整个的 Level 划分。比如说整个 Cluster， Cluster 上面有很多 Host，Host 上面又跑了各种 Service，整个系统主要用于测试 HDFS， HDFS 也是很努力的在做有效的测试。然后每个机器上部署一个 AgenTEST，就用来注射那些可能出现的错误。</description>
+    </item>
+    
+  </channel>
+</rss>

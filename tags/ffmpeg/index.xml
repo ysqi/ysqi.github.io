@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/ffmpeg.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/ffmpeg.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>在CentOS下利用FFMPEG对视频进行转码</title>
+      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</guid>
+      <description>https://segmentfault.com/a/
+先按照ffmpeg的安装攻略，搞定你CentOS上的ffmpeg，我目前使用的版本是3.0.2
+然后直接上代码
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/exec&amp;quot; &amp;quot;time&amp;quot; ) func main() { var srcFileName, outputfilename string log.SetFlags(log.Lshortfile | log.Ldate | log.Ltime) if len(os.Args) != 3 { fmt.Println(&amp;quot;简单的转码服务，利用FFMPEG和编码器转换成MP4.&amp;quot;) fmt.Println(&amp;quot;使用：[输入文件路径] [输出文件路径]&amp;quot;) os.Exit(1) } else { srcFileName = os.Args[1] outputfilename = os.Args[2] } param := &amp;quot;ffmpeg -y -i &amp;quot; + srcFileName + &amp;quot; -metadata:s:v rotate=0 -vf fps=15,setdar=dar=1 -s 480x480 -pix_fmt yuv420p -strict -2 -c:v h264 -b:v 500k -b:a 48k -ss 0 -t 300 -threads 2 &amp;quot; + outputfilename + &amp;quot;&amp;quot; fmt.</description>
+    </item>
+    
+  </channel>
+</rss>

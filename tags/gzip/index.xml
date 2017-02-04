@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/gzip.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/gzip.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
+      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
+      <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
+首先看源代码
+package main import ( &amp;quot;bytes&amp;quot; &amp;quot;compress/gzip&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { data := &amp;quot;a&amp;quot; buffer := new(bytes.Buffer) w, _ := gzip.NewWriterLevel(buffer, 9) //php: gzencode($json_data,9) defer w.Close() w.Write([]byte(data)) w.Flush() fmt.Println(buffer.Bytes()[:]) }  不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于RFC 1952 ,gzip数据格式如下：
++---+---+---+---+---+---+---+---+---+---+ |ID1|ID2|CM |FLG| MTIME |XFL|OS | (more--&amp;gt;) +---+---+---+---+---+---+---+---+---+---+  再对比PHP和GoLang的头部定义
+   - PHP Go     D1 31 31   D2 139 139   CM (compression method) 8 8   FLG (flags) 0 0   MTIME (modification time) 0 0 0 0 0 9 110 136   XFL (extra flags) 0 0   OS (operating system) 0 255    上面看到，Go 设置的头信息和PHP有部分差役，Go都设置了MTime（修改时间） 和OS（操作系统，为255 ，不知道代表什么意思），而PHP中的OS＝0表示是 FAT文件系统。</description>
+    </item>
+    
+  </channel>
+</rss>

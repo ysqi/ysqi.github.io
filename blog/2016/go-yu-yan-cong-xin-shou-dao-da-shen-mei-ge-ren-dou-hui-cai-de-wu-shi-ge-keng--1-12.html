@@ -1,0 +1,274 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go语言从新手到大神:每个人都会踩的五十个坑(1-12) |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="本文翻译自最近各种 Go 语言社区分享的很多的英文文档 50 Shades of Go: Traps"><meta name="keywords" content="新手, 大神, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html"><meta property="og:title" content="Go语言从新手到大神:每个人都会踩的五十个坑(1-12)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:29"><meta property="article:modified_time" content="2016-12-31 11:34:29"><meta property="article:tag" content="新手"><meta property="article:tag" content="大神"><meta property="article:tag" content="golang"><meta name="og:description" content="本文翻译自最近各种 Go 语言社区分享的很多的英文文档 50 Shades of Go: Traps"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html">Go语言从新手到大神:每个人都会踩的五十个坑(1-12)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000002808365" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>本文翻译自最近各种 Go 语言社区分享的很多的英文文档 <a href="http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html">50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs</a>，小编第一眼以为 50 Shades of Grey……</p><p>Go语言是一个简单却蕴含深意的语言。但是，即便号称是最简单的C语言，都能总结出一本《C陷阱与缺陷》，更何况Go语言呢。Go语言中的许多坑其实并不是因为Go自身的问题。一些错误你再别的语言中也会犯，例如作用域，一些错误就是对因为 Go 语言的特性不了解而导致的，例如 range。</p><p>其实如果你在学习Go语言的时候去认真地阅读官方文档，百科，邮件列表或者其他的类似 Rob Pike 的名人博客，报告，那么本文中提到的许多坑都可以避免。但是不是每个人都会从基础学起，例如译者就喜欢简单粗暴地直接用Go语言写程序。如果你也像译者一样，那么你应该读一下这篇文章：这样可以避免在调试程序时浪费过多时间。</p><p>本文将50个坑按照使用使用范围和难易程度分为以下三个级别：“新手入门级”，“新手深入级”，“新手进阶级”。</p><h3 id="不能单独放在一行">“{”不能单独放在一行</h3><p>级别：新手入门级</p><p>Go语言设计者肯定和C语言设计者(K&amp;R)有种不明不白的关系，因为C语言中的K&amp;R格式在Go语言中得到发扬光大。大多数语言中，大括号中的左括号是可以随便放在哪里的：C语言中必须要按照K&amp;R格式对代码进行格式化之后，左括号才会被放在前一行中的最后。但是Go语言中，左括号必须强制不能单独放在一行。这个规则得益于“自动分号注射”（automatic semicolon injection）。</p><p>补充：go提供了专门用于格式化代码的gofmt工具。</p><p>出错代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main()  
+{ //error, can't have the opening brace on a separate line
+    fmt.Println(&quot;hello there!&quot;)
+}
+</code></pre><p>错误信息:</p><pre><code>/tmp/sandbox826898458/main.go:6: syntax error: unexpected semicolon or newline before {
+</code></pre><p>修正代码:</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    fmt.Println(&quot;works!&quot;)
+}
+</code></pre><h3 id="未使用已定义的变量">未使用已定义的变量</h3><p>级别：新手入门级</p><p>如果代码中有未使用的变量，那个代码编译的时候就会报错。Go要求在代码中所有声明的变量都需要被用到，当然，全局变量除外。<br>函数的参数也可以只被声明，不被使用。</p><p>对于未声明变量的调用同样会导致编译失败。和C语言一样，Go编译器也是个女人，他说什么你都要尽力满足。</p><p>出错代码：</p><pre><code>package main
+
+var gvar int //not an error
+
+func main() {  
+    var one int   //error, unused variable
+    two := 2      //error, unused variable
+    var three int //error, even though it's assigned 3 on the next line
+    three = 3
+
+    func(unused string) {
+        fmt.Println(&quot;Unused arg. No compile error&quot;)
+    }(&quot;what?&quot;)
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox473116179/main.go:6: one declared and not used /tmp/sandbox473116179/main.go:7: two declared and not used /tmp/sandbox473116179/main.go:8: three declared and not used
+</code></pre><p>修正代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var one int
+    _ = one
+
+    two := 2 
+    fmt.Println(two)
+
+    var three int 
+    three = 3
+    one = three
+
+    var four int
+    four = four
+}
+</code></pre><p>当然，你也可以考虑删除那些没有使用的变量。</p><h3 id="未使用的包">未使用的包</h3><p>级别：新手入门级</p><p>当import一个包之后，如果不使用这个包，或者这个包中的函数/接口/数据结构/变量，那么将会编译失败。</p><p>如果真的确认要引入变量但是不使用的话，我们可以用“*”标识符坐标记，避免编译失败。“*”标识符表示为了得到这些包的副作用而引入这些包。</p><p>出错代码：</p><pre><code>package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox627475386/main.go:4: imported and not used: &quot;fmt&quot; 
+/tmp/sandbox627475386/main.go:5: imported and not used: &quot;log&quot; 
+/tmp/sandbox627475386/main.go:6: imported and not used: &quot;time&quot;
+</code></pre><p>修正代码</p><pre><code>package main
+
+import (  
+    _ &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;time&quot;
+)
+
+var _ = log.Println
+
+func main() {  
+    _ = time.Now
+}
+</code></pre><h3 id="只能在函数内部使用简短的变量声明">只能在函数内部使用简短的变量声明</h3><p>级别：新手入门级<br>出错代码：</p><pre><code>package main
+
+myvar := 1 //error
+
+func main() {  
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox265716165/main.go:3: non-declaration statement outside function body
+</code></pre><p>修正代码：</p><pre><code>package main
+
+var myvar = 1
+
+func main() {  
+}
+</code></pre><h3 id="无法使用精简的赋值语句对变量重新赋值">无法使用精简的赋值语句对变量重新赋值</h3><p>级别：新手入门级</p><p>不能使用精简的赋值语句重新赋值单个变量，但是可以使用精简的赋值语句同时赋值多个变量。</p><p>并且，重定义的变量必须写在同一个代码块。</p><p>错误信息：</p><pre><code>package main
+
+func main() {  
+    one := 0
+    one := 1 //error
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox706333626/main.go:5: no new variables on left side of :=
+</code></pre><p>修正代码：</p><pre><code>package main
+
+func main() {  
+    one := 0
+    one, two := 1,2
+
+    one,two = two,one
+}
+</code></pre><h3 id="隐式变量-作用域">隐式变量（作用域）</h3><p>级别：新手入门级</p><p>和 C 语言一样，Go 语言也有作用于，一个变量的作用范围仅仅是一个代码块。虽然精简的赋值语句很简单，但是注意作用域。</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := 1
+    fmt.Println(x)     //打印 1
+    {
+        fmt.Println(x) //打印 1
+        x := 2
+        fmt.Println(x) //打印 2
+    }
+    fmt.Println(x)     //打印 1 ( 不是 2)
+}
+</code></pre><p>甚至对于有经验的开发者来说，这也是个不注意就会掉进去的深坑。</p><h3 id="除非特别指定-否则无法使用-nil-对变量赋值">除非特别指定，否则无法使用 nil 对变量赋值</h3><p>级别：新手入门级</p><p>nil 可以用作 interface、function、pointer、map、slice 和 channel 的“空值”。但是如果不特别指定的话，Go 语言不能识别类型，所以会报错。</p><p>错误信息：</p><pre><code>package main
+
+func main() {  
+    var x = nil //error
+
+    _ = x
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox188239583/main.go:4: use of untyped nil
+</code></pre><p>修正代码：</p><pre><code>package main
+
+func main() {  
+    var x interface{} = nil
+
+    _ = x
+}
+</code></pre><h3 id="slice-和-map-的-nil-值">Slice 和 Map 的 nil 值</h3><p>级别：新手入门级</p><p>初始值为 nil 的 Slice 是可以进行“添加”操作的，但是对于 Map 的“添加”操作会导致运行时恐慌。( ﹁ ﹁ ) 恐慌。</p><p>修正代码：</p><pre><code>package main
+
+func main() {  
+    var s []int
+    s = append(s,1)
+}
+</code></pre><p>错误信息：</p><pre><code>package main
+
+func main() {  
+    var m map[string]int
+    m[&quot;one&quot;] = 1 //error
+
+}
+</code></pre><h3 id="map-定长">Map 定长</h3><p>级别：新手入门级</p><p>创建 Map 的时候可以指定 Map 的长度，但是在运行时是无法使用 cap() 功能重新指定 Map 的大小，Map 是定长的。</p><p>错误信息：</p><pre><code>package main
+
+func main() {  
+    m := make(map[string]int,99)
+    cap(m) //error
+}
+</code></pre><p>错误信息：</p><pre><code>/tmp/sandbox326543983/main.go:5: invalid argument m (type map[string]int) for cap
+</code></pre><h3 id="字符串无法为-nil">字符串无法为 nil</h3><p>级别：新手入门级</p><p>所有的开发者都可能踩的坑，在 C 语言中是可以 <code>char *String=NULL</code>，但是 Go 语言中就无法赋值为 nil。</p><p>错误信息：</p><pre><code>package main
+
+func main() {  
+    var x string = nil //error
+
+    if x == nil { //error
+        x = &quot;default&quot;
+    }
+}
+</code></pre><p>Compile Errors:</p><pre><code>/tmp/sandbox630560459/main.go:4: cannot use nil as type string in assignment /tmp/sandbox630560459/main.go:6: invalid operation: x == nil (mismatched types string and nil)
+</code></pre><p>修正代码：</p><pre><code>package main
+
+func main() {  
+    var x string //defaults to &quot;&quot; (zero value)
+
+    if x == &quot;&quot; {
+        x = &quot;default&quot;
+    }
+}
+</code></pre><h3 id="参数中的数组">参数中的数组</h3><p>Array Function Arguments</p><p>级别：新手入门级<br>对于 C 和 C++ 开发者来说，数组就是指针。给函数传递数组就是传递内存地址，对数组的修改就是对原地址数据的修改。但是 Go 语言中，传递的数组不是内存地址，而是原数组的拷贝，所以是无法通过传递数组的方法去修改原地址的数据的。</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := [3]int{1,2,3}
+
+    func(arr [3]int) {
+        arr[0] = 7
+        fmt.Println(arr) //prints [7 2 3]
+    }(x)
+
+    fmt.Println(x) //prints [1 2 3] (not ok if you need [7 2 3])
+}
+</code></pre><p>如果需要修改原数组的数据，需要使用数组指针（array pointer）。</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := [3]int{1,2,3}
+
+    func(arr *[3]int) {
+        (*arr)[0] = 7
+        fmt.Println(arr) //prints &amp;[7 2 3]
+    }(&amp;x)
+
+    fmt.Println(x) //prints [7 2 3]
+}
+</code></pre><p>或者可以使用 Slice，</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []int{1,2,3}
+
+    func(arr []int) {
+        arr[0] = 7
+        fmt.Println(arr) //prints [7 2 3]
+    }(x)
+
+    fmt.Println(x) //prints [7 2 3]
+}
+</code></pre><h3 id="使用-slice-和-array-的-range-会导致预料外的结果">使用 Slice 和 Array 的 range 会导致预料外的结果</h3><p>级别：新手入门级</p><p>如果你对别的语言中的 <code>for in</code> 和 <code>foreach</code> 熟悉的话，那么 Go 中的 range 使用方法完全不一样。因为每次的 range 都会返回两个值，第一个值是在 Slice 和 Array 中的编号，第二个是对应的数据。</p><p>出错代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
+
+    for v := range x {
+        fmt.Println(v) //prints 0, 1, 2
+    }
+}
+</code></pre><p>修正代码：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
+
+    for _, v := range x {
+        fmt.Println(v) //prints a, b, c
+    }
+}
+</code></pre><p>( ﹁ ﹁ ) 怎么有“大神”这个标签……<br>本文续集会在今晚八点前发布，敬请期待。</p></div><aside id="meta"><meta itemprop="wordCount" content="749"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/%E5%A4%A7%E7%A5%9E.html" rel="tag">大神</a> <a href="/tags/%E6%96%B0%E6%89%8B.html" rel="tag">新手</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/goyu-yan-reflectbao-shi-yong-de-ji-ge-chang-jing.html">go语言reflect包使用的几个场景</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html">Go语言从新手到大神:每个人都会踩的五十个坑(13-22)</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="2eae2ad3c4886c571488ff03be0882fb" data-title="Go语言从新手到大神:每个人都会踩的五十个坑(1-12)" data-url="https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

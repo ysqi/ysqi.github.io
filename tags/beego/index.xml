@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/beego.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/beego.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>beego自动化文档</title>
+      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</guid>
+      <description>beego是什么？ beego是一个快速开发*go应用*的http框架，go 语言技术大牛ASTA谢的开源项目。
+beego可以用来快速开发*API*、*Web*以及*后端服务*等各种应用，是一个RESTFul的框架，主要设计灵感来源于tornado、sinatra、flask这三个框架，结合了Go本身的一些特性(interface、struct继承等)而设计的。
+beego结合swagger就能实现自动化的文档。
+Swagger是什么？ Swagger 是一个规范和一套完整的框架，用于生成、描述、调用以及可视化 *RESTful 风格*的 *Web 服务*。
+Swagger的总体目标是使客户端和文件系统服务器以同样的速度来更新，方法，参数和模型紧密集成到服务器端的代码中，允许API始终保持同步。
+Swagger 让部署管理和使用API从未如此简单。
+自动文档的好处？ 1. 不用手动写文档了，通过注解就可以自动化文档 2. 文档和代码同步更新，代码更新之后不需要再更新文档 3. 浏览器友好 4. 使用Swagger框架可以调试API，在浏览器端可以看到更多的`request`和`response`信息  使用指南 首先安装go:http://www.jianshu.com/p/943870134593
+可以使用intelliJ作为go的IDE:[http://www.jianshu.com/p/9438&amp;hellip;
+也可以使用Atom作用go的IDE:http://www.jianshu.com/p/c1d8cf274ec7
+安装beego:http://beego.me/quickstart
+使用go get安装beego:
+ go get github.com/astaxie/beego
+ 安装bee工具:
+ go get github.com/beego/bee
+ 未了方面可以把$GOPATH/bin加入到你的$PATH变量中:
+ export PATH=\$PATH:\$GOPATH/bin
+ 创建一个beego项目 使用bee工具可以方便的创建，管理，运行，打包beego项目:
+ bee api beeapi
+ 必须在$GOPATH/src的目录下创建项目。
+为该项目指定Swagger目录:
+ beego.StaticDir[&amp;rdquo;/swagger&amp;rdquo;] = &amp;ldquo;swagger&amp;rdquo;
+ 下载Swagger:https://github.com/beego/swagger
+也可以下载最新的Swagger:http://swagger.io/
+放到项目的根目录下面，目录名称为swagger，和上面的配置一致。
+##路由解析
+目前自动化文档的路由规则只支持NewNamespace写法的解析，其他写法函数不会自动解析为文章，就是namespace+Include的写法。而且只支持二级解析，其中一级表示版本号，二级表示应用模块。
+如：
+ ns := beego.</description>
+    </item>
+    
+    <item>
+      <title>golang中cannotuse**(typeinterface{})astype**解决方案</title>
+      <link>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</guid>
+      <description>https://segmentfault.com/a/
+在beego中从session中取值的时候，取出来的是intergace{}，但是我先返回的值是int型，或者是string，这个时候会出现一个错误：
+cannot use ** （变量）(type interface {}) as type **（类型）
+错误代码：
+func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&amp;quot;user_id&amp;quot;) return userStr }  从session中取出来的是一个interface类型，无法直接转换，我在给user_id赋值的时候是给的int类型。
+因此直接对userStr进行转换即可。
+正确代码如下：
+func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&amp;quot;user_id&amp;quot;) return userStr.(int) }  </description>
+    </item>
+    
+    <item>
+      <title>beego的ORM-配置数据库</title>
+      <link>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</guid>
+      <description>https://segmentfault.com/a/
+Object Relational Mapping,简称ORM，用于实现面向对象编程语言里不通类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的“虚拟对象数据库”。
+beego是谢大神开发的一个快速开发Go应用的Http框架，一个RESTful的框架。
+记录下如何在beego中配置数据库，以MySql为例
+数据库选择 目前beego的ORM支持三种数据库:
+1.Sqlite 2.PostgreSql 3.MySql  如果要使用其中的数据库必须要把对应的drive(go语言对于的数据库引擎)加入到import中:
+import ( _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; _ &amp;quot;github.com/lib/pq&amp;quot; _ &amp;quot;github.com/mattn/go-sqlite3&amp;quot; )  数据库注册  orm.RegisterDriver(&amp;ldquo;mysql&amp;rdquo;, orm.DRMySQL)
+ 这句话的意思是注册了mysql的数据库,当然我们要import进来对于的ORM包:
+import( &amp;quot;github.com/astaxie/beego/orm&amp;quot; )  第一个参数是driverName,第二个参数是orm的类型对于三种数据库:
+orm.DRMySQL orm.DRSqlite orm.DRPostgres  数据库连接 beego必须注册一个别名为default的数据库，作为默认使用。
+ orm.RegisterDataBase(&amp;ldquo;default&amp;rdquo;, &amp;ldquo;mysql&amp;rdquo;, &amp;ldquo;test:123456@/test?charset=utf8&amp;rdquo;,30,30)
+ 第一个参数是数据库的别名，用来切换数据库使用。
+第二个是driverName，在RegisterDriver时注册的
+第三是数据库连接字符串:test:123456@/test?charset=utf8相对于用户名:密码@数据库地址+名称?字符集
+第四个参数相当于:
+ orm.SetMaxIdleConns(&amp;ldquo;default&amp;rdquo;, 30)
+ 设置数据库的最大空闲连接。
+第五个参数相当于：
+ orm.SetMaxOpenConns(&amp;ldquo;default&amp;rdquo;, 30)
+ 设置数据库的最大数据库连接。
+第四个参数和第五个参数也可以不传值，会使用数据库默认值：
+时区 曾经我遇到过一个项目，数据库的时区设置的ORM的时区不一致，导致后面的开发会复杂很多。beego中会使用DefaultTimeLoc来保证时间不会出错
+beego默认使用time.Local本地时区，可以用来自动创建时间，从数据中取出时间转换。
+ orm.DefaultTimeLoc = time.UTC
+ 可以设置默认的时区。</description>
+    </item>
+    
+    <item>
+      <title>beego下根据部署环境加载相应配置文件</title>
+      <link>https://yushuangqi.com/blog/2016/beegoxia-gen-ju-bu-shu-huan-jing-jia-zai-xiang-ying-pei-zhi-wen-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:40 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beegoxia-gen-ju-bu-shu-huan-jing-jia-zai-xiang-ying-pei-zhi-wen-jian.html</guid>
+      <description>https://segmentfault.com/a/
+最近用beego开发的项目频繁的要部署到测试环境提测，然后部署到线上发布，由于两种环境下配置文件中某些配置参数不同，每次手动修改很是麻烦，故而想有没有办法能根据部署环境的不同加载相应环境的配置变量。
+幸而得同事告知，两种环境下都会注入ENV_CLUSTER这个系统环境变量，且变量值不同。于是，在main函数beego.Run()执行前，我创建了一个预先执行的init文件，将自适应环境加载配置文件的代码逻辑放在了这里。
+具体代码如下：
+ env := os.Getenv(&amp;quot;ENV_CLUSTER&amp;quot;) if env == &amp;quot;online&amp;quot; { beego.AppConfigPath = &amp;quot;./conf/online.conf&amp;quot; } else if env == &amp;quot;beta&amp;quot; { beego.AppConfigPath = &amp;quot;./conf/beta.conf&amp;quot; } else { beego.AppConfigPath = &amp;quot;./conf/dev.conf&amp;quot; } beego.ParseConfig()  </description>
+    </item>
+    
+    <item>
+      <title>beego自动化部署</title>
+      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:34 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</guid>
+      <description>beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一个项目小项目，golang是编译语言，需要编译之后再部署，每次部署到服务上是件很麻烦的事情。就写了一个自动打包部署到服务器的脚本，方便发布部署。
+项目结构 先看看beego项目的结构：
+beepkg |-- conf | `-- app.conf |-- controllers | `-- default.go |-- main.go |-- models |-- routers | `-- router.go |-- static | |-- css | |-- img | `-- js |-- tests | `-- default_test.go `-- views `-- index.tpl  其中controllers，views.models以及其他的.go文件会被打包成可执行文件beepkg。
+而静态文件static以及conf文件不会被编译，需要打包上传部署到服务器上。
+因此在打包文件的时候需要忽略一些文件：
+1.go文件，已经编译成可执行文件 2.本地生成的一些临时文件 3.项目的一些配置文件  因此我们在使用bee pack打包的时候需要忽略这些文件，bee pack在编译之后压缩的的时候会默认忽略这三种文件:.go:.DS_Store:.tmp。因此我们只需要忽略其他的文件即可。
+使用命令-exr用正则表达式忽略文件：
+ bee pack -be GOOS=linux -ba -exr=&amp;rsquo;\^[0-9a-f]|[*.iml]\$&amp;rsquo;
+ 因为使用了文件存储的session，本地目录下会生成session的文件夹需要忽略打包[0-9a-f],[*.iml]是IntelliJ生成的项目配置文件,在打包的时候需要忽略这些文件。
+打包脚本 打包beego项目，同步到服务端，需要做三件事情:
+1.更新代码 2.编译可执行文件，打包资源 3.同步到压缩包到服务器 4.</description>
+    </item>
+    
+    <item>
+      <title>对beego的控制器函数进行单测</title>
+      <link>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</guid>
+      <description>根据astaxie大神的意见，在beego上对controller做单测比较困难，他的建议就是把所有逻辑都拆分出来，放到model中。然后对model中的public函数进行测试。
+但是这就会多很多封装，而且，有些时候对controller的测试可能是绕不开的。
+其实对controller进行单测也不是那么麻烦，重点就是把http需要的Request和ResponseWriter需要的数据都构造出来即可。
+下面是我的做法👇重点看代码和注释吧。很多代码是self-explanation
+package test import ( &amp;quot;github.com/astaxie/beego&amp;quot; &amp;quot;github.com/astaxie/beego/context&amp;quot; &amp;quot;github.com/astaxie/beego/session&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;net/url&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;youApp/controllers&amp;quot; ) func prepareController(c *beego.Controller) { c.Ctx = &amp;amp;context.Context{ Request: &amp;amp;http.Request{URL: &amp;amp;url.URL{Scheme: &amp;quot;http&amp;quot;, Host: &amp;quot;localhost&amp;quot;, Path: &amp;quot;/&amp;quot;}}, ResponseWriter: &amp;amp;fakeResponseWriter{}, } c.Ctx.Output = &amp;amp;context.BeegoOutput{Context: c.Ctx} c.Ctx.Input = &amp;amp;context.BeegoInput{Request: c.Ctx.Request} globalSessions, _ := session.NewManager(&amp;quot;memory&amp;quot;, `{&amp;quot;cookieName&amp;quot;:&amp;quot;gosessionid&amp;quot;,&amp;quot;gclifetime&amp;quot;:10}`) c.Ctx.Request.Header = http.Header{} c.Ctx.Request.AddCookie(&amp;amp;http.Cookie{Name: &amp;quot;gosessionid&amp;quot;, Value: &amp;quot;test&amp;quot;}) c.CruSession = globalSessions.SessionRegenerateId(c.Ctx.ResponseWriter, c.Ctx.Request) c.Data = map[interface{}]interface{}{} } func TestRecomputeBanlance(t *testing.T) { c := &amp;amp;controllers.BanlanceController{} prepareController(&amp;amp;(c.</description>
+    </item>
+    
+    <item>
+      <title>在Beego中使用Jade模板</title>
+      <link>https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:52 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html</guid>
+      <description>Jade是一个高性能的HTML模板引擎，它受到Haml的影响,是使用JavaScript实现的。Jade在客户端也有支持，它的代码比html可读性要高很多，Jade是一个比较常用的HTML模板。
+Beego是一个go语言的web应用程序开源web框架，而Beego从1.7.0开始支持更加复杂的模板引擎，当然也包括了对于jade的支持，支持更复杂模板引擎的PR地址https://github.com/astaxie/beego/pull/1940。
+在介绍Jade的使用之前先来看下Go下面的html/template包。
+html/template 在Go语言中，html/template包是一个很强大的html模板包，结合text/template的模板语法，基本上可以满足大部分的HTML模板需求，无论是Beego中是默认支持的两种模板格式.tpl和.html,以及jade和ace都是可以解析为html/template中的Template对象使用，就是说我们所使用的html模板最终都是基于html/template包实现的。
+html/template使用实例:
+package main import ( &amp;quot;html/template&amp;quot; ) type User struct { Name string } func main() { t := template.New(&amp;quot;template example&amp;quot;) t, _ = t.Parse(&amp;quot;hello {{.Name}}!&amp;quot;) p := User{Name: &amp;quot;jjz&amp;quot;} t.Execute(os.Stdout, p) }  上面的例子会输出字符串：hello jjz。
+通过上面的例子我们可以看到，如何新建一个模板，再使用模板函数Parse()从字符串中加载模板内容，使用模板函数Execute()可以给模板替换字段。替换模板字段的语法,{{}}中的字段就是要替换字段,{{. Name}}表示需要替换的字段名称。
+Beego使用复杂模板的方式很简单，增加一个模板引擎函数，在项目运行的时候遍历views中的文件，把指定的文件解析为template.Template对象，返回该对象提供使用，这个模板引擎函数就是：`beego.AddTemplateEngine
+`。
+AddTemplateEngine beego.AddTemplateEngine是一个用来把指定的文件，转换为template.Template的对象的函数。它的第一个参数是文件的后缀名，在views中的含有此后缀名的文件都会进入该方法进行处理。他的第二个参数是一个函数，用来处理文件的转换，最后会返回一个template.Template的对象。有了这个函数，我们还少一个把jade文件解析为template.Template的方法，还好有人已经做了jade的Go语言实现。
+jade.go jade.go是Jade的Go语言实现。
+jade.go的使用，首先安装jade.go：
+ go get github.com/Joker/jade
+ jade.go使用示例:
+func main() { tpl, err := jade.Parse(&amp;quot;name_of_tpl&amp;quot;, &amp;quot;doctype 5: html: body: p Hello world!</description>
+    </item>
+    
+    <item>
+      <title>beegoorm中时区的问题</title>
+      <link>https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html</guid>
+      <description>https://segmentfault.com/a/
+先看简化后代码，下面只列出main函数
+func main() { t := &amp;quot;2017-01-19 00:00:00&amp;quot; o := orm.NewOrm() qb, _ := orm.NewQueryBuilder(&amp;quot;mysql&amp;quot;) sql := qb.Select(&amp;quot;COUNT(*)&amp;quot;).From(&amp;quot;test&amp;quot;).Where(&amp;quot;create_time &amp;gt; ?&amp;quot;).String() o.Raw(sql, t).Exec() o.QueryTable(&amp;quot;test&amp;quot;).Filter(&amp;quot;create_time__gt&amp;quot;, t).Count() }  这么看的话感觉两个SQL应该是相同的：
+[ORM] - 2017-01-19 19:28:02 - [Queries/default] - [ OK / db.Exec / 1.2ms] - [SELECT COUNT(*) FROM test WHERE create_time &amp;gt; ?] - `2017-01-19 00:00:00` [ORM] - 2017-01-19 19:28:02 - [Queries/default] - [ OK / db.QueryRow / 2.3ms] - [SELECT COUNT(*) FROM `test` T0 WHERE T0.</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读 config 模块设计</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-config.html</link>
+      <pubDate>Sat, 13 Feb 2016 08:04:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-config.html</guid>
+      <description>这是关于 beego 的第一篇正式的源代码解读文章，前面文章 beego框架源码解读计划 中已介绍解读计划。而本文主要针对 beego 框架 config 模块展开讨论。通过本文你可掌握 beego config 使用。
+config 简要说明 beego 的各个模块设计基本相同，灵感源于 Go 内部 database/sql 包的 sql库驱动注册 。模块实现后进行注册，使用时通过注册名进行访问初始化。 而 config 模块也相同。分别支持 ini、json、xml、yaml、内存 格式的配置文件管理。使用时调用config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;config path&amp;quot;)来构建不同格式 config 解析器。
+初始化 config 解析器 首先需确认所用的配置文件格式，beego 的 appconfig 默认使用 ini。 再通过类型初始化配置文件解析器对象。
+import ( &amp;quot;github.com/astaxie/beego/config&amp;quot; ) func main() { cfg, err := config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;myconfig.ini&amp;quot;) if err != nil { // error } }  使用 config 模块时需要导入github.com/astaxie/beego/config包 ，再调用config.NewConfig来指定文件类型，并加载解析 myconfig.ini 配置文件。当加载解析失败时，会返回错误信息，故不能忽略该错误信息。
+当然，也可以直接解析 []byte 数据，构建解析器。这样做法不常见，有时能用于解析配置片断。</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读计划</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</link>
+      <pubDate>Thu, 11 Feb 2016 13:14:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</guid>
+      <description>&lt;p&gt;大家新年好，今天大年初四，规划下对于开源 web 框架 beego 源代码解读计划安排。在年前便一直在想如何进行一次明确的源码解析。但一直拖至今日才安排。也在思考如何进行学习是合适的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BeegoOrmInsert记录时报错</title>
+      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
+      <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
+      <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
+当时代码是这样写的
+o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err }  在执行此代码报错，错误信息：
+&amp;lt;Ormer&amp;gt; table: `.` not found, maybe not RegisterModel  上面代码的错误性是否非常明显的，是因为本身record是指针对性，而在Insert时又传入的是指针的指针&amp;amp;record
+来看下Beego ORM 内部是如何获取表名的 源代码如下：
+// get model info and model reflect value func (o *orm) getMiInd(md interface{}, needPtr bool) (mi *modelInfo, ind reflect.Value) { val := reflect.ValueOf(md) ind = reflect.Indirect(val) typ := ind.Type() if needPtr &amp;amp;&amp;amp; val.Kind() !</description>
+    </item>
+    
+  </channel>
+</rss>

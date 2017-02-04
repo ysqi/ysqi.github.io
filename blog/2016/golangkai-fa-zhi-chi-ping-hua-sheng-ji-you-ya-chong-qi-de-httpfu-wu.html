@@ -1,0 +1,375 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang开发支持平滑升级(优雅重启)的HTTP服务 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="原文链接：http://tabalt.net/blog/gracef&amp;hellip;
+Golang支"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html"><meta property="og:title" content="Golang开发支持平滑升级(优雅重启)的HTTP服务"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:57"><meta property="article:modified_time" content="2016-12-31 11:33:57"><meta property="article:tag" content="golang"><meta name="og:description" content="原文链接：http://tabalt.net/blog/gracef&amp;hellip;
+Golang支"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html">Golang开发支持平滑升级(优雅重启)的HTTP服务</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000004445975" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>原文链接：<a href="http://tabalt.net/blog/graceful-http-server-for-golang/">http://tabalt.net/blog/gracef&hellip;</a><br>Golang支持平滑升级（优雅重启）的包已开源到Github：<a href="https://github.com/tabalt/gracehttp">https://github.com/tabalt/gracehttp</a>，欢迎使用和贡献代码。</p><p>前段时间用Golang在做一个HTTP的接口，因编译型语言的特性，修改了代码需要重新编译可执行文件，关闭正在运行的老程序，并启动新程序。对于访问量较大的面向用户的产品，关闭、重启的过程中势必会出现无法访问的情况，从而影响用户体验。</p><p>使用Golang的系统包开发HTTP服务，是无法支持平滑升级（优雅重启）的，本文将探讨如何解决该问题。</p><h3 id="一-平滑升级-优雅重启-的一般思路">一、平滑升级（优雅重启）的一般思路</h3><p>一般情况下，要实现平滑升级，需要以下几个步骤：</p><ol><li><p>用新的可执行文件替换老的可执行文件（如只需优雅重启，可以跳过这一步）</p></li><li><p>通过pid给正在运行的老进程发送 特定的信号（kill -SIGUSR2 \$pid）</p></li><li><p>正在运行的老进程，接收到指定的信号后，以子进程的方式启动新的可执行文件并开始处理新请求</p></li><li><p>老进程不再接受新的请求，等待未完成的服务处理完毕，然后正常结束</p></li><li><p>新进程在父进程退出后，会被init进程领养，并继续提供服务</p></li></ol><h3 id="二-golang-socket-网络编程">二、Golang Socket 网络编程</h3><p>Socket是程序员层面上对传输层协议TCP/IP的封装和应用。Golang中Socket相关的函数与结构体定义在net包中，我们从一个简单的例子来学习一下Golang Socket 网络编程，关键说明直接写在注释中。</p><h4 id="1-服务端程序-server-go">1、服务端程序 server.go</h4><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net&quot;
+    &quot;time&quot;
+)
+
+func main() {
+    // 监听8086端口
+    listener, err := net.Listen(&quot;tcp&quot;, &quot;:8086&quot;)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer listener.Close()
+
+    for {
+        // 循环接收客户端的连接，没有连接时会阻塞，出错则跳出循环
+        conn, err := listener.Accept()
+        if err != nil {
+            fmt.Println(err)
+            break
+        }
+
+        fmt.Println(&quot;[server] accept new connection.&quot;)
+
+        // 启动一个goroutine 处理连接
+        go handler(conn)
+    }
+}
+
+func handler(conn net.Conn) {
+    defer conn.Close()
+
+    for {
+        // 循环从连接中 读取请求内容，没有请求时会阻塞，出错则跳出循环
+        request := make([]byte, 128)
+        readLength, err := conn.Read(request)
+
+        if err != nil {
+            fmt.Println(err)
+            break
+        }
+
+        if readLength == 0 {
+            fmt.Println(err)
+            break
+        }
+
+        // 控制台输出读取到的请求内容，并在请求内容前加上hello和时间后向客户端输出
+        fmt.Println(&quot;[server] request from &quot;, string(request))
+        conn.Write([]byte(&quot;hello &quot; + string(request) + &quot;, time: &quot; + time.Now().Format(&quot;2006-01-02 15:04:05&quot;)))
+    }
+}
+</code></pre><h4 id="2-客户端程序-client-go">2、客户端程序 client.go</h4><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    &quot;time&quot;
+)
+
+func main() {
+
+    // 从命令行中读取第二个参数作为名字，如果不存在第二个参数则报错退出
+    if len(os.Args) != 2 {
+        fmt.Fprintf(os.Stderr, &quot;Usage: %s name &quot;, os.Args[0])
+        os.Exit(1)
+    }
+    name := os.Args[1]
+
+    // 连接到服务端的8086端口
+    conn, err := net.Dial(&quot;tcp&quot;, &quot;127.0.0.1:8086&quot;)
+    checkError(err)
+
+    for {
+        // 循环往连接中 写入名字
+        _, err = conn.Write([]byte(name))
+        checkError(err)
+
+        // 循环从连接中 读取响应内容，没有响应时会阻塞
+        response := make([]byte, 256)
+        readLength, err := conn.Read(response)
+        checkError(err)
+
+        // 将读取响应内容输出到控制台，并sleep一秒
+        if readLength &gt; 0 {
+            fmt.Println(&quot;[client] server response:&quot;, string(response))
+            time.Sleep(1 * time.Second)
+        }
+    }
+}
+
+func checkError(err error) {
+    if err != nil {
+        log.Fatal(&quot;fatal error: &quot; + err.Error())
+    }
+}
+</code></pre><h4 id="3-运行示例程序">3、运行示例程序</h4><pre><code># 运行服务端程序
+go run server.go
+
+# 在另一个命令行窗口运行客户端程序
+go run client.go &quot;tabalt&quot;
+</code></pre><h3 id="三-golang-http-编程">三、Golang HTTP 编程</h3><p>HTTP是基于传输层协议TCP/IP的应用层协议。Golang中HTTP相关的实现在net/http包中，直接用到了net包中Socket相关的函数和结构体。</p><p>我们再从一个简单的例子来学习一下Golang HTTP 编程，关键说明直接写在注释中。</p><h4 id="1-http服务程序-http-go">1、http服务程序 http.go</h4><pre><code>package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+)
+
+// 定义http请求的处理方法
+func handlerHello(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte(&quot;http hello on golang\n&quot;))
+}
+
+func main() {
+
+    // 注册http请求的处理方法
+    http.HandleFunc(&quot;/hello&quot;, handlerHello)
+
+    // 在8086端口启动http服务，会一直阻塞执行
+    err := http.ListenAndServe(&quot;localhost:8086&quot;, nil)
+    if err != nil {
+        log.Println(err)
+    }
+
+    // http服务因故停止后 才会输出如下内容
+    log.Println(&quot;Server on 8086 stopped&quot;)
+    os.Exit(0)
+}
+</code></pre><h4 id="2-运行示例程序">2、运行示例程序</h4><pre><code># 运行HTTP服务程序
+go run http.go
+
+# 在另一个命令行窗口curl请求测试页面
+curl http://localhost:8086/hello/
+
+# 输出如下内容：
+http hello on golang
+</code></pre><h3 id="四-golang-net-http包中-socket操作的实现">四、Golang net/http包中 Socket操作的实现</h3><p>从上面的简单示例中，我们看到在Golang中要启动一个http服务，只需要简单的三步：</p><ol><li><p>定义http请求的处理方法</p></li><li><p>注册http请求的处理方法</p></li><li><p>在某个端口启动HTTP服务</p></li></ol><p>而最关键的启动http服务，是调用http.ListenAndServe()函数实现的。下面我们找到该函数的实现：</p><pre><code>func ListenAndServe(addr string, handler Handler) error {
+    server := &amp;Server{Addr: addr, Handler: handler}
+    return server.ListenAndServe()
+}
+</code></pre><p>这里创建了一个Server的对象，并调用它的ListenAndServe()方法，我们再找到结构体Server的ListenAndServe()方法的实现：</p><pre><code>func (srv *Server) ListenAndServe() error {
+    addr := srv.Addr
+    if addr == &quot;&quot; {
+        addr = &quot;:http&quot;
+    }
+    ln, err := net.Listen(&quot;tcp&quot;, addr)
+    if err != nil {
+        return err
+    }
+    return srv.Serve(tcpKeepAliveListener{ln.(*net.TCPListener)})
+}
+</code></pre><p>从代码上看到，这里监听了tcp端口，并将监听者包装成了一个结构体 tcpKeepAliveListener，再调用srv.Serve()方法；我们继续跟踪Serve()方法的实现：</p><pre><code>func (srv *Server) Serve(l net.Listener) error {
+    defer l.Close()
+    var tempDelay time.Duration // how long to sleep on accept failure
+    for {
+        rw, e := l.Accept()
+        if e != nil {
+            if ne, ok := e.(net.Error); ok &amp;&amp; ne.Temporary() {
+                if tempDelay == 0 {
+                    tempDelay = 5 * time.Millisecond
+                } else {
+                    tempDelay *= 2
+                }
+                if max := 1 * time.Second; tempDelay &gt; max {
+                    tempDelay = max
+                }
+                srv.logf(&quot;http: Accept error: %v; retrying in %v&quot;, e, tempDelay)
+                time.Sleep(tempDelay)
+                continue
+            }
+            return e
+        }
+        tempDelay = 0
+        c, err := srv.newConn(rw)
+        if err != nil {
+            continue
+        }
+        c.setState(c.rwc, StateNew) // before Serve can return
+        go c.serve()
+    }
+}
+</code></pre><p>可以看到，和我们前面Socket编程的示例代码一样，循环从监听的端口上Accept连接，如果返回了一个net.Error并且这个错误是临时性的，则会sleep一个时间再继续。 如果返回了其他错误则会终止循环。成功Accept到一个连接后，调用了方法srv.newConn()对连接做了一层包装，最后启了一个goroutine处理http请求。</p><h3 id="五-golang-平滑升级-优雅重启-http服务的实现">五、Golang 平滑升级（优雅重启）HTTP服务的实现</h3><p>我创建了一个新的包<a href="https://github.com/tabalt/gracehttp">gracehttp</a>来实现支持平滑升级（优雅重启）的HTTP服务，为了少写代码和降低使用成本，新的包尽可能多地利用<code>net/http</code>包的实现，并和<code>net/http</code>包保持一致的对外方法。现在开始我们来看<code>gracehttp</code>包支持平滑升级 （优雅重启）Golang HTTP服务涉及到的细节如何实现。</p><h4 id="1-golang处理信号">1、Golang处理信号</h4><p>Golang的<code>os/signal</code>包封装了对信号的处理。简单用法请看示例：</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+)
+
+func main() {
+
+    signalChan := make(chan os.Signal)
+
+    // 监听指定信号
+    signal.Notify(
+        signalChan,
+        syscall.SIGHUP,
+        syscall.SIGUSR2,
+    )
+
+    // 输出当前进程的pid
+    fmt.Println(&quot;pid is: &quot;, os.Getpid())
+
+    // 处理信号
+    for {
+        sig := &lt;-signalChan
+        fmt.Println(&quot;get signal: &quot;, sig)
+    }
+}
+</code></pre><h4 id="2-子进程启动新程序-监听相同的端口">2、子进程启动新程序，监听相同的端口</h4><p>在第四部分的ListenAndServe()方法的实现代码中可以看到，net/http包中使用<code>net.Listen</code>函数来监听了某个端口，但如果某个运行中的程序已经监听某个端口，其他程序是无法再去监听这个端口的。解决的办法是使用子进程的方式启动，并将监听端口的文件描述符传递给子进程，子进程里从这个文件描述符实现对端口的监听。</p><p>具体实现需要借助一个环境变量来区分进程是正常启动，还是以子进程方式启动的，相关代码摘抄如下：</p><pre><code>// 启动子进程执行新程序
+func (this *Server) startNewProcess() error {
+
+    listenerFd, err := this.listener.(*Listener).GetFd()
+    if err != nil {
+        return fmt.Errorf(&quot;failed to get socket file descriptor: %v&quot;, err)
+    }
+
+    path := os.Args[0]
+
+    // 设置标识优雅重启的环境变量
+    environList := []string{}
+    for _, value := range os.Environ() {
+        if value != GRACEFUL_ENVIRON_STRING {
+            environList = append(environList, value)
+        }
+    }
+    environList = append(environList, GRACEFUL_ENVIRON_STRING)
+
+    execSpec := &amp;syscall.ProcAttr{
+        Env:   environList,
+        Files: []uintptr{os.Stdin.Fd(), os.Stdout.Fd(), os.Stderr.Fd(), listenerFd},
+    }
+
+    fork, err := syscall.ForkExec(path, os.Args, execSpec)
+    if err != nil {
+        return fmt.Errorf(&quot;failed to forkexec: %v&quot;, err)
+    }
+
+    this.logf(&quot;start new process success, pid %d.&quot;, fork)
+
+    return nil
+}
+
+func (this *Server) getNetTCPListener(addr string) (*net.TCPListener, error) {
+
+    var ln net.Listener
+    var err error
+
+    if this.isGraceful {
+        file := os.NewFile(3, &quot;&quot;)
+        ln, err = net.FileListener(file)
+        if err != nil {
+            err = fmt.Errorf(&quot;net.FileListener error: %v&quot;, err)
+            return nil, err
+        }
+    } else {
+        ln, err = net.Listen(&quot;tcp&quot;, addr)
+        if err != nil {
+            err = fmt.Errorf(&quot;net.Listen error: %v&quot;, err)
+            return nil, err
+        }
+    }
+    return ln.(*net.TCPListener), nil
+}
+</code></pre><h4 id="3-父进程等待已有连接中未完成的请求处理完毕">3、父进程等待已有连接中未完成的请求处理完毕</h4><p>这一块是最复杂的；首先我们需要一个计数器，在成功Accept一个连接时，计数器加1，在连接关闭时计数减1，计数器为0时则父进程可以正常退出了。Golang的sync的包里的WaitGroup可以很好地实现这个功能。</p><p>然后要控制连接的建立和关闭，我们需要深入到net/http包中Server结构体的Serve()方法。重温第四部分Serve()方法的实现，会发现如果要重新写一个Serve()方法几乎是不可能的，因为这个方法里调用了好多个不可导出的内部方法，重写Serve()方法几乎要重写整个<code>net/http</code>包。</p><p>幸运的是，我们还发现在 ListenAndServe()方法里传递了一个listener给Serve()方法，并最终调用了这个listener的Accept()方法，这个方法返回了一个Conn的示例，最终在连接断开的时候会调用Conn的Close()方法，这些结构体和方法都是可导出的！</p><p>我们可以定义自己的Listener结构体和Conn结构体，组合<code>net/http</code>包中对应的结构体，并重写Accept()和Close()方法，实现对连接的计数，相关代码摘抄如下：</p><pre><code>type Listener struct {
+    *net.TCPListener
+
+    waitGroup *sync.WaitGroup
+}
+
+func (this *Listener) Accept() (net.Conn, error) {
+
+    tc, err := this.AcceptTCP()
+    if err != nil {
+        return nil, err
+    }
+    tc.SetKeepAlive(true)
+    tc.SetKeepAlivePeriod(3 * time.Minute)
+
+    this.waitGroup.Add(1)
+
+    conn := &amp;Connection{
+        Conn:     tc,
+        listener: this,
+    }
+    return conn, nil
+}
+
+func (this *Listener) Wait() {
+    this.waitGroup.Wait()
+}
+
+type Connection struct {
+    net.Conn
+    listener *Listener
+
+    closed bool
+}
+
+func (this *Connection) Close() error {
+
+    if !this.closed {
+        this.closed = true
+        this.listener.waitGroup.Done()
+    }
+
+    return this.Conn.Close()
+}
+</code></pre><h4 id="4-gracehttp包的用法">4、gracehttp包的用法</h4><p>gracehttp包已经应用到每天几亿PV的项目中，也开源到了github上：<a href="https://github.com/tabalt/gracehttp">github.com/tabalt/gracehttp</a>，使用起来非常简单。</p><p>如以下示例代码，引入包后只需修改一个关键字，将http.ListenAndServe 改为 gracehttp.ListenAndServe即可。</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+
+    &quot;github.com/tabalt/gracehttp&quot;
+)
+
+func main() {
+    http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, &quot;hello world&quot;)
+    })
+
+    err := gracehttp.ListenAndServe(&quot;:8080&quot;, nil)
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+</code></pre><p>测试平滑升级（优雅重启）的效果，可以参考下面这个页面的说明：</p><p><a href="https://github.com/tabalt/gracehttp#demo">https://github.com/tabalt/gracehttp#demo</a></p><p>使用过程中有任何问题和建议，欢迎<a href="https://github.com/tabalt/gracehttp/issues/new">提交issue</a>反馈，也可以Fork到自己名下修改之后提交pull request。</p><p>如果文章对您有帮助，欢迎打赏， 您的支持是我码字的动力！</p><blockquote><p><strong>原文链接：<a href="http://tabalt.net/blog/graceful-http-server-for-golang//strong">http://tabalt.net/blog/gracef&hellip;</a></strong></p></blockquote></div><aside id="meta"><meta itemprop="wordCount" content="835"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html">写了个爬取淘宝购买文胸的评论的爬虫数据共享。</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/go-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html">go-oci8编译安装过程(有别于官方说明)</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="d614decebd5d614cdaf8dd894f916086" data-title="Golang开发支持平滑升级(优雅重启)的HTTP服务" data-url="https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

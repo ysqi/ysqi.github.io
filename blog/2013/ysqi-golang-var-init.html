@@ -1,0 +1,123 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>老虞学golang-变量声明与初始化 |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="变量声明  官方doc: http://golang.org//spec#Variable_decl"><meta name="keywords" content="Go, 笔记, 教程, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html"><meta property="og:title" content="老虞学golang-变量声明与初始化"><meta property="og:type" content="article"><meta property="article:published_time" content="2013-04-03 00:00:00"><meta property="article:modified_time" content="2013-04-03 00:00:00"><meta property="article:tag" content="Go"><meta property="article:tag" content="笔记"><meta property="article:tag" content="教程"><meta name="og:description" content="变量声明  官方doc: http://golang.org//spec#Variable_decl"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html">老虞学golang-变量声明与初始化</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2013-04-03">2013年04月03日</time></span></p></header><div itemprop="articleBody"><h3 id="变量声明">变量声明</h3><blockquote><p>官方doc: <a href="http://golang.org//spec#Variable_declarations">http://golang.org//spec#Variable_declarations</a></p></blockquote><p>Go中使用全新的关键字var来声明变量。var我们并不陌生，在Javascript 和C#中均有出现。不同的是Go和C#中变量属于强类型，在声明变量后就不允许改变其数据类型。</p><p><strong>声明变量有多种形态:</strong></p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> a <span style="color:#902000">int</span> <span style="color:#60a0b0;font-style:italic">//声明一个int类型的变量</span>
+
+<span style="color:#007020;font-weight:700">var</span> b <span style="color:#007020;font-weight:700">struct</span> { <span style="color:#60a0b0;font-style:italic">//声明一个结构体</span>
+    name <span style="color:#902000">string</span>
+}
+
+<span style="color:#007020;font-weight:700">var</span> a = <span style="color:#40a070">8</span> <span style="color:#60a0b0;font-style:italic">//声明变量的同时赋值，编译器自动推导其数据类型</span>
+<span style="color:#007020;font-weight:700">var</span> a <span style="color:#902000">int</span> = <span style="color:#40a070">8</span> <span style="color:#60a0b0;font-style:italic">//声明变量的同时赋值</span>
+
+<span style="color:#007020;font-weight:700">var</span> { <span style="color:#60a0b0;font-style:italic">//批量声明变量，简洁</span>
+    a <span style="color:#902000">int</span>
+    b <span style="color:#902000">string</span>
+}
+</pre></div><h3 id="变量初始化">变量初始化</h3><p>变量的初始化工作可以在声明变量时进行初始化，也可以先声明后初始化。此时var关键字不再是必须的。</p><p>初始化变量有多种方式，每种方式有不同的使用场景：</p><p>在方法中声明一个临时变量并赋初值</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> tmpStr = <span style="border:1px solid red">“”</span>
+<span style="color:#007020;font-weight:700">var</span> tmpStr <span style="color:#902000">string</span> = <span style="border:1px solid red">“”</span>
+tmpStr <span style="color:#666">:=</span><span style="border:1px solid red">””</span>
+</pre></div><p>全局中已声明变量直接赋值</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>tmpStr = <span style="border:1px solid red">“</span>&lt;body&gt;<span style="border:1px solid red">”</span>
+</pre></div><p>我们看到有此两种方式：</p><p><code>var name [type] = value</code></p><p>如果不书写 type ,则在编译时会根据value自动推导其类型。</p><p><code>name := value</code></p><p>这里省略了关键字var，我很喜欢这种方式（可以少写代码，而没有任何坏处）。 但这有需要注意的是“ :=” 是在声明和初始化变量，因此该变量必须是第一次出现，如下初始化是错误的。但是要注意赋值时要确定你想要的类型，在Go中不支持隐式转换的。如果是定义个float64类型的变量，请写为 <code>v1 :=8.0</code> 而不是<code>v1 :=8</code> 。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">var</span> a <span style="color:#902000">int</span>
+
+a <span style="color:#666">:=</span> <span style="color:#40a070">8</span>
+</pre></div><p><strong>NODE:</strong>我刚开始时老出现这种错误，一直将 “:= ” 当作 一般赋值语句处理</p><h3 id="思考问题">思考问题</h3><p>初始化语句，在编译器上是如何进行自动类型推导的。一些字面常量是如何归类的？</p><p>如 8 → int , 8.0 → float64</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;reflect&quot;</span>
+)
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+
+	<span style="color:#007020;font-weight:700">var</span> v1 <span style="color:#902000">int</span> = <span style="color:#40a070">8</span>
+
+	<span style="color:#007020;font-weight:700">var</span> v2 <span style="color:#902000">byte</span> = <span style="color:#40a070">8</span>
+
+	v3 <span style="color:#666">:=</span> <span style="color:#40a070">8</span>
+
+	v4 <span style="color:#666">:=</span> <span style="color:#40a070">8.0</span>
+
+	fmt.Printf(<span style="color:#4070a0">&quot;v1 type :%s\n&quot;</span>, reflect.TypeOf(v1)) <span style="color:#60a0b0;font-style:italic">//int</span>
+
+	fmt.Printf(<span style="color:#4070a0">&quot;v2 type :%s\n&quot;</span>, reflect.TypeOf(v2)) <span style="color:#60a0b0;font-style:italic">//uint8</span>
+
+	fmt.Printf(<span style="color:#4070a0">&quot;v3 type :%s\n&quot;</span>, reflect.TypeOf(v3)) <span style="color:#60a0b0;font-style:italic">//int</span>
+
+	fmt.Printf(<span style="color:#4070a0">&quot;v4 type :%s\n&quot;</span>, reflect.TypeOf(v4)) <span style="color:#60a0b0;font-style:italic">//float64</span>
+
+}
+</pre></div><p>官方文档： <a href="http://golang.org/ref/spec#Constant_expressions">http://golang.org/ref/spec#Constant_expressions</a></p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">const</span> a = <span style="color:#40a070">2</span> <span style="color:#666">+</span> <span style="color:#40a070">3.0</span>          <span style="color:#60a0b0;font-style:italic">// a == 5.0   (untyped floating-point constant)</span>
+<span style="color:#007020;font-weight:700">const</span> b = <span style="color:#40a070">15</span> <span style="color:#666">/</span> <span style="color:#40a070">4</span>           <span style="color:#60a0b0;font-style:italic">// b == 3     (untyped integer constant)</span>
+<span style="color:#007020;font-weight:700">const</span> c = <span style="color:#40a070">15</span> <span style="color:#666">/</span> <span style="color:#40a070">4.0</span>         <span style="color:#60a0b0;font-style:italic">// c == 3.75  (untyped floating-point constant)</span>
+<span style="color:#007020;font-weight:700">const</span> Θ <span style="color:#902000">float64</span> = <span style="color:#40a070">3</span><span style="color:#666">/</span><span style="color:#40a070">2</span>      <span style="color:#60a0b0;font-style:italic">// Θ == 1.0   (type float64, 3/2 is integer division)</span>
+<span style="color:#007020;font-weight:700">const</span> Π <span style="color:#902000">float64</span> = <span style="color:#40a070">3</span><span style="color:#666">/</span><span style="color:#40a070">2.</span>     <span style="color:#60a0b0;font-style:italic">// Π == 1.5   (type float64, 3/2. is float division)</span>
+<span style="color:#007020;font-weight:700">const</span> d = <span style="color:#40a070">1</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#40a070">3.0</span>         <span style="color:#60a0b0;font-style:italic">// d == 8     (untyped integer constant)</span>
+<span style="color:#007020;font-weight:700">const</span> e = <span style="color:#40a070">1.0</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#40a070">3</span>         <span style="color:#60a0b0;font-style:italic">// e == 8     (untyped integer constant)</span>
+<span style="color:#007020;font-weight:700">const</span> f = <span style="color:#007020">int32</span>(<span style="color:#40a070">1</span>) <span style="color:#666">&lt;&lt;</span> <span style="color:#40a070">33</span>   <span style="color:#60a0b0;font-style:italic">// f == 0     (type int32)</span>
+<span style="color:#007020;font-weight:700">const</span> g = <span style="color:#007020">float64</span>(<span style="color:#40a070">2</span>) <span style="color:#666">&gt;&gt;</span> <span style="color:#40a070">1</span>  <span style="color:#60a0b0;font-style:italic">// illegal    (float64(2) is a typed floating-point constant)</span>
+<span style="color:#007020;font-weight:700">const</span> h = <span style="color:#4070a0">&quot;foo&quot;</span> &gt; <span style="color:#4070a0">&quot;bar&quot;</span>    <span style="color:#60a0b0;font-style:italic">// h == true  (untyped boolean constant)</span>
+<span style="color:#007020;font-weight:700">const</span> j = <span style="color:#007020;font-weight:700">true</span>             <span style="color:#60a0b0;font-style:italic">// j == true  (untyped boolean constant)</span>
+<span style="color:#007020;font-weight:700">const</span> k = <span style="color:#4070a0">&#39;w&#39;</span> <span style="color:#666">+</span> <span style="color:#40a070">1</span>          <span style="color:#60a0b0;font-style:italic">// k == &#39;x&#39;   (untyped rune constant)</span>
+<span style="color:#007020;font-weight:700">const</span> l = <span style="color:#4070a0">&quot;hi&quot;</span>             <span style="color:#60a0b0;font-style:italic">// l == &quot;hi&quot;  (untyped string constant)</span>
+<span style="color:#007020;font-weight:700">const</span> m = <span style="color:#007020">string</span>(k)        <span style="color:#60a0b0;font-style:italic">// m == &quot;x&quot;   (type string)</span>
+<span style="color:#007020;font-weight:700">const</span> Σ = <span style="color:#40a070">1</span> <span style="color:#666">-</span> <span style="color:#40a070">0.707i</span>       <span style="color:#60a0b0;font-style:italic">//            (untyped complex constant)</span>
+<span style="color:#007020;font-weight:700">const</span> Δ = Σ <span style="color:#666">+</span> <span style="color:#40a070">2.0e-4</span>       <span style="color:#60a0b0;font-style:italic">//            (untyped complex constant)</span>
+<span style="color:#007020;font-weight:700">const</span> Φ = <span style="color:#007020;font-weight:700">iota</span><span style="color:#666">*</span><span style="color:#40a070">1i</span> <span style="color:#666">-</span> <span style="color:#40a070">1</span><span style="color:#666">/</span><span style="color:#40a070">1i</span>   <span style="color:#60a0b0;font-style:italic">//            (untyped complex constant)</span>
+<span style="color:#007020;font-weight:700">const</span> ic = <span style="color:#007020">complex</span>(<span style="color:#40a070">0</span>, c) <span style="color:#60a0b0;font-style:italic">// ic == 3.75i (untyped complex constant)</span>
+
+<span style="color:#007020;font-weight:700">const</span> iΘ = <span style="color:#007020">complex</span>(<span style="color:#40a070">0</span>, Θ)   <span style="color:#60a0b0;font-style:italic">// iΘ == 1.5i   (type complex128)</span>
+<span style="color:#007020;font-weight:700">const</span> Huge = <span style="color:#40a070">1</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#40a070">100</span>
+
+<span style="color:#60a0b0;font-style:italic">// Huge == 1267650600228229401496703205376 (untyped integer constant)</span>
+
+<span style="color:#007020;font-weight:700">const</span> Four <span style="color:#902000">int8</span> = Huge <span style="color:#666">&gt;&gt;</span> <span style="color:#40a070">98</span>  <span style="color:#60a0b0;font-style:italic">// Four == 4      (type int8)</span>
+
+
+^<span style="color:#40a070">1</span> <span style="color:#60a0b0;font-style:italic">// untyped integer constant, equal to -2</span>
+
+<span style="color:#007020">uint8</span>(^<span style="color:#40a070">1</span>)  <span style="color:#60a0b0;font-style:italic">// illegal: same as uint8(-2), -2 cannot be represented as a uint8</span>
+^<span style="color:#007020">uint8</span>(<span style="color:#40a070">1</span>)  <span style="color:#60a0b0;font-style:italic">// typed uint8 constant, same as 0xFF ^ uint8(1) = uint8(0xFE)</span>
+<span style="color:#007020">int8</span>(^<span style="color:#40a070">1</span>)   <span style="color:#60a0b0;font-style:italic">// same as int8(-2)</span>
+^<span style="color:#007020">int8</span>(<span style="color:#40a070">1</span>)   <span style="color:#60a0b0;font-style:italic">// same as -1 ^ int8(1) = -2</span>
+</pre></div><p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;2013-04-14补充&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">func</span>  main(){
+        v1 <span style="color:#666">:=</span><span style="color:#40a070">8</span>
+        v1 =<span style="color:#40a070">8.0</span>       <span style="color:#60a0b0;font-style:italic">// 编译可通过，运行无错误</span>
+        fmt.Println(v1)
+}
+</pre></div><p>在C#中会编译不通过，而Go语言中却是可行的，这是为什么呢？我在golang-chang中向大家请教了该问题，谢谢帮助我的人。</p><p><a href="https://groups.google.com/forum/?fromgroups=#!topic/golang-china/k1UOr_1K_yw">https://groups.google.com/forum/?fromgroups=#!topic/golang-china/k1UOr_1K_yw</a></p><p>将结果整理给大家:</p><ol><li>Go里面不损失精度的情况下会把8.0这类浮点数视作整数8</li><li>Go里面的常数是高精度数，分为几类：<ol><li>有类型的：uint(8)，类型显式指定了，在表达式里面不会变化。</li><li>无类型的：分成无类型整数和无类型浮点两类。这两类在使用的时候会根据上下文需要的类型转化为实际类型， 比如uint8(0) + 1.0就是uint8(1)，但是uint8(0)+1.2就会由于1.2无法转化为uint8而报错。 如果上下文无法确定（比如 i, j := 1, 2.0这样的），那么整数无类型常数转化为int，浮点数无类型常数转化为float64.</li></ol></li></ol><p>具体规则参见： <a href="http://tip.golang.org/ref/spec#Constant_expressions">http://tip.golang.org/ref/spec#Constant_expressions</a></p><p>&mdash;&mdash;&mdash;&mdash;- 2013-04-14 end&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p></div><aside id="meta"><meta itemprop="wordCount" content="484"><meta itemprop="url" content="https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/go.html" rel="tag">Go</a> <a href="/tags/%E6%95%99%E7%A8%8B.html" rel="tag">教程</a> <a href="/tags/%E7%AC%94%E8%AE%B0.html" rel="tag">笔记</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html">老虞学Golang-数组和切片</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html">老虞学Golang-代码规范</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="b59fb6bd63e659f6f723fa40ca9d8994" data-title="老虞学golang-变量声明与初始化" data-url="https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2013%2fysqi-golang-var-init.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2013%2fysqi-golang-var-init.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

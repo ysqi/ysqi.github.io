@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/go.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/go.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何判断是否是在GolangTest运行代码</title>
+      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
+      <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</guid>
+      <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
+经过各种尝试,总算能非常靠谱的进行Go Test 识别!
+需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
+APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
+ 运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
+func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
+    </item>
+    
+    <item>
+      <title>Wecrcker自动部署到Github过程中问题记录</title>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
+      <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
+      <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
+wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
+ box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
+ __ysqi/git-push __
+step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
+source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+    </item>
+    
+    <item>
+      <title>理解Go import</title>
+      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</link>
+      <pubDate>Tue, 08 Mar 2016 10:44:36 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</guid>
+      <description>Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。
+工作目录 在 Go 中代码保持在称之为 workspace 的系统文件夹中。这个工作目录下有三个根目录：
+ bin 包含可执行文件 。 pkg 包含不同操作系统架构的包二进制文件。相当于编译后的库文件。 src 包含按包方式组织的源代码。  其中 bin 和 pkg 文件夹是在调用 go 命令安装和编译源代码时自动生成。而 src 下可组织多个包，且能使用版本控制工具。
+注意，必须让 Go 知道工作目录的位置，这样才能知道包的具体位置。通过设置环境变量 GOPATH 来指定。
+export GOPATH=/home/dev/gowork/  导入包 improt 便是用一个独一无二的字符串路径来指向包，而包的导入路径是基于工作目录或者的。因为 Go 会在 工作目录 src 子目录下查找包。
+标准包使用的是给定的短路径，如“fmt”、“net/http”，但你自己的包，需要在工作目录下指定一个目录，同时预防和以后的代码包路径发生冲突。以便我们作为个人开发者，基于 github 的话，那么我们可以建立自己的代码基目录，github.com/user 。
+improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
+先创建代码库: $GOPATH/src/ysqi/lib/lib.go
+package lib import &amp;quot;fmt&amp;quot; func SayHello() { fmt.Println(&amp;quot;Hello,YSQ :) &amp;quot;) }  再新建一个App：$GOPATH/src/ysqi/app/main.</description>
+    </item>
+    
+    <item>
+      <title>Go声明语法</title>
+      <link>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</link>
+      <pubDate>Fri, 26 Feb 2016 11:00:37 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</guid>
+      <description>很多新手对于 Go 不同于 C 系列语言的声明语法感到非常惊讶，本文就为什么 Go 语言声明语法为何不同于其他语言进行说明。
+C 语法 首先来说是 C 语言语法，C 采用不寻常但非常聪明的方式定义语法，反过来使用特殊语法申明明类型。一次写一个表达式来声明，并指明是什么类型的表达式。像这样：
+int x;  申明 x 是一个int，表达式x就有一个类型int，一般情况下需要弄清楚如何确定一个新变量的类型，写一个表达式将涉及变量计算结果的基础数据类型。基础数据类型写在左边，表达式写在右边。像这样写表达式：
+int *p; int a[3];  此时，变量p在表达式中通过*来取指针地址，这样*p就是int类型。同理a[3]是从 int 数组a中取下标为3的元素，故a[3]为int类型。
+那么函数的定义呢？聪明的做法，C 语言函数是在括号中声明参数类型。
+int main(argc, argv) int argc; char *argv[]; { /* ... */ }  我们看到，main就是一个函数，表达式是包含int返回类型和main(argc, argv)，现在写成：
+int main(int argc, char *argv[]) { /* ... */ }  但基本机构是一样的。
+对于简单类型，能很好的工作，这是很棒的语法思想。但是很快就变得混乱，典型的例子是申明一个函数指针，按照语法规范，是这样写的：
+int (*fp)(int a, int b);  这里，fp 是一个函数指针，返回 int 数据的表达式 (*fp)(int a, int b)。如何 fp 入参就是它本身时，是怎样的？</description>
+    </item>
+    
+    <item>
+      <title>GoImports安装使用</title>
+      <link>https://yushuangqi.com/blog/2016/gosublime-goimports.html</link>
+      <pubDate>Thu, 25 Feb 2016 13:32:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/gosublime-goimports.html</guid>
+      <description>Go开发过程中时候总需要手工引入包和删除没有使用的包，此时有人意识到可以改善下，想Java、C#、Python等等，总能自动的帮你处理下包。现在Go官方提供了 GoImports 工具，而在 Sublime Text 下也提供了相关的插件来支持自动检测。
+这里介绍的是由 Brad Fitz 提供的 GoImport 插件，该插件基于 GoImprots 工具在 Sublime Text 的插件。 非常好用，能在保存 Go 文件时自动帮你格式化文件并检查包的引用使用，如果使用的包没有导入，则自动导入。相反，当导入的包没有被使用时，则自动删除。
+如何配置安装 GoImports 工具  确保路径$GOPATH/bin在环境变量$PATH中。Windows对应：%GOPATH%\bin在环境变量%PATH%中。
+ 运行命令获取 GoImprots 工具包
+go get golang.org/x/tools/cmd/goimports  运行后，能直接运行$ goimprots命令，已检查工具是否安装成功。
+ 在 Sublime Text 中安装插件 GoSublime
+ 安装后打开 GoSublime 的配置文件
+ 在配置文件中添加新的根配置项：
+{ &amp;quot;fmt_cmd&amp;quot; :[ &amp;quot;goimports&amp;quot;] }   总结 现在，你就可以又开心又方便的使用 Sublime Text 编辑 Go 文件，当你保持文件时，都能够自动添加/删除引入包了，再也没有烦人的编译错误。</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读 config 模块设计</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-config.html</link>
+      <pubDate>Sat, 13 Feb 2016 08:04:49 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-config.html</guid>
+      <description>这是关于 beego 的第一篇正式的源代码解读文章，前面文章 beego框架源码解读计划 中已介绍解读计划。而本文主要针对 beego 框架 config 模块展开讨论。通过本文你可掌握 beego config 使用。
+config 简要说明 beego 的各个模块设计基本相同，灵感源于 Go 内部 database/sql 包的 sql库驱动注册 。模块实现后进行注册，使用时通过注册名进行访问初始化。 而 config 模块也相同。分别支持 ini、json、xml、yaml、内存 格式的配置文件管理。使用时调用config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;config path&amp;quot;)来构建不同格式 config 解析器。
+初始化 config 解析器 首先需确认所用的配置文件格式，beego 的 appconfig 默认使用 ini。 再通过类型初始化配置文件解析器对象。
+import ( &amp;quot;github.com/astaxie/beego/config&amp;quot; ) func main() { cfg, err := config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;myconfig.ini&amp;quot;) if err != nil { // error } }  使用 config 模块时需要导入github.com/astaxie/beego/config包 ，再调用config.NewConfig来指定文件类型，并加载解析 myconfig.ini 配置文件。当加载解析失败时，会返回错误信息，故不能忽略该错误信息。
+当然，也可以直接解析 []byte 数据，构建解析器。这样做法不常见，有时能用于解析配置片断。</description>
+    </item>
+    
+    <item>
+      <title>beego框架源码解读计划</title>
+      <link>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</link>
+      <pubDate>Thu, 11 Feb 2016 13:14:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</guid>
+      <description>&lt;p&gt;大家新年好，今天大年初四，规划下对于开源 web 框架 beego 源代码解读计划安排。在年前便一直在想如何进行一次明确的源码解析。但一直拖至今日才安排。也在思考如何进行学习是合适的。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go开发规范之常见问题汇总</title>
+      <link>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</link>
+      <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</guid>
+      <description>这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是一份规范指引。可以当作一份GO开发规范的补充信息。
+goimports 虽 Go 默认带有 gofmt 工具，但还是强烈推荐增强性工具 goimport ,该工具在 gofmt 工具基础上增强提供自动删除和引入包功能。
+你可在保存文件时，让编辑器自动执行命令，如 Sublime 编辑器插件 GoSublime 和 Atom 编辑器插件 go-plus均可实现。
+在使用前，你需要获取包到本地：
+$ go get golang.org/x/tools/cmd/goimports   在 Sublime 中使用：具体参见: 插件说明文档 在 LiteIDE 中使用：默认支持，如果不起作用，可手工配置：属性配置 -&amp;gt; golangfmt -&amp;gt; 勾选goimports 在 Atom 中使用：具体参见：插件说明文档  注释 注释应该是一个完整的句子，这有利于在 godoc 文档中能看到有效的完整文字。既然是完整的句子，就应该有始有终，末尾以.结束。如：
+// A Request represents a request to run a command. type Request struct { ... // Encode writes the JSON encoding of req to w.</description>
+    </item>
+    
+    <item>
+      <title>Golang新手开发需要注意的七个细节</title>
+      <link>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</link>
+      <pubDate>Fri, 18 Sep 2015 12:55:08 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</guid>
+      <description>&lt;p&gt;Go以简洁著称，但简洁中不乏值得玩味的细节。这些小细节不如goroutine、interface和channel那样&amp;rdquo;高大上&amp;rdquo;，&amp;rdquo;屌丝&amp;rdquo;得可能不经常被人注意到，但它们却对理解Go语言有着重要的作用。这里大家一起通过详实的例子来逐一展开和理解一些细节内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BeegoOrmInsert记录时报错</title>
+      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
+      <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
+      <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
+当时代码是这样写的
+o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err }  在执行此代码报错，错误信息：
+&amp;lt;Ormer&amp;gt; table: `.` not found, maybe not RegisterModel  上面代码的错误性是否非常明显的，是因为本身record是指针对性，而在Insert时又传入的是指针的指针&amp;amp;record
+来看下Beego ORM 内部是如何获取表名的 源代码如下：
+// get model info and model reflect value func (o *orm) getMiInd(md interface{}, needPtr bool) (mi *modelInfo, ind reflect.Value) { val := reflect.ValueOf(md) ind = reflect.Indirect(val) typ := ind.Type() if needPtr &amp;amp;&amp;amp; val.Kind() !</description>
+    </item>
+    
+    <item>
+      <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
+      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
+      <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
+首先看源代码
+package main import ( &amp;quot;bytes&amp;quot; &amp;quot;compress/gzip&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { data := &amp;quot;a&amp;quot; buffer := new(bytes.Buffer) w, _ := gzip.NewWriterLevel(buffer, 9) //php: gzencode($json_data,9) defer w.Close() w.Write([]byte(data)) w.Flush() fmt.Println(buffer.Bytes()[:]) }  不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于RFC 1952 ,gzip数据格式如下：
++---+---+---+---+---+---+---+---+---+---+ |ID1|ID2|CM |FLG| MTIME |XFL|OS | (more--&amp;gt;) +---+---+---+---+---+---+---+---+---+---+  再对比PHP和GoLang的头部定义
+   - PHP Go     D1 31 31   D2 139 139   CM (compression method) 8 8   FLG (flags) 0 0   MTIME (modification time) 0 0 0 0 0 9 110 136   XFL (extra flags) 0 0   OS (operating system) 0 255    上面看到，Go 设置的头信息和PHP有部分差役，Go都设置了MTime（修改时间） 和OS（操作系统，为255 ，不知道代表什么意思），而PHP中的OS＝0表示是 FAT文件系统。</description>
+    </item>
+    
+    <item>
+      <title>老虞学Golang-控制语句</title>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</link>
+      <pubDate>Mon, 08 Apr 2013 23:31:47 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</guid>
+      <description>Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活
+if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执行语句块，否则则执行else语句块(如果存在else时)，此逻辑和其他语言中的if一样，但是在Go中还是有一些不同之处。
+ if条件表达式不能使用花括号()包含 if语句代码段必须使用{}，并且左括号必须和if在同一行 if条件表达式的前面可以包含初始化语句，支持平行赋值，但不支持多个赋值语句  赋值+条件判断
+	if a, b := 21, 3; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }  在if条件表达式前面声明的的变量只能在if-else语句块中使用。
+ if a, b := 21, 31; a &amp;gt; b { fmt.Println(&amp;quot;a&amp;gt;b ? true&amp;quot;) }else { fmt.Println(a,b) //Ok } fmt.Println(a,b) //error: undefined a ,undefined b  还需要注意的是如果在if-else 中包含return 时，编译器无法解析出else中的retrun,导致方法缺少return ,目前1.1版本已支持该方式。
+	func getName(id int) string { if id == 1 { return &amp;quot;YourName&amp;quot; }else { return &amp;quot;MyName&amp;quot; } //panic(&amp;quot;&amp;quot;) }  此代码编译不通过，错误信息：function ends without a return statement，这是在设计Go时故意这样的,也可以说是一个Bug（可参见:https://code.</description>
+    </item>
+    
+    <item>
+      <title>老虞学Golang-函数上</title>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</link>
+      <pubDate>Sun, 07 Apr 2013 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</guid>
+      <description>不可或缺的函数，在Go中定义函数的方式如下：
+func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通过函数定义，我们可以看到Go中函数和其他语言中的共性和特性
+共性  关键字——func 方法名——funcName 入参——— a,b int,b string 返回值—— r,s int 函数体—— {}  特性 Go中函数的特性是非常酷的，给我们带来不一样的编程体验。
+为特定类型定义函数，即为类型对象定义方法 在Go中通过给函数标明所属类型，来给该类型定义方法，上面的 p myType 即表示给myType声明了一个方法， p myType 不是必须的。如果没有，则纯粹是一个函数，通过包名称访问。packageName.funcationName
+如：
+	//定义新的类型double，主要目的是给float64类型扩充方法 type double float64 //判断a是否等于b func (a double) IsEqual(b double) bool { var r = a - b if r == 0.</description>
+    </item>
+    
+    <item>
+      <title>老虞学golang-字符串</title>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</link>
+      <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
+      <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
+ 初始化  var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
+ 查看示例代码
+ str :=&amp;quot;laoYu老虞&amp;quot; for i:=0;i&amp;lt;len(str);i++ { fmt.Println(str[i]) } for i,s := range str { fmt.Println(i,&amp;quot;Unicode(&amp;quot;,s,&amp;quot;) string=&amp;quot;,string(s)) } r := []rune(str) fmt.Println(&amp;quot;rune=&amp;quot;,r) for i:=0;i&amp;lt;len(r) ; i++ { fmt.Println(&amp;quot;r[&amp;quot;,i,&amp;quot;]=&amp;quot;,r[i],&amp;quot;string=&amp;quot;,string(r[i])) } Outut： 108 97 111 89 117 232 128 129 232 153 158 0 Unicode( 108 ) string= l 1 Unicode( 97 ) string= a 2 Unicode( 111 ) string= o 3 Unicode( 89 ) string= Y 4 Unicode( 117 ) string= u 5 Unicode( 32769 ) string= 老 8 Unicode( 34398 ) string= 虞 rune= [108 97 111 89 117 32769 34398] r[ 0 ]= 108 string= l r[ 1 ]= 97 string= a r[ 2 ]= 111 string= o r[ 3 ]= 89 string= Y r[ 4 ]= 117 string= u r[ 5 ]= 32769 string= 老 r[ 6 ]= 34398 string= 虞  对字符串的操作非常重要，来了解下strings包中提供了哪些函数 获取总字节数 func Len(v type) int</description>
+    </item>
+    
+    <item>
+      <title>老虞学Golang-常量</title>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</link>
+      <pubDate>Fri, 05 Apr 2013 23:31:47 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</guid>
+      <description>###常量
+常量和C#中的概念相同，在编译期被创建。因为在编译期必须确定其值，因此在声明常量时有一些限制。
+ 其类型必须是：数值、字符串、布尔值 表达式必须是在编译期可计算的 声明常量的同时必须进行初始化，其值不可再次修改  ####Doc
+http://golang.org/doc/go_spec.html#Constants http://golang.org/doc/go_spec.html#Constant_expressions http://golang.org/doc/go_spec.html#Constant_declarations http://golang.org//doc/go_spec.html#Iota
+####语法
+const关键字用于声明常量const [(] 名称 [数据类型] = 表达式 [)] const ( 多个常量名称 [数据类型]= 对应的多个表达式 )
+如果定义多行常量而表达式一致时可省略其他行的表达式
+声明时如果不指定数据类型，则该常量为无类型常量
+const Pi = 3.14159265358 //float64 Pi=3.1415  编译错误: cannot assign to Pi, 变量名Pi已经被使用这里是无法再次给Pi赋值的
+const a, b, c = 1, false, &amp;quot;str&amp;quot; //多重赋值  一次可以声明多个常量，且同时赋值，其类型可以不一致
+const d = 1 &amp;lt;&amp;lt; 2 //需计算的表达式  复制可以是一个可以在编译期计算出结果的表达式
+const ( //批量声明 Monday, Tuesday, Wednesday = 1, 2, 3 Thursday, Friday, Saturday = 4, 5, 6 )  批量声明多个常量</description>
+    </item>
+    
+  </channel>
+</rss>

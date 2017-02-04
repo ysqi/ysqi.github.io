@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E5%86%85%E5%AD%98.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%86%85%E5%AD%98.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>heartbleeder自动检测OpenSSL心脏出血漏洞(附修复指南)</title>
+      <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:35:00 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</guid>
+      <description>heartbleeder 可以探测你的服务器是否存在 OpenSSL CVE-2014-0160 漏洞 （心脏出血漏洞）。
+什么是心脏出血漏洞？ CVE-2014-0160，心脏出血漏洞，是一个非常严重的 OpenSSL 漏洞。这个漏洞使得攻击者可以从存在漏洞的服务器上读取64KB大小的内存信息。这些信息中可能包含非常敏感的信息，包括用户请求、密码甚至证书的私钥。
+据称，已经有攻击者在某宝上尝试使用漏洞读取数据，在读取200次后，获取了40多个用户名和7个密码。
+如何使用 heartbleeder 检测心脏出血漏洞？ 安装 可以在gobuild.io下载编译好的二进制文件的压缩包。包括Windows、Linux、MacOSX。
+由于服务器操作系统最常用的是Linux，因此这里提供一下下载Linux二进制压缩包的命令：
+Linux(amd64)
+wget http://gobuild.io/github.com/titanous/heartbleeder/master/linux/amd64 -O output.zip  Linux(i386)
+wget http://gobuild.io/github.com/titanous/heartbleeder/master/linux/386 -O output.zip  下载后解压缩即可。
+也可以自行编译安装（Go版本需在1.2以上）， 使用如下命令：
+go get github.com/titanous/heartbleeder  二进制文件会放置在 $GOPATH/bin/heartbleeder。
+使用 $ heartbleeder example.com INSECURE - example.com:443 has the heartbeat extension enabled and is vulnerable  Postgres 默认在 5432 端口使用 OpenSSL，如果你使用Postgres服务器，则需使用如下命令：
+$ heartbleeder -pg example.com SECURE - example:5432 does not have the heartbeat extension enabled  如何手工检测心脏出血漏洞 如果不方便安装heartbleeder，或者不放心自动检测的结果，也可以手动检测。</description>
+    </item>
+    
+  </channel>
+</rss>

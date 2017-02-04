@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/erlang.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/erlang.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>不是语言之争---GovsErlang</title>
+      <link>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:28 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html</guid>
+      <description>因为 云巴 系统对高并发、低延迟的需求，我们对各个语言、平台做了很多的调研比较工作。这自然就包括致力于开发高并发应用的 Go 和 Erlang。
+并发 Go 对高并发的支持通过 goroutine 实现。goroutine 可以理解为轻量级的 线程（thread）。同一个 Go 应用创建的 goroutine 共享地址空间。
+Erlang 的高并发通过轻量级 进程（process）实现，每一个进程都有独立的状态记录。
+另外，使用 goroutine 要注意，goroutine 运行完毕后，占用的内存放回内存池备用，不会释放。
+对于每一个任务都需要有独立状态的场景，Erlang 的 process 更有优势。
+抢占式调度 Erlang 的任务调度器有一个 reduction budget 的概念。进程的任何操作都会造成预算消耗，包括 函数调用、调用 BIF、进程堆垃圾回收、ETS 读写、发消息（目标邮箱堆积的消息越多，消耗越大）。Erlang 的 正则表达式库 也被做了修改以支持 reductions。所以如果进程在长时间执行正则表达式匹配，也一样会消耗 reductions，也会被抢占。
+Go 之前的调度器只在 syscall 发生时调度，优化后可以在任何函数调用时调度。但是要注意，如果在 goroutine 里写一个死循环，Go 的调度器不能有效抢占，同一个调度器的 其他 goroutine 会被挂起。
+垃圾回收 像 Java 一样，Go 的垃圾回收是全局的，这意味着一旦垃圾回收被触发，所有的 goroutine 都会被暂停，造成一段时间的业务延迟。
+Erlang 的垃圾回收是 进程 级别的，每一个进程都有自己独立的垃圾回收器，一个进程的垃圾回收被触发，不会造成其他进程被挂起。相对来说带来的业务延迟小。
+错误处理 Erlang 的每一个进程都有 进程 ID （PID），同时也可以给进程注册名字，也就是说每一个进程都有独立的身份，可以有效的监控每一个进程的状态。进程异常退出时，可以捕捉到退出事件，并重启进程（参见 otp 的 supervisor/worker）。</description>
+    </item>
+    
+  </channel>
+</rss>

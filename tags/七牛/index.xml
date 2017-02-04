@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E4%B8%83%E7%89%9B.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E4%B8%83%E7%89%9B.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>在线云开发平台coding&#43;七牛搭建超级个人博客</title>
+      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</link>
+      <pubDate>Sun, 23 Aug 2015 00:00:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</guid>
+      <description>&lt;p&gt;昨天加入了codefollow这个大家庭，话说要鼓励大家写作与分享，趁着老婆睡觉偷偷的写一篇如何利用云开发平台coding以及七牛这条大黄牛来搭建一个超级方便又稳定的个人博客。
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

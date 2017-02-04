@@ -1,0 +1,304 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go标准库剖析1(transporthttp请求的承载者) |虞双齐Go语言技术独立咨询顾问</title><meta name="description" content="使用golang net/http库发送http请求，最后都是调用 transport的 Round"><meta name="keywords" content="http, 框架源码, 读源码, 源码分析, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Go语言技术独立咨询顾问"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html"><meta property="og:title" content="Go标准库剖析1(transporthttp请求的承载者)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:18"><meta property="article:modified_time" content="2016-12-31 11:34:18"><meta property="article:tag" content="http"><meta property="article:tag" content="框架源码"><meta property="article:tag" content="读源码"><meta property="article:tag" content="源码分析"><meta property="article:tag" content="golang"><meta name="og:description" content="使用golang net/http库发送http请求，最后都是调用 transport的 Round"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20161122"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html">Go标准库剖析1(transporthttp请求的承载者)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000003735562" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法</p><pre><code>type RoundTripper interface {
+    RoundTrip(*Request) (*Response, error)
+}
+</code></pre><p><code>RoundTrip executes a single HTTP transaction, returning the Response for the request req.</code> (RoundTrip 代表一个http事务，给一个请求返回一个响应)<br>说白了，就是你给它一个request,它给你一个response</p><p>下面我们来看一下他的实现，对应源文件<code>net/http/transport.go</code>，我感觉这里是http package里面的精髓所在，go里面一个struct就跟一个类一样，transport这个类长这样的</p><pre><code>type Transport struct {
+    idleMu     sync.Mutex
+    wantIdle   bool // user has requested to close all idle conns
+    idleConn   map[connectMethodKey][]*persistConn
+    idleConnCh map[connectMethodKey]chan *persistConn
+
+    reqMu       sync.Mutex
+    reqCanceler map[*Request]func()
+
+    altMu    sync.RWMutex
+    altProto map[string]RoundTripper // nil or map of URI scheme =&gt; RoundTripper
+    //Dial获取一个tcp 连接，也就是net.Conn结构，你就记住可以往里面写request
+    //然后从里面搞到response就行了
+    Dial func(network, addr string) (net.Conn, error)
+}
+</code></pre><p>篇幅所限， https和代理相关的我就忽略了， 两个 <code>map</code> 为 <code>idleConn</code>、<code>idleConnCh</code>，<code>idleConn</code> 是保存从 connectMethodKey （代表着不同的协议 不同的host，也就是不同的请求）到 persistConn 的映射， <code>idleConnCh</code> 用来在并发http请求的时候在多个 goroutine 里面相互发送持久连接，也就是说， 这些持久连接是可以重复利用的， 你的http请求用某个<code>persistConn</code>用完了，通过这个<code>channel</code>发送给其他http请求使用这个<code>persistConn</code>，然后我们找到<code>transport</code>的<code>RoundTrip</code>方法</p><pre><code>func (t *Transport) RoundTrip(req *Request) (resp *Response, err error) {
+    ...
+    pconn, err := t.getConn(req, cm)
+    if err != nil {
+        t.setReqCanceler(req, nil)
+        req.closeBody()
+        return nil, err
+    }
+
+    return pconn.roundTrip(treq)
+}
+</code></pre><p>前面对输入的错误处理部分我们忽略， 其实就2步，先获取一个TCP长连接，所谓TCP长连接就是三次握手建立连接后不<code>close</code>而是一直保持重复使用（节约环保） 然后调用这个持久连接persistConn 这个struct的roundTrip方法</p><p>我们跟踪第一步</p><pre><code>func (t *Transport) getConn(req *Request, cm connectMethod) (*persistConn, error) {
+    if pc := t.getIdleConn(cm); pc != nil {
+        // set request canceler to some non-nil function so we
+        // can detect whether it was cleared between now and when
+        // we enter roundTrip
+        t.setReqCanceler(req, func() {})
+        return pc, nil
+    }
+
+    type dialRes struct {
+        pc  *persistConn
+        err error
+    }
+    dialc := make(chan dialRes)
+    //定义了一个发送 persistConn的channel
+
+    prePendingDial := prePendingDial
+    postPendingDial := postPendingDial
+
+    handlePendingDial := func() {
+        if prePendingDial != nil {
+            prePendingDial()
+        }
+        go func() {
+            if v := &lt;-dialc; v.err == nil {
+                t.putIdleConn(v.pc)
+            }
+            if postPendingDial != nil {
+                postPendingDial()
+            }
+        }()
+    }
+
+    cancelc := make(chan struct{})
+    t.setReqCanceler(req, func() { close(cancelc) })
+
+    // 启动了一个goroutine, 这个goroutine 获取里面调用dialConn搞到
+    // persistConn, 然后发送到上面建立的channel  dialc里面，    
+    go func() {
+        pc, err := t.dialConn(cm)
+        dialc &lt;- dialRes{pc, err}
+    }()
+
+    idleConnCh := t.getIdleConnCh(cm)
+    select {
+    case v := &lt;-dialc:
+        // dialc 我们的 dial 方法先搞到通过 dialc通道发过来了
+        return v.pc, v.err
+    case pc := &lt;-idleConnCh:
+        // 这里代表其他的http请求用完了归还的persistConn通过idleConnCh这个    
+        // channel发送来的
+        handlePendingDial()
+        return pc, nil
+    case &lt;-req.Cancel:
+        handlePendingDial()
+        return nil, errors.New(&quot;net/http: request canceled while waiting for connection&quot;)
+    case &lt;-cancelc:
+        handlePendingDial()
+        return nil, errors.New(&quot;net/http: request canceled while waiting for connection&quot;)
+    }
+}
+</code></pre><p>这里面的代码写的很有讲究 , 上面代码里面我也注释了， 定义了一个发送 <code>persistConn</code>的channel<code>dialc</code>， 启动了一个<code>goroutine</code>, 这个<code>goroutine</code> 获取里面调用<code>dialConn</code>搞到<code>persistConn</code>, 然后发送到<code>dialc</code>里面，主协程<code>goroutine</code>在 <code>select</code>里面监听多个<code>channel</code>,看看哪个通道里面先发过来 <code>persistConn</code>，就用哪个，然后<code>return</code>。</p><p>这里要注意的是 <code>idleConnCh</code> 这个通道里面发送来的是其他的http请求用完了归还的<code>persistConn</code>， 如果从这个通道里面搞到了，<code>dialc</code>这个通道也等着发呢，不能浪费，就通过<code>handlePendingDial</code>这个方法把<code>dialc</code>通道里面的<code>persistConn</code>也发到<code>idleConnCh</code>，等待后续给其他http请求使用。</p><p>还有就是，读者可以翻一下代码，每个新建的persistConn的时候都把tcp连接里地输入流，和输出流用br（<code>br *bufio.Reader</code>）,和bw(<code>bw *bufio.Writer</code>)包装了一下，往bw写就写到tcp输入流里面了，读输出流也是通过br读，并启动了读循环和写循环</p><pre><code>pconn.br = bufio.NewReader(noteEOFReader{pconn.conn, &amp;pconn.sawEOF})
+pconn.bw = bufio.NewWriter(pconn.conn)
+go pconn.readLoop()
+go pconn.writeLoop()
+</code></pre><p>我们跟踪第二步<code>pconn.roundTrip</code> 调用这个持久连接persistConn 这个struct的<code>roundTrip</code>方法。<br>先瞄一下 <code>persistConn</code> 这个struct</p><pre><code>type persistConn struct {
+    t        *Transport
+    cacheKey connectMethodKey
+    conn     net.Conn
+    tlsState *tls.ConnectionState
+    br       *bufio.Reader       // 从tcp输出流里面读
+    sawEOF   bool                // whether we've seen EOF from conn; owned by readLoop
+    bw       *bufio.Writer       // 写到tcp输入流
+     reqch    chan requestAndChan // 主goroutine 往channnel里面写，读循环从     
+                                 // channnel里面接受
+    writech  chan writeRequest   // 主goroutine 往channnel里面写                                      
+                                 // 写循环从channel里面接受
+    closech  chan struct{}       // 通知关闭tcp连接的channel 
+
+    writeErrCh chan error
+
+    lk                   sync.Mutex // guards following fields
+    numExpectedResponses int
+    closed               bool // whether conn has been closed
+    broken               bool // an error has happened on this connection; marked broken so it's not reused.
+    canceled             bool // whether this conn was broken due a CancelRequest
+    // mutateHeaderFunc is an optional func to modify extra
+    // headers on each outbound request before it's written. (the
+    // original Request given to RoundTrip is not modified)
+    mutateHeaderFunc func(Header)
+}
+</code></pre><p>里面是各种channel, 用的是出神入化， 各位要好好理解一下， 我这里画一下</p><p>这里有三个goroutine，分别用三个圆圈表示， channel用箭头表示</p><p>有两个channel <code>writeRequest</code> 和 <code>requestAndChan</code></p><pre><code>type writeRequest struct {
+    req *transportRequest
+    ch  chan&lt;- error
+}
+</code></pre><p>主goroutine 往writeRequest里面写，写循环从writeRequest里面接受</p><pre><code>type responseAndError struct {
+    res *Response
+    err error
+}
+
+type requestAndChan struct {
+    req *Request
+    ch  chan responseAndError
+    addedGzip bool
+}
+</code></pre><p>主goroutine 往requestAndChan里面写，读循环从requestAndChan里面接受。</p><p>注意这里的channel都是双向channel，也就是channel 的struct里面有一个chan类型的字段， 比如 <code>reqch chan requestAndChan</code> 这里的 requestAndChan 里面的 <code>ch chan responseAndError</code>。</p><p>这个是很牛叉，主 goroutine 通过 reqch 发送requestAndChan 给读循环，然后读循环搞到response后通过 requestAndChan 里面的通道responseAndError把response返给主goroutine，所以我画了一个双向箭头。</p><p>我们研究一下代码，我理解下来其实就是三个goroutine通过channel互相协作的过程。</p><p>主循环：</p><pre><code>func (pc *persistConn) roundTrip(req *transportRequest) (resp *Response, err error) {
+    ... 忽略
+    // Write the request concurrently with waiting for a response,
+    // in case the server decides to reply before reading our full
+    // request body.
+    writeErrCh := make(chan error, 1)
+    pc.writech &lt;- writeRequest{req, writeErrCh}
+    //把request发送给写循环
+    resc := make(chan responseAndError, 1)
+    pc.reqch &lt;- requestAndChan{req.Request, resc, requestedGzip}
+    //发送给读循环
+    var re responseAndError
+    var respHeaderTimer &lt;-chan time.Time
+    cancelChan := req.Request.Cancel
+WaitResponse:
+    for {
+        select {
+        case err := &lt;-writeErrCh:
+            if isNetWriteError(err) {
+                //写循环通过这个channel报告错误
+                select {
+                case re = &lt;-resc:
+                    pc.close()
+                    break WaitResponse
+                case &lt;-time.After(50 * time.Millisecond):
+                    // Fall through.
+                }
+            }
+            if err != nil {
+                re = responseAndError{nil, err}
+                pc.close()
+                break WaitResponse
+            }
+            if d := pc.t.ResponseHeaderTimeout; d &gt; 0 {
+                timer := time.NewTimer(d)
+                defer timer.Stop() // prevent leaks
+                respHeaderTimer = timer.C
+            }
+        case &lt;-pc.closech:
+            // 如果长连接挂了， 这里的channel有数据， 进入这个case, 进行处理
+
+            select {
+            case re = &lt;-resc:
+                if fn := testHookPersistConnClosedGotRes; fn != nil {
+                    fn()
+                }
+            default:
+                re = responseAndError{err: errClosed}
+                if pc.isCanceled() {
+                    re = responseAndError{err: errRequestCanceled}
+                }
+            }
+            break WaitResponse
+        case &lt;-respHeaderTimer:
+            pc.close()
+            re = responseAndError{err: errTimeout}
+            break WaitResponse
+            // 如果timeout，这里的channel有数据， break掉for循环
+        case re = &lt;-resc:
+            break WaitResponse
+           // 获取到读循环的response, break掉 for循环
+        case &lt;-cancelChan:
+            pc.t.CancelRequest(req.Request)
+            cancelChan = nil
+        }
+    }
+
+    if re.err != nil {
+        pc.t.setReqCanceler(req.Request, nil)
+    }
+    return re.res, re.err
+}
+</code></pre><p>这段代码主要就干了三件事</p><ul><li><p>主goroutine -&gt;requestAndChan -&gt; 读循环goroutine</p></li><li><p>主goroutine -&gt;writeRequest-&gt; 写循环goroutine</p></li><li><p>主goroutine 通过select 监听各个channel上的数据， 比如请求取消， timeout，长连接挂了，写流出错，读流出错， 都是其他goroutine 发送过来的， 跟中断一样，然后相应处理，上面也提到了，有些channel是主goroutine通过channel发送给其他goroutine的struct里面包含的channel, 比如 <code>case err := &lt;-writeErrCh:</code> <code>case re = &lt;-resc:</code></p></li></ul><p>读循环代码：</p><pre><code>func (pc *persistConn) readLoop() {
+
+    ... 忽略
+    alive := true
+    for alive {
+
+        ... 忽略
+        rc := &lt;-pc.reqch
+
+        var resp *Response
+        if err == nil {
+            resp, err = ReadResponse(pc.br, rc.req)
+            if err == nil &amp;&amp; resp.StatusCode == 100 {
+                //100  Continue  初始的请求已经接受，客户应当继续发送请求的其 
+                // 余部分
+                resp, err = ReadResponse(pc.br, rc.req)
+                // 读pc.br（tcp输出流）中的数据，这里的代码在response里面
+                //解析statusCode，头字段， 转成标准的内存中的response 类型
+                //  http在tcp数据流里面，head和body以 /r/n/r/n分开， 各个头
+                // 字段 以/r/n分开
+            }
+        }
+
+        if resp != nil {
+            resp.TLS = pc.tlsState
+        }
+
+        ...忽略
+        //上面处理一些http协议的一些逻辑行为，
+        rc.ch &lt;- responseAndError{resp, err} //把读到的response返回给    
+                                             //主goroutine
+
+        .. 忽略
+        //忽略部分， 处理cancel req中断， 发送idleConnCh归还pc（持久连接）到持久连接池中（map）    
+    pc.close()
+}
+</code></pre><p>无关代码忽略，这段代码主要干了一件事情</p><blockquote><p>读循环goroutine 通过channel requestAndChan 接受主goroutine发送的request(<code>rc := &lt;-pc.reqch</code>), 并从tcp输出流中读取response， 然后反序列化到结构体中， 最后通过channel 返给主goroutine (<code>rc.ch &lt;- responseAndError{resp, err}</code>)</p></blockquote><pre><code>func (pc *persistConn) writeLoop() {
+    for {
+        select {
+        case wr := &lt;-pc.writech:   //接受主goroutine的 request
+            if pc.isBroken() {
+                wr.ch &lt;- errors.New(&quot;http: can't write HTTP request on broken connection&quot;)
+                continue
+            }
+            err := wr.req.Request.write(pc.bw, pc.isProxy, wr.req.extra)   //写入tcp输入流
+            if err == nil {
+                err = pc.bw.Flush()
+            }
+            if err != nil {
+                pc.markBroken()
+                wr.req.Request.closeBody()
+            }
+            pc.writeErrCh &lt;- err 
+            wr.ch &lt;- err         //  出错的时候返给主goroutineto 
+        case &lt;-pc.closech:
+            return
+        }
+    }
+}
+</code></pre><p>写循环就更简单了，select channel中主gouroutine的request，然后写入tcp输入流，如果出错了，channel 通知调用者。</p><p>整体看下来，过程都很简单，但是代码中有很多值得我们学习的地方，比如高并发请求如何复用tcp连接，这里是连接池的做法，如果使用多个 goroutine相互协作完成一个http请求，出现错误的时候如何通知调用者中断错误，代码风格也有很多可以借鉴的地方。</p><p>我打算写一个系列，全面剖析go标准库里面的精彩之处，分享给大家。</p></div><aside id="meta"><meta itemprop="wordCount" content="970"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/http.html" rel="tag">http</a> <a href="/tags/%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81.html" rel="tag">框架源码</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html" rel="tag">源码分析</a> <a href="/tags/%E8%AF%BB%E6%BA%90%E7%A0%81.html" rel="tag">读源码</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/gogoyu-yan-xue-xi-bi-ji--4-jin-jie.html">【Go】Go语言学习笔记-4-进阶</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html">MiniJava语言编译器的Golang实现。</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="cf4dcefa5efd3bc61a689b66dbd0ff4a" data-title="Go标准库剖析1(transporthttp请求的承载者)" data-url="https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Go语言技术独立咨询顾问">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="/"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about/"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html" rel="nofollow" target="blank"><img src="http://static.yushuangqi.com/assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-Go语言技术独立咨询顾问。欢迎<a href="/about/" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

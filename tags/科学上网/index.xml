@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>go语言goget导入官方依赖的解决方法</title>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-go-get-dao-ru-guan-fang-yi-lai-de-jie-jue-fang-fa.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:21 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-go-get-dao-ru-guan-fang-yi-lai-de-jie-jue-fang-fa.html</guid>
+      <description>https://segmentfault.com/a/
+由于众所周知的原因，使用go语言的时候会发生这样，那样的问题。比如使用go get 导入官方依赖的时候回报错。
+再次感谢伟大的xxwall.
+那么，如何才能绕过这道门槛呢？
+解决方案
+1： 使用 http_proxy环境变量 再执行 go get 之前，先使用 set 命令设置一下 环境变量，使用http_proxy 这个环境变量制定一个科学上网的proxy,再go get 就没问题了。 set http_proxy=127.0.0.1:8787 go get ... 2: 从github上面导入，再手动copy到%GOPATH%\src\golang.org\x\xxx 下面，这样就会从本地导入包了。 比如： go get github.com/golang/net 再拷贝到上面说的目录下即可。  </description>
+    </item>
+    
+  </channel>
+</rss>

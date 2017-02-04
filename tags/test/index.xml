@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/test.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/test.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>对beego的控制器函数进行单测</title>
+      <link>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</guid>
+      <description>根据astaxie大神的意见，在beego上对controller做单测比较困难，他的建议就是把所有逻辑都拆分出来，放到model中。然后对model中的public函数进行测试。
+但是这就会多很多封装，而且，有些时候对controller的测试可能是绕不开的。
+其实对controller进行单测也不是那么麻烦，重点就是把http需要的Request和ResponseWriter需要的数据都构造出来即可。
+下面是我的做法👇重点看代码和注释吧。很多代码是self-explanation
+package test import ( &amp;quot;github.com/astaxie/beego&amp;quot; &amp;quot;github.com/astaxie/beego/context&amp;quot; &amp;quot;github.com/astaxie/beego/session&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;net/url&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;youApp/controllers&amp;quot; ) func prepareController(c *beego.Controller) { c.Ctx = &amp;amp;context.Context{ Request: &amp;amp;http.Request{URL: &amp;amp;url.URL{Scheme: &amp;quot;http&amp;quot;, Host: &amp;quot;localhost&amp;quot;, Path: &amp;quot;/&amp;quot;}}, ResponseWriter: &amp;amp;fakeResponseWriter{}, } c.Ctx.Output = &amp;amp;context.BeegoOutput{Context: c.Ctx} c.Ctx.Input = &amp;amp;context.BeegoInput{Request: c.Ctx.Request} globalSessions, _ := session.NewManager(&amp;quot;memory&amp;quot;, `{&amp;quot;cookieName&amp;quot;:&amp;quot;gosessionid&amp;quot;,&amp;quot;gclifetime&amp;quot;:10}`) c.Ctx.Request.Header = http.Header{} c.Ctx.Request.AddCookie(&amp;amp;http.Cookie{Name: &amp;quot;gosessionid&amp;quot;, Value: &amp;quot;test&amp;quot;}) c.CruSession = globalSessions.SessionRegenerateId(c.Ctx.ResponseWriter, c.Ctx.Request) c.Data = map[interface{}]interface{}{} } func TestRecomputeBanlance(t *testing.T) { c := &amp;amp;controllers.BanlanceController{} prepareController(&amp;amp;(c.</description>
+    </item>
+    
+  </channel>
+</rss>

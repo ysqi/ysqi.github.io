@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/vim.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/vim.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>一条命令即可将Vim配置为功能强大的IDE</title>
+      <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
+      <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
+安装：
+curl -o - https://raw.githubusercontent.com/HmyBmny/vimrc/master/install-vim-plugins | sh  部分插件的使用需要安装一些依赖，诸如 ctags 之类的，具体请参考：https://github.com/HmyBmny/vimrc
+支持所有 Linux 平台， Mac 没试过，默认是 C/C++, 如果想用来开发 Python， Go 或者其它的语言，只需要找到相应的 Vim 插件并将仓库名加到 .vimrc 文件即可。
+开发 Python 只需将下面的代码添加到 .vimrc 文件
+Plug `klen/python-mode`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。
+开发 Go 只需将下面的代码添加到 .vimrc 文件
+Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。</description>
+    </item>
+    
+    <item>
+      <title>mac下vim&amp;#43;golang开发环境搭建</title>
+      <link>https://yushuangqi.com/blog/2016/mac-xia--vim</link>
+      <pubDate>Sat, 31 Dec 2016 11:32:59 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/mac-xia--vim</guid>
+      <description>今天费了好大劲搞定了mac 下 vim golang 的开发环境，mark 一下
+基本参照 http://studygolang.com/articl&amp;hellip;
+其中有几点需要注意一下
+ 我在mac下安装，目前mac默认的vim version是7.3，无法安装YCM（要求7.4+），所以先安装vim: brew install vim。安装后将安装后的bin path 添加到系统Path 里
+export PATH=$PATH:“your vim bin path”
+ YCM的安装最好参照 https://github.com/Valloric/Y&amp;hellip;
+其中安装时需要python的若干安装包 pip install future, pip install requests，其他不太记得了。还需要安装 brew install cmake. 然后执行./install.py --gocode-completer
+ 使用ultisnips时，研究了好久才明白如何使用它进行展开，且看我的.vimrc文件
+  &amp;quot; YCM settings let g:ycm_key_list_select_completion = [&#39;&#39;, &#39;&#39;] let g:ycm_key_list_previous_completion = [&#39;&#39;] let g:ycm_key_invoke_completion = &#39;&#39; &amp;quot; UltiSnips setting let g:UltiSnipsExpandTrigger=&amp;quot;&amp;lt;Tab&amp;gt;&amp;quot; let g:UltiSnipsJumpForwardTrigger=&amp;quot;&amp;lt;c-j&amp;gt;&amp;quot; let g:UltiSnipsJumpBackwardTrigger=&amp;quot;&amp;lt;c-k&amp;gt;&amp;quot;  YCM和UltiSnips的tab会冲突，但是原班照抄帖子中的设置会报错 no mapping 之类的，查阅了网上的一些资料，将设置改成如上。而在使用的时候，键入im 会出现一些提示 import &amp;lt;snip&amp;gt; import (.</description>
+    </item>
+    
+  </channel>
+</rss>

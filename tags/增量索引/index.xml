@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <link>https://yushuangqi.com/tags/%E5%A2%9E%E9%87%8F%E7%B4%A2%E5%BC%95.xml</link>
+    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%A2%9E%E9%87%8F%E7%B4%A2%E5%BC%95.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>用Golang写一个搜索引擎(0x06)---索引构建</title>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x06----suo-yin-gou-jian.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x06----suo-yin-gou-jian.html</guid>
+      <description>https://segmentfault.com/a/
+不知不觉写到第七篇了，按这个节奏，估计得写到15到20篇左右才能写完，希望自己能坚持下去，之前写代码的时候很多东西并没有想得那么细致，现在每写一篇文章还要查一些资料，确保文章的准确性，也相当于自己复习了一下吧，呵呵。
+先说一下，关于倒排文件，其实还有很多东西没有讲，到后面再统一补充一下吧，主要是倒排文件的压缩技术，这一部分因为目前的存储空间不管是硬盘还是内存都是很大的，所以压缩技术用得不是很多了。
+今天我们来讲讲倒排索引的构建。
+之前，我们了解到了，倒排索引在系统中是存成下图这个样子
+上面的B+树是一个文件，下面的倒排链是一个文件，那么，如何来构建这两个文件呢，本章我会说说一般的常规构建方法，然后说一下我是怎么构建的。
+一般情况下，搜索引擎默认会认为索引是不会有太大的变化的，所以把索引分为全量索引和增量索引两部分，全量索引一般是以天甚至是周，月为单位构建的，构建完了以后就导入到引擎中进行检索，而增量索引是实时的进入搜索引擎的，很多就是保存在内存中，搜索的时候分别从全量索引和增量索引中检索数据，然后把两部分数据合并起来返回给请求方，所以增量索引不是我们这一篇的主要内容，在最后我的索引构建部分我会说一下我的增量索引构建方式。现在先看看全量索引。
+全量索引构建一般有以下两种方式
+一次性构建索引 一种是一次性的构建索引，这种构建方法是全量扫描所有文档，然后把所有的索引存储到内存中，直到所有文档扫描完毕，索引在内存中就构建完了，这时再一次性的写入硬盘中。大概步骤如下：
+ 初始化一个空map ，map的key用来保存term，map的value是一个链表，用来保存docid链
+ 设置docid的值为0
+ 读取一个文档内容，将文档编号设置成docid
+ 对文档进行切词操作，得到这个文档的所有term(t1,t2,t3&amp;hellip;)
+ 将所有的&amp;lt;term,docid&amp;gt;键值对的term插入到map的key中，docid追加到map的value中
+ docid加1
+ 如果还有文档未读取，返回第三步，否则继续
+ 遍历map中的&amp;lt;key,value&amp;gt;，将value写入倒排文件中，并记录此value在文件中的偏移offset，然后将&amp;lt;key,offset&amp;gt;写入B+树中
+ 索引构建完毕
+  用图来表示就是下面几个步骤
+如果用伪代码来表示的话就是这样
+//初始化ivt的map 和 docid编号 var ivt map[string][]int var docid int = 0 //依次读取文件的每一行数据 for content := range DocumentsFileContents{ terms := segmenter.Cut(content) // 切词 for _,term := range terms{ if _,ok:=ivt[term];!ok{ ivt[term]=[]int{docid} }else{ ivt[term]=append(ivt[term],docid) } docid++ } //初始化一棵B+树,字典 bt:=InitBTree(&amp;quot;.</description>
+    </item>
+    
+  </channel>
+</rss>
