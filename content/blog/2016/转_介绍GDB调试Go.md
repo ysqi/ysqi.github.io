@@ -30,7 +30,7 @@ JavaScript 代码。在学习 Go
 GDB)](http://sourceware.org/gdb/current/onlinedocs/gdb/)。
 
 为了这篇文章，我们使用以下这个简单的程序：
-
+```Go
     package main
 
     import (
@@ -56,12 +56,12 @@ GDB)](http://sourceware.org/gdb/current/onlinedocs/gdb/)。
             fmt.Println("count:", count)
         }
     }
-
+```
 为了使用 GDB，你需要使用 `-gcflags ”-N -l”`
 选项编译你的程序，这些选项阻止编译器使用内联函数和变量。
-
+```Go
     go build -gcflags "-N -l" gdbsandbox.go
-
+```
 这是一个交互式的调试 GDB 的会话示例：
 
     yml@simba$  gdb gdbsandbox 
