@@ -17,7 +17,7 @@ publishdir = "public"
 [author]
   description = "开源爱好者，Golang开发独立咨询顾问。为国内客户提供Golang开发、技术实战、架构等咨询服务。"
   name = "虞双齐"
-  title= "Go语言技术独立咨询顾问"
+  title= "Golang开发独立开发专家"
   # 140*140头像
   aboutme_avatar = "http://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像
