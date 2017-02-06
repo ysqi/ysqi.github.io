@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐Go语言技术独立咨询顾问</title>
+    <title>虞双齐Golang开发</title>
     <link>https://yushuangqi.com/tags/%E5%93%88%E5%B8%8C%E8%A1%A8.xml</link>
-    <description>在 虞双齐Go语言技术独立咨询顾问上关于的内容</description>
+    <description>在 虞双齐Golang开发上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
