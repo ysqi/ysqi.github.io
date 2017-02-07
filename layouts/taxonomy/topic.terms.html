@@ -2,7 +2,7 @@
 <section role="main">
 	<h1 class="writings">{{.Site.Author.name}}干货文章</h1>
 		<p class="feature">
-		  自2013年01月01日起，累计分享{{len .Site.Pages}}篇文章。涉及产品设计、软件开发 、微信、摄影、软件工具等等。
+		  自2013年01月01日起，累计分享{{len (where .Site.Pages "Section" "blog" )}}篇文章。涉及产品设计、软件开发 、微信、摄影、软件工具等等。
 		</p> 
 		<ul class="bookslist group">
   {{ $data := .Data }}

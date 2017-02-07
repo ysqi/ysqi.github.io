@@ -1,6 +1,7 @@
 +++
 date = "2015-12-29T20:29:41+08:00" 
 title = "关于虞双齐"
+slug = "about"
 type = "about"
 description ="开源爱好者，Go语言技术独立咨询顾问。为国内客户提供Go语言开发、技术实战、架构等咨询服务。"
 disqus_identifier = 10000

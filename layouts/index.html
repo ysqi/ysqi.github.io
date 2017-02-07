@@ -4,9 +4,11 @@
                     <a href="/about/" class="vcard-avatar" rel="nofollow" >
                         <img alt="" class="avatar" height="140" src="{{.Site.Author.aboutme_avatar}}" width="140">
                     </a>
-                    <h1 class="vcard-name"> <span class="vcard-fullname" >{{.Site.Author.name}}</span></h1>
+                    <h1 class="vcard-name">
+						<a href="{{.Site.BaseURL}}" title="{{.Site.Title}}"> <span class="vcard-fullname" >{{.Site.Author.name}}</span></a>
+					</h1>
                     <div>
-                        <p><h2><a href="{{.Site.BaseURL}}" title="{{.Site.Title}}">{{.Site.Author.title}}</a> </h2> </p>
+                        <p><h2>{{.Site.Author.title}}</h2> </p>
                         <div>
     <a class="text-normal text-small" href="http://weibo.com/{{.Site.Author.weibo}}" title="{{.Site.Author.name}}的微博" rel="nofollow">Weibo</a><span class="split"></span>
 	<a class="text-normal text-small" href="https://github.com/{{.Site.Author.github}}" title="{{.Site.Author.name}}的Github" rel="nofollow">Github</a>
@@ -14,7 +16,7 @@
                     </div>
                 </div>
 <div class="homesecs">
-	<h2 class="homenav"><a href="/about/" ><span class="homenav_about">关于我</span></a></h2>
+	<h2 class="homenav"><a href="/about.html" ><span class="homenav_about">关于我</span></a></h2>
 	<section class="homesec homesecabout">
 	<h3 id="workDays" title="踏入IT行业天数">days</h3>
 	<p>{{.Site.Author.description}}</p>
@@ -23,10 +25,10 @@
 	
 	<h2 class="homenav homenavor"><a href="/topics/"><span class="homenav_writings">博文</span></a></h2>
 	<section class="homesec homesecwritings">
-	<h3>{{len .Data.Pages }}</h3>
+	<h3>{{len (where .Data.Pages "Section" "blog" ) }}</h3>
 	<p>篇IT技术文章分享。</p>
 	<ul class="listing">
-	 {{ range first 8 ( where .Data.Pages "Section" "blog" ) }}
+	 {{ range first 12 ( where .Data.Pages "Section" "blog" ) }}
                                         	<li class="list-group-item">
                                                  <a href="{{ .RelPermalink }}" class="writings text-overflow">
                                                 {{ .Title }}{{ if .Draft }} (Draft){{ end }}
