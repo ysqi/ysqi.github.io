@@ -11,6 +11,51 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>老司机带你用Go语言实现Raft分布式一致性协议</title>
+      <link>https://yushuangqi.com/blog/2017/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--raft-fen-bu-shi-yi-zhi-xing-xie-yi.html</link>
+      <pubDate>Wed, 08 Feb 2017 13:41:20 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--raft-fen-bu-shi-yi-zhi-xing-xie-yi.html</guid>
+      <description>老司机带你用 Go 语言实现 Raft 分布式一致性协议  随着大型网站的各种高并发访问、海量数据处理等场景越来越多，如何实现网站的高可用、易伸缩、可扩展、安全等目标就显得越来越重要。
+ 为了解决这样一系列问题，大型网站的架构也在不断发展。提高大型网站的高可用架构，不得不提的就是分布式。任何一个分布式系统都无法同时满足 Consistency（一致性），Availability（可用性），Partition tolerance（分区容错性）这三个基本需求，最多只能满足其中两项。 但是，一个分布式系统无论在 CAP 三者之间如何权衡，都无法彻底放弃一致性（Consistency），如果真的放弃一致性，那么就说明这个系统中的数据根本不可信，数据也就没有意义，那么这个系统也就没有任何价值可言。所以，无论如何，分布式系统的一致性问题都需要重点关注。
+ Raft 适用于一个管理日志一致性的协议，相比于 Paxos 协议 Raft 更易于理解和去实现它。
+上车  Raft 通过选举一个领导人，然后给予他全部的管理复制日志的责任来实现一致性。领导人从客户端接收日志条目，把日志条目复制到其他服务器上，并且当保证安全性的时候告诉其他的服务器应用日志条目到他们的状态机中。拥有一个领导人大大简化了对复制日志的管理。例如：领导人可以决定新的日志条目需要放在日志中的什么位置而不需要和其他服务器商议，并且数据都从领导人流向其他服务器。一个领导人可以宕机，可以和其他服务器失去连接，这时一个新的领导人会被选举出来。
+ Raft 把时间分割成任意长度的任期，任期用连续的整数标记。每一段任期从一次选举开始，一个或者多个候选人尝试成为领导者。如果一个候选人赢得选举，然后他就在接下来的任期内充当领导人的职责。在某些情况下，一次选举过程会造成选票的瓜分。在这种情况下，这一任期会以没有领导人结束；一个新的任期（和一次新的选举）会很快重新开始。Raft 保证了在一个给定的任期内，最多只有一个领导者。
+ 要实现 Raft 协议，参见下图：
+ Raft 协议将整个过程分为主要3个步骤：
+ 领导者：和其他一致性算法相比，Raft 使用一种更强的领导能力形式。比如，日志条目只从领导者发送给其他的服务器。这种方式简化了对复制日志的管理并且使得 Raft 算法更加易于理解。
+ 领导选举：Raft 算法使用一个随机计时器来选举领导者。这种方式只是在任何一致性算法都必须实现的心跳机制上增加了一点机制。在解决冲突的时候会更加简单快捷。
+ 关系调整：Raft 使用一种共同一致的方法来处理集群成员变换的问题，在这种方法中，两种不同的配置都要求的大多数机器会重叠。这就使得集群在成员变换的时候依然可以继续工作。
+   后面将通过这3个主要过程进行展开。
+发车（领导的选举）  Raft 使用一种心跳机制来触发领导人选举。当服务器程序启动时，他们都是跟随者身份。如果一个跟随者在一段时间里没有接收到任何消息，也就是选举超时，然后他就会认为系统中没有可用的领导者然后开始进行选举以选出新的领导者。要开始一次选举过程，跟随者先要增加自己的当前任期号并且转换到候选人状态。然后他会并行的向集群中的其他服务器节点发送请求投票的 RPCs 来给自己投票。候选人的状态维持直到发生以下任何一个条件发生的时候，(a) 他自己赢得了这次的选举，(b) 其他的服务器成为领导者，&amp;copy; 一段时间之后没有任何一个获胜的人。当一个候选人从整个集群的大多数服务器节点获得了针对同一个任期号的选票，那么他就赢得了这次选举并成为领导人。每一个服务器最多会对一个任期号投出一张选票，按照先来先服务的原则。
+ Raft 使用投票的方式来阻止候选人赢得选举除非这个候选人包含了所有已经提交的日志条目。候选人为了赢得选举必须联系集群中的大部分节点，这意味着每一个已经提交的日志条目肯定在这些服务器节点中至少存在一个上面。如果候选人的日志至少和大多数的服务器节点一样新，那么他一定持有了所有已经提交的日志条目。请求投票 RPC 实现了这样的限制： RPC 中包含了候选人的日志信息，然后投票人会拒绝掉那些日志没有自己新的投票请求。
+ Raft 通过比较两份日志中最后一条日志条目的索引值和任期号定义谁的日志比较新。如果两份日志最后的条目的任期号不同，那么任期号大的日志更加新。如果两份日志最后的条目任期号相同，那么日志比较长的那个就更加新。</description>
+    </item>
+    
+    <item>
+      <title>GB(一)</title>
+      <link>https://yushuangqi.com/blog/2017/gbyi-.html</link>
+      <pubDate>Wed, 08 Feb 2017 13:41:19 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gbyi-.html</guid>
+      <description>gb go语言基于项目的编译工具
+  安装 =======  1.1 约束 gb 依赖Go1.4以上版本
+1.2 安装 通过以下命令安装
+go get github.com/constabulary/gb...  1.3 升级 gb 依然处于开发状态，通过以下命令升级到最新版本
+go get -u github.com/constabulary/gb/...  1.4 多版本go的情况 对每一个go版本都安装gb
+1.5 注意 安装完毕后的gb命令和oh-my-zsh配置的 git branch 简写命令有冲突，采用 ~/.zshrc中
+unalias gb  来屏蔽
+ 项目 =======  gb基于项目。一个gb工程为一个编译单元，每个gb工程目录含有一个src/子目录，没有配置文件的设置，以下文档我们统称工程的目录为$PROJECT
+2.1 自己的代码，第三方的代码 gb项目区分自己的代码和依赖的第三方代码。gb项目内，自己的代码放在
+$PROJECT/src/  第三方代码放在
+$PROJECT/vendor/src/  2.2 项目不在\$GOPATH下进行配置 gb项目不会跟$GOPATH有关系，
+gb也不会采用go get来下载管理依赖；依赖的第三方库代码都应放在$PROJECT/vendor/src/ 目录下
+gb项目也可以用go get来获取，但不能由go tools工具来构建，因为gb项目不遵循go get的约定
+2.3 创建项目 创建一个gb项目也就是创建一个普通的文件目录：
+% mkdir -p $HOME/code/demo-project  这个目录将作为gb项目的根目录，现在创建src/子目录来存放你自己的项目代码：</description>
+    </item>
+    
+    <item>
       <title>Gox:简单实在的Go平台交叉编译工具</title>
       <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
@@ -245,34 +290,6 @@ pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三�
 https://github.com/golang/groupcache/blob/master/lru/lru.go
 源码简单注释：
 package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定义lru cache 不是线程安全的 type Cache struct { // 数目限制，0是无限制 MaxEntries int // 删除时, 可以添加可选的回调函数 OnEvicted func(key Key, value interface{}) ll *list.List // 使用链表保存数据 cache map[interface{}]*list.Element // map } // Key 是任何可以比较的值 http://golang.org/ref/spec#Comparison_operators type Key interface{} type entry struct { key Key value interface{} } // 创建新的cache 对象 func New(maxEntries int) *Cache { return &amp;amp;Cache{ MaxEntries: maxEntries, ll: list.</description>
-    </item>
-    
-    <item>
-      <title>100行代码写一个golang上传下载静态服务器</title>
-      <link>https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html</guid>
-      <description>许多朋友开始加入golang的大本营，然后呢都是去看看golang的一些特性，问golang足够简单吗？有什么特性？能做什么？
-上边那些回答不了，有些学基础的朋友很想做一些东西，然后我就写了这个静态文件服务器，可以上传下载，麻雀虽小，但是包含了很多零碎的小知识点大家一起来巩固一下基础知识吧
-  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;html/template&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;path/filepath&amp;quot; &amp;quot;regexp&amp;quot; &amp;quot;strconv&amp;quot; &amp;quot;time&amp;quot; ) var mux map[string]func(http.ResponseWriter, *http.Request) type Myhandler struct{} type home struct { Title string } const ( Template_Dir = &amp;quot;./view/&amp;quot; Upload_Dir = &amp;quot;./upload/&amp;quot; ) func main() { server := http.Server{ Addr: &amp;quot;:9090&amp;quot;, Handler: &amp;amp;Myhandler{}, ReadTimeout: 10 * time.Second, } mux = make(map[string]func(http.ResponseWriter, *http.Request)) mux[&amp;quot;/&amp;quot;] = index mux[&amp;quot;/upload&amp;quot;] = upload mux[&amp;quot;/file&amp;quot;] = StaticServer server.</description>
-    </item>
-    
-    <item>
-      <title>golint---golang代码质量检测</title>
-      <link>https://yushuangqi.com/blog/2016/golint---golangdai-ma-zhi-liang-jian-ce.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golint---golangdai-ma-zhi-liang-jian-ce.html</guid>
-      <description>github: https://github.com/golang/lint
-golint是类似javascript中的jslint的工具，主要功能就是检测代码中不规范的地方。golint用于检测go代码。
-使用 $ go get github.com/golang/lint $ go install github.com/golang/lint  golint 文件名或者目录
-检测对应的代码。
-golint会输出一些代码存在的问题：
-比如：
-recorder.go:55:5: exported var RecordBind should have comment or be unexported recorder.go:158:1: exported function Record_ErrorRecord should have comment or be unexported recorder.go:173:6: don&#39;t use underscores in Go names; type Data_MemStats should be DataMemStats recorder.go:179:2: struct field FreeRam should be FreeRAM  上面的输出中文件recorder.go，179行，在struct中字段FreeRam应该是 FreeRAM,输出信息非常的详细
-golint 会检测的方面：
- 变量名规范 变量的声明，像var str string = &amp;ldquo;test&amp;rdquo;，会有警告，应该var str = &amp;ldquo;test&amp;rdquo; 大小写问题，大写导出包的要有注释 x += 1 应该 x++  等等</description>
     </item>
     
   </channel>
