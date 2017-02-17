@@ -11,6 +11,117 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>TiDB架构的演进和开发哲学</title>
+      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
+      <description>https://segmentfault.com/a/
+ 本文来自 CSDN《程序员》2017 年 2 月的封面报道。
+对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太多的问题需要去考量。
+ 在本篇文章中，PingCAP 联合创始人兼 CTO 黄东旭对 TiDB 的开发历程进行了详细简介，为大家还原 TiDB 的架构演进全过程。
+在大约两年前，我有一次做 MySQL 分库分表和中间件的经历，那时在中间件里做 sharding，把 16 个节点的 MySQL 扩到 32 节点，差不多要提前一个月做演练，再用一个礼拜来上线。我就在想，能不能有一个数据库可以让我们不再想分库分表这些东西？当时我们也刚刚做完 Codis，觉得分布式是个比较合适的解决方案。另外我一直在关注学术圈关于分布式数据库的最新进展，有看到谷歌在 2013 年发的 Spanner 和 F1 的论文，所以决定干脆就重新开始写一个数据库，从根本上解决 MySQL 扩展性的问题。
+而决定之后发现面对的问题非常复杂：选择什么语言，整个架构怎么做，到底要不要开源……做基础软件有一个很重要的事情：写出来并不难，难的是你怎么保证这个东西写对了。尤其是对于业务方，他们所有的业务正确性是构建在基础软件的正确性上。所以，对于分布式系统来说，什么是写对了，怎么去测试，这都是很重要的问题。关于这些我想了很久。
+一开始总是要起步的。当时就决定冷静一下，先确定一个目标：解决 MySQL 的问题。MySQL 是单机型数据库，它没有办法做全扩展，我们选择 MySQL 兼容，首先选择在协议和语法层面的兼容，因为已有的社区里边很多的海量的测试。第二点是用户的迁移成本，能让用户迁移得很顺畅。第三是因为万事开头难，必须得有一个明确的目标，选定一个目标去做，对开发人员来说心理的压力最小。确定目标以后，我们 3 个人的创始团队从原来的公司出来，拿了一笔比较大的风险投资，开始正式做这件事情。
+兼容 MySQL 最简单的方案，就是直接用 MySQL。为了让这个东西尽快地做起来，我们一开始做了一个最简单的版本，复用 MySQL前端 代码，做一个分布式的存储引擎就可以了，这个事情想想还是蛮简单的，所以非常乐观，觉得这个战略很完美。
+上图是我在 2015 年 4 月份用六个礼拜完成的第一个版本的框架，但是后来没好意思开源出来，虽然能跑，但是在性能上完全无法接受。我就想这个东西为什么这么慢？一步一步去看每一层，就想动手改，但是发现工程量巨大，比如 MySQL 的 SQL 优化器， 事务模型等等，完全没有办法下手。就像这个架构图里看到的，因为在 MySQL Engine 这一层，我们能做的事情太少了，所以就没有办法。
+第一版实验到此宣告失败，现在看起来写 SQL parser 和优化器等这些已经是绕不开了，我们索性决定从头开始写，唯一给我安慰的就是终于可以使用我们最爱的编程语言了，就是 Go。
+我们跟其他做这种软件的工程师的思路相反，选择了从上往下写，先写最顶层的 SQL 的接口 SQL Layer，我要保证这个东西长得跟 MySQL 一模一样，包括网络协议和语法层。从 TiDB 网络协议、SQL 的语法解析器、到 SQL 的优化器、执行器等基本从上到下写了一遍。这个阶段持续了大概三个月左右。从这个阶段开始，我们慢慢摸索出了几个实践中深有体会的开发哲学。</description>
+    </item>
+    
+    <item>
+      <title>Go1_8rc3源代码学习:token</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</guid>
+      <description>https://segmentfault.com/a/
+前言 token package 包含了 golang 词法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/token
+token.go 源代码中的注释很赞！
+Token type Token is the set of lexical tokens of the Go programming language
+type Token int  tokens The list of tokens（token ids）
+const ( // Special tokens ILLEGAL Token = iota EOF COMMENT literal_begin ... literal_end operator_beg ... operator_end keyword_beg ... keyword_end )  使用 const 定义了 Go 语言 tokens，这里有一个地方值得学习：使用 xxx_beg 和 xxx_end 这一对伪 token 作为不同的 token group 分界，方便快速判断 token 类型，比如判断 token id 是否是一个关键字</description>
+    </item>
+    
+    <item>
+      <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
+      <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</guid>
+      <description>Jsoniter 是一款快且灵活的 JSON 解析器，同时提供 Java 和 Go 两个版本。
+最近发布的 0.9.8 版本对性能对标 Jackson 和 Protobuf 进行了详细的评测： https://github.com/json-itera&amp;hellip; 。性能优化的原理会近期会发布于 infoq 中文站，尽请期待。
+同时提供 PHP 一般的体验。在 PHP 里，你只需要记得 json_decode ，什么文档都可以解析。现在在 Java 里，你也可以这么做了。
+Any any = Jsoniter.deserialize(input); // deserialize 返回 &amp;quot;Any&amp;quot;，实际的解析是延迟在读取时才做的 any.get(&amp;quot;items&amp;quot;, &#39;*&#39;, &amp;quot;name&amp;quot;, 0); // 抽取所有 items 的第一个 name any.get(&amp;quot;size&amp;quot;).toLong(); // 不管是 &amp;quot;100&amp;quot; 还是 100 ，都给转成 long 类型，就像弱类型一样 any.bindTo(Order.class); // 把 JSON 绑定到对象 for (Any element : any) {} // 遍历集合， Any 实现了 iterable 接口  项目网站： http://jsoniter.</description>
+    </item>
+    
+    <item>
+      <title>Go1_8rc3源代码学习:scanner</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</guid>
+      <description>https://segmentfault.com/a/
+前言 scanner package 包含了 golang 词法分析器相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/scanner
+example_test.go example_test.go 包含了一个使用 scanner 包的示例方法，该方法对 Euler 公式进行词法扫描
+func ExampleScanner_Scan() { // src is the input that we want to tokenize. src := []byte(&amp;quot;cos(x) + 1i*sin(x) // Euler&amp;quot;) // Initialize the scanner. var s scanner.Scanner fset := token.NewFileSet() // positions are relative to fset file := fset.AddFile(&amp;quot;&amp;quot;, fset.Base(), len(src)) // register input &amp;quot;file&amp;quot; s.Init(file, src, nil /* no error handler */, scanner.ScanComments) // Repeated calls to Scan yield the token sequence found in the input.</description>
+    </item>
+    
+    <item>
+      <title>使用Homebrew安装配置golang环境</title>
+      <link>https://yushuangqi.com/blog/2017/shi-yong-homebrewan-zhuang-pei-zhi-golanghuan-jing.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/shi-yong-homebrewan-zhuang-pei-zhi-golanghuan-jing.html</guid>
+      <description>安装Homebrew 在Homebrew复制安装命令，在控制台运行完成安装
+安装golnag $ brew update &amp;amp;&amp;amp; brew upgrade $ brew install go  PATH配置 创建一个目录作为gopath,在目录创建三个目录bin、src、pkg
+$ cd ~ $ vim .bash_profile  编辑.bash_profile文件并保存，文件内容如下
+export GOROOT=/usr/local/opt/go/libexec # GOPAT为上面创建的目录路径 export GOPATH=/Users/deweixu/coding/Go/go_path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin  运行source .bash_profile使配置的PATH生效。
+安装完成 运行go env查看安装效果：
+$ go env GOARCH=&amp;quot;amd64&amp;quot; GOBIN=&amp;quot;&amp;quot; GOEXE=&amp;quot;&amp;quot; GOHOSTARCH=&amp;quot;amd64&amp;quot; GOHOSTOS=&amp;quot;darwin&amp;quot; GOOS=&amp;quot;darwin&amp;quot; GOPATH=&amp;quot;/Users/deweixu/coding/Go/go_path&amp;quot; GORACE=&amp;quot;&amp;quot; GOROOT=&amp;quot;/usr/local/opt/go/libexec&amp;quot; GOTOOLDIR=&amp;quot;/usr/local/opt/go/libexec/pkg/tool/darwin_amd64&amp;quot; CC=&amp;quot;clang&amp;quot; GOGCCFLAGS=&amp;quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/q3/kxp92gk548z_y9pc1n3qsztw0000gn/T/go-build078494854=/tmp/go-build -gno-record-gcc-switches -fno-common&amp;quot; CXX=&amp;quot;clang++&amp;quot; CGO_ENABLED=&amp;quot;1&amp;quot;  enjoy golang</description>
+    </item>
+    
+    <item>
+      <title>Go1_8rc3源代码学习:cmdgo</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-cmd-go.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-cmd-go.html</guid>
+      <description>https://segmentfault.com/a/
+前言 命令行工具 go 相关的代码在 &amp;lt;go-src&amp;gt;/src/cmd/go，目录结构
+&amp;lt;go-src&amp;gt;/src/cmd/go internal testdata alldocs.go go11.go go_test.go go_unix_test.go go_windows_test.go main.go mkalldocs.sh note_test.sh note_test.go vendor_test.go   main.go，入口函数
+ *_test.go，单元测试代码
+ internal，go 内部实现相关代码
+  internal 目录下基本上按照 go &amp;ldquo;子命令&amp;rdquo; 进行组织，可以看到常用的子命令比如 help, list, run .etc
+&amp;lt;go-src&amp;gt;/src/cmd/go internal base bug get help list run ...  main.go main.go 是 go 命令的入口，为了优雅的支持各种 &amp;ldquo;子命令&amp;rdquo;，main.go 将各个子命令对象保存在数组里，通过遍历数组找到具体的子命令，然后调用各个子命令的 run 方法
+for _, cmd := range base.Commands { if cmd.Name() == args[0] &amp;amp;&amp;amp; cmd.</description>
+    </item>
+    
+    <item>
+      <title>Go1_8rc3源代码学习:parser</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-parser.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-parser.html</guid>
+      <description>https://segmentfault.com/a/
+前言 parser package 包含了 golang 语法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/parser
+之前大概看了点 PHP 和 Ruby 的源代码，感叹 go 确实如宣传的一样，简洁如 C，parser.go 代码总共 几千行（Ruby 语法规则定义文件有 1w 多行），使用递归下降语法分析方法（感觉 go 语言的语法规则很适合递归下降）
+example_test.go parser package 里面也有一个示例 example_test.go，如何使用 parser
+func ExampleParseFile() { fset := token.NewFileSet() // positions are relative to fset // Parse the file containing this very example // but stop after processing the imports. f, err := parser.ParseFile(fset, &amp;quot;example_test.go&amp;quot;, nil, parser.ImportsOnly) if err != nil { fmt.Println(err) return } // Print the imports from the file&#39;s AST.</description>
+    </item>
+    
+    <item>
+      <title>golang在编译时用ldflags设置变量的值</title>
+      <link>https://yushuangqi.com/blog/2017/golangzai-bian-yi-shi-yong-ldflagsshe-zhi-bian-liang-de-zhi.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:12 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangzai-bian-yi-shi-yong-ldflagsshe-zhi-bian-liang-de-zhi.html</guid>
+      <description>我们经常会在一些程序的输出中看到程序版本、编译时间、Git的commit id等信息，比如docker
+ming@vultr:~$ docker version Client: Version: 1.12.5 API version: 1.24 Go version: go1.6.4 Git commit: 7392c3b Built: Fri Dec 16 02:42:17 2016 OS/Arch: linux/amd64 ...  我们可以提供一个配置文件version.conf，程序运行时从version.conf取得这些信息进行显示。但是在部署程序时，除了二进制文件还需要额外的配置文件，不是很方便。 或者将这些信息写入代码中，这样不需要额外的version.conf，但要在每次编译时修改代码文件，也够麻烦的了。 有一种更好的办法是在编译时使用参数-ldflags -X importpath.name=value，官方解释如下
+ -X importpath.name=value Set the value of the string variable in importpath named name to value. Note that before Go 1.5 this option took two separate arguments. Now it takes one argument split on the first = sign.</description>
+    </item>
+    
+    <item>
       <title>老司机带你用Go语言实现Raft分布式一致性协议</title>
       <link>https://yushuangqi.com/blog/2017/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--raft-fen-bu-shi-yi-zhi-xing-xie-yi.html</link>
       <pubDate>Wed, 08 Feb 2017 13:41:20 +0800</pubDate>
@@ -156,140 +267,6 @@ playground运行时版本中维护着一个内部时钟。当修改后的调度�
 伪时间解决了后台资源耗尽的问题，但是程序的输出该怎么办呢？看见一个在休眠的程序，却几乎不耗时地正确完成工作了，这是得多么的奇怪啊！
 下面的程序每秒输出当前时间，然后三秒后退出.试着运行一下。
 func main() { stop := time.After(3 * time.Second) tick := time.NewTicker(1 * time.Second) defer tick.Stop() for { select { case &amp;lt;-tick.</description>
-    </item>
-    
-    <item>
-      <title>用Go语言写HTTP中间件</title>
-      <link>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</guid>
-      <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极了。
-其一，一个好的中间件拥有单一的功能，可插拔并且是自我约束的。这就意味着你可以在接口的层次上把它放到应用中，并能很好的工作。中间件并不影响你的代码风格，它也不是一个框架，仅仅是你处理请求流程中额外一层罢了。根本不需要重写代码：如果你想用一个中间件，就把它加上应用中；如果你改变主意了，去掉就好了。就这么简单。
-来看看Go，HTTP中间件非常流行，标准库中也是这样。或许咋看上去并不明显，net/http包中的函数，如StripPrefix 和TimeoutHandler 正是我们上面定义的中间件：封装处理过程并在处理输入或输出时增加额外的动作。
-我最近的Go包 nosurf 也是一个中间件。我从一开始就有意的这样设计。大多数情况下，你根本不必在应用层关心CSRF检查。nosurf，和其他中间件一样，非常独立，可以和实现标准库net/http接口的工具配合使用。
-你也可以使用中间件做这些：
-* 通过隐藏长度缓解BREACH攻击
-* 频率限制
-* 屏蔽恶意自动程序
-* 提供调试信息
-* 添加HSTS, X-Frame-Options头
-* 从异常中优雅恢复
-* 以及其他等等。
-写一个简单的中间件 第一个例子中，我写了一个中间件，只允许用户从特定的域（在HTTP的Host头中有域信息）来访问服务器。这样的中间件可以保护应用程序不受“主机欺骗攻击”
-定义类型 为了方便，让我们为这个中间件定义一种类型，叫做SingleHost。
-type SingleHost struct { handler http.Handler allowedHost string }  只包含两个字段：
-* 封装的Handler。如果是有效的Host访问，我们就调用这个Handler。
-* 允许的主机值。
-由于我们把字段名小写了，使得该字段只对我们自己的包可见。我们还应该写一个初始化函数。
-func NewSingleHost(handler http.Handler, allowedHost string) *SingleHost { return &amp;amp;SingleHost{handler: handler, allowedHost: allowedHost} }  处理请求 现在才是实际的逻辑。为了实现http.Handler，我们的类型秩序实现一个方法：
-type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们实现的方法：</description>
-    </item>
-    
-    <item>
-      <title>golang标准库的分析os包(6)</title>
-      <link>https://yushuangqi.com/blog/2016/golangbiao-zhun-ku-de-fen-xi-osbao-6.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangbiao-zhun-ku-de-fen-xi-osbao-6.html</guid>
-      <description>这个还是在我的博客首发的，但是我感觉人流量太小，我们写博客的目的不仅是记录我们再用的时候遇到的问题，是为了更好的让大家在以后的学习和开发中也用到~~为go语言的宣传尽自己一点微薄的力量
-今天我们讲golang标准库的os包type File struct{},还是废话少说直接上代码
-(1)os.Create()这个函数是创见一个文件，函数的原型是func Create(name string) (file *File, err error)输入的是名称字符串类型，返回的是一个File的指针和一个error import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;reflect&amp;quot; ) func main() { f, _ := os.Create(&amp;quot;widuu_2.go&amp;quot;) defer f.Close() fmt.Println(reflect.ValueOf(f).Type()) //*os.File }   这个函数的原理其实是这样的OpenFile(name, O_RDWR|O_CREATE|O_TRUNC, 0666) O_RDWR也就是说用读写的权限，O_CREATE然后文件存在忽略，不存在创建它，O_TRUNC文件存在截取长度为0，这就解释了为什么我们明明有这个文件，我擦，创建之后哭了~啥都没有了~~用的时候需谨慎，先判断文件是否存在~
- (2)os.OpenFile函数的原型是func OpenFile(name string, flag int, perm FileMode) (file *File, err error)要指定文件权限和打开的方式,就是我们上边所用到的 import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.OpenFile(&amp;quot;10.go&amp;quot;, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777) defer f.Close() fmt.Println(f.Stat()) }   这个就是上边的Create()只不过权限是0777以及下边的操作等大部分用到OpenFile()
- (3)os.</description>
-    </item>
-    
-    <item>
-      <title>golang讲解(go语言)标准库分析之os(7)</title>
-      <link>https://yushuangqi.com/blog/2016/golangjiang-jie-goyu-yan-biao-zhun-ku-fen-xi-zhi-os7.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangjiang-jie-goyu-yan-biao-zhun-ku-fen-xi-zhi-os7.html</guid>
-      <description>今天我们继续讲golang标准库的os包，依然是没有废话直接来
- (1)(f *File).Name()这个函数是返回文件的名称，函数原型func (f *File) Name() string要文件的指针操作，返回字符串，感觉比较鸡助的方法底层实现 func (f *File) Name() string { return f.name } import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.Open(&amp;quot;1.go&amp;quot;) fmt.Println(f.Name()) //输出1.go }  (2)(f *File).Read()这个是函数的指针来操作的,属于*FIlE的method,函数原型func (f *File) Read(b []byte) (n int, err error)输入读取的字节数，返回字节的长度和error信息 import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { b := make([]byte, 100) //设置读取的字节数 f, _ := os.Open(&amp;quot;11.go&amp;quot;) n, _ := f.Read(b) fmt.Println(n) fmt.Println(string(b[:n])) //输出内容 为什么是n而不直接输入100呢？底层这样实现的 /* n, e := f.</description>
-    </item>
-    
-    <item>
-      <title>分享基本golang学习的书</title>
-      <link>https://yushuangqi.com/blog/2016/fen-xiang-ji-ben-golangxue-xi-de-shu.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:09 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-xiang-ji-ben-golangxue-xi-de-shu.html</guid>
-      <description>第一本是《goweb编程》-为什么先推荐这本呢？因为这本书是从浅显到深的方式，适合初学者个人感觉是一本很棒的书，是国内的AStaxie写的一本golang的书，盛大云分发的研究员，有Beego这个框架大家可以去感受一下！
-第二本是《go语言编程》&amp;ndash;是七牛云存储许式伟写的,七牛是国内一个99%的程序都是用GO开发的公司对于golang有深入的了解和实践&amp;ndash;为什么是第二本&amp;ndash;因为里边讲解的东西需要第一本做基础
-第三本是国外的《the way to go》很棒的一本书，但是我只有英文版的，如果有兴趣的同志们可以翻译成中文版，网盘分享地址http://pan.baidu.com/s/1bnGeBeR</description>
-    </item>
-    
-    <item>
-      <title>jquery和angular的ajax请求的区别</title>
-      <link>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</guid>
-      <description>最近用angular替换我blog的部分页面。结果悲剧的发现，post请求到revel以后，revel的ParamsFilter解析不粗来参数。
-看了下请求信息，发现jquery和angular的post请求是有些不同的。
-jquery的content type是application/x-www-form-urlencoded，会把post的参数拼接到url上，格式如foo=bar&amp;amp;baz=moe这样的。
-而angular里，默认content type 是application/json，数据是以json格式发过去的。
-但是在revel的params.go里面，没有对json格式的请求做参数处理。
-用作者的原话说，这个json的处理没有什么用，而且在controller里用encoding/json处理也只是几行代码的事情。所以，就没有所以了。。。
-关于这个问题的解决方法，有很多，可以从angular层面解决，把angular的post请求也按照jquery的方法做些改变，如下：
-[](http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/)http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
-[](https://github.com/petersirka/total.js/issues/26)https://github.com/petersirka/total.js/issues/26
-也可以从revel服务端解决。
-[](https://github.com/robfig/revel/issues/97)https://github.com/robfig/revel/issues/97
-本页的代码修改如下：
-func (c *Task) NewTask() revel.Result { decoder := json.NewDecoder(c.Request.Body) var content ToDoContent if err := decoder.Decode(&amp;amp;content); err != nil { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;err:&amp;quot;, err) } else { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;content:&amp;quot;, content.Content) } json.Marshal(content) return c.RenderJson(content) }  虽然这样代码确实不多，不过瞬间感觉比rails弱爆了。。。
-顺带的提一下，如果是jquery的请求，也需要稍微改动一下的，否则，revel一样的解析不粗来。
-在jquery里要把post的jsonstringify一下。
-具体参考这里[](https://github.com/robfig/revel/issues/126)https://github.com/robfig/revel/issues/126
-$.ajax({ type:&amp;quot;POST&amp;quot;, url:&amp;quot;/Application/Index&amp;quot;, data:JSON.stringify({ name: &amp;quot;John&amp;quot;, time: &amp;quot;2pm&amp;quot; }), contentType:&amp;quot;application/json&amp;quot;, dataType:&amp;quot;json&amp;quot; } )  </description>
-    </item>
-    
-    <item>
-      <title>150行Go代码实现gitcheckout功能</title>
-      <link>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:07 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</guid>
-      <description>由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单了，配上github、bitbucket等hosting,已接近完美。
-git其实挺简单的，本文用了约150行golang代码实现了git checkout功能，阅读代码之前，您应该读过《Git Pro》中的git内部原理一节。
- 数据定义： type blob struct { sha1 string filename string } type tree struct { b []*blob name string child []*tree } type commit struct { sha1 string tree *tree parent *commit }
-  其中blob定义一个文件 ,sha1是文件的sha1值,filename是不包括路径的文件名。
-tree定义相当于目录，b是目录下的文件，name是当前目录名，不包括父路径，child是目录下的目录。
-commit是一次提交，sha1是提交的sha1值，tree指向一要树形的根节点，沿此根结点可以检出所有的文件。
-对照下面这副图就比较容易理解:
- 工具函数 func readSha1FileReader(sha1 string) (reader io.Reader, err error) {
-f, err := os.Open(getSha1FilePath(sha1)) if err != nil{ return } return zlib.NewReader(f)  }
-func readSha1FileContent(sha1 string) (content []byte, err error) {</description>
-    </item>
-    
-    <item>
-      <title>PDO批量并发执行SSH工具介绍</title>
-      <link>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:06 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</guid>
-      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具.
-本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离出其中都可以使用的部分.
- 工具名称: pdo(parallel do something) https://github.com/ohlinux/pdo  安装 依赖  需要有一个中控机与被管理机器建立了无密码的密钥关系. 需要有go语言的环境,进行编译安装.这里没有提供bin文件. 自己所测试的环境有,centos macos.  编译 先获取依赖的第三方库:
-go get github.com/cihub/seelog go get github.com/robfig/config  安装go 环境.
-go build pdo.go  配置文件目录,默认在~/.pdo.如果不在此处指定.
-pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三种途径.(这里去掉了数据库这种特定的)
- -f 文件,host的列表文件,可以是一列,也可以是两列有相关的目录依赖.后面有例子. -a app名字;-p 产品名;-a支持多app采用 app1,app2逗号分隔. (这个是数据库的来源,因为是特定环境的所以不再有) 标准输入 cat 1.host | pdo -R当使用的时候,可以自动生成失败的列表.详细查看例子&amp;rdquo;Retry功能&amp;rdquo;  pdo 列表过滤 如果列表名称是这样的结构,xxx.yyy 那么过滤的就是yyy,如果没有这个需要,可以忽略.
- -i yf01,dbl01,cq02 过滤物理机房名称,多个可用逗号隔开. -I JX/TC 过滤逻辑机房,配置在-c configure file 中  配置文件中:</description>
-    </item>
-    
-    <item>
-      <title>LRU算法</title>
-      <link>https://yushuangqi.com/blog/2016/lru-suan-fa.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/lru-suan-fa.html</guid>
-      <description>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。
-原理 添加元素时，放到链表头 缓存命中，将元素移动到链表头 缓存满了之后，将链表尾的元素删除  LRU算法实现  可以用一个双向链表保存数据 使用hash实现O(1)的访问  groupcache中LRU算法实现（Go语言）
-https://github.com/golang/groupcache/blob/master/lru/lru.go
-源码简单注释：
-package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定义lru cache 不是线程安全的 type Cache struct { // 数目限制，0是无限制 MaxEntries int // 删除时, 可以添加可选的回调函数 OnEvicted func(key Key, value interface{}) ll *list.List // 使用链表保存数据 cache map[interface{}]*list.Element // map } // Key 是任何可以比较的值 http://golang.org/ref/spec#Comparison_operators type Key interface{} type entry struct { key Key value interface{} } // 创建新的cache 对象 func New(maxEntries int) *Cache { return &amp;amp;Cache{ MaxEntries: maxEntries, ll: list.</description>
     </item>
     
   </channel>

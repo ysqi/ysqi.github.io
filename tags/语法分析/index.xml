@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go1_8rc3源代码学习:parser</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-parser.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:13 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-parser.html</guid>
+      <description>https://segmentfault.com/a/
+前言 parser package 包含了 golang 语法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/parser
+之前大概看了点 PHP 和 Ruby 的源代码，感叹 go 确实如宣传的一样，简洁如 C，parser.go 代码总共 几千行（Ruby 语法规则定义文件有 1w 多行），使用递归下降语法分析方法（感觉 go 语言的语法规则很适合递归下降）
+example_test.go parser package 里面也有一个示例 example_test.go，如何使用 parser
+func ExampleParseFile() { fset := token.NewFileSet() // positions are relative to fset // Parse the file containing this very example // but stop after processing the imports. f, err := parser.ParseFile(fset, &amp;quot;example_test.go&amp;quot;, nil, parser.ImportsOnly) if err != nil { fmt.Println(err) return } // Print the imports from the file&#39;s AST.</description>
+    </item>
+    
+  </channel>
+</rss>

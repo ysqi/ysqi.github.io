@@ -11,6 +11,18 @@
     <atom:link href="/tags/java.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
+      <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
+      <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</guid>
+      <description>Jsoniter 是一款快且灵活的 JSON 解析器，同时提供 Java 和 Go 两个版本。
+最近发布的 0.9.8 版本对性能对标 Jackson 和 Protobuf 进行了详细的评测： https://github.com/json-itera&amp;hellip; 。性能优化的原理会近期会发布于 infoq 中文站，尽请期待。
+同时提供 PHP 一般的体验。在 PHP 里，你只需要记得 json_decode ，什么文档都可以解析。现在在 Java 里，你也可以这么做了。
+Any any = Jsoniter.deserialize(input); // deserialize 返回 &amp;quot;Any&amp;quot;，实际的解析是延迟在读取时才做的 any.get(&amp;quot;items&amp;quot;, &#39;*&#39;, &amp;quot;name&amp;quot;, 0); // 抽取所有 items 的第一个 name any.get(&amp;quot;size&amp;quot;).toLong(); // 不管是 &amp;quot;100&amp;quot; 还是 100 ，都给转成 long 类型，就像弱类型一样 any.bindTo(Order.class); // 把 JSON 绑定到对象 for (Any element : any) {} // 遍历集合， Any 实现了 iterable 接口  项目网站： http://jsoniter.</description>
+    </item>
+    
+    <item>
       <title>谷歌:谁拥有下一代云平台的DNA？机器学习和云端智能是云的未来</title>
       <link>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
