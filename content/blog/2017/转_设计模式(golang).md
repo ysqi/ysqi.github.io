@@ -12,7 +12,7 @@ topics:
 - 编程语言与开发
 ---
 
-设计模式的六大原则 {#h1_0}
+设计模式的六大原则
 ==================
 
 摘自
@@ -60,7 +60,7 @@ topics:
 -   结构型 J
 -   行为型 X
 
-``` {.hljs .haml}
+``` 
    -AbstractFactory.go : 抽象工厂模式(C)
    -Adapter.go : 适配器模式(J)
    -Bridge.go : 桥接模式(J)
