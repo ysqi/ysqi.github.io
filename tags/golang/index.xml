@@ -11,6 +11,26 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go1_8graceful优雅的重启HTTP服务</title>
+      <link>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</link>
+      <pubDate>Sat, 18 Feb 2017 10:33:41 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</guid>
+      <description>很高兴Go 1.8发布了，这是个值得庆祝的日子。
+如何优雅的关闭http服务在Go Web开发中一直被提及和讨论的话题，今天Go 1.8的发布终于为我们带来了这个特性。
+文档中是这样介绍的：
+func (srv *Server) Shutdown(ctx context.Context) error  Shutdown 将无中断的关闭正在活跃的连接，然后平滑的停止服务。处理流程如下：
+ 首先关闭所有的监听
+ 然后关闭所有的空闲连接
+ 然后无限期等待连接处理完毕转为空闲，并关闭
+ 如果提供了 带有超时的Context，将在服务关闭前返回 Context的超时错误
+  需要注意的是，Shutdown 并不尝试关闭或者等待 hijacked连接，如 WebSockets。如果需要的话调用者需要分别处理诸如长连接类型的等待和关闭。
+其实，你只要调用 Shutdown 方法就好了。
+简单示例：
+// main.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; ) func main() { http.HandleFunc(&amp;quot;/&amp;quot;, func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello World, %v\n&amp;quot;, time.Now()) }) s := &amp;amp;http.Server{ Addr: &amp;quot;:8080&amp;quot;, Handler: http.</description>
+    </item>
+    
+    <item>
       <title>TiDB架构的演进和开发哲学</title>
       <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
@@ -234,39 +254,6 @@ var i int//在这里如果不对i做任何赋值，那么i的值为零  这个�
 type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BID int//主键 BField1 string REF_AID int//外键，对应AID }  在new对象B的时候，B中的三个值就分别被默认的初始化为{0,&amp;ldquo;&amp;rdquo;,0}，如果此时不对内容做任何操作，直接执行插入，问题就可能会变得很严重，因为A中很可能并没有任何一条记录的ID值为0，数据库报错，这条插入是一定会失败。但是仅仅在数据库层面上来看，数据库的结构是没问题的，表B中的REF_AID可以为空，在其他的语言中，如果没有对具体数据进行初始化，该属性会为空，对应插入的时候也会为空，但是在golang中，由于语言级别的默认初始化，使得这个插入过程会有大量的0的存在，触犯到原本表的约束规则而导致插入失败。
 在orm中也没有看到能够解决这个问题的办法，可能是我用的不够仔细，这个留待以后再说。
 自己的一点想法  把所有的数据库中相关的表都添加一条默认的以0为id的记录，该记录不需要有意义，只是用来防止歧义以及违反约束引起的操作失败，特别是一些ref_表，因为其中数据变动不大，却经常与其他一些表存在外键关系。这样做会给数据库带来一些额外的开销，但是作为一个临时的解决办法似乎还不错，至少能让数据处理流程正确的运行。 从orm中解决问题。这个只是一个想法，不过这很可能变成一种无理的要求，因为这需要orm去判断你的Field中存放的这个0到底是你自己就想指定的0值，还是你不想要却被语言默认初始化出来的0。 自己写SQL语句执行，这可能是最傻的一种方法了，不过却能保证事情完全按照自己的想法执行。  </description>
-    </item>
-    
-    <item>
-      <title>深入GoPlayground内幕</title>
-      <link>https://yushuangqi.com/blog/2016/shen-ru--go-playground-nei-mu.html</link>
-      <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shen-ru--go-playground-nei-mu.html</guid>
-      <description>简介 2010年9月，我们介绍了Go Playground，这是一个完全由Go代码组成和返回程序运行结果的web服务器。
-如果你是一位Go程序员，那你很可能已经通过阅读Go教程或执行Go文档中的示例程序的途径使用过Go Playground了。
-你也可以通过点击 talks.golang.org上幻灯片中的“Run” 按钮或某个博客上的程序(比如最近一篇关于字符串的blog)而使用之.
-本文我们将学习Go playground是如何实现并与其它服务整合的。其实现涉及到不同的操作系统和运行时间，这里我们假设大家用来编写Go的系统都基本相同。
-概览 
-playground服务有三部分：
-* 一个运行于Google服务之上的后端。它接收RPC请求，使用gc工具编译用户程序，执行，并将程序的输出（或编译错误）作为RPC响应返回。
-* 一个运行在 GAE上的前端。它接收来自客户端的HTTP请求并生成相应的RPC请求到后端。它也做一些缓存。
-* 一个JavaScript客户端实现的用户界面，并生成到前端的HTTP请求。
-后端 后端程序本身很简单，所以这里我们不讨论它的实现。有趣的部分是我们如何在一个安全环境下安全地执行任意用户代码，于此同时还提供如时间、网络及文件系统等的核心功能。
-为从Google的基础设施隔离用户程序，后端将它们运行在原生客户端（或“NaCl”）中，原生客户端（NaCl）—一个Google开发的技术，允许x86程序在Web浏览器中安全执行。后端使用一个能生成NaCl可执行文件的特殊版gc工具。
-（这个特殊的工具将合并到Go 1.3中。想了解更多，阅读设计文档。如果你想提前体验NaCl，你可以检出一个包含所有变更的分支。）
-本地客户端会限制程序占用CPU和RAM的使用量,此外还会阻止程序访问网络和文件系统。然而这会导致一个问题，Go程序的许多关键优势，比如并发和网络访问。此外访问文件系统，对于许多程序也是至关重要的。我们需要时间功能，才展现高效的并发性能。显然我们需要网络和文件系统，才能显示出来访问网络和文件系统方面的优势。
-尽管现在这些功能都被支持了，但是2010年发布的第一版playground时，没有一项被支持的。当前时间功能是在2009年11月10的被支持的，可是 time.Sleep 却不能使用，而且多数与系统和网络有关的包都不被支持的
-一年后，我们在playground上面实现了一个伪时间，这才使得程序可以有个正确的休眠行为。较新的playground更新引入了伪网络和伪文件系统，这使得playground的工具链与正常的Go工具链相同。这些新引入的功能会在下面具体阐述。
-伪时间 playground里面的程序可用CPU时间和内存都是有限的。除此以外程序实际使用时间也是有限制的。这是因为每个运行在playground的程序都消耗着后台资源，以及占据客户端和后台间的基础设施。限制每个程序的运行时间让我们的维护更加可遇见，而且可以保护我们免受拒绝服务攻击。
-但是当程序使用时间功能函数的时候，这些限制将变得非常不合适。在 Go Concurrency Patterns 讲话中通过一个例子来演示这个糟糕的问题。这是一个使用时间功能函数比如 time.Sleep 和time.After的例子程序，当运行在早期的playground中时，这些程序的休眠会失效而且行为很奇怪（有时甚至出现错误）
-通过使用一个高明的小把戏，我们可以使得Go程序认为它是在休眠，而实际上这个休眠没有花费任何时间。在介绍这个小把戏之前，我们需要了解调度程序是管理goroutine的休眠的原理。
-当一个goroutine调用time.Sleep（或者其他相似函数），调度器会在挂起的计时器堆中添加中增加一个计时器，并让goroutine休眠。在这期间，一个特殊的goroutine计算器管理着这个堆。当这个特殊的goroutine计算器开始工作时，首先，它告诉调度器，当堆中的下一个挂起的计时器准备计时的时候唤醒自己，然后它自己就开始休眠了。当这个特殊计时器被唤醒后首先是检测是否有计时器超时了，如果有那么就唤醒相应的goroutine，然后又回到休眠状态。
-明白了这个原理后，那个小把戏只是改变唤醒goroutine的计时器的条件。调度器并不是经过一段时间后进行唤醒，而且仅仅等待一个所有goroutines 都阻塞的死锁产生后就进行唤醒。
-playground运行时版本中维护着一个内部时钟。当修改后的调度器检测到一个死锁，那么它将检查是否有一些挂起的计时器。如果有的话，它会将内部时钟的时间调整到最早计时器的促发时间，然后唤醒goroutine计时器。这样一直循环往复，程序都认为时间过去了，而实际上休眠几乎没有耗时。
-这些调度器的改变细节详见 proc.c 和 time.goc。
-伪时间解决了后台资源耗尽的问题，但是程序的输出该怎么办呢？看见一个在休眠的程序，却几乎不耗时地正确完成工作了，这是得多么的奇怪啊！
-下面的程序每秒输出当前时间，然后三秒后退出.试着运行一下。
-func main() { stop := time.After(3 * time.Second) tick := time.NewTicker(1 * time.Second) defer tick.Stop() for { select { case &amp;lt;-tick.</description>
     </item>
     
   </channel>
