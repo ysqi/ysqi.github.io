@@ -24,7 +24,7 @@ runtime的改进使我们的垃圾收集（GC）暂停时间缩短了20倍，我
 1.6的停顿之上进一步缩小 10
 倍的暂停时间，以及如何向Go团队分享我们的案例，使得1.7中不使用我们手动方案的同时停顿时间又降低了10倍。
 
-开始 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+开始
 ----
 
 我们的基于IRC的聊天系统最早是在2013年年底用Go写的，取代了以前的Python实现。使用Go
@@ -41,7 +41,7 @@ runtime的改进使我们的垃圾收集（GC）暂停时间缩短了20倍，我
 1.5开始，Go的垃圾收集器大多数时候是并发和增量的，这意味着在大部分阶段它不需要将应用程序完全停止。除了相对较短的标记和终止阶段，我们的程序可以继续运行，同时运行垃圾回收。升级到Go
 1.5立即导致我们的聊天系统中的GC暂停时间的10倍缩小，在重负荷测试实例上的暂停时间从2秒缩短到约200ms。
 
-Go 1.5 GC新纪元 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+Go 1.5 GC新纪元
 ---------------
 
 虽然Go
@@ -79,7 +79,7 @@ Go的核心“net”软件包附加一个finalizer到每个TCP连接，以帮助
 1.6，运行时团队将finalizer扫描移动到并发标记阶段，导致具有大量TCP连接的应用程序的暂停时间更短。结合发布中的所有其他改进，我们的聊天服务器在Go
 1.6的暂停时间是在Go 1.5的一半左右，在测试实例上降低到大约100ms。
 
-堆栈收缩 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+堆栈收缩 
 --------
 
 Go的并发使启动大量goroutine非常廉价。虽然使用10,000个操作系统线程的程序性能可能很差，但是这个数量的goroutine却很正常。一个区别是goroutine从非常小的堆栈开始
@@ -101,7 +101,7 @@ Go运行时的包docs解释如何禁用堆栈收缩。对于我们的聊天服�
 
 当然还有改进的余地;让我们看看另外一个profile。
 
-Page faults {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+Page faults 
 -----------
 
 现在GC在大概从30到70ms这一范围中变化。这里是在一些较长的标记终止停顿期间花费周期的火焰图：
@@ -126,7 +126,7 @@ perf工具能够显示内核堆栈，而Go的用户级分析器会无法跟踪�
 ./make.bash，在Go
 1.7中无需如此）。对于像这样的问题，完全值得使用perf工具。
 
-控制迁移 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+控制迁移 
 --------
 
 如果使用两个CPU插槽和两个内存条比较麻烦，那让我们只使用一个。
@@ -137,7 +137,7 @@ perf工具能够显示内核堆栈，而Go的用户级分析器会无法跟踪�
 左边的runtime.freeStackSpans被移动到一个并发的GC阶段，并不再引起长时间停顿。
 现在标记终止阶段没有多余工作要剔除了。
 
-Go1.7 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+Go1.7 
 -----
 
 Go
@@ -158,7 +158,7 @@ Go 1.7可以在应用程序运行时同时缩减堆栈。
 1.5和1.6中暂停时间缩短了10倍，但在Go 1.5和Go
 1.7之间，runtime团队能够将所有应用程序的暂停时间缩短100倍。
 
-下一步 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+下一步 
 ------
 
 所有这些分析都集中在我们的聊天服务器的stop-the-world暂停时间，但这只是GC性能的一个维度。
@@ -167,7 +167,7 @@ Go 1.7可以在应用程序运行时同时缩减堆栈。
 这可能会延迟对完整GC运行的需要，并减少程序花费在垃圾回收上的CPU周期总数。\
 当然，Twitch正在招聘！ 如果这种东西对你感兴趣，请给我们发邮件。
 
-Thank you {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+Thank you 
 ---------
 
 我要感谢Chris Carroll和John

@@ -27,13 +27,13 @@ Sam维护gps。
 
 该团队发布了一系列我们工作过程中的进展信息。到目前为止，各种其他工具作者和相关方也以不同的方式参与这一项目。
 
-起初 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+起初 
 ----
 
 假设我们正在使用github.com/gorilla/mux编写一个Web应用程序。
 这里是一些代码，让我们开始：
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 package main
 
 import (
@@ -55,7 +55,7 @@ func main() {
 dep
 init将在GOPATH中已经包含github.com/gorilla/mux，manifest.json文件将包括它。我先运行如下命令：
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 go get -u github.com/gorilla/mux
 ```
 
@@ -64,7 +64,7 @@ tag（例如：v1.2.3），那么将使用该tag的名称。
 
 dep可以跨越架构和go版本。我们可以将github.com/gorilla/mux与旧版本的Go（\<1.7.0）的github.com/gorilla/context包结合使用。当我最后运行
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 go get -u github.com/gorilla/mux
 ```
 
@@ -80,7 +80,7 @@ init包括所有依赖关系（包括递归依赖）以及在lock.json文件中�
 对于示例应用程序，这将创建以下两个文件：\
 lock.json
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 {
     "memo": "d741a3bed21fe6cae9d67c523b0a343859882b2f246f2a293e2676cfacd5a2ce",
     "projects": [
@@ -106,7 +106,7 @@ lock.json
 
 manifest.json
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 {
     "dependencies": {
         "github.com/gorilla/mux": {
@@ -116,7 +116,7 @@ manifest.json
 }
 ```
 
-确保项目可以编译 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+确保项目可以编译 
 ----------------
 
 在运行dep init之后，应该运行dep
@@ -124,14 +124,14 @@ ensure以便将构建项目所需的软件包副本填充在vendor/目录。
 这确保任何项目的依赖项都包括在lock文件和vendor目录中。
 如果你想确保记录所有的依赖，运行dep ensure。
 
-添加依赖 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+添加依赖 
 --------
 
 添加另一个依赖项，只需在代码中使用它。
 当需要检查你的工作时，你需要运行dep ensure更新lock.json文件和vendor/。
 这将锁定项目到每个依赖项的最新发布版本。
 
-如果最新版本不合适呢？ {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+如果最新版本不合适呢？ 
 ----------------------
 
 如果需要指定版本，可以使用ensure命令的备用形式，如：dep ensure
@@ -144,7 +144,7 @@ cargo类似的操作符来选择依赖的版本。这些包括\\\^，～和=。�
 dep ensure
 github.com/com/gorilla/mux@=1.2.0）。在未来，dep计划将\\\^作为默认前缀。
 
-保持更新 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+保持更新 
 --------
 
 要保持项目的依赖关系最新使用dep ensure
@@ -152,13 +152,13 @@ github.com/com/gorilla/mux@=1.2.0）。在未来，dep计划将\\\^作为默认�
 将新版本写入vendor/，并在lock.json中更新相应的元数据。\
 在将来，可以用dep ensure -update 更新单个依赖关系。
 
-Status {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+Status 
 ------
 
 当缺少依赖项时，dep status会告诉您哪些软件包缺失。 例如，这里是dep
 status的输出：
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 $ dep status
 PROJECT                 MISSING PACKAGES
 github.com/boltdb/bolt  [github.com/boltdb/bolt]
@@ -179,7 +179,7 @@ status命令显示所有依赖项的列表，作为项目，并为每个：
     将bolt添加到示例项目并运行dep后，确保更新lock.json和vendor/，dep
     status如下所示：
 
-``` {style="font-size: 0.85em; font-family: Consolas, Inconsolata, Courier, monospace;font-size: 1em; line-height: 1.2em;margin: 1.2em 0px;"}
+``` 
 $ dep status
 PROJECT                     CONSTRAINT  VERSION        REVISION  LATEST   PKGS USED
 github.com/boltdb/bolt      *           v1.3.0         583e893   v1.3.0   1
@@ -190,7 +190,7 @@ golang.org/x/sys            *           branch master  7a6e564   7a
 
 这两种模式可以在将来合并。
 
-移除依赖 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+移除依赖 
 --------
 
 dep remove删除manifest.json，lock.json和vendor/中的依赖关系。
@@ -201,7 +201,7 @@ remove github.com/gorilla/mux的结果。
 可以使用-force强制从manifest.json中删除约束。
 但是，由于依赖项仍在使用中，它仍然在lock.json中并复制到vendor/。
 
-未来 {style="margin: 1.3em 0px 1em; padding: 0px; font-weight: bold;font-size: 1.4em; border-bottom: 1px solid rgb(238, 238, 238);"}
+未来
 ----
 
 dep仍然处于实验阶段，有许多问题需要解决和很多工作要做。
