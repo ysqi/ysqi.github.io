@@ -19,9 +19,9 @@ publishdir = "public"
   name = "虞双齐"
   title= "#Golang开发 #SRE运维"
   # 140*140头像
-  aboutme_avatar = "http://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
+  aboutme_avatar = "https://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像
-  aboutme_height = "http://static.yushuangqi.com/assets/touxiang.jpg"
+  aboutme_height = "https://static.yushuangqi.com/assets/touxiang.jpg"
   email ="devysq@gmail.com"
   qq = "535252640"
   weibo = "234665601"
