@@ -51,7 +51,7 @@ func (f *File) Seek(off int64, whence int) (pos int64, err error) func (f *File)
 var file2 Writer = new(File) 
 var file3 Closer = new(File)
 var file4 Seeker = new(File)
-</code></pre><p>因为File可以做这些事情，所以，File就可以在这里使用。File在实现的时候，并不需要指定实现了哪个接口，它甚至根本不知道这4个接口的存在。这种“松耦合”的做法完全不同于传统的面向对象编程。</p><p>实际上，上面4个接口来自标准库中的io package。</p><p></p><h1 id="接口赋值">接口赋值</h1><p>我们可以将一个实现接口的对象实例赋值给接口，也可以将另外一个接口赋值给接口。</p><p>（1）通过对象实例赋值</p><p>将一个对象实例赋值给一个接口之前，要保证该对象实现了接口的所有方法。考虑如下示例：</p><pre><code>package main
+</code></pre><p>因为File可以做这些事情，所以，File就可以在这里使用。File在实现的时候，并不需要指定实现了哪个接口，它甚至根本不知道这4个接口的存在。这种“松耦合”的做法完全不同于传统的面向对象编程。</p><p>实际上，上面4个接口来自标准库中的io package。</p><p> </p><h1 id="接口赋值">接口赋值</h1><p>我们可以将一个实现接口的对象实例赋值给接口，也可以将另外一个接口赋值给接口。</p><p>（1）通过对象实例赋值</p><p>将一个对象实例赋值给一个接口之前，要保证该对象实现了接口的所有方法。考虑如下示例：</p><pre><code>package main
 
 import (
     &quot;fmt&quot;
@@ -82,13 +82,13 @@ func main() {
     var b2 LessAdder = a  //not OK
     fmt.Println(reflect.TypeOf(b2))
 }
-</code></pre><p>b2的赋值会报编译错误，</p><blockquote><p>cannot use a (type Integer) as type LessAdder in assignment:<br>Integer does not implement LessAdder (Add method has pointer receiver)</p></blockquote><p>为什么呢？</p><blockquote><p>The method set of any other named type T consists of all methods with receiver type T. The method set of the corresponding pointer type T is the set of all methods with receiver T or T (that is, it also contains the method set of T).</p><p><strong><em>也就是说*Integer实现了接口LessAdder的所有方法，而Integer只实现了Less方法，所以不能赋值。</em></strong></p></blockquote><p>（2）通过接口赋值</p><pre><code>var r io.Reader = new(os.File)
+</code></pre><p>b2的赋值会报编译错误，</p><blockquote><p>cannot use a (type Integer) as type LessAdder in assignment:<br>    Integer does not implement LessAdder (Add method has pointer receiver)</p></blockquote><p>为什么呢？</p><blockquote><p>The method set of any other named type T consists of all methods with receiver type T. The method set of the corresponding pointer type T is the set of all methods with receiver T or T (that is, it also contains the method set of T).</p><p><strong><em>也就是说*Integer实现了接口LessAdder的所有方法，而Integer只实现了Less方法，所以不能赋值。</em></strong></p></blockquote><p>（2）通过接口赋值</p><pre><code>var r io.Reader = new(os.File)
 var rw io.ReadWriter = r   //not ok
 
 var rw2 io.ReadWriter = new(os.File)
 var r2 io.Reader = rw2    //ok
-</code></pre><p>因为r没有Write方法，所以不能赋值给rw。</p><p></p><h1 id="空接口-empty-interface">空接口（empty interface）</h1><p>空接口比较特殊，它不包含任何方法：</p><pre><code>interface{}
-</code></pre><p>在Go语言中，所有其它数据类型都实现了空接口。<br></p><pre><code>var v1 interface{} = 1
+</code></pre><p>因为r没有Write方法，所以不能赋值给rw。</p><p> </p><h1 id="空接口-empty-interface">空接口（empty interface）</h1><p>空接口比较特殊，它不包含任何方法：</p><pre><code>interface{}
+</code></pre><p>在Go语言中，所有其它数据类型都实现了空接口。<br> </p><pre><code>var v1 interface{} = 1
 
 var v2 interface{} = &quot;abc&quot;
 
@@ -116,7 +116,7 @@ for i, v := range t {
     s[i] = v
 
 }
-</code></pre><p></p><h1 id="type-switch与type-assertions">Type switch与Type assertions</h1><p>在Go语言中，我们可以使用type switch语句查询接口变量的真实数据类型，语法如下：</p><pre><code>switch x.(type) {
+</code></pre><p> </p><h1 id="type-switch与type-assertions">Type switch与Type assertions</h1><p>在Go语言中，我们可以使用type switch语句查询接口变量的真实数据类型，语法如下：</p><pre><code>switch x.(type) {
 // cases
 }
 </code></pre><p>x必须是接口类型。来看一个详细的示例：</p><pre><code>package main

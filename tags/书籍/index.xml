@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/%E4%B9%A6%E7%B1%8D.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E4%B9%A6%E7%B1%8D.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>计算机专业必读书籍</title>
+      <link>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</link>
+      <pubDate>Tue, 21 Feb 2017 13:19:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</guid>
+      <description>石头经过高考后20天的思考，终于将自己的专业金融经济改成了计算机，这个决定由衷的让我一阵窃喜。从事了20多来年计算机出版和市场推广的我，看到象石头一样的少年，成为新一代程序员，心里非常自豪又能给下一代孩子们做学习计算机技术的引路人，推荐一些好书了。
+对于刚高考完的孩子们，既然选择了计算机专业，这个暑假当然还是先好好玩玩，打游戏、学车、上网看各种电影和同学出去毕业旅游等等。
+在休息娱乐之余，我建议孩子们选一门语言（推荐Python和JavaScript），网上找本完整的电子书或去京东当当买本纸书(同样我推荐图灵出版的Python基础教程和JS方面的书及人邮社计算机分社出版的几本Python和JS书都不错）。推荐这个网站，可以从零开始学python：https://docs.python.org/3/ 。
+JavaScript现在已经无处不在了，可能会在你手机上的某个app里，在你浏览的网页里，在你IDE中的某个进程中运行的。自己照着搭建环境，对着书一个字一个字敲代码，运行，出问题自己解决，解决不了先谷歌，不行再来网上问，然后就可以编你想编的程序了，做个小软件运行起来找到成就感。等有了一定的编程经验，你就知道该进一步学什么了。以下这些前端技术书可以先入为主：
+ Head First HTML and CSS HTML &amp;amp; CSS CSS 权威指南，CSS 禅意花园，精通 CSS JavaScript DOM编程艺术，JavaScript 高级程序设计，JavaScript 权威指南，JavaScript 模式  学习JS，可以参考这里的文章：http://limu.iteye.com/blog/1267475 。
+如果想学PHP(python这样的类PHP语言), 那么下面是一个简单的思路，开始是学习HTML, 应该从页面入手, 自己体察细微变化, 再去研究什么是块元素, 什么是内联元素。做一些展示性的变化，可以学习CSS。CSS也不要上来就挨个介绍属性, 而是以完成展现任务为目的。
+而后, 可以接触PHP, 做个简单留言板, 接触到PHP的一些东西和数据库相关东西。做一些用户注册、登录，理解Cookie和session是怎么回事. 在手写一些数据库操作函数以后, 选一个库开始使用。引入模板( php smarty 模板)的概念，简单的逻辑和展示分离。
+这时候, 可以学习jQuery, 做些Ajax相关东西, 了解一下json，也应该重视代码质量了, 可以看看art of readable code之类的书，在有人引导的前提下, 可以看看开源项目等(drupal, zendframework, wordpress)。
+从大一开始，跟着学校的通识课教学，自己从计算机这个学科体系里的基本知识入手，实践乃是第一必修课，参考http://www.udacity.com/ 和 https://www.coursera.org/ 的现有网上课程（包括很多计算机相关的基础课、中级乃至高级课程）同，这些网上课程非常丰富，在暑假可以抽着空学习一下。
+计算机基础学科和数学基础课程
+推荐看这里的课程，每周1天，6周就够， https://www.coursera.org/course/cs101 ，了解下计算机基本原理，懂点简单的编程，并具体实践操作，从实践中体验计算机的魅力。以下是新同学要学习的一些计算机基础课程：
+ 编程语言（如C、C++、JAVA、python 等） 数学基础（一阶逻辑系统、集合论、图论、线性代数、微积分、概率论） 数据结构与算法 软件理论入门（形式语言、自动机） 体系结构（数字电路、CPU设计、操作系统、编译器、网络协议）  掌握一门常用的编程语言和编程技术：能了解你用过的所有的程序内部大致是怎样的，能用你熟悉的语言编写大部分的程序，至少不能是对任何一个程序满头雾水。</description>
+    </item>
+    
+  </channel>
+</rss>
