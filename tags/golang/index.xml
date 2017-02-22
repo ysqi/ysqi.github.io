@@ -11,6 +11,21 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Gobuild命令说明</title>
+      <link>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</link>
+      <pubDate>Wed, 22 Feb 2017 08:37:16 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</guid>
+      <description>go help build
+ 构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.
+使用 go build [-o 输出名] [-i] [编译标记] [包名]  如果参数为***.go文件或文件列表，则编译为一个个单独的包。
+当编译单个main包（文件），则生成可执行文件。
+当编译单个或多个包非主包时，只构建编译包，但丢弃生成的对象（.a），仅用作检查包可以构建。
+当编译包时，会自动忽略&amp;rsquo;_test.go&amp;rsquo;的测试文件。
+参数 -o output 指定编译输出的名称，代替默认的包名。  -i install 安装作为目标的依赖关系的包(用于增量编译提速)。  以下 build 参数可用在 build, clean, get, install, list, run, test -a 完全编译，不理会-i产生的.a文件(文件会比不带-a的编译出来要大？) -n 仅打印输出build需要的命令，不执行build动作（少用）。 -p n 开多少核cpu来并行编译，默认为本机CPU核数（少用）。 -race 同时检测数据竞争状态，只支持 linux/amd64, freebsd/amd64, darwin/amd64 和 windows/amd64. -msan 启用与内存消毒器的互操作。仅支持linux / amd64，并且只用Clang / LLVM作为主机C编译器（少用）。 -v 打印出被编译的包名（少用）. -work 打印临时工作目录的名称，并在退出时不删除它（少用）。 -x 同时打印输出执行的命令名（-n）（少用）. -asmflags &#39;flag list&#39; 传递每个go工具asm调用的参数（少用） -buildmode mode 编译模式（少用） &#39;go help buildmode&#39; -compiler name 使用的编译器 == runtime.</description>
+    </item>
+    
+    <item>
       <title>go协程与主线程强占运行</title>
       <link>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:49 +0800</pubDate>
@@ -251,20 +266,6 @@ func (srv *Server) Shutdown(ctx context.Context) error  Shutdown 将无中断的
 上图是我在 2015 年 4 月份用六个礼拜完成的第一个版本的框架，但是后来没好意思开源出来，虽然能跑，但是在性能上完全无法接受。我就想这个东西为什么这么慢？一步一步去看每一层，就想动手改，但是发现工程量巨大，比如 MySQL 的 SQL 优化器， 事务模型等等，完全没有办法下手。就像这个架构图里看到的，因为在 MySQL Engine 这一层，我们能做的事情太少了，所以就没有办法。
 第一版实验到此宣告失败，现在看起来写 SQL parser 和优化器等这些已经是绕不开了，我们索性决定从头开始写，唯一给我安慰的就是终于可以使用我们最爱的编程语言了，就是 Go。
 我们跟其他做这种软件的工程师的思路相反，选择了从上往下写，先写最顶层的 SQL 的接口 SQL Layer，我要保证这个东西长得跟 MySQL 一模一样，包括网络协议和语法层。从 TiDB 网络协议、SQL 的语法解析器、到 SQL 的优化器、执行器等基本从上到下写了一遍。这个阶段持续了大概三个月左右。从这个阶段开始，我们慢慢摸索出了几个实践中深有体会的开发哲学。</description>
-    </item>
-    
-    <item>
-      <title>Go1_8rc3源代码学习:token</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</link>
-      <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</guid>
-      <description>https://segmentfault.com/a/
-前言 token package 包含了 golang 词法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/token
-token.go 源代码中的注释很赞！
-Token type Token is the set of lexical tokens of the Go programming language
-type Token int  tokens The list of tokens（token ids）
-const ( // Special tokens ILLEGAL Token = iota EOF COMMENT literal_begin ... literal_end operator_beg ... operator_end keyword_beg ... keyword_end )  使用 const 定义了 Go 语言 tokens，这里有一个地方值得学习：使用 xxx_beg 和 xxx_end 这一对伪 token 作为不同的 token group 分界，方便快速判断 token 类型，比如判断 token id 是否是一个关键字</description>
     </item>
     
   </channel>

@@ -8,8 +8,91 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Tue, 21 Feb 2017 13:20:04 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Feb 2017 08:37:16 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gobuild命令说明</title>
+      <link>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</link>
+      <pubDate>Wed, 22 Feb 2017 08:37:16 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</guid>
+      <description>go help build
+ 构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.
+使用 go build [-o 输出名] [-i] [编译标记] [包名]  如果参数为***.go文件或文件列表，则编译为一个个单独的包。
+当编译单个main包（文件），则生成可执行文件。
+当编译单个或多个包非主包时，只构建编译包，但丢弃生成的对象（.a），仅用作检查包可以构建。
+当编译包时，会自动忽略&amp;rsquo;_test.go&amp;rsquo;的测试文件。
+参数 -o output 指定编译输出的名称，代替默认的包名。  -i install 安装作为目标的依赖关系的包(用于增量编译提速)。  以下 build 参数可用在 build, clean, get, install, list, run, test -a 完全编译，不理会-i产生的.a文件(文件会比不带-a的编译出来要大？) -n 仅打印输出build需要的命令，不执行build动作（少用）。 -p n 开多少核cpu来并行编译，默认为本机CPU核数（少用）。 -race 同时检测数据竞争状态，只支持 linux/amd64, freebsd/amd64, darwin/amd64 和 windows/amd64. -msan 启用与内存消毒器的互操作。仅支持linux / amd64，并且只用Clang / LLVM作为主机C编译器（少用）。 -v 打印出被编译的包名（少用）. -work 打印临时工作目录的名称，并在退出时不删除它（少用）。 -x 同时打印输出执行的命令名（-n）（少用）. -asmflags &#39;flag list&#39; 传递每个go工具asm调用的参数（少用） -buildmode mode 编译模式（少用） &#39;go help buildmode&#39; -compiler name 使用的编译器 == runtime.</description>
+    </item>
+    
+    <item>
+      <title>从设计到实战:Go如何扛住100亿次请求</title>
+      <link>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</link>
+      <pubDate>Wed, 22 Feb 2017 08:37:15 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</guid>
+      <description>[](#%E6%89%9B%E4%BD%8F100%E4%BA%BF%E6%AC%A1%E8%AF%B7%E6%B1%82%E6%88%91%E4%BB%AC%E6%9D%A5%E8%AF%95%E4%B8%80%E8%AF%95)
+扛住100亿次请求？我们来试一试
+作者：ppmsn2005#gmail.com
+项目: https://github.com/xiaojiaqi/10billionhongbaos
+wiki: https://github.com/xiaojiaqi/10billionhongbaos/wiki/扛住100亿次请求？我们来试一试 [](#1-%E5%89%8D%E8%A8%80)
+​1. 前言
+
+前几天，偶然看到了 《扛住100亿次请求——如何做一个“有把握”的春晚红包系统”》（url）一文，看完以后，感慨良多，收益很多。正所谓他山之石，可以攻玉，虽然此文发表于2015年,我看到时已经是2016年末，但是其中的思想仍然是可以为很多后端设计借鉴，。同时作为一个工程师，看完以后又会思考，学习了这样的文章以后，是否能给自己的工作带来一些实际的经验呢？所谓纸上得来终觉浅，绝知此事要躬行，能否自己实践一下100亿次红包请求呢？否则读完以后脑子里能剩下的东西 不过就是100亿 1400万QPS整流 这样的字眼，剩下的文章将展示作者是如何以此过程为目标，在本地环境的模拟了此过程。
+ 实现的目标: 单机支持100万连接，模拟了摇红包和发红包过程，单机峰值QPS 6万，平稳支持了业务。
+ 注：本文以及作者所有内容，仅代表个人理解和实践，过程和微信团队没有任何关系，真正的线上系统也不同，只是从一些技术点进行了实践，请读者进行区分。因作者水平有限，有任何问题都是作者的责任，有问题请联系 ppmsn2005#gmail.com. 全文内容 扛住100亿次请求？我们来试一试
+[](#2-%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86)
+​2. 背景知识
+
+QPS: Queries per second 每秒的请求数目
+ PPS：Packets per second 每秒数据包数目
+ 摇红包：客户端发出一个摇红包的请求，如果系统有红包就会返回，用户获得红包
+ 发红包：产生一个红包里面含有一定金额，红包指定数个用户，每个用户会收到红包信息，用户可以发送拆红包的请求，获取其中的部分金额。
+[](#3-%E7%A1%AE%E5%AE%9A%E7%9B%AE%E6%A0%87)
+​3. 确定目标
+
+ 在一切系统开始以前，我们应该搞清楚我们的系统在完成以后，应该有一个什么样的负载能力。
+[](#31-%E7%94%A8%E6%88%B7%E6%80%BB%E6%95%B0)
+3.1 用户总数:
+ 通过文章我们可以了解到接入服务器638台, 服务上限大概是14.3亿用户， 所以单机负载的用户上限大概是14.3亿/638台=228万用户/台。但是目前中国肯定不会有14亿用户同时在线，参考 http://qiye.qianzhan.com/show/detail/160818-b8d1c700.html 的说法，2016年Q2 微信用户大概是8亿，月活在5.4 亿左右。所以在2015年春节期间，虽然使用的用户会很多，但是同时在线肯定不到5.4亿。
+[](#32-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%B0%E9%87%8F)
+3.2. 服务器数量：
+ 一共有638台服务器，按照正常运维设计，我相信所有服务器不会完全上线，会有一定的硬件冗余，来防止突发硬件故障。假设一共有600台接入服务器。 [](#33-%E5%8D%95%E6%9C%BA%E9%9C%80%E8%A6%81%E6%94%AF%E6%8C%81%E7%9A%84%E8%B4%9F%E8%BD%BD%E6%95%B0)
+3.3 单机需要支持的负载数：
+ 每台服务器支持的用户数：5.4亿/600 = 90万。也就是平均单机支持90万用户。如果真实情况比90万更多，则模拟的情况可能会有偏差，但是我认为QPS在这个实验中更重要。</description>
+    </item>
+    
+    <item>
+      <title>Go微服务实践</title>
+      <link>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</link>
+      <pubDate>Wed, 22 Feb 2017 08:37:14 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</guid>
+      <description>简介  近一两年来，微服务架构已经成为热门话题（microservices.io)，与传统的一体化应用架构相比，微服务架构在开发、测试、部署方面都有众多吸引人之处，越来越多没有历史包袱的新项目都启用微服务架构的模式来开发。
+我们这个团队经过深入思考之后，决定在一起美这个APP的后端开发中，选择Go作为开发语言，采用微服务模式来实现，经过近半年的实践，形成了一些心得，简单总结后分享出来，希望能够给大家一些帮助。
+框架选择 不同的团队在选择基础框架（库）时考虑的要素不同，我们团队更喜欢小而美的框架，尽可能不要让框架侵入业务，易于升级、维护和替换，所以我们更愿意选择Library而不是Framework。
+在web方面，我们选择了negroni作为middleware库，采用性能不错的httprouter替换go标准库的mux，而没有用任何web相关的框架。
+在微服务之间的rpc调用方面，为了将来的扩展性、跨语言调用等因素，我们没有直接用go标准库的rpc模块，而是采纳了google最新推出的grpc。但grpc本身属于比较重型的rpc框架，对业务代码有一定的侵入性，我们做了一系列的库（包括worpc、worc、wonaming等https://github.com/wothing）来屏蔽这些不必要的业务代码侵入，保持了业务代码本身的整洁。
+微服务划分 在微服务体系中，如何切分微服务也是一个重要的话题，在我们的实践中，我们遵循了如下一些原则：
+ 逻辑独立、边界清晰的模块作为一个独立的微服务
+ 每个table只由一个微服务操作（包括插入、读取、更改、删除等）
+ table之间不引入外键约束，id字段全部采用uuid
+ 将需要保持数据一致性的操作放在一个微服务中，避免跨服务带来的数据一致性难题
+ 微服务之间的通信，尽可能采用消息队列实现松耦合，当需要同步调用时再借助于rpc
+ 微服务独立部署，通过etcd实现服务的注册与发现
+  总体架构  Gateway  Gateway是微服务对外提供服务的一个屏障，它的核心点在于：
+ 屏蔽微服务之间通过消息队列、rpc等通信方式，为Web页面和移动APP提供基于HTTP协议的RESTful API接口
+ 对每一个http业务请求进行必要的鉴权和数据完整性、合法性检查，以减少微服务的负担，让微服务的代码更纯粹
+ 微服务部署体系中，每个微服务可能会部署多个实例，Gateway还承担着在这些实例中进行负载均衡的功能
+ 进行必要的日志输出、监控打点等功能，对每一个来自于APP和页面的http请求，生成一个唯一的trace id，并将trace id传导到每一个后续的微服务中，以便后续的查错和性能调优
+ Gateway的每一个http请求都是无状态的，采用JWT（Json Web Token）机制实现一个客户端的请求状态信息的传递
+   服务的注册与发现wonaming  微服务体系中，服务的注册和发现对整体架构非常重要，尤其对于同步的rpc调用，每个服务有多少实例，每个实例的地址等，都需要有一个统一的管理。我们采用etcd保存服务信息，同时封装了wonaming作为微服务注册和发现的中间件，它的主要功能包括：
+ 服务在启动时，调用wonaming向etcd注册包含TTL的服务“索引”、
+ 注册后，服务与etcd保持定时心跳，当微服务主动退出或超时，服务解注册并“下线”
+ 在Gateway中，通过resolver进行服务发现，配合grpc提供的balancer实现负载均衡，resolver启动后会对etcd中的 /wonaming 目录进行监控，当有服务注册或者解注册时，动态维护可用服务清单。
+     r := wonaming.NewResolver(name) b := grpc.RoundRobin&amp;reg; conn, err := grpc.</description>
+    </item>
     
     <item>
       <title>深度学习第一课</title>
@@ -283,91 +366,6 @@ ackage main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func mai
 我们举一个简单例子，比如，当A和B两个协程运行append的时候同时发现s[1]这个位置是空的，他们就都会把自己的值放在这个位置，这样他们两个的值就会覆盖，造成数据丢失。
 那该怎么写？最简单的方式就是用锁，贴一个例子。
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func main() { var ( wg sync.</description>
-    </item>
-    
-    <item>
-      <title>设计模式(golang)</title>
-      <link>https://yushuangqi.com/blog/2017/she-ji-mo-shi-golang.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:44 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/she-ji-mo-shi-golang.html</guid>
-      <description>设计模式的六大原则 摘自 Java开发中的23种设计模式详解
- 1、开闭原则（Open Close Principle）
-开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后 面的具体设计中我们会提到这点。
- 2、里氏代换原则（Liskov Substitution Principle）
-里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何 基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受 到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。 实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽 象化的具体步骤的规范。—— From Baidu 百科
- 3、依赖倒转原则（Dependence Inversion Principle）
-这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。
- 4、接口隔离原则（Interface Segregation Principle）
-这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出， 其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。
- 5、迪米特法则（最少知道原则）（Demeter Principle）
-为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。
- 6、合成复用原则（Composite Reuse Principle）
-原则是尽量使用合成/聚合的方式，而不是使用继承。
-  实现代码 {#h1_1} https://github.com/BPing/golang_design_pattern/tree/master/pattern
- 创建型 C 结构型 J 行为型 X   -AbstractFactory.go : 抽象工厂模式(C) -Adapter.go : 适配器模式(J) -Bridge.go : 桥接模式(J) -Builder.</description>
-    </item>
-    
-    <item>
-      <title>屌炸天的新版GoGC之twitch的GC优化之路</title>
-      <link>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:43 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</guid>
-      <description>此文翻译自：https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7
-我们在Twitch使用Go研发了许多高并发的系统。它的简单性，安全性，性能和可读性使其成为解决我们遇到问题的一个很好的工具，我们向数百万用户提供实况视频和聊天服务。
-但这不是另一篇关于Go对于我们有多么大作用的文章， 本文是关于我们在使用Go过程中碰到的限制以及我们如何克服这些限制的文章。
-Go 1.4和Go 1.6之间Go runtime的改进使我们的垃圾收集（GC）暂停时间缩短了20倍，我们如何在Go 1.6的停顿之上进一步缩小 10 倍的暂停时间，以及如何向Go团队分享我们的案例，使得1.7中不使用我们手动方案的同时停顿时间又降低了10倍。
-开始 我们的基于IRC的聊天系统最早是在2013年年底用Go写的，取代了以前的Python实现。使用Go 1.2的预发布版本，它能够在每个物理主机提供超过500,000并发用户，而无需特殊调整。有一组三个goroutine（Go的轻量级执行线程）为每个连接提供服务，程序在每个进程中拥有1,500,000个goroutine。即使有这么大的goroutine数量，我们在使用Go1.2的过程中碰见的唯一性能问题是GC暂停时间，执行GC将冻结我们的应用程序几十秒。
-不仅每个GC暂停非常昂贵，GC每分钟运行几次。我们努力减少内存分配的数量和大小，以便将GC运行的频率降低，如果堆每两分钟只增长50％，就意味着分配数量足够低。虽然暂停时间减少，但每一次GC暂停都是破坏性的。
-一旦Go 1.2 正式发布，GC暂停时间下降到“仅”几秒钟。我们将流量分散在更大数量的进程中，从而将停顿降低到更容易接受的范围。
-随着Go版本增长，减少分配的工作会继续有益于我们的聊天服务器，但是分解聊天进程是一个特定范围的Go版本的解决方案。这样的解决方案经不起时间的考验，但对于为我们的用户提供良好的服务非常重要。分享我们的经验有助于为Go运行时创建持久的改进，从而使单个程序受益。
-从2015年8月的Go 1.5开始，Go的垃圾收集器大多数时候是并发和增量的，这意味着在大部分阶段它不需要将应用程序完全停止。除了相对较短的标记和终止阶段，我们的程序可以继续运行，同时运行垃圾回收。升级到Go 1.5立即导致我们的聊天系统中的GC暂停时间的10倍缩小，在重负荷测试实例上的暂停时间从2秒缩短到约200ms。
-Go 1.5 GC新纪元 虽然Go 1.5的延迟减少值得庆祝，但新GC的最大意义是它为进一步的增量改进奠定了基础。
-Go 1.5的垃圾收集器仍然具有相同的两个主要阶段 -
-标记阶段（GC确定哪些内存分配仍在使用），以及扫描阶段（其中未使用的内存已准备好重用） 但是每个阶段都被分成两个子阶段。首先，应用程序暂停，而前一个扫描阶段终止。然后，并发标记阶段在用户代码运行时查找正在使用的内存。最后，应用程序第二次暂停，标记阶段终止。之后，未使用的内存将被扫描，同时应用程序将执行其业务。
-runtime的gctrace功能打印每个GC周期，包括每个阶段的持续时间。对于我们的聊天服务器，它表明大部分剩余的暂停时间在标记终止阶段，因此分析将集中在那里。
-当然，我们需要更多关于GC在这些暂停期间究竟做了什么的细节。 Go核心包有CPU profiler，同时组合使用Linux的perf工具。使用perf允许使用更高的采样频率和在内核中花费的时间可视化。在内核中使用的监视器可以帮助我们调试缓慢的系统调用，并透明地完成虚拟内存管理。
-下面的图片是我们的聊天服务器配置文件的一部分，运行go1.5.1。这是一个使用Brendan Gregg工具制作的火焰图，修剪后只包含在堆栈上具有runtime.gcMark函数的样本，这是Go 1.5在标记终止阶段花费的时间。
-火焰图将堆栈深度显示为向上增长，并且将CPU时间表示为每个部分的宽度。 （颜色是无意义的，x轴上的排序也是无关紧要的 - 它只是字母顺序。）在图表的左边，我们可以看到runtime.gcMark在几乎所有的抽样堆栈中调用runtime.parfordo。向上我们看到大多数时间花在runtime.markroot调用runtime.scang，runtime.scanobject和runtime.shrinkstack。
-runtime.scang函数用于重新扫描内存以帮助终止标记阶段。标记终止阶段背后的整个想法是完成扫描应用程序的内存。
-接下来是runtime.scanobject。这个函数做了几件事情，但在Go 1.5的聊天服务器标记终止阶段运行的原因是实现finalizer。 为什么程序会使用这么多的finalizer，他们为什么会占用这么长GC暂停时间？。有问题的应用程序是一个聊天服务器，同时处理成千上万的用户。
-Go的核心“net”软件包附加一个finalizer到每个TCP连接，以帮助控制文件描述符泄漏 并且由于每个用户都有自己的TCP连接，即使每个链接只有一个finalizer，加起来还是很可观。
-这个问题似乎值得向Go runtime 团队报告。我们通过电子邮件交流，Go团队对如何诊断性能问题以及如何将它们提炼成最小测试用例的建议非常有帮助。对于Go 1.6，运行时团队将finalizer扫描移动到并发标记阶段，导致具有大量TCP连接的应用程序的暂停时间更短。结合发布中的所有其他改进，我们的聊天服务器在Go 1.6的暂停时间是在Go 1.5的一半左右，在测试实例上降低到大约100ms。
-堆栈收缩 Go的并发使启动大量goroutine非常廉价。虽然使用10,000个操作系统线程的程序性能可能很差，但是这个数量的goroutine却很正常。一个区别是goroutine从非常小的堆栈开始 - 只有2kB - 根据需要增长，与其他地方常见的大型固定大小堆栈形成对比。
-Go的函数调用前缀确保有足够的堆栈空间用于下一次调用，如果没有，则在允许调用继续之前，将goroutine的堆栈移动到更大的内存区域 - 根据需要重写指针。
-因此对一个程序来说，为了支持他们做的最深的调用，其goroutine的堆栈将增长。垃圾收集器的一个职责是回收不再需要的堆栈内存。将goroutine堆栈移动到更适当大小的内存区域的任务由runtime.shrinkstack完成，在Go 1.5和1.6中，在标记终止期间完成。
-上面的火焰图，在其样本的3/4左右显示runtime.shrinkstack。如果这项工作可以在应用程序运行时完成，它可以大大加快我们的聊天服务器和其他程序。
-Go运行时的包docs解释如何禁用堆栈收缩。对于我们的聊天服务器，相对于浪费内存来说更短暂的暂停时间更容易接受。在禁用堆栈收缩的情况下，聊天服务器的暂停时间再次减少到30到70ms之间。
-在保持聊天服务的结构和操作相对恒定的同时，我们忍受了Go 1.</description>
-    </item>
-    
-    <item>
-      <title>数据库不适合Docker及容器化的7大原因</title>
-      <link>https://yushuangqi.com/blog/2017/shu-ju-ku-bu-kuo-ge-dockerji-rong-qi-hua-de-7da-yuan-yin.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/shu-ju-ku-bu-kuo-ge-dockerji-rong-qi-hua-de-7da-yuan-yin.html</guid>
-      <description>导读：所有的服务都开始了容器化升级，在一切皆容器的主流思想下，无状态的服务采用容器化已经是大势所趋，常常困扰架构师的一个问题是，数据库是否需要容器化，本文作者 Mikhail Chinkov 提出了自己否定观点，由高可用架构翻译。
-
-如果我们观察 2017 年技术行业，容器和 Docker 依然将是最热门的流行语。我们开始在每个领域的 Docker 容器中打包开发的软件。从小型初创公司到巨大的微服务平台都在使用容器技术。从 CI 平台到 Raspberry Pi 。从数据库到……
-数据库？您确定要将数据库放在容器中吗？
-不幸的是，这不是虚构的场景。我看到许多快速增长的项目将数据持久化到容器中。并且将计算服务和数据服务放在同一台机器上。笔者希望有经验的人不会用这个解决方案。
-下面是我的观点，数据库容器化从今天来看是非常不合理的。
-数据库不适合容器化的7大原因 **
-**
-1. 数据不安全 
-即使你要把 Docker 数据放在主机来存储 ，它依然不能保证不丢数据。 Docker volumes 的设计围绕 Union FS 镜像层提供持久存储，但它仍然缺乏保证。
-使用当前的存储驱动程序，Docker 仍然存在不可靠的风险。 如果容器崩溃并数据库未正确关闭，则可能会损坏数据。
-
-2. 运行数据库的环境需求 **
-**
-常看到 DBMS 容器和其他服务运行在同一主机上。 然而这些服务对硬件要求是非常不同的。
-数据库（特别是关系型数据库）对 IO 的要求较高。 一般数据库引擎为了避免并发资源竞争而使用专用环境。如果将你的数据库放在容器中，那么将浪费你的项目的资源。 因为你需要为该实例配置大量额外的资源。 在公有云，当你需要 34G 内存时，你启动的实例却必须开 64G 内存。在实践中，这些资源并未完全使用。
-怎么解决？ 您可以分层设计，并使用固定资源来启动不同层次的多个实例。 水平伸缩总是比垂直伸缩更好。 
-3. 网络问题 **
-**
-要理解 Docker 网络，您必须对网络虚拟化有深入的了解。也必须准备应付好意外情况。你可能需要在没有支持或没有额外工具的情况下，进行 bug 修复。</description>
     </item>
     
   </channel>
