@@ -1,4 +1,3 @@
-
 ---
 date: 2017-02-24T08:31:56+08:00
 title: "Golang语言常用算法"
@@ -12,13 +11,12 @@ topics:
 - 编程语言与开发
 ---
 
-http://studygolang.com/articles/\
 
 在学习golang语言，文档看的实在是乏味，就想着把常用的算法做个实现，边写变学习，想来效果还是不错的！
 
 ​1. 堆排序
 
-``` {.plain code_snippet_id="2220966" snippet_file_name="blog_20170222_1_2962326" name="code"}
+```go
 package main
 
 import "fmt"
