@@ -22,7 +22,7 @@
 本文仅作为一个参考，如果你有好的建议和意见，欢迎添加评论。
 注释 可以通过 /* …… */ 或者 // ……增加注释， //之后应该加一个空格。
 如果你想在每个文件中的头部加上注释，需要在版权注释和 Package前面加一个空行，否则版权注释会作为Package的注释。
-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+ | | // Copyright 2009 The Go Authors | | | . All rights reserved.// Use of this | | | source code is governed by a BSD-st | | | yle// license that can be found in t | | | he LICENSE file./Package net provid | | | es a portable interface for network | | | I/O, includingTCP/IP, UDP, domain na | | | me resolution, and Unix domain socke | | | ts&amp;hellip;&amp;hellip;.</description>
+ // Copyright 2009 The Go Authors. All rights reserved. // Use of this source code is governed by a BSD-style // license that can be found in the LICENSE file. /*Package net provides a portable interface for network I/O, includingTCP/IP, UDP, domain name resolution, and Unix domain sockets....... */ package net......  注释应该用一个完整的句子，注释的第一个单词应该是要注释的指示符，以便在godoc中容易查找。</description>
     </item>
     
     <item>
