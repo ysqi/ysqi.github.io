@@ -8,8 +8,144 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Wed, 22 Feb 2017 08:37:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Feb 2017 08:31:58 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>编写地道的Go代码</title>
+      <link>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</guid>
+      <description>在阅读本文之前，我先推荐你阅读官方的 Effective Go文档，或者是中文翻译版: 高效Go编程，它提供了很多编写标准而高效的Go代码指导，本文不会再重复介绍这些内容。
+最地道的Go代码就是Go的标准库的代码，你有空的时候可以多看看Google的工程师是如何实现的。
+本文仅作为一个参考，如果你有好的建议和意见，欢迎添加评论。
+注释 可以通过 /* …… */ 或者 // ……增加注释， //之后应该加一个空格。
+如果你想在每个文件中的头部加上注释，需要在版权注释和 Package前面加一个空行，否则版权注释会作为Package的注释。
++&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+ | | // Copyright 2009 The Go Authors | | | . All rights reserved.// Use of this | | | source code is governed by a BSD-st | | | yle// license that can be found in t | | | he LICENSE file./Package net provid | | | es a portable interface for network | | | I/O, includingTCP/IP, UDP, domain na | | | me resolution, and Unix domain socke | | | ts&amp;hellip;&amp;hellip;.</description>
+    </item>
+    
+    <item>
+      <title>Gonet_http包</title>
+      <link>https://yushuangqi.com/blog/2017/go-net_httpbao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:57 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-net_httpbao.html</guid>
+      <description>Go net/http包
+Go Http客户端 get请求可以直接http.Get方法
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;bytes&amp;quot; ) func main() { resp, err := http.Get(&amp;quot;http://www.baidu.com&amp;quot;) if err != nil { // handle error log.Println(err) return } defer resp.Body.Close() headers := resp.Header for k, v := range headers { fmt.Printf(&amp;quot;k=%v, v=%v\n&amp;quot;, k, v) } fmt.Printf(&amp;quot;resp status %s,statusCode %d\n&amp;quot;, resp.Status, resp.StatusCode) fmt.Printf(&amp;quot;resp Proto %s\n&amp;quot;, resp.Proto) fmt.Printf(&amp;quot;resp content length %d\n&amp;quot;, resp.ContentLength) fmt.Printf(&amp;quot;resp transfer encoding %v\n&amp;quot;, resp.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录一:初识</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</guid>
+      <description>1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quot; func main (){ fmt.Printf(&amp;quot;Hello, world&amp;quot;) }  编译 go build helloworld.go
+运行 ./helloworld
+2、声明方式 1、普通方式 var a int = 15 var b bool = false 或 var a int var b bool a = 15 b = false 2、 :=会自动匹配类型，只能在函数内使用 a := 15 b := false 3、中括号的形式： var ( x int b bool ) 4、平行赋值 a,b := 20,16 #注意 :Go 的编译器对声明却未使用的变量在报错。 5、常量，只能是数字、字符串或布尔值 const( // 枚举的生成方式 a = iota // a为0 b = iota // b为1，改行的 “=iota”可省略 ) 如果需要,可以明确指定常量的类型: const ( a = 0 b string = &amp;quot;0&amp;quot; )  3、字符串 var s string = &amp;quot;hello&amp;quot; #Go中字符串是不可变的  如果想修改字符需要使用下面的方法</description>
+    </item>
+    
+    <item>
+      <title>Golang语言常用算法</title>
+      <link>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</guid>
+      <description>在学习golang语言，文档看的实在是乏味，就想着把常用的算法做个实现，边写变学习，想来效果还是不错的！
+​1. 堆排序
+package main import &amp;quot;fmt&amp;quot; func buildHeap(array []int, length int) { var i, j int; for i = 1; i &amp;lt; length; i = i + 1 { for j = i; j &amp;gt; 0 &amp;amp;&amp;amp; array[j] &amp;gt; array[(j-1)/2]; j = (j - 1)/2 { array[j], array[(j-1)/2] = array[(j-1)/2], array[j] } } } func heapSort(array []int, length int) { array[0], array[length - 1] = array[length - 1], array[0] if length &amp;lt;= 2 { return } i, j:= 0, 0 for { j = 2 * i + 1 if j + 1 &amp;lt; length - 1 { if array[j] &amp;lt; array[j + 1] { j = j + 1 } } else if j &amp;gt;= length -1 { break } array[i], array[j] = array[j], array[i] i = j } heapSort(array, length - 1) } func main() { primes := [6]int{3, 11, 5, 2, 13, 7} fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录三:函数</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</guid>
+      <description>函数定义 type mytype int // 新的类型 func (p mytype) funcname(q int) (r,s int) {return 0,0}  作用域 在 Go 中,定义在函数外的变量是全局的,那些定义在函数内部的变量,对于函数来说 是局部的。如果命名覆盖——一个局部变量与一个全局变量有相同的名字——在函数 执行的时候,局部变量将覆盖全局变量。
+多值返回 func (file *File) Write(b []byte) (n int, err error)
+Go得函数可以返回多个值
+命名返回值 Go 函数的返回值或者结果参数可以指定一个名字,并且像原始的变量那样使用,就像 输入参数那样。如果对其命名,在函数开始时,它们会用其类型的零值初始化。如果 函数在不加参数的情况下执行了 return 语句,结果参数会返回。
+例：
+func ReadFull(r Reader, buf []byte) (n int, err error) { for len(buf) &amp;gt; 0 &amp;amp;&amp;amp; err == nil { var nr int nr, err = r.Read(buf) n += nr buf = buf[nr:len(buf)] } return }  延迟代码defer 在 defer 后指定的 函数会在函数退出前调用。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录二:控制语句</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</guid>
+      <description>if语句 i f x &amp;gt; 0 { // {是强制的,且必须和if在同一行 return y } else { return x }  if 和 switch 接受初始化语句,通常用于设置一个(局部)变量。
+if err := Chmod(0664); err != nil { //nil 与 C 的 NULL 类似 fmt.Printf(err) //err 的作用域被限定在 if 内 return err }  goto语句 用 goto 跳转到一定是当前函数内定义的标签
+func myfunc() { i := 0 Here: // 这行的第一个词,以分号结束作为标签,标签名区分大小写 println(i) i++ goto Here // 跳转 }  for语句 Go 的 for 循环有三种形式,只有其中的一种使用分号。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录七:并发</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</guid>
+      <description>Go使用channel和goroutine开发并行程序。goroutine 是 Go并发能力的核心要素。
+goroutine 是一个普通的函数，只是需要使用关键字 go 作为开头。
+ready(&amp;quot;Tea&amp;quot;, 2) // 普通函数调用 go ready(&amp;quot;Tea&amp;quot;, 2) // ready() 作为 goroutine 运行  Go routine实践
+func ready(w string, sec int) { time.Sleep(time.Duration(sec) * time.Second) fmt.Println(w,&amp;quot;is ready!&amp;quot;) } func main() { go ready(&amp;quot;Tea&amp;quot;, 2) go ready(&amp;quot;Coffee&amp;quot;, 1) fmt.Println(&amp;quot;I&#39;m waiting&amp;quot;) time.Sleep(5 * time.Second) } // 输出 I&#39;m waiting //立刻 Coffee is ready! //1秒后 Tea is ready! //2秒回  如果不等待goroutine的执行（例如移除第17行），程序会立刻终止，而任何正在执行的goroutine都会停止。为了修复使用channels机制来和goroutine通讯。可以通过channel发送或接受值。这些值只能是特定的类型:channel 类型。
+注意，必须使用 make 创建 channel：
+ci := make(chan int) //创建 channel ci 用于发送和接收整数 cs := make(chan string) //创建 channel cs 用于字符串 cf:=make(chan interface{})//channel cf 使用了空接口来满足各种类型  向 channel 发送或接收数据，是通过类似的操作符完 成的:&amp;lt;−.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录五:进阶</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</guid>
+      <description>Go 有指针。然而却没有指针运算,因此它们更象是引用而不是你所知道的来自于 C 的指针。指针非常有用。在 Go 中调用函数的时候,得记得变量是值传递的。因此,为了修改一个传递入函数的值的效率和可能性,有了指针。
+var p *int fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印nil var i int // 定义一个整型变量i p = &amp;amp;i // 使得p指向i fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印出来的内容类似0x7ff96b81c000a  内存分配 用new分配内存 内建函数 new 本质上说跟其他语言中的同名函数功能一样:new(T) 分配了零值填充 的 T 类型的内存空间,并且返回其地址,一个 *T 类型的值。用 Go 的术语说,它返回 了一个指针,指向新分配的类型 T 的零值。记住这点非常重要。
+用make分配内存 内建函数 make(T, args) 与 new(T) 有着不同的功能。它只能创建 slice,map 和 channel,并且返回一个有初始值(非零)的 T 类型,而不是 *T。本质 来讲,导致这三个类型有所不同的原因是指向数据结构的引用在使用前必须被初始化。 例如,一个 slice,是一个包含指向数据(内部 array)的指针,长度和容量的三项描述 符;在这些项目被初始化之前,slice 为 nil。对于 slice,map 和 channel,make 初始 化了内部的数据结构,填充适当的值。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录六:接口</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</guid>
+      <description>Go中关键字interface被赋予了很多不同的含义。每个类型都有接口，意味着对那个类型定义了方法集合。
+// 这段代码定义了具有一个字段和两个方法的结构类型s。 type S struct { i int } func (p *S) Get() int { return p.i } func (p *S) Put(v int) { p.i = v } // 定义接口 type I interface { Get() int Put(int) } // 对于接口I，S是合法的实现，因为它定义了 I 所需的两个方法。注意：即便是没有明 确定义 S 实现了 I，这也是正确的。 // Go 程序的特性接口值： func f(p I) {// 定义一个函数接受一个接口类型作为参数 fmt.Println(p.Get()) // p实现了接口I，必须有Get()方法 p.Put(1) // Put()方法是类似的 // 这里的变量p保存了接口类型的值。 } // 调用 var s S f(&amp;amp;s) // 因为S实现了I，可以调用f向其传递S类型的值的指针 // 获取 s 的地址,而不是 S 的值的原因,是因为在 s 的指针上定义了方法,参阅上面的 代码 5.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录四:包</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</guid>
+      <description>包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使用小写字符。Go 包可以由多个文件组成,但是使用相同的 package &amp;lt;name&amp;gt; 这一行。
+package even func Even(i int) bool { return i%2==0 } func odd(i int) bool { return i%2==1 }  名称以大写字母起始的是可导出的，可以在包的外部调用。
+共有函数的名称以大写字母开头。
+私有函数的名称以小写字母开头。
+package main import ( //导入下面的包 &amp;quot;event&amp;quot; //本地包even在这里导入 &amp;quot;fmt&amp;quot; ) func main(){ i := 5 fmt.Printf(&amp;quot;Is %d event? %v\n&amp;quot;, i,event.Even(i))// 调用even包中的函数。访问一个包中的函数的语法是&amp;lt;package&amp;gt;.Function()。 }  Go程序的命名规则：包名约定小写字母开头；方法名最好使用驼峰式名称，避免使用下划线，方法名应简洁清晰。
+包的文档 每个包都应该有包注释,在 package 前的一个注释块。对于多文件包,包注释只需要 出现在一个文件前,任意一个文件都可以。包注释应当对包进行介绍,并提供相关于 包的整体信息。这会出现在 go doc 生成的关于包的页面上,并且相关的细节会一并 显示。
+官方regexp包的例子：
+ /* The regexp package implements a simple library for regular expressions.</description>
+    </item>
+    
+    <item>
+      <title>Goreflect包</title>
+      <link>https://yushuangqi.com/blog/2017/go-reflectbao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:53 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-reflectbao.html</guid>
+      <description>Go reflect包
+反射是由 reflect 包提供支持. 它定义了两个重要的类型, Type 和 Value. 一个 Type 表示一个Go类型. 函数 reflect.TypeOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Type.
+reflect 包中另一个重要的类型是 Value. 一个 reflect.Value 可以持有一个任意类型的值. 函数 reflect.ValueOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Value. 和 reflect.TypeOf 类似, reflect.ValueOf 返回的结果也是对于具体的类型, 但是 reflect.Value 也可以持有一个接口值.
+reflect.Type 类型 代码，
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;unsafe&amp;quot; ) // 嵌套结构体 type ss struct { a struct { int string } int string bool float64 } func (s ss) Method1(i int) string { return &amp;quot;结构体方法1&amp;quot; } func (s *ss) Method2(i int) string { return &amp;quot;结构体方法2&amp;quot; } var ( intValue = int(0) int8Value = int8(8) int16Value = int16(16) int32Value = int32(32) int64Value = int64(64) uIntValue = uint(0) uInt8Value = uint8(8) uInt16Value = uint16(16) uInt32Value = uint32(32) uInt64Value = uint64(64) byteValue = byte(0) runeValue = rune(0) uintptrValue = uintptr(0) boolValue = false stringValue = &amp;quot;&amp;quot; float32Value = float32(32) float64Value = float64(64) complex64Value = complex64(64) complex128Value = complex128(128) arrayValue = [5]string{} // 数组 sliceValue = []byte{0, 0, 0, 0, 0} // 切片 mapValue = map[string]int{} // 映射 chanValue = make(chan int, 2) // 通道 structValue = ss{ // 结构体 struct { int string }{10, &amp;quot;子结构体&amp;quot;}, 20, &amp;quot;结构体&amp;quot;, false, 64.</description>
+    </item>
     
     <item>
       <title>Gobuild命令说明</title>
@@ -119,247 +255,6 @@ GPU的每个显卡具有多个（通常是几十个）多处理器(Streaming Mul
 特斯拉官方并没有公布过其内部算法，我们只知道特斯拉的自动驾驶系统Autopolit中曾有以色列Mobileye公司提供的技术。Mobileye是一家基于视觉帮助减少交通事故的公司，其研发多年的高级驾驶辅助系统（ADAS）处于业内领先，主要基于单目摄像头传回的图像，通过深度神经网络进行车辆检测、车道识别等[3]。但Mobileye自己也表示曾经提醒过特斯拉公司，他们的这套系统只能起辅助作用， 并不完善，也不能完全保障车主。虽然特斯拉官方声明由于车主家属不愿提供更多信息，导致具体Autopolit错误原因无从定位，但原因或是因为中国独有的道路清扫车不曾出现在单目视觉的训练数据集，或是因为光照等特殊因素导致的图像质量问题，都说明无法仅通过视觉技术保障自动驾驶的安全性。我们不能将这起事故归结于是深度学习的缺陷，但在实际系统中， 我们目前确实难从一个端到端的系统中完全定位并解决问题，大家还可以看下面的例子进一步理解。
 可解释性 在之前的“深度学习是什么”这一节中，我们讲到深度学习可以利用端到端的学习避免一些多步骤积累错误导致的问题，然而这其实也是一种缺陷。我们无从定位问题出在哪里。下面就以图像分类的一个badcase为例进行说明。
 ImageNet竞赛2012年冠军工作AlexNet的作者Krizhevsky 曾提出，虽然AlexNet效果很棒，但为了最优化该数据集上的效果，不得不建立这样一个含有非常多参数的深度神经网络，而这样的网络非常容易过拟合。在15年的CVPR会议中，Anh Nguyen提出了一种生成样本的方法，该方法生成的样本可以“愚弄” 用于图像识别的深度神经网络[4]，如下图所示的8幅图下面标注的文字分别为ImageNet竞赛数据集上效果最好的网络对该图的识别结果（置信度高于99.6%）， 该网络将我们认为的这些波纹分别识别成了王企鹅、海星、棒球、电吉他、火车车厢、遥控器、孔雀、非洲灰鹦鹉。这种很容易“愚弄”神经网络的样本，被称为对抗样本。</description>
-    </item>
-    
-    <item>
-      <title>架构感悟-从美国宪法学习架构设计原则</title>
-      <link>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html</link>
-      <pubDate>Tue, 21 Feb 2017 13:20:00 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html</guid>
-      <description>2017年1月20日注定是一个会在历史上留下记录的日子，美国第45任总统Donald Trump宣誓就职。他的就职宣誓词非常简短：
- I do solemnly swear that I will faithfully execute the office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States.
- 令人惊讶的是，自从1787年美国宪法在费城制宪会议通过以来，在宪法第二条第一款中规定的总统宣誓词，竟然历经230年，从未变化。
-从一个架构师的角度来看：合众国宪法作为美国这个国家的基础架构，从发布到现在200多年，美国也从13个州发展成50个州，人口从380万增长到3.2亿，时代早已发生剧变，但是美国政治的核心架构基本未变，这个系统的运行状况堪称良好。当年那群“架构师”，实在是了不起。（虽然他们当年的底气相当不足，华盛顿认为，这部宪法能维持20年就不错了）
-如果，我们想要设计出这样的一个架构，能够长期适应需求与环境变化，能够历久弥新并始终稳定可靠，那么了解一下美国宪法的制定过程，其实是一件非常有价值的事情。
-重构都是被逼的 有几个时间点，现在看来，其实颇为令人诧异：1776年7月4日，美国以发布《独立宣言》为标志宣布独立。1783年9月3日英美签订《巴黎和约》，独立战争结束。但是一直到1787年9月15日，一众国父们才在费城签署了《美利坚合众国宪法》。也就是说：一个独立的国家，在运行了11年后，才有了自己的宪法！而且又过了2年，直到1789年这部宪法获得各州的批准之后，华盛顿才被依法选为第一任美国总统。
-可以说，在长达13年的时间里，这个国家没有总统，没有中央政府，没有一点国家的样子。我们不禁要问一句：早干嘛去了？打仗期间忙不过来，尚且可以理解。战争结束之后的6年，他们在干嘛？
-事实上，1777年11月19日大陆会议通过的《邦联条例》，可以算是这个国家的beta版架构。但在上线运行10年之后，实在是撑不住了。首要的问题，是因为钱，独立战争结束，各州拖欠了士兵数百万美元的军饷，同时还拖欠了一些欧洲国家的钱，但是，这个国家一穷二白没办法还钱（还记得技术债务吗？）。这个国家也没有全国性的货币体系，在不同的州，一美元的价值竟相差4倍！由此引发的，是很多人破产甚至被投入监狱。退伍士兵谢司领导了一场起义，兵力甚至高达1万5千人，虽然最后被镇压了。但是，整个国家都陷入了严重的恐慌，一个新兴的、刚刚独立的国家，是不是就要完蛋了？
-用架构师的语言描述就是：一个临时性的架构勉强上线运行，如果再不做架构改造，推出新版本，这个系统就要彻底宕机了。虽然大家都不清楚新版本应该是什么样子，但是必须得有一个新版本了！然而当时的美国各州，都喜欢去中心化的、互不相干的分布式架构，对于可能出现的集中式架构，深感警惕。要他们商量出一个一致同意的新架构，将会异常艰难&amp;hellip;&amp;hellip;
-但是，另一个值得思考的问题是：拥有先见之明的天纵奇才、提前制定出明见万里、高瞻远瞩式的架构，真的靠谱吗？
-显而易见的观点，可能并不正确 当时的欧洲，有很多人也在关注这次大会。按照欧洲人的看法：民主共和的政体，只适合于像瑞士那样的小国家。对于美国这么大的国家而言，只能是选择君主制。因此，那些美国人之所以要关起门来讨论，估计是在商量：到底是请哪一位君主到美国去当国王，会比较合适。更有好事者，连候选人都想好了：要么是普鲁士的亨利王子，要么是英国的弗雷德里克·奥古斯塔斯王子。
-当时的美国人，有很多人抱着完全相反的另一种观点：不要有国王，甚至连中央政府都最好没有！他们之所以打了一场独立战争，就是为了从英国的统治下，解放出来。在获得了自己的独立、自由之后，他们立马就各回各家了。过自己的日子不挺好吗？为啥还要立宪？还要成立一个凌驾于各州之上的中央政府？大家受到英国的奴役，还不够吗？
-对于提议召开此次大会的组织者而言，尤其是对于美国宪法之父，已经准备好了弗吉尼亚方案的詹姆斯·麦迪逊而言，美国这个国家，已经到了最危险的时候，必须有一个强有力的中央政府，十三个州政府再也不能像过去一样，一盘散沙了。时年35岁的麦迪逊，已经通读了当时几乎所有的政治相关著作，并且在去开会前，带上了几百本书和报纸，准备回答可能遇到的一切疑问和质询。
-事情当然没有那么简单，一场大会从5月25日开到了9月17日，整整116天！期间有无数次，某些代表、甚至所有的与会代表，都深感沮丧和绝望，感觉这个会开不出结果来了。究其原因，实在是因为问题太过复杂，代表们的分歧太大造成的。事实上，他们所做的事情，是要写出人类历史上的第一部成文宪法。而且这个国家，与历史上的任何国家，都大不相同。就好比我们打算做一个架构设计，却几乎找不到任何可供参考的案例。任何已经存在的方案，显而易见的观点，各种类比与参考，都无法理所当然的直接借鉴。
-换言之，我们在开始一个架构设计时，最需要警惕的，恰恰是那种显而易见的观点和方案，因为很可能是错误的。
-会议程序的价值 在阅读制宪会议的这段历史时，最令我感兴趣的，是他们的一些会议程序设计，非常有意思。
-5月25日，开会第一天，大会选举了乔治·华盛顿为大会主席。然后，在5月29日大会决定采取全体委员会的形式，另选了一个人，做了全体委员会的主席。此后，华盛顿便只在每天开会和散会时，上台就主席座，宣布会议开始与会议结束。其余时间，他都坐在弗吉尼亚代表团的桌子旁，以普通代表身份参加讨论。
-这种会中会的玩法，据说是能够给讨论，留下缓冲的余地。
-第二个程序设计，是代表们一致同意，在大会过程中有权改变决议，而不是讨论投票表决，就结束了。任何代表都可以要求对任何议题或决定进行重新讨论，而且他们经常这么做！整个大会，一共有569次表决，很多议题会被反复讨论。例如关于总统选举的办法，就一共有60次投票表决。因此，他们又制定了一个保密规定，任何人，不得对外透露大会的事情。
-为何要采用这样一种反复讨论、表决，而且对外保密的做法？在40年后，麦迪逊才解释了原因：如果大会对外公开的话，任何代表之后都不会改变自己的主张，这样做就意味着公开承认自己原来是错误的。如果这样，那么这次大会，就可能会失败。
-第三个程序设计，也是一个会中会的形式。在会议遇到重大分歧时，他们会另外任命一个小型的、专门的委员会，首先让这个委员会在小范围里讨论出推荐方案，表决通过，再提交大会讨论和表决。下文将会介绍“伟大的妥协”，就是一个委员会的努力工作的产物。
-追根溯源来说，这些开会的艺术，其实是英国政治文化的优秀遗产。一群无论是智力还是见识，都仅仅只能算平庸的人，要想把一个非常复杂的问题讨论清楚，只能尽可能保持耐心、保持克制、充分讨论、反复表决，只有这样，才有可能达成共识，也才有可能获得尽可能好的结果。
-虽然，我们不能想象一个系统的架构设计，也像这样一口气开3~4个月的会。但是：在讨论问题的过程中，集思广益，反复权衡，参与争论的各方，也能够心平气和、就事论事、不翻旧帐（你昨天不还是反对的吗？上次你那个设计就有问题！）对于获得良好的架构，也应该会有很大的帮助。
-妥协（不埋雷）的艺术 在架构设计的过程中，我们通常会面临各种复杂的、甚至是相互矛盾的需求，在追求设计的品质时，理想主义与现实主义也会存在冲突。如果紧紧守住自己的意见，毫不妥协，通常连一个架构方案都拿不出来。但是，在权衡与妥协的时候，一味的期望消弭冲突，或者求同存异，都可能会埋下地雷，在系统上线运行之后，日积月累、酿成大祸！
-在这次的制宪会议上，代表们达成了很多的妥协。其中“有名有姓”、载入史册的重大妥协有三项：关于大州和小州之间在议会中席位数多寡的妥协，这项妥协干脆就被史家们称做“伟大的妥协”（The Great Compromise）；其次是南方州和北方州之间关于奴隶是否有选举权的妥协，“五分之三妥协”（The three-fifths compromise）；再者是与南、北方经济利益冲突相关的、关于国会管理新大陆商业贸易权限的妥协，“商业妥协”（The commerce compromises）。</description>
-    </item>
-    
-    <item>
-      <title>计算机专业必读书籍</title>
-      <link>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</link>
-      <pubDate>Tue, 21 Feb 2017 13:19:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</guid>
-      <description>石头经过高考后20天的思考，终于将自己的专业金融经济改成了计算机，这个决定由衷的让我一阵窃喜。从事了20多来年计算机出版和市场推广的我，看到象石头一样的少年，成为新一代程序员，心里非常自豪又能给下一代孩子们做学习计算机技术的引路人，推荐一些好书了。
-对于刚高考完的孩子们，既然选择了计算机专业，这个暑假当然还是先好好玩玩，打游戏、学车、上网看各种电影和同学出去毕业旅游等等。
-在休息娱乐之余，我建议孩子们选一门语言（推荐Python和JavaScript），网上找本完整的电子书或去京东当当买本纸书(同样我推荐图灵出版的Python基础教程和JS方面的书及人邮社计算机分社出版的几本Python和JS书都不错）。推荐这个网站，可以从零开始学python：https://docs.python.org/3/ 。
-JavaScript现在已经无处不在了，可能会在你手机上的某个app里，在你浏览的网页里，在你IDE中的某个进程中运行的。自己照着搭建环境，对着书一个字一个字敲代码，运行，出问题自己解决，解决不了先谷歌，不行再来网上问，然后就可以编你想编的程序了，做个小软件运行起来找到成就感。等有了一定的编程经验，你就知道该进一步学什么了。以下这些前端技术书可以先入为主：
- Head First HTML and CSS HTML &amp;amp; CSS CSS 权威指南，CSS 禅意花园，精通 CSS JavaScript DOM编程艺术，JavaScript 高级程序设计，JavaScript 权威指南，JavaScript 模式  学习JS，可以参考这里的文章：http://limu.iteye.com/blog/1267475 。
-如果想学PHP(python这样的类PHP语言), 那么下面是一个简单的思路，开始是学习HTML, 应该从页面入手, 自己体察细微变化, 再去研究什么是块元素, 什么是内联元素。做一些展示性的变化，可以学习CSS。CSS也不要上来就挨个介绍属性, 而是以完成展现任务为目的。
-而后, 可以接触PHP, 做个简单留言板, 接触到PHP的一些东西和数据库相关东西。做一些用户注册、登录，理解Cookie和session是怎么回事. 在手写一些数据库操作函数以后, 选一个库开始使用。引入模板( php smarty 模板)的概念，简单的逻辑和展示分离。
-这时候, 可以学习jQuery, 做些Ajax相关东西, 了解一下json，也应该重视代码质量了, 可以看看art of readable code之类的书，在有人引导的前提下, 可以看看开源项目等(drupal, zendframework, wordpress)。
-从大一开始，跟着学校的通识课教学，自己从计算机这个学科体系里的基本知识入手，实践乃是第一必修课，参考http://www.udacity.com/ 和 https://www.coursera.org/ 的现有网上课程（包括很多计算机相关的基础课、中级乃至高级课程）同，这些网上课程非常丰富，在暑假可以抽着空学习一下。
-计算机基础学科和数学基础课程
-推荐看这里的课程，每周1天，6周就够， https://www.coursera.org/course/cs101 ，了解下计算机基本原理，懂点简单的编程，并具体实践操作，从实践中体验计算机的魅力。以下是新同学要学习的一些计算机基础课程：
- 编程语言（如C、C++、JAVA、python 等） 数学基础（一阶逻辑系统、集合论、图论、线性代数、微积分、概率论） 数据结构与算法 软件理论入门（形式语言、自动机） 体系结构（数字电路、CPU设计、操作系统、编译器、网络协议）  掌握一门常用的编程语言和编程技术：能了解你用过的所有的程序内部大致是怎样的，能用你熟悉的语言编写大部分的程序，至少不能是对任何一个程序满头雾水。</description>
-    </item>
-    
-    <item>
-      <title>互联网高可用架构技术实践</title>
-      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html</link>
-      <pubDate>Tue, 21 Feb 2017 13:19:40 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html</guid>
-      <description>一、什么是高可用 高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。
-假设系统一直能够提供服务，我们说系统的可用性是100%。如果系统每运行100个时间单位，会有1个时间单位无法提供服务，我们说系统的可用性是99%。很多公司的高可用目标是4个9，也就是99.99%，这就意味着，系统的年停机时间为8.76个小时。
-百度的搜索首页，是业内公认高可用保障非常出色的系统，甚至人们会通过www.baidu.com能不能访问来判断“网络的连通性”，百度高可用的服务让人留下啦“网络通畅，百度就能访问”，“百度打不开，应该是网络连不上”的印象，这其实是对百度HA最高的褒奖。
-二、如何保障系统的高可用 我们都知道，单点是系统高可用的大敌，单点往往是系统高可用最大的风险和敌人，应该尽量在系统设计的过程中避免单点。方法论上，高可用保证的原则是“集群化”，或者叫“冗余”：只有一个单点，挂了服务会受影响；如果有冗余备份，挂了还有其他backup能够顶上。
-保证系统高可用，架构设计的核心准则是：冗余。有了冗余之后，还不够，每次出现故障需要人工介入恢复势必会增加系统的不可服务实践。所以，又往往是通过“自动故障转移”来实现系统的高可用。接下来我们看下典型互联网架构中，如何通过冗余+自动故障转移来保证系统的高可用特性。
-三、常见的互联网分层架构 常见互联网分布式架构如上，分为：
- （1）客户端层：典型调用方是浏览器browser或者手机应用APP （2）反向代理层：系统入口，反向代理 （3）站点应用层：实现核心应用逻辑，返回html或者json （4）服务层：如果实现了服务化，就有这一层 （5）数据-缓存层：缓存加速访问存储 （6）数据-数据库层：数据库固化数据存储  整个系统的高可用，又是通过每一层的冗余+自动故障转移来综合实现的。
-四、分层高可用架构实践 1. 客户端层-&amp;gt;反向代理层的高可用 客户端层到反向代理层的高可用，是通过反向代理层的冗余来实现的。以nginx为例：有两台nginx，一台对线上提供服务，另一台冗余以保证高可用，常见的实践是keepalived存活探测，相同virtual IP提供服务。
-自动故障转移：当nginx挂了的时候，keepalived能够探测到，会自动的进行故障转移，将流量自动迁移到shadow-nginx，由于使用的是相同的virtual IP，这个切换过程对调用方是透明的。
-2. 反向代理层-&amp;gt;站点层的高可用 反向代理层到站点层的高可用，是通过站点层的冗余来实现的。假设反向代理层是nginx，nginx.conf里能够配置多个web后端，并且nginx能够探测到多个后端的存活性。
-自动故障转移：当web-server挂了的时候，nginx能够探测到，会自动的进行故障转移，将流量自动迁移到其他的web-server，整个过程由nginx自动完成，对调用方是透明的。
-3. 站点层-&amp;gt;服务层的高可用 站点层到服务层的高可用，是通过服务层的冗余来实现的。“服务连接池”会建立与下游服务多个连接，每次请求会“随机”选取连接来访问下游服务。
-自动故障转移：当service挂了的时候，service-connection-pool能够探测到，会自动的进行故障转移，将流量自动迁移到其他的service，整个过程由连接池自动完成，对调用方是透明的（所以说RPC-client中的服务连接池是很重要的基础组件）。
-4. 服务层&amp;gt;缓存层的高可用 服务层到缓存层的高可用，是通过缓存数据的冗余来实现的。 缓存层的数据冗余又有几种方式：第一种是利用客户端的封装，service对cache进行双读或者双写。
-缓存层也可以通过支持主从同步的缓存集群来解决缓存层的高可用问题。
-以redis为例，redis天然支持主从同步，redis官方也有sentinel哨兵机制，来做redis的存活性检测。
-自动故障转移：当redis主挂了的时候，sentinel能够探测到，会通知调用方访问新的redis，整个过程由sentinel和redis集群配合完成，对调用方是透明的。
-说完缓存的高可用，这里要多说一句，业务对缓存并不一定有“高可用”要求，更多的对缓存的使用场景，是用来“加速数据访问”：把一部分数据放到缓存里，如果缓存挂了或者缓存没有命中，是可以去后端的数据库中再取数据的。
-这类允许“cache miss”的业务场景，缓存架构的建议是：
-将kv缓存封装成服务集群，上游设置一个代理（代理可以用集群的方式保证高可用），代理的后端根据缓存访问的key水平切分成若干个实例，每个实例的访问并不做高可用。
-缓存实例挂了屏蔽：当有水平切分的实例挂掉时，代理层直接返回cache miss，此时缓存挂掉对调用方也是透明的。key水平切分实例减少，不建议做re-hash，这样容易引发缓存数据的不一致。
-5. 服务层&amp;gt;数据库层的高可用 大部分互联网技术，数据库层都用了“主从同步，读写分离”架构，所以数据库层的高可用，又分为“读库高可用”与“写库高可用”两类。
- 服务层&amp;gt;数据库层“读”的高可用
-  服务层到数据库读的高可用，是通过读库的冗余来实现的。
-既然冗余了读库，一般来说就至少有2个从库，“数据库连接池”会建立与读库多个连接，每次请求会路由到这些读库。
-自动故障转移：当读库挂了的时候，db-connection-pool能够探测到，会自动的进行故障转移，将流量自动迁移到其他的读库，整个过程由连接池自动完成，对调用方是透明的（所以说DAO中的数据库连接池是很重要的基础组件）。
- 服务层&amp;gt;数据库层“写”的高可用
-  服务层到数据库写的高可用，是通过写库的冗余来实现的。
-以mysql为例，可以设置两个mysql双主同步，一台对线上提供服务，另一台冗余以保证高可用，常见的实践是keepalived存活探测，相同virtual IP提供服务。
-自动故障转移：当写库挂了的时候，keepalived能够探测到，会自动的进行故障转移，将流量自动迁移到shadow-db-master，由于使用的是相同的virtual IP，这个切换过程对调用方是透明的。
-五、总结 高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。</description>
-    </item>
-    
-    <item>
-      <title>从美国制宪和中国改革来学架构设计</title>
-      <link>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html</link>
-      <pubDate>Tue, 21 Feb 2017 13:19:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html</guid>
-      <description>2017年2月6日周一晚8点30分，GitChat团队迎来了华为公司内源社区平台架构师、开源社理事庄表伟“从美国宪法学习架构设计原则”主题交流。以下是主持人赫阳整理的问题精华，记录下了作者和读者的问答精彩片段。
-问： 1）架构中对合作博弈的机制设计是否重要？如果是，则如何设计引入？老架构的调整中，如何破解纳什均衡中的“锁定效应”和“路径依赖”等问题？2） 美国宪法架构设计中，如何处理经费预算的问题呢？或者是预算问题是否是架构问题的先决条件？或者别的某些先决条件属于必要的存在？
-答： 1）先引用一段评论。钟晖说：“以前，看过一篇IT同仁用苹果、安卓等操作系统来解释伊斯兰教、基督教等宗教的文章，喻示法灵活显，直白易懂，让大家明白了伊斯兰教是什么鬼。”
-那篇文章，我也看过，但是：说实话并不喜欢。因为一旦深入了解各个宗教与各种操作系统，就会发现，简单类比是非常危险的。或者说，仅仅是基于某种固有印象的类比。
-另一个希望避免的倾向，是那种“讽喻”，借着IT架构的某某特征，来暗讽某种政治制度。不仅仅因为这样危险，而且也很可能是错误的。其中最大的一个区别，就在于：IT系统里的各种组件，都是人类编写的程序，目前还不会有自行造反的可能性。而人类社会中的各种角色，都是有智力、有目的、有情绪的人。所以，对于人可以讨论博弈论。对于各个模块、组件，就很难去讨论他们之间的博弈关系。
-所以，在收到关于纳什均衡相关的问题时，我思索了片刻，感觉很难回答。因为不容易类比过去。当然，在决策过程中，我们的确会发现各种“路径依赖”的现象。因为过去的思路如此，在后续的改进或变更过程中，很难跳出那个圈子去思考。这是人之常情，也可以说是人类共通的弱点。
-2）在我的文章里，提到了因为美国政府没钱，所以才会在奴隶制方面有一个3/5妥协。另外，就是每个奴隶，美国政府能够收10美元的税。这就是经济原因导致的，政治决策。另一好玩的例子，我的文章里没有提。在制宪会议过程中，因为争吵太过激烈，富兰克林提议，是不是找一个牧师，来带着大家祈祷。然后，人家告诉他：没有钱请牧师&amp;hellip;
-问：三权分立，怎么玩是否可以详细说说？
-答：这也是个很难的问题，因为在架构上，我们很难找到简单的类比：A、B、C正好是一个架构里的三个要素。虽然，我们会说三层架构、或者MVC架构，但是这种简单的类比，可能是错误的。或者说，我们如果因为想要比对上三个要素，结果就忽略了系统中的第四、第五个要素，就很危险了。
-当然，如果要深入的讨论三权分立的思想精神，可以说它是基于一个要点：假设某个部分出了问题，我们可以如何制衡它？从这个角度而言，我们针对系统中的每个部分，都可以再问一问：如果这个部分出问题了，我们该如何办？就像美国人说“总统是靠不住的、国会也是靠不住的、法官也是靠不住的”，而对于我们的架构来说：架构中的任何一个组件，都是靠不住的。至于是不是一定会是三个部分，互相监督，倒是未必。
-问： 在公司多产品平台上的架构重构，需要的周期比较长。对现有产品影响稳定周期较长，一般都是小调整，怎么实施较大重构，老庄的策略及自己操刀过成功的案例有么？ 架构眼花时候的充分向下兼容会导致维护比较重，是否尝试过比较激进的策略？就是为了加快产品进度而一定程度放弃向下兼容，中早期产品迭代获取用户才是最关键的。
-答：其实，我们可以泛泛的问题：架构变更（演进），应该依据什么原则？我先引用一段美国宪法的文字：“第五条国会应在两院各2/3议员认为必要时，提出本宪法的修正案，或根据全国2/3州议会的请求召开公议提出修正案。以上任何一种情况下提出的修正案，经全国的州议会或3/4州的制宪会议批准，即成为本宪法的一部分而发生实际效力；采用哪种批准方式可由国会提出。但在1808年前所制定的修正案不得以任何形式影响本宪法第一条第九款之第一、第四两项；任何一州，未经其同意，不得被剥夺它在参议院中的平等投票权。”
-这段文字，规定了什么样的修改，可以成为宪法修正案。2/3议员提议；3/4的州通过；可以说，这是一个非常非常难以达到的条件。因为有了这条规则，所以才会有：美国宪法230年，只有27条修正案的结果。
-那么，这个规则到底是不是好事呢？
-假设，一家公司有一个架构师委员会，2/3架构师提议；3/4架构师同意，才能够对架构实施变更。那么，基本上我们可以认为，这个架构的变化可能性会很小。当业务快速增长、产品快速迭代时，这种搞法，是要出问题的。
-在我的文章里，其实也提到了一些。比如美国的总统选举办法，在200多年的时间里，有上百次的修改提议，但是却始终没有能够获得通过。所以，总统的选举办法，还是这个老样子。说实话，是有些危险的。当然，从长治久安的角度来说，随随便便，就可以推出一部新宪法，也不是个事儿。我国的宪法：在60多年的时间里，制定和施行了四部宪法。即1954、1975、1978、1982宪法。1982宪法颁行后，又于1988年、1993年、1999年、2004年四度修正宪法。总觉得，也不太妥当。当然，世界变化太快，也是原因之一。比如说：在希特勒上台之后，在二战结束之后，其实美国人也反省了一下，比如修改了总统选举法。原来的总统不能第二次连任，只是华盛顿立下的潜规则。但是之后的宪法第22修正案，就明确规定只能连任一次了。
-还是正面回答一下，如何操刀一次架构变更的问题。说实话，我有成功的案例，也有失败的案例。失败的例子，现在我反省下来，还是当时自己太年轻，资历不够，说服力不强导致的。至于成功的案例，本质上是靠我的鼓动力（说服力）。能不能够说服其他同事，同意我的架构变更方案，至关重要。作为一个会自己coding的架构师，总会有一种冲动：我自己上，把关键的代码给写出来了。看他们还能把我怎么样？这就好比军人干政。我手里有武装力量，就带兵杀进去，造成既成事实。当然，这样肯定是很糟糕的做法。“政治不正确。”
-我儿子曾经问过我一个问题：爸爸，你想过变成一个美国人吗？你觉得做中国人好，还是做美国人好？
-我当时是这么跟他聊的。美国人有他们的自豪感。中国人也有他们的自豪感。但是，这两种自豪感大不相同。美国人的自豪感，是他们的成就，上升、上升，直到现在成了世界第一。而中国人的自豪感，是“咱们都经历过”。不仅经历过辉煌，也经历过衰落，甚至近乎灭顶之灾。中国人的自豪感在于：几千年风风雨雨，咱们这个民族，都挺过来了。不仅经历过温和的渐变，也经历过毁灭后的重生。所以，在美国人，可能无法想象：把现在的美国宪法，全部推倒重来。但是，在中国历史上，全部推翻，重新搞一套的次数，已经太多次了。所以，在中国历史领域，有一个词叫做：“超稳定结构”，这个架构，可以说更加神奇。全部机器都炸光，还能再build一套，接着run。
-所以，针对激进的架构变更策略，其实也没啥。只要公司没有倒，还是可以跑起来的。（当然，风险自负。）
-问：讲讲架构的对具体实现的指导和约束机制吧。另外我想说明的是，架构师需要了解整个代码的痛点，才能有效地针对这种痛点做相应的反应。所以，架构师是需要经常触碰代码的，以便整个架构跟随着应用宝氧化而演化。
-答：架构对于现实约束，其实是很困难的问题。很多时候，我感觉架构师一定要是一个很好的布道师。将自己对架构的理念与思考，灌注到其他团队成员的心里。然后，才能引导他们，写出我希望看到的代码。从这个意义上来说：汉密尔顿等三位，写的《联邦党人文集》，就是在做这样的说服工作。
-另一方面，法制意识也很重要。如果你已经投票同意了这个宪法，是不是就愿意去遵守这个宪法？如果最高法院判你违宪，你是不是立刻就停止种种动作，而不是坚持自己的观点，一意孤行？将法制意识，类比到研发工作中，就是一个开发者的职业素养。在讨论架构的时候，大家各诉己见。在具体的开发过程中，是否能够严格遵守？
-问：当组织架构不支持系统架构产品架构的时候有什么办法促进架构的演进和最优化？
-答：这个问题，可以说很简单，也可以说很难。简单说：什么挡路就推开什么呀。既然是组织架构的问题，那就想办法改造组织架构呀。而难点在于：如果你的力量不够（不过是个架构师），你根本没有能力，改造组织架构。老板让你做个架构，你告诉他：要变革组织。你让老板怎么想？所以，问题还是回到架构师的说服力。看起来是个架构问题，其实是一个政治问题。你能不能推动某种程度上的变革？与你的手段高低，密切相关。
-之前有一段时间，我很喜欢看中国改革开放的那段历史，其中推动变革的技巧，非常值得学习。
-问：1）美国的架构应是其政治体制，如三权分立 州联邦 州议会选举等，而宪法应是其brd prd（业务需求文档产品文档）一类的，这些架构也早已借鉴到IT系统中，如选举、联邦等，请问下一步去中心化的架构应如何架设？ 2）IT架构的演进也如政治体制的演进，从君权神授到选举、从集权到民主，其实it的演进比政治快，请问IT架构的演进一般有什么样的节奏？3）利益各方的权衡正如性能、稳定、成本的协调，恰如云计算的发展，性能 稳定 成本可以自动动态调整，请问如何构建自适应的架构？
-答：我觉得，宪法的文本，不是产品需求文档。如果一定要类比的话：独立宣言，可以算是需求文档。讨论：我们要变成什么样，人人应该生而平等。这种口号，是产品经理的活。如何落实到宪法中，是架构师的工作。
-首先：我不太认同你的问题里面的潜台词：政治制度，是逐步进化的，所以君权神授之后，就应该进化到民主制度。
-有两段历史，都是反方向的。一段是美国从《邦联条例》进化成《联邦宪法》，事实上权力变得更加集中了。另一段历史，我最近正在看的罗马史，也是从共和制，走向了“帝制”。不能简单说，这种演变是对还是错。但是，的确是这么变过去了。
-去中心化的分布式架构，未必就是未来的架构进化方向。就好像现在大家都在聊的微服务，似乎你们的系统有100个微服务，我们的系统有1000个微服务。你们明显就不够牛。本质上，不应该追求这个。回到我的文章的第一节：重构都是被逼的，并非：有一个人人都认可的，先进的，注定正确的方向。抛开实际的业务场景，抛开具体的困难与目标，泛泛的谈架构演进的方向，是很危险的。再聊聊演进的节奏问题，这个我现在最认同的观点，是精益企业的观点。首先有数据，然后才能正确的判断该如何演进。既然是在IT架构上谈演化，那么对于IT架构目前的现状，就完全可以不凭感觉，而是凭数据说话。
-问：架构有没有不能妥协的最小原则？
-答：其实，没有什么不能妥协的。只要老板还有钱，还肯让你接着弄。总是可以变来变去的。当然，这是一种很没有追求的回答。另外一个较为有深度的说法是：架构师可以有主见，但是不能有成见。所以，在我的工作中，唯一不能容忍的架构决策是：凭借猜测，做出的判断。你可以有A观点，也可以有B观点，但是你不能说：咱们试试吧，说不定这样就好了！
-问： 如果一个架构团队，有一个架构师无视集体决议，利用自己编码速度快，在公司统一框架下夹带私货，如何应对？举个例子哦，其它架构师都同意把token或者权限验证签名放在HTTPheader里传递，可这个架构却把这些安全参数放在requestbody的json字符串中，并且都已经上生产环境了，其余架构是否可以强制下线该项目或功能？
-答： 这个架构师，缺乏职业素养，先开掉吧。然后再慢慢的收拾他制造的残局。因为，你无法确保，他会不会做出其他出格的事情，比如拖库、删库。
-问：传统企业，但由于历史原因，架构都不一样，但公司也要互联网话，公司领导也支持架构重构，人也相对够用，目前所有业务量都不算大，但对架构的基本要求，比如了扩展，高可用，稳定，监控等，重构后希望统一技术，提高开发效率，想问下这种场景下一般要怎样设计架构呢，有什么建议呢？
-答：目标不应该是“互联网化”，而是“架构优化”。从实际出发，分析该如何改进。不是“以扩展、高可用、监控”，甚至容器、微服务之类的时髦词汇为目标。而是：当前的系统，有啥问题。痛点在哪里？然后，找一下业界的成熟实践，看看有没有可以引进的方案。小步慢跑，再逐步的快起来。尤其是不要心血来潮，搞休克疗法。说实话，领导支持云云，不是因为这样的改造是必须。只是因为它听起来“更先进了”。
-可以简单的总结一下我的观点：设计架构，可以学习美国制宪；改造架构，可以学习中国改革。</description>
-    </item>
-    
-    <item>
-      <title>go协程与主线程强占运行</title>
-      <link>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:49 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</guid>
-      <description>最近在学习了go 语言 , 正好学习到了 协程这一块 ,遇到了困惑的地方.这个是go语言官方文档 . 在我的理解当中是,协程只能在主线程释放时间片后才会经过系统调度来运行协程,其实正确的也确实是这样的,但是我遇到了协程强占主线程的一个问题,经过帮助,现在已经了解.废话不多说,先看代码
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { go say(&amp;quot;world&amp;quot;) say(&amp;quot;hello&amp;quot;) /* fmt.Println(&amp;quot;---------------1&amp;quot;) a := []int{7, 2, 8, -9, 4, 0} fmt.Println(&amp;quot;===&amp;quot;, a[:len(a)/2]) c := make(chan int) go sum(a[:len(a)/2], c) go sum(a[len(a)/2:], c) x, y := &amp;lt;-c, &amp;lt;-c // receive from c fmt.Println(x, y, x+y) fmt.Println(&amp;quot;---------------2&amp;quot;) c2 := make(chan int, 2) c2 &amp;lt;- 1 c2 &amp;lt;- 2 fmt.Println(&amp;lt;-c2) fmt.Println(&amp;lt;-c2) fmt.Println(&amp;quot;---------------3&amp;quot;) c3 := make(chan int, 10) go fibonacci(cap(c3), c3) for i := range c3 { fmt.</description>
-    </item>
-    
-    <item>
-      <title>Gounsafe包</title>
-      <link>https://yushuangqi.com/blog/2017/go-unsafebao.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:48 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-unsafebao.html</guid>
-      <description>Go unsafe包
-unsafe包概述 直到现在（Go1.7），unsafe包含以下资源：
-三个函数：
-// unsafe.Sizeof函数返回操作数在内存中的字节大小,参数可以是任意类型的表达式,但是它并不会对表达式进行求值. // 一个Sizeof函数调用是一个对应uintptr类型的常量表达式, // 因此返回的结果可以用作数组类型的长度大小，或者用作计算其他的常量. func Sizeof(x ArbitraryType) uintptr //函数的参数必须是一个字段 x.f, 然后返回 f 字段相对于 x 起始地址的偏移量, 包括可能的空洞. func Offsetof(x ArbitraryType) uintptr //unsafe.Alignof 函数返回对应参数的类型需要对齐的倍数. func Alignof(x ArbitraryType) uintptr   内存空洞是编译器自动添加的没有被使用的内存空间，用于保证后面每个字段或元素的地址相对于结构或数组的开始地址能够合理地对齐（译注：内存空洞可能会存在一些随机数据，可能会对用unsafe包直接操作内存的处理产生影响）。
- 和一种类型：
-type Pointer *ArbitraryType  这里，ArbitraryType不是一个真正的类型。官方导出这个类型只是出于完善文档的考虑，在其他的库和任何项目中都没有使用价值，除非程序员故意使用它。
- unsafe.Sizeof, Alignof 和 Offsetof  计算机在加载和保存数据时，如果内存地址合理地对齐的将会更有效率。例如2字节大小的int16类型的变量地址应该是偶数，一个4字节大小的rune类型变量的地址应该是4的倍数，一个8字节大小的float64、uint64或64-bit指针类型变量的地址应该是8字节对齐的。但是对于再大的地址对齐倍数则是不需要的，即使是complex128等较大的数据类型最多也只是8字节对齐。
- 由于地址对齐这个因素，一个聚合类型（结构体或数组）的大小至少是所有字段或元素大小的总和，或者更大因为可能存在内存空洞。内存空洞是编译器自动添加的没有被使用的内存空间，用于保证后面每个字段或元素的地址相对于结构或数组的开始地址能够合理地对齐（译注：内存空洞可能会存在一些随机数据，可能会对用unsafe包直接操作内存的处理产生影响）。
- 一个结构体变量 x 以及其在64位机器上的典型的内存. 灰色区域是空洞.
-var x struct { a bool b int16 c []int }  对结构体变量的三个字段调用unsafe包相关函数的计算结果如下，</description>
-    </item>
-    
-    <item>
-      <title>Go1_8httpgraceful体验</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:47 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</guid>
-      <description>很高兴Go 1.8发布了，这是个值得庆祝的日子。
-如何优雅的关闭http服务在Go Web开发中一直被提及和讨论的话题，今天Go 1.8的发布终于为我们带来了这个特性。
-文档中是这样介绍的：
-func (srv *Server) Shutdown(ctx context.Context) error  Shutdown 将无中断的关闭正在活跃的连接，然后平滑的停止服务。处理流程如下：
- 首先关闭所有的监听
- 然后关闭所有的空闲连接
- 然后无限期等待连接处理完毕转为空闲，并关闭
- 如果提供了 带有超时的Context，将在服务关闭前返回 Context的超时错误
-  需要注意的是，Shutdown 并不尝试关闭或者等待 hijacked连接，如 WebSockets。如果需要的话调用者需要分别处理诸如长连接类型的等待和关闭。
-其实，你只要调用 Shutdown 方法就好了。
-简单示例：
-// main.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; ) func main() { http.HandleFunc(&amp;quot;/&amp;quot;, func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello World, %v\n&amp;quot;, time.Now()) }) s := &amp;amp;http.Server{ Addr: &amp;quot;:8080&amp;quot;, Handler: http.</description>
-    </item>
-    
-    <item>
-      <title>Go1_8正式发布</title>
-      <link>https://yushuangqi.com/blog/2017/go1_8zheng-shi-fa-bu.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:46 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go1_8zheng-shi-fa-bu.html</guid>
-      <description>今天Go团队很高兴地宣布Go 1.8发布了。你可以从下载页面获得1.8版本。在这个版本中，整个标准库有显着的性能改进和变化。
-Go 1.7中为64位x86系统引入的编译器后端现在用于所有体系结构，在这些体系结构下可以看到显着的性能改进。例如，我们的基准程序所需的CPU时间在32位ARM系统上减少了20-30％。在此版本中，对于64位x86系统也有一些性能提升。编译器和链接器跑得更快。编译时间应该比Go 1.7缩短约15％。在这一领域还有更多的工作要做：希望未来版本的编译速度更快。
-垃圾收集暂停应明显更短，通常在100微秒以下，通常低至10微秒。
-HTTP服务器添加对HTTP/2 Push的支持，允许服务器向客户端推送。这对于消除网络延迟非常有用。 HTTP服务器还添加了对优雅停机的支持，允许服务器完成正在运行的请求之后关闭从而最小化停机时间。
-context（添加到Go 1.7中的标准库）提供了取消和超时机制。 Go 1.8在更多的标准库中添加了对context的支持，包括database/sql和net包以及net/http包中的Server.Shutdown。
-现在使用新添加的Slice函数使得对slice进行排序更简单。例如，要通过“名称”字段对结构体片段进行排序：
-Go 1.8包括很多新增API，以及老API的改进和修复。 你可以在Go 1.8发行说明中查找完整的修改列表，以及有关上面列出内容的详细信息。
-为了庆祝新版发布，世界各地的Go用户组都在本周举办发布会。 发布会已经成为Go社区的一个传统，所以如果你错过了这一次，当1.9发布时应该注意了。
-感谢超过200个贡献者谁帮助了1.8版本的发布。</description>
-    </item>
-    
-    <item>
-      <title>go用slice模拟vector功能</title>
-      <link>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:46 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</guid>
-      <description>appendVector ``` - 编程语言与开发 a = append(a, b&amp;hellip;)
- copy ==== ``` - 编程语言与开发 b = append([]T(nil), a...)  ``` - 编程语言与开发 b = make([]T, len(a)) copy(b, a)
- cut删除一段范围i\~j =================== ``` - 编程语言与开发 copy(a[i:], a[j:]) for k, n := len(a) - j + i, len(a); k &amp;lt; n; k++ { a[k] = nil //or the zero value of T } a = a[:len(a) - j + i]  delete删除指定i ``` - 编程语言与开发 copy(a[i:], a[i+1:] a[len(a] - 1] = nil //or zero value of T a = a[:len(a)-1]</description>
-    </item>
-    
-    <item>
-      <title>gogrpc安装</title>
-      <link>https://yushuangqi.com/blog/2017/go-grpcan-zhuang.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:45 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-grpcan-zhuang.html</guid>
-      <description>Prerequisites Go version gRPC works with Go 1.5 or higher.
-$ go version  For installation instructions, follow this guide: Getting Started - The Go Programming Language
-Install gRPC Use the following command to install gRPC.
-$ go get google.golang.org/grpc  Install Protocol Buffers v3 Install the protoc compiler that is used to generate gRPC service code. The simplest way to do this is to download pre-compiled binaries for your platform(protoc-&amp;lt;version&amp;gt;-&amp;lt;platform&amp;gt;.</description>
-    </item>
-    
-    <item>
-      <title>golangappend的并发问题</title>
-      <link>https://yushuangqi.com/blog/2017/golang-appendde-bing-fa-wen-ti.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:44 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golang-appendde-bing-fa-wen-ti.html</guid>
-      <description>先看一段代码
-ackage main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func main() { var wg sync.WaitGroup s := make([]int, 0, 1000) for i := 0; i &amp;lt; 1000; i++ { v := i wg.Add(1) go func() { s = append(s, v) wg.Done() }() } wg.Wait() fmt.Printf(&amp;quot;%v\n&amp;quot;, len(s)) }  结果
-第一次：928 第二次：945 第三次：986 ……  多运行几次你就会发现，slice长度并不是1000，而是不停的在变，为什么呢？
-因为append并不是并发安全的。
-我们举一个简单例子，比如，当A和B两个协程运行append的时候同时发现s[1]这个位置是空的，他们就都会把自己的值放在这个位置，这样他们两个的值就会覆盖，造成数据丢失。
-那该怎么写？最简单的方式就是用锁，贴一个例子。
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func main() { var ( wg sync.</description>
     </item>
     
   </channel>

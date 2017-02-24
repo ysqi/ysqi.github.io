@@ -1,0 +1,397 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Gonet_http包 |虞双齐Golang开发与SRE运维</title><meta name="description" content="Go net/http包
+Go Http客户端 get请求可以直接http.Get方法
+packag"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Golang开发与SRE运维"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go-net_httpbao.html"><meta property="og:title" content="Gonet_http包"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-24 08:31:57"><meta property="article:modified_time" content="2017-02-24 08:31:57"><meta property="article:tag" content="golang"><meta name="og:description" content="Go net/http包
+Go Http客户端 get请求可以直接http.Get方法
+packag"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20170207"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/go-net_httpbao.html">Gonet_http包</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://my.oschina.net/xinxingegeya/blog/843400" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-24">2017年02月24日</time></span></p></header><div itemprop="articleBody"><p>Go net/http包</p><h1 id="go-http客户端">Go Http客户端</h1><p>get请求可以直接http.Get方法</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;log&quot;
+    &quot;reflect&quot;
+    &quot;bytes&quot;
+)
+
+func main() {
+
+    resp, err := http.Get(&quot;http://www.baidu.com&quot;)
+    if err != nil {
+        // handle error
+        log.Println(err)
+        return
+    }
+
+    defer resp.Body.Close()
+
+    headers := resp.Header
+
+    for k, v := range headers {
+        fmt.Printf(&quot;k=%v, v=%v\n&quot;, k, v)
+    }
+
+    fmt.Printf(&quot;resp status %s,statusCode %d\n&quot;, resp.Status, resp.StatusCode)
+
+    fmt.Printf(&quot;resp Proto %s\n&quot;, resp.Proto)
+
+    fmt.Printf(&quot;resp content length %d\n&quot;, resp.ContentLength)
+
+    fmt.Printf(&quot;resp transfer encoding %v\n&quot;, resp.TransferEncoding)
+
+    fmt.Printf(&quot;resp Uncompressed %t\n&quot;, resp.Uncompressed)
+
+    fmt.Println(reflect.TypeOf(resp.Body)) // *http.gzipReader
+
+    buf := bytes.NewBuffer(make([]byte, 0, 512))
+
+    length, _ := buf.ReadFrom(resp.Body)
+
+    fmt.Println(len(buf.Bytes()))
+    fmt.Println(length)
+    fmt.Println(string(buf.Bytes()))
+}
+</code></pre><p>有时需要在请求的时候设置头参数、cookie之类的数据，就可以使用http.Do方法。</p><pre><code>package main
+
+import (
+    &quot;net/http&quot;
+    &quot;strings&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;log&quot;
+    &quot;encoding/json&quot;
+)
+
+func main() {
+    client := &amp;http.Client{}
+
+    req, err := http.NewRequest(&quot;POST&quot;, &quot;http://www.maimaiche.com/loginRegister/login.do&quot;,
+        strings.NewReader(&quot;mobile=xxxxxxxxx&amp;isRemberPwd=1&quot;))
+    if err != nil {
+        log.Println(err)
+        return
+    }
+
+    req.Header.Set(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;)
+
+    resp, err := client.Do(req)
+
+    defer resp.Body.Close()
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        log.Println(err)
+        return
+    }
+
+    fmt.Println(resp.Header.Get(&quot;Content-Type&quot;)) //application/json;charset=UTF-8
+
+    type Result struct {
+        Msg    string
+        Status string
+        Obj    string
+    }
+
+    result := &amp;Result{}
+    json.Unmarshal(body, result) //解析json字符串
+
+    if result.Status == &quot;1&quot; {
+        fmt.Println(result.Msg)
+    } else {
+        fmt.Println(&quot;login error&quot;)
+    }
+    fmt.Println(result)
+}
+</code></pre><p>如果使用http POST方法可以直接使用http.Post 或 http.PostForm，</p><pre><code>package main
+
+import (
+    &quot;net/http&quot;
+    &quot;strings&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {
+    resp, err := http.Post(&quot;http://www.maimaiche.com/loginRegister/login.do&quot;,
+        &quot;application/x-www-form-urlencoded&quot;,
+        strings.NewReader(&quot;mobile=xxxxxxxxxx&amp;isRemberPwd=1&quot;))
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    defer resp.Body.Close()
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+}
+</code></pre><p>http.PostForm方法，</p><pre><code>package main
+
+import (
+    &quot;net/http&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/url&quot;
+)
+
+func main() {
+
+    postParam := url.Values{
+        &quot;mobile&quot;:      {&quot;xxxxxx&quot;},
+        &quot;isRemberPwd&quot;: {&quot;1&quot;},
+    }
+
+    resp, err := http.PostForm(&quot;http://www.maimaiche.com/loginRegister/login.do&quot;, postParam)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    defer resp.Body.Close()
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+}
+</code></pre><p> </p><h1 id="go-http服务器端">Go Http服务器端</h1><h2 id="一切的基础-servemux-和-handler">一切的基础：ServeMux 和 Handler</h2><p>Go 语言中处理 HTTP 请求主要跟两个东西相关：ServeMux 和 Handler。</p><p>ServrMux 本质上是一个 HTTP 请求路由器（或者叫多路复用器，Multiplexor）。它把收到的请求与一组预先定义的 URL 路径列表做对比，然后在匹配到路径的时候调用关联的处理器（Handler）。</p><p>处理器（Handler）负责输出HTTP响应的头和正文。任何满足了http.Handler接口的对象都可作为一个处理器。通俗的说，对象只要有个如下签名的ServeHTTP方法即可：</p><pre><code>ServeHTTP(http.ResponseWriter, *http.Request)
+</code></pre><p>Go 语言的 HTTP 包自带了几个函数用作常用处理器，比如FileServer，NotFoundHandler 和 RedirectHandler。我们从一个简单具体的例子开始：</p><pre><code>package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+)
+
+func main() {
+    mux := http.NewServeMux()
+
+    rh := http.RedirectHandler(&quot;http://www.baidu.com&quot;, 307)
+    mux.Handle(&quot;/foo&quot;, rh)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p>快速地过一下代码：</p><ol><li>在 main 函数中我们只用了 http.NewServeMux 函数来创建一个空的 ServeMux。</li><li>然后我们使用 http.RedirectHandler 函数创建了一个新的处理器，这个处理器会对收到的所有请求，都执行307重定向操作到 <a href="http://www.baidu.com。">http://www.baidu.com。</a></li><li>接下来我们使用 ServeMux.Handle 函数将处理器注册到新创建的 ServeMux，所以它在 URL 路径/foo 上收到所有的请求都交给这个处理器。</li><li>最后我们创建了一个新的服务器，并通过 http.ListenAndServe 函数监听所有进入的请求，通过传递刚才创建的 ServeMux来为请求去匹配对应处理器。</li></ol><p> </p><p>然后在浏览器中访问 <a href="http://localhost:3000/foo，你应该能发现请求已经成功的重定向了。">http://localhost:3000/foo，你应该能发现请求已经成功的重定向了。</a></p><p>明察秋毫的你应该能注意到一些有意思的事情：ListenAndServer 的函数签名是 ListenAndServe(addr string, handler Handler) ，但是第二个参数我们传递的是个 ServeMux。</p><p>我们之所以能这么做，是因为 ServeMux 也有 ServeHTTP 方法，因此它也是个合法的 Handler。</p><p>对我来说，将 ServerMux 用作一个特殊的Handler是一种简化。它不是自己输出响应而是将请求传递给注册到它的其他 Handler。这乍一听起来不是什么明显的飞跃 - 但在 Go 中将 Handler 链在一起是非常普遍的用法。</p><p> </p><h2 id="自定义处理器-custom-handlers">自定义处理器（Custom Handlers）</h2><p>让我们创建一个自定义的处理器，功能是将以特定格式输出当前的本地时间：</p><pre><code>type timeHandler struct {
+    format string
+}
+
+func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    tm := time.Now().Format(th.format)
+    w.Write([]byte(&quot;The time is: &quot; + tm))
+}
+</code></pre><p>这个例子里代码本身并不是重点。</p><p>真正的重点是我们有一个对象（本例中就是个timerHandler结构体，但是也可以是一个字符串、一个函数或者任意的东西），我们在这个对象上实现了一个 ServeHTTP(http.ResponseWriter, *http.Request) 签名的方法，这就是我们创建一个处理器所需的全部东西。</p><p>我们把这个集成到具体的示例里：</p><pre><code>//File: main.go
+
+package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+type timeHandler struct {
+    format string
+}
+
+func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    tm := time.Now().Format(th.format)
+    w.Write([]byte(&quot;The time is: &quot; + tm))
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    th := &amp;timeHandler{format: time.RFC1123}
+    mux.Handle(&quot;/time&quot;, th)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p>main函数中，我们像初始化一个常规的结构体一样，初始化了timeHandler，用 &amp; 符号获得了其地址。随后，像之前的例子一样，我们使用 mux.Handle 函数来将其注册到 ServerMux。</p><p>现在当我们运行这个应用，ServerMux 将会将任何对 /time的请求直接交给 timeHandler.ServeHTTP 方法处理。</p><p>访问一下这个地址看一下效果：<a href="http://localhost:3000/time">http://localhost:3000/time</a> 。</p><p>注意我们可以在多个路由中轻松的复用 timeHandler：</p><pre><code>//File: main.go
+
+package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+type timeHandler struct {
+    format string
+}
+
+func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    tm := time.Now().Format(th.format)
+    w.Write([]byte(&quot;The time is: &quot; + tm))
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    th1123 := &amp;timeHandler{format: time.RFC1123}
+    mux.Handle(&quot;/time/rfc1123&quot;, th1123)
+
+    th3339 := &amp;timeHandler{format: time.RFC3339}
+    mux.Handle(&quot;/time/rfc3339&quot;, th3339)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p> </p><h2 id="将函数作为处理器">将函数作为处理器</h2><p>对于简单的情况（比如上面的例子），定义个新的有 ServerHTTP 方法的自定义类型有些累赘。我们看一下另外一种方式，我们借助 http.HandlerFunc 类型来让一个常规函数满足作为一个 Handler 接口的条件。</p><p><strong><em>任何有 func(http.ResponseWriter, *http.Request) 签名的函数都能转化为一个 HandlerFunc 类型。这很有用，因为 HandlerFunc 对象内置了 ServeHTTP 方法，后者可以聪明又方便的调用我们最初提供的函数内容。</em></strong></p><p>让我们使用这个技术重新实现一遍timeHandler应用：</p><pre><code>package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+func timeHandler(w http.ResponseWriter, r *http.Request) {
+    tm := time.Now().Format(time.RFC1123)
+    w.Write([]byte(&quot;The time is: &quot; + tm))
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    // Convert the timeHandler function to a HandlerFunc type
+    th := http.HandlerFunc(timeHandler)
+    // And add it to the ServeMux
+    mux.Handle(&quot;/time&quot;, th)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p>实际上，将一个函数转换成 HandlerFunc 后注册到 ServeMux 是很普遍的用法，所以 Go 语言为此提供了个便捷方式：ServerMux.HandlerFunc 方法。</p><p>我们使用便捷方式重写 main() 函数看起来是这样的：</p><pre><code>package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+func timeHandler(w http.ResponseWriter, r *http.Request) {
+    tm := time.Now().Format(time.RFC1123)
+    w.Write([]byte(&quot;The time is: &quot; + tm))
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    mux.HandleFunc(&quot;/time&quot;, timeHandler)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p>绝大多数情况下这种用函数当处理器的方式工作的很好。但是当事情开始变得更复杂的时候，就会有些产生一些限制了。</p><p>你可能已经注意到了，跟之前的方式不同，我们不得不将时间格式硬编码到 timeHandler 的方法中。如果我们想从 main() 函数中传递一些信息或者变量给处理器该怎么办？</p><p>一个优雅的方式是将我们处理器放到一个闭包中，将我们要使用的变量带进去：</p><pre><code>//File: main.go
+package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+func timeHandler(format string) http.Handler {
+    fn := func(w http.ResponseWriter, r *http.Request) {
+        tm := time.Now().Format(format)
+        w.Write([]byte(&quot;The time is: &quot; + tm))
+    }
+    return http.HandlerFunc(fn)
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    th := timeHandler(time.RFC1123)
+    mux.Handle(&quot;/time&quot;, th)
+
+    log.Println(&quot;Listening...&quot;)
+    http.ListenAndServe(&quot;:3000&quot;, mux)
+}
+</code></pre><p>timeHandler 函数现在有了个更巧妙的身份。除了把一个函数封装成 Handler(像我们之前做到那样)，我们现在使用它来返回一个处理器。这种机制有两个关键点：</p><p><strong><em>首先是创建了一个fn，这是个匿名函数，将 format 变量封装到一个闭包里。闭包的本质让处理器在任何情况下，都可以在本地范围内访问到 format 变量。</em></strong></p><p>其次我们的闭包函数满足 func(http.ResponseWriter, *http.Request) 签名。如果你记得之前我们说的，这意味我们可以将它转换成一个HandlerFunc类型（满足了http.Handler接口）。我们的timeHandler 函数随后转换后的 HandlerFunc 返回。</p><p> </p><p>在上面的例子中我们已经可以传递一个简单的字符串给处理器。<strong><em>但是在实际的应用中可以使用这种方法传递数据库连接、模板组，或者其他应用级的上下文。使用全局变量也是个不错的选择，还能得到额外的好处就是编写更优雅的自包含的处理器以便测试。</em></strong></p><p> </p><p>你也可能见过相同的写法，像这样：</p><pre><code>func timeHandler(format string) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        tm := time.Now().Format(format)
+        w.Write([]byte(&quot;The time is: &quot; + tm))
+    })
+}
+</code></pre><p>或者在返回时，使用一个到 HandlerFunc 类型的隐式转换：</p><pre><code>func timeHandler(format string) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        tm := time.Now().Format(format)
+        w.Write([]byte(&quot;The time is: &quot; + tm))
+    }
+}
+</code></pre><p> </p><h2 id="更便利的-defaultservemux">更便利的 DefaultServeMux</h2><p>你可能已经在很多地方看到过 DefaultServeMux, 从最简单的 Hello World 例子，到 go 语言的源代码中。</p><p>我花了很长时间才意识到 DefaultServerMux 并没有什么的特殊的地方。DefaultServerMux 就是我们之前用到的 ServerMux，只是它随着 net/httpp 包初始化的时候被自动初始化了而已。Go 源代码中的相关行如下：</p><pre><code>var DefaultServeMux = NewServeMux()
+</code></pre><p>net/http 包提供了一组快捷方式来配合 DefaultServeMux：http.Handle 和 http.HandleFunc。这些函数与我们之前看过的类似的名称的函数功能一样，唯一的不同是他们将处理器注册到 DefaultServerMux ，而之前我们是注册到自己创建的 ServeMux。</p><p>此外，ListenAndServe在没有提供其他的处理器的情况下（也就是第二个参数设成了 nil），内部会使用 DefaultServeMux。</p><p>因此，作为最后一个步骤，我们使用 DefaultServeMux 来改写我们的 timeHandler应用：</p><pre><code>//File: main.go
+package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+func timeHandler(format string) http.Handler {
+    fn := func(w http.ResponseWriter, r *http.Request) {
+        tm := time.Now().Format(format)
+        w.Write([]byte(&quot;The time is: &quot; + tm))
+    }
+    return http.HandlerFunc(fn)
+}
+
+func main() {
+    // Note that we skip creating the ServeMux...
+
+    var format string = time.RFC1123
+    th := timeHandler(format)
+
+    // We use http.Handle instead of mux.Handle...
+    http.Handle(&quot;/time&quot;, th)
+
+    log.Println(&quot;Listening...&quot;)
+    // And pass nil as the handler to ListenAndServe.
+    http.ListenAndServe(&quot;:3000&quot;, nil)
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="881"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/go-net_httpbao.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html">编写地道的Go代码</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html">Golang学习摘录一:初识</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="784d84fd07ad21da7b7123f09c572e5c" data-title="Gonet_http包" data-url="https://yushuangqi.com/blog/2017/go-net_httpbao.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，全栈开发工程师，Google SRE实践者。提供Golang开发、技术实践与架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Golang开发与SRE运维">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-net_httpbao.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-net_httpbao.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-#Golang开发 #SRE运维。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script type="text/javascript">var duoshuoQuery = {short_name:"ysqi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

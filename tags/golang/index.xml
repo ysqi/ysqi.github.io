@@ -11,6 +11,142 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>编写地道的Go代码</title>
+      <link>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:58 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</guid>
+      <description>在阅读本文之前，我先推荐你阅读官方的 Effective Go文档，或者是中文翻译版: 高效Go编程，它提供了很多编写标准而高效的Go代码指导，本文不会再重复介绍这些内容。
+最地道的Go代码就是Go的标准库的代码，你有空的时候可以多看看Google的工程师是如何实现的。
+本文仅作为一个参考，如果你有好的建议和意见，欢迎添加评论。
+注释 可以通过 /* …… */ 或者 // ……增加注释， //之后应该加一个空格。
+如果你想在每个文件中的头部加上注释，需要在版权注释和 Package前面加一个空行，否则版权注释会作为Package的注释。
++&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+ | | // Copyright 2009 The Go Authors | | | . All rights reserved.// Use of this | | | source code is governed by a BSD-st | | | yle// license that can be found in t | | | he LICENSE file./Package net provid | | | es a portable interface for network | | | I/O, includingTCP/IP, UDP, domain na | | | me resolution, and Unix domain socke | | | ts&amp;hellip;&amp;hellip;.</description>
+    </item>
+    
+    <item>
+      <title>Gonet_http包</title>
+      <link>https://yushuangqi.com/blog/2017/go-net_httpbao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:57 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-net_httpbao.html</guid>
+      <description>Go net/http包
+Go Http客户端 get请求可以直接http.Get方法
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;bytes&amp;quot; ) func main() { resp, err := http.Get(&amp;quot;http://www.baidu.com&amp;quot;) if err != nil { // handle error log.Println(err) return } defer resp.Body.Close() headers := resp.Header for k, v := range headers { fmt.Printf(&amp;quot;k=%v, v=%v\n&amp;quot;, k, v) } fmt.Printf(&amp;quot;resp status %s,statusCode %d\n&amp;quot;, resp.Status, resp.StatusCode) fmt.Printf(&amp;quot;resp Proto %s\n&amp;quot;, resp.Proto) fmt.Printf(&amp;quot;resp content length %d\n&amp;quot;, resp.ContentLength) fmt.Printf(&amp;quot;resp transfer encoding %v\n&amp;quot;, resp.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录一:初识</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</guid>
+      <description>1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quot; func main (){ fmt.Printf(&amp;quot;Hello, world&amp;quot;) }  编译 go build helloworld.go
+运行 ./helloworld
+2、声明方式 1、普通方式 var a int = 15 var b bool = false 或 var a int var b bool a = 15 b = false 2、 :=会自动匹配类型，只能在函数内使用 a := 15 b := false 3、中括号的形式： var ( x int b bool ) 4、平行赋值 a,b := 20,16 #注意 :Go 的编译器对声明却未使用的变量在报错。 5、常量，只能是数字、字符串或布尔值 const( // 枚举的生成方式 a = iota // a为0 b = iota // b为1，改行的 “=iota”可省略 ) 如果需要,可以明确指定常量的类型: const ( a = 0 b string = &amp;quot;0&amp;quot; )  3、字符串 var s string = &amp;quot;hello&amp;quot; #Go中字符串是不可变的  如果想修改字符需要使用下面的方法</description>
+    </item>
+    
+    <item>
+      <title>Golang语言常用算法</title>
+      <link>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</guid>
+      <description>在学习golang语言，文档看的实在是乏味，就想着把常用的算法做个实现，边写变学习，想来效果还是不错的！
+​1. 堆排序
+package main import &amp;quot;fmt&amp;quot; func buildHeap(array []int, length int) { var i, j int; for i = 1; i &amp;lt; length; i = i + 1 { for j = i; j &amp;gt; 0 &amp;amp;&amp;amp; array[j] &amp;gt; array[(j-1)/2]; j = (j - 1)/2 { array[j], array[(j-1)/2] = array[(j-1)/2], array[j] } } } func heapSort(array []int, length int) { array[0], array[length - 1] = array[length - 1], array[0] if length &amp;lt;= 2 { return } i, j:= 0, 0 for { j = 2 * i + 1 if j + 1 &amp;lt; length - 1 { if array[j] &amp;lt; array[j + 1] { j = j + 1 } } else if j &amp;gt;= length -1 { break } array[i], array[j] = array[j], array[i] i = j } heapSort(array, length - 1) } func main() { primes := [6]int{3, 11, 5, 2, 13, 7} fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录三:函数</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</guid>
+      <description>函数定义 type mytype int // 新的类型 func (p mytype) funcname(q int) (r,s int) {return 0,0}  作用域 在 Go 中,定义在函数外的变量是全局的,那些定义在函数内部的变量,对于函数来说 是局部的。如果命名覆盖——一个局部变量与一个全局变量有相同的名字——在函数 执行的时候,局部变量将覆盖全局变量。
+多值返回 func (file *File) Write(b []byte) (n int, err error)
+Go得函数可以返回多个值
+命名返回值 Go 函数的返回值或者结果参数可以指定一个名字,并且像原始的变量那样使用,就像 输入参数那样。如果对其命名,在函数开始时,它们会用其类型的零值初始化。如果 函数在不加参数的情况下执行了 return 语句,结果参数会返回。
+例：
+func ReadFull(r Reader, buf []byte) (n int, err error) { for len(buf) &amp;gt; 0 &amp;amp;&amp;amp; err == nil { var nr int nr, err = r.Read(buf) n += nr buf = buf[nr:len(buf)] } return }  延迟代码defer 在 defer 后指定的 函数会在函数退出前调用。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录二:控制语句</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</guid>
+      <description>if语句 i f x &amp;gt; 0 { // {是强制的,且必须和if在同一行 return y } else { return x }  if 和 switch 接受初始化语句,通常用于设置一个(局部)变量。
+if err := Chmod(0664); err != nil { //nil 与 C 的 NULL 类似 fmt.Printf(err) //err 的作用域被限定在 if 内 return err }  goto语句 用 goto 跳转到一定是当前函数内定义的标签
+func myfunc() { i := 0 Here: // 这行的第一个词,以分号结束作为标签,标签名区分大小写 println(i) i++ goto Here // 跳转 }  for语句 Go 的 for 循环有三种形式,只有其中的一种使用分号。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录七:并发</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</guid>
+      <description>Go使用channel和goroutine开发并行程序。goroutine 是 Go并发能力的核心要素。
+goroutine 是一个普通的函数，只是需要使用关键字 go 作为开头。
+ready(&amp;quot;Tea&amp;quot;, 2) // 普通函数调用 go ready(&amp;quot;Tea&amp;quot;, 2) // ready() 作为 goroutine 运行  Go routine实践
+func ready(w string, sec int) { time.Sleep(time.Duration(sec) * time.Second) fmt.Println(w,&amp;quot;is ready!&amp;quot;) } func main() { go ready(&amp;quot;Tea&amp;quot;, 2) go ready(&amp;quot;Coffee&amp;quot;, 1) fmt.Println(&amp;quot;I&#39;m waiting&amp;quot;) time.Sleep(5 * time.Second) } // 输出 I&#39;m waiting //立刻 Coffee is ready! //1秒后 Tea is ready! //2秒回  如果不等待goroutine的执行（例如移除第17行），程序会立刻终止，而任何正在执行的goroutine都会停止。为了修复使用channels机制来和goroutine通讯。可以通过channel发送或接受值。这些值只能是特定的类型:channel 类型。
+注意，必须使用 make 创建 channel：
+ci := make(chan int) //创建 channel ci 用于发送和接收整数 cs := make(chan string) //创建 channel cs 用于字符串 cf:=make(chan interface{})//channel cf 使用了空接口来满足各种类型  向 channel 发送或接收数据，是通过类似的操作符完 成的:&amp;lt;−.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录五:进阶</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</guid>
+      <description>Go 有指针。然而却没有指针运算,因此它们更象是引用而不是你所知道的来自于 C 的指针。指针非常有用。在 Go 中调用函数的时候,得记得变量是值传递的。因此,为了修改一个传递入函数的值的效率和可能性,有了指针。
+var p *int fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印nil var i int // 定义一个整型变量i p = &amp;amp;i // 使得p指向i fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印出来的内容类似0x7ff96b81c000a  内存分配 用new分配内存 内建函数 new 本质上说跟其他语言中的同名函数功能一样:new(T) 分配了零值填充 的 T 类型的内存空间,并且返回其地址,一个 *T 类型的值。用 Go 的术语说,它返回 了一个指针,指向新分配的类型 T 的零值。记住这点非常重要。
+用make分配内存 内建函数 make(T, args) 与 new(T) 有着不同的功能。它只能创建 slice,map 和 channel,并且返回一个有初始值(非零)的 T 类型,而不是 *T。本质 来讲,导致这三个类型有所不同的原因是指向数据结构的引用在使用前必须被初始化。 例如,一个 slice,是一个包含指向数据(内部 array)的指针,长度和容量的三项描述 符;在这些项目被初始化之前,slice 为 nil。对于 slice,map 和 channel,make 初始 化了内部的数据结构,填充适当的值。</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录六:接口</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</guid>
+      <description>Go中关键字interface被赋予了很多不同的含义。每个类型都有接口，意味着对那个类型定义了方法集合。
+// 这段代码定义了具有一个字段和两个方法的结构类型s。 type S struct { i int } func (p *S) Get() int { return p.i } func (p *S) Put(v int) { p.i = v } // 定义接口 type I interface { Get() int Put(int) } // 对于接口I，S是合法的实现，因为它定义了 I 所需的两个方法。注意：即便是没有明 确定义 S 实现了 I，这也是正确的。 // Go 程序的特性接口值： func f(p I) {// 定义一个函数接受一个接口类型作为参数 fmt.Println(p.Get()) // p实现了接口I，必须有Get()方法 p.Put(1) // Put()方法是类似的 // 这里的变量p保存了接口类型的值。 } // 调用 var s S f(&amp;amp;s) // 因为S实现了I，可以调用f向其传递S类型的值的指针 // 获取 s 的地址,而不是 S 的值的原因,是因为在 s 的指针上定义了方法,参阅上面的 代码 5.</description>
+    </item>
+    
+    <item>
+      <title>Golang学习摘录四:包</title>
+      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</guid>
+      <description>包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使用小写字符。Go 包可以由多个文件组成,但是使用相同的 package &amp;lt;name&amp;gt; 这一行。
+package even func Even(i int) bool { return i%2==0 } func odd(i int) bool { return i%2==1 }  名称以大写字母起始的是可导出的，可以在包的外部调用。
+共有函数的名称以大写字母开头。
+私有函数的名称以小写字母开头。
+package main import ( //导入下面的包 &amp;quot;event&amp;quot; //本地包even在这里导入 &amp;quot;fmt&amp;quot; ) func main(){ i := 5 fmt.Printf(&amp;quot;Is %d event? %v\n&amp;quot;, i,event.Even(i))// 调用even包中的函数。访问一个包中的函数的语法是&amp;lt;package&amp;gt;.Function()。 }  Go程序的命名规则：包名约定小写字母开头；方法名最好使用驼峰式名称，避免使用下划线，方法名应简洁清晰。
+包的文档 每个包都应该有包注释,在 package 前的一个注释块。对于多文件包,包注释只需要 出现在一个文件前,任意一个文件都可以。包注释应当对包进行介绍,并提供相关于 包的整体信息。这会出现在 go doc 生成的关于包的页面上,并且相关的细节会一并 显示。
+官方regexp包的例子：
+ /* The regexp package implements a simple library for regular expressions.</description>
+    </item>
+    
+    <item>
+      <title>Goreflect包</title>
+      <link>https://yushuangqi.com/blog/2017/go-reflectbao.html</link>
+      <pubDate>Fri, 24 Feb 2017 08:31:53 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-reflectbao.html</guid>
+      <description>Go reflect包
+反射是由 reflect 包提供支持. 它定义了两个重要的类型, Type 和 Value. 一个 Type 表示一个Go类型. 函数 reflect.TypeOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Type.
+reflect 包中另一个重要的类型是 Value. 一个 reflect.Value 可以持有一个任意类型的值. 函数 reflect.ValueOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Value. 和 reflect.TypeOf 类似, reflect.ValueOf 返回的结果也是对于具体的类型, 但是 reflect.Value 也可以持有一个接口值.
+reflect.Type 类型 代码，
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;unsafe&amp;quot; ) // 嵌套结构体 type ss struct { a struct { int string } int string bool float64 } func (s ss) Method1(i int) string { return &amp;quot;结构体方法1&amp;quot; } func (s *ss) Method2(i int) string { return &amp;quot;结构体方法2&amp;quot; } var ( intValue = int(0) int8Value = int8(8) int16Value = int16(16) int32Value = int32(32) int64Value = int64(64) uIntValue = uint(0) uInt8Value = uint8(8) uInt16Value = uint16(16) uInt32Value = uint32(32) uInt64Value = uint64(64) byteValue = byte(0) runeValue = rune(0) uintptrValue = uintptr(0) boolValue = false stringValue = &amp;quot;&amp;quot; float32Value = float32(32) float64Value = float64(64) complex64Value = complex64(64) complex128Value = complex128(128) arrayValue = [5]string{} // 数组 sliceValue = []byte{0, 0, 0, 0, 0} // 切片 mapValue = map[string]int{} // 映射 chanValue = make(chan int, 2) // 通道 structValue = ss{ // 结构体 struct { int string }{10, &amp;quot;子结构体&amp;quot;}, 20, &amp;quot;结构体&amp;quot;, false, 64.</description>
+    </item>
+    
+    <item>
       <title>Gobuild命令说明</title>
       <link>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</link>
       <pubDate>Wed, 22 Feb 2017 08:37:16 +0800</pubDate>
@@ -62,210 +198,6 @@ Go 1.8包括很多新增API，以及老API的改进和修复。 你可以在Go 1
 $ go version  For installation instructions, follow this guide: Getting Started - The Go Programming Language
 Install gRPC Use the following command to install gRPC.
 $ go get google.golang.org/grpc  Install Protocol Buffers v3 Install the protoc compiler that is used to generate gRPC service code. The simplest way to do this is to download pre-compiled binaries for your platform(protoc-&amp;lt;version&amp;gt;-&amp;lt;platform&amp;gt;.</description>
-    </item>
-    
-    <item>
-      <title>golangappend的并发问题</title>
-      <link>https://yushuangqi.com/blog/2017/golang-appendde-bing-fa-wen-ti.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:44 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golang-appendde-bing-fa-wen-ti.html</guid>
-      <description>先看一段代码
-ackage main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func main() { var wg sync.WaitGroup s := make([]int, 0, 1000) for i := 0; i &amp;lt; 1000; i++ { v := i wg.Add(1) go func() { s = append(s, v) wg.Done() }() } wg.Wait() fmt.Printf(&amp;quot;%v\n&amp;quot;, len(s)) }  结果
-第一次：928 第二次：945 第三次：986 ……  多运行几次你就会发现，slice长度并不是1000，而是不停的在变，为什么呢？
-因为append并不是并发安全的。
-我们举一个简单例子，比如，当A和B两个协程运行append的时候同时发现s[1]这个位置是空的，他们就都会把自己的值放在这个位置，这样他们两个的值就会覆盖，造成数据丢失。
-那该怎么写？最简单的方式就是用锁，贴一个例子。
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; ) func main() { var ( wg sync.</description>
-    </item>
-    
-    <item>
-      <title>设计模式(golang)</title>
-      <link>https://yushuangqi.com/blog/2017/she-ji-mo-shi-golang.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:44 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/she-ji-mo-shi-golang.html</guid>
-      <description>设计模式的六大原则 摘自 Java开发中的23种设计模式详解
- 1、开闭原则（Open Close Principle）
-开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后 面的具体设计中我们会提到这点。
- 2、里氏代换原则（Liskov Substitution Principle）
-里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何 基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受 到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。 实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽 象化的具体步骤的规范。—— From Baidu 百科
- 3、依赖倒转原则（Dependence Inversion Principle）
-这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。
- 4、接口隔离原则（Interface Segregation Principle）
-这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出， 其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。
- 5、迪米特法则（最少知道原则）（Demeter Principle）
-为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。
- 6、合成复用原则（Composite Reuse Principle）
-原则是尽量使用合成/聚合的方式，而不是使用继承。
-  实现代码 {#h1_1} https://github.com/BPing/golang_design_pattern/tree/master/pattern
- 创建型 C 结构型 J 行为型 X   -AbstractFactory.go : 抽象工厂模式(C) -Adapter.go : 适配器模式(J) -Bridge.go : 桥接模式(J) -Builder.</description>
-    </item>
-    
-    <item>
-      <title>数据库不适合Docker及容器化的7大原因</title>
-      <link>https://yushuangqi.com/blog/2017/shu-ju-ku-bu-kuo-ge-dockerji-rong-qi-hua-de-7da-yuan-yin.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/shu-ju-ku-bu-kuo-ge-dockerji-rong-qi-hua-de-7da-yuan-yin.html</guid>
-      <description>导读：所有的服务都开始了容器化升级，在一切皆容器的主流思想下，无状态的服务采用容器化已经是大势所趋，常常困扰架构师的一个问题是，数据库是否需要容器化，本文作者 Mikhail Chinkov 提出了自己否定观点，由高可用架构翻译。
-
-如果我们观察 2017 年技术行业，容器和 Docker 依然将是最热门的流行语。我们开始在每个领域的 Docker 容器中打包开发的软件。从小型初创公司到巨大的微服务平台都在使用容器技术。从 CI 平台到 Raspberry Pi 。从数据库到……
-数据库？您确定要将数据库放在容器中吗？
-不幸的是，这不是虚构的场景。我看到许多快速增长的项目将数据持久化到容器中。并且将计算服务和数据服务放在同一台机器上。笔者希望有经验的人不会用这个解决方案。
-下面是我的观点，数据库容器化从今天来看是非常不合理的。
-数据库不适合容器化的7大原因 **
-**
-1. 数据不安全 
-即使你要把 Docker 数据放在主机来存储 ，它依然不能保证不丢数据。 Docker volumes 的设计围绕 Union FS 镜像层提供持久存储，但它仍然缺乏保证。
-使用当前的存储驱动程序，Docker 仍然存在不可靠的风险。 如果容器崩溃并数据库未正确关闭，则可能会损坏数据。
-
-2. 运行数据库的环境需求 **
-**
-常看到 DBMS 容器和其他服务运行在同一主机上。 然而这些服务对硬件要求是非常不同的。
-数据库（特别是关系型数据库）对 IO 的要求较高。 一般数据库引擎为了避免并发资源竞争而使用专用环境。如果将你的数据库放在容器中，那么将浪费你的项目的资源。 因为你需要为该实例配置大量额外的资源。 在公有云，当你需要 34G 内存时，你启动的实例却必须开 64G 内存。在实践中，这些资源并未完全使用。
-怎么解决？ 您可以分层设计，并使用固定资源来启动不同层次的多个实例。 水平伸缩总是比垂直伸缩更好。 
-3. 网络问题 **
-**
-要理解 Docker 网络，您必须对网络虚拟化有深入的了解。也必须准备应付好意外情况。你可能需要在没有支持或没有额外工具的情况下，进行 bug 修复。</description>
-    </item>
-    
-    <item>
-      <title>Go最新的dep详解</title>
-      <link>https://yushuangqi.com/blog/2017/gozui-xin-de-depxiang-jie.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:41 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/gozui-xin-de-depxiang-jie.html</guid>
-      <description>该文翻译自https://medium.com/i-can-haz-downtime/dep-101-c85e8ab6ed45#.hbngswi0e
-我很高兴在过去几个月和几个其他gopher开发的一个原型依赖管理工具，名为dep。
-dep是去年开始由Peter Bourgon组织的项目的一部分。由于我参与开发了一个“godep”，Go的OG依赖管理工具（继承自Keith Rarick），因此加入了dep项目的团队。
-除了我自己和Peter，团队的其他成员是Jessie Frazelle，Andrew Gerrand和Sam Boyer。 Andrew是Google Go team的一员。 Jessie在Google工作，并参与过大型Go项目，如Docker和Kubernetes。 Sam维护gps。
-该团队发布了一系列我们工作过程中的进展信息。到目前为止，各种其他工具作者和相关方也以不同的方式参与这一项目。
-起初 假设我们正在使用github.com/gorilla/mux编写一个Web应用程序。 这里是一些代码，让我们开始：
-package main import ( &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/gorilla/mux&amp;quot; ) func main() { r := mux.NewRouter() r.Handle(&amp;quot;/&amp;quot;, http.FileServer(http.Dir(&amp;quot;.&amp;quot;))) http.ListenAndServe(&amp;quot;:&amp;quot;+os.Getenv(&amp;quot;PORT&amp;quot;), r) }  在现有项目上第一次使用dep时，需要运行dep init。
-dep init将在GOPATH中已经包含github.com/gorilla/mux，manifest.json文件将包括它。我先运行如下命令：
-go get -u github.com/gorilla/mux  所以在我的\$GOPATH中github.com/gorilla/mux的分支是master。如果我的\$GOPATH中的版本匹配Semver tag（例如：v1.2.3），那么将使用该tag的名称。
-dep可以跨越架构和go版本。我们可以将github.com/gorilla/mux与旧版本的Go（&amp;lt;1.7.0）的github.com/gorilla/context包结合使用。当我最后运行
-go get -u github.com/gorilla/mux  的时候，我运行的是Go 1.7.5，所以github.com/gorilla/context包不在我的\$GOPATH。因为可能是编译项目所需的依赖，它会包含在lock.json文件中。在这种场景下，如果从属项目有一个semver兼容的release tag，dep会选择最新的版本。在这种情况下是github.com/gorilla/context的v1.1。
-因为github.com/gorilla/mux不包含manifest.json文件，dep不知道github.com/gorilla/mux目前是否能与github.com/gorilla/context@v1.1配合使用。dep一般使用在依赖的manifest.json文件中找到的约束。
-dep init包括所有依赖关系（包括递归依赖）以及在lock.json文件中使用的确切版本。
-对于示例应用程序，这将创建以下两个文件：
-lock.json
-{ &amp;quot;memo&amp;quot;: &amp;quot;d741a3bed21fe6cae9d67c523b0a343859882b2f246f2a293e2676cfacd5a2ce&amp;quot;, &amp;quot;projects&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;github.</description>
-    </item>
-    
-    <item>
-      <title>优秀的 Go存储开源项目和库</title>
-      <link>https://yushuangqi.com/blog/2017/you-xiu-de-go-cun-chu-kai-yuan-xiang-mu-he-ku.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:40 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/you-xiu-de-go-cun-chu-kai-yuan-xiang-mu-he-ku.html</guid>
-      <description>今年谷歌家的 Go 编程语言流行度有着惊人的上升趋势，其发展也是越来越好，因此本文整理了一些优秀的 Go 存储相关开源项目和库，一起分享，一起学习。
-存储服务器（Storage Server） Go 实现的存储服务器  minio - Minio 是一个与 Amazon S3 APIs 兼容的开源对象存储服务器，分布式存储方案 rclone - “用于云存储的 Rsync” - Google Drive, Amazon Drive, S3, Dropbox, Backblaze B2, One Drive, Swift, Hubic, Cloudfile… camlistore - Camlistore 是你的个人存储系统：一种存储、同步、共享、建模和备份内容的方式 torus - CoreOS 的现代分布式存储系统 s3git - 云存储的 Git。用于数据的分布式版本控制系统 rook - 开放、云本地和通用的分布式存储  Key-Value 存储（Key-Value Store） Go 实现的 Key-Value 存储  etcd - 可靠的分布式 key-value 存储，用于分布式系统的最关键数据 go-cache - Go 语言实现的一个内存中的缓存框架，实现 Key-Value 的序列存储，适用于单台机器应用程序 biscuit - Biscuit 用于 AWS 基础架构建设时多区域 HA key-value 存储 diskv - 支持磁盘的 key-value 存储  文件系统（File System） Go 实现的文件系统  git-lfs - 用于大文件版本控制的 Git 扩展 seaweedfs - SeaweedFS 是一个用于小文件的简单且高度可扩展的分布式文件系统 fsnotify - Go 实现的跨平台文件系统监控库 goofys - Go 实现的高性能，POSIX-ish Amazon S3 文件系统 go-systemd - systemd 的 Go 语言绑定版（包括socket activation, journal, D-Bus, 和 unit files） gcsfuse - 用于与 Google 云存储交互的用户空间文件系统 svfs - 基于 Openstack 的虚拟文件系统  数据库（Database） Go 实现的数据库  BigCache - 用于千兆字节数据的高效 key/value 缓存 bolt - Go 实现的低层级的 key/value 数据库 buntdb - 一个 Go 实现的快速、可嵌入的 key/value 内存数据库，具有自定义索引和 geospatial 支持的功能 cache2go - key/value 内存缓存，支持基于超时的自动无效功能 cockroach - 一个可伸缩的、支持地理位置处理、支持事务处理的数据存储系统 couchcache - 由 Couchbase 服务器支持的 RESTful 缓存微服务 dgraph - 具有可扩展、分布式、低延迟和高吞吐量功能的图形数据库 eliasdb - 使用 REST API，短语搜索和类似 SQL 查询语言的无依赖性，支持事务处理的图形数据库 forestdb - Go bindings for ForestDB.</description>
-    </item>
-    
-    <item>
-      <title>Macgolang下载mgo</title>
-      <link>https://yushuangqi.com/blog/2017/mac-golangxia-zai-mgo.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:39 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/mac-golangxia-zai-mgo.html</guid>
-      <description>mgo是第三方提供的golang连接mongodb的库，使用如下命令，进行下载
-go get labix.org/v2/mgo  会出错，说没有安装bzr，bzr是mgo使用的版本控制软件，全名 bazaar，可以在http://wiki.bazaar.canonical.com/Download下载各操作系统的版本。bzr安装好后，执行上述下载命令，可能还是会出错，错误如下
-bzr: ERROR: Couldn&#39;t import bzrlib and dependencies. Please check the directory containing bzrlib is on your PYTHONPATH. Traceback (most recent call last): File &amp;quot;/usr/local/bin/bzr&amp;quot;, line 102, in &amp;lt;module&amp;gt; import bzrlib ImportError: No module named bzrlib  上网查了一下是因为bzr使用的是python2.6版本，使用python -V查看本机安装的2.7的版本，需要降版本。
-进入/usr/local/bin/目录，使用vi或vim修改bzr文件，修改第一行：#!/usr/bin/python 为 #!/usr/bin/python2.6，保存退出。在使用前面的下载命令，成功下载mgo。由于网速问题，可能要多下几次。</description>
-    </item>
-    
-    <item>
-      <title>浅析GO语言中如何优雅地中断定时任务</title>
-      <link>https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html</guid>
-      <description>问题描述 现在我们创建了一个定时器，能定时的去做某件事，并且在执行时间超时的时候，能把这个定时器关掉。例如需要收集一周的日志，创建一个定时任务去收集日志，每5秒钟执行一次，一周的时间过后需要停掉这个定时任务。
-标准库Ticker 标准库提供里的Ticker类，主要功能是定时重复的去做某件事情，如果没有设定超时，它会一直执行下去。常见的写法如下：
-t := time.NewTicker(3 * time.Second) timeout := time.After(10 * time.Second) go func() { for { &amp;lt;-t.C ... } }() &amp;lt;-timeout ...  注意到这个Ticker对象是无法关闭的，好的，你可能会发现Ticker类提供了Stop方法。但是我们看看如果你这样去关闭t的话，会出现什么情况。
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func DoTickerWork(res chan interface{}, timeout &amp;lt;-chan time.Time) { t := time.NewTicker(3 * time.Second) go func() { defer close(res) i := 1 for { &amp;lt;-t.C fmt.Printf(&amp;quot;start %d th worker\n&amp;quot;, i) res &amp;lt;- i i++ } }() &amp;lt;-timeout t.</description>
-    </item>
-    
-    <item>
-      <title>CMDB发布平台:go发布管理</title>
-      <link>https://yushuangqi.com/blog/2017/cmdbfa-bu-ping-tai-gofa-bu-guan-li.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/cmdbfa-bu-ping-tai-gofa-bu-guan-li.html</guid>
-      <description>CMDB发布平台是ezbuy的一个发布管理平台，包含了go的发布，windows serices发布，iis发布，memcache管理，svn管理，资产信息管理操作。
-随着公司的业务发展，公司go的服务有100多个单实例，如果多机部署计算，是成倍数增长的，而且每天更新发布的频率高，所以如果人为的去发布，会出现以下问题：
- 开发人员每次update服务，都需要找运维人员发布 每次发布，没有版本信息记载，只有相应的版本号，即没有历史数据 重复工作量大，无技术可言，且容易人为发布错误 没有消息通知 开发人员各自在自己电脑上编译，然后提交到svn（环境不统一）  go现在的发布是每次jenkis自动编译通过后，自动上传到svn上，避免编译成mac os版本的go上传到svn，然后通过CMDB平台发布，发布涉及手动和自动发布两个操作：
- 手动：开发人员手动通过CMDB平台发布 自动：编译好后，jenkis直接调用CMDB API自动发布到线上（持续CD）  综上问题，CMDB开发了go发布管理模块，模块里包含以下功能：
- 部署 发布 更新go配置文件 重启go服务 版本回滚 go服务状态 go crontab发布更新 go cron job定时任务列表  [部署]： 线上运维人员可以通过运维平台直接部署一个新的go服务
-go部署
-[发布]： 开发人员有权限直接发布服务到线上，无需运维人员干预，且每次发布要填入相应的tower发布url，否则不给予发布
-go发布
-
-不管服务成功与否，CMDB会调用钉钉api，将发布结果发送到钉钉消息群，同时CMDB也会保存一份日志到数据库。
-go发布消息
-[更新go配置文件]： go配置文件我们会单独的将所有go实例的配置文件保存在一个svn库，这样的好处是，有版本控制，避免开发人员人为改动，且敏感信息只有相应权限的人才能查看，所以每次配置文件改表，直接相应有权限的人提交到svn，通过更新go配置文件下发的所有主机：
-go下发配置文件
-[版本回滚]： 线上运维同学可以通过CMDB平台回滚到相应的版本
-[服务状态]： 开发人员可以实时查看go服务运行的状态
-[go crontab更新]： 开发人员可以直接发布go的服务
-[cron job列表]： 可以在CMDB平台查看所有的cron job和cron job上次执行的时间
-最后，我们将会把go的配置文件统一线上线下环境一样，且不暴露敏感信息，敬请关注下一篇《如何利用consul-template保持线上线下配置文件一致》</description>
-    </item>
-    
-    <item>
-      <title>深入了解Go接口</title>
-      <link>https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html</guid>
-      <description>http://studygolang.com/articles/
-深入了解Go接口
-如果说goroutine和channel是Go并发的两大基石，那么接口是Go语言编程中数据类型的关键。在Go语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是Go语言中所有数据结构的核心。
-Go语言中的接口是一些方法的集合（method set），它指定了对象的行为：如果它（任何数据类型）可以做这些事情，那么它就可以在这里使用。
-type Reader interface { Read(p []byte) (n int, err error) } type Writer interface { Write(p []byte) (n int, err error) } type Closer interface { Close() error } type Seeker interface { Seek(offset int64, whence int) (int64, error) }  上面的代码定义了4个接口。
-假设我们在另一个地方中定义了下面这个结构体：
-type File struct { // ... } func (f *File) Read(buf []byte) (n int, err error) func (f *File) Write(buf []byte) (n int, err error) func (f *File) Seek(off int64, whence int) (pos int64, err error) func (f *File) Close() error  我们在实现File的时候，可能并不知道上面4个接口的存在，但不管怎样，File实现了上面所有的4个接口。我们可以将File对象赋值给上面任何一个接口。</description>
-    </item>
-    
-    <item>
-      <title>Go1_8graceful优雅的重启HTTP服务</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</link>
-      <pubDate>Sat, 18 Feb 2017 10:33:41 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</guid>
-      <description>很高兴Go 1.8发布了，这是个值得庆祝的日子。
-如何优雅的关闭http服务在Go Web开发中一直被提及和讨论的话题，今天Go 1.8的发布终于为我们带来了这个特性。
-文档中是这样介绍的：
-func (srv *Server) Shutdown(ctx context.Context) error  Shutdown 将无中断的关闭正在活跃的连接，然后平滑的停止服务。处理流程如下：
- 首先关闭所有的监听
- 然后关闭所有的空闲连接
- 然后无限期等待连接处理完毕转为空闲，并关闭
- 如果提供了 带有超时的Context，将在服务关闭前返回 Context的超时错误
-  需要注意的是，Shutdown 并不尝试关闭或者等待 hijacked连接，如 WebSockets。如果需要的话调用者需要分别处理诸如长连接类型的等待和关闭。
-其实，你只要调用 Shutdown 方法就好了。
-简单示例：
-// main.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; ) func main() { http.HandleFunc(&amp;quot;/&amp;quot;, func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello World, %v\n&amp;quot;, time.Now()) }) s := &amp;amp;http.Server{ Addr: &amp;quot;:8080&amp;quot;, Handler: http.</description>
-    </item>
-    
-    <item>
-      <title>TiDB架构的演进和开发哲学</title>
-      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
-      <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
-      <description>https://segmentfault.com/a/
- 本文来自 CSDN《程序员》2017 年 2 月的封面报道。
-对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太多的问题需要去考量。
- 在本篇文章中，PingCAP 联合创始人兼 CTO 黄东旭对 TiDB 的开发历程进行了详细简介，为大家还原 TiDB 的架构演进全过程。
-在大约两年前，我有一次做 MySQL 分库分表和中间件的经历，那时在中间件里做 sharding，把 16 个节点的 MySQL 扩到 32 节点，差不多要提前一个月做演练，再用一个礼拜来上线。我就在想，能不能有一个数据库可以让我们不再想分库分表这些东西？当时我们也刚刚做完 Codis，觉得分布式是个比较合适的解决方案。另外我一直在关注学术圈关于分布式数据库的最新进展，有看到谷歌在 2013 年发的 Spanner 和 F1 的论文，所以决定干脆就重新开始写一个数据库，从根本上解决 MySQL 扩展性的问题。
-而决定之后发现面对的问题非常复杂：选择什么语言，整个架构怎么做，到底要不要开源……做基础软件有一个很重要的事情：写出来并不难，难的是你怎么保证这个东西写对了。尤其是对于业务方，他们所有的业务正确性是构建在基础软件的正确性上。所以，对于分布式系统来说，什么是写对了，怎么去测试，这都是很重要的问题。关于这些我想了很久。
-一开始总是要起步的。当时就决定冷静一下，先确定一个目标：解决 MySQL 的问题。MySQL 是单机型数据库，它没有办法做全扩展，我们选择 MySQL 兼容，首先选择在协议和语法层面的兼容，因为已有的社区里边很多的海量的测试。第二点是用户的迁移成本，能让用户迁移得很顺畅。第三是因为万事开头难，必须得有一个明确的目标，选定一个目标去做，对开发人员来说心理的压力最小。确定目标以后，我们 3 个人的创始团队从原来的公司出来，拿了一笔比较大的风险投资，开始正式做这件事情。
-兼容 MySQL 最简单的方案，就是直接用 MySQL。为了让这个东西尽快地做起来，我们一开始做了一个最简单的版本，复用 MySQL前端 代码，做一个分布式的存储引擎就可以了，这个事情想想还是蛮简单的，所以非常乐观，觉得这个战略很完美。
-上图是我在 2015 年 4 月份用六个礼拜完成的第一个版本的框架，但是后来没好意思开源出来，虽然能跑，但是在性能上完全无法接受。我就想这个东西为什么这么慢？一步一步去看每一层，就想动手改，但是发现工程量巨大，比如 MySQL 的 SQL 优化器， 事务模型等等，完全没有办法下手。就像这个架构图里看到的，因为在 MySQL Engine 这一层，我们能做的事情太少了，所以就没有办法。
-第一版实验到此宣告失败，现在看起来写 SQL parser 和优化器等这些已经是绕不开了，我们索性决定从头开始写，唯一给我安慰的就是终于可以使用我们最爱的编程语言了，就是 Go。
-我们跟其他做这种软件的工程师的思路相反，选择了从上往下写，先写最顶层的 SQL 的接口 SQL Layer，我要保证这个东西长得跟 MySQL 一模一样，包括网络协议和语法层。从 TiDB 网络协议、SQL 的语法解析器、到 SQL 的优化器、执行器等基本从上到下写了一遍。这个阶段持续了大概三个月左右。从这个阶段开始，我们慢慢摸索出了几个实践中深有体会的开发哲学。</description>
     </item>
     
   </channel>
