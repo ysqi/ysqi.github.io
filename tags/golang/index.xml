@@ -11,11 +11,11 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>为什么Go语言在中国格外的&amp;#34;火&amp;#34;</title>
-      <link>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-amp</link>
+      <title>为什么Go语言在中国格外的火</title>
+      <link>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:23 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-amp</guid>
+      <guid>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</guid>
       <description>go语言推出有几年了，似乎不温不火。但是在中国范围内，确实被关注的一塌糊涂。
 这是2017年2月份TIOBE出的编程语言排名：
 在拉勾网上搜索go的职位，结果有119个(2017年2月14日搜索结果)，似乎还没有那么火爆：
