@@ -1,10 +1,10 @@
 
 ---
 date: 2017-03-03T08:36:23+08:00
-title: "为什么Go语言在中国格外的&#34;火&#34;"
+title: "为什么Go语言在中国格外的火"
 description: ""
 disqus_identifier: 1488501383780881405
-slug: "wei-shen-me-Goyu-yan-zai-zhong-guo-ge-wai-de-&amp;#34;huo-&amp;#34;"
+slug: "wei-shen-me-Goyu-yan-zai-zhong-guo-ge-wai-de-huo-&amp"
 source: "http://blog.csdn.net/wangshubo1989/article/details/55102275"
 tags: 
 - golang
