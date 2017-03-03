@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何用Go实现一款类似滴滴优步的网络约车软件(含源码)</title>
+      <link>https://yushuangqi.com/blog/2017/ru-he-yong-goshi-xian-yi-kuan-lei-shi-di-di-you-bu-de-wang-lao-yao-che-ruan-jian-han-yuan-ma-.html</link>
+      <pubDate>Fri, 03 Mar 2017 08:36:25 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ru-he-yong-goshi-xian-yi-kuan-lei-shi-di-di-you-bu-de-wang-lao-yao-che-ruan-jian-han-yuan-ma-.html</guid>
+      <description>导读：我们经常使用打车软件出行，也经常思考其架构设计。本文作者在所在国家也负责开发一款打车软件，并且开源了其中大部分代码，可以帮助我们更好了解网络约车软件的架构体系。本文由高可用架构翻译。
+
+
+各位读者好，本文将给大家分享我们如何通过内存存储实现地图动画车效果。 我们公司也运营了一个类似 Uber 的软件 Namba Taxi，我们需要在客户端主屏幕上显示动画车。 这篇文章是关于功能如何完整实现的文章，主要目的不是介绍 Go 语言。
+ 开始 
+这个故事始于2015年，我们的移动开发人员开发一款软件，工作主题是为出租车司机提供打车服务。 在应用程序中，动画汽车看起来像下面的图中动画那样 [1] 。
+
+
+我们的第一个挑战是缺乏地图跟踪数据。我们每 15 秒获取一次位置数据。 我们不能简单减小上报间隔，因为当司机端程序上行数据时候，同时需要获取当前订单，下一个订单，以及一些警报功能（一个SOS按钮， 当司机按下它，其他司机就可以帮助他）。当我们减少更新间隔时，系统流量更大。 我们不确认我们是否能够扛住如此大的刷新。
+ 实现的第一步 
+我们第一次的尝试比较简单：
+
+ 处理请求并保存坐标。
+ 创建另一个请求并为汽车设置动画。
+  
+显而易见，这样做存在一些问题，如大家在一些打车软件所见，我们不能正确地绘制汽车路线，汽车可能跑在田野，森林，湖泊和公寓上，用这种方法后效果看起来是这样的 [2]。
+
+
+作为问题的解决方案，我们使用 OpenStreetMap Routeing Machine（OSRM）来规划线路并改进我们的算法，并使用相同的超时设置。
+
+ 发起请求。
+ 获取坐标。
+ 将保存的坐标发送到服务器。
+ 通过 OSRM 构建路线。
+ 返回数据到客户端。
+  
+通过线路规划体系，现在似乎可以工作了，但我们又面临单向道路的问题
+
+
+例如，司机停留在红点的十字路口。 但他的设备位置准确性有问题，导致数据标记在十字路口的对面。 在客户端，我们获取这些坐标，保存并发送到后端，OSRM 建立一个合法的路线，并返回给应用程序。因为客户端移动得非常快，所以这种情况路线规划很可笑。</description>
+    </item>
+    
+    <item>
+      <title>插曲:关于递归</title>
+      <link>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</link>
+      <pubDate>Fri, 03 Mar 2017 08:36:25 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</guid>
+      <description>1 概述 循环与递归是算法中最常见的控制过程的方法，循环自不必说，只要学过计算机语言，必然都会讲这种控制结构；而对于递归，大家也能写得很漂亮（树算法中和图算法中使用递归的场景也特别多）。
+递归的好处也显而易见，代码体积小，容易维护。然而，递归并不是万能钥匙，特别是当运行环境内存空间有限以及要求高性能的场景。下文首先介绍递归的运行原理，然后用实例说明递归的代价，接着讲解递归如何转换成循环及其限制，最后对本文进行总结。
+2 递归的运行原理 这里的递归特指递归函数，递归函数在程序中执行的原理是什么（冯诺伊曼体系下）？这是认识递归函数执行效率的关键。下面我们以构建斐波那契数列为例，说明递归函数的执行过程。构建斐波那契数列的递归函数(golang实现)如下：
+fun Fib(n int) int{ ret : = 0 if n == 0 || n == 1 { // 1 ret = 1 // 2 } ret = Fib(n - 1) + Fib(n - 2) // 3 return ret }
+学过编译原理的童鞋都知道，函数是在栈（对，就是童鞋们在数据结构上学习的栈）上运行的，如果n=4，Fib(4)的原理示意如图1所示：
+图1:fib(4)动态示意图
+要求fib(4)，必须在栈上求Fib(3)（要求Fib(3),必须再为在栈上求Fib(2)和Fib(1)，要求Fib(2)，在栈上继续求fib(1)和Fib(0)）和Fib(2)（类似fib(3)的过程）。这样的递归算法，必须在栈上记录函内的局部变量、传递参数、返回地址（直到调用结束后回到哪）和上一栈帧的EBP和BP（恢复调用者栈），并且频繁出栈入栈是需要系统开销的，虽然单次入栈出栈开销不大，但是如果要求Fib(1000)这样的函数，恐怕一般的单机估计得跑几十分钟甚至半天了（在笔者的mac本上跑了几分钟都没出来，直接把进程杀了，不能忍）。
+为了有个直观的感受，笔者特意做了一个简单的试验（见我的git），分别以递归和非递归求解Fib(10), Fib(20), Fib(30), Fib(40), Fib(50)的运行结果，如下图所示：
+图2：递归和非递归试验结果
+
+从运行结果可以看出，当n值较小时（&amp;lt;10）时，递归运行的时间少于非递归运行时间（原因应该是非递归分配slice需要占用相对较长的时间，这种写法有些弱智，其实只需要两个中间变量即可，类似于不用第三个变量实现两变量值交换的思路），当n&amp;gt;=20后，非递归运行时间远低于递归运行时间，n越大，非递归相对递归越高效。
+当然，非递归高效运行也不是没有代价的，相比递归函数，编写代码的难度要更高并且更难维护。
+3 递归转非递归 那如何将递归函数转换为非递归函数呢？是否所有的递归函数都能换成非递归函数？
+首先必须弄清楚递归有哪些种类，递归有两种，一种是单向递归，类似于Fib(n)的这种是一种典型的单向递归（Fib(n)-&amp;gt;Fib(n-1)-&amp;gt;Fib(n-2)-&amp;gt;&amp;hellip;-&amp;gt;Fib(1)）；另一种的递归（不妨称其为交互递归，不一定准确）的形式为：F1(n) -&amp;gt; F2(n) -&amp;gt; F1(n-1) -&amp;gt; F2(n-1) -&amp;gt; &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>理解Go语言的nil</title>
+      <link>https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html</link>
+      <pubDate>Fri, 03 Mar 2017 08:36:22 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html</guid>
+      <description>最近在油管上面看了一个视频：Understanding nil，挺有意思，这篇文章就对视频做一个归纳总结，代码示例都是来自于视频。
+nil是什么 相信写过Golang的程序员对下面一段代码是非常非常熟悉的了：
+if err != nil { // do something.... }  当出现不等于nil的时候，说明出现某些错误了，需要我们对这个错误进行一些处理，而如果等于nil说明运行正常。那什么是nil呢？查一下词典可以知道，nil的意思是无，或者是零值。零值，zero value，是不是有点熟悉？在Go语言中，如果你声明了一个变量但是没有对它进行赋值操作，那么这个变量就会有一个类型的默认零值。这是每种类型对应的零值：
+bool -&amp;gt; false numbers -&amp;gt; 0 string -&amp;gt; &amp;quot;&amp;quot; pointers -&amp;gt; nil slices -&amp;gt; nil maps -&amp;gt; nil channels -&amp;gt; nil functions -&amp;gt; nil interfaces -&amp;gt; nil  举个例子，当你定义了一个struct：
+type Person struct { AgeYears int Name string Friends []Person } var p Person // Person{0, &amp;quot;&amp;quot;, nil}  变量p只声明但没有赋值，所以p的所有字段都有对应的零值。那么，这个nil到底是什么呢？Go的文档中说到，*nil是预定义的标识符，代表指针、通道、函数、接口、映射或切片的零值*，也就是预定义好的一个变量：
+type Type int var nil Type  是不是有点惊讶？nil并不是Go的关键字之一，你甚至可以自己去改变nil的值：</description>
+    </item>
+    
+    <item>
+      <title>谢孟军:THESTATEOFGO</title>
+      <link>https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html</link>
+      <pubDate>Fri, 03 Mar 2017 08:36:22 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html</guid>
+      <description>本月 17 日，Go 1.8 版本火热发布。相较于以往的版本，Go 1.8 具体有哪些新的特性呢？想必这是不少 Gopher 们热切关注和讨论的问题。作为著名的Golang 布道者，Gopher China 社区创始人，谢孟军早在今年一月的 ECUG Con 上就对 Golang 做出了历史版本的回顾和 1.8 版本的分析，本文就是对他的演讲实录。 Gopher China 社区创始人，著名开源框架 beego 开发者，畅销图书《Go Web 编程》作者，同时有 bat、bee 等开源软件。国内 Go 发展的主要推动者之一。
+谢孟军：大家好，我是来自 Apple 的工程师，目前主要在从事工业自动化系统的架构和研发，今天很高兴来到这里跟大家分享一下关于 Go 的一些东西。Go 是 Google 的语言，Go 语言已经出来 6 年了，从 1.0 版本到 1.8 版本，今天最主要是跟大家分享一下 Go 在 1.8 版本中带来了哪些新特性。
+Go 回顾 2012 年 3 月 Go 1.0 版本发布，这是一个标志性的事件。很多语言发布出来之后再次升级都会有或多或少不兼容的体验，但是 Go 官方团队在发布 1.0 的时候发布申明，后续的版本保证百分之百向前兼容，他们也遵守了当时的承诺。1.0、1.1、1.2、1.3 一直到 1.7，你的代码如果是 1.0 时候写的，现在升级到 1.7，都可以正常编译。其他语言里面我们可能都会有这样的体验，升级了一个新版本之后，需要花很多时间把代码兼容到新升级的版本中。所以对于一个语言来说，特性稳定是非常重要的。 Go 语言基本上保持了半年发布一个版本的节奏： * 2013年的 5 月份发了 1.</description>
+    </item>
+    
+  </channel>
+</rss>
