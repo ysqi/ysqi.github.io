@@ -8,6 +8,7 @@ uglyURLs = true
 metaDataFormat = "YAML"
 disqusShortname = "yushuangqi" 
 publishdir = "public"
+EnableDiscuss = false
 
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
