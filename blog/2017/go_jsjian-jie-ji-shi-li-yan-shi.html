@@ -1,0 +1,355 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>go_js简介及实例演示 |虞双齐Golang开发与SRE运维</title><meta name="description" content="GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模"><meta name="keywords" content="gojs, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Ysqi"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"><meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐Golang开发与SRE运维"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html"><meta property="og:title" content="go_js简介及实例演示"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-03-13 08:20:08"><meta property="article:modified_time" content="2017-03-13 08:20:08"><meta property="article:tag" content="gojs"><meta name="og:description" content="GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20170207"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html">go_js简介及实例演示</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://my.oschina.net/u/2391658/blog/856225" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-03-13">2017年03月13日</time></span></p></header><div itemprop="articleBody"><p>GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模板和图形对象属性数据模型的数据绑定。你只需要保存和恢复模型，包括持有任何性质的应用需求，简单的JavaScript对象。许多预定义的工具和命令执行，大部分的图表所需要的标准的行为。外观和行为的定制是大多设置属性的问题。</p><p>下载地址：<a href="http://gojs.net/latest/doc/download.html">http://gojs.net/latest/doc/download.html</a></p><p>使用gojs开发的流程图及拓扑图实例：<a href="http://gojs.net/latest/samples/index.html">http://gojs.net/latest/samples/index.html</a></p><p>goJS去水印版：<a href="http://download.csdn.net/detail/qq_14966339/9569675">http://download.csdn.net/detail/qq_<sup>14966339</sup>&frasl;<sub>9569675</sub></a></p><p>goJS实例演示：</p><pre><code>function init() {
+    if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+    var $ = go.GraphObject.make;  // for conciseness in defining templates
+
+    myDiagram =
+      $(go.Diagram, &quot;myDiagramDiv&quot;,  // must name or refer to the DIV HTML element
+        {
+          initialContentAlignment: go.Spot.Center,
+          allowDrop: true,  // must be true to accept drops from the Palette
+          &quot;LinkDrawn&quot;: showLinkLabel,  // this DiagramEvent listener is defined below
+          &quot;LinkRelinked&quot;: showLinkLabel,
+          &quot;animationManager.duration&quot;: 800, // slightly longer than default (600ms) animation
+          &quot;undoManager.isEnabled&quot;: true  // enable undo &amp; redo
+        });
+
+    // when the document is modified, add a &quot;*&quot; to the title and enable the &quot;Save&quot; button
+    myDiagram.addDiagramListener(&quot;Modified&quot;, function(e) {
+      var button = document.getElementById(&quot;SaveButton&quot;);
+      if (button) button.disabled = !myDiagram.isModified;
+      var idx = document.title.indexOf(&quot;*&quot;);
+      if (myDiagram.isModified) {
+        if (idx &lt; 0) document.title += &quot;*&quot;;
+      } else {
+        if (idx &gt;= 0) document.title = document.title.substr(0, idx);
+      }
+    });
+
+    // helper definitions for node templates
+
+    function nodeStyle() {
+      return [
+        // The Node.location comes from the &quot;loc&quot; property of the node data,
+        // converted by the Point.parse static method.
+        // If the Node.location is changed, it updates the &quot;loc&quot; property of the node data,
+        // converting back using the Point.stringify static method.
+        new go.Binding(&quot;location&quot;, &quot;loc&quot;, go.Point.parse).makeTwoWay(go.Point.stringify),
+        {
+          // the Node.location is at the center of each node
+          locationSpot: go.Spot.Center,
+          //isShadowed: true,
+          //shadowColor: &quot;#888&quot;,
+          // handle mouse enter/leave events to show/hide the ports
+          mouseEnter: function (e, obj) { showPorts(obj.part, true); },
+          mouseLeave: function (e, obj) { showPorts(obj.part, false); }
+        }
+      ];
+    }
+
+    // Define a function for creating a &quot;port&quot; that is normally transparent.
+    // The &quot;name&quot; is used as the GraphObject.portId, the &quot;spot&quot; is used to control how links connect
+    // and where the port is positioned on the node, and the boolean &quot;output&quot; and &quot;input&quot; arguments
+    // control whether the user can draw links from or to the port.
+    function makePort(name, spot, output, input) {
+      // the port is basically just a small circle that has a white stroke when it is made visible
+      return $(go.Shape, &quot;Circle&quot;,
+               {
+                  fill: &quot;transparent&quot;,
+                  stroke: null,  // this is changed to &quot;white&quot; in the showPorts function
+                  desiredSize: new go.Size(8, 8),
+                  alignment: spot, alignmentFocus: spot,  // align the port on the main Shape
+                  portId: name,  // declare this object to be a &quot;port&quot;
+                  fromSpot: spot, toSpot: spot,  // declare where links may connect at this port
+                  fromLinkable: output, toLinkable: input,  // declare whether the user may draw links to/from here
+                  cursor: &quot;pointer&quot;  // show a different cursor to indicate potential link point
+               });
+    }
+
+    // define the Node templates for regular nodes
+
+    var lightText = 'whitesmoke';
+
+    myDiagram.nodeTemplateMap.add(&quot;&quot;,  // the default category
+      $(go.Node, &quot;Spot&quot;, nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        $(go.Panel, &quot;Auto&quot;,
+          $(go.Shape, &quot;Rectangle&quot;,
+            { fill: &quot;#00A9C9&quot;, stroke: null },
+            new go.Binding(&quot;figure&quot;, &quot;figure&quot;)),
+          $(go.TextBlock,
+            {
+              font: &quot;bold 11pt Helvetica, Arial, sans-serif&quot;,
+              stroke: lightText,
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+            },
+            new go.Binding(&quot;text&quot;).makeTwoWay())
+        ),
+        // four named ports, one on each side:
+        makePort(&quot;T&quot;, go.Spot.Top, false, true),
+        makePort(&quot;L&quot;, go.Spot.Left, true, true),
+        makePort(&quot;R&quot;, go.Spot.Right, true, true),
+        makePort(&quot;B&quot;, go.Spot.Bottom, true, false)
+      ));
+
+    myDiagram.nodeTemplateMap.add(&quot;Start&quot;,
+      $(go.Node, &quot;Spot&quot;, nodeStyle(),
+        $(go.Panel, &quot;Auto&quot;,
+          $(go.Shape, &quot;Circle&quot;,
+            { minSize: new go.Size(40, 40), fill: &quot;#79C900&quot;, stroke: null }),
+          $(go.TextBlock, &quot;Start&quot;,
+            { font: &quot;bold 11pt Helvetica, Arial, sans-serif&quot;, stroke: lightText },
+            new go.Binding(&quot;text&quot;))
+        ),
+        // three named ports, one on each side except the top, all output only:
+        makePort(&quot;L&quot;, go.Spot.Left, true, false),
+        makePort(&quot;R&quot;, go.Spot.Right, true, false),
+        makePort(&quot;B&quot;, go.Spot.Bottom, true, false)
+      ));
+
+    myDiagram.nodeTemplateMap.add(&quot;End&quot;,
+      $(go.Node, &quot;Spot&quot;, nodeStyle(),
+        $(go.Panel, &quot;Auto&quot;,
+          $(go.Shape, &quot;Circle&quot;,
+            { minSize: new go.Size(40, 40), fill: &quot;#DC3C00&quot;, stroke: null }),
+          $(go.TextBlock, &quot;End&quot;,
+            { font: &quot;bold 11pt Helvetica, Arial, sans-serif&quot;, stroke: lightText },
+            new go.Binding(&quot;text&quot;))
+        ),
+        // three named ports, one on each side except the bottom, all input only:
+        makePort(&quot;T&quot;, go.Spot.Top, false, true),
+        makePort(&quot;L&quot;, go.Spot.Left, false, true),
+        makePort(&quot;R&quot;, go.Spot.Right, false, true)
+      ));
+
+    myDiagram.nodeTemplateMap.add(&quot;Comment&quot;,
+      $(go.Node, &quot;Auto&quot;, nodeStyle(),
+        $(go.Shape, &quot;File&quot;,
+          { fill: &quot;#EFFAB4&quot;, stroke: null }),
+        $(go.TextBlock,
+          {
+            margin: 5,
+            maxSize: new go.Size(200, NaN),
+            wrap: go.TextBlock.WrapFit,
+            textAlign: &quot;center&quot;,
+            editable: true,
+            font: &quot;bold 12pt Helvetica, Arial, sans-serif&quot;,
+            stroke: '#454545'
+          },
+          new go.Binding(&quot;text&quot;).makeTwoWay())
+        // no ports, because no links are allowed to connect with a comment
+      ));
+
+
+    // replace the default Link template in the linkTemplateMap
+    myDiagram.linkTemplate =
+      $(go.Link,  // the whole link panel
+        {
+          routing: go.Link.AvoidsNodes,
+          curve: go.Link.JumpOver,
+          corner: 5, toShortLength: 4,
+          relinkableFrom: true,
+          relinkableTo: true,
+          reshapable: true,
+          resegmentable: true,
+          // mouse-overs subtly highlight links:
+          mouseEnter: function(e, link) { link.findObject(&quot;HIGHLIGHT&quot;).stroke = &quot;rgba(30,144,255,0.2)&quot;; },
+          mouseLeave: function(e, link) { link.findObject(&quot;HIGHLIGHT&quot;).stroke = &quot;transparent&quot;; }
+        },
+        new go.Binding(&quot;points&quot;).makeTwoWay(),
+        $(go.Shape,  // the highlight shape, normally transparent
+          { isPanelMain: true, strokeWidth: 8, stroke: &quot;transparent&quot;, name: &quot;HIGHLIGHT&quot; }),
+        $(go.Shape,  // the link path shape
+          { isPanelMain: true, stroke: &quot;gray&quot;, strokeWidth: 2 }),
+        $(go.Shape,  // the arrowhead
+          { toArrow: &quot;standard&quot;, stroke: null, fill: &quot;gray&quot;}),
+        $(go.Panel, &quot;Auto&quot;,  // the link label, normally not visible
+          { visible: false, name: &quot;LABEL&quot;, segmentIndex: 2, segmentFraction: 0.5},
+          new go.Binding(&quot;visible&quot;, &quot;visible&quot;).makeTwoWay(),
+          $(go.Shape, &quot;RoundedRectangle&quot;,  // the label shape
+            { fill: &quot;#F8F8F8&quot;, stroke: null }),
+          $(go.TextBlock, &quot;Yes&quot;,  // the label
+            {
+              textAlign: &quot;center&quot;,
+              font: &quot;10pt helvetica, arial, sans-serif&quot;,
+              stroke: &quot;#333333&quot;,
+              editable: true
+            },
+            new go.Binding(&quot;text&quot;).makeTwoWay())
+        )
+      );
+
+    // Make link labels visible if coming out of a &quot;conditional&quot; node.
+    // This listener is called by the &quot;LinkDrawn&quot; and &quot;LinkRelinked&quot; DiagramEvents.
+    function showLinkLabel(e) {
+      var label = e.subject.findObject(&quot;LABEL&quot;);
+      if (label !== null) label.visible = (e.subject.fromNode.data.figure === &quot;Diamond&quot;);
+    }
+
+    // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
+    myDiagram.toolManager.linkingTool.temporaryLink.routing = go.Link.Orthogonal;
+    myDiagram.toolManager.relinkingTool.temporaryLink.routing = go.Link.Orthogonal;
+
+    load();  // load an initial diagram from some JSON text
+
+    // initialize the Palette that is on the left side of the page
+    myPalette =
+      $(go.Palette, &quot;myPaletteDiv&quot;,  // must name or refer to the DIV HTML element
+        {
+          &quot;animationManager.duration&quot;: 800, // slightly longer than default (600ms) animation
+          nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
+          model: new go.GraphLinksModel([  // specify the contents of the Palette
+            { category: &quot;Start&quot;, text: &quot;Start&quot; },
+            { text: &quot;Step&quot; },
+            { text: &quot;???&quot;, figure: &quot;Diamond&quot; },
+            { category: &quot;End&quot;, text: &quot;End&quot; },
+            { category: &quot;Comment&quot;, text: &quot;Comment&quot; }
+          ])
+        });
+
+    // The following code overrides GoJS focus to stop the browser from scrolling
+    // the page when either the Diagram or Palette are clicked or dragged onto.
+
+    function customFocus() {
+      var x = window.scrollX || window.pageXOffset;
+      var y = window.scrollY || window.pageYOffset;
+      go.Diagram.prototype.doFocus.call(this);
+      window.scrollTo(x, y);
+    }
+
+    myDiagram.doFocus = customFocus;
+    myPalette.doFocus = customFocus;
+
+
+  } // end init
+
+  // Make all ports on a node visible when the mouse is over the node
+  function showPorts(node, show) {
+    var diagram = node.diagram;
+    if (!diagram || diagram.isReadOnly || !diagram.allowLink) return;
+    node.ports.each(function(port) {
+        port.stroke = (show ? &quot;white&quot; : null);
+      });
+  }
+
+
+  // Show the diagram's model in JSON format that the user may edit
+  function save() {
+    document.getElementById(&quot;mySavedModel&quot;).value = myDiagram.model.toJson();
+    myDiagram.isModified = false;
+  }
+  function load() {
+    myDiagram.model = go.Model.fromJson(document.getElementById(&quot;mySavedModel&quot;).value);
+  }
+
+  // add an SVG rendering of the diagram at the end of this page
+  function makeSVG() {
+    var svg = myDiagram.makeSvg({
+        scale: 0.5
+      });
+    svg.style.border = &quot;1px solid black&quot;;
+    obj = document.getElementById(&quot;SVGArea&quot;);
+    obj.appendChild(svg);
+    if (obj.children.length &gt; 0) {
+      obj.replaceChild(svg, obj.children[0]);
+    }
+  }
+
+&lt;div id=&quot;sample&quot;&gt;
+  &lt;div style=&quot;width:100%; white-space:nowrap;&quot;&gt;
+    &lt;span style=&quot;display: inline-block; vertical-align: top; width:100px&quot;&gt;
+      &lt;div id=&quot;myPaletteDiv&quot; style=&quot;border: solid 1px black; height: 720px&quot;&gt;&lt;/div&gt;
+    &lt;/span&gt;
+
+    &lt;span style=&quot;display: inline-block; vertical-align: top; width:80%&quot;&gt;
+      &lt;div id=&quot;myDiagramDiv&quot; style=&quot;border: solid 1px black; height: 720px&quot;&gt;&lt;/div&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p&gt;
+  The FlowChart sample demonstrates several key features of GoJS,
+  namely &lt;a href=&quot;../intro/palette.html&quot;&gt;Palette&lt;/a&gt;s,
+  &lt;a href=&quot;../intro/links.html&quot;&gt;Linkable nodes&lt;/a&gt;, Drag/Drop behavior,
+  &lt;a href=&quot;../intro/textBlocks.html&quot;&gt;Text Editing&lt;/a&gt;, and the use of
+  &lt;a href=&quot;../intro/templateMaps.html&quot;&gt;Node Template Maps&lt;/a&gt; in Diagrams.
+  &lt;/p&gt;
+  &lt;p&gt;
+  Mouse-over a Node to view its ports.
+  Drag from these ports to create new Links.
+  Selecting Links allows you to re-shape and re-link them.
+  Selecting a Node and then clicking its TextBlock will allow
+  you to edit text (except on the Start and End Nodes).
+  &lt;/p&gt;
+  &lt;button id=&quot;SaveButton&quot; onclick=&quot;save()&quot;&gt;Save&lt;/button&gt;
+  &lt;button onclick=&quot;load()&quot;&gt;Load&lt;/button&gt;
+  Diagram Model saved in JSON format:
+  &lt;textarea id=&quot;mySavedModel&quot; style=&quot;width:100%;height:300px&quot;&gt;{ &quot;class&quot;: &quot;go.GraphLinksModel&quot;,
+  &quot;linkFromPortIdProperty&quot;: &quot;fromPort&quot;,
+  &quot;linkToPortIdProperty&quot;: &quot;toPort&quot;,
+  &quot;nodeDataArray&quot;: [
+{&quot;category&quot;:&quot;Comment&quot;, &quot;loc&quot;:&quot;360 -10&quot;, &quot;text&quot;:&quot;Kookie Brittle&quot;, &quot;key&quot;:-13},
+{&quot;key&quot;:-1, &quot;category&quot;:&quot;Start&quot;, &quot;loc&quot;:&quot;175 0&quot;, &quot;text&quot;:&quot;Start&quot;},
+{&quot;key&quot;:0, &quot;loc&quot;:&quot;0 77&quot;, &quot;text&quot;:&quot;Preheat oven to 375 F&quot;},
+{&quot;key&quot;:1, &quot;loc&quot;:&quot;175 100&quot;, &quot;text&quot;:&quot;In a bowl, blend: 1 cup margarine, 1.5 teaspoon vanilla, 1 teaspoon salt&quot;},
+{&quot;key&quot;:2, &quot;loc&quot;:&quot;175 190&quot;, &quot;text&quot;:&quot;Gradually beat in 1 cup sugar and 2 cups sifted flour&quot;},
+{&quot;key&quot;:3, &quot;loc&quot;:&quot;175 270&quot;, &quot;text&quot;:&quot;Mix in 6 oz (1 cup) Nestle's Semi-Sweet Chocolate Morsels&quot;},
+{&quot;key&quot;:4, &quot;loc&quot;:&quot;175 370&quot;, &quot;text&quot;:&quot;Press evenly into ungreased 15x10x1 pan&quot;},
+{&quot;key&quot;:5, &quot;loc&quot;:&quot;352 85&quot;, &quot;text&quot;:&quot;Finely chop 1/2 cup of your choice of nuts&quot;},
+{&quot;key&quot;:6, &quot;loc&quot;:&quot;175 440&quot;, &quot;text&quot;:&quot;Sprinkle nuts on top&quot;},
+{&quot;key&quot;:7, &quot;loc&quot;:&quot;175 500&quot;, &quot;text&quot;:&quot;Bake for 25 minutes and let cool&quot;},
+{&quot;key&quot;:8, &quot;loc&quot;:&quot;175 570&quot;, &quot;text&quot;:&quot;Cut into rectangular grid&quot;},
+{&quot;key&quot;:-2, &quot;category&quot;:&quot;End&quot;, &quot;loc&quot;:&quot;175 640&quot;, &quot;text&quot;:&quot;Enjoy!&quot;}
+ ],
+  &quot;linkDataArray&quot;: [
+{&quot;from&quot;:1, &quot;to&quot;:2, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:2, &quot;to&quot;:3, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:3, &quot;to&quot;:4, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:4, &quot;to&quot;:6, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:6, &quot;to&quot;:7, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:7, &quot;to&quot;:8, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:8, &quot;to&quot;:-2, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:-1, &quot;to&quot;:0, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:-1, &quot;to&quot;:1, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:-1, &quot;to&quot;:5, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:5, &quot;to&quot;:4, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;},
+{&quot;from&quot;:0, &quot;to&quot;:4, &quot;fromPort&quot;:&quot;B&quot;, &quot;toPort&quot;:&quot;T&quot;}
+ ]}
+  &lt;/textarea&gt;
+  &lt;p&gt;Click the button below to render the current GoJS Diagram into SVG at one-half scale.
+     The SVG is not interactive like the GoJS diagram, but can be used for printing or display.
+     For more information, see the page on &lt;a href=&quot;../intro/makingSVG.html&quot;&gt;making SVG&lt;/a&gt;.&lt;/p&gt;
+  &lt;button onclick=&quot;makeSVG()&quot;&gt;Render as SVG&lt;/button&gt;
+  &lt;div id=&quot;SVGArea&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>效果图：</p><p><img src="https://static.yushuangqi.com/blog/2017/0313075858i3kjn0o0yud.png" alt=""></p><p> </p></div><aside id="meta"><meta itemprop="wordCount" content="1515"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/gojs.html" rel="tag">gojs</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html">GoDoc文档使用</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html">go_js模型样式选择</a></li></ul></div><aside id="comments"><div><div class="ds-thread" data-thread-key="93e6b53bed67f85661e73c94653029f4" data-title="go_js简介及实例演示" data-url="https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html"></div></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，全栈开发工程师，Google SRE实践者。提供Golang开发、技术实践与架构等咨询服务。</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐Golang开发与SRE运维">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo_jsjian-jie-ji-shi-li-yan-shi.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo_jsjian-jie-ji-shi-li-yan-shi.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-#Golang开发 #SRE运维。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

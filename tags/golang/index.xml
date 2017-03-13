@@ -11,6 +11,32 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>GoDoc文档使用</title>
+      <link>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:09 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</guid>
+      <description>《Go语言实战》读书笔记，未完待续，欢迎关注公众号flysnow_org，第一时间看后续笔记。
+ 对于协作开发或者代码共享来说，文档是一个可以帮助开发者快速了解以及使用这些代码的一个教程，文档越全面，越详细，入门越快，效率也会更高。
+在Go语言中，Go为我们提供了快速生成文档以及查看文档的工具，让我们可以很容易的编写查看文档。
+Go提供了两种查看文档的方式，一种是使用go doc命令在终端查看，这种适用于使用VIM等工具在终端开发的人员，它们不用离开终端，既可以查看想查看的文档，又可以编码。
+第二种方式，是使用浏览器查看的方式，通过godoc命令可以在本机启动一个web服务，我们可以通过打开浏览器，访问这个服务来查看我们的Go文档。
+从终端查看文档 这种方式适用于在终端开发的，它们一般不像离开终端，查完即可继续编码，这时候使用go doc命令是很不错的选择。
+➜ hello go help doc usage: go doc [-u] [-c] [package|[package.]symbol[.method]] Doc prints the documentation comments associated with the item identified by its arguments (a package, const, func, type, var, or method) followed by a one-line summary of each of the first-level items &amp;quot;under&amp;quot; that item (package-level declarations for a package, methods for a type, etc.). Flags: -c Respect case when matching symbols.</description>
+    </item>
+    
+    <item>
+      <title>Go配置文件热更新</title>
+      <link>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</link>
+      <pubDate>Mon, 13 Mar 2017 07:58:39 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</guid>
+      <description>配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提供极大的便利，比如发现log打得太多了可以动态调高日志等级，业务逻辑参数变化，甚至某个功能模块的开关等都可以动态调整。
+每种语言都有自己的热更新实现方式，在golang里面我看到了有人采用了一种错误的实现方式，如下：
+type Config struct { Test1 string `json:&amp;quot;Test1&amp;quot;` Test2 int `json:&amp;quot;Test2&amp;quot;` } var ( config *Config ) func loadConfig() { f, err := ioutil.ReadFile(&amp;quot;config.json&amp;quot;) if err != nil { fmt.Println(&amp;quot;load config error: &amp;quot;, err) } err = json.Unmarshal(f, &amp;amp;config) if err != nil { fmt.Println(&amp;quot;Para config failed: &amp;quot;, err) } } func init() { loadConfig() fmt.Println(&amp;quot;Load config: &amp;quot;, *config) s := make(chan os.Signal, 1) signal.Notify(s, syscall.SIGUSR2) go func() { for { &amp;lt;-s loadConfig() fmt.</description>
+    </item>
+    
+    <item>
       <title>为什么Go语言在中国格外的火</title>
       <link>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:23 +0800</pubDate>
@@ -185,33 +211,6 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;reflect&amp;quot; &amp;q
 当编译单个或多个包非主包时，只构建编译包，但丢弃生成的对象（.a），仅用作检查包可以构建。
 当编译包时，会自动忽略&amp;rsquo;_test.go&amp;rsquo;的测试文件。
 参数 -o output 指定编译输出的名称，代替默认的包名。  -i install 安装作为目标的依赖关系的包(用于增量编译提速)。  以下 build 参数可用在 build, clean, get, install, list, run, test -a 完全编译，不理会-i产生的.a文件(文件会比不带-a的编译出来要大？) -n 仅打印输出build需要的命令，不执行build动作（少用）。 -p n 开多少核cpu来并行编译，默认为本机CPU核数（少用）。 -race 同时检测数据竞争状态，只支持 linux/amd64, freebsd/amd64, darwin/amd64 和 windows/amd64. -msan 启用与内存消毒器的互操作。仅支持linux / amd64，并且只用Clang / LLVM作为主机C编译器（少用）。 -v 打印出被编译的包名（少用）. -work 打印临时工作目录的名称，并在退出时不删除它（少用）。 -x 同时打印输出执行的命令名（-n）（少用）. -asmflags &#39;flag list&#39; 传递每个go工具asm调用的参数（少用） -buildmode mode 编译模式（少用） &#39;go help buildmode&#39; -compiler name 使用的编译器 == runtime.</description>
-    </item>
-    
-    <item>
-      <title>go协程与主线程强占运行</title>
-      <link>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:49 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</guid>
-      <description>最近在学习了go 语言 , 正好学习到了 协程这一块 ,遇到了困惑的地方.这个是go语言官方文档 . 在我的理解当中是,协程只能在主线程释放时间片后才会经过系统调度来运行协程,其实正确的也确实是这样的,但是我遇到了协程强占主线程的一个问题,经过帮助,现在已经了解.废话不多说,先看代码
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { go say(&amp;quot;world&amp;quot;) say(&amp;quot;hello&amp;quot;) /* fmt.Println(&amp;quot;---------------1&amp;quot;) a := []int{7, 2, 8, -9, 4, 0} fmt.Println(&amp;quot;===&amp;quot;, a[:len(a)/2]) c := make(chan int) go sum(a[:len(a)/2], c) go sum(a[len(a)/2:], c) x, y := &amp;lt;-c, &amp;lt;-c // receive from c fmt.Println(x, y, x+y) fmt.Println(&amp;quot;---------------2&amp;quot;) c2 := make(chan int, 2) c2 &amp;lt;- 1 c2 &amp;lt;- 2 fmt.Println(&amp;lt;-c2) fmt.Println(&amp;lt;-c2) fmt.Println(&amp;quot;---------------3&amp;quot;) c3 := make(chan int, 10) go fibonacci(cap(c3), c3) for i := range c3 { fmt.</description>
-    </item>
-    
-    <item>
-      <title>Go1_8正式发布</title>
-      <link>https://yushuangqi.com/blog/2017/go1_8zheng-shi-fa-bu.html</link>
-      <pubDate>Sat, 18 Feb 2017 11:13:46 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go1_8zheng-shi-fa-bu.html</guid>
-      <description>今天Go团队很高兴地宣布Go 1.8发布了。你可以从下载页面获得1.8版本。在这个版本中，整个标准库有显着的性能改进和变化。
-Go 1.7中为64位x86系统引入的编译器后端现在用于所有体系结构，在这些体系结构下可以看到显着的性能改进。例如，我们的基准程序所需的CPU时间在32位ARM系统上减少了20-30％。在此版本中，对于64位x86系统也有一些性能提升。编译器和链接器跑得更快。编译时间应该比Go 1.7缩短约15％。在这一领域还有更多的工作要做：希望未来版本的编译速度更快。
-垃圾收集暂停应明显更短，通常在100微秒以下，通常低至10微秒。
-HTTP服务器添加对HTTP/2 Push的支持，允许服务器向客户端推送。这对于消除网络延迟非常有用。 HTTP服务器还添加了对优雅停机的支持，允许服务器完成正在运行的请求之后关闭从而最小化停机时间。
-context（添加到Go 1.7中的标准库）提供了取消和超时机制。 Go 1.8在更多的标准库中添加了对context的支持，包括database/sql和net包以及net/http包中的Server.Shutdown。
-现在使用新添加的Slice函数使得对slice进行排序更简单。例如，要通过“名称”字段对结构体片段进行排序：
-Go 1.8包括很多新增API，以及老API的改进和修复。 你可以在Go 1.8发行说明中查找完整的修改列表，以及有关上面列出内容的详细信息。
-为了庆祝新版发布，世界各地的Go用户组都在本周举办发布会。 发布会已经成为Go社区的一个传统，所以如果你错过了这一次，当1.9发布时应该注意了。
-感谢超过200个贡献者谁帮助了1.8版本的发布。</description>
     </item>
     
   </channel>

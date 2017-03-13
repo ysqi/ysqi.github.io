@@ -11,6 +11,24 @@
     <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>互联网数据库“跨库分页”架构技术实践</title>
+      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
+      <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
+ 微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
+ 有一个业务主键id，例如msg_id，order_id，tiezi_id 分页排序是按照非业务主键id来排序的，业务中经常按照时间time来排序order by  在数据量不大时，可以通过在排序字段time上建立索引，利用SQL提供的offset/limit功能就能满足分页查询需求：
+select * from t_msg order by time offset 200 limit 100 select * from t_order order by time offset 200 limit 100 select * from t_tiezi order by time offset 200 limit 100  此处假设一页数据为100条，均拉取第3页数据。
+分库需求 高并发大流量的互联网架构，一般通过服务层来访问数据库，随着数据量的增大，数据库需要进行水平切分，分库后将数据分布到不同的数据库实例（甚至物理机器）上，以达到降低数据量，增加实例数的扩容目的。
+一旦涉及分库，逃不开“分库依据”patition key的概念，使用哪一个字段来水平切分数据库呢：大部分的业务场景，会使用业务主键id。
+确定了分库依据patition key后，接下来要确定的是分库算法：大部分的业务场景，会使用业务主键id取模的算法来分库，这样即能够保证每个库的数据分布是均匀的，又能够保证每个库的请求分布是均匀的，实在是简单实现负载均衡的好方法，此法在互联网架构中应用颇多。
+举一个更具体的例子：
+用户库user，水平切分后变为两个库，分库依据patition key是uid，分库算法是uid取模：uid%2余0的数据会落到db0，uid%2余1的数据会落到db1。
+问题的提出 仍然是上述用户库的例子，如果业务要查询“最近注册的第3页用户”，该如何实现呢？单库上，可以select * from t_user order by time offset 200 limit 100，变成两个库后，分库依据是uid，排序依据是time，数据库层失去了time排序的全局视野，数据分布在两个库上，此时该怎么办呢？</description>
+    </item>
+    
+    <item>
       <title>使用golang在与数据库访问过程中的一点想法</title>
       <link>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:11 +0800</pubDate>

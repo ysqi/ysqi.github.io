@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/gojs.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/gojs.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>go_js简介及实例演示</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:08 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</guid>
+      <description>GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模板和图形对象属性数据模型的数据绑定。你只需要保存和恢复模型，包括持有任何性质的应用需求，简单的JavaScript对象。许多预定义的工具和命令执行，大部分的图表所需要的标准的行为。外观和行为的定制是大多设置属性的问题。
+下载地址：http://gojs.net/latest/doc/download.html
+使用gojs开发的流程图及拓扑图实例：http://gojs.net/latest/samples/index.html
+goJS去水印版：http://download.csdn.net/detail/qq_14966339&amp;frasl;9569675
+goJS实例演示：
+function init() { if (window.goSamples) goSamples(); // init for these samples -- you don&#39;t need to call this var $ = go.GraphObject.make; // for conciseness in defining templates myDiagram = $(go.Diagram, &amp;quot;myDiagramDiv&amp;quot;, // must name or refer to the DIV HTML element { initialContentAlignment: go.Spot.Center, allowDrop: true, // must be true to accept drops from the Palette &amp;quot;LinkDrawn&amp;quot;: showLinkLabel, // this DiagramEvent listener is defined below &amp;quot;LinkRelinked&amp;quot;: showLinkLabel, &amp;quot;animationManager.</description>
+    </item>
+    
+    <item>
+      <title>go_js模型样式选择</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</guid>
+      <description>一、使用官方样式 样式（shapes）地址：http://gojs.net/latest/samples/shapes.html
+使用方法：
+ myDiagram.nodeTemplateMap.add(&amp;quot;End&amp;quot;, $(go.Node, &amp;quot;Spot&amp;quot;, nodeStyle(), $(go.Panel, &amp;quot;Auto&amp;quot;, $(go.Shape, &amp;quot;Circle&amp;quot;, // 在此处设置样式 { minSize: new go.Size(40, 40), fill: &amp;quot;#DC3C00&amp;quot;, stroke: null }), $(go.TextBlock, &amp;quot;End&amp;quot;, { font: &amp;quot;bold 11pt Courier New,Microsoft Yahei&amp;quot;, stroke: lightText }, new go.Binding(&amp;quot;text&amp;quot;)) ), makePort(&amp;quot;T&amp;quot;, go.Spot.Top, false, true), makePort(&amp;quot;L&amp;quot;, go.Spot.Left, false, true), makePort(&amp;quot;R&amp;quot;, go.Spot.Right, false, true) ));  二、自定义样式 通过Shape你可以构建一个几何图形，并且可以控制它的形状和轮廓颜色以及填充色等。
+图形 你可以通过Shape.figure属性设置它的形状。让你使用GraphObject.make方法构建时，你可以将形状参数以字符串形式作为第二个参数。你可能还需要通过GraphObject.desiredSize、GraphObject.width、GraphObject.height属性设置Shape的尺寸大小。
+下面的例子中列出了一些常用的Shape形状，并且你可以看到它们的名字：
+diagram.add( $(go.Part, &amp;quot;Horizontal&amp;quot;, $(go.Shape, &amp;quot;Rectangle&amp;quot;, { width: 40, height: 60, margin: 4, fill: null }), $(go.</description>
+    </item>
+    
+    <item>
+      <title>go_js节点字体设置</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</guid>
+      <description>TextBlock是用于显示文本信息的对象。
+通过设置TexkBlock.text属性来显示文本信息，这也是唯一的一个方法。因为TexkBlock继承自GraphObject，所以一些GraphObject的属性也有可能对文本有影响。
+字体和颜色 可以通过TexkBlock.font属性设置文本的字体，该属性的值可以使用CSS来设置。
+可以通过TextBlock.stroke属性设置文本字体的颜色，同样可以使用CSS来设置。
+因为TexkBlock继承自GraphObject，所以GraphObject.background属性也可以作用于TextBlock，可以通过该属性设置文本背景色。
+diagram.add( $(go.Part, &amp;quot;Vertical&amp;quot;, $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, stroke: &amp;quot;red&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightblue&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, font: &amp;quot;bold 14pt serif&amp;quot; }) ));  结果：
+
+尺寸和裁剪 TexkBlock的自然尺寸是会自适应设置文本的字体以及文本长度的。但是实际上它的尺寸是可大可小的。
+下面的例子中首先展示了自然尺寸的TextBlock，然后对其进行明确的尺寸设置，并给与绿色背景：
+diagram.add( $(go.Part, &amp;quot;Vertical&amp;quot;, $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightgreen&amp;quot;, margin: 2 }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightgreen&amp;quot;, margin: 2, width: 100, height: 33 }), $(go.</description>
+    </item>
+    
+  </channel>
+</rss>

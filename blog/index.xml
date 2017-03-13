@@ -8,8 +8,170 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Fri, 03 Mar 2017 08:36:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Mar 2017 08:34:22 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>互联网数据库“跨库分页”架构技术实践</title>
+      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
+      <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
+ 微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
+ 有一个业务主键id，例如msg_id，order_id，tiezi_id 分页排序是按照非业务主键id来排序的，业务中经常按照时间time来排序order by  在数据量不大时，可以通过在排序字段time上建立索引，利用SQL提供的offset/limit功能就能满足分页查询需求：
+select * from t_msg order by time offset 200 limit 100 select * from t_order order by time offset 200 limit 100 select * from t_tiezi order by time offset 200 limit 100  此处假设一页数据为100条，均拉取第3页数据。
+分库需求 高并发大流量的互联网架构，一般通过服务层来访问数据库，随着数据量的增大，数据库需要进行水平切分，分库后将数据分布到不同的数据库实例（甚至物理机器）上，以达到降低数据量，增加实例数的扩容目的。
+一旦涉及分库，逃不开“分库依据”patition key的概念，使用哪一个字段来水平切分数据库呢：大部分的业务场景，会使用业务主键id。
+确定了分库依据patition key后，接下来要确定的是分库算法：大部分的业务场景，会使用业务主键id取模的算法来分库，这样即能够保证每个库的数据分布是均匀的，又能够保证每个库的请求分布是均匀的，实在是简单实现负载均衡的好方法，此法在互联网架构中应用颇多。
+举一个更具体的例子：
+用户库user，水平切分后变为两个库，分库依据patition key是uid，分库算法是uid取模：uid%2余0的数据会落到db0，uid%2余1的数据会落到db1。
+问题的提出 仍然是上述用户库的例子，如果业务要查询“最近注册的第3页用户”，该如何实现呢？单库上，可以select * from t_user order by time offset 200 limit 100，变成两个库后，分库依据是uid，排序依据是time，数据库层失去了time排序的全局视野，数据分布在两个库上，此时该怎么办呢？</description>
+    </item>
+    
+    <item>
+      <title>分布式事务一致性方案</title>
+      <link>https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:10 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html</guid>
+      <description>在OLTP系统领域，我们在很多业务场景下都会面临事务一致性方面的需求，例如最经典的Bob给Smith转账的案例。传统的企业开发，系统往往是以单体应用形式存在的，也没有横跨多个数据库。我们通常只需借助开发平台中特有数据访问技术和框架（例如Spring、JDBC、ADO.NET），结合关系型数据库自带的事务管理机制来实现事务性的需求。关系型数据库通常具有ACID特性：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。
+而大型互联网平台往往是由一系列分布式系统构成的，开发语言平台和技术栈也相对比较杂，尤其是在SOA和微服务架构盛行的今天，一个看起来简单的功能，内部可能需要调用多个“服务”并操作多个数据库或分片来实现，情况往往会复杂很多。单一的技术手段和解决方案，已经无法应对和满足这些复杂的场景了。
+分布式系统的特性
+对分布式系统有过研究的读者，可能听说过“CAP定律”、“Base理论”等，非常巧的是，化学理论中ACID是酸、Base恰好是碱。这里笔者不对这些概念做过多的解释，有兴趣的读者可以查看相关参考资料。CAP定律如下图：
+
+在分布式系统中，同时满足“CAP定律”中的“一致性”、“可用性”和“分区容错性”三者是不可能的，这比现实中找对象需同时满足“高、富、帅”或“白、富、美”更加困难。在互联网领域的绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证“最终一致性”，只要这个最终时间是在用户可以接受的范围内即可。
+分布式事务
+提到分布式系统，必然要提到分布式事务。要想理解分布式事务，不得不先介绍一下两阶段提交协议。先举个简单但不精准的例子来说明：
+第一阶段，张老师作为“协调者”，给小强和小明（参与者、节点）发微信，组织他们俩明天8点在学校门口集合，一起去爬山，然后开始等待小强和小明答复。
+第二阶段，如果小强和小明都回答没问题，那么大家如约而至。如果小强或者小明其中一人回答说“明天没空，不行”，那么张老师会立即通知小强和小明“爬山活动取消”。
+细心的读者会发现，这个过程中可能有很多问题的。如果小强没看手机，那么张老师会一直等着答复，小明可能在家里把爬山装备都准备好了却一直等着张老师确认信息。更严重的是，如果到明天8点小强还没有答复，那么就算“超时”了，那小明到底去还是不去集合爬山呢？
+这就是两阶段提交协议的弊病，所以后来业界又引入了三阶段提交协议来解决该类问题。
+两阶段提交协议在主流开发语言平台，数据库产品中都有广泛应用和实现的，下面来介绍一下XOpen组织提供的DTP模型图：
+
+XA协议指的是TM（事务管理器）和RM（资源管理器）之间的接口。目前主流的关系型数据库产品都是实现了XA接口的。JTA(Java Transaction API)是符合X/Open DTP模型的，事务管理器和资源管理器之间也使用了XA协议。 本质上也是借助两阶段提交协议来实现分布式事务的，下面分别来看看XA事务成功和失败的模型图：
+
+在JavaEE平台下，WebLogic、Webshare等主流商用的应用服务器提供了JTA的实现和支持。而在Tomcat下是没有实现的（其实笔者并不认为Tomcat能算是JavaEE应用服务器），这就需要借助第三方的框架Jotm**、Automikos等来实现，两者均支持spring事务整合。*而在Windows .NET平台中，则可以借助ado.net中的TransactionScop*API来编程实现，还必须配置和借助Windows操作系统中的MSDTC服务。如果你的数据库使用的mysql，并且mysql是部署在Linux平台上的，那么是无法支持分布式事务的。 由于篇幅关系，这里不展开，感兴趣的读者可以自行查阅相关资料并实践。**总结：这种方式实现难度不算太高，比较适合传统的单体应用，在同一个方法中存在跨库操作的情况。但分布式事务对性能的影响会比较大，不适合高并发和高性能要求的场景。**
+提供回滚接口
+在服务化架构中，功能X，需要去协调后端的A、B甚至更多的原子服务。那么问题来了，假如A和B其中一个调用失败了，那可怎么办呢？
+在笔者的工作中经常遇到这类问题，往往提供了一个BFF层来协调调用A、B服务。如果有些是需要同步返回结果的，我会尽量按照“串行”的方式去调用。如果调用A失败，则不会盲目去调用B。如果调用A成功，而调用B失败，会尝试去回滚刚刚对A的调用操作。
+当然，有些时候我们不必严格提供单独对应的回滚接口，可以通过传递参数巧妙的实现。
+这样的情况，我们会尽量把可提供回滚接口的服务放在前面。举个例子说明：
+我们的某个论坛网站，每天登录成功后会奖励用户5个积分，但是积分和用户又是两套独立的子系统服务，对应不同的DB，这控制起来就比较麻烦了。解决思路：
+把登录和加积分的服务调用放在BFF层一个本地方法中。
+当用户请求登录接口时，先执行加积分操作，加分成功后再执行登录操作
+如果登录成功，那当然最好了，积分也加成功了。如果登录失败，则调用加积分对应的回滚接口（执行减积分的操作）。
+总结：这种方式缺点比较多，通常在复杂场景下是不推荐使用的，除非是非常简单的场景，非常容易提供回滚，而且依赖的服务也非常少的情况。
+这种实现方式会造成代码量庞大，耦合性高。而且非常有局限性，因为有很多的业务是无法很简单的实现回滚的，如果串行的服务很多，回滚的成本实在太高。
+本地消息表
+这种实现方式的思路，其实是源于ebay，后来通过支付宝等公司的布道，在业内广泛使用。其基本的设计思想是将远程分布式事务拆分成一系列的本地事务。如果不考虑性能及设计优雅，借助关系型数据库中的表即可实现。
+举个经典的跨行转账的例子来描述。
+第一步伪代码如下，扣款1W，通过本地事务保证了凭证消息插入到消息表中。
+
+第二步，通知对方银行账户上加1W了。那问题来了，如何通知到对方呢？
+通常采用两种方式：
+采用时效性高的MQ，由对方订阅消息并监听，有消息时自动触发事件
+采用定时轮询扫描的方式，去检查消息表的数据。
+两种方式其实各有利弊，仅仅依靠MQ，可能会出现通知失败的问题。而过于频繁的定时轮询，效率也不是最佳的（90%是无用功）。所以，我们一般会把两种方式结合起来使用。
+解决了通知的问题，又有新的问题了。万一这消息有重复被消费，往用户帐号上多加了钱，那岂不是后果很严重？
+仔细思考，其实我们可以消息消费方，也通过一个“消费状态表”来记录消费状态。在执行“加款”操作之前，检测下该消息（提供标识）是否已经消费过，消费完成后，通过本地事务控制来更新这个“消费状态表”。这样子就避免重复消费的问题。
+总结：上诉的方式是一种非常经典的实现，基本避免了分布式事务，实现了“最终一致性”。但是，关系型数据库的吞吐量和性能方面存在瓶颈，频繁的读写消息会给数据库造成压力。所以，在真正的高并发场景下，该方案也会有瓶颈和限制的。
+MQ（非事务消息）
+通常情况下，在使用非事务消息支持的MQ产品时，我们很难将业务操作与对MQ的操作放在一个本地事务域中管理。通俗点描述，还是以上述提到的“跨行转账”为例，我们很难保证在扣款完成之后对MQ投递消息的操作就一定能成功。这样一致性似乎很难保证。
+先从消息生产者这端来分析，请看伪代码：
+
+根据上述代码及注释，我们来分析下可能的情况：
+操作数据库成功，向MQ中投递消息也成功，皆大欢喜
+操作数据库失败，不会向MQ中投递消息了
+操作数据库成功，但是向MQ中投递消息时失败，向外抛出了异常，刚刚执行的更新数据库的操作将被回滚
+从上面分析的几种情况来看，貌似问题都不大的。那么我们来分析下消费者端面临的问题：
+消息出列后，消费者对应的业务操作要执行成功。如果业务执行失败，消息不能失效或者丢失。需要保证消息与业务操作一致
+尽量避免消息重复消费。如果重复消费，也不能因此影响业务结果
+如何保证消息与业务操作一致，不丢失？
+主流的MQ产品都具有持久化消息的功能。如果消费者宕机或者消费失败，都可以执行重试机制的（有些MQ可以自定义重试次数）。
+如何避免消息被重复消费造成的问题？
+保证消费者调用业务的服务接口的幂等性
+通过消费日志或者类似状态表来记录消费状态，便于判断（建议在业务上自行实现，而不依赖MQ产品提供该特性）
+总结：这种方式比较常见，性能和吞吐量是优于使用关系型数据库消息表的方案。如果MQ**自身和业务都具有高可用性，理论上是可以满足大部分的业务场景的。不过在没有充分测试的情况下，不建议在交易业务中直接使用。**
+MQ（事务消息）
+举个例子，Bob向Smith转账，那我们到底是先发送消息，还是先执行扣款操作？
+好像都可能会出问题。如果先发消息，扣款操作失败，那么Smith的账户里面会多出一笔钱。反过来，如果先执行扣款操作，后发送消息，那有可能扣款成功了但是消息没发出去，Smith收不到钱。除了上面介绍的通过异常捕获和回滚的方式外，还有没有其他的思路呢？
+下面以阿里巴巴的RocketMQ中间件为例，分析下其设计和实现思路。
+RocketMQ第一阶段发送Prepared消息时，会拿到消息的地址，第二阶段执行本地事物，第三阶段通过第一阶段拿到的地址去访问消息，并修改状态。细心的读者可能又发现问题了，如果确认消息发送失败了怎么办？RocketMQ会定期扫描消息集群中的事物消息，这时候发现了Prepared消息，它会向消息发送者确认，Bob的钱到底是减了还是没减呢？如果减了是回滚还是继续发送确认消息呢？RocketMQ会根据发送端设置的策略来决定是回滚还是继续发送确认消息。这样就保证了消息发送与本地事务同时成功或同时失败。如下图：
+**</description>
+    </item>
+    
+    <item>
+      <title>GoDoc文档使用</title>
+      <link>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:09 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</guid>
+      <description>《Go语言实战》读书笔记，未完待续，欢迎关注公众号flysnow_org，第一时间看后续笔记。
+ 对于协作开发或者代码共享来说，文档是一个可以帮助开发者快速了解以及使用这些代码的一个教程，文档越全面，越详细，入门越快，效率也会更高。
+在Go语言中，Go为我们提供了快速生成文档以及查看文档的工具，让我们可以很容易的编写查看文档。
+Go提供了两种查看文档的方式，一种是使用go doc命令在终端查看，这种适用于使用VIM等工具在终端开发的人员，它们不用离开终端，既可以查看想查看的文档，又可以编码。
+第二种方式，是使用浏览器查看的方式，通过godoc命令可以在本机启动一个web服务，我们可以通过打开浏览器，访问这个服务来查看我们的Go文档。
+从终端查看文档 这种方式适用于在终端开发的，它们一般不像离开终端，查完即可继续编码，这时候使用go doc命令是很不错的选择。
+➜ hello go help doc usage: go doc [-u] [-c] [package|[package.]symbol[.method]] Doc prints the documentation comments associated with the item identified by its arguments (a package, const, func, type, var, or method) followed by a one-line summary of each of the first-level items &amp;quot;under&amp;quot; that item (package-level declarations for a package, methods for a type, etc.). Flags: -c Respect case when matching symbols.</description>
+    </item>
+    
+    <item>
+      <title>go_js简介及实例演示</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:08 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</guid>
+      <description>GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模板和图形对象属性数据模型的数据绑定。你只需要保存和恢复模型，包括持有任何性质的应用需求，简单的JavaScript对象。许多预定义的工具和命令执行，大部分的图表所需要的标准的行为。外观和行为的定制是大多设置属性的问题。
+下载地址：http://gojs.net/latest/doc/download.html
+使用gojs开发的流程图及拓扑图实例：http://gojs.net/latest/samples/index.html
+goJS去水印版：http://download.csdn.net/detail/qq_14966339&amp;frasl;9569675
+goJS实例演示：
+function init() { if (window.goSamples) goSamples(); // init for these samples -- you don&#39;t need to call this var $ = go.GraphObject.make; // for conciseness in defining templates myDiagram = $(go.Diagram, &amp;quot;myDiagramDiv&amp;quot;, // must name or refer to the DIV HTML element { initialContentAlignment: go.Spot.Center, allowDrop: true, // must be true to accept drops from the Palette &amp;quot;LinkDrawn&amp;quot;: showLinkLabel, // this DiagramEvent listener is defined below &amp;quot;LinkRelinked&amp;quot;: showLinkLabel, &amp;quot;animationManager.</description>
+    </item>
+    
+    <item>
+      <title>go_js模型样式选择</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</guid>
+      <description>一、使用官方样式 样式（shapes）地址：http://gojs.net/latest/samples/shapes.html
+使用方法：
+ myDiagram.nodeTemplateMap.add(&amp;quot;End&amp;quot;, $(go.Node, &amp;quot;Spot&amp;quot;, nodeStyle(), $(go.Panel, &amp;quot;Auto&amp;quot;, $(go.Shape, &amp;quot;Circle&amp;quot;, // 在此处设置样式 { minSize: new go.Size(40, 40), fill: &amp;quot;#DC3C00&amp;quot;, stroke: null }), $(go.TextBlock, &amp;quot;End&amp;quot;, { font: &amp;quot;bold 11pt Courier New,Microsoft Yahei&amp;quot;, stroke: lightText }, new go.Binding(&amp;quot;text&amp;quot;)) ), makePort(&amp;quot;T&amp;quot;, go.Spot.Top, false, true), makePort(&amp;quot;L&amp;quot;, go.Spot.Left, false, true), makePort(&amp;quot;R&amp;quot;, go.Spot.Right, false, true) ));  二、自定义样式 通过Shape你可以构建一个几何图形，并且可以控制它的形状和轮廓颜色以及填充色等。
+图形 你可以通过Shape.figure属性设置它的形状。让你使用GraphObject.make方法构建时，你可以将形状参数以字符串形式作为第二个参数。你可能还需要通过GraphObject.desiredSize、GraphObject.width、GraphObject.height属性设置Shape的尺寸大小。
+下面的例子中列出了一些常用的Shape形状，并且你可以看到它们的名字：
+diagram.add( $(go.Part, &amp;quot;Horizontal&amp;quot;, $(go.Shape, &amp;quot;Rectangle&amp;quot;, { width: 40, height: 60, margin: 4, fill: null }), $(go.</description>
+    </item>
+    
+    <item>
+      <title>go_js节点字体设置</title>
+      <link>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</link>
+      <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</guid>
+      <description>TextBlock是用于显示文本信息的对象。
+通过设置TexkBlock.text属性来显示文本信息，这也是唯一的一个方法。因为TexkBlock继承自GraphObject，所以一些GraphObject的属性也有可能对文本有影响。
+字体和颜色 可以通过TexkBlock.font属性设置文本的字体，该属性的值可以使用CSS来设置。
+可以通过TextBlock.stroke属性设置文本字体的颜色，同样可以使用CSS来设置。
+因为TexkBlock继承自GraphObject，所以GraphObject.background属性也可以作用于TextBlock，可以通过该属性设置文本背景色。
+diagram.add( $(go.Part, &amp;quot;Vertical&amp;quot;, $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, stroke: &amp;quot;red&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightblue&amp;quot; }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, font: &amp;quot;bold 14pt serif&amp;quot; }) ));  结果：
+
+尺寸和裁剪 TexkBlock的自然尺寸是会自适应设置文本的字体以及文本长度的。但是实际上它的尺寸是可大可小的。
+下面的例子中首先展示了自然尺寸的TextBlock，然后对其进行明确的尺寸设置，并给与绿色背景：
+diagram.add( $(go.Part, &amp;quot;Vertical&amp;quot;, $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightgreen&amp;quot;, margin: 2 }), $(go.TextBlock, { text: &amp;quot;a Text Block&amp;quot;, background: &amp;quot;lightgreen&amp;quot;, margin: 2, width: 100, height: 33 }), $(go.</description>
+    </item>
+    
+    <item>
+      <title>Go配置文件热更新</title>
+      <link>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</link>
+      <pubDate>Mon, 13 Mar 2017 07:58:39 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</guid>
+      <description>配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提供极大的便利，比如发现log打得太多了可以动态调高日志等级，业务逻辑参数变化，甚至某个功能模块的开关等都可以动态调整。
+每种语言都有自己的热更新实现方式，在golang里面我看到了有人采用了一种错误的实现方式，如下：
+type Config struct { Test1 string `json:&amp;quot;Test1&amp;quot;` Test2 int `json:&amp;quot;Test2&amp;quot;` } var ( config *Config ) func loadConfig() { f, err := ioutil.ReadFile(&amp;quot;config.json&amp;quot;) if err != nil { fmt.Println(&amp;quot;load config error: &amp;quot;, err) } err = json.Unmarshal(f, &amp;amp;config) if err != nil { fmt.Println(&amp;quot;Para config failed: &amp;quot;, err) } } func init() { loadConfig() fmt.Println(&amp;quot;Load config: &amp;quot;, *config) s := make(chan os.Signal, 1) signal.Notify(s, syscall.SIGUSR2) go func() { for { &amp;lt;-s loadConfig() fmt.</description>
+    </item>
     
     <item>
       <title>如何用Go实现一款类似滴滴优步的网络约车软件(含源码)</title>
@@ -155,93 +317,6 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;
       <description>1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quot; func main (){ fmt.Printf(&amp;quot;Hello, world&amp;quot;) }  编译 go build helloworld.go
 运行 ./helloworld
 2、声明方式 1、普通方式 var a int = 15 var b bool = false 或 var a int var b bool a = 15 b = false 2、 :=会自动匹配类型，只能在函数内使用 a := 15 b := false 3、中括号的形式： var ( x int b bool ) 4、平行赋值 a,b := 20,16 #注意 :Go 的编译器对声明却未使用的变量在报错。 5、常量，只能是数字、字符串或布尔值 const( // 枚举的生成方式 a = iota // a为0 b = iota // b为1，改行的 “=iota”可省略 ) 如果需要,可以明确指定常量的类型: const ( a = 0 b string = &amp;quot;0&amp;quot; )  3、字符串 var s string = &amp;quot;hello&amp;quot; #Go中字符串是不可变的  如果想修改字符需要使用下面的方法</description>
-    </item>
-    
-    <item>
-      <title>Golang语言常用算法</title>
-      <link>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</guid>
-      <description>在学习golang语言，文档看的实在是乏味，就想着把常用的算法做个实现，边写变学习，想来效果还是不错的！
-​1. 堆排序
-package main import &amp;quot;fmt&amp;quot; func buildHeap(array []int, length int) { var i, j int; for i = 1; i &amp;lt; length; i = i + 1 { for j = i; j &amp;gt; 0 &amp;amp;&amp;amp; array[j] &amp;gt; array[(j-1)/2]; j = (j - 1)/2 { array[j], array[(j-1)/2] = array[(j-1)/2], array[j] } } } func heapSort(array []int, length int) { array[0], array[length - 1] = array[length - 1], array[0] if length &amp;lt;= 2 { return } i, j:= 0, 0 for { j = 2 * i + 1 if j + 1 &amp;lt; length - 1 { if array[j] &amp;lt; array[j + 1] { j = j + 1 } } else if j &amp;gt;= length -1 { break } array[i], array[j] = array[j], array[i] i = j } heapSort(array, length - 1) } func main() { primes := [6]int{3, 11, 5, 2, 13, 7} fmt.</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录三:函数</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</guid>
-      <description>函数定义 type mytype int // 新的类型 func (p mytype) funcname(q int) (r,s int) {return 0,0}  作用域 在 Go 中,定义在函数外的变量是全局的,那些定义在函数内部的变量,对于函数来说 是局部的。如果命名覆盖——一个局部变量与一个全局变量有相同的名字——在函数 执行的时候,局部变量将覆盖全局变量。
-多值返回 func (file *File) Write(b []byte) (n int, err error)
-Go得函数可以返回多个值
-命名返回值 Go 函数的返回值或者结果参数可以指定一个名字,并且像原始的变量那样使用,就像 输入参数那样。如果对其命名,在函数开始时,它们会用其类型的零值初始化。如果 函数在不加参数的情况下执行了 return 语句,结果参数会返回。
-例：
-func ReadFull(r Reader, buf []byte) (n int, err error) { for len(buf) &amp;gt; 0 &amp;amp;&amp;amp; err == nil { var nr int nr, err = r.Read(buf) n += nr buf = buf[nr:len(buf)] } return }  延迟代码defer 在 defer 后指定的 函数会在函数退出前调用。</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录二:控制语句</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</guid>
-      <description>if语句 i f x &amp;gt; 0 { // {是强制的,且必须和if在同一行 return y } else { return x }  if 和 switch 接受初始化语句,通常用于设置一个(局部)变量。
-if err := Chmod(0664); err != nil { //nil 与 C 的 NULL 类似 fmt.Printf(err) //err 的作用域被限定在 if 内 return err }  goto语句 用 goto 跳转到一定是当前函数内定义的标签
-func myfunc() { i := 0 Here: // 这行的第一个词,以分号结束作为标签,标签名区分大小写 println(i) i++ goto Here // 跳转 }  for语句 Go 的 for 循环有三种形式,只有其中的一种使用分号。</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录七:并发</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</guid>
-      <description>Go使用channel和goroutine开发并行程序。goroutine 是 Go并发能力的核心要素。
-goroutine 是一个普通的函数，只是需要使用关键字 go 作为开头。
-ready(&amp;quot;Tea&amp;quot;, 2) // 普通函数调用 go ready(&amp;quot;Tea&amp;quot;, 2) // ready() 作为 goroutine 运行  Go routine实践
-func ready(w string, sec int) { time.Sleep(time.Duration(sec) * time.Second) fmt.Println(w,&amp;quot;is ready!&amp;quot;) } func main() { go ready(&amp;quot;Tea&amp;quot;, 2) go ready(&amp;quot;Coffee&amp;quot;, 1) fmt.Println(&amp;quot;I&#39;m waiting&amp;quot;) time.Sleep(5 * time.Second) } // 输出 I&#39;m waiting //立刻 Coffee is ready! //1秒后 Tea is ready! //2秒回  如果不等待goroutine的执行（例如移除第17行），程序会立刻终止，而任何正在执行的goroutine都会停止。为了修复使用channels机制来和goroutine通讯。可以通过channel发送或接受值。这些值只能是特定的类型:channel 类型。
-注意，必须使用 make 创建 channel：
-ci := make(chan int) //创建 channel ci 用于发送和接收整数 cs := make(chan string) //创建 channel cs 用于字符串 cf:=make(chan interface{})//channel cf 使用了空接口来满足各种类型  向 channel 发送或接收数据，是通过类似的操作符完 成的:&amp;lt;−.</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录五:进阶</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</guid>
-      <description>Go 有指针。然而却没有指针运算,因此它们更象是引用而不是你所知道的来自于 C 的指针。指针非常有用。在 Go 中调用函数的时候,得记得变量是值传递的。因此,为了修改一个传递入函数的值的效率和可能性,有了指针。
-var p *int fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印nil var i int // 定义一个整型变量i p = &amp;amp;i // 使得p指向i fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印出来的内容类似0x7ff96b81c000a  内存分配 用new分配内存 内建函数 new 本质上说跟其他语言中的同名函数功能一样:new(T) 分配了零值填充 的 T 类型的内存空间,并且返回其地址,一个 *T 类型的值。用 Go 的术语说,它返回 了一个指针,指向新分配的类型 T 的零值。记住这点非常重要。
-用make分配内存 内建函数 make(T, args) 与 new(T) 有着不同的功能。它只能创建 slice,map 和 channel,并且返回一个有初始值(非零)的 T 类型,而不是 *T。本质 来讲,导致这三个类型有所不同的原因是指向数据结构的引用在使用前必须被初始化。 例如,一个 slice,是一个包含指向数据(内部 array)的指针,长度和容量的三项描述 符;在这些项目被初始化之前,slice 为 nil。对于 slice,map 和 channel,make 初始 化了内部的数据结构,填充适当的值。</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录六:接口</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</guid>
-      <description>Go中关键字interface被赋予了很多不同的含义。每个类型都有接口，意味着对那个类型定义了方法集合。
-// 这段代码定义了具有一个字段和两个方法的结构类型s。 type S struct { i int } func (p *S) Get() int { return p.i } func (p *S) Put(v int) { p.i = v } // 定义接口 type I interface { Get() int Put(int) } // 对于接口I，S是合法的实现，因为它定义了 I 所需的两个方法。注意：即便是没有明 确定义 S 实现了 I，这也是正确的。 // Go 程序的特性接口值： func f(p I) {// 定义一个函数接受一个接口类型作为参数 fmt.Println(p.Get()) // p实现了接口I，必须有Get()方法 p.Put(1) // Put()方法是类似的 // 这里的变量p保存了接口类型的值。 } // 调用 var s S f(&amp;amp;s) // 因为S实现了I，可以调用f向其传递S类型的值的指针 // 获取 s 的地址,而不是 S 的值的原因,是因为在 s 的指针上定义了方法,参阅上面的 代码 5.</description>
-    </item>
-    
-    <item>
-      <title>Golang学习摘录四:包</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</guid>
-      <description>包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使用小写字符。Go 包可以由多个文件组成,但是使用相同的 package &amp;lt;name&amp;gt; 这一行。
-package even func Even(i int) bool { return i%2==0 } func odd(i int) bool { return i%2==1 }  名称以大写字母起始的是可导出的，可以在包的外部调用。
-共有函数的名称以大写字母开头。
-私有函数的名称以小写字母开头。
-package main import ( //导入下面的包 &amp;quot;event&amp;quot; //本地包even在这里导入 &amp;quot;fmt&amp;quot; ) func main(){ i := 5 fmt.Printf(&amp;quot;Is %d event? %v\n&amp;quot;, i,event.Even(i))// 调用even包中的函数。访问一个包中的函数的语法是&amp;lt;package&amp;gt;.Function()。 }  Go程序的命名规则：包名约定小写字母开头；方法名最好使用驼峰式名称，避免使用下划线，方法名应简洁清晰。
-包的文档 每个包都应该有包注释,在 package 前的一个注释块。对于多文件包,包注释只需要 出现在一个文件前,任意一个文件都可以。包注释应当对包进行介绍,并提供相关于 包的整体信息。这会出现在 go doc 生成的关于包的页面上,并且相关的细节会一并 显示。
-官方regexp包的例子：
- /* The regexp package implements a simple library for regular expressions.</description>
     </item>
     
   </channel>
