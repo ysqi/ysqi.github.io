@@ -1,9 +1,9 @@
 
 ---
-date: 2017-03-13T07:58:39+08:00
+date: 2017-03-13T08:39:17+08:00
 title: "Go配置文件热更新"
 description: ""
-disqus_identifier: 1489363119013479441
+disqus_identifier: 1489365557874590626
 slug: "golangpei-zhi-wen-jian-re-geng-xin"
 source: "https://segmentfault.com/a/1190000008487440"
 tags: 
