@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                     repo: 'https://' + process.env.GH_TOKEN + '@' + process.env.REPO,
                     message: '[ci skip] deploy from ' + process.env.USER + ' by travis' + getDeployMessage(),
                     //With silent true log messages are suppressed and error messages are sanitized.
-                    silent: flase
+                    silent: false
                 },
                 src: ['**/*']
             }
