@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/caddy.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/caddy.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Caddy新兴的web服务器caddy</title>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
+      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
+你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
+然后呢，它还有下面这些开箱即用的特性:
+ HTTP/2 全自动支持HTTP/2协议，无需任何配置。
+ Auto HTTPS Caddy 使用 Let&amp;rsquo;s Encrypt 让你的站点全自动变成全站HTTPS，无需任何配置。当然你想使用自己的证书也是可以的。
+ Multi-core 因为caddy是golang写的，所以当然可以合理使用多核啦。
+ IPv6 完全支持IPv6环境.
+ WebSockets Caddy 对WebSockets有很好的支持.
+ Markdown 自动把md转成 HTML ，当然，我后续要给大家介绍更强大的hugo来干这个事情.
+ Logging Caddy 对log格式的定义很容易，更好的满足你日志收集的需求。
+ Easy Deployment 得益于go的特性，caddy只是一个小小的二进制文件，没有依赖，很好部署。
+  那么在什么场景下适合尝试使用caddy呢，我推荐从以下场景开始：
+ 作为静态页面的webserver
+ 转发 fastcgi 请求到 php-fpm 服务，比如替换apache或nginx作为wordpress的server
+ 反向代理，管理多个站点
+ 微服务的 API gateway ，我会专门写一篇文章。
+ 有些在nginx上难以开发的需求，为caddy写插件太方便了。
+  入门 安装caddy  下载 caddy</description>
+    </item>
+    
+  </channel>
+</rss>

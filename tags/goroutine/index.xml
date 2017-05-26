@@ -11,6 +11,17 @@
     <atom:link href="/tags/goroutine.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>fasthttp中的协程池实现</title>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
+      <description>https://segmentfault.com/a/
+fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
+ 入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
+    </item>
+    
+    <item>
       <title>Goforgophers</title>
       <link>https://yushuangqi.com/blog/2016/go-for-gophers.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>

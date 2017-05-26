@@ -11,206 +11,298 @@
     <atom:link href="/tags/golang.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>GoDoc文档使用</title>
-      <link>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</link>
-      <pubDate>Mon, 13 Mar 2017 08:20:09 +0800</pubDate>
+      <title>gRPC服务发现&amp;amp;负载均衡</title>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</guid>
-      <description>《Go语言实战》读书笔记，未完待续，欢迎关注公众号flysnow_org，第一时间看后续笔记。
- 对于协作开发或者代码共享来说，文档是一个可以帮助开发者快速了解以及使用这些代码的一个教程，文档越全面，越详细，入门越快，效率也会更高。
-在Go语言中，Go为我们提供了快速生成文档以及查看文档的工具，让我们可以很容易的编写查看文档。
-Go提供了两种查看文档的方式，一种是使用go doc命令在终端查看，这种适用于使用VIM等工具在终端开发的人员，它们不用离开终端，既可以查看想查看的文档，又可以编码。
-第二种方式，是使用浏览器查看的方式，通过godoc命令可以在本机启动一个web服务，我们可以通过打开浏览器，访问这个服务来查看我们的Go文档。
-从终端查看文档 这种方式适用于在终端开发的，它们一般不像离开终端，查完即可继续编码，这时候使用go doc命令是很不错的选择。
-➜ hello go help doc usage: go doc [-u] [-c] [package|[package.]symbol[.method]] Doc prints the documentation comments associated with the item identified by its arguments (a package, const, func, type, var, or method) followed by a one-line summary of each of the first-level items &amp;quot;under&amp;quot; that item (package-level declarations for a package, methods for a type, etc.). Flags: -c Respect case when matching symbols.</description>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
+      <description>gRPC服务发现&amp;amp;负载均衡  构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：
+ 1、集中式LB（Proxy Model） 在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如 F5，或者基于软件如 LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。 该方案主要问题：
+ 单点问题，所有服务调用流量都经过LB，当服务数量和调用量大的时候，LB容易成为瓶颈，且一旦LB发生故障影响整个系统；
+ 服务消费方、提供方之间增加了一级，有一定性能开销。
+  2、进程内LB（Balancing-aware Client） 针对第一个方案的不足，此方案将LB的功能集成到服务消费方进程里，也被称为软负载或者客户端负载方案。服务提供方启动时，首先将服务地址注册到服务注册表，同时定期报心跳到服务注册表以表明服务的存活状态，相当于健康检查，服务消费方要访问某个服务时，它通过内置的LB组件向服务注册表查询，同时缓存并定期刷新目标服务地址列表，然后以某种负载均衡策略选择一个目标服务地址，最后向目标服务发起请求。LB和服务发现能力被分散到每一个服务消费者的进程内部，同时服务消费方和服务提供方之间是直接调用，没有额外开销，性能比较好。该方案主要问题：
+ 开发成本，该方案将服务调用方集成到客户端的进程里头，如果有多种不同的语言栈，就要配合开发多种不同的客户端，有一定的研发和维护成本；
+ 另外生产环境中，后续如果要对客户库进行升级，势必要求服务调用方修改代码并重新发布，升级较复杂。
+  3、独立 LB 进程（External Load Balancing Service） 该方案是针对第二种方案的不足而提出的一种折中方案，原理和第二种方案基本类似。
+不同之处是将LB和服务发现功能从进程内移出来，变成主机上的一个独立进程。主机上的一个或者多个服务要访问目标服务时，他们都通过同一主机上的独立LB进程做服务发现和负载均衡。该方案也是一种分布式方案没有单点问题，一个LB进程挂了只影响该主机上的服务调用方，服务调用方和LB之间是进程内调用性能好，同时该方案还简化了服务调用方，不需要为不同语言开发客户库，LB的升级不需要服务调用方改代码。 该方案主要问题：部署较复杂，环节多，出错调试排查问题不方便。
+gRPC服务发现及负载均衡实现 gRPC开源组件官方并未直接提供服务注册与发现的功能实现，但其设计文档已提供实现的思路，并在不同语言的gRPC代码API中已提供了命名解析和负载均衡接口供扩展。
+其基本实现原理：
+ 服务启动后gRPC客户端向命名服务器发出名称解析请求，名称将解析为一个或多个IP地址，每个IP地址标示它是服务器地址还是负载均衡器地址，以及标示要使用那个客户端负载均衡策略或服务配置。
+ 客户端实例化负载均衡策略，如果解析返回的地址是负载均衡器地址，则客户端将使用grpclb策略，否则客户端使用服务配置请求的负载均衡策略。
+ 负载均衡策略为每个服务器地址创建一个子通道（channel）。
+ 当有rpc请求时，负载均衡策略决定那个子通道即grpc服务器将接收请求，当可用服务器为空时客户端的请求将被阻塞。
+  根据gRPC官方提供的设计思路，基于进程内LB方案（即第2个案，阿里开源的服务框架 Dubbo 也是采用类似机制），结合分布式一致的组件（如Zookeeper、Consul、Etcd），可找到gRPC服务发现和负载均衡的可行解决方案。接下来以GO语言为例，简单介绍下基于Etcd3的关键代码实现：
+1）命名解析实现：resolver.go
+package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;strings&amp;quot; etcd3 &amp;quot;github.com/coreos/etcd/clientv3&amp;quot; &amp;quot;google.golang.org/grpc/naming&amp;quot; ) // resolver is the implementaion of grpc.naming.Resolver type resolver struct { serviceName string // service name to resolve } // NewResolver return resolver with service name func NewResolver(serviceName string) *resolver { return &amp;amp;resolver{serviceName: serviceName} } // Resolve to resolve the service from etcd, target is the dial address of etcd // target example: &amp;quot;http://127.</description>
     </item>
     
     <item>
-      <title>Go配置文件热更新</title>
-      <link>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</link>
-      <pubDate>Mon, 13 Mar 2017 07:58:39 +0800</pubDate>
+      <title>Caddy新兴的web服务器caddy</title>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</guid>
-      <description>配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提供极大的便利，比如发现log打得太多了可以动态调高日志等级，业务逻辑参数变化，甚至某个功能模块的开关等都可以动态调整。
-每种语言都有自己的热更新实现方式，在golang里面我看到了有人采用了一种错误的实现方式，如下：
-type Config struct { Test1 string `json:&amp;quot;Test1&amp;quot;` Test2 int `json:&amp;quot;Test2&amp;quot;` } var ( config *Config ) func loadConfig() { f, err := ioutil.ReadFile(&amp;quot;config.json&amp;quot;) if err != nil { fmt.Println(&amp;quot;load config error: &amp;quot;, err) } err = json.Unmarshal(f, &amp;amp;config) if err != nil { fmt.Println(&amp;quot;Para config failed: &amp;quot;, err) } } func init() { loadConfig() fmt.Println(&amp;quot;Load config: &amp;quot;, *config) s := make(chan os.Signal, 1) signal.Notify(s, syscall.SIGUSR2) go func() { for { &amp;lt;-s loadConfig() fmt.</description>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
+      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
+你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
+然后呢，它还有下面这些开箱即用的特性:
+ HTTP/2 全自动支持HTTP/2协议，无需任何配置。
+ Auto HTTPS Caddy 使用 Let&amp;rsquo;s Encrypt 让你的站点全自动变成全站HTTPS，无需任何配置。当然你想使用自己的证书也是可以的。
+ Multi-core 因为caddy是golang写的，所以当然可以合理使用多核啦。
+ IPv6 完全支持IPv6环境.
+ WebSockets Caddy 对WebSockets有很好的支持.
+ Markdown 自动把md转成 HTML ，当然，我后续要给大家介绍更强大的hugo来干这个事情.
+ Logging Caddy 对log格式的定义很容易，更好的满足你日志收集的需求。
+ Easy Deployment 得益于go的特性，caddy只是一个小小的二进制文件，没有依赖，很好部署。
+  那么在什么场景下适合尝试使用caddy呢，我推荐从以下场景开始：
+ 作为静态页面的webserver
+ 转发 fastcgi 请求到 php-fpm 服务，比如替换apache或nginx作为wordpress的server
+ 反向代理，管理多个站点
+ 微服务的 API gateway ，我会专门写一篇文章。
+ 有些在nginx上难以开发的需求，为caddy写插件太方便了。
+  入门 安装caddy  下载 caddy</description>
     </item>
     
     <item>
-      <title>为什么Go语言在中国格外的火</title>
-      <link>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</link>
-      <pubDate>Fri, 03 Mar 2017 08:36:23 +0800</pubDate>
+      <title>redigo连接池代码分析</title>
+      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</guid>
-      <description>go语言推出有几年了，似乎不温不火。但是在中国范围内，确实被关注的一塌糊涂。
-这是2017年2月份TIOBE出的编程语言排名：
-在拉勾网上搜索go的职位，结果有119个(2017年2月14日搜索结果)，似乎还没有那么火爆：
-但是在中国，很多公司，很多程序员都在谈论go语言，也就是说在中国对于go的关注异常火爆。
-根据谷歌搜索的统计，如下图： The graph above shows the searches for “golang” by country on Google Trends.
-外国人专门写了一篇文章，来分析为什么go在中国如此火： ( 《Why is Golang popular in China?》)http://herman.asia/why-is-go-popular-in-china
-下面是知乎的回复： 作者：匿名用户
-链接：https://www.zhihu.com/question/30172794/answer/47122000
-来源：知乎 著作权归作者所有，转载请联系作者获得授权。
-这个“火”字看你怎么理解了。 Go在国内更火只是感觉上的。比如推文，以及谈论的相关话题较多而已(但能有nodejs多么？)，本身中国人口数量就多，按这个衡量的办法去看的话，swift在国内也比在国外火； 实际上Go在国外更火（这里的火是实际的使用情况），对比一下国内和国外使用Go的程度、数量，Go相关的技术大会举办的频率和数量就一目了然了。
-Go在国内真正上被全栈使用的就七牛一家，但国外除了docker，coreOS还有很多初创企业。 国内比较有影响力的就一个beego框架，你看看国外的有多少。
-去github上搜一下active的Go的project数量，看看Go在国外是不是没人用？我反正在github的trending里面几乎每天都能看到Go的project。hacker news上面有关Go的“xxx writen in Go”的炒作文也不要太多。 这个 dariubs/GoBooks · GitHub 是有人整理的Go相关的书籍，看看是不是国外的书籍比国内的少？8月份K&amp;amp;R中的K也要推出属于Go的圣经了。
-另外老有人喜欢说：Google喜欢关闭产品，这玩意儿迟早死掉。可惜golang是开源项目，关不掉的，CloudFlare那个crypto的patch(Gerrit Code Review)以后可能会进Go的标准库，Godep已经成为事实上的包管理标准，这些都是社区自己搞出来的，和google一毛线关系没有。另外就是最近google自己一些主力产品或者平台在优先支持语言上，Go总是和java，c/c++，python一起名列其中，grpc就是一个例子等等。所以，觉得Go只是google的一个玩具的人，你的观点能不能站得住脚，自己掂量吧。
-我的个人观点是： Go显示已经站住了脚跟(如果是2013年，我还是不敢说这种话的)，找到了属于自己的空间，但是比起那些主流的甚至nodeJS来说，还是使用的不够广泛。这个语言人为炒作也罢，一些人认为的google光环也罢，实际使用也罢，总之： 这个语言已经站住脚跟了，能用于并且已经用于生产环境了，接下来几年只会一直呈上升势头。
-个人观点：
-1 一些真正使用go语言的公司：
-这些公司在高速发展的同时，Golang也因此在国内逐渐传播开来。在云计算时代，从国内Go 语言发展和应用来看，七牛算是国内第一家选 Go 语言做服务端的公司。早在2011年，当Go语法还没完全稳定下来的情况下，七牛就已经选择将Go作为存储服务端的主题语言。关于这点，七牛CEO许式伟谈到：编程哲学的重塑是 Go 语言独树一帜的根本原因，其它语言仍难以摆脱 OOP 或函数式编程的烙印，只有 Go 完全放弃了这些，对编程范式重新思考，对热门的面向对象编程提供极度简约但却完备的支持。Go 是互联网时代的C语言，不仅会制霸云计算，10 年内将会制霸整个 IT 领域。
-2 在中国程序员眼中，谷歌出品必属精品 确实，在互联网世界，在开源世界，Google为我们贡献了太多太多。</description>
+      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
+      <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
     
     <item>
-      <title>编写地道的Go代码</title>
-      <link>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:58 +0800</pubDate>
+      <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</guid>
-      <description>在阅读本文之前，我先推荐你阅读官方的 Effective Go文档，或者是中文翻译版: 高效Go编程，它提供了很多编写标准而高效的Go代码指导，本文不会再重复介绍这些内容。
-最地道的Go代码就是Go的标准库的代码，你有空的时候可以多看看Google的工程师是如何实现的。
-本文仅作为一个参考，如果你有好的建议和意见，欢迎添加评论。
-注释 可以通过 /* …… */ 或者 // ……增加注释， //之后应该加一个空格。
-如果你想在每个文件中的头部加上注释，需要在版权注释和 Package前面加一个空行，否则版权注释会作为Package的注释。
- // Copyright 2009 The Go Authors. All rights reserved. // Use of this source code is governed by a BSD-style // license that can be found in the LICENSE file. /*Package net provides a portable interface for network I/O, includingTCP/IP, UDP, domain name resolution, and Unix domain sockets....... */ package net......  注释应该用一个完整的句子，注释的第一个单词应该是要注释的指示符，以便在godoc中容易查找。</description>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
+      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
+一、后端测试了一下发现没有问题
+“我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
+二、测试了也有问题
+这时候后端就去修改程序了，但是每一次的测试是否有问题都需要在客户端中操作，有时候的操作非常的复杂，在这上面花的时间会比较多。最后使了各种神通才终于找到问题，原来是这个用户的某某数据有异常才会出现这种情况。
+以上这种情况屡见不鲜，最麻烦的点就在于，每次都要以出现 Bug 的相同参数去请求，有时候你知道这些请求的参数，可以把它们放到 Postman 这种工具里面，但大部分时候你并不知道它对应的参数 (token)
+如果我们可以在服务端跟踪所有的请求：接口地址，Header，Body，后端返回的 Header、Body，这样我们就能查到对应的请求参数和返回值，可以直接填到 Postman 里面，要是还能一键重新请求就好了，因为我们不想修改请求的参数，只是想再以相同的参数请求一遍，这样我们来调试对应的程序。
+正好以前用过 ngrok，发现它有一个非常好的 debug 界面，可以达到以上的要求，但现在不需要它的内网穿透功能，于是只能自己写一个程序，只包含以下功能：
+ 记录接口所有的 Request 和 Response
+ 可以一键重新请求某个 Request
+  基本工作原理
+HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求并进行反向代理 | Response 200 OK | ---------------------------&amp;gt; | --------------------------&amp;gt; | ------┐ | | | | | | 记录返回信息并转发给客户端 | &amp;lt;----┘ | &amp;lt;--------------------------- | &amp;lt;-------------------------- | ┌----------------------------------------------------------------------------┐ | url: http://localhost:8081 | | ---------------------------------------------------------------------------| | All Transactions ┌ - - - - - - - - - - - - - - - - - - - - - - - ┐ | | ---------------------- | time: 10 hours ago Client: 127.</description>
     </item>
     
     <item>
-      <title>Gonet_http包</title>
-      <link>https://yushuangqi.com/blog/2017/go-net_httpbao.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:57 +0800</pubDate>
+      <title>协作式go程</title>
+      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-net_httpbao.html</guid>
-      <description>Go net/http包
-Go Http客户端 get请求可以直接http.Get方法
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;bytes&amp;quot; ) func main() { resp, err := http.Get(&amp;quot;http://www.baidu.com&amp;quot;) if err != nil { // handle error log.Println(err) return } defer resp.Body.Close() headers := resp.Header for k, v := range headers { fmt.Printf(&amp;quot;k=%v, v=%v\n&amp;quot;, k, v) } fmt.Printf(&amp;quot;resp status %s,statusCode %d\n&amp;quot;, resp.Status, resp.StatusCode) fmt.Printf(&amp;quot;resp Proto %s\n&amp;quot;, resp.Proto) fmt.Printf(&amp;quot;resp content length %d\n&amp;quot;, resp.ContentLength) fmt.Printf(&amp;quot;resp transfer encoding %v\n&amp;quot;, resp.</description>
+      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
+      <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻辑处理goroutine负责从队列中提取逻辑包并处理(这样主处理逻辑中基本上不用考虑多线程竞争的锁问题了)。
+如果逻辑包的处理涉及到调用可能会阻塞的函数调用怎么办，如果在处理函数中直接调用这样的函数将导致逻辑处理goroutine被阻塞，无法继续处理队列中被排队的数据包，这将严重降低服务的处理能力。
+一种方式是启动一个新的go程去执行阻塞调用，并注册回调函数，当阻塞调用返回后将回调闭包重新push到消息对列中，由逻辑处理goroutine继续处理后续逻辑。但我本人不大喜欢在逻辑处理上使用回调的方式(node的callback hell)。我希望可以线性的编写逻辑代码。
+为了实现这个目的，我需要一个类似lua的单线程协作式coroutine调度机制，单线程让使用者不用担心数据竞争,协作式可以让coroutine在执行异步调用前将执行权交出去，等异步结果返回后再将执行权切换回来，线性的执行后续代码。
+但是，goroutine天生就是多线程调度执行的，有办法实现这个目标吗？答案是肯定的。
+我们可以实现一个逻辑上的单线程，从全局上看，只有唯一一个goroutine可以执行逻辑处理代码。核心思想就是由调度器从任务队列中提取任务，挑选一个空闲的goroutine,将其唤醒并让自己阻塞，当goroutine需要阻塞时就唤醒调度器并将自己阻塞。这样全局上就只有唯一的goroutine在执行逻辑代码。
+下面是一个使用示例：
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;coop-go&amp;quot; ) func main() { count := int32(0) var p *coop.CoopScheduler p = coop.NewCoopScheduler(func (e interface{}){ count++ if count &amp;gt;= 30000000 { p.Close() return } //调用阻塞函数 p.Call(func () { time.Sleep(time.Millisecond * time.Duration(10)) }) //继续投递任务 p.PostEvent(1) }) for i := 0; i &amp;lt; 10000; i++ { //投递任务 p.PostEvent(1) } p.Start() fmt.Printf(&amp;quot;scheduler stop,total taskCount:%d\n&amp;quot;,c2) }  首先用一个任务处理函数作为参数创建调度器。然后向调度器投递任务触发处理循环，最后启动处理。</description>
     </item>
     
     <item>
-      <title>Golang学习摘录一:初识</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <title>Golang里的Future_Promise</title>
+      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</guid>
-      <description>1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quot; func main (){ fmt.Printf(&amp;quot;Hello, world&amp;quot;) }  编译 go build helloworld.go
-运行 ./helloworld
-2、声明方式 1、普通方式 var a int = 15 var b bool = false 或 var a int var b bool a = 15 b = false 2、 :=会自动匹配类型，只能在函数内使用 a := 15 b := false 3、中括号的形式： var ( x int b bool ) 4、平行赋值 a,b := 20,16 #注意 :Go 的编译器对声明却未使用的变量在报错。 5、常量，只能是数字、字符串或布尔值 const( // 枚举的生成方式 a = iota // a为0 b = iota // b为1，改行的 “=iota”可省略 ) 如果需要,可以明确指定常量的类型: const ( a = 0 b string = &amp;quot;0&amp;quot; )  3、字符串 var s string = &amp;quot;hello&amp;quot; #Go中字符串是不可变的  如果想修改字符需要使用下面的方法</description>
+      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
+      <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
+一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
+Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Promise和async-await，Scala内置了Future，最后在Golang里有goroutine和channel可以实现类似的功能。下面给出一个简单的实现。
+//RequestFuture, http request promise. func RequestFuture(url string) &amp;lt;-chan []byte { c := make(chan []byte, 1) go func() { var body []byte defer func() { c &amp;lt;- body }() res, err := http.Get(url) if err != nil { return } defer res.Body.Close() body, _ = ioutil.ReadAll(res.Body) }() return c } func main() { future := RequestFuture(&amp;quot;https://api.github.com/users/octocat/orgs&amp;quot;) body := &amp;lt;-future log.Printf(&amp;quot;reponse length: %d&amp;quot;, len(body)) }  RequestFuture方法理科返回一个channel，这个时候http请求还在一个goroutine后台异步运行。main方法可以继续执行其他的代码，比如触发其他的Future等。当需要结果的时候，我们需要从channel里读取结果。如果http请求还没有返回的话就会阻塞当前的goroutine，知道结果返回。
+然而，以上的方法还有一点局限。错误无法返回。在上面的例子里，如果http请求出现错误的话，body的值会是nil/empty。但是，由于channel只能返回一个值，你需要创建一个单独的struct来包装两个返回的结果。
+修改以后的结果：</description>
     </item>
     
     <item>
-      <title>Golang语言常用算法</title>
-      <link>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:56 +0800</pubDate>
+      <title>对echo框架进行统一的自定义错误处理</title>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</guid>
-      <description>在学习golang语言，文档看的实在是乏味，就想着把常用的算法做个实现，边写变学习，想来效果还是不错的！
-​1. 堆排序
-package main import &amp;quot;fmt&amp;quot; func buildHeap(array []int, length int) { var i, j int; for i = 1; i &amp;lt; length; i = i + 1 { for j = i; j &amp;gt; 0 &amp;amp;&amp;amp; array[j] &amp;gt; array[(j-1)/2]; j = (j - 1)/2 { array[j], array[(j-1)/2] = array[(j-1)/2], array[j] } } } func heapSort(array []int, length int) { array[0], array[length - 1] = array[length - 1], array[0] if length &amp;lt;= 2 { return } i, j:= 0, 0 for { j = 2 * i + 1 if j + 1 &amp;lt; length - 1 { if array[j] &amp;lt; array[j + 1] { j = j + 1 } } else if j &amp;gt;= length -1 { break } array[i], array[j] = array[j], array[i] i = j } heapSort(array, length - 1) } func main() { primes := [6]int{3, 11, 5, 2, 13, 7} fmt.</description>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
+      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
+用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
+你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
+ECHO 框架 由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，
+用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。 不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。 要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。
+但是来到2017年，一个叫 Echo 的框架脱颖而出。这是我目前最推荐的框架。 Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：
+这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，
+因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。
+我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，
+如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。
+其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。
+RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。
+比如微软的规范，
+jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
+STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
     </item>
     
     <item>
-      <title>Golang学习摘录三:函数</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <title>fasthttp中的协程池实现</title>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</guid>
-      <description>函数定义 type mytype int // 新的类型 func (p mytype) funcname(q int) (r,s int) {return 0,0}  作用域 在 Go 中,定义在函数外的变量是全局的,那些定义在函数内部的变量,对于函数来说 是局部的。如果命名覆盖——一个局部变量与一个全局变量有相同的名字——在函数 执行的时候,局部变量将覆盖全局变量。
-多值返回 func (file *File) Write(b []byte) (n int, err error)
-Go得函数可以返回多个值
-命名返回值 Go 函数的返回值或者结果参数可以指定一个名字,并且像原始的变量那样使用,就像 输入参数那样。如果对其命名,在函数开始时,它们会用其类型的零值初始化。如果 函数在不加参数的情况下执行了 return 语句,结果参数会返回。
-例：
-func ReadFull(r Reader, buf []byte) (n int, err error) { for len(buf) &amp;gt; 0 &amp;amp;&amp;amp; err == nil { var nr int nr, err = r.Read(buf) n += nr buf = buf[nr:len(buf)] } return }  延迟代码defer 在 defer 后指定的 函数会在函数退出前调用。</description>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
+      <description>https://segmentfault.com/a/
+fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
+ 入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
     </item>
     
     <item>
-      <title>Golang学习摘录二:控制语句</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:55 +0800</pubDate>
+      <title>golang使用Nsq</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</guid>
-      <description>if语句 i f x &amp;gt; 0 { // {是强制的,且必须和if在同一行 return y } else { return x }  if 和 switch 接受初始化语句,通常用于设置一个(局部)变量。
-if err := Chmod(0664); err != nil { //nil 与 C 的 NULL 类似 fmt.Printf(err) //err 的作用域被限定在 if 内 return err }  goto语句 用 goto 跳转到一定是当前函数内定义的标签
-func myfunc() { i := 0 Here: // 这行的第一个词,以分号结束作为标签,标签名区分大小写 println(i) i++ goto Here // 跳转 }  for语句 Go 的 for 循环有三种形式,只有其中的一种使用分号。</description>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
+      <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现了Nsq这个由golang开发的消息队列，毕竟是golang原汁原味的东西，功能齐全，关键是性能还不错。其中支持动态拓展，消除单点故障等特性， 都可以很好的满足我的需求
+下面上一张Nsq与其他mq的对比图，看上去的确强大。下面简单记录一下Nsq的使用方法
+图片来自golang2017开发者大会
+Nsq服务端 Nsq服务端简介 在使用Nsq服务之前，还是有必要了解一下Nsq的几个核心组件
+整个Nsq服务包含三个主要部分
+nsqlookupd 先看看官方的原话是怎么说：
+nsqlookupd是守护进程负责管理拓扑信息。客户端通过查询 nsqlookupd 来发现指定话题（topic）的生产者，并且 nsqd 节点广播话题（topic）和通道（channel）信息
+简单的说nsqlookupd就是中心管理服务，它使用tcp(默认端口4160)管理nsqd服务，使用http(默认端口4161)管理nsqadmin服务。同时为客户端提供查询功能
+总的来说，nsqlookupd具有以下功能或特性
+ 唯一性，在一个Nsq服务中只有一个nsqlookupd服务。当然也可以在集群中部署多个nsqlookupd，但它们之间是没有关联的
+ 去中心化，即使nsqlookupd崩溃，也会不影响正在运行的nsqd服务
+ 充当nsqd和naqadmin信息交互的中间件
+ 提供一个http查询服务，给客户端定时更新nsqd的地址目录   nsqadmin 官方原话：是一套 WEB UI，用来汇集集群的实时统计，并执行不同的管理任务
+总的来说，nsqadmin具有以下功能或特性
+ 提供一个对topic和channel统一管理的操作界面以及各种实时监控数据的展示，界面设计的很简洁，操作也很简单
+ 展示所有message的数量，恩&amp;hellip;.装X利器
+ 能够在后台创建topic和channel，这个应该不常用到
+ nsqadmin的所有功能都必须依赖于nsqlookupd，nsqadmin只是向nsqlookupd传递用户操作并展示来自nsqlookupd的数据
+  nsqadmin默认的访问地址是http://127.0.0.1:4171/ nsqd 官方原话：nsqd 是一个守护进程，负责接收，排队，投递消息给客户端
+简单的说，真正干活的就是这个服务，它主要负责message的收发，队列的维护。nsqd会默认监听一个tcp端口(4150)和一个http端口(4151)以及一个可选的https端口
+总的来说，nsqd 具有以下功能或特性
+ 对订阅了同一个topic，同一个channel的消费者使用负载均衡策略（不是轮询）
+ 只要channel存在，即使没有该channel的消费者，也会将生产者的message缓存到队列中（注意消息的过期处理）
+ 保证队列中的message至少会被消费一次，即使nsqd退出，也会将队列中的消息暂存磁盘上(结束进程等意外情况除外)
+ 限定内存占用，能够配置nsqd中每个channel队列在内存中缓存的message数量，一旦超出，message将被缓存到磁盘中
+ topic，channel一旦建立，将会一直存在，要及时在管理台或者用代码清除无效的topic和channel，避免资源的浪费
+  这是官方的图，第一个channel(meteics)因为有多个消费者，所以触发了负载均衡机制。后面两个channel由于没有消费者，所有的message均会被缓存在相应的队列里，直到消费者出现
+这里想到一个问题是，如果一个channel只有生产者不停的在投递message，会不会导致服务器资源被耗尽？也许nsqd内部做了相应处理，但还是要避免这种情况的出现
+Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费者和生产者的关系
+消费者 消费者有两种方式与nsqd建立连接
+ 消费者直连nsqd，这是最简单的方式，缺点是nsqd服务无法实现动态伸缩了(当然，自己去实现一个也是可以的)  消费者通过http查询nsqlookupd获取该nsqlookupd上所有nsqd的连接地址，然后再分别和这些nsqd建立连接(官方推荐的做法)，但是客户端会不停的向nsqlookupd查询最新的nsqd地址目录(不喜欢用http轮询这种方式&amp;hellip;)</description>
     </item>
     
     <item>
-      <title>Golang学习摘录七:并发</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <title>golang使用原始套接字构造UDP包</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</guid>
-      <description>Go使用channel和goroutine开发并行程序。goroutine 是 Go并发能力的核心要素。
-goroutine 是一个普通的函数，只是需要使用关键字 go 作为开头。
-ready(&amp;quot;Tea&amp;quot;, 2) // 普通函数调用 go ready(&amp;quot;Tea&amp;quot;, 2) // ready() 作为 goroutine 运行  Go routine实践
-func ready(w string, sec int) { time.Sleep(time.Duration(sec) * time.Second) fmt.Println(w,&amp;quot;is ready!&amp;quot;) } func main() { go ready(&amp;quot;Tea&amp;quot;, 2) go ready(&amp;quot;Coffee&amp;quot;, 1) fmt.Println(&amp;quot;I&#39;m waiting&amp;quot;) time.Sleep(5 * time.Second) } // 输出 I&#39;m waiting //立刻 Coffee is ready! //1秒后 Tea is ready! //2秒回  如果不等待goroutine的执行（例如移除第17行），程序会立刻终止，而任何正在执行的goroutine都会停止。为了修复使用channels机制来和goroutine通讯。可以通过channel发送或接受值。这些值只能是特定的类型:channel 类型。
-注意，必须使用 make 创建 channel：
-ci := make(chan int) //创建 channel ci 用于发送和接收整数 cs := make(chan string) //创建 channel cs 用于字符串 cf:=make(chan interface{})//channel cf 使用了空接口来满足各种类型  向 channel 发送或接收数据，是通过类似的操作符完 成的:&amp;lt;−.</description>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</guid>
+      <description>https://segmentfault.com/a/
+RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA)三种套接字。原始套接字能够对底层传输进行控制，允许自行组装数据包，比如修改本地IP，发送Ping包，进行网络监听。这里不做详细介绍，要了解更多可以网上自己查询。
+实现 这里先看IP头结构：
+其中16位总长度包括IP头长度和数据的长度，8位协议填写17，因为UDP协议类型为17。这里要说明一下IP头中的首部校验，这个值只校验IP头部，不包含数据。
+这里给出校验算法，IP头和UDP头中使用的校验算法是一样的。
+func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n += 2 { sum += int(msg[n])*256 + int(msg[n+1]) } sum = (sum &amp;gt;&amp;gt; 16) + (sum &amp;amp; 0xffff) sum += (sum &amp;gt;&amp;gt; 16) var ans = uint16(^sum) return ans }  下面开始填充IP头，这里使用了golang.org/x/net下的ipv4包
+ //目的IP dst := net.IPv4(192, 168, 1, 2) //源IP src := net.IPv4(192, 168, 1, 3) //填充ip首部 iph := &amp;amp;ipv4.</description>
     </item>
     
     <item>
-      <title>Golang学习摘录五:进阶</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <title>关于golang在树莓派下获取ip和mac地址</title>
+      <link>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</guid>
-      <description>Go 有指针。然而却没有指针运算,因此它们更象是引用而不是你所知道的来自于 C 的指针。指针非常有用。在 Go 中调用函数的时候,得记得变量是值传递的。因此,为了修改一个传递入函数的值的效率和可能性,有了指针。
-var p *int fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印nil var i int // 定义一个整型变量i p = &amp;amp;i // 使得p指向i fmt.Printf(&amp;quot;%v&amp;quot;, p) // 打印出来的内容类似0x7ff96b81c000a  内存分配 用new分配内存 内建函数 new 本质上说跟其他语言中的同名函数功能一样:new(T) 分配了零值填充 的 T 类型的内存空间,并且返回其地址,一个 *T 类型的值。用 Go 的术语说,它返回 了一个指针,指向新分配的类型 T 的零值。记住这点非常重要。
-用make分配内存 内建函数 make(T, args) 与 new(T) 有着不同的功能。它只能创建 slice,map 和 channel,并且返回一个有初始值(非零)的 T 类型,而不是 *T。本质 来讲,导致这三个类型有所不同的原因是指向数据结构的引用在使用前必须被初始化。 例如,一个 slice,是一个包含指向数据(内部 array)的指针,长度和容量的三项描述 符;在这些项目被初始化之前,slice 为 nil。对于 slice,map 和 channel,make 初始 化了内部的数据结构,填充适当的值。</description>
+      <guid>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html</guid>
+      <description>https://segmentfault.com/a/
+前言 最近工作需要，需求为获取树莓派以太网ip
+地址和mac地址，看了下golang的文档，发现net.InterfaceByName可以完成这个目标。
+实现  //以太网网卡名称为eth0 inter, err := net.InterfaceByName(&amp;quot;eth0&amp;quot;) if err != nil { log.Fatalln(err) } //mac地址 fmt.Println(inter.HardwareAddr.String()) addrs, err := inter.Addrs() if err != nil { log.Fatalln(err) } //ip地址一个ip4一个ip6 for _, addr := range addrs { fmt.Println(addr.String()) }  运行结果：
+后记 当然，树莓派3代自带无线网卡，名字换为wlan0就可以获取无线网卡ip。</description>
     </item>
     
     <item>
-      <title>Golang学习摘录六:接口</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <title>Go语言暴力入门2-工欲善其事</title>
+      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</guid>
-      <description>Go中关键字interface被赋予了很多不同的含义。每个类型都有接口，意味着对那个类型定义了方法集合。
-// 这段代码定义了具有一个字段和两个方法的结构类型s。 type S struct { i int } func (p *S) Get() int { return p.i } func (p *S) Put(v int) { p.i = v } // 定义接口 type I interface { Get() int Put(int) } // 对于接口I，S是合法的实现，因为它定义了 I 所需的两个方法。注意：即便是没有明 确定义 S 实现了 I，这也是正确的。 // Go 程序的特性接口值： func f(p I) {// 定义一个函数接受一个接口类型作为参数 fmt.Println(p.Get()) // p实现了接口I，必须有Get()方法 p.Put(1) // Put()方法是类似的 // 这里的变量p保存了接口类型的值。 } // 调用 var s S f(&amp;amp;s) // 因为S实现了I，可以调用f向其传递S类型的值的指针 // 获取 s 的地址,而不是 S 的值的原因,是因为在 s 的指针上定义了方法,参阅上面的 代码 5.</description>
+      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
+      <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
+个人网站：http://www.linganmin.cn
+最近刚写了一个手机在线播放的H5电影站：http://www.ifilm.ltd
+ 关于Gogland  Gogland 是JetBrains专门为Go语言开发的商业化IDE的代号，旨在为Go开发提供符合人体工程学的环境。新的IDE通过针对Go语言的编码协助和工具集成扩展了IntelliJ平台的诸多功能
+ 目前Gogland还在开发中，已经发布了几版预发行版本，因为是预览版本所以，目前Gogland还是免费的哦
+为什么是Gogland 因为笔者本身是做PHP开发的，（请抛开语言之争，PHP很优秀，Go语言也是，任何一门语言存在即合理，合理是因为他们都有自己所擅长的领域，哈哈跑题了），在做PHP开发时一直使用的就是JetBrains他们家的PHPStorm，后来写前端，写JS，写Vue的时候又试了他们家的专注前端的IDEWebstorm,也很喜欢。当前，不可否认，sublime和VS code之类是很优秀的编辑器，而且有丰富的第三方扩展，但是在编写稍微复杂的项目的时候可能就不是那么得心应手了，或者也许是笔者自己有对他们有偏见吧，个人喜好勿喷，哈哈。
+鉴于此，在看了Go语言的第二天就去JetBrains官网看了看有没有专门为Go语言发布的IDE，刚好看到了还在预览版的Gogland
+Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功能，下面就开始安装吧
+安装Gogland并安装Material风格主题 Gogland的介绍及下载页面：https://www.jetbrains.com/go/&amp;hellip;
+笔者使用的是Windows OS下载的是对应的.exe文件，下载完成双击一路安装下去
+安装之后打开编辑器你有木有发现，默认的主题其实是不那么好看，笔者深深迷恋material主题风格，在用的所有编辑器都换成了该主题风格，包括Sublime和VS code,所以怎么会放过Gogland
+ 将默认主题设置为Darcula  点击左上角的File选项，找到Settings点击，然后找到如下图的选项卡，在右边选项框内选择你喜欢的主题，个人推荐Darcula，然后点击ok,这个主题是IDE导航及选项的主题
+ 安装material主题  依然是点击上面说到的那个Settings选项，然后Plugins选项点击后如下图，然后在右边输入框搜索material,在你没安装过该主题的时候会在中间出现一句提示`点击提示右边的在线搜索，然后弹出搜索结果，找到Material theme UI `install，安装完成重启一下IDE就可以看到漂亮的IDE界面了</description>
     </item>
     
     <item>
-      <title>Golang学习摘录四:包</title>
-      <link>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:54 +0800</pubDate>
+      <title>gocron-定时任务web管理系统</title>
+      <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</guid>
-      <description>包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使用小写字符。Go 包可以由多个文件组成,但是使用相同的 package &amp;lt;name&amp;gt; 这一行。
-package even func Even(i int) bool { return i%2==0 } func odd(i int) bool { return i%2==1 }  名称以大写字母起始的是可导出的，可以在包的外部调用。
-共有函数的名称以大写字母开头。
-私有函数的名称以小写字母开头。
-package main import ( //导入下面的包 &amp;quot;event&amp;quot; //本地包even在这里导入 &amp;quot;fmt&amp;quot; ) func main(){ i := 5 fmt.Printf(&amp;quot;Is %d event? %v\n&amp;quot;, i,event.Even(i))// 调用even包中的函数。访问一个包中的函数的语法是&amp;lt;package&amp;gt;.Function()。 }  Go程序的命名规则：包名约定小写字母开头；方法名最好使用驼峰式名称，避免使用下划线，方法名应简洁清晰。
-包的文档 每个包都应该有包注释,在 package 前的一个注释块。对于多文件包,包注释只需要 出现在一个文件前,任意一个文件都可以。包注释应当对包进行介绍,并提供相关于 包的整体信息。这会出现在 go doc 生成的关于包的页面上,并且相关的细节会一并 显示。
-官方regexp包的例子：
- /* The regexp package implements a simple library for regular expressions.</description>
+      <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</guid>
+      <description>gocron - 定时任务web管理系统 项目简介 使用Go语言开发的定时任务集中调度和管理系统, 用于替代Linux-crontab 项目地址 查看文档
+功能特性  支持任务CURD
+ crontab时间表达式，可精确到每秒
+ 任务执行失败重试设置
+ 任务超时设置
+ 延时任务
+ 任务执行方式
+ 调用本机系统命令
+ 通过SSH执行远程命令
+ 执行HTTP-GET请求
+  查看任务执行日志
+ 任务执行结果通知, 支持邮件、Slack
+  截图 
+支持平台  Windows、Linux、OSX
+ 环境要求  MySQL
+ 安装 二进制安装  解压压缩包
+ cd 解压目录
+ 启动
+ Windows: gocron.exe web
+ Linux、OSX: ./gocron web
+  浏览器访问 http://localhost:5920
+  源码安装  go语言版本1.</description>
     </item>
     
     <item>
-      <title>Goreflect包</title>
-      <link>https://yushuangqi.com/blog/2017/go-reflectbao.html</link>
-      <pubDate>Fri, 24 Feb 2017 08:31:53 +0800</pubDate>
+      <title>golang使用protobuf</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-reflectbao.html</guid>
-      <description>Go reflect包
-反射是由 reflect 包提供支持. 它定义了两个重要的类型, Type 和 Value. 一个 Type 表示一个Go类型. 函数 reflect.TypeOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Type.
-reflect 包中另一个重要的类型是 Value. 一个 reflect.Value 可以持有一个任意类型的值. 函数 reflect.ValueOf 接受任意的 interface{} 类型, 并返回对应动态类型的reflect.Value. 和 reflect.TypeOf 类似, reflect.ValueOf 返回的结果也是对于具体的类型, 但是 reflect.Value 也可以持有一个接口值.
-reflect.Type 类型 代码，
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;reflect&amp;quot; &amp;quot;unsafe&amp;quot; ) // 嵌套结构体 type ss struct { a struct { int string } int string bool float64 } func (s ss) Method1(i int) string { return &amp;quot;结构体方法1&amp;quot; } func (s *ss) Method2(i int) string { return &amp;quot;结构体方法2&amp;quot; } var ( intValue = int(0) int8Value = int8(8) int16Value = int16(16) int32Value = int32(32) int64Value = int64(64) uIntValue = uint(0) uInt8Value = uint8(8) uInt16Value = uint16(16) uInt32Value = uint32(32) uInt64Value = uint64(64) byteValue = byte(0) runeValue = rune(0) uintptrValue = uintptr(0) boolValue = false stringValue = &amp;quot;&amp;quot; float32Value = float32(32) float64Value = float64(64) complex64Value = complex64(64) complex128Value = complex128(128) arrayValue = [5]string{} // 数组 sliceValue = []byte{0, 0, 0, 0, 0} // 切片 mapValue = map[string]int{} // 映射 chanValue = make(chan int, 2) // 通道 structValue = ss{ // 结构体 struct { int string }{10, &amp;quot;子结构体&amp;quot;}, 20, &amp;quot;结构体&amp;quot;, false, 64.</description>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</guid>
+      <description>为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用
+跟Json相比protobuf性能更高，更加规范
+ 编解码速度快，数据体积小
+ 使用统一的规范，不用再担心大小写不同导致解析失败等蛋疼的问题了
+  但也失去了一些便利性
+ 改动协议字段，需要重新生成文件。
+ 数据没有可读性
+  安装 在go中使用protobuf，有两个可选用的包goprotobuf（go官方出品）和gogoprotobuf。
+gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码性能均比goprotobuf高一些
+安装protoc 首先去https://github.com/google/pro&amp;hellip; 上下载protobuf的编译器protoc，windows上可以直接下到exe文件(linux则需要编译)，最后将下载好的可执行文件拷贝到\$GOPATH的bin目录下(\$GOPATH/bin目录最好添加到系统环境变量里)
+安装protobuf库文件 go get github.com/golang/protobuf/proto  goprotobuf 安装插件 go get github.com/golang/protobuf/protoc-gen-go  生成go文件 protoc --go_out=. *.proto  gogoprotobuf 安装插件 gogoprotobuf有两个插件可以使用
+ protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)
+ protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)
+  //gogo go get github.com/gogo/protobuf/protoc-gen-gogo //gofast go get github.com/gogo/protobuf/protoc-gen-gofast  安装gogoprotobuf库文件 go get github.com/gogo/protobuf/proto go get github.com/gogo/protobuf/gogoproto //这个不装也没关系  生成go文件 //gogo protoc --gogo_out=.</description>
     </item>
     
     <item>
-      <title>Gobuild命令说明</title>
-      <link>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</link>
-      <pubDate>Wed, 22 Feb 2017 08:37:16 +0800</pubDate>
+      <title>Golang读写Excel</title>
+      <link>https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:28 +0800</pubDate>
       <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</guid>
-      <description>go help build
- 构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.
-使用 go build [-o 输出名] [-i] [编译标记] [包名]  如果参数为***.go文件或文件列表，则编译为一个个单独的包。
-当编译单个main包（文件），则生成可执行文件。
-当编译单个或多个包非主包时，只构建编译包，但丢弃生成的对象（.a），仅用作检查包可以构建。
-当编译包时，会自动忽略&amp;rsquo;_test.go&amp;rsquo;的测试文件。
-参数 -o output 指定编译输出的名称，代替默认的包名。  -i install 安装作为目标的依赖关系的包(用于增量编译提速)。  以下 build 参数可用在 build, clean, get, install, list, run, test -a 完全编译，不理会-i产生的.a文件(文件会比不带-a的编译出来要大？) -n 仅打印输出build需要的命令，不执行build动作（少用）。 -p n 开多少核cpu来并行编译，默认为本机CPU核数（少用）。 -race 同时检测数据竞争状态，只支持 linux/amd64, freebsd/amd64, darwin/amd64 和 windows/amd64. -msan 启用与内存消毒器的互操作。仅支持linux / amd64，并且只用Clang / LLVM作为主机C编译器（少用）。 -v 打印出被编译的包名（少用）. -work 打印临时工作目录的名称，并在退出时不删除它（少用）。 -x 同时打印输出执行的命令名（-n）（少用）. -asmflags &#39;flag list&#39; 传递每个go工具asm调用的参数（少用） -buildmode mode 编译模式（少用） &#39;go help buildmode&#39; -compiler name 使用的编译器 == runtime.</description>
+      <guid>https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html</guid>
+      <description>Excelize 是 Golang 编写的一个用来操作 Office Excel 文档类库，基于微软的 Office OpenXML 标准。可以使用它来读取、写入 XLSX 文件。相比较其他的开源类库，Excelize 支持写入原本带有图片(表)的文档，还支持向 Excel 中插入图片，并且在保存后不会丢失图表样式。
+安装 go get github.com/Luxurioust/excelize  创建 XLSX package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/Luxurioust/excelize&amp;quot; ) func main() { xlsx := excelize.CreateFile() // Create a new sheet. xlsx.NewSheet(2, &amp;quot;Sheet2&amp;quot;) // Set value of a cell. xlsx.SetCellValue(&amp;quot;Sheet2&amp;quot;, &amp;quot;A2&amp;quot;, &amp;quot;Hello world.&amp;quot;) xlsx.SetCellValue(&amp;quot;Sheet1&amp;quot;, &amp;quot;B2&amp;quot;, 100) // Set active sheet of the workbook. xlsx.SetActiveSheet(2) // Save xlsx file by the given path.</description>
     </item>
     
   </channel>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/api%E8%AE%BE%E8%AE%A1.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/api%E8%AE%BE%E8%AE%A1.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>对echo框架进行统一的自定义错误处理</title>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
+      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
+用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
+你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
+ECHO 框架 由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，
+用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。 不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。 要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。
+但是来到2017年，一个叫 Echo 的框架脱颖而出。这是我目前最推荐的框架。 Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：
+这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，
+因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。
+我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，
+如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。
+其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。
+RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。
+比如微软的规范，
+jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
+STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
+    </item>
+    
+  </channel>
+</rss>

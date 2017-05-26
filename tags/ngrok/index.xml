@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/ngrok.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/ngrok.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
+      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
+一、后端测试了一下发现没有问题
+“我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
+二、测试了也有问题
+这时候后端就去修改程序了，但是每一次的测试是否有问题都需要在客户端中操作，有时候的操作非常的复杂，在这上面花的时间会比较多。最后使了各种神通才终于找到问题，原来是这个用户的某某数据有异常才会出现这种情况。
+以上这种情况屡见不鲜，最麻烦的点就在于，每次都要以出现 Bug 的相同参数去请求，有时候你知道这些请求的参数，可以把它们放到 Postman 这种工具里面，但大部分时候你并不知道它对应的参数 (token)
+如果我们可以在服务端跟踪所有的请求：接口地址，Header，Body，后端返回的 Header、Body，这样我们就能查到对应的请求参数和返回值，可以直接填到 Postman 里面，要是还能一键重新请求就好了，因为我们不想修改请求的参数，只是想再以相同的参数请求一遍，这样我们来调试对应的程序。
+正好以前用过 ngrok，发现它有一个非常好的 debug 界面，可以达到以上的要求，但现在不需要它的内网穿透功能，于是只能自己写一个程序，只包含以下功能：
+ 记录接口所有的 Request 和 Response
+ 可以一键重新请求某个 Request
+  基本工作原理
+HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求并进行反向代理 | Response 200 OK | ---------------------------&amp;gt; | --------------------------&amp;gt; | ------┐ | | | | | | 记录返回信息并转发给客户端 | &amp;lt;----┘ | &amp;lt;--------------------------- | &amp;lt;-------------------------- | ┌----------------------------------------------------------------------------┐ | url: http://localhost:8081 | | ---------------------------------------------------------------------------| | All Transactions ┌ - - - - - - - - - - - - - - - - - - - - - - - ┐ | | ---------------------- | time: 10 hours ago Client: 127.</description>
+    </item>
+    
+  </channel>
+</rss>

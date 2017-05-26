@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐Golang开发与SRE运维</title>
+    <link>https://yushuangqi.com/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.xml</link>
+    <description>在 虞双齐Golang开发与SRE运维上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>gocron-定时任务web管理系统</title>
+      <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</guid>
+      <description>gocron - 定时任务web管理系统 项目简介 使用Go语言开发的定时任务集中调度和管理系统, 用于替代Linux-crontab 项目地址 查看文档
+功能特性  支持任务CURD
+ crontab时间表达式，可精确到每秒
+ 任务执行失败重试设置
+ 任务超时设置
+ 延时任务
+ 任务执行方式
+ 调用本机系统命令
+ 通过SSH执行远程命令
+ 执行HTTP-GET请求
+  查看任务执行日志
+ 任务执行结果通知, 支持邮件、Slack
+  截图 
+支持平台  Windows、Linux、OSX
+ 环境要求  MySQL
+ 安装 二进制安装  解压压缩包
+ cd 解压目录
+ 启动
+ Windows: gocron.exe web
+ Linux、OSX: ./gocron web
+  浏览器访问 http://localhost:5920
+  源码安装  go语言版本1.</description>
+    </item>
+    
+  </channel>
+</rss>

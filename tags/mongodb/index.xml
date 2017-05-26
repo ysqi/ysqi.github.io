@@ -11,6 +11,21 @@
     <atom:link href="/tags/mongodb.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>谈谈一些关于mgo的用法</title>
+      <link>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</guid>
+      <description>前言 最近在项目中使用mongodb进行简单的数据分析，在使用mongodb驱动mgo时遇到一些问题，比如在mongodb中执行命令成功，到了mgo中就执行失败。在这里谈一谈实践过程中遇到的问题，基础的用法不再说明了，可以自行百度。
+使用 查找(Find) 这个估计是mongodb里用的最多的了吧，mgo中使用Find(query interface{})，query参数一般传入[]bson.M。下面给个例子：
+m := bson.M{ &amp;quot;CurTimestamp&amp;quot;: bson.M{ &amp;quot;$gte&amp;quot;: start, &amp;quot;$lte&amp;quot;: end, }, &amp;quot;Account&amp;quot;: account, &amp;quot;ToNodeType&amp;quot;: &amp;quot;cloud&amp;quot;, } session.DB(&amp;quot;db&amp;quot;).C(&amp;quot;collect&amp;quot;).Find(m).Count()  这里查找时间戳内，账号为account，节点类型为cloud的数据并统计个数。
+聚合管道（Aggregation Pipeline） 聚合管道在mgo中为Pipe(pipeline interface{}) ，这个和bash中使用的管道很像，数据可以被层层处理。一般传入的参数为[]bson.M。这个[]bson.M里如果还有嵌套则还要使用[]bson.M(刚开始使用就被坑了一下)。比如这里首先匹配节点类型和账号，时间戳在一段时间内，然后根据名字分组统计数量，最后排序取最前面的三个。
+ //这个就可以传入Pipe m := []bson.M{ {&amp;quot;$match&amp;quot;: bson.M{&amp;quot;NodeType&amp;quot;: &amp;quot;cloud&amp;quot;, &amp;quot;Account&amp;quot;: account, &amp;quot;CurTimestamp&amp;quot;: bson.M{&amp;quot;$gte&amp;quot;: start, &amp;quot;$lte&amp;quot;: end}}}, {&amp;quot;$group&amp;quot;: bson.M{&amp;quot;_id&amp;quot;: &amp;quot;$TagName&amp;quot;, &amp;quot;count&amp;quot;: bson.M{&amp;quot;$sum&amp;quot;: 1}}}, {&amp;quot;$sort&amp;quot;: bson.M{&amp;quot;count&amp;quot;: -1}}, {&amp;quot;$limit&amp;quot;: 3}, } //这里就可以取到输出的数据 var values []result session.DB(&amp;quot;db&amp;quot;).C(&amp;quot;collect&amp;quot;).Pipe(m).All(&amp;amp;values)  数据是一层一层过滤下来的。当然mongodb中的聚合命令不止这些，用法大同小异
+MapReduce 如果要实现一些高级功能，mongodb的基本命令满足不了你，可能就要使用这个了。mongodb中要实现MapReduce就要实现Map函数和Reduce函数，Map函数调用emit将key和value传给Reduce函数处理。这里给的例子首先计时间戳在哪个时间范围内，然后累加这个值，js不是很精通，写的不好请见谅。
+m := new(mgo.MapReduce) m.Map = `function() { var date = new Date(); date.</description>
+    </item>
+    
+    <item>
       <title>Golangmgo驱动指定Mongo服务器读取</title>
       <link>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:01 +0800</pubDate>

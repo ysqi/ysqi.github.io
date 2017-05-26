@@ -11,6 +11,28 @@
     <atom:link href="/tags/protobuf.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>golang使用protobuf</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</guid>
+      <description>为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用
+跟Json相比protobuf性能更高，更加规范
+ 编解码速度快，数据体积小
+ 使用统一的规范，不用再担心大小写不同导致解析失败等蛋疼的问题了
+  但也失去了一些便利性
+ 改动协议字段，需要重新生成文件。
+ 数据没有可读性
+  安装 在go中使用protobuf，有两个可选用的包goprotobuf（go官方出品）和gogoprotobuf。
+gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码性能均比goprotobuf高一些
+安装protoc 首先去https://github.com/google/pro&amp;hellip; 上下载protobuf的编译器protoc，windows上可以直接下到exe文件(linux则需要编译)，最后将下载好的可执行文件拷贝到\$GOPATH的bin目录下(\$GOPATH/bin目录最好添加到系统环境变量里)
+安装protobuf库文件 go get github.com/golang/protobuf/proto  goprotobuf 安装插件 go get github.com/golang/protobuf/protoc-gen-go  生成go文件 protoc --go_out=. *.proto  gogoprotobuf 安装插件 gogoprotobuf有两个插件可以使用
+ protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)
+ protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)
+  //gogo go get github.com/gogo/protobuf/protoc-gen-gogo //gofast go get github.com/gogo/protobuf/protoc-gen-gofast  安装gogoprotobuf库文件 go get github.com/gogo/protobuf/proto go get github.com/gogo/protobuf/gogoproto //这个不装也没关系  生成go文件 //gogo protoc --gogo_out=.</description>
+    </item>
+    
+    <item>
       <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
       <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
