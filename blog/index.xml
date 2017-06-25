@@ -8,8 +8,31 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Wed, 24 May 2017 09:17:36 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 25 Jun 2017 20:12:27 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>终于找到我要的读书方法了</title>
+      <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
+      <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
+      <description>自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。
+曾遭遇的困惑  买过很多不需要的书，在角落里干灰。 我好像读过这本书。 一口气读完一本书，就没有然后了。  现在买书很克制，不读完并吸收掌握就不继续买。先放到购物车或购书清单中，反正电商的图书活动不断，不怕下次没法优惠购。
+如果你有同感请继续看，否则请打道回府，欢迎下次光临🙈。
+新招式破解困局 我在《如何有效阅读一本书》中找到了良药：用笔记本管理读书生活 &amp;gt; 一次偶然的机会，在西西弗购物公园店看书时，拿到本日本作家奥野宣之著的《如何有效阅读一本书》。当时看得入迷，时间紧迫。当晚京东下单，接着感受其中的方法论。 &amp;gt; 豆瓣书评传送门：http://t.cn/RJLVnDL 此法乃大简之道，力荐给爱好读书的你。 原始，简单，有效！前后细读两次，越发认为通过笔记管理读书生活有趣而实用。
+笔记本 高中时一开学，得买好几个高大上的笔记本。每门各一本，然后在封面写上XX课笔记本虞双齐。好傻包的行为😂。搞得最后是，一上课就找笔记本，期末还每个笔记本一大半纸是空白的&amp;hellip;.
+直到现在，也经常给各中东西细分类，没过多久就一团乱有得收拾。其实将东西放在一个筐下也是非常不错的，实际中大部分东西都是大半年用不上。与其分类细放，还不如一个纸箱子全部堆放。自然而然，经常用的东西在最上面。
+东西细分类，是在添加心智负担 关于生活、工作、随想、心情都可以通通按时间顺序写到一个普通笔记本上。
+字迹潦草无所谓，只要自己能看懂就好，别人才没时间看~~~
+用一个普通的笔记本开始我崭新的学习之旅，之前用用过MyBase，Evernote、有道云笔记、为知笔记。在电脑上始终没法体验原始笔记本书写。更何况，我🐢般的打字速度，要命勒，要命勒！！ 所以现在回归到原始，结合为知笔记软件，重新管理我的知识。
+功夫不负有心人 耳濡墨染的一个真理，假设一篇文章抄在笔记本上需要花三十分钟时间。而用智能手机拍成照片或扫描成纯文字文档却只要一分钟，想抄写的文字就能永久地保存下来。
+那么，只要使用智能手机，读书效率就能提高三十倍吗？ 我想不是的。
+即使你使用手机拍照，花三十分钟保存了三十本书的信息，也不如花三十分钟抄写一本书的内容有效。无论在手机里面保存了多少本书，书里面的内容都不会被保存在脑子里。这些内容既不能融入你的身心，也不能变成你无形的财富，与此相反，尽管抄完本也不一定能记住全部内容，但某段文章、某个词、作者的语气和思想等等，都会随着抄写时的身体感觉被深深地刻印在头脑和身体里。
+就笔记本抄写文章内容，写感悟，记心情等都是简单有效快捷的方法。当做练字也好，请拾起笔，随便找一个干净的笔记本开始写笔记！ 结尾 一脑的想法，可提笔记录时，却难以下笔。需整理思路，如同和别人对话，得组织语言逻辑。才能让其听明白你所表达的意思。纵有千万灵感，只有用文字记录，让思想书面化，让灵感脱离之前的抽象状态，会更容易将其理解消化，也能促使你把灵感用作创意材料，想用的时候就能信手拈来。
+我喜欢将知识，思想形成文字分享给他人。特别是工作内容，只有书面化，才能让自己理清思路完善知识，传播价值。
+用笔记管理读书生活是值得一试的读书方法，我已服此良药，你会行动嘛？三个月后呢？</description>
+    </item>
     
     <item>
       <title>gRPC服务发现&amp;amp;负载均衡</title>
@@ -294,16 +317,6 @@ gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码�
  protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)
  protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)
   //gogo go get github.com/gogo/protobuf/protoc-gen-gogo //gofast go get github.com/gogo/protobuf/protoc-gen-gofast  安装gogoprotobuf库文件 go get github.com/gogo/protobuf/proto go get github.com/gogo/protobuf/gogoproto //这个不装也没关系  生成go文件 //gogo protoc --gogo_out=.</description>
-    </item>
-    
-    <item>
-      <title>Golang读写Excel</title>
-      <link>https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:28 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html</guid>
-      <description>Excelize 是 Golang 编写的一个用来操作 Office Excel 文档类库，基于微软的 Office OpenXML 标准。可以使用它来读取、写入 XLSX 文件。相比较其他的开源类库，Excelize 支持写入原本带有图片(表)的文档，还支持向 Excel 中插入图片，并且在保存后不会丢失图表样式。
-安装 go get github.com/Luxurioust/excelize  创建 XLSX package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/Luxurioust/excelize&amp;quot; ) func main() { xlsx := excelize.CreateFile() // Create a new sheet. xlsx.NewSheet(2, &amp;quot;Sheet2&amp;quot;) // Set value of a cell. xlsx.SetCellValue(&amp;quot;Sheet2&amp;quot;, &amp;quot;A2&amp;quot;, &amp;quot;Hello world.&amp;quot;) xlsx.SetCellValue(&amp;quot;Sheet1&amp;quot;, &amp;quot;B2&amp;quot;, 100) // Set active sheet of the workbook. xlsx.SetActiveSheet(2) // Save xlsx file by the given path.</description>
     </item>
     
   </channel>
