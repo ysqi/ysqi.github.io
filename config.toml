@@ -1,6 +1,6 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zh"
-title = "虞双齐Golang开发与SRE运维" 
+title = "极客虞双齐" 
 pygmentsuseclasses = false
 PygmentsCodeFences = true
 pygmentsstyle = "friendly"
@@ -16,17 +16,18 @@ EnableDiscuss = false
   description= "Go语言,Golang开发,SRE运维实践,全栈开发-虞双齐的个人博客"
 
 [author]
-  description = "全栈开发工程师，Google SRE实践者。提供Golang开发、技术实践与架构等咨询服务。"
+  description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
   name = "虞双齐"
-  title= "#Golang开发 #SRE运维"
+  title= "爱分享的极客"
   # 140*140头像
   aboutme_avatar = "https://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像
   aboutme_height = "https://static.yushuangqi.com/assets/touxiang.jpg"
   email ="devysq@gmail.com"
-  qq = "535252640"
+  qq = "460857340"
   weibo = "234665601"
   github = "ysqi"
+  weixinID = "gh_d6d47893a828"
 
 
 [taxonomies]
@@ -36,4 +37,4 @@ EnableDiscuss = false
 [permalinks]
 	blog = "/blog/:year/:slug.html"
 	top = "/:slug.html"
-    resource = "/resource/:title.html"
+  resource = "/resource/:title.html"  
