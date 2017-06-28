@@ -8,8 +8,30 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Sun, 25 Jun 2017 20:12:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jun 2017 21:01:02 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>给电脑小白精挑细选的五个免费软件</title>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
+      <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
+      <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？
+下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则： + 免费
++ 提升效率
++ 性能稳定 + 本人亲自使用超过2年
+请公账号中回复：工具 两字获取此5个免费软件的下载地址清单。
+5个可以提升办公效率的免费软件 1.文件搜索工具：Everything 找不到文件存在哪里？文件藏的太深，需点击N次鼠标才能看到？那就使用Everything来解决痛点，配合快捷键启动。找文档，打开文档超快！
+Everything是Windows桌面搜索引擎，实时搜索几乎瞬间完成、占用资源极低 。这些特性在如今磁盘容量越来越大、用户文件越来越多的情况下使得Everything超越了传统桌面搜索工具而广受欢迎，它能在几秒钟内从数百GB的硬盘中精确搜索到需要的内容，支持高级搜索、正则表达式、网络搜索、离线搜索等等。 2. 文件压缩解压工具： 7-zip 还在用破解版的WinRar? 赶快换成高速的7-zip。
+7z 是一种全新的压缩格式，它拥有极高的压缩比。通常使用 7-Zip 的 7z 格式能比使用 zip 格式的压缩档案小 30-70%。并且使用 7-Zip 创建的 zip 格式比大多数其它压缩软件创建的都小 2-10%。 3. 文本编辑工具：Notepad++ window中的记事本有一个天生的设计缺陷，有些软件无法读取被你通过记事本修改过的文件。
+杜绝窘迫，请使用Notepad++替代记事本。Notepad++是多次获得SourceForge社区最佳开发工具奖，开源软件，知名度极高，来自宝岛台湾。 !(Notepad++)(https://static.yushuangqi.com/blog/2017/28955498546793.png)
+4. 远程工具：TeamViewer 想在家远程操控办公室电脑？想iPad远程操控电脑？想IT远程技术支持？
+也许你有使过QQ的远程功能，但TeamViewer才是专业的TeamViewer是专业、功能强大，使用简单，对个人用户免费的一个多功能软件，核心功能是执行远程操控和传送文件。可以不注册，但是注册成个人账户后，可方便免密远程操控。 5. 电子书阅读器： Sumatra PDF 想阅读pdf、eBook(ePub,Mobi)、CHM帮助文档 ？
+Sumatra 是一款开源免费的 电子书阅读器, 小巧、迅速是其最大的特点。
+Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开和阅读pdf才是办公刚需。即使你在使用福昕阅读器，也赶快再安装Sumatra。深有体会的是福昕从一个简单好用的优秀国产软件变成了一个臃肿的软件。 结束语 给电脑小白的你，精挑细选五个可以提升效率的免费软件。提供办公效率从用好的软件开始，一步实际行动比一打纲领更重要。赶紧在公众号下直接回复“工具”两字，获取下载地址吧！
+分享是一种生活的信念，明白了分享的同时，明白了存在的意义。如果本文有给你带来价值，请分享给你的朋友吧！</description>
+    </item>
     
     <item>
       <title>终于找到我要的读书方法了</title>
@@ -295,28 +317,6 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
  Linux、OSX: ./gocron web
   浏览器访问 http://localhost:5920
   源码安装  go语言版本1.</description>
-    </item>
-    
-    <item>
-      <title>golang使用protobuf</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</guid>
-      <description>为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用
-跟Json相比protobuf性能更高，更加规范
- 编解码速度快，数据体积小
- 使用统一的规范，不用再担心大小写不同导致解析失败等蛋疼的问题了
-  但也失去了一些便利性
- 改动协议字段，需要重新生成文件。
- 数据没有可读性
-  安装 在go中使用protobuf，有两个可选用的包goprotobuf（go官方出品）和gogoprotobuf。
-gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码性能均比goprotobuf高一些
-安装protoc 首先去https://github.com/google/pro&amp;hellip; 上下载protobuf的编译器protoc，windows上可以直接下到exe文件(linux则需要编译)，最后将下载好的可执行文件拷贝到\$GOPATH的bin目录下(\$GOPATH/bin目录最好添加到系统环境变量里)
-安装protobuf库文件 go get github.com/golang/protobuf/proto  goprotobuf 安装插件 go get github.com/golang/protobuf/protoc-gen-go  生成go文件 protoc --go_out=. *.proto  gogoprotobuf 安装插件 gogoprotobuf有两个插件可以使用
- protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)
- protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)
-  //gogo go get github.com/gogo/protobuf/protoc-gen-gogo //gofast go get github.com/gogo/protobuf/protoc-gen-gofast  安装gogoprotobuf库文件 go get github.com/gogo/protobuf/proto go get github.com/gogo/protobuf/gogoproto //这个不装也没关系  生成go文件 //gogo protoc --gogo_out=.</description>
     </item>
     
   </channel>
