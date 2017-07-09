@@ -8,8 +8,28 @@
     <language>zh</language>
     <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
     <webMaster>devysq@gmail.com (虞双齐)</webMaster>
-    <lastBuildDate>Sun, 02 Jul 2017 21:01:02 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jul 2017 22:32:00 +0000</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何提高邮件件打开率和回复率</title>
+      <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</link>
+      <pubDate>Sun, 09 Jul 2017 22:32:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</guid>
+      <description>现在虽有即时通讯软件，但邮件依旧是日常办公必备的沟通方式。那么如何写出牛哄哄的、得体的、打开率高、回复即时的邮件呢？ 小编我虞双齐结合实际工作，总结出四个字：礼貌、清晰 。
+ 凡人之所以贵于禽兽者，以有礼也。 ——《晏子春秋》
+ 写好开场白 谁会讨厌礼貌地人儿？礼多人不怪，礼貌性的称呼是邮件不可或缺的内容。
+在适合的场景下，使用合适的开场白，能让收件人舒心的开始阅读邮件。而不会感觉别扭或被冒犯。
+   关系 举例 说明     平级同事 双齐，你好 尽量不要带姓，直接称呼名。
+如果写成“虞双齐，你好”便显得有距离感，生硬   上级领导 黎总，你好 所有上级都是xx总，谁不爱听呢？ 但不建议使用尊称“您”，显得做作。除非是写给顶级Boss   不了解 黎经理，你好 知道职称时，可以按职称称呼   不了解 黎总，你好 不清楚职称时   不了解 黎老师，你好 国企总爱称呼为老师    当然也有许多人并不关心你如何称呼他， 但我们得保持礼貌。
+语气友好 根据收件人同自己的熟络程度、等级关系，以及内容性质等，选择恰当的语气进行论述，以免引起对方不适。
+同时对别人的意见做出谨慎而客观的评论，谨记邮件可轻易转发，防止陷入“邮件门”。
+ 理性论述，少感性激动 少用感叹号，也许会互掐 少用语气词 “啊”，“咦”等 改“要求语气”为“请求语气” 慎用表情符，使用不当被曲解  写好落款 什么样的落款最好？因人而异，实际没有人关注你结尾的问候语，但你可以在结尾给收件人留下联系方式。
+当收件人想同你电话沟通时，立马可拨号给你。而不至于还得翻看通讯录，白白浪费时间，也许会取消给你电话的冲动。
+主题明了 主题应简短并能含有关键信息。 如下： 前后对比，孰优孰劣，一看便知。
+特别是给Boss发邮件，即使他们不看邮件内容，也能知晓大概。</description>
+    </item>
     
     <item>
       <title>简述电子邮件发展历史</title>
@@ -298,27 +318,6 @@ func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n
 地址和mac地址，看了下golang的文档，发现net.InterfaceByName可以完成这个目标。
 实现  //以太网网卡名称为eth0 inter, err := net.InterfaceByName(&amp;quot;eth0&amp;quot;) if err != nil { log.Fatalln(err) } //mac地址 fmt.Println(inter.HardwareAddr.String()) addrs, err := inter.Addrs() if err != nil { log.Fatalln(err) } //ip地址一个ip4一个ip6 for _, addr := range addrs { fmt.Println(addr.String()) }  运行结果：
 后记 当然，树莓派3代自带无线网卡，名字换为wlan0就可以获取无线网卡ip。</description>
-    </item>
-    
-    <item>
-      <title>Go语言暴力入门2-工欲善其事</title>
-      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
-      <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
-个人网站：http://www.linganmin.cn
-最近刚写了一个手机在线播放的H5电影站：http://www.ifilm.ltd
- 关于Gogland  Gogland 是JetBrains专门为Go语言开发的商业化IDE的代号，旨在为Go开发提供符合人体工程学的环境。新的IDE通过针对Go语言的编码协助和工具集成扩展了IntelliJ平台的诸多功能
- 目前Gogland还在开发中，已经发布了几版预发行版本，因为是预览版本所以，目前Gogland还是免费的哦
-为什么是Gogland 因为笔者本身是做PHP开发的，（请抛开语言之争，PHP很优秀，Go语言也是，任何一门语言存在即合理，合理是因为他们都有自己所擅长的领域，哈哈跑题了），在做PHP开发时一直使用的就是JetBrains他们家的PHPStorm，后来写前端，写JS，写Vue的时候又试了他们家的专注前端的IDEWebstorm,也很喜欢。当前，不可否认，sublime和VS code之类是很优秀的编辑器，而且有丰富的第三方扩展，但是在编写稍微复杂的项目的时候可能就不是那么得心应手了，或者也许是笔者自己有对他们有偏见吧，个人喜好勿喷，哈哈。
-鉴于此，在看了Go语言的第二天就去JetBrains官网看了看有没有专门为Go语言发布的IDE，刚好看到了还在预览版的Gogland
-Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功能，下面就开始安装吧
-安装Gogland并安装Material风格主题 Gogland的介绍及下载页面：https://www.jetbrains.com/go/&amp;hellip;
-笔者使用的是Windows OS下载的是对应的.exe文件，下载完成双击一路安装下去
-安装之后打开编辑器你有木有发现，默认的主题其实是不那么好看，笔者深深迷恋material主题风格，在用的所有编辑器都换成了该主题风格，包括Sublime和VS code,所以怎么会放过Gogland
- 将默认主题设置为Darcula  点击左上角的File选项，找到Settings点击，然后找到如下图的选项卡，在右边选项框内选择你喜欢的主题，个人推荐Darcula，然后点击ok,这个主题是IDE导航及选项的主题
- 安装material主题  依然是点击上面说到的那个Settings选项，然后Plugins选项点击后如下图，然后在右边输入框搜索material,在你没安装过该主题的时候会在中间出现一句提示`点击提示右边的在线搜索，然后弹出搜索结果，找到Material theme UI `install，安装完成重启一下IDE就可以看到漂亮的IDE界面了</description>
     </item>
     
   </channel>
