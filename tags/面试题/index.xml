@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>极客虞双齐</title>
+    <link>https://yushuangqi.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98.xml</link>
+    <description>在 极客虞双齐上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
+    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <atom:link href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go面试题答案与解析</title>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
+      <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
+      <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
+1、写出下面代码输出内容。 package main import ( &amp;quot;fmt&amp;quot; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;quot;打印前&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印中&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印后&amp;quot;) }() panic(&amp;quot;触发异常&amp;quot;) }  在线运行
+答： 输出内容为：
+打印后 打印中 打印前 panic: 触发异常  解析：
+考察对defer的理解，defer函数属延迟执行，延迟到调用者函数执行 return 命令前被执行。多个defer之间按LIFO先进后出顺序执行。
+故考题中，在Panic触发时结束函数运行，在return前先依次打印:打印后、打印中、打印前 。最后由runtime运行时抛出打印panic异常信息。
+需要注意的是，函数的return value 不是原子操作.而是在编译器中分解为两部分：返回值赋值 和 return 。而defer刚好被插入到末尾的return前执行。故可以在derfer函数中修改返回值。如下示例：
+package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(doubleScore(0)) //0 fmt.Println(doubleScore(20.0)) //40 fmt.Println(doubleScore(50.0)) //50 } func doubleScore(source float32) (score float32) { defer func() { if score &amp;lt; 1 || score &amp;gt;= 100 { //将影响返回值 score = source } }() score = source * 2 return //或者 //return source * 2 }  在线运行</description>
+    </item>
+    
+  </channel>
+</rss>

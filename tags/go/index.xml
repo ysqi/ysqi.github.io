@@ -11,6 +11,22 @@
     <atom:link href="/tags/go.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go面试题答案与解析</title>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
+      <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
+      <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
+1、写出下面代码输出内容。 package main import ( &amp;quot;fmt&amp;quot; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;quot;打印前&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印中&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印后&amp;quot;) }() panic(&amp;quot;触发异常&amp;quot;) }  在线运行
+答： 输出内容为：
+打印后 打印中 打印前 panic: 触发异常  解析：
+考察对defer的理解，defer函数属延迟执行，延迟到调用者函数执行 return 命令前被执行。多个defer之间按LIFO先进后出顺序执行。
+故考题中，在Panic触发时结束函数运行，在return前先依次打印:打印后、打印中、打印前 。最后由runtime运行时抛出打印panic异常信息。
+需要注意的是，函数的return value 不是原子操作.而是在编译器中分解为两部分：返回值赋值 和 return 。而defer刚好被插入到末尾的return前执行。故可以在derfer函数中修改返回值。如下示例：
+package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(doubleScore(0)) //0 fmt.Println(doubleScore(20.0)) //40 fmt.Println(doubleScore(50.0)) //50 } func doubleScore(source float32) (score float32) { defer func() { if score &amp;lt; 1 || score &amp;gt;= 100 { //将影响返回值 score = source } }() score = source * 2 return //或者 //return source * 2 }  在线运行</description>
+    </item>
+    
+    <item>
       <title>如何判断是否是在GolangTest运行代码</title>
       <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
       <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
@@ -203,26 +219,6 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
  初始化  var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
  查看示例代码
  str :=&amp;quot;laoYu老虞&amp;quot; for i:=0;i&amp;lt;len(str);i++ { fmt.Println(str[i]) } for i,s := range str { fmt.Println(i,&amp;quot;Unicode(&amp;quot;,s,&amp;quot;) string=&amp;quot;,string(s)) } r := []rune(str) fmt.Println(&amp;quot;rune=&amp;quot;,r) for i:=0;i&amp;lt;len(r) ; i++ { fmt.Println(&amp;quot;r[&amp;quot;,i,&amp;quot;]=&amp;quot;,r[i],&amp;quot;string=&amp;quot;,string(r[i])) } Outut： 108 97 111 89 117 232 128 129 232 153 158 0 Unicode( 108 ) string= l 1 Unicode( 97 ) string= a 2 Unicode( 111 ) string= o 3 Unicode( 89 ) string= Y 4 Unicode( 117 ) string= u 5 Unicode( 32769 ) string= 老 8 Unicode( 34398 ) string= 虞 rune= [108 97 111 89 117 32769 34398] r[ 0 ]= 108 string= l r[ 1 ]= 97 string= a r[ 2 ]= 111 string= o r[ 3 ]= 89 string= Y r[ 4 ]= 117 string= u r[ 5 ]= 32769 string= 老 r[ 6 ]= 34398 string= 虞  对字符串的操作非常重要，来了解下strings包中提供了哪些函数 获取总字节数 func Len(v type) int</description>
-    </item>
-    
-    <item>
-      <title>老虞学Golang-常量</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</link>
-      <pubDate>Fri, 05 Apr 2013 23:31:47 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</guid>
-      <description>###常量
-常量和C#中的概念相同，在编译期被创建。因为在编译期必须确定其值，因此在声明常量时有一些限制。
- 其类型必须是：数值、字符串、布尔值 表达式必须是在编译期可计算的 声明常量的同时必须进行初始化，其值不可再次修改  ####Doc
-http://golang.org/doc/go_spec.html#Constants http://golang.org/doc/go_spec.html#Constant_expressions http://golang.org/doc/go_spec.html#Constant_declarations http://golang.org//doc/go_spec.html#Iota
-####语法
-const关键字用于声明常量const [(] 名称 [数据类型] = 表达式 [)] const ( 多个常量名称 [数据类型]= 对应的多个表达式 )
-如果定义多行常量而表达式一致时可省略其他行的表达式
-声明时如果不指定数据类型，则该常量为无类型常量
-const Pi = 3.14159265358 //float64 Pi=3.1415  编译错误: cannot assign to Pi, 变量名Pi已经被使用这里是无法再次给Pi赋值的
-const a, b, c = 1, false, &amp;quot;str&amp;quot; //多重赋值  一次可以声明多个常量，且同时赋值，其类型可以不一致
-const d = 1 &amp;lt;&amp;lt; 2 //需计算的表达式  复制可以是一个可以在编译期计算出结果的表达式
-const ( //批量声明 Monday, Tuesday, Wednesday = 1, 2, 3 Thursday, Friday, Saturday = 4, 5, 6 )  批量声明多个常量</description>
     </item>
     
   </channel>
