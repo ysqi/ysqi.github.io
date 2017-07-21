@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}"  id="doc" class="no-js">
-<head> 
+<head>
 {{ $isHomepage := (eq  .Site.Title  .Title ) }}  <!-- 通过标题简单判断是否是首页 -->
 <title>{{if $isHomepage }}{{ .Title }}{{else}} {{.Title}} |{{ .Site.Title }}{{ end }}</title> 
 {{ if .Description }}
@@ -20,12 +20,12 @@
 <meta name="HandheldFriendly" content="true"/>
 <!-- <link rel="icon" type="image/png" href="assets/i/favicon.png"> -->
 <meta name="mobile-web-app-capable" content="yes"> <!-- Add to homescreen for Chrome on Android -->
- <link rel="icon" sizes="192x192" href="/img/app-icon64x64@2x.png">
+ <link rel="icon" sizes="32x32" href="/img/favicon.ico">
 <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Add to homescreen for Safari on iOS -->
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Ysqi"/>
-<link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64@2x.png"> 
-<meta name="msapplication-TileImage" content="/img/app-icon64x64@2x.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="apple-mobile-web-app-title" content="虞双齐"/>
+<link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"> 
+<meta name="msapplication-TileImage" content="/img/app-icon128x128.png"> <!-- Tile icon for Win8 (144x144 + tile color) -->
 <meta name="msapplication-TileColor" content="#0e90d2">
 
 <meta property="og:site_name" content="{{ .Site.Title }}"/> 
