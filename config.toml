@@ -8,12 +8,13 @@ uglyURLs = true
 metaDataFormat = "YAML"
 disqusShortname = "yushuangqi" 
 publishdir = "public"
-EnableDiscuss = false
+
 
 [params]
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
   description= "Go语言,Golang开发,SRE运维实践,全栈开发-虞双齐的个人博客"
+  enableDiscuss = true
 
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
@@ -38,3 +39,4 @@ EnableDiscuss = false
 	blog = "/blog/:year/:slug.html"
 	top = "/:slug.html"
   resource = "/resource/:title.html"  
+ 
