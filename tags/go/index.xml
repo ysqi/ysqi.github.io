@@ -11,6 +11,19 @@
     <atom:link href="/tags/go.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go读取通达信历史日线数据</title>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
+准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
+下载后数据按股票市场分别存放：
+ 上海交易所：{通达信安装目录}\vipdoc\sh\lday\*.day 深圳交易所：{通达信安装目录}\vipdoc\sz\lday\*.day  通达信历史日线数据文件格式 每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：
+   数据含义 数据类型 数据长度 举例 单位     日期 Integer 4 20170703    开盘价 Integer 4 2476 当前值/100,元   最高价 Integer 4 2520 当前值 /100,元   最低价 Integer 4 2436 当前值 / 100,元   收盘价 Integer 4 2457 当前值 / 100,元   成交金额 single 4 1317335898 元   成交量 Integer 4 45293799 股   保留 Integer 4      注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。</description>
+    </item>
+    
+    <item>
       <title>Go面试题答案与解析</title>
       <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
@@ -207,18 +220,6 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
 为特定类型定义函数，即为类型对象定义方法 在Go中通过给函数标明所属类型，来给该类型定义方法，上面的 p myType 即表示给myType声明了一个方法， p myType 不是必须的。如果没有，则纯粹是一个函数，通过包名称访问。packageName.funcationName
 如：
 	//定义新的类型double，主要目的是给float64类型扩充方法 type double float64 //判断a是否等于b func (a double) IsEqual(b double) bool { var r = a - b if r == 0.</description>
-    </item>
-    
-    <item>
-      <title>老虞学golang-字符串</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</link>
-      <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
-      <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
- 初始化  var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
- 查看示例代码
- str :=&amp;quot;laoYu老虞&amp;quot; for i:=0;i&amp;lt;len(str);i++ { fmt.Println(str[i]) } for i,s := range str { fmt.Println(i,&amp;quot;Unicode(&amp;quot;,s,&amp;quot;) string=&amp;quot;,string(s)) } r := []rune(str) fmt.Println(&amp;quot;rune=&amp;quot;,r) for i:=0;i&amp;lt;len(r) ; i++ { fmt.Println(&amp;quot;r[&amp;quot;,i,&amp;quot;]=&amp;quot;,r[i],&amp;quot;string=&amp;quot;,string(r[i])) } Outut： 108 97 111 89 117 232 128 129 232 153 158 0 Unicode( 108 ) string= l 1 Unicode( 97 ) string= a 2 Unicode( 111 ) string= o 3 Unicode( 89 ) string= Y 4 Unicode( 117 ) string= u 5 Unicode( 32769 ) string= 老 8 Unicode( 34398 ) string= 虞 rune= [108 97 111 89 117 32769 34398] r[ 0 ]= 108 string= l r[ 1 ]= 97 string= a r[ 2 ]= 111 string= o r[ 3 ]= 89 string= Y r[ 4 ]= 117 string= u r[ 5 ]= 32769 string= 老 r[ 6 ]= 34398 string= 虞  对字符串的操作非常重要，来了解下strings包中提供了哪些函数 获取总字节数 func Len(v type) int</description>
     </item>
     
   </channel>

@@ -11,6 +11,19 @@
     <atom:link href="/topics/%E9%87%91%E8%9E%8D.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go读取通达信历史日线数据</title>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
+准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
+下载后数据按股票市场分别存放：
+ 上海交易所：{通达信安装目录}\vipdoc\sh\lday\*.day 深圳交易所：{通达信安装目录}\vipdoc\sz\lday\*.day  通达信历史日线数据文件格式 每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：
+   数据含义 数据类型 数据长度 举例 单位     日期 Integer 4 20170703    开盘价 Integer 4 2476 当前值/100,元   最高价 Integer 4 2520 当前值 /100,元   最低价 Integer 4 2436 当前值 / 100,元   收盘价 Integer 4 2457 当前值 / 100,元   成交金额 single 4 1317335898 元   成交量 Integer 4 45293799 股   保留 Integer 4      注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。</description>
+    </item>
+    
+    <item>
       <title>MQL5能运用在A股中吗</title>
       <link>https://yushuangqi.com/blog/2015/mql5-can-use-in-shanghai-a.html</link>
       <pubDate>Mon, 14 Sep 2015 08:18:14 +0000</pubDate>

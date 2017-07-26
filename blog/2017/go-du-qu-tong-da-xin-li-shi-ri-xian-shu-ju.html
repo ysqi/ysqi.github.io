@@ -1,0 +1,270 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go读取通达信历史日线数据 |极客虞双齐</title><meta name="description" content="使用Go从通达信读取A股历史行情信息"><meta name="keywords" content="Go, 通达信, 行情, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.17"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="极客虞双齐"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html"><meta property="og:title" content="Go读取通达信历史日线数据"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-07-26 10:32:00"><meta property="article:modified_time" content="2017-07-26 10:32:00"><meta property="article:tag" content="Go"><meta property="article:tag" content="通达信"><meta property="article:tag" content="行情"><meta name="og:description" content="使用Go从通达信读取A股历史行情信息"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20170207"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html">Go读取通达信历史日线数据</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2017-07-26">2017年07月26日</time></span></p></header><div itemprop="articleBody"><p>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。</p><h3 id="准备工作">准备工作</h3><ol><li>下载安装通达信,<a href="http://www.tdx.com.cn/index.html" title="通达信官网下载地址">通达信官网</a></li><li>下载历史行情数据</li></ol><p>下载操作路径：系统-&gt;盘后数据下载</p><p><img src="https://static.yushuangqi.com/blog/2017/201772601.png" alt="通达信下载盘后数据"></p><p>下载后数据按股票市场分别存放：</p><ul><li>上海交易所：<code>{通达信安装目录}\vipdoc\sh\lday\*.day</code></li><li>深圳交易所：<code>{通达信安装目录}\vipdoc\sz\lday\*.day</code></li></ul><h3 id="通达信历史日线数据文件格式">通达信历史日线数据文件格式</h3><p>每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：</p><table><thead><tr><th>数据含义</th><th>数据类型</th><th>数据长度</th><th>举例</th><th>单位</th></tr></thead><tbody><tr><td>日期</td><td>Integer</td><td>4</td><td>20170703</td><td></td></tr><tr><td>开盘价</td><td>Integer</td><td>4</td><td>2476</td><td>当前值/100,元</td></tr><tr><td>最高价</td><td>Integer</td><td>4</td><td>2520</td><td>当前值 /100,元</td></tr><tr><td>最低价</td><td>Integer</td><td>4</td><td>2436</td><td>当前值 / 100,元</td></tr><tr><td>收盘价</td><td>Integer</td><td>4</td><td>2457</td><td>当前值 / 100,元</td></tr><tr><td>成交金额</td><td>single</td><td>4</td><td>1317335898</td><td>元</td></tr><tr><td>成交量</td><td>Integer</td><td>4</td><td>45293799</td><td>股</td></tr><tr><td>保留</td><td>Integer</td><td>4</td><td></td><td></td></tr></tbody></table><p>注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。</p><h3 id="go读取日线数据文件">Go读取日线数据文件</h3><p>文件每32字节存储一天数据，在Go中只需读取指定长度的字节，再转换为int即可。</p><p>第一步：读取文件 以万科股票为例，打开该day文件，获得 reader。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>f, err <span style="color:#666">:=</span> os.Open(<span style="color:#4070a0">`D:\new_tdx\vipdoc\sz\lday\sz000002.day`</span>)
+<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	log.Fatal(err)
+}
+<span style="color:#007020;font-weight:700">defer</span> f.Close()
+</pre></div><p>第二步：获取32字节数据</p><p>从文件流中填充32个字节的数据到oneDay中，如果无错误则可以按照数据格式读取单独一天的日行情数据。</p><p>注意取价格时需再除以100，已显示正确的金额。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>oneDay <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">byte</span>, <span style="color:#40a070">32</span>)
+_, err = f.Read(oneDay)
+<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	log.Fatal(err)
+}
+fmt.Println(<span style="color:#4070a0">&quot;日期:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">0</span>:<span style="color:#40a070">4</span>]))
+fmt.Println(<span style="color:#4070a0">&quot;开盘价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">4</span>:<span style="color:#40a070">8</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;最高价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">8</span>:<span style="color:#40a070">12</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;最低价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">12</span>:<span style="color:#40a070">16</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;收盘价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">16</span>:<span style="color:#40a070">20</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;成交金额(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">20</span>:<span style="color:#40a070">24</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;成交量:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">24</span>:<span style="color:#40a070">28</span>]))
+fmt.Println(<span style="color:#4070a0">&quot;Other:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">28</span>:<span style="color:#40a070">32</span>]))
+
+<span style="color:#60a0b0;font-style:italic">//output:</span>
+<span style="color:#60a0b0;font-style:italic">/*</span>
+<span style="color:#60a0b0;font-style:italic">日期:    20170703</span>
+<span style="color:#60a0b0;font-style:italic">开盘价(元):      24.76</span>
+<span style="color:#60a0b0;font-style:italic">最高价(元):      25.2</span>
+<span style="color:#60a0b0;font-style:italic">最低价(元):      24.36</span>
+<span style="color:#60a0b0;font-style:italic">收盘价(元):      24.57</span>
+<span style="color:#60a0b0;font-style:italic">成交金额(元):    1.317335898e+07</span>
+<span style="color:#60a0b0;font-style:italic">成交量:  45293799</span>
+<span style="color:#60a0b0;font-style:italic">Other:   65536</span>
+<span style="color:#60a0b0;font-style:italic">*/</span>
+</pre></div><p>第三步：遍历获取所有日线数据</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>oneDay <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">byte</span>, <span style="color:#40a070">32</span>)
+<span style="color:#007020;font-weight:700">for</span> {
+	l, err <span style="color:#666">:=</span> f.Read(oneDay)
+	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">==</span> io.EOF {
+		<span style="color:#007020;font-weight:700">break</span>
+	} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+		log.Fatal(err)
+	} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> l <span style="color:#666">!=</span> <span style="color:#40a070">32</span> {
+		log.Fatal(<span style="color:#4070a0">&quot;数据不完整，终止&quot;</span>)
+	}
+    <span style="color:#60a0b0;font-style:italic">//Date</span>
+	fmt.Printf(<span style="color:#4070a0">&quot;%d,&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">0</span>:<span style="color:#40a070">4</span>]))
+	<span style="color:#60a0b0;font-style:italic">//other</span>
+}
+</pre></div><p>历史数据可在其他网站上查看，下图来自搜狐数据</p><p><img src="https://static.yushuangqi.com/blog/2017/20170726115452.png" alt="通达信下载盘后数据"></p><p>完整代码：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;bytes&quot;</span>
+	<span style="color:#4070a0">&quot;encoding/binary&quot;</span>
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;io&quot;</span>
+	<span style="color:#4070a0">&quot;log&quot;</span>
+	<span style="color:#4070a0">&quot;os&quot;</span> 
+)
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+	f, err <span style="color:#666">:=</span> os.Open(<span style="color:#4070a0">`D:\new_tdx\vipdoc\sz\lday\sz000002.day`</span>)
+	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+		log.Fatal(err)
+	}
+	<span style="color:#007020;font-weight:700">defer</span> f.Close()
+
+	oneDay <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">byte</span>, <span style="color:#40a070">32</span>)
+	fmt.Println(<span style="color:#4070a0">&quot;日期\t\t开盘价(元)\t最高价(元)\t最低价(元)\t收盘价(元)\t成交金额(元)\t成交量\tOther&quot;</span>)
+	<span style="color:#007020;font-weight:700">for</span> {
+		l, err <span style="color:#666">:=</span> f.Read(oneDay)
+		<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">==</span> io.EOF {
+			<span style="color:#007020;font-weight:700">break</span>
+		} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+			log.Fatal(err)
+		} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> l <span style="color:#666">!=</span> <span style="color:#40a070">32</span> {
+			log.Fatal(<span style="color:#4070a0">&quot;数据不完整，终止&quot;</span>)
+		}
+		fmt.Printf(<span style="color:#4070a0">&quot;%d\t%f\t%f\t%f\t%f\t%f\t%d\t%d\t\n&quot;</span>,
+			binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">0</span>:<span style="color:#40a070">4</span>]),
+			(<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">4</span>:<span style="color:#40a070">8</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>,
+			(<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">8</span>:<span style="color:#40a070">12</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>,
+			(<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">12</span>:<span style="color:#40a070">16</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>,
+			(<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">16</span>:<span style="color:#40a070">20</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>,
+			(<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">20</span>:<span style="color:#40a070">24</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>,
+			binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">24</span>:<span style="color:#40a070">28</span>]),
+			binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">28</span>:<span style="color:#40a070">32</span>]),
+		)
+	}
+}
+</pre></div><h3 id="进价">进价</h3><p>有没有更好的办法来进行数据转换？如下格式处理，过于麻烦，幸好该格式数据不多。但容易弄错，或者调整麻烦。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span>fmt.Println(<span style="color:#4070a0">&quot;日期:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">0</span>:<span style="color:#40a070">4</span>]))
+fmt.Println(<span style="color:#4070a0">&quot;开盘价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">4</span>:<span style="color:#40a070">8</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;最高价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">8</span>:<span style="color:#40a070">12</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;最低价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">12</span>:<span style="color:#40a070">16</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;收盘价(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">16</span>:<span style="color:#40a070">20</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;成交金额(元):\t&quot;</span>, (<span style="color:#902000">float64</span>)(binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">20</span>:<span style="color:#40a070">24</span>]))<span style="color:#666">/</span><span style="color:#40a070">100</span>)
+fmt.Println(<span style="color:#4070a0">&quot;成交量:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">24</span>:<span style="color:#40a070">28</span>]))
+fmt.Println(<span style="color:#4070a0">&quot;Other:\t&quot;</span>, binary.LittleEndian.Uint32(oneDay[<span style="color:#40a070">28</span>:<span style="color:#40a070">32</span>])) <span style="border:1px solid red">`</span>
+</pre></div><p>可以利用Go的<code>encoding/binary</code>包从reader中读取二元数据到指针对象中:</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">// Read reads structured binary data from r into data.</span>
+<span style="color:#60a0b0;font-style:italic">// Data must be a pointer to a fixed-size value or a slice</span>
+<span style="color:#60a0b0;font-style:italic">// of fixed-size values.</span>
+<span style="color:#60a0b0;font-style:italic">// Bytes read from r are decoded using the specified byte order</span>
+<span style="color:#60a0b0;font-style:italic">// and written to successive fields of the data.</span>
+<span style="color:#60a0b0;font-style:italic">// When decoding boolean values, a zero byte is decoded as false, and</span>
+<span style="color:#60a0b0;font-style:italic">// any other non-zero byte is decoded as true.</span>
+<span style="color:#60a0b0;font-style:italic">// When reading into structs, the field data for fields with</span>
+<span style="color:#60a0b0;font-style:italic">// blank (_) field names is skipped; i.e., blank field names</span>
+<span style="color:#60a0b0;font-style:italic">// may be used for padding.</span>
+<span style="color:#60a0b0;font-style:italic">// When reading into a struct, all non-blank fields must be exported.</span>
+<span style="color:#60a0b0;font-style:italic">//</span>
+<span style="color:#60a0b0;font-style:italic">// The error is EOF only if no bytes were read.</span>
+<span style="color:#60a0b0;font-style:italic">// If an EOF happens after reading some but not all the bytes,</span>
+<span style="color:#60a0b0;font-style:italic">// Read returns ErrUnexpectedEOF.</span>
+<span style="color:#007020;font-weight:700">func</span> binary.Read(r io.Reader, order ByteOrder, data <span style="color:#007020;font-weight:700">interface</span>{}) <span style="color:#902000">error</span>{}
+</pre></div><p>这样便可以方便的将byte读取到对象中，下面我们定义data结构：</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">type</span> DayData <span style="color:#007020;font-weight:700">struct</span> {
+	Date                   <span style="color:#902000">int32</span>
+	Open, High, Low, Close <span style="color:#902000">int32</span>
+	Amount, Qty            <span style="color:#902000">int32</span>
+	Other                  <span style="color:#902000">int32</span>
+}
+
+<span style="color:#007020;font-weight:700">var</span> d DataData
+buf <span style="color:#666">:=</span> bytes.NewBuffer(oneDay)
+binary.Read(buf, binary.LittleEndian, <span style="color:#666">&amp;</span>d)
+fmt.Printf(<span style="color:#4070a0">&quot;%v\n&quot;</span>, d)
+</pre></div><p>注意，在binary读取buf到对象时，是依次遍历对象的内存结构赋值的，因为文件中各数据均是4位长度。故在定义字段类型时，选择int32,占4个字节。字段定义顺序便是内存结构顺序，同文件数据定义顺序保持一致。</p><p>但因为数据中均存放的是int32，而收盘价等需要进行转换，故对外时提供另一个结构体，已方便正常访问各数据。 在解析时，进行一次解析即可。</p><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#60a0b0;font-style:italic">//DayQuotaion 日线行情</span>
+<span style="color:#007020;font-weight:700">type</span> DayQuotaion <span style="color:#007020;font-weight:700">struct</span> {
+	Marker    <span style="color:#902000">string</span>  <span style="color:#60a0b0;font-style:italic">//股票市场</span>
+	StockCode <span style="color:#902000">string</span>  <span style="color:#60a0b0;font-style:italic">//股票代码</span>
+	Date      <span style="color:#902000">int</span>     <span style="color:#60a0b0;font-style:italic">//日期</span>
+	Open      <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//开盘价</span>
+	High      <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//最高价</span>
+	Low       <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//最低价</span>
+	Close     <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//收盘价</span>
+	Amount    <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//总成交金额</span>
+	Qty       <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//  总成交量</span>
+} 
+</pre></div><h3 id="完整代码">完整代码</h3><div class="highlight" style="background:#f0f0f0"><pre style="line-height:125%"><span></span><span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&quot;bytes&quot;</span>
+	<span style="color:#4070a0">&quot;encoding/binary&quot;</span>
+	<span style="color:#4070a0">&quot;errors&quot;</span>
+	<span style="color:#4070a0">&quot;fmt&quot;</span>
+	<span style="color:#4070a0">&quot;io&quot;</span>
+	<span style="color:#4070a0">&quot;log&quot;</span>
+	<span style="color:#4070a0">&quot;os&quot;</span>
+	<span style="color:#4070a0">&quot;path/filepath&quot;</span>
+	<span style="color:#4070a0">&quot;strings&quot;</span>
+)
+
+<span style="color:#007020;font-weight:700">const</span> historyDailyQuotationPath = <span style="color:#4070a0">`D:\new_tdx\vipdoc`</span>
+
+<span style="color:#007020;font-weight:700">type</span> dayData <span style="color:#007020;font-weight:700">struct</span> {
+	Date                   <span style="color:#902000">int32</span>
+	Open, High, Low, Close <span style="color:#902000">int32</span>
+	Amount, Qty            <span style="color:#902000">int32</span>
+	Other                  <span style="color:#902000">int32</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// To 转换为日线行情数据</span>
+<span style="color:#007020;font-weight:700">func</span> (d <span style="color:#666">*</span>dayData) To() <span style="color:#666">*</span>DayQuotation {
+	<span style="color:#007020;font-weight:700">return</span> <span style="color:#666">&amp;</span>DayQuotation{
+		Date:   d.Date,
+		Open:   <span style="color:#007020">float32</span>(d.Open) <span style="color:#666">/</span> <span style="color:#40a070">100</span>,
+		High:   <span style="color:#007020">float32</span>(d.High) <span style="color:#666">/</span> <span style="color:#40a070">100</span>,
+		Low:    <span style="color:#007020">float32</span>(d.Low) <span style="color:#666">/</span> <span style="color:#40a070">100</span>,
+		Close:  <span style="color:#007020">float32</span>(d.Close) <span style="color:#666">/</span> <span style="color:#40a070">100</span>,
+		Amount: <span style="color:#007020">float32</span>(d.Amount),
+		Qty:    d.Qty,
+	}
+}
+
+<span style="color:#60a0b0;font-style:italic">// DayQuotation 日线行情</span>
+<span style="color:#007020;font-weight:700">type</span> DayQuotation <span style="color:#007020;font-weight:700">struct</span> {
+	Date   <span style="color:#902000">int32</span>   <span style="color:#60a0b0;font-style:italic">//日期</span>
+	Open   <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//开盘价</span>
+	High   <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//最高价</span>
+	Low    <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//最低价</span>
+	Close  <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//收盘价</span>
+	Amount <span style="color:#902000">float32</span> <span style="color:#60a0b0;font-style:italic">//总成交金额</span>
+	Qty    <span style="color:#902000">int32</span>   <span style="color:#60a0b0;font-style:italic">//  总成交量</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">//GetStockQuoation 获取股票历史行情</span>
+<span style="color:#007020;font-weight:700">func</span> GetStockQuoation(marker, stockCode <span style="color:#902000">string</span>) ([]<span style="color:#666">*</span>DayQuotation, <span style="color:#902000">error</span>) {
+	marker = strings.ToLower(strings.TrimSpace(marker))
+	stockCode = strings.ToLower(strings.TrimSpace(stockCode))
+	<span style="color:#007020;font-weight:700">if</span> marker <span style="color:#666">==</span> <span style="color:#4070a0">&quot;&quot;</span> <span style="color:#666">||</span> stockCode <span style="color:#666">==</span> <span style="color:#4070a0">&quot;&quot;</span> {
+		<span style="color:#007020;font-weight:700">return</span> <span style="color:#007020;font-weight:700">nil</span>, errors.New(<span style="color:#4070a0">&quot;marker和stockCode不能为空&quot;</span>)
+	}
+	<span style="color:#60a0b0;font-style:italic">//文件路径，e.g. D:\new_tdx\vipdoc\sz\lday\sz000002.day</span>
+	name <span style="color:#666">:=</span> filepath.Join(historyDailyQuotationPath, marker, <span style="color:#4070a0">&quot;lday&quot;</span>, fmt.Sprintf(<span style="color:#4070a0">&quot;%s%s.day&quot;</span>, marker, stockCode))
+	f, err <span style="color:#666">:=</span> os.Open(name)
+	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+		<span style="color:#007020;font-weight:700">return</span> <span style="color:#007020;font-weight:700">nil</span>, err
+	}
+	<span style="color:#007020;font-weight:700">defer</span> f.Close()
+
+	quos <span style="color:#666">:=</span> []<span style="color:#666">*</span>DayQuotation{}
+	oneDay <span style="color:#666">:=</span> <span style="color:#007020">make</span>([]<span style="color:#902000">byte</span>, <span style="color:#40a070">32</span>)
+	data <span style="color:#666">:=</span> <span style="color:#666">&amp;</span>dayData{}
+	<span style="color:#007020;font-weight:700">for</span> {
+		l, err <span style="color:#666">:=</span> f.Read(oneDay)
+		<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">==</span> io.EOF {
+			<span style="color:#007020;font-weight:700">break</span>
+		} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+			<span style="color:#007020;font-weight:700">return</span> quos, err
+		} <span style="color:#007020;font-weight:700">else</span> <span style="color:#007020;font-weight:700">if</span> l <span style="color:#666">!=</span> <span style="color:#40a070">32</span> {
+			<span style="color:#007020;font-weight:700">return</span> quos, errors.New(<span style="color:#4070a0">&quot;数据不完整&quot;</span>)
+		}
+		buf <span style="color:#666">:=</span> bytes.NewBuffer(oneDay)
+		err = binary.Read(buf, binary.LittleEndian, data)
+		<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+			<span style="color:#007020;font-weight:700">return</span> quos, err
+		}
+		quos = <span style="color:#007020">append</span>(quos, data.To())
+	}
+	<span style="color:#007020;font-weight:700">return</span> quos, <span style="color:#007020;font-weight:700">nil</span>
+}
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+	quos, err <span style="color:#666">:=</span> GetStockQuoation(<span style="color:#4070a0">&quot;sz&quot;</span>, <span style="color:#4070a0">&quot;000002&quot;</span>)
+	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+		log.Fatal(err)
+	}
+	<span style="color:#007020;font-weight:700">for</span> _, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> quos {
+		fmt.Printf(<span style="color:#4070a0">&quot;%v\n&quot;</span>, v)
+	}
+
+}
+</pre></div></div><aside id="meta"><meta itemprop="wordCount" content="726"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> <a href="/topics/%E9%87%91%E8%9E%8D.html" rel="category">金融</a> </span><span id="tags">标签: <a href="/tags/go.html" rel="tag">Go</a> <a href="/tags/%E8%A1%8C%E6%83%85.html" rel="tag">行情</a> <a href="/tags/%E9%80%9A%E8%BE%BE%E4%BF%A1.html" rel="tag">通达信</a></span></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html">希腊八日游游记</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="826b588c613e55cd6348889fe97695b0"></div><div id="cyReward" role="cylabs" data-use="reward" sid="826b588c613e55cd6348889fe97695b0" style="text-align:center"></div><div id="SOHUCS" sid="826b588c613e55cd6348889fe97695b0"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside><div><section id="author"><h4>About author</h4><p><strong>虞双齐</strong>，一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男</p><p>动态分享到微博<a href="http://weibo.com/234665601" rel="nofollow">@虞双齐</a>，代码存放在 <a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="极客虞双齐">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow"><span class="footeractionWeibo">Follow on Weibo</span></a></li><li><a href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-html401.png" alt="Valid XHTMl 4.0"></a></li><li><a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html" rel="nofollow" target="blank"><img src="https://static.yushuangqi.com//assets/valid-css2.png" alt="Valid XHTMl 4.0"></a></li></ul><p>©2015-2016 虞双齐-爱分享的极客。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44627932-2', 'auto');
+  ga('send', 'pageview');</script></body></html>

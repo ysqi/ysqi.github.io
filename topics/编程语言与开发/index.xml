@@ -11,6 +11,19 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Go读取通达信历史日线数据</title>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
+      <author>devysq@gmail.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
+准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
+下载后数据按股票市场分别存放：
+ 上海交易所：{通达信安装目录}\vipdoc\sh\lday\*.day 深圳交易所：{通达信安装目录}\vipdoc\sz\lday\*.day  通达信历史日线数据文件格式 每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：
+   数据含义 数据类型 数据长度 举例 单位     日期 Integer 4 20170703    开盘价 Integer 4 2476 当前值/100,元   最高价 Integer 4 2520 当前值 /100,元   最低价 Integer 4 2436 当前值 / 100,元   收盘价 Integer 4 2457 当前值 / 100,元   成交金额 single 4 1317335898 元   成交量 Integer 4 45293799 股   保留 Integer 4      注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。</description>
+    </item>
+    
+    <item>
       <title>Go面试题答案与解析</title>
       <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
@@ -287,28 +300,6 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
  Linux、OSX: ./gocron web
   浏览器访问 http://localhost:5920
   源码安装  go语言版本1.</description>
-    </item>
-    
-    <item>
-      <title>golang使用protobuf</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</guid>
-      <description>为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用
-跟Json相比protobuf性能更高，更加规范
- 编解码速度快，数据体积小
- 使用统一的规范，不用再担心大小写不同导致解析失败等蛋疼的问题了
-  但也失去了一些便利性
- 改动协议字段，需要重新生成文件。
- 数据没有可读性
-  安装 在go中使用protobuf，有两个可选用的包goprotobuf（go官方出品）和gogoprotobuf。
-gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码性能均比goprotobuf高一些
-安装protoc 首先去https://github.com/google/pro&amp;hellip; 上下载protobuf的编译器protoc，windows上可以直接下到exe文件(linux则需要编译)，最后将下载好的可执行文件拷贝到\$GOPATH的bin目录下(\$GOPATH/bin目录最好添加到系统环境变量里)
-安装protobuf库文件 go get github.com/golang/protobuf/proto  goprotobuf 安装插件 go get github.com/golang/protobuf/protoc-gen-go  生成go文件 protoc --go_out=. *.proto  gogoprotobuf 安装插件 gogoprotobuf有两个插件可以使用
- protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)
- protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)
-  //gogo go get github.com/gogo/protobuf/protoc-gen-gogo //gofast go get github.com/gogo/protobuf/protoc-gen-gofast  安装gogoprotobuf库文件 go get github.com/gogo/protobuf/proto go get github.com/gogo/protobuf/gogoproto //这个不装也没关系  生成go文件 //gogo protoc --gogo_out=.</description>
     </item>
     
   </channel>
