@@ -51,7 +51,7 @@
 {{ else if .IsPage }}<meta name="og:description" content="{{substr (plainify .Summary )  0 50 }}">
 {{else }}<meta name="og:description" content="{{ .Site.Params.description }}"> {{end}}
 
- <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=20170207" />
+ <link rel="stylesheet" type="text/css" href="/css/jiandan.css?v={{ md5 "2017-7-27"}}" />
 
 <script type="text/javascript">
 	var doc = document.getElementById('doc');
