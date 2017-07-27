@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/windows.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/windows.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go语言暴力入门2-工欲善其事</title>
       <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
       <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
 个人网站：http://www.linganmin.cn
@@ -35,7 +35,7 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
       <title>深入体验bashonwindows在windows上搭建原生的linux开发环境酷！</title>
       <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</guid>
       <description>今年微软Build 2016大会最让开发人员兴奋的消息之一，就是在Windows上可以原生运行Linux bash，对开发人员来说，这是一个喜闻乐见的消息。
 1 安装 你必须安装开发者预览版本，才能使用windows的linux subsystem功能。
@@ -55,7 +55,7 @@ webmaster@FEKETERIGO-PC:~$ uname -a Linux FEKETERIGO-PC 3.4.0+ #1 PREEMPT Thu Au
       <title>统计文件夹下文件数量</title>
       <link>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</link>
       <pubDate>Thu, 18 Feb 2016 11:05:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</guid>
       <description>今天同事备份数据到NAS，但感觉备份有问题，因为文件过多，所以决定通过命令的方式统计文件夹下的文件数量，来初步判断备份是否完整。而原文件在Window下，而 NAS 是Liunx操作系统，故需要通过不同的命令来统计文件数量。
 Window 统计文件数量 首先，来统计原文件数量。找了半天，发现dir命令就可以用于统计。

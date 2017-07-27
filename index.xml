@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/index.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 26 Jul 2017 10:32:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
       <title>Go读取通达信历史日线数据</title>
       <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
       <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
 准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
@@ -28,7 +28,7 @@
       <title>希腊八日游游记</title>
       <link>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</link>
       <pubDate>Mon, 24 Jul 2017 07:32:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</guid>
       <description>一、前期准备 1、申根签证 （深圳希腊签证中心可直接送签，地址是福田区福华一路大中华国际交易广场北门西区，上班时间为9：00-15：00）： （1）申根签申请表（网上下载打印好爱你按照模板填写） （2）境外保险单（淘宝、携程等都可以购买，出单后打印出来） （3）机票预定单 （4）酒店预定单（在Booking英文版上订住宿，需要用到信用卡，订好了之后，把确认信息页保存为PDF格式，然后再把订单取消，要找取消订单不收费的酒店。） （5）行程单 （6）银行卡近三个月流水单（银行网点有自助机打印，听说卡里余额要三万以上，我一万也通过了） （7）在职证明 （8）公司或单位营业执照复印件 （9）户口簿复印件 （10）护照原件及复印件 Ps ：酒店预定单和行程单这两个我们嫌麻烦，都是找万能的淘宝搞定的。</description>
     </item>
@@ -37,7 +37,7 @@
       <title>Go面试题答案与解析</title>
       <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
       <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
 1、写出下面代码输出内容。 package main import ( &amp;quot;fmt&amp;quot; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;quot;打印前&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印中&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印后&amp;quot;) }() panic(&amp;quot;触发异常&amp;quot;) }  在线运行
@@ -53,7 +53,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(double
       <title>你误会蟑螂了</title>
       <link>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</link>
       <pubDate>Sat, 15 Jul 2017 09:32:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</guid>
       <description>一说蟑螂，就鸡皮疙瘩一顿爆。其实你误会蟑螂了！
 对蟑螂的普遍看法
@@ -84,7 +84,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(double
       <title>如何提高邮件件打开率和回复率</title>
       <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</link>
       <pubDate>Sun, 09 Jul 2017 22:32:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</guid>
       <description>现在虽有即时通讯软件，但邮件依旧是日常办公必备的沟通方式。那么如何写出牛哄哄的、得体的、打开率高、回复即时的邮件呢？ 小编我虞双齐结合实际工作，总结出四个字：礼貌、清晰 。
  凡人之所以贵于禽兽者，以有礼也。 ——《晏子春秋》
@@ -104,7 +104,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(double
       <title>简述电子邮件发展历史</title>
       <link>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</link>
       <pubDate>Sun, 02 Jul 2017 21:01:02 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</guid>
       <description>平均每天发送10封邮件，日常工作中邮件是重要的沟通方式。虽然现在也有QQ消息，微信等其他即使通讯工具，但思想都源于电子邮件。
 是否有兴趣了解电子邮件的发展历史？这里虞双齐多方收集资料，整理成文，以简述电子邮件发展历史。
@@ -136,7 +136,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { fmt.Println(double
       <title>给电脑小白精挑细选的五个免费软件</title>
       <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
       <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
       <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？
 下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则： + 免费
@@ -158,7 +158,7 @@ Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开�
       <title>终于找到我要的读书方法了</title>
       <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
       <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
       <description>自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。
 曾遭遇的困惑  买过很多不需要的书，在角落里干灰。 我好像读过这本书。 一口气读完一本书，就没有然后了。  现在买书很克制，不读完并吸收掌握就不继续买。先放到购物车或购书清单中，反正电商的图书活动不断，不怕下次没法优惠购。
@@ -181,7 +181,7 @@ Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开�
       <title>gRPC服务发现&amp;amp;负载均衡</title>
       <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
       <description>gRPC服务发现&amp;amp;负载均衡  构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：
  1、集中式LB（Proxy Model） 在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如 F5，或者基于软件如 LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。 该方案主要问题：
@@ -207,7 +207,7 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
       <title>Caddy新兴的web服务器caddy</title>
       <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
       <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
@@ -233,7 +233,7 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
       <title>redigo连接池代码分析</title>
       <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
       <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
@@ -242,7 +242,7 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
       <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
       <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
       <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
       <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
 一、后端测试了一下发现没有问题
@@ -262,7 +262,7 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
       <title>协作式go程</title>
       <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
       <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻辑处理goroutine负责从队列中提取逻辑包并处理(这样主处理逻辑中基本上不用考虑多线程竞争的锁问题了)。
 如果逻辑包的处理涉及到调用可能会阻塞的函数调用怎么办，如果在处理函数中直接调用这样的函数将导致逻辑处理goroutine被阻塞，无法继续处理队列中被排队的数据包，这将严重降低服务的处理能力。
@@ -278,7 +278,7 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot
       <title>Golang里的Future_Promise</title>
       <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
       <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
 一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
@@ -292,7 +292,7 @@ Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Pro
       <title>对echo框架进行统一的自定义错误处理</title>
       <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
       <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，

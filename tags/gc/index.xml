@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/gc.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/gc.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>[译]CockroachDBGC优化总结</title>
       <link>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html</guid>
       <description>几周前我们分享了一个帖子讲述我们为什么选择Go语言编写CockroachDB，我们收到一些问题，询问我们是如何解决Go语言的一些已知问题，特别是关于性能、GC和死锁的问题。
 本文中我们将分享几个非常有用的优化技巧用以改善许多常见的GC性能问题（接下来还将覆盖一些有趣的死锁问题）。我们将重点分享如何通过嵌套结构体、使用 sync.Pool、和复用后端数组减少内存分配和降低GC开销。
@@ -28,7 +28,7 @@ type getBuffer struct { meta MVCCMetadata value MVCCValue key [1024]byte } var b
       <title>GC垃圾回收机制:浅析与理解</title>
       <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
       <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
 基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。
@@ -57,7 +57,7 @@ char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指�
       <title>从Baa开发中总结Go语言性能渐进优化</title>
       <link>https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:28 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html</guid>
       <description>在Go生态已经有很多WEB框架，但感觉没有一个符合我们的想法，我们想要一个简洁高效的核心框架，提供路由，context，中间件和依赖注入，而且拒绝使用正则和反射，于是我们开始构建Baa框架。一开始使用最简单的通俗写法实现了第一版的功能，基本可用，但是性能烂到爆，优化之路漫漫开启。
  最好的文章应该是每一步都加上优化前后的benchmark对比结果，给读者以最直观的感受。我先BS一下自己，因为我懒了，没有再回头一步步去对比这个结果图。

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/gitbook.cn</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/gitbook.cn#%23%E7%AB%99%E9%95%BF.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>我的实操经验分享:如何通过Adsense赚3万美金</title>
       <link>https://yushuangqi.com/blog/2017/wo-de-shi-cao-jing-yan-fen-xiang-ru-he-tong-guo-adsensezhuan-3mo-mei-jin.html</link>
       <pubDate>Wed, 24 May 2017 08:58:01 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/wo-de-shi-cao-jing-yan-fen-xiang-ru-he-tong-guo-adsensezhuan-3mo-mei-jin.html</guid>
       <description>一、我的做站经历 1.1 秋玉米 2009 年我从网上下载了一个桌面版的扫域名软件，用了几年，发现很好用。它能按要求生成各种组合的域名列表去逐个查询注册情况，并把未注册的标注出来。并且可以自定义词库，但是它本身没有自带词库，几年时间，我自己做了好几个词库，如拼音、区号、邮编、人名、水果名、动植物名等等。
 2012 年 2 月底，我想其他玩域名的人也会有同样的需求，为什么不做一个网页版的扫域名工具出来呢，并且把我的词库都内置进去，就节省了大家自己搜集整理词库的时间，而且网页版随时随地想搜就搜。开发了两周左右，做了第一版出来，到 3 月 7 日 qiuyumi.com 就上线了，这个域名也是用那个桌面版软件扫出来的。

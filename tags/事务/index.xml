@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E4%BA%8B%E5%8A%A1.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E4%BA%8B%E5%8A%A1.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>分布式事务一致性方案</title>
       <link>https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html</link>
       <pubDate>Mon, 13 Mar 2017 08:20:10 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html</guid>
       <description>在OLTP系统领域，我们在很多业务场景下都会面临事务一致性方面的需求，例如最经典的Bob给Smith转账的案例。传统的企业开发，系统往往是以单体应用形式存在的，也没有横跨多个数据库。我们通常只需借助开发平台中特有数据访问技术和框架（例如Spring、JDBC、ADO.NET），结合关系型数据库自带的事务管理机制来实现事务性的需求。关系型数据库通常具有ACID特性：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。
 而大型互联网平台往往是由一系列分布式系统构成的，开发语言平台和技术栈也相对比较杂，尤其是在SOA和微服务架构盛行的今天，一个看起来简单的功能，内部可能需要调用多个“服务”并操作多个数据库或分片来实现，情况往往会复杂很多。单一的技术手段和解决方案，已经无法应对和满足这些复杂的场景了。

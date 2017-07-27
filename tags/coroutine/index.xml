@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/coroutine.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/coroutine.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>PHP混合Go协程并发</title>
       <link>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:57 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</guid>
       <description>想法很简单。通过设置 runtime.GOMAXPROCS(1) 让 golang 的进程变成单线程执行的。类似python用gevent的效果。然后通过调度多个协程实现异步I/O并发。php作为一个子函数跑在go的进程内，php需要yield到其他协程时，通过回调到golang函数来实现。从php里调用go提供的子函数时，go保证保存php的当前上下文。当协程执行权让渡回来的时候，把原来的php上下文恢复。关键的代码在：
  // 保存当前协程上的php上下文 oldServerCtx := engine.ServerContextGet() fmt.Println(oldServerCtx) defer engine.ServerContextSet(oldServerCtx) oldExecutorCtx := engine.ExecutorContextGet() fmt.Println(oldExecutorCtx) defer engine.ExecutorContextSet(oldExecutorCtx) oldCoreCtx := engine.CoreContextGet() fmt.Println(oldCoreCtx) defer engine.CoreContextSet(oldCoreCtx) // 放弃全局的锁，使得其他的协程可以开始执行php engineLock.Unlock() defer engineLock.Lock()  ServerContextGet 这几个函数是我加的，获得的是php的（EG/SG/PG）这三个全局context（参见：http://www.cnblogs.com/chance&amp;hellip;）。修改过的github.com/deuill/go-php的源代码在：https://github.com/taowen/go-&amp;hellip;

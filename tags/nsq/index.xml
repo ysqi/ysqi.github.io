@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/nsq.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/nsq.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golang使用Nsq</title>
       <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
       <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现了Nsq这个由golang开发的消息队列，毕竟是golang原汁原味的东西，功能齐全，关键是性能还不错。其中支持动态拓展，消除单点故障等特性， 都可以很好的满足我的需求
 下面上一张Nsq与其他mq的对比图，看上去的确强大。下面简单记录一下Nsq的使用方法
@@ -53,7 +53,7 @@ Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费�
       <title>nsqjs客户端的部署</title>
       <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</guid>
       <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。
 首先安装nsq，这个没什么好说的，我是直接在官网下载bin文件，直接部署的，环境是centOS 6.7，安装在/opt/nsq-0.3.7.linux-amd64.go1.6目录下；

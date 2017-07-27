@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/sql.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/sql.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>TiDB架构的演进和开发哲学</title>
       <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
       <description>https://segmentfault.com/a/
  本文来自 CSDN《程序员》2017 年 2 月的封面报道。
@@ -33,7 +33,7 @@
       <title>关于Golang中database_sql包的学习笔记</title>
       <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
       <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
  概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
@@ -48,7 +48,7 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
       <title>GolangSQL操作初体验</title>
       <link>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</guid>
       <description>https://segmentfault.com/a/
 简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了.
@@ -65,7 +65,7 @@ import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/m
       <title>分布式系统测试那些事儿-理念</title>
       <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
       <description>https://segmentfault.com/a/
 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
@@ -86,7 +86,7 @@ We should walk through all of the bugs in:
       <title>BeegoOrmInsert记录时报错</title>
       <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
       <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
       <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
 当时代码是这样写的

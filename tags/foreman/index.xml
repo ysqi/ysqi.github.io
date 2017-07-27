@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/foreman.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/foreman.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>多进程管理工具:goreman</title>
       <link>https://yushuangqi.com/blog/2016/duo-jin-cheng-guan-li-gong-ju-goreman.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:17 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/duo-jin-cheng-guan-li-gong-ju-goreman.html</guid>
       <description>Linux下多进程管理工具对开发和运维都很有用，常见的功能全面的主流工具主要有monit、supervisor。不过开发中使用则推荐轻量级小工具goreman。
 goreman是对Ruby下广泛使用的foreman的重写，毕竟基于golang的工具简单易用多了。顺便提一句：goreman的作者是mattn，在golang社区挺活跃的日本的一名程序员。foreman原作者也实现了一个golang版：forego，不过没有goreman好用，举个例子：coreos的etcd就是使用的goreman来一键启停单机版的etcd集群。

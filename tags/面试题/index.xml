@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go面试题答案与解析</title>
       <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
       <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
 1、写出下面代码输出内容。 package main import ( &amp;quot;fmt&amp;quot; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;quot;打印前&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印中&amp;quot;) }() defer func() { fmt.Println(&amp;quot;打印后&amp;quot;) }() panic(&amp;quot;触发异常&amp;quot;) }  在线运行

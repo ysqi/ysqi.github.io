@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/python.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/python.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>谷歌:谁拥有下一代云平台的DNA？机器学习和云端智能是云的未来</title>
       <link>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</guid>
       <description>在“NEXT2016”会议上，Google的Eric Schmidt提到Google所占最大的优势之一就是站在云计算下一个十年的前沿。它不是基础设施或者软件，也不像纯数据一样简单。
 Crowdsourced 智能，是个进化，可以创建更加智能的从上到下各级用户都可以利用、重新训练、改变、为自己目的输出的系统。这一切将会点燃新一代云平台的未来发展方向。
@@ -37,7 +37,7 @@ AWS之前所有的努力都值得被认可，然而现在AWS和他的云计算�
       <title>一条命令即可将Vim配置为功能强大的IDE</title>
       <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
       <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
 安装：
@@ -53,7 +53,7 @@ Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配�
       <title>open-falcon开发笔记(一):从零开始搭建虚拟服务器和监测环境</title>
       <link>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</guid>
       <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在
 open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以有必要写篇文章记一下。
@@ -76,7 +76,7 @@ open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所�
       <title>基于HTTP标准协议的API接口设计规范构思</title>
       <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
       <description>https://segmentfault.com/a/
 开发规范  版本控制git

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ECUGCon邀您共议服务端开发最深度实践</title>
       <link>https://yushuangqi.com/blog/2016/ecug-con-yao-nin-gong-yi-fu-wu-duan-kai-fa-zui-shen-du-shi-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ecug-con-yao-nin-gong-yi-fu-wu-duan-kai-fa-zui-shen-du-shi-jian.html</guid>
       <description>ECUG 全称为 Effective Cloud User Group （实效云计算用户组），由七牛云 CEO 许式伟于 2007 年发起，集结了一批具有高端视角并仍醉心于技术本身的同仁，共同关注云计算前沿技术的最新成果和分布式开发、运维的最佳实践。在过去的八年中， ECUG 社区每年都会组织一场全国性的 ECUG Con 大会，期间众多技术大神纷纷参与，他们或许在大众技术会议已经鲜少露面，但会在 ECUG Con 畅谈心得，共同奉献一场半公开的高规格技术分享盛会。
 ECUG Con 发展历程
@@ -33,7 +33,7 @@ ECUG Con 2015 将于 2016 年 1 月 22 ~ 23 日在新疆大厦举行，作为具
       <title>ECUG社区发起人许式伟:对编程语言的选择无关阵营关乎品味</title>
       <link>https://yushuangqi.com/blog/2016/ecugshe-ou-fa-qi-ren-hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ecugshe-ou-fa-qi-ren-hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</guid>
       <description> 许式伟，七牛云CEO，ECUG社区发起人，Go语言专家，著有国内第一本Go语言图书《Go语言编程》。有超过15年互联网从业经验，曾在金山、盛大等知名公司担任重要技术岗位从事核心产品研发。在金山任职期间，先以首席架构师身份主导了全新WPS Office 2005的架构设计和开发；之后创建金山实验室，以创始人和技术总监的身份主导了前沿的搜索和分布式存储相关技术的研究和开发。在盛大工作期间，任职资深研究员，负责盛大祥云计划的研究，随后发起了盛大网盘项目。2011年创立七牛云，现仍然活跃在技术前沿领域。
 今天，我们采访的主要话题并不是老许作为技术牛人的开发经历或是他作为创始人的奋斗史，而是他在2007年创建的ECUG社区。ECUG的全称为Effective Cloud User Group，曾用名是Erlang China User Group。这样一个曾经关于Erlang语言的社区是如何成为云计算领域技术交流的“神圣场合”的呢？我们来看看老许是如何回答的吧。
@@ -68,7 +68,7 @@ ECUG Con 2015从议题上看，技术更加细粒度化了，很多讲师都选�
       <title>ECUG2015｜许式伟:对编程语言的选择无关阵营关乎品味</title>
       <link>https://yushuangqi.com/blog/2016/ecug-2015hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:00 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ecug-2015hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</guid>
       <description>编者按：许式伟，七牛云 CEO ， ECUG 社区发起人， Go 语言专家，著有国内第一本 Go 语言图书《 Go 语言编程》。有超过 15 年互联网从业经验，曾在金山、盛大等知名公司担任重要技术岗位从事核心产品研发。 2011 年创立七牛云，现仍然活跃在技术前沿领域。
 近日，图灵社区对许式伟进行了专访，所采访的主要话题并不是他作为技术牛人的开发经历或是他作为创始人的奋斗史，而关于他在 2007 年创建的 ECUG 社区（全称为 Effective Cloud User Group ，曾用名是 Erlang China User Group ）。这样一个曾经关于 Erlang 语言的社区是如何成为云计算领域技术交流的“神圣场合”的呢？我们来看看他是如何回答的吧。
@@ -81,7 +81,7 @@ Erlang 是一门小众语言，我们在成立 ECUG 的时候，国内没有几�
       <title>48小时的教训告诉你如何在七牛ufop下安装ImageMagick</title>
       <link>https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html</guid>
       <description>背景 故事是这样的：
 公司系统里面有一个服务是 PDF2JPG (实际上应该是 PPT2JPG， 只是PPT2PDF这一步骤我们利用七牛的云服务来完成。) 早期的时候我们根据系统负载已经实际情况采用了 crontab 来定时获取数据库需要转换的数据。所以这个服务的QPS是 1&amp;frasl;60 QPS。是的，你没看错就是这么低，但是用起来还好，毕竟用户容量不大。

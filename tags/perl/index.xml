@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/perl.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/perl.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>采用一门新编程语言或不采用</title>
       <link>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</guid>
       <description>我大体上对编程语言感兴趣。特别低，我一直对另一门编程语言 如何能够提供给我表达程序的新特性以及允许我成长为一名程序员 感到好奇。
 我在校时学到了第一门语言。那儿的电脑&amp;mdash;&amp;mdash;一屋子都是PET 2001，那时候他们是新潮的&amp;mdash;&amp;mdash;只有BASIC，很快就让我失望了。在大学，我开始了一门Pascal的课程，闲暇做了很多编程。Pascal很快填补了我在BASIC发现的恼人的不足。

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>互联网数据库“跨库分页”架构技术实践</title>
       <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</link>
       <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
       <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
  微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
@@ -32,7 +32,7 @@ select * from t_msg order by time offset 200 limit 100 select * from t_order ord
       <title>使用golang在与数据库访问过程中的一点想法</title>
       <link>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:11 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</guid>
       <description> https://segmentfault.com/a/
 遇到的问题 golang对于基本类型初始化的处理，是自动给基本类型赋值为默认值。比如：
@@ -47,7 +47,7 @@ type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BI
       <title>关于Golang中database_sql包的学习笔记</title>
       <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
       <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
  概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
@@ -62,7 +62,7 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
       <title>Kubernetes监控之InfluxDB</title>
       <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
       <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
 该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。

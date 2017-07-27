@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E7%BC%96%E8%AF%91%E5%99%A8.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E7%BC%96%E8%AF%91%E5%99%A8.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go1_8rc3源代码学习:token</title>
       <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</guid>
       <description>https://segmentfault.com/a/
 前言 token package 包含了 golang 词法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/token
@@ -28,7 +28,7 @@ const ( // Special tokens ILLEGAL Token = iota EOF COMMENT literal_begin ... lit
       <title>Go1_8rc3源代码学习:scanner</title>
       <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:14 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</guid>
       <description>https://segmentfault.com/a/
 前言 scanner package 包含了 golang 词法分析器相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/scanner
@@ -40,7 +40,7 @@ func ExampleScanner_Scan() { // src is the input that we want to tokenize. src :
       <title>MiniJava语言编译器的Golang实现。</title>
       <link>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html</guid>
       <description> Dog-comp Abstract 文章介绍一个编译器的实现流程。源语言选用MiniJava. MiniJava是一个面向对象语言，支持继承，对象创建等面向对象的特性。具体语法参考Tiger book 附录。
 Dog-comp是一个用golang实现的minijava编译器，目前可以将minijava翻译成c。dog-comp包括前端的lexer，parser，type-checking，codegen，后端还有基于minijava-AST的优化，基于控制流图的优化。为了满足minijava面向对象的特性，Dog-comp还带有一个runtime，实现了一个垃圾收集器。Dog-comp可以作为学习编译器和语言优化的一个小工具。

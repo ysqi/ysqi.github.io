@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/redis.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/redis.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>redigo连接池代码分析</title>
       <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
       <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
@@ -23,7 +23,7 @@
       <title>Go操作Redis</title>
       <link>https://yushuangqi.com/blog/2016/gocao-zuo-redis.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:10 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gocao-zuo-redis.html</guid>
       <description>https://segmentfault.com/a/
 Start 在SF文章中，关于PHP，python操作redis的文章已经很多了。可是少了go对redis的操作。最近也是刚开始学Go,由于对redis的偏爱，也顺便学习了一下，并总结下来。
@@ -38,7 +38,7 @@ Go-Redis包管理  很明显，我们Go是没有这个包的，那么我们可�
       <title>统一配置管理工具confd</title>
       <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:09 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</guid>
       <description>confd Github: https://github.com/sumory/confd
 confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。
@@ -62,7 +62,7 @@ confd是一个统一配置管理工具，目前仍在开发中，基于本地文
       <title>Golangredis操作初体验</title>
       <link>https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:01 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html</guid>
       <description>安装 我使用的是 https://github.com/go-redis/r&amp;hellip; 这个 golang 客户端, 因此安装方式如下:
 go get gopkg.in/redis.v4  接着在代码中导入此包即可:
@@ -75,7 +75,7 @@ import &amp;quot;gopkg.in/redis.v4&amp;quot;  基本操作 创建客户端 通�
       <title>如何进行计数场景的优化</title>
       <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
       <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</guid>
       <description>社交网络信息爆发，如何衡量你在社交舆论上的影响力？计数！
 计数是应用最方便、简单实现的数据挖掘应用，拿Facebook举例，你的Feed被评论多少次，转发多少次，赞多少次，被浏览多少次，你有多少个好友等等。可以说计数得多少的价值可能超过你本身或者你发布的内容本身。
@@ -100,7 +100,7 @@ struct sdshdr { len = 11; free = 0; buf = “hello world\0″; // buf 的实际�
       <title>Mac下安装Redis用于开发测试</title>
       <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 09:12:01 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</guid>
       <description>Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开发程序使用Redis的安装过程。
 下载Redis安装包 上一篇文章我说了如何在Mac下快速安装Wget，因此下载Redis安装包就可以利用wget命令了。

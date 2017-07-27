@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Top-rsses on 极客虞双齐</title>
+    <title>Top-rsses on 虞双齐的博客</title>
     <link>https://yushuangqi.com/top.xml</link>
-    <description>在 极客虞双齐上关于in Top-rsses 的内容</description>
+    <description>在 虞双齐的博客上关于in Top-rsses 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Tue, 29 Dec 2015 20:29:41 +0800</lastBuildDate>
     <atom:link href="/top.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
       <title>关于虞双齐</title>
       <link>https://yushuangqi.com/about.html</link>
       <pubDate>Tue, 29 Dec 2015 20:29:41 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/about.html</guid>
       <description>社会分工越来越精细，无需精通全部。坚持在一个细小领域摸爬滚打，成长为领域专家！
 写作方面，动态分享到微博@虞双齐，代码存放在 Github，个人博客yushuangqi.com。

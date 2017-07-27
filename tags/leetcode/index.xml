@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/leetcode.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/leetcode.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>[leetcode]FindMinimuminRotatedSortedArrayII</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</guid>
       <description>code：https://play.golang.org/p/luj1fdu03F
 problem: https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
@@ -25,7 +25,7 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp
       <title>[leetcode]wordsearch</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-search/
 代码：https://play.golang.org/p/d5wP691Pbg
@@ -36,7 +36,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {
       <title>[leetcode]wordladderii</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-ladder-ii/
 代码：https://play.golang.org/p/qdmadQUcEC

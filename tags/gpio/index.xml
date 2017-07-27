@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/gpio.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/gpio.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>RaspberryPiwithGolang</title>
       <link>https://yushuangqi.com/blog/2016/raspberry-pi-with-go-lang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/raspberry-pi-with-go-lang.html</guid>
       <description>// This program achieves LED blink on Raspberry Pi with Go lang. // This is implemented with hard-coding and uses only main function.
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;time&amp;quot; ) func main() { // Initialize GPIO25 fmt.Println(&amp;quot;Initialize GPIO25&amp;quot;) fd, err := os.OpenFile(&amp;quot;/sys/class/gpio/export&amp;quot;, os.O_WRONLY|os.O_SYNC, 0666) if err != nil { fmt.Println(&amp;quot;open /sys/class/gpio/export fails&amp;quot;) fmt.Println(err) return } fmt.Fprint(fd, &amp;quot;25&amp;quot;) fd.Close() // Check iinitialization result fmt.Println(&amp;quot;Check initialization result&amp;quot;) _, err = os.Stat(&amp;quot;/sys/class/gpio/gpio25&amp;quot;) if err !</description>

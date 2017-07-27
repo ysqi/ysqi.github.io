@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/visual-studio-code.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/visual-studio-code.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>VSCODE中godef无法跳转到定义的问题</title>
       <link>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:18 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</guid>
       <description>原文链接：http://targetliu.com/vscode-can-not-go-to-def/
  之前研究GOLANG时一直用LiteIDE，不得不说，LiteIDE的确不错，但是总感觉缺乏美感，是一款很中规中矩的编辑器。网上看到大家对VSCODE评价不错，尝试后发现的确不错，布局简洁、插件化、支持中文，通过VSCODE GO扩展能够很舒服的写GO的代码。

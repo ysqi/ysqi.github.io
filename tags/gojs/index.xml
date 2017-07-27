@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/gojs.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/gojs.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>go_js简介及实例演示</title>
       <link>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</link>
       <pubDate>Mon, 13 Mar 2017 08:20:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</guid>
       <description>GoJS是一个JavaScript库，让你轻松创建现代Web浏览器的交互图。 GoJS支持图形化的模板和图形对象属性数据模型的数据绑定。你只需要保存和恢复模型，包括持有任何性质的应用需求，简单的JavaScript对象。许多预定义的工具和命令执行，大部分的图表所需要的标准的行为。外观和行为的定制是大多设置属性的问题。
 下载地址：http://gojs.net/latest/doc/download.html
@@ -28,7 +28,7 @@ function init() { if (window.goSamples) goSamples(); // init for these samples -
       <title>go_js模型样式选择</title>
       <link>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</link>
       <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</guid>
       <description>一、使用官方样式 样式（shapes）地址：http://gojs.net/latest/samples/shapes.html
 使用方法：
@@ -42,7 +42,7 @@ diagram.add( $(go.Part, &amp;quot;Horizontal&amp;quot;, $(go.Shape, &amp;quot;Re
       <title>go_js节点字体设置</title>
       <link>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</link>
       <pubDate>Mon, 13 Mar 2017 08:20:07 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</guid>
       <description>TextBlock是用于显示文本信息的对象。
 通过设置TexkBlock.text属性来显示文本信息，这也是唯一的一个方法。因为TexkBlock继承自GraphObject，所以一些GraphObject的属性也有可能对文本有影响。

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%A4%A7%E7%A5%9E.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%A4%A7%E7%A5%9E.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go语言从新手到大神:每个人都会踩的五十个坑(1-12)</title>
       <link>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html</guid>
       <description>本文翻译自最近各种 Go 语言社区分享的很多的英文文档 50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs，小编第一眼以为 50 Shades of Grey……
 Go语言是一个简单却蕴含深意的语言。但是，即便号称是最简单的C语言，都能总结出一本《C陷阱与缺陷》，更何况Go语言呢。Go语言中的许多坑其实并不是因为Go自身的问题。一些错误你再别的语言中也会犯，例如作用域，一些错误就是对因为 Go 语言的特性不了解而导致的，例如 range。
@@ -32,7 +32,7 @@ package main import &amp;quot;fmt&amp;quot; func main() { //error, can&#39;t hav
       <title>Go语言从新手到大神:每个人都会踩的五十个坑(13-22)</title>
       <link>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html</guid>
       <description>https://segmentfault.com/a/
 Slice 和 Array 维度是一维 级别：新手入门级

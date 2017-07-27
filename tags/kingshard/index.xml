@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/kingshard.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/kingshard.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>一个高性能MySQLproxy(kingshard)的性能测试报告</title>
       <link>https://yushuangqi.com/blog/2016/yi-ge-gao-xing-neng-mysql-proxykingshardde-xing-neng-ce-shi-bao-gao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yi-ge-gao-xing-neng-mysql-proxykingshardde-xing-neng-ce-shi-bao-gao.html</guid>
       <description>kingshard的性能测试报告 之前的几篇blog，给大家分享的都是kingshard（https://github.com/flike/kingshard )的架构与设计。其实很多人对kingshard的性能也非常关心。最近热心的网友bigpyer对kingshard做了详细的性能测试。在此分享一下。
 1.测试环境 1.1服务器配置 类别 名称
@@ -37,7 +37,7 @@ time sysbench --test=/data/home/test_user/software/sysbench/sysbench/tests/db/ol
       <title>kingshard按时间分表功能介绍</title>
       <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</guid>
       <description>kingshard按时间分表功能介绍 在文档中主要介绍了kingshard的Hash和Range方式的分表，最近又开发了按时间维度的分表方式。按时间维度分表的场景非常普遍，下面介绍一下kingshard的时间分表功能
  支持的时间类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard中的分表字段支持MySQL中三种类型的时间格式

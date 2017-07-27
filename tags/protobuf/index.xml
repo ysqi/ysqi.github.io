@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/protobuf.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/protobuf.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golang使用protobuf</title>
       <link>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</guid>
       <description>为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用
 跟Json相比protobuf性能更高，更加规范
@@ -36,7 +36,7 @@ gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码�
       <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
       <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</guid>
       <description>Jsoniter 是一款快且灵活的 JSON 解析器，同时提供 Java 和 Go 两个版本。
 最近发布的 0.9.8 版本对性能对标 Jackson 和 Protobuf 进行了详细的评测： https://github.com/json-itera&amp;hellip; 。性能优化的原理会近期会发布于 infoq 中文站，尽请期待。

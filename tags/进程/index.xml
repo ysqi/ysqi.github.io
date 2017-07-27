@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E8%BF%9B%E7%A8%8B.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E8%BF%9B%E7%A8%8B.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>PHP编程中的并发</title>
       <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</guid>
       <description>PHP编程中的并发  周末去北京面了两个公司，认识了几位技术牛人，面试中聊了很多，感觉收获颇丰。认识到了自己的不足之处，也坚定了自己对计算机学习的信心。本文是对其中一道面试题的总结。
  面试中有一个问题没有很好的回答出来，题目为：并发3个http请求，只要其中一个请求有结果，就返回，并中断其他两个。

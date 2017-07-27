@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/shipyard.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/shipyard.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>shipyard研发系列(1)-shipyard安装指南</title>
       <link>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</guid>
       <description>Docker之shipyard安装指南  一、前言：最近在研究shipyard的docker容器管理平台，在研究过程发现自己对docker基础理解还存在一定的欠缺，为了更好的理解docker，将我对shipyard项目的理解共享给docker爱好者，也系统的形成一份研发日志。dockerclub的shipyard研发系列详细请访问
 二、shipyard项目介绍：shipyard是一个集成管理docker容器、镜像、Registries的系统，他最大亮点应该是支持多节点的集成管理，可以动态加载节点，可托管node下的容器。这里暂时不对shipyard的细节讲解，后续章节会讲他的架构。
@@ -40,7 +40,7 @@
       <title>shipyard中文版v3_0_2更新</title>
       <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:56 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</guid>
       <description>Shipyard中文版官方同步更新
  中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://github.com/dockerclubgroup/shipyard

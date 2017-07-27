@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Gox:简单实在的Go平台交叉编译工具</title>
       <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</guid>
       <description>Gox 是一个简单的，不花俏的Go平台交叉编译工具，它的用处就和标准的 go build 一样。Gox 会并行地为多种平台编译。Gox 同时也提供了一套交叉编译工具链。
 Gox 项目地址：https://github.com/mitchellh/gox
@@ -40,7 +40,7 @@ Number of parallel builds: 4
       <title>heartbleeder自动检测OpenSSL心脏出血漏洞(附修复指南)</title>
       <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:00 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</guid>
       <description>heartbleeder 可以探测你的服务器是否存在 OpenSSL CVE-2014-0160 漏洞 （心脏出血漏洞）。
 什么是心脏出血漏洞？ CVE-2014-0160，心脏出血漏洞，是一个非常严重的 OpenSSL 漏洞。这个漏洞使得攻击者可以从存在漏洞的服务器上读取64KB大小的内存信息。这些信息中可能包含非常敏感的信息，包括用户请求、密码甚至证书的私钥。
@@ -60,7 +60,7 @@ $ heartbleeder -pg example.com SECURE - example:5432 does not have the heartbeat
       <title>Goji-基于Go语言的微型web框架</title>
       <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</guid>
       <description>Goji 是一个基于 Go 的微型 web 框架，其设计受到了 Sinatra 的启发。
 示例 一个简单的 Hello World 示例

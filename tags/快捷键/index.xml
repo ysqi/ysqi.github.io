@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用Atom配置Golang开发环境</title>
       <link>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:49 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</guid>
       <description>Golang作为一种新的编程语言，也有着非常多的IDE，其中个人觉得使用IntelliJ开发是一种很不错的选择，但是免费版有功能是缺失的，如果又不想付费购买专业版的，Atom就是一种不错的选择。
 Atom是更为先进的文本代码编辑器，是由Github打造的下一代编程开发利器，Atom是开源的，美观，各种炫酷效果,还有有各种强大的插件。

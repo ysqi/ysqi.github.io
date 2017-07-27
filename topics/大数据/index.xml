@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/topics/%E5%A4%A7%E6%95%B0%E6%8D%AE.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/topics/%E5%A4%A7%E6%95%B0%E6%8D%AE.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何提取Piwik中记录的访客IP地址</title>
       <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</link>
       <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</guid>
       <description>最近在使用Piwik做网站数据统计，基于PIWIK做二次开发，各种文档，而昨天死活不知道PIWIK中记录访客IP的格式是什么，拉个粑粑后茅塞顿开，下面记记录下如何在PIWIK中获取访客的IP地址信息。
 ### 访客IP地址Piwik存储在哪里？ Piwk将访客信息记录在表log_visit中，当然访客IP也是跟随访客继续记录的，也在这个表中，字段是location_ip ,该表的表结构如下：

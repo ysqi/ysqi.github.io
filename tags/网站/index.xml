@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E7%BD%91%E7%AB%99.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E7%BD%91%E7%AB%99.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Goji-基于Go语言的微型web框架</title>
       <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</guid>
       <description>Goji 是一个基于 Go 的微型 web 框架，其设计受到了 Sinatra 的启发。
 示例 一个简单的 Hello World 示例

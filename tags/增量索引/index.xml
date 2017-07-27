@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%A2%9E%E9%87%8F%E7%B4%A2%E5%BC%95.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%A2%9E%E9%87%8F%E7%B4%A2%E5%BC%95.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x06)---索引构建</title>
       <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x06----suo-yin-gou-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x06----suo-yin-gou-jian.html</guid>
       <description>https://segmentfault.com/a/
 不知不觉写到第七篇了，按这个节奏，估计得写到15到20篇左右才能写完，希望自己能坚持下去，之前写代码的时候很多东西并没有想得那么细致，现在每写一篇文章还要查一些资料，确保文章的准确性，也相当于自己复习了一下吧，呵呵。

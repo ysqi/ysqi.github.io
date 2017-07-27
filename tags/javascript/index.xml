@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/javascript.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/javascript.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>采用一门新编程语言或不采用</title>
       <link>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</guid>
       <description>我大体上对编程语言感兴趣。特别低，我一直对另一门编程语言 如何能够提供给我表达程序的新特性以及允许我成长为一名程序员 感到好奇。
 我在校时学到了第一门语言。那儿的电脑&amp;mdash;&amp;mdash;一屋子都是PET 2001，那时候他们是新潮的&amp;mdash;&amp;mdash;只有BASIC，很快就让我失望了。在大学，我开始了一门Pascal的课程，闲暇做了很多编程。Pascal很快填补了我在BASIC发现的恼人的不足。
@@ -36,7 +36,7 @@
       <title>GC垃圾回收机制:浅析与理解</title>
       <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
       <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
 基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。
@@ -65,7 +65,7 @@ char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指�
       <title>JavaScript新鲜事·第6期</title>
       <link>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</guid>
       <description>微软公布TypeScript 2.0 RC版本 在8月30日，微软公布了TypeScript 2.0 RC版本，增加了一些特性，已经离正式版不远了，目测功能应该不会再有太大的变化。
 原文地址：https://blogs.msdn.microsoft.com/typescript/2016/08/30/announcing-typescript-2-0-rc/
@@ -103,7 +103,7 @@ GopherJS 1.</description>
       <title>go实现高性能直播服务</title>
       <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</guid>
       <description>livego
 go 实现直播服务
@@ -129,7 +129,7 @@ http://localhost:8080/camera (录视频)(由于chrome的安全限制，建议在
       <title>基于HTTP标准协议的API接口设计规范构思</title>
       <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
       <description>https://segmentfault.com/a/
 开发规范  版本控制git

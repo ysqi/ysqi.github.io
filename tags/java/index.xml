@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/java.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/java.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
       <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</guid>
       <description>Jsoniter 是一款快且灵活的 JSON 解析器，同时提供 Java 和 Go 两个版本。
 最近发布的 0.9.8 版本对性能对标 Jackson 和 Protobuf 进行了详细的评测： https://github.com/json-itera&amp;hellip; 。性能优化的原理会近期会发布于 infoq 中文站，尽请期待。
@@ -26,7 +26,7 @@ Any any = Jsoniter.deserialize(input); // deserialize 返回 &amp;quot;Any&amp;q
       <title>谷歌:谁拥有下一代云平台的DNA？机器学习和云端智能是云的未来</title>
       <link>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</guid>
       <description>在“NEXT2016”会议上，Google的Eric Schmidt提到Google所占最大的优势之一就是站在云计算下一个十年的前沿。它不是基础设施或者软件，也不像纯数据一样简单。
 Crowdsourced 智能，是个进化，可以创建更加智能的从上到下各级用户都可以利用、重新训练、改变、为自己目的输出的系统。这一切将会点燃新一代云平台的未来发展方向。
@@ -49,7 +49,7 @@ AWS之前所有的努力都值得被认可，然而现在AWS和他的云计算�
       <title>GC垃圾回收机制:浅析与理解</title>
       <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
       <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
 基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。

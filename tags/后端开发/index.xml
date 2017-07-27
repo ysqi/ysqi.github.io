@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>年度语言golang使用感受</title>
       <link>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</guid>
       <description>https://segmentfault.com/a/
 首先，无意进行语言之争，毕竟，PHP是世界上最好的语言，没有之一。这个话题可以停下来了。

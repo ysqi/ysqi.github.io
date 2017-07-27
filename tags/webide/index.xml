@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/webide.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/webide.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411</title>
       <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</link>
       <pubDate>Mon, 31 Aug 2015 10:01:36 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</guid>
       <description>终于在 Coding.net 上部署搭建了写作环境,同时提交到我的博客,但在deploy到百度应用时有报错,在这里记录下解决方案.
 问题表现 执行hexo deploy 时提示error:RPC failed;result=22,HTTP code=411&#39; 具体错误信息见下
@@ -28,7 +28,7 @@ cd .deploy_git/.git vim config  再在文档中添加或修改配置项,修改�
       <title>在线云开发平台coding&#43;七牛搭建超级个人博客</title>
       <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</link>
       <pubDate>Sun, 23 Aug 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</guid>
       <description>&lt;p&gt;昨天加入了codefollow这个大家庭，话说要鼓励大家写作与分享，趁着老婆睡觉偷偷的写一篇如何利用云开发平台coding以及七牛这条大黄牛来搭建一个超级方便又稳定的个人博客。
 &lt;/p&gt;</description>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/beego.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/beego.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>beego自动化文档</title>
       <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:27 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</guid>
       <description>beego是什么？ beego是一个快速开发*go应用*的http框架，go 语言技术大牛ASTA谢的开源项目。
 beego可以用来快速开发*API*、*Web*以及*后端服务*等各种应用，是一个RESTFul的框架，主要设计灵感来源于tornado、sinatra、flask这三个框架，结合了Go本身的一些特性(interface、struct继承等)而设计的。
@@ -50,7 +50,7 @@ Swagger 让部署管理和使用API从未如此简单。
       <title>golang中cannotuse**(typeinterface{})astype**解决方案</title>
       <link>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</guid>
       <description>https://segmentfault.com/a/
 在beego中从session中取值的时候，取出来的是intergace{}，但是我先返回的值是int型，或者是string，这个时候会出现一个错误：
@@ -66,7 +66,7 @@ func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&
       <title>beego的ORM-配置数据库</title>
       <link>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</guid>
       <description>https://segmentfault.com/a/
 Object Relational Mapping,简称ORM，用于实现面向对象编程语言里不通类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的“虚拟对象数据库”。
@@ -99,7 +99,7 @@ beego默认使用time.Local本地时区，可以用来自动创建时间，从�
       <title>beego下根据部署环境加载相应配置文件</title>
       <link>https://yushuangqi.com/blog/2016/beegoxia-gen-ju-bu-shu-huan-jing-jia-zai-xiang-ying-pei-zhi-wen-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:40 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegoxia-gen-ju-bu-shu-huan-jing-jia-zai-xiang-ying-pei-zhi-wen-jian.html</guid>
       <description>https://segmentfault.com/a/
 最近用beego开发的项目频繁的要部署到测试环境提测，然后部署到线上发布，由于两种环境下配置文件中某些配置参数不同，每次手动修改很是麻烦，故而想有没有办法能根据部署环境的不同加载相应环境的配置变量。
@@ -112,7 +112,7 @@ beego默认使用time.Local本地时区，可以用来自动创建时间，从�
       <title>beego自动化部署</title>
       <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:34 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</guid>
       <description>beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一个项目小项目，golang是编译语言，需要编译之后再部署，每次部署到服务上是件很麻烦的事情。就写了一个自动打包部署到服务器的脚本，方便发布部署。
 项目结构 先看看beego项目的结构：
@@ -131,7 +131,7 @@ beepkg |-- conf | `-- app.conf |-- controllers | `-- default.go |-- main.go |-- 
       <title>对beego的控制器函数进行单测</title>
       <link>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</guid>
       <description>根据astaxie大神的意见，在beego上对controller做单测比较困难，他的建议就是把所有逻辑都拆分出来，放到model中。然后对model中的public函数进行测试。
 但是这就会多很多封装，而且，有些时候对controller的测试可能是绕不开的。
@@ -144,7 +144,7 @@ package test import ( &amp;quot;github.com/astaxie/beego&amp;quot; &amp;quot;git
       <title>在Beego中使用Jade模板</title>
       <link>https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:52 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html</guid>
       <description>Jade是一个高性能的HTML模板引擎，它受到Haml的影响,是使用JavaScript实现的。Jade在客户端也有支持，它的代码比html可读性要高很多，Jade是一个比较常用的HTML模板。
 Beego是一个go语言的web应用程序开源web框架，而Beego从1.7.0开始支持更加复杂的模板引擎，当然也包括了对于jade的支持，支持更复杂模板引擎的PR地址https://github.com/astaxie/beego/pull/1940。
@@ -167,7 +167,7 @@ func main() { tpl, err := jade.Parse(&amp;quot;name_of_tpl&amp;quot;, &amp;quot;
       <title>beegoorm中时区的问题</title>
       <link>https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:27 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html</guid>
       <description>https://segmentfault.com/a/
 先看简化后代码，下面只列出main函数
@@ -179,7 +179,7 @@ func main() { t := &amp;quot;2017-01-19 00:00:00&amp;quot; o := orm.NewOrm() qb,
       <title>beego框架源码解读 config 模块设计</title>
       <link>https://yushuangqi.com/blog/2016/beego-webframework-config.html</link>
       <pubDate>Sat, 13 Feb 2016 08:04:49 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beego-webframework-config.html</guid>
       <description>这是关于 beego 的第一篇正式的源代码解读文章，前面文章 beego框架源码解读计划 中已介绍解读计划。而本文主要针对 beego 框架 config 模块展开讨论。通过本文你可掌握 beego config 使用。
 config 简要说明 beego 的各个模块设计基本相同，灵感源于 Go 内部 database/sql 包的 sql库驱动注册 。模块实现后进行注册，使用时通过注册名进行访问初始化。 而 config 模块也相同。分别支持 ini、json、xml、yaml、内存 格式的配置文件管理。使用时调用config.NewConfig(&amp;quot;ini&amp;quot;, &amp;quot;config path&amp;quot;)来构建不同格式 config 解析器。
@@ -192,7 +192,7 @@ import ( &amp;quot;github.com/astaxie/beego/config&amp;quot; ) func main() { cfg
       <title>beego框架源码解读计划</title>
       <link>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</link>
       <pubDate>Thu, 11 Feb 2016 13:14:14 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</guid>
       <description>&lt;p&gt;大家新年好，今天大年初四，规划下对于开源 web 框架 beego 源代码解读计划安排。在年前便一直在想如何进行一次明确的源码解析。但一直拖至今日才安排。也在思考如何进行学习是合适的。
 &lt;/p&gt;</description>
@@ -202,7 +202,7 @@ import ( &amp;quot;github.com/astaxie/beego/config&amp;quot; ) func main() { cfg
       <title>BeegoOrmInsert记录时报错</title>
       <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
       <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
       <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
 当时代码是这样写的

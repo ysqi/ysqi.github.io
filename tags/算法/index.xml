@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E7%AE%97%E6%B3%95.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E7%AE%97%E6%B3%95.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>插曲:关于递归</title>
       <link>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:25 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</guid>
       <description>1 概述 循环与递归是算法中最常见的控制过程的方法，循环自不必说，只要学过计算机语言，必然都会讲这种控制结构；而对于递归，大家也能写得很漂亮（树算法中和图算法中使用递归的场景也特别多）。
 递归的好处也显而易见，代码体积小，容易维护。然而，递归并不是万能钥匙，特别是当运行环境内存空间有限以及要求高性能的场景。下文首先介绍递归的运行原理，然后用实例说明递归的代价，接着讲解递归如何转换成循环及其限制，最后对本文进行总结。
@@ -35,7 +35,7 @@ fun Fib(n int) int{ ret : = 0 if n == 0 || n == 1 { // 1  ret = 1 // 2  } ret =
       <title>LRU算法</title>
       <link>https://yushuangqi.com/blog/2016/lru-suan-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/lru-suan-fa.html</guid>
       <description>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。
 原理 添加元素时，放到链表头 缓存命中，将元素移动到链表头 缓存满了之后，将链表尾的元素删除  LRU算法实现  可以用一个双向链表保存数据 使用hash实现O(1)的访问  groupcache中LRU算法实现（Go语言）
@@ -48,7 +48,7 @@ package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定�
       <title>golang实现快速排序</title>
       <link>https://yushuangqi.com/blog/2016/golangshi-xian-kuai-su-pai-xu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:43 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangshi-xian-kuai-su-pai-xu.html</guid>
       <description>快速排序的原理就不介绍了。在网上看到一个有趣的视频，大家可以看看，非常详细且有趣。
 快速排序视频
@@ -60,7 +60,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { var sortArray = []
       <title>[leetcode]FindMinimuminRotatedSortedArrayII</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</guid>
       <description>code：https://play.golang.org/p/luj1fdu03F
 problem: https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
@@ -71,7 +71,7 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp
       <title>[leetcode]wordsearch</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-search/
 代码：https://play.golang.org/p/d5wP691Pbg
@@ -82,7 +82,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {
       <title>[leetcode]wordladderii</title>
       <link>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-ladder-ii/
 代码：https://play.golang.org/p/qdmadQUcEC
@@ -93,7 +93,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { start := &amp;quot
       <title>xstrings:Go语言字符串库的补完</title>
       <link>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</guid>
       <description>项目地址：https://github.com/huandu/xstrings
 xstrings 是一个很简单的 Go 语言库，简单说就是提供了一些标准库 strings 没提供但依然很有用的字符串算法。每个字符串算法都对效率进行了优化，所有函数都可以做到不超过 O(n) 的复杂度，并且尽量节省内存使用，仅在需要分配内存的时候分配。

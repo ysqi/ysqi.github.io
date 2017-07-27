@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Book-rsses on 极客虞双齐</title>
+    <title>Book-rsses on 虞双齐的博客</title>
     <link>https://yushuangqi.com/book.xml</link>
-    <description>在 极客虞双齐上关于in Book-rsses 的内容</description>
+    <description>在 虞双齐的博客上关于in Book-rsses 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 04 Mar 2016 13:17:33 +0800</lastBuildDate>
     <atom:link href="/book.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
       <title>GobyExample中文版</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</link>
       <pubDate>Fri, 04 Mar 2016 13:17:33 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</guid>
       <description>此章节收录自 Go by Example 中文 开源项目，虽然作者已提供访问环境，但是对于示例代码还是无法适合于墙内用户在线运行Go。
 感谢@mmcgrana 编写 | everyx中文翻译。</description>
@@ -25,7 +25,7 @@
       <title>Go示例大全-信号</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</guid>
       <description>有时候，我们希望 Go 能智能的处理 Unix 信号。例如，我们希望当服务器接收到一个 SIGTERM 信号时能够自动关机，或者一个命令行工具在接收到一个 SIGINT 信号时停止处理输入信息。这里讲的就就是在 Go 中如何通过通道来处理信号。
 Go 通过向一个通道发送 os.Signal 值来进行信号通知。我们将创建一个通道来接收这些通知（同时还创建一个用于在程序可以结束时进行通知的通道）。
@@ -39,7 +39,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; import
       <title>Go示例大全-退出</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</guid>
       <description>使用 os.Exit 来立即进行带给定状态的退出。
 当使用 os.Exit 时 defer 将不会 执行，所以这里的 fmt.Println将永远不会被调用。
@@ -52,7 +52,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; func m
       <title>Go示例大全-执行进程</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</guid>
       <description>在前面的例子中，我们了解了生成外部进程的知识，当我们需要访问外部进程时时需要这样做，但是有时候，我们只想用其他的（也许是非 Go 程序）来完全替代当前的 Go 进程。这时候，我们可以使用经典的 exec方法的 Go 实现。
 在我们的例子中，我们将执行 ls 命令。Go 需要提供我们需要执行的可执行文件的绝对路径，所以我们将使用exec.LookPath 来得到它（大概是 /bin/ls）。
@@ -66,7 +66,7 @@ package main import &amp;quot;syscall&amp;quot; import &amp;quot;os&amp;quot; im
       <title>Go示例大全-生成进程</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</guid>
       <description>有时，我们的 Go 程序需要生成其他的，非 Go 进程。例如，这个网站的语法高亮是通过在 Go 程序中生成一个 pygmentize来实现的。让我们看一些关于 Go 生成进程的例子。
 我们将从一个简单的命令开始，没有参数或者输入，仅打印一些信息到标准输出流。exec.Command 函数帮助我们创建一个表示这个外部进程的对象。
@@ -82,7 +82,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;io/ioutil&amp;quot;
       <title>Go示例大全-命令行参数</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</guid>
       <description>命令行参数是指定程序运行参数的一个常见方式。例如，go run hello.go，程序 go 使用了 run 和 hello.go 两个参数。
 os.Args 提供原始命令行参数访问功能。注意，切片中的第一个参数是该程序的路径，并且 os.Args[1:]保存所有程序的的参数。
@@ -94,7 +94,7 @@ package main import &amp;quot;os&amp;quot; import &amp;quot;fmt&amp;quot; func m
       <title>Go示例大全-命令行标志</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</guid>
       <description>命令行标志是命令行程序指定选项的常用方式。例如，在 wc -l 中，这个 -l 就是一个命令行标志。
 Go 提供了一个 flag 包，支持基本的命令行标志解析。我们将用这个包来实现我们的命令行程序示例。
@@ -110,7 +110,7 @@ package main import &amp;quot;flag&amp;quot; import &amp;quot;fmt&amp;quot; func
       <title>Go示例大全-环境变量</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</guid>
       <description>环境变量是一个在为 Unix 程序传递配置信息的普遍方式。让我们来看看如何设置，获取并列举环境变量。
 使用 os.Setenv 来设置一个键值队。使用 os.Getenv获取一个键对应的值。如果键不存在，将会返回一个空字符串。
@@ -122,7 +122,7 @@ package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; im
       <title>Go示例大全-行过滤器</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</guid>
       <description>一个行过滤器 在读取标准输入流的输入，处理该输入，然后将得到一些的结果输出到标准输出的程序中是常见的一个功能。grep 和 sed 是常见的行过滤器。
 这里是一个使用 Go 编写的行过滤器示例，它将所有的输入文字转化为大写的版本。你可以使用这个模式来写一个你自己的 Go行过滤器。
@@ -137,7 +137,7 @@ Text 返回当前的 token，现在是输入的下一行。
       <title>Go示例大全-写文件</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</guid>
       <description>Go 写文件和我们前面看过的读操作有着相似的方式。
 开始，这里是展示如写入一个字符串（或者只是一些字节）到一个文件。
@@ -155,7 +155,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quo
       <title>Go示例大全-读文件</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</guid>
       <description>读写文件在很多程序中都是必须的基本任务。首先我们看看一些读文件的例子。
 读取文件需要经常进行错误检查，这个帮助方法可以精简下面的错误检查过程。
@@ -174,7 +174,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quo
       <title>Go示例大全-Base64编码</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/base64-encoding.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:34 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/base64-encoding.html</guid>
       <description>Go 提供内建的 base64 编解码支持。
 这个语法引入了 encoding/base64 包并使用名称 b64代替默认的 base64。这样可以节省点空间。
@@ -189,7 +189,7 @@ package main import b64 &amp;quot;encoding/base64&amp;quot; import &amp;quot;fmt
       <title>Go示例大全-SHA1散列</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/sha1-hashes.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:34 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/sha1-hashes.html</guid>
       <description>SHA1 散列经常用生成二进制文件或者文本块的短标识。例如，git 版本控制系统大量的使用 SHA1 来标识受版本控制的文件和目录。这里是 Go中如何进行 SHA1 散列计算的例子。
 Go 在多个 crypto/* 包中实现了一系列散列函数。
@@ -204,7 +204,7 @@ package main import &amp;quot;crypto/sha1&amp;quot; import &amp;quot;fmt&amp;quo
       <title>Go示例大全-URL解析</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/url-parsing.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:34 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/url-parsing.html</guid>
       <description>URL 提供了一个统一资源定位方式。这里了解一下 Go 中是如何解析 URL 的。
 我们将解析这个 URL 示例，它包含了一个 scheme，认证信息，主机名，端口，路径，查询参数和片段。
@@ -221,7 +221,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;net/url&amp;quot; i
       <title>Go示例大全-数字解析</title>
       <link>https://yushuangqi.com/book/goexamplelib/gobyexample/number-parsing.html</link>
       <pubDate>Fri, 04 Mar 2016 13:13:33 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/book/goexamplelib/gobyexample/number-parsing.html</guid>
       <description>从字符串中解析数字在很多程序中是一个基础常见的任务，在Go 中是这样处理的。
 内置的 strconv 包提供了数字解析功能。

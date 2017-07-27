@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/ide.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/ide.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go语言暴力入门2-工欲善其事</title>
       <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
       <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
 个人网站：http://www.linganmin.cn
@@ -35,7 +35,7 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
       <title>使用intelliJ做为Golang的IDE</title>
       <link>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:11 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html</guid>
       <description> intelliJ是java的开发利器，一个非常好用的IDE，Android Studio就是基于intelliJ改的，选择使用intelliJ作为Golang的IDE，很是便利。
 下载intelliJ 首先要下载http://www.jetbrains.com/idea/

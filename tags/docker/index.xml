@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/docker.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/docker.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>屌炸天的新版GoGC之twitch的GC优化之路</title>
       <link>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:43 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</guid>
       <description>此文翻译自：https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7
 我们在Twitch使用Go研发了许多高并发的系统。它的简单性，安全性，性能和可读性使其成为解决我们遇到问题的一个很好的工具，我们向数百万用户提供实况视频和聊天服务。
@@ -48,7 +48,7 @@ Go运行时的包docs解释如何禁用堆栈收缩。对于我们的聊天服�
       <title>创建尽可能小的Docker容器</title>
       <link>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:48 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</guid>
       <description>注：本文由 Adriaan de Jonge 编写，本文的原文地址为 Create The Smallest Possible Docker Container
  当我们在使用 Docker 的时候，你会很快注意到你正在下载很多 MB 作为你的预先配置的容器。一个简单的 Ubuntu 容器很容易超过 200 MB，并且随着在上面安装软件，尺寸在逐渐增大。在某些情况下，你不需要任何事情都使用 Ubuntu 。例如，如果你只是简单的想运行一个 web 服务，使用 GO 编写的，没有必要围绕它使用任何工具。
@@ -64,7 +64,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <title>使用Etcd和Haproxy做Docker服务发现</title>
       <link>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</guid>
       <description>使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service
  本文作者是 jwilder，本文的原文是 Docker Service Discovery Using Etcd and Haproxy
@@ -81,7 +81,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <title>通过Mesos、Docker和Go使用300行代码创建一个分布式系统</title>
       <link>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:23 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</guid>
       <description>【摘要】虽然 Docker 和 Mesos 已成为不折不扣的 Buzzwords ，但是对于大部分人来说它们仍然是陌生的，下面我们就一起领略 Mesos 、Docker 和 Go 配合带来的强大破坏力，如何通过 300 行代码打造一个比特币开采系统。
 时下，对于大部分 IT 玩家来说， Docker 和 Mesos 都是熟悉和陌生的：熟悉在于这两个词无疑已成为大家讨论的焦点，而陌生在于这两个技术并未在生产环境得到广泛使用，因此很多人仍然不知道它们究竟有什么优势，或者能干什么。近日， John Walter 在 Dzone 上撰文 Creating a Distributed System in 300 Lines With Mesos, Docker, and Go，讲述了 Mesos、Docker 和 Go 配合带来的强大破坏力，本文由 OneAPM 工程师编译整理。
@@ -94,7 +94,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <title>shipyard中文版发布</title>
       <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</guid>
       <description> shipyard中文版正式发布  一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括：
  支持节点动态集群，可扩展节点的规模（swarm、etcd方案）
@@ -110,7 +110,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <title>shipyard研发系列(1)-shipyard安装指南</title>
       <link>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</guid>
       <description>Docker之shipyard安装指南  一、前言：最近在研究shipyard的docker容器管理平台，在研究过程发现自己对docker基础理解还存在一定的欠缺，为了更好的理解docker，将我对shipyard项目的理解共享给docker爱好者，也系统的形成一份研发日志。dockerclub的shipyard研发系列详细请访问
 二、shipyard项目介绍：shipyard是一个集成管理docker容器、镜像、Registries的系统，他最大亮点应该是支持多节点的集成管理，可以动态加载节点，可托管node下的容器。这里暂时不对shipyard的细节讲解，后续章节会讲他的架构。
@@ -136,7 +136,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <title>shipyard中文版v3_0_2更新</title>
       <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:56 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</guid>
       <description>Shipyard中文版官方同步更新
  中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://github.com/dockerclubgroup/shipyard

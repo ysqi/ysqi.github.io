@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/openssl.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/openssl.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>heartbleeder自动检测OpenSSL心脏出血漏洞(附修复指南)</title>
       <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:00 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</guid>
       <description>heartbleeder 可以探测你的服务器是否存在 OpenSSL CVE-2014-0160 漏洞 （心脏出血漏洞）。
 什么是心脏出血漏洞？ CVE-2014-0160，心脏出血漏洞，是一个非常严重的 OpenSSL 漏洞。这个漏洞使得攻击者可以从存在漏洞的服务器上读取64KB大小的内存信息。这些信息中可能包含非常敏感的信息，包括用户请求、密码甚至证书的私钥。
@@ -34,7 +34,7 @@ $ heartbleeder -pg example.com SECURE - example:5432 does not have the heartbeat
       <title>Golang实现RSA加密解密(附带php)</title>
       <link>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</guid>
       <description>https://segmentfault.com/a/
 安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES加密算法本身，请查阅相关资料）

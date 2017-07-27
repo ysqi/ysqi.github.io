@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/cgo.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/cgo.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golang调用cgocoredump获得方法</title>
       <link>https://yushuangqi.com/blog/2016/golang-diao-yong--cgo-coredump-huo-de-fang-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:54 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--cgo-coredump-huo-de-fang-fa.html</guid>
       <description>https://segmentfault.com/a/
 写一个错误的c程序 package dlsym import &amp;quot;testing&amp;quot; func Test_intercept(t *testing.T) { Intercept(&amp;quot;gethostbyname\x00&amp;quot;) } package dlsym // #cgo CFLAGS: -I. // #include &amp;lt;stddef.h&amp;gt; // #include &amp;quot;dlsym_wrapper.h&amp;quot; import &amp;quot;C&amp;quot; import &amp;quot;unsafe&amp;quot; func Intercept(symbol string) { ptr := unsafe.Pointer(&amp;amp;([]byte(symbol)[0])) C.intercept((*C.char)(ptr), C.size_t(len(symbol))) } #include &amp;lt;dlfcn.h&amp;gt; #include &amp;lt;stddef.h&amp;gt; #include &amp;lt;stdio.h&amp;gt; void intercept(char *symbol, size_t symbol_len) { symbol = NULL; // will cause SIGSEGV printf(&amp;quot;%s\n&amp;quot;, symbol); fflush(stdout); }  编译测试为可执行文件 go test -c github.com/taowen/go-lib c/dlsym # will produce executable dlsym.</description>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E6%95%88%E7%8E%87.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E6%95%88%E7%8E%87.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>给电脑小白精挑细选的五个免费软件</title>
       <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
       <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
       <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？
 下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则： + 免费

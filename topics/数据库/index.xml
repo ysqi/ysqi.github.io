@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/topics/%E6%95%B0%E6%8D%AE%E5%BA%93.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/topics/%E6%95%B0%E6%8D%AE%E5%BA%93.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何进行计数场景的优化</title>
       <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
       <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</guid>
       <description>社交网络信息爆发，如何衡量你在社交舆论上的影响力？计数！
 计数是应用最方便、简单实现的数据挖掘应用，拿Facebook举例，你的Feed被评论多少次，转发多少次，赞多少次，被浏览多少次，你有多少个好友等等。可以说计数得多少的价值可能超过你本身或者你发布的内容本身。

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/angular2.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/angular2.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JavaScript新鲜事·第6期</title>
       <link>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</guid>
       <description>微软公布TypeScript 2.0 RC版本 在8月30日，微软公布了TypeScript 2.0 RC版本，增加了一些特性，已经离正式版不远了，目测功能应该不会再有太大的变化。
 原文地址：https://blogs.msdn.microsoft.com/typescript/2016/08/30/announcing-typescript-2-0-rc/

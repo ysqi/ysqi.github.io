@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>深度学习第一课</title>
       <link>https://yushuangqi.com/blog/2017/shen-du-xue-xi-di-yi-ke.html</link>
       <pubDate>Tue, 21 Feb 2017 13:20:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/shen-du-xue-xi-di-yi-ke.html</guid>
       <description>近几年深度学习的概念非常火，我们很幸运赶上并见证了这一波大潮的兴起。记得2012年之前提及深度学习，大部分人并不熟悉，而之后一段时间里，也有些人仍旧持怀疑的态度，觉得这一波浪潮或许与之前sparse coding类似，或许能持续火个两三年，但终究要被某个新技术新方法所取代，再后来，无论是学术界还是工业界，总有些研究者为自己没有在第一时间跟进这波浪潮感到后悔莫及。确实，从2012年AlexNet取得ImageNet的冠军开始，五年过去了，深度学习的方法仍旧占领着人工智能这片领域。
 随着这波浪潮，有些人作为弄潮儿，兴起一波波巨浪，引领各个领域从传统方法到深度学习方法的转变，并希望能够通过了解其他领域的方法改进自己所从事的领域；有些人辛勤地工作，利用深度学习的方法为公司提高业绩，希望实时跟进并实现最新的技术；有些校园中的研究僧，一方面需要了解最新技术及其背后原理，另一方面还有发文章和找工作的压力；有些相关从业者，如编辑、记者，经常报道AI领域新闻，却从没有时间仔细研究深度学习；还有些非技术人员，总会在这些新闻后惊恐地询问“天网是否能在有生之年建成?”或是“AI对人类的威胁到了什么程度?”。

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何用Go实现一款类似滴滴优步的网络约车软件(含源码)</title>
       <link>https://yushuangqi.com/blog/2017/ru-he-yong-goshi-xian-yi-kuan-lei-shi-di-di-you-bu-de-wang-lao-yao-che-ruan-jian-han-yuan-ma-.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:25 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/ru-he-yong-goshi-xian-yi-kuan-lei-shi-di-di-you-bu-de-wang-lao-yao-che-ruan-jian-han-yuan-ma-.html</guid>
       <description>导读：我们经常使用打车软件出行，也经常思考其架构设计。本文作者在所在国家也负责开发一款打车软件，并且开源了其中大部分代码，可以帮助我们更好了解网络约车软件的架构体系。本文由高可用架构翻译。
 
@@ -52,7 +52,7 @@
       <title>理解Go语言的nil</title>
       <link>https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:22 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html</guid>
       <description>最近在油管上面看了一个视频：Understanding nil，挺有意思，这篇文章就对视频做一个归纳总结，代码示例都是来自于视频。
 nil是什么 相信写过Golang的程序员对下面一段代码是非常非常熟悉的了：
@@ -66,7 +66,7 @@ type Type int var nil Type  是不是有点惊讶？nil并不是Go的关键字�
       <title>谢孟军:THESTATEOFGO</title>
       <link>https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html</link>
       <pubDate>Fri, 03 Mar 2017 08:36:22 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html</guid>
       <description>本月 17 日，Go 1.8 版本火热发布。相较于以往的版本，Go 1.8 具体有哪些新的特性呢？想必这是不少 Gopher 们热切关注和讨论的问题。作为著名的Golang 布道者，Gopher China 社区创始人，谢孟军早在今年一月的 ECUG Con 上就对 Golang 做出了历史版本的回顾和 1.8 版本的分析，本文就是对他的演讲实录。 Gopher China 社区创始人，著名开源框架 beego 开发者，畅销图书《Go Web 编程》作者，同时有 bat、bee 等开源软件。国内 Go 发展的主要推动者之一。
 谢孟军：大家好，我是来自 Apple 的工程师，目前主要在从事工业自动化系统的架构和研发，今天很高兴来到这里跟大家分享一下关于 Go 的一些东西。Go 是 Google 的语言，Go 语言已经出来 6 年了，从 1.0 版本到 1.8 版本，今天最主要是跟大家分享一下 Go 在 1.8 版本中带来了哪些新特性。

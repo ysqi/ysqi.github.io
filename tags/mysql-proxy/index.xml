@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/mysql-proxy.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/mysql-proxy.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>kingshardSQL黑名单功能介绍</title>
       <link>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</guid>
       <description>https://segmentfault.com/a/
 kingshard SQL黑名单功能介绍  应用场景介绍 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  在kingshard开源之后，有用户多次提到能不能在kingshard中加入SQL黑名单机制，让kingshard能够根据特定的规则来拦截在黑名单中的SQL。有几个比较典型的应用场景：
@@ -30,7 +30,7 @@ SELECT c FROM t WHERE id=1 select c from t where id=? SELECT * FROM prices.rt_5m
       <title>kingshard按时间分表功能介绍</title>
       <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</guid>
       <description>kingshard按时间分表功能介绍 在文档中主要介绍了kingshard的Hash和Range方式的分表，最近又开发了按时间维度的分表方式。按时间维度分表的场景非常普遍，下面介绍一下kingshard的时间分表功能
  支持的时间类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard中的分表字段支持MySQL中三种类型的时间格式

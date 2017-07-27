@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/go-web-framework.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/go-web-framework.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go语言net_http包使用模式</title>
       <link>https://yushuangqi.com/blog/2016/go-yu-yan-net_http-bao-shi-yong-mo-shi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:08 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-yu-yan-net_http-bao-shi-yong-mo-shi.html</guid>
       <description>译注: 这篇文章的内容非常基础，也非常容易理解。原文地址，感觉是最能清晰的讲述了net/http包的用法的一篇，故翻译一下共享之。
 一切的基础：ServeMux 和 Handler Go 语言中处理 HTTP 请求主要跟两个东西相关：ServeMux 和 Handler。

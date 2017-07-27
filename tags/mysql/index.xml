@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/mysql.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/mysql.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>kingshard--一个支持sharding的MySQLProxy项目</title>
       <link>https://yushuangqi.com/blog/2016/kingshard--yi-ge-zhi-chi-shardingde-mysql-proxyxiang-mu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:25 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshard--yi-ge-zhi-chi-shardingde-mysql-proxyxiang-mu.html</guid>
       <description>kingshard简介 kingshard（https://github.com/flike/kingshard）是一个由Go开发高性能MySQL Proxy项目，kingshard在满足基本的读写分离的功能上，致力于简化MySQL分库分表操作；能够让DBA通过kingshard轻松平滑地实现MySQL数据库扩容。
 主要功能： 1.读写分离。 2.跨节点分表。 3.客户端IP访问控制。 4.平滑上线DB或下线DB，前端应用无感知。  kingshard sharding介绍 现在开源的MySQL Proxy已经有几款了，并且有的已经在生产环境上广泛应用。但这些proxy在sharding方面，都是不能分子表的。也就是说一个node节点只能分一张表。但我们的线上需求通常是这样的：
@@ -35,7 +35,7 @@ schemas : db : kingshard nodes: [node1,node2] rules: default: node1 shard: - #�
       <title>Go抓取网页数据并存入MySQL和返回json数据&amp;amp;lt;一&amp;amp;gt;</title>
       <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</guid>
       <description>前言 很久前就想学习GO，但是由于准备读研和要实习就一直耽搁没动手，只是偶尔看一下相关的基本语法，并没有将其具体地运用到实际的编码中。大四了，课程一下子少了很多，于是决定用它从网上抓一些图片数据，然后提供接口，为后面学习iOS提供一些网络数据。
 有关GO的介绍我就不在这里说了，对于我这种初学者本来说得就不清不楚，多给自己落下话柄。
@@ -57,7 +57,7 @@ indiepic ├── README.md ├── crawldata │ ├── crawldata.go │
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;二&gt;</title>
       <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:14 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</guid>
       <description>上一节已经说明了要做什么，以及整个小程序的目录结构，接下来就开始编码部分。
 首先在入口文件中引入项目下的包crawldata,然后调用其中抓取数据的函数，暂时取名为Crawl:
@@ -71,7 +71,7 @@ package crawldata import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/Puerkito
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;三&gt;</title>
       <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</guid>
       <description>上一节主要实现了使用 goquery 从图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/ 抓取数据。主要抓取图片的data-original、width、height、alt、type 五项数据。因此需要先创建数据库和相应的表，在mac上我使用 Sequel Pro 数据库管理软件，连接之后创建新的数据库indiepic,然后创建表gratisography:
 CREATE TABLE `gratisography` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `img_url` varchar(255) DEFAULT NULL, `type_name` varchar(50) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;  创建完数据库之后，就开始使用GO来实现连接数据库等操作了。在GO中使用Go-MySQL-Driver is a lightweight and fast MySQL-Driver for Go&amp;rsquo;s (golang) database/sql package
@@ -84,7 +84,7 @@ go get github.com/go-sql-driver/mysql  然后在database.</description>
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;四&gt;</title>
       <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</guid>
       <description>上一节已将将需要的数据从网站[](http://www.gratisography.com/)http://www.gratisography.com/ 抓取并存入数据库【使用crawldata.go中的InsertData(&amp;amp;imageDatas)函数】，现在需要将数据从数据库indiepic的表gratisography中取出并然会json格式的数据。
 项目文件夹结构如下：
@@ -96,7 +96,7 @@ func GetAllImages() (imageDatas ImageDatas, err error) { // 连接数据库 db, 
       <title>Go语言项目(kingshard)性能优化实例剖析</title>
       <link>https://yushuangqi.com/blog/2016/goyu-yan-xiang-mu-kingshardxing-neng-you-hua-shi-li-pou-xi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:10 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goyu-yan-xiang-mu-kingshardxing-neng-you-hua-shi-li-pou-xi.html</guid>
       <description>kingshard性能优化网络篇 最近kingshard的功能开发节奏慢了许多。一方面是工作确实比较忙，另一方面是我觉得kingshard的功能已经比较完善了，下一步的开发重点应该是性能优化。毕竟作为一个MySQL proxy,如果转发SQL的性能很差，再多的功能都无济于事。所以这个周末一直宅在家里优化kingshard的转发性能。经过两天的探索发现，将kingshard的转发SQL性能提升了18%左右，在这个过程中学到了一下知识。借此机会分享一下，同时也是督促一下自己写博客的积极性。：）
  发现kingshard的性能瓶颈 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  首选，对kingshard进行性能优化，我们必须要找到kingshard的性能瓶颈在哪里。Go语言在性能优化支持方面做的非常好，借助于go语言的pprof工具，我们可以通过简单的几个步骤，就能得到kingshard在转发SQL请求时的各个函数耗时情况。
@@ -116,7 +116,7 @@ sysbench --test=oltp --num-threads=16 --max-requests=160000 --oltp-test-mode=non
       <title>kingshardSQL黑名单功能介绍</title>
       <link>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</guid>
       <description>https://segmentfault.com/a/
 kingshard SQL黑名单功能介绍  应用场景介绍 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  在kingshard开源之后，有用户多次提到能不能在kingshard中加入SQL黑名单机制，让kingshard能够根据特定的规则来拦截在黑名单中的SQL。有几个比较典型的应用场景：
@@ -132,7 +132,7 @@ SELECT c FROM t WHERE id=1 select c from t where id=? SELECT * FROM prices.rt_5m
       <title>kingshard按时间分表功能介绍</title>
       <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</guid>
       <description>kingshard按时间分表功能介绍 在文档中主要介绍了kingshard的Hash和Range方式的分表，最近又开发了按时间维度的分表方式。按时间维度分表的场景非常普遍，下面介绍一下kingshard的时间分表功能
  支持的时间类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard中的分表字段支持MySQL中三种类型的时间格式
@@ -151,7 +151,7 @@ SELECT c FROM t WHERE id=1 select c from t where id=? SELECT * FROM prices.rt_5m
       <title>GolangSQL操作初体验</title>
       <link>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</guid>
       <description>https://segmentfault.com/a/
 简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了.
@@ -168,7 +168,7 @@ import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/m
       <title>开源一个Golang写的Excel(xlsx)导入MySQL小工具</title>
       <link>https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html</guid>
       <description>简介 这是工作中用到的一个小工具，将Excel(xlsx)表导入MySQL表中，用Golang写的，每条记录单独一条 goroutine 处理，提高效率。支持随机数生成、密码生成、时间戳；支持关联查询、附表操作等。
 使用方法  使用Go编译安装或直接下载：https://github.com/TargetLiu/xlsxtomysql/releases
@@ -195,7 +195,7 @@ Excel表导入结构说明  只支持单Sheet
       <title>分布式系统测试那些事儿-理念</title>
       <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
       <description>https://segmentfault.com/a/
 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
@@ -216,7 +216,7 @@ We should walk through all of the bugs in:
       <title>分布式系统测试那些事儿-错误注入</title>
       <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
 接上篇：
@@ -229,7 +229,7 @@ We should walk through all of the bugs in:
       <title>分布式系统测试那些事儿-信心的毁灭与重建</title>
       <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:36 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。
 接中篇：
@@ -248,7 +248,7 @@ Simulate the following errors:
       <title>TiKV源码解析系列-multi-raft设计与实现</title>
       <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</guid>
       <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
@@ -263,7 +263,7 @@ PD 是一个非常重要的中心节点，它通过集成 etcd，自动的支持
       <title>TiKV源码解析系列-如何使用Raft</title>
       <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</guid>
       <description>TiKV 源码解析系列——如何使用 Raft 本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。

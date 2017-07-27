@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/php.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/php.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>gocron-定时任务web管理系统</title>
       <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</guid>
       <description>gocron - 定时任务web管理系统 项目简介 使用Go语言开发的定时任务集中调度和管理系统, 用于替代Linux-crontab 项目地址 查看文档
 功能特性  支持任务CURD
@@ -44,7 +44,7 @@
       <title>近十年来最好的语言是什么？-来GopherChina大会找答案</title>
       <link>https://yushuangqi.com/blog/2016/jin-shi-nian-lai-zui-hao-de-yu-yan-shi-shen-me--lai-gopher-chinada-hui-zhao-da-an.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:32 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/jin-shi-nian-lai-zui-hao-de-yu-yan-shi-shen-me--lai-gopher-chinada-hui-zhao-da-an.html</guid>
       <description>https://segmentfault.com/a/
 2015年2月，眼看着Gopher 大会先后在国外多地举行，而使用 Golang 最多的国家居然还在静悄悄地各自开发系统，我们意识到Gopher China的正式启动势在必行了。经过这两个月的筹备，Gopher China就要在4月25-26日跟各位开发者们正式见面了。不负众望，本次大会门票提前一个多月就售罄了。作为第一届中国的Gopher大会，到底是什么吸引开发者们这么积极参与呢？今天小编就带大家提前一睹这次会议的亮点。
@@ -65,7 +65,7 @@ Gopher China组委会特供“中国版土拨鼠T-shirt”作为礼物。不解�
       <title>PHP编程中的并发</title>
       <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</guid>
       <description>PHP编程中的并发  周末去北京面了两个公司，认识了几位技术牛人，面试中聊了很多，感觉收获颇丰。认识到了自己的不足之处，也坚定了自己对计算机学习的信心。本文是对其中一道面试题的总结。
  面试中有一个问题没有很好的回答出来，题目为：并发3个http请求，只要其中一个请求有结果，就返回，并中断其他两个。
@@ -82,7 +82,7 @@ curl_multi_init 文档中说的是 Allows the processing of multiple cURL handle
       <title>途牛原创｜途牛周刊</title>
       <link>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</guid>
       <description>Tuniu Weekly  Inspired By 《湾区日报》
 我们团队也想基于这种模式，让大家感受到技术的人文。
@@ -115,7 +115,7 @@ curl_multi_init 文档中说的是 Allows the processing of multiple cURL handle
       <title>Service层的是否必要性分析及案例</title>
       <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</guid>
       <description>序言 此前，我看过这样的一个提问“Yii2框架中，有必要再分离service层么？”，从别人的回答中，自己也收获了答案，但我觉得还需要有个活生生的粟子，才具有更加清晰明了和强有力的说服力。如对我的实战经历感兴趣的继续往下看，喜欢的还可以点击推荐和收藏。在举粟子前，我先讲讲service是什么？有什么作用吧？免得还有人糊涂。
 1、service是什么？
@@ -136,7 +136,7 @@ use common\service\CluesBranchService; $query = CluesBranchService::getIndex(); 
       <title>Golang实现RSA加密解密(附带php)</title>
       <link>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</guid>
       <description>https://segmentfault.com/a/
 安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES加密算法本身，请查阅相关资料）
@@ -168,7 +168,7 @@ func Decode(data []byte) (p *Block, rest []byte)  这样便得到了一个Block�
       <title>PHP混合Go协程并发</title>
       <link>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:57 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</guid>
       <description>想法很简单。通过设置 runtime.GOMAXPROCS(1) 让 golang 的进程变成单线程执行的。类似python用gevent的效果。然后通过调度多个协程实现异步I/O并发。php作为一个子函数跑在go的进程内，php需要yield到其他协程时，通过回调到golang函数来实现。从php里调用go提供的子函数时，go保证保存php的当前上下文。当协程执行权让渡回来的时候，把原来的php上下文恢复。关键的代码在：
  // 保存当前协程上的php上下文 oldServerCtx := engine.ServerContextGet() fmt.Println(oldServerCtx) defer engine.ServerContextSet(oldServerCtx) oldExecutorCtx := engine.ExecutorContextGet() fmt.Println(oldExecutorCtx) defer engine.ExecutorContextSet(oldExecutorCtx) oldCoreCtx := engine.CoreContextGet() fmt.Println(oldCoreCtx) defer engine.CoreContextSet(oldCoreCtx) // 放弃全局的锁，使得其他的协程可以开始执行php engineLock.Unlock() defer engineLock.Lock()  ServerContextGet 这几个函数是我加的，获得的是php的（EG/SG/PG）这三个全局context（参见：http://www.cnblogs.com/chance&amp;hellip;）。修改过的github.com/deuill/go-php的源代码在：https://github.com/taowen/go-&amp;hellip;
@@ -180,7 +180,7 @@ func Decode(data []byte) (p *Block, rest []byte)  这样便得到了一个Block�
       <title>golang调用php7</title>
       <link>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</guid>
       <description>使用 https://github.com/taowen/go-php7
 基于 https://github.com/deuill/go-php 修改而来，fork缘由（https://github.com/deuill/go-&amp;hellip;）
@@ -192,7 +192,7 @@ func Decode(data []byte) (p *Block, rest []byte)  这样便得到了一个Block�
       <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
       <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
       <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
 ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
@@ -206,7 +206,7 @@ yum install nginx  安装好以后测试一下 nginx 服务： service nginx sta
       <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
       <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
       <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
 首先看源代码

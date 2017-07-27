@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/golang</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/golang#%E6%9E%B6%E6%9E%84.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>从设计到实战:Go如何扛住100亿次请求</title>
       <link>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</link>
       <pubDate>Wed, 22 Feb 2017 08:37:15 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</guid>
       <description>扛住100亿次请求？我们来试一试
 作者：ppmsn2005#gmail.com

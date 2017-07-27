@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/c.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/c.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>为什么Go语言把类型放在后面？</title>
       <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
       <description>本文整理自知乎，原文作者 @林建入。
 不是为了与众不同。而是为了更加清晰易懂。
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) { /* .</description>
       <title>GC垃圾回收机制:浅析与理解</title>
       <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
       <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
 基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。
@@ -61,7 +61,7 @@ char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指�
       <title>用go实现跨平台Autoit_AutoHotkey和按键精灵功能示例代码</title>
       <link>https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:50 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html</guid>
       <description>Robotgo v0.40.0对鼠标键盘操作进行了大幅度的完善,由于跨平台切换测试麻烦(合并几个平台的代码到对比上传代码都浪费了不少时间)和C代码生产效率与Go和JavaScript不在一个级别上,没有支持窗口和进程对应窗口的选择以及窗口Bounds,将在下一个版本完善,键盘操作可能在某些输入法上有些问题请切换到系统输入法(目前优先完成窗口句柄的问题,后面会解决该问题).
 项目地址:https://github.com/go-vgo/rob&amp;hellip;

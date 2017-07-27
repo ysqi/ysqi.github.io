@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/testing.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/testing.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>官博译文:可测试的Golang代码示例</title>
       <link>https://yushuangqi.com/blog/2016/guan-bo-yi-wen-ke-ce-shi-de--golang-dai-ma-shi-li.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:30 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/guan-bo-yi-wen-ke-ce-shi-de--golang-dai-ma-shi-li.html</guid>
       <description>简介 Dodoc 的 示例 是一些可执行的测试代码的聚合，他们做为包的文档中的一部分提供给读者阅读和执行。读者可以点击 &amp;ldquo;Run&amp;rdquo; 按钮来测试代码。
 Golang 的标准包包括很多这种代码示例（比如 strings 包）

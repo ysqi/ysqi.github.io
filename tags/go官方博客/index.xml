@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go声明语法</title>
       <link>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</link>
       <pubDate>Fri, 26 Feb 2016 11:00:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</guid>
       <description>很多新手对于 Go 不同于 C 系列语言的声明语法感到非常惊讶，本文就为什么 Go 语言声明语法为何不同于其他语言进行说明。
 C 语法 首先来说是 C 语言语法，C 采用不寻常但非常聪明的方式定义语法，反过来使用特殊语法申明明类型。一次写一个表达式来声明，并指明是什么类型的表达式。像这样：

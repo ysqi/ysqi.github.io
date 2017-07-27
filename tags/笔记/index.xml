@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E7%AC%94%E8%AE%B0.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E7%AC%94%E8%AE%B0.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>终于找到我要的读书方法了</title>
       <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
       <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
       <description>自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。
 曾遭遇的困惑  买过很多不需要的书，在角落里干灰。 我好像读过这本书。 一口气读完一本书，就没有然后了。  现在买书很克制，不读完并吸收掌握就不继续买。先放到购物车或购书清单中，反正电商的图书活动不断，不怕下次没法优惠购。
@@ -37,7 +37,7 @@
       <title>老虞学Golang-控制语句</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</link>
       <pubDate>Mon, 08 Apr 2013 23:31:47 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</guid>
       <description>Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活
 if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执行语句块，否则则执行else语句块(如果存在else时)，此逻辑和其他语言中的if一样，但是在Go中还是有一些不同之处。
@@ -51,7 +51,7 @@ if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执�
       <title>老虞学Golang-函数上</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</link>
       <pubDate>Sun, 07 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</guid>
       <description>不可或缺的函数，在Go中定义函数的方式如下：
 func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通过函数定义，我们可以看到Go中函数和其他语言中的共性和特性
@@ -65,7 +65,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
       <title>老虞学golang-字符串</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</link>
       <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
       <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
  初始化  var str string //声明一个字符串 str = &amp;quot;laoYu&amp;quot; //赋值 ch :=str[0] //获取第一个字符 len :=len(str) //字符串的长度,len是内置函数 ,len=5  字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
@@ -77,7 +77,7 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return }  通�
       <title>老虞学Golang-常量</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</link>
       <pubDate>Fri, 05 Apr 2013 23:31:47 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</guid>
       <description>###常量
 常量和C#中的概念相同，在编译期被创建。因为在编译期必须确定其值，因此在声明常量时有一些限制。
@@ -97,7 +97,7 @@ const ( //批量声明 Monday, Tuesday, Wednesday = 1, 2, 3 Thursday, Friday, Sa
       <title>老虞学Golang-数组和切片</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</link>
       <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</guid>
       <description>数组 Arrays 数组是内置(build-in)类型,是一组同类型数据的集合，它是值类型，通过从0开始的下标索引访问元素值。在初始化后长度是固定的，无法修改其长度。当作为方法的入参传入时将复制一份数组而不是引用同一指针。数组的长度也是其类型的一部分，通过内置函数len(array)获取其长度。
 初始化 数组的初始化有多种形式,查看示例代码 , 在线运行示例代码
@@ -110,7 +110,7 @@ arr := [5]int{5, 4, 3} for index, value := range arr { fmt.Printf(&amp;quot;arr[
       <title>老虞学golang-变量声明与初始化</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</link>
       <pubDate>Wed, 03 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</guid>
       <description>变量声明  官方doc: http://golang.org//spec#Variable_declarations
  Go中使用全新的关键字var来声明变量。var我们并不陌生，在Javascript 和C#中均有出现。不同的是Go和C#中变量属于强类型，在声明变量后就不允许改变其数据类型。
@@ -128,7 +128,7 @@ var name [type] = value
       <title>老虞学Golang-代码规范</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</link>
       <pubDate>Tue, 02 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</guid>
       <description>&lt;p&gt;开始一项新语言前需要先了解该语言的语法(如果你有其他语言的编程知识的话)，开始学习前，我们一起了解下Go的格式。
 如果大家都统一编码风格，那么在维护他人代码时就能带来便利。同时我们在提交代码前执行一次fmt命令，以便提交统一风格的代码。&lt;/p&gt;
@@ -140,7 +140,7 @@ var name [type] = value
       <title>老虞学GoLang-为什么会学习goLang</title>
       <link>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</link>
       <pubDate>Mon, 01 Apr 2013 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</guid>
       <description>2009年开始接触软件开发，一直深爱着它，喜爱淘腾些新技术新技能，却至今没有所成。也许专心才能做好一些事，2013年初接触Go Lang,感受着这门语言带来的魅力，自己该在这条路上留下足迹，以此见证自己的成长历程。
 为什么会学习Go Lang  编程本身是一门艺术，Go Lang 有着无尽想象的魅力。

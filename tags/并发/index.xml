@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E5%B9%B6%E5%8F%91.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E5%B9%B6%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go并发模式:管道和取消</title>
       <link>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:02 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</guid>
       <description>原地址：[](http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html)http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html
 译自[](http://blog.golang.org/pipelines)http://blog.golang.org/pipelines。
@@ -35,7 +35,7 @@ func sq(in &amp;lt;-chan int) &amp;lt;-chan int { out := make(chan int) go func(
       <title>Fanout-更容易得写并发代码</title>
       <link>https://yushuangqi.com/blog/2016/fanout---geng-rong-yi-de-xie-bing-fa-dai-ma.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fanout---geng-rong-yi-de-xie-bing-fa-dai-ma.html</guid>
       <description>不用管理 grouting 和 channel 了。 以下为转发 golangtc.com 原文：
 刚刚写了个包，觉得值得出来分享下：
@@ -50,7 +50,7 @@ inputs := []interface{}{} for _, word:= range domainWords { inputs = append(inpu
       <title>PHP编程中的并发</title>
       <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</guid>
       <description>PHP编程中的并发  周末去北京面了两个公司，认识了几位技术牛人，面试中聊了很多，感觉收获颇丰。认识到了自己的不足之处，也坚定了自己对计算机学习的信心。本文是对其中一道面试题的总结。
  面试中有一个问题没有很好的回答出来，题目为：并发3个http请求，只要其中一个请求有结果，就返回，并中断其他两个。
@@ -67,7 +67,7 @@ curl_multi_init 文档中说的是 Allows the processing of multiple cURL handle
       <title>在Golang中使用Go关键字和Channel实现并行</title>
       <link>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:39 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html</guid>
       <description>Go 关键字和 channel 的用法 go 关键字用来创建 goroutine (协程)，是实现并发的关键。go 关键字的用法如下： //go 关键字放在方法调用前新建一个 goroutine 并让他执行方法体 go GetThingDone(param1, param2); //上例的变种，新建一个匿名方法并执行 go func(param1, param2) { }(val1, val2) //直接新建一个 goroutine 并在 goroutine 中执行代码块 go { //do someting... }  因为 goroutine 在多核 cpu 环境下是并行的。如果代码块在多个 goroutine 中执行，我们就实现了代码并行。那么问题来了，怎么拿到并行的结果呢？这就得用 channel 了。 //resultChan 是一个 int 类型的 channel。类似一个信封，里面放的是 int 类型的值。 var resultChan chan int //将 123 放到这个信封里面，供别人从信封中取用 resultChan &amp;lt;- 123 //从 resultChan 中取值。这个时候 result := 123 result := &amp;lt;- resultChan  使用 go 关键字和 channel 实现非阻塞调用 阻塞的意思是调用方在被调用的代码返回之前必须一直等待，不能处理别的事情。而非阻塞调用则不用等待，调用之后立刻返回。那么返回值如何获取呢？Node.</description>
     </item>
@@ -76,7 +76,7 @@ curl_multi_init 文档中说的是 Allows the processing of multiple cURL handle
       <title>Golang并发模式:超时和继续GoConcurrencyPatterns:Timingoutmovingon</title>
       <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</guid>
       <description>翻译自 Go Blog。
 原文地址：https://blog.golang.org/go-concurrency-patterns-timing-out-and
@@ -89,7 +89,7 @@ select { case &amp;lt;-ch: // a read from ch has occurred case &amp;lt;-timeout:
       <title>Golang 并发模式超时和继续 Go Concurrency Patterns: Timing out moving on</title>
       <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</link>
       <pubDate>Sat, 31 Dec 2016 11:18:42 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</guid>
       <description>翻译自 Go Blog。
 原文地址：https://blog.golang.org/go-concurrency-patterns-timing-out-and

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/nginx.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/nginx.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Caddy新兴的web服务器caddy</title>
       <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
       <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
@@ -40,7 +40,7 @@
       <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
       <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
       <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
 ssh root@218.244.147.196  @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。

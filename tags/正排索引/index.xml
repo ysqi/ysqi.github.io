@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>极客虞双齐</title>
+    <title>虞双齐的博客</title>
     <link>https://yushuangqi.com/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.xml</link>
-    <description>在 极客虞双齐上关于的内容</description>
+    <description>在 虞双齐的博客上关于的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>devysq@gmail.com (虞双齐)</managingEditor>
-    <webMaster>devysq@gmail.com (虞双齐)</webMaster>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <atom:link href="/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x07)---正排索引</title>
       <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:47 +0800</pubDate>
-      <author>devysq@gmail.com (虞双齐)</author>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html</guid>
       <description>https://segmentfault.com/a/
 最近各种技术盛会太多，朋友圈各种刷屏，有厂商发的各种广告，有讲师发的各种自拍，各种参会的朋友们各种自拍，好不热闹，不知道你的朋友圈是不是也是这样啊，去年还没这么多技术会议，今年感觉爆发了，呵呵，真是一个互联网技术的好时代，而且还有各种撕B可看，真想八一八，怕得罪人，我们这种码农还是专注技术专注写代码吧。
