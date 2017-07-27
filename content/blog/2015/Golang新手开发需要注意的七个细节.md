@@ -7,7 +7,7 @@ topics:
 tags:
     - 技巧
     - 优化
-    - Go
+    - Golang
 disqus_identifier: 100020
 ---
  

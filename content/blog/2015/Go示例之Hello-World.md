@@ -5,7 +5,7 @@ slug: golang-demo-hello_world
 topics:
     - 编程语言与开发 
 tags:
-    - Go
+    - Golang
     - 教程
 disqus_identifier: 100019
 ---

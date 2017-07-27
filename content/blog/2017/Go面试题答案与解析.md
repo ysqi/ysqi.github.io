@@ -5,7 +5,7 @@ disqus_identifier: "20170720001"
 slug: "golang-mian-shi-ti-da-an-yu=jie-xi"
 tags:
 - 面试题
-- Go
+- Golang
 title: Go面试题答案与解析
 topics:
 - 编程语言与开发

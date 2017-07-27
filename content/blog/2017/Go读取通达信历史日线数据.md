@@ -3,7 +3,7 @@ date: 2017-07-26T10:32:00Z
 description: "使用Go从通达信读取A股历史行情信息" 
 slug: "Go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju"
 tags:
-- Go
+- Golang
 - 通达信
 - 行情
 title: Go读取通达信历史日线数据

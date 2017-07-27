@@ -5,7 +5,7 @@ slug: ysqi-golang-code-formate
 topics:
 - 编程语言与开发
 tags:
-- Go
+- Golang
 - 笔记
 - 教程
 books:

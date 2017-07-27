@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20160001"
 slug: "gos-declaration-syntax"
 tags:
-- Go
+- Golang
 - Go官方博客
 title: Go声明语法
 topics:

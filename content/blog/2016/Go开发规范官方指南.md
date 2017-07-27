@@ -3,7 +3,7 @@ date = "2016-01-27"
 title = "Go开发规范之常见问题汇总"
 slug = "common_problems-in-Go_development_specifications"
 topics = ["编程语言与开发"]
-tags = ["Go","编码规范"]
+tags = ["Golang","编码规范"]
 disqus_identifier= "2016001" 
 +++
 
