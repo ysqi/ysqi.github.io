@@ -1,6 +1,6 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zh"
-title = "极客虞双齐" 
+title = "虞双齐的博客" 
 pygmentsuseclasses = false
 PygmentsCodeFences = true
 pygmentsstyle = "friendly"
@@ -19,12 +19,12 @@ publishdir = "public"
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
   name = "虞双齐"
-  title= "爱分享的极客"
+  title= "全栈开发"
   # 140*140头像
   aboutme_avatar = "https://static.yushuangqi.com/assets/touxiang.jpg?imageView2/1/w/140/h/140/q/96"
   # 高清原始头像
   aboutme_height = "https://static.yushuangqi.com/assets/touxiang.jpg"
-  email ="devysq@gmail.com"
+  email ="ysqi@yushuangqi.com"
   qq = "460857340"
   weibo = "234665601"
   github = "ysqi"

@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20161003"
 slug: "how-to-know-running-within-gotest"
 tags:
-- Go
+- Golang
 - Go Test
 title: 如何判断是否是在GolangTest运行代码
 topics:

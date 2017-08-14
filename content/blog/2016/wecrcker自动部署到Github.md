@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20160302"
 slug: "wercker-deploy-github-qa"
 tags:
-- Go
+- Golang
 - Wercker
 - git
 - github

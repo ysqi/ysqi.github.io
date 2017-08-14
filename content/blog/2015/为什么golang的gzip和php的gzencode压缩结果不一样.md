@@ -5,7 +5,7 @@ slug: golang-php-gzencode-difrent
 tags : 
 - gzip
 - 问题
-- Go
+- Golang
 - PHP
 Topics: 
 - 编程语言与开发

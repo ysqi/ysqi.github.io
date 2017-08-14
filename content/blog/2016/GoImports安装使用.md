@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20160008"
 slug: "gosublime-goimports"
 tags:
-- Go
+- Golang
 - Tool
 - Sublime
 title: GoImports安装使用

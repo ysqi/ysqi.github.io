@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20160003"
 slug: "beego-webframework-config"
 tags:
-- Go
+- Golang
 - beego
 title: beego框架源码解读 config 模块设计
 topics:

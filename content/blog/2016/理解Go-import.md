@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: "20160301"
 slug: "understanding-golang-import-package"
 tags:
-- Go
+- Golang
 - import
 - package
 title: 理解Go import

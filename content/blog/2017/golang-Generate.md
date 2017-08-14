@@ -1,11 +1,11 @@
 ---
-title: "Golang Generate"
+title: "Golang Generate命令说明与使用"
 date: 2017-08-14T18:52:10+08:00
 draft: false 
 description: ""
 slug: "go-command-generate" 
 tags:
-- "Go"
+- "Golang"
 - "command"
 topics: 
 - 编程语言与开发

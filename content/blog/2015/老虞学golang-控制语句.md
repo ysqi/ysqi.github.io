@@ -5,7 +5,7 @@ date: 2013-04-08T23:31:47
 topics:
 - 编程语言与开发
 tags:
-- Go
+- Golang
 - 笔记
 - 教程
 books:

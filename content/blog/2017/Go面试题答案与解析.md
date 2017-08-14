@@ -5,7 +5,7 @@ disqus_identifier: "20170720001"
 slug: "golang-mian-shi-ti-da-an-yu=jie-xi"
 tags:
 - 面试题
-- Go
+- Golang
 title: Go面试题答案与解析
 topics:
 - 编程语言与开发
@@ -163,7 +163,11 @@ func main() {
 
 **解析：**
 
-实际上第一行是否设置CPU为1都不会影响后续代码。两个for循环内部go func 调用参数`i`的方式是不同的，导致结果完全不同。这也是新手容易遇到的坑。
+<del>实际上第一行是否设置CPU为1都不会影响后续代码</del>。
+
+2017年7月25日：将GOMAXPROCS设置为1，将影响goroutine的并发，后续代码中的`go func()`相当于串行执行。
+
+两个for循环内部go func 调用参数`i`的方式是不同的，导致结果完全不同。这也是新手容易遇到的坑。
 
 第一个go func中`i`是外部for的一个变量，地址不变化。遍历完成后，最终i=10。故go func执行时，`i`的值始终是`10`（10次遍历很快完成）。
 

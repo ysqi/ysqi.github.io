@@ -43,7 +43,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
 
 -   **[etcd](https://github.com/coreos/etcd)** - 可靠的分布式 key-value
     存储，用于分布式系统的最关键数据
--   **[go-cache](https://github.com/patrickmn/go-cache)** - Go
+-   **[go-cache](https://github.com/patrickmn/go-cache)** - Golang
     语言实现的一个内存中的缓存框架，实现 Key-Value
     的序列存储，适用于单台机器应用程序
 -   **[biscuit](https://github.com/dcoker/biscuit)** - Biscuit 用于 AWS
@@ -60,9 +60,9 @@ Go 存储相关开源项目和库，一起分享，一起学习。
     用于大文件版本控制的 Git 扩展
 -   **[seaweedfs](https://github.com/chrislusf/seaweedfs)** - SeaweedFS
     是一个用于小文件的简单且高度可扩展的分布式文件系统
--   **[fsnotify](https://github.com/fsnotify/fsnotify)** - Go
+-   **[fsnotify](https://github.com/fsnotify/fsnotify)** - Golang
     实现的跨平台文件系统监控库
--   **[goofys](https://github.com/kahing/goofys)** - Go
+-   **[goofys](https://github.com/kahing/goofys)** - Golang
     实现的高性能，POSIX-ish Amazon S3 文件系统
 -   **[go-systemd](https://github.com/coreos/go-systemd)** - systemd 的
     Go 语言绑定版（包括socket activation, journal, D-Bus, 和 unit
@@ -79,7 +79,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
 
 -   **[BigCache](https://github.com/allegro/bigcache)** -
     用于千兆字节数据的高效 key/value 缓存
--   **[bolt](https://github.com/boltdb/bolt)** - Go
+-   **[bolt](https://github.com/boltdb/bolt)** - Golang
     实现的低层级的 key/value 数据库
 -   **[buntdb](https://github.com/tidwall/buntdb)** - 一个 Go
     实现的快速、可嵌入的 key/value 内存数据库，具有自定义索引和
@@ -94,7 +94,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
     具有可扩展、分布式、低延迟和高吞吐量功能的图形数据库
 -   **[eliasdb](https://github.com/krotik/eliasdb)** - 使用 REST
     API，短语搜索和类似 SQL 查询语言的无依赖性，支持事务处理的图形数据库
--   **[forestdb](https://github.com/couchbase/goforestdb)** - Go
+-   **[forestdb](https://github.com/couchbase/goforestdb)** - Golang
     bindings for ForestDB.Go 语言绑定版的 ForestDB
 -   **[GCache](https://github.com/bluele/gcache)** -
     支持可用缓存、LFU、LRU 和 ARC 的缓存数据库
@@ -141,7 +141,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
     数据库迁移工具。可通过创建增量 SQL 或 Go 脚本来管理数据库的演变
 -   **[gormigrate](https://github.com/go-gormigrate/gormigrate)** - Gorm
     ORM 的数据库迁移助手
--   **[migrate](https://github.com/mattes/migrate)** - Go
+-   **[migrate](https://github.com/mattes/migrate)** - Golang
     实现的数据库迁移处理，支持 MySQL, PostgreSQL, Cassandra, 和 SQLite
 -   **[pravasan](https://github.com/pravasan/pravasan)** -
     简单的迁移工具，目前支持 MySQL，PostgreSQL，但计划很快支持 SQLite,
@@ -154,11 +154,11 @@ Go 存储相关开源项目和库，一起分享，一起学习。
 
 ### **数据库工具**
 
--   **[go-mysql](https://www.oschina.net/p/go-mysql)** - Go
+-   **[go-mysql](https://www.oschina.net/p/go-mysql)** - Golang
     实现的用于处理 MySQL 协议和复制的工具集
 -   **[go-mysql-elasticsearch](https://github.com/siddontang/go-mysql-elasticsearch)** -
     将 MySQL 数据自动同步到 Elasticsearch 中
--   **[kingshard](https://www.oschina.net/p/kingshard)** - Go
+-   **[kingshard](https://www.oschina.net/p/kingshard)** - Golang
     实现的高性能 MySQL Proxy 项目
 -   **[myreplication](https://github.com/2tvenom/myreplication)** -
     MySQL 二进制日志复制监听器。支持语句和基于行的复制
@@ -174,7 +174,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
 
 -   **[dat](https://github.com/mgutz/dat)** - Go 实现的 Postgres
     数据访问工具包
--   **[Dotsql](https://github.com/gchaincl/dotsql)** - Go
+-   **[Dotsql](https://github.com/gchaincl/dotsql)** - Golang
     语言实现的库，可帮助你将 sql 文件保存至某个地方并轻松使用它
 -   **[goqu](https://github.com/doug-martin/goqu)** - Go 实现的 SQL
     构建器和查询库
@@ -235,7 +235,7 @@ Go 存储相关开源项目和库，一起分享，一起学习。
     以及结构化文件的数据存储连接
 -   **[dynago](https://github.com/underarmour/dynago)** - DynamoDB
     的客户端
--   **[go-couchbase](https://github.com/couchbase/go-couchbase)** - Go
+-   **[go-couchbase](https://github.com/couchbase/go-couchbase)** - Golang
     实现的 Couchbase 客户端
 -   **[go-couchdb](https://github.com/fjl/go-couchdb)** - Go 实现的
     CouchDB HTTP API 封装包

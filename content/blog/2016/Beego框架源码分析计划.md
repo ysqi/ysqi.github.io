@@ -4,7 +4,7 @@ description: ""
 disqus_identifier: 20160002
 slug: beego-webframework-analysis-plan
 tags:
-- Go
+- Golang
 - beego
 title: beego框架源码解读计划
 topics:

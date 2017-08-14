@@ -5,7 +5,7 @@ slug: beego-orm-insert-error
 topics:
 - 编程语言与开发
 tags: 
-  - Go
+  - Golang
   - sql
   - beego
   - 问题
