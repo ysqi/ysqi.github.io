@@ -1,10 +1,11 @@
 ---
-date: 2013-07-01T07:32:00Z
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+draft: true 
 description: ""
 slug: "" 
 tags:
 - "Go"
 topics: 
-- 开发
-disqus_identifier: "20160001"
+- 编程语言与开发
 ---
