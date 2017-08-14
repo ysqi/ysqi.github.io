@@ -71,17 +71,6 @@ h4,
 h4 a {
     font-family: Georgia, "Times New Roman", Times, serif
 }
-
-h3 {
-    font-size: 1.4em; 
-    padding: 0 1.5em .2em 0; 
-    display: inline;
-    line-height: 2.5em;
-    border-left: solid 10px #9fb84c;
-    border-bottom: solid 1px #9fb84c;
-    border-top: solid 1px #9fb84c; 
-}
-
 h4 a {
     font-size: 1.15em;
     line-height: .5em
@@ -656,6 +645,27 @@ blockquote {
     line-height: 1.4
 }
 
+.entry h2,h3,h4,h5,h6{
+    padding: 0 1.5em .2em 0; 
+    display: inline;
+    line-height: 2.5em;
+}
+.entry h2{
+    font-size: 1.8em; 
+}
+.entry h3 {
+    font-size: 1.6em;   
+}
+.entry h4{
+    font-size: 1.4em;  
+}
+.entry h5{
+    font-size: 1.3em;  
+}
+.entry h6{
+    font-size: 1em;  
+}
+
 .entry a,
 .entry a:link,
 .entry a:active,
@@ -727,6 +737,31 @@ blockquote {
     background-color: #cddfa9;
     padding: 7px 7px;
     border-right: 1px solid #fff
+}
+.entry h2,h3,h4,h5,h6{
+    font-weight: 600;
+}
+.entry h2:before,
+.entry h3:before,
+.entry h4:before,
+.entry h5:before,
+.entry h6:before{
+    color: #9fb84c;
+}
+.entry h2:before{
+    content: "#";
+}
+.entry h3:before{
+    content: "##";
+}
+.entry h4:before{
+    content: "###";
+}
+.entry h5:before{
+    content: "####";
+}
+.entry h6:before{
+    content: "#####";
 }
 
 .share_sec {
@@ -1785,26 +1820,28 @@ body>aside, body>.content, body>footer, #comments {
 
 
 code{
-    padding: 2px 4px;
+    /* padding: 2px 4px; */
     font-size: 90%;
     /*color: #c7254e;*/
     background-color: #fdf6e3;
     font-weight: 400;
-    border-radius: 4px;
-    padding: 0 10px;
-     /*background: #fdf6e3;*/
+    border-radius: 6px;
+    /* padding: 0 10px; */ 
     /*color: #657b83;*/
+}
+code:before,
+code:after{
+    content: "\00a0"
 } 
 pre code{
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    background-color: #f5f5f5;
+    background-color: #f6f8fa;
     /*color: #657b83;  */
     white-space: pre-wrap;
     border-radius: 6px;
-}
-
+} 
 /*
 
 Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
@@ -1868,8 +1905,8 @@ pre {
     letter-spacing: 0.015em;
     line-height: 120%;
     padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 2px; 
+    /* border: 1px solid #ccc; */
+    /* border-radius: 2px;  */
 }
 
 #comments  h5{ 
