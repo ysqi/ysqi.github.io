@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/command.xml</link>
+    <description>在 虞双齐的博客上关于的内容</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <atom:link href="/tags/command.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang Generate命令说明与使用</title>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
+      <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
+      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
+命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
+通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
+type Status int const ( Offline Status = iota Online Disable Deleted ) var statusText = []string{&amp;quot;Offline&amp;quot;, &amp;quot;Online&amp;quot;, &amp;quot;Desable&amp;quot;, &amp;quot;Deleted&amp;quot;} func (s Status) String() string { v := int(s) if v &amp;lt; 0 || v &amp;gt; len(statusText) { return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, s) } return statusText[v] }  当遇到枚举调整时，则必须要再同步修改statusText，而此事常容被忽视。
+Generate命令说明 早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。
+如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等
+go generate用于一键式批量执行任何命令，创建或更新Go文件或者输出结果。
+Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：
+go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
+    </item>
+    
+  </channel>
+</rss>

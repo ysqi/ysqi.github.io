@@ -11,6 +11,23 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Golang Generate命令说明与使用</title>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
+      <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
+      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
+命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
+通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
+type Status int const ( Offline Status = iota Online Disable Deleted ) var statusText = []string{&amp;quot;Offline&amp;quot;, &amp;quot;Online&amp;quot;, &amp;quot;Desable&amp;quot;, &amp;quot;Deleted&amp;quot;} func (s Status) String() string { v := int(s) if v &amp;lt; 0 || v &amp;gt; len(statusText) { return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, s) } return statusText[v] }  当遇到枚举调整时，则必须要再同步修改statusText，而此事常容被忽视。
+Generate命令说明 早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。
+如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等
+go generate用于一键式批量执行任何命令，创建或更新Go文件或者输出结果。
+Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：
+go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
+    </item>
+    
+    <item>
       <title>Go读取通达信历史日线数据</title>
       <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
@@ -270,36 +287,6 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
 安装之后打开编辑器你有木有发现，默认的主题其实是不那么好看，笔者深深迷恋material主题风格，在用的所有编辑器都换成了该主题风格，包括Sublime和VS code,所以怎么会放过Gogland
  将默认主题设置为Darcula  点击左上角的File选项，找到Settings点击，然后找到如下图的选项卡，在右边选项框内选择你喜欢的主题，个人推荐Darcula，然后点击ok,这个主题是IDE导航及选项的主题
  安装material主题  依然是点击上面说到的那个Settings选项，然后Plugins选项点击后如下图，然后在右边输入框搜索material,在你没安装过该主题的时候会在中间出现一句提示`点击提示右边的在线搜索，然后弹出搜索结果，找到Material theme UI `install，安装完成重启一下IDE就可以看到漂亮的IDE界面了</description>
-    </item>
-    
-    <item>
-      <title>gocron-定时任务web管理系统</title>
-      <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</guid>
-      <description>gocron - 定时任务web管理系统 项目简介 使用Go语言开发的定时任务集中调度和管理系统, 用于替代Linux-crontab 项目地址 查看文档
-功能特性  支持任务CURD
- crontab时间表达式，可精确到每秒
- 任务执行失败重试设置
- 任务超时设置
- 延时任务
- 任务执行方式
- 调用本机系统命令
- 通过SSH执行远程命令
- 执行HTTP-GET请求
-  查看任务执行日志
- 任务执行结果通知, 支持邮件、Slack
-  截图 
-支持平台  Windows、Linux、OSX
- 环境要求  MySQL
- 安装 二进制安装  解压压缩包
- cd 解压目录
- 启动
- Windows: gocron.exe web
- Linux、OSX: ./gocron web
-  浏览器访问 http://localhost:5920
-  源码安装  go语言版本1.</description>
     </item>
     
   </channel>

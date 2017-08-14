@@ -8,8 +8,25 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Wed, 26 Jul 2017 10:32:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Aug 2017 18:52:10 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Golang Generate命令说明与使用</title>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
+      <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
+      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
+命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
+通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
+type Status int const ( Offline Status = iota Online Disable Deleted ) var statusText = []string{&amp;quot;Offline&amp;quot;, &amp;quot;Online&amp;quot;, &amp;quot;Desable&amp;quot;, &amp;quot;Deleted&amp;quot;} func (s Status) String() string { v := int(s) if v &amp;lt; 0 || v &amp;gt; len(statusText) { return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, s) } return statusText[v] }  当遇到枚举调整时，则必须要再同步修改statusText，而此事常容被忽视。
+Generate命令说明 早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。
+如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等
+go generate用于一键式批量执行任何命令，创建或更新Go文件或者输出结果。
+Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：
+go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
+    </item>
     
     <item>
       <title>Go读取通达信历史日线数据</title>
@@ -286,29 +303,6 @@ Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Pro
 //RequestFuture, http request promise. func RequestFuture(url string) &amp;lt;-chan []byte { c := make(chan []byte, 1) go func() { var body []byte defer func() { c &amp;lt;- body }() res, err := http.Get(url) if err != nil { return } defer res.Body.Close() body, _ = ioutil.ReadAll(res.Body) }() return c } func main() { future := RequestFuture(&amp;quot;https://api.github.com/users/octocat/orgs&amp;quot;) body := &amp;lt;-future log.Printf(&amp;quot;reponse length: %d&amp;quot;, len(body)) }  RequestFuture方法理科返回一个channel，这个时候http请求还在一个goroutine后台异步运行。main方法可以继续执行其他的代码，比如触发其他的Future等。当需要结果的时候，我们需要从channel里读取结果。如果http请求还没有返回的话就会阻塞当前的goroutine，知道结果返回。
 然而，以上的方法还有一点局限。错误无法返回。在上面的例子里，如果http请求出现错误的话，body的值会是nil/empty。但是，由于channel只能返回一个值，你需要创建一个单独的struct来包装两个返回的结果。
 修改以后的结果：</description>
-    </item>
-    
-    <item>
-      <title>对echo框架进行统一的自定义错误处理</title>
-      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
-      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
-用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
-你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
-ECHO 框架 由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，
-用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。 不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。 要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。
-但是来到2017年，一个叫 Echo 的框架脱颖而出。这是我目前最推荐的框架。 Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：
-这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，
-因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。
-我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，
-如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。
-其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。
-RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。
-比如微软的规范，
-jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
-STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
     </item>
     
   </channel>
