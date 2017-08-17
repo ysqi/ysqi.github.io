@@ -714,27 +714,26 @@ blockquote {
 .entry ul,
 .entry ol {
     padding: 0;
-    margin: .5em 0 1.1em 1.4em
+    margin: .5em 0 1.1em  3rem
 }
 
-.entry blockquote {
-    margin: 10px 0 10px 25px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+.entry blockquote>p{
+    margin: 10px 0 10px 25px; 
     line-height: 1.4;
     font-size: 1.05em;
-    color: #3c3c3c;
-    border-left: solid 1px #c9c9c9;
-    padding: 10px 0 10px 15px
+    color: #b2b2b2;
+    border-left: dotted 1px #888888;
+    padding: 5px 0 5px 10px
 }
 
-.entry blockquote cite {
+.entry blockquote>p cite {
     font-size: 1em;
     color: #333;
     margin-top: 0;
     margin-bottom: 10px
 }
 
-.entry blockquote cite a {
+.entry blockquote>p cite a {
     color: #6fa601
 }
 
@@ -758,7 +757,7 @@ blockquote {
 .entry h4:before,
 .entry h5:before,
 .entry h6:before{
-    color: #9fb84c;
+    color: #09BB07;
 }
 .entry h2:before{
     content: "#";
@@ -775,6 +774,15 @@ blockquote {
 .entry h6:before{
     content: "#####";
 }
+
+.entry p strong{
+    color: #09BB07;
+}
+
+article.entry > div > p:first-letter{
+    margin-left: 1.9rem;
+}
+
 
 .share_sec {
     margin: 2em 0 0 0;
