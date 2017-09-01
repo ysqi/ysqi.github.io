@@ -8,8 +8,29 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Thu, 17 Aug 2017 17:30:18 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Sep 2017 21:33:42 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>做爱折腾的技术人</title>
+      <link>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</link>
+      <pubDate>Fri, 01 Sep 2017 21:33:42 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</guid>
+      <description> 爱折腾好吗？折腾非贬义词。 每个人都在不停折腾，有的折腾亲爹、有的折腾亲儿子、更有折腾丈母娘的。谁的青春没折腾，折腾过才更懂生活。
+我是一个爱折腾的人但只折腾IT技术。折腾给我不一样的青春，分享三个我的青春故事。
+ 一个如何小兵折腾到券商运维经理的故事 一个如何折腾到旅行经费的故事 一个如何折腾到新风口从新开始的故事  折腾为券商运维经理 工作8年4家公司，酬薪也翻倍上涨。从高中便热爱计算机技术，不好好参加高考，折腾于编程培训和参加信息技术奥利匹克竞赛。2010年3月8号和7个同学到北京找工作，9号到达，10号面试，11号便直接上班，同时工资在7个同学里面最高。
+2012年，拿到3个Offer，在一家金融技术公司上班。2014年，中国大城市那么多，我要到深圳去看看。公司便将我安排到深圳分公司。2015年，做乙方的我，被券商甲领导赏识，便被进入甲的香港公司上班，随后深港两地上班，担任信息技术部运维经理。
+工资曲线: 对，我爱折腾，爱折腾技术。2017年离职，进入创业公司。折腾技术，给自己底气去选择工作。
+折腾到旅行经费 爱折腾技术，业余接单，赚取旅行费。大单小单不少，两小口日子甜蜜蜜。是技术实力，是折腾技术的收获。技术服务于生活，爱折腾但也要更爱生活。
+2016年通过平台交易的记录: 折腾到从新开始 不断走出舒适区，寻找新的起点，开始新的折腾。从开发再到折腾运维管理，让做技术的我学到不少知识，特别是对系统、对文档、对操作的各方知识。 充电完毕，我依然离开运维，重新做开发 ，继续折腾。2017年进入区块链创业公司，把工作当做自己的事业来干，折腾于技术创业。
+火热的区块链、比特币、以太坊将会给爱折腾的我带来新的机会和价值增长。
+是的，上面就是我折腾的故事，都是基于我折腾技术后对自身IT技术的自信。做技术就要做到第一，折腾不息。
+折腾技术的过程坎坷，但我的背后有一双强有力的推手。来，上照~~
+你也想折腾？想快速成长起来？想提高薪水？想建立个人网络品牌？
+这些坑我都经历过，欢迎关注我，关注我后面的折腾：
+ 了解区块链，给你朋友圈牛逼的谈资 学Go开发技巧，提升你的专业能力 使用高效工具，提高你的办公效率  </description>
+    </item>
     
     <item>
       <title>如何发现自我优势成为斜杠青年</title>
@@ -312,22 +333,6 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
  可以一键重新请求某个 Request
   基本工作原理
 HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求并进行反向代理 | Response 200 OK | ---------------------------&amp;gt; | --------------------------&amp;gt; | ------┐ | | | | | | 记录返回信息并转发给客户端 | &amp;lt;----┘ | &amp;lt;--------------------------- | &amp;lt;-------------------------- | ┌----------------------------------------------------------------------------┐ | url: http://localhost:8081 | | ---------------------------------------------------------------------------| | All Transactions ┌ - - - - - - - - - - - - - - - - - - - - - - - ┐ | | ---------------------- | time: 10 hours ago Client: 127.</description>
-    </item>
-    
-    <item>
-      <title>协作式go程</title>
-      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
-      <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻辑处理goroutine负责从队列中提取逻辑包并处理(这样主处理逻辑中基本上不用考虑多线程竞争的锁问题了)。
-如果逻辑包的处理涉及到调用可能会阻塞的函数调用怎么办，如果在处理函数中直接调用这样的函数将导致逻辑处理goroutine被阻塞，无法继续处理队列中被排队的数据包，这将严重降低服务的处理能力。
-一种方式是启动一个新的go程去执行阻塞调用，并注册回调函数，当阻塞调用返回后将回调闭包重新push到消息对列中，由逻辑处理goroutine继续处理后续逻辑。但我本人不大喜欢在逻辑处理上使用回调的方式(node的callback hell)。我希望可以线性的编写逻辑代码。
-为了实现这个目的，我需要一个类似lua的单线程协作式coroutine调度机制，单线程让使用者不用担心数据竞争,协作式可以让coroutine在执行异步调用前将执行权交出去，等异步结果返回后再将执行权切换回来，线性的执行后续代码。
-但是，goroutine天生就是多线程调度执行的，有办法实现这个目标吗？答案是肯定的。
-我们可以实现一个逻辑上的单线程，从全局上看，只有唯一一个goroutine可以执行逻辑处理代码。核心思想就是由调度器从任务队列中提取任务，挑选一个空闲的goroutine,将其唤醒并让自己阻塞，当goroutine需要阻塞时就唤醒调度器并将自己阻塞。这样全局上就只有唯一的goroutine在执行逻辑代码。
-下面是一个使用示例：
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;coop-go&amp;quot; ) func main() { count := int32(0) var p *coop.CoopScheduler p = coop.NewCoopScheduler(func (e interface{}){ count++ if count &amp;gt;= 30000000 { p.Close() return } //调用阻塞函数 p.Call(func () { time.Sleep(time.Millisecond * time.Duration(10)) }) //继续投递任务 p.PostEvent(1) }) for i := 0; i &amp;lt; 10000; i++ { //投递任务 p.PostEvent(1) } p.Start() fmt.Printf(&amp;quot;scheduler stop,total taskCount:%d\n&amp;quot;,c2) }  首先用一个任务处理函数作为参数创建调度器。然后向调度器投递任务触发处理循环，最后启动处理。</description>
     </item>
     
   </channel>
