@@ -483,6 +483,11 @@ blockquote {
     height: 32px;   
     background: url(https://static.yushuangqi.com/assets/feed32x32.png) no-repeat center top;
 }
+.footeractionZhiHu{
+    width: 36px;
+    height: 32px;   
+    background: url(https://static.zhihu.com/static/favicon.ico) no-repeat center top;
+}
 .footeractionW3CHTML{
       width: 88px;
     height: 31px;   
@@ -1565,14 +1570,12 @@ only screen and (min-device-pixel-ratio:1.5) {
     .navadmin span,
     .homenav_about,
     .homenav_writings,
-    .homenav_presos,
-    .footeractionRSS, 
+    .homenav_presos, 
     .share_img,
     .share_tw,
     .share_fb,
     .share_rss,
-    .share_li {
-        /*background-image: url(https://static.yushuangqi.com/assets/sprite_06072012@2x.png);*/
+    .share_li { 
         -moz-background-size: 168px 170px;
         -ie-background-size: 168px 170px;
         -o-background-size: 168px 170px;

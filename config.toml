@@ -29,6 +29,7 @@ publishdir = "public"
   weibo = "234665601"
   github = "ysqi"
   weixinID = "gh_d6d47893a828"
+  zhihu="_ysqi"
 
 
 [taxonomies]

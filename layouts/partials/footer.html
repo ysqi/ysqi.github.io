@@ -4,11 +4,16 @@
     <li><a class="footeraction" href="http://weibo.com/{{.Site.Author.weibo}}" rel="nofollow" title="在微博关注 {{.Site.Author.name}}">
         <span class="footeractionWeibo">Weibo</span></a></li>
     </li>
+    <li><a class="footeraction" href="https://www.zhihu.com/people/{{.Site.Author.zhihu}}" rel="nofollow" title="在微博关注 {{.Site.Author.name}}">
+        <span class="footeractionZhiHu">知乎</span></a></li>
+    </li>
+    
     <li>
         <a class="footeraction" href="/index.xml" title="RSS订阅 {{.Site.Author.name}}">
             <span class="footeractionRSS">Feed</span>
         </a>
     </li> 
+
     <li>
         <a class="footeraction" href="http://validator.w3.org/check?uri={{.Permalink}}" rel="nofollow" target="blank">
             <span class="footeractionW3CHTML">Valid XHTMl 4.0</span> 
