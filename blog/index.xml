@@ -8,8 +8,36 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Fri, 01 Sep 2017 21:33:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Sep 2017 22:10:09 +0800</lastBuildDate>
     <atom:link href="/blog.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>技术大牛成长</title>
+      <link>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</link>
+      <pubDate>Thu, 07 Sep 2017 22:10:09 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</guid>
+      <description>对于“技术宅”有不同解释，我更倾向于理解为：善于钻研各种知识和技术而忽略社交的人。
+我也是技术宅，但时常在想我这周末要宅在家中？可出门干点什么？但总因感觉离不开电脑而愈加宅在家中。
+在求职的时候，相信有不少人被问及：“你的职业规划是什么”，自然的，你的内心会想：我要变得很牛！或者至少成为一个很牛的程序员。但实际回答有可能另一个用于敷衍面试官的。为何没有说出内心的想法？
+严肃的看待更深层次的问题：程序员应该有个怎样的职业规划？ 很庆幸能进入这行，爱上这行。像变魔术搬展示神奇的东西。
+王侯将相宁有种乎！作为程序员，如何才能让自己同周边的大牛一样牛逼起来呢？
+回顾与思考 毫无疑问，成为大牛，首先必须得编码，持续不断地编码，要达到一定的量。 但量变到质变不是必然，持续编码的两个结果是，一个是到达质变，水平不断提升；一个是重复重复最终麻木。
+要想质变与提升，必须有目的的停下编码！ 要周期性的回顾自己！
+看看以前的代码，分析下现在的设计，与同事、同行一起讨论。看看哪些可以改善，有多少种改善思路…… 这样就能看出以前的自己与现在的自己这两者之间的差距。
+如果你觉得自己以前的代码是翔，那恭喜你，你绝对提升了不少。
+沟通 很多人觉得程序员较难沟通，说程序员不太会说话……你觉得呢？
+我想说的是：要想成为牛逼的程序员，沟通一定要过硬！
+程序员是干嘛的？不是写代码的，而是解决问题的。
+怎样才能让别人正确理解你的话，怎样才能让你正确听懂别人的话，这都需要不断的学习、练习。
+找到你的小伙伴 程序员干的是技术活，找到一个谈得来的小伙伴很重要，可以相互促进。 一个人孤独的前行，为何不去找到同频的人一起前行，消除登顶路上的寂寞。 可能你需要在不同的阶段找不同的伙伴，最好是找某方面比你牛的人一起研究技术，这样可以学到东西。
+分享 这个，真的很重要，千万别掖着藏着！建立个人品牌，给别人带去价值。
+深圳Gopher线下讨论组 愿意一起走上Gopher大牛的成长之路吗？虞双齐发起深圳Gopher线下讨论组活动，扫描下面二维码，加入微信深圳Gopher讨论组，开启线下交流之旅！
+会议主题：由微信群内共同拟定本次讨论2个主题
+会议时间：某个周末4小时，一次/月
+会议人数：固定12人
+会议地点：Gopher们推荐地点，如公司、咖啡厅等。</description>
+    </item>
     
     <item>
       <title>做爱折腾的技术人</title>
@@ -314,26 +342,6 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
       <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
-    </item>
-    
-    <item>
-      <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
-      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
-      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
-一、后端测试了一下发现没有问题
-“我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
-二、测试了也有问题
-这时候后端就去修改程序了，但是每一次的测试是否有问题都需要在客户端中操作，有时候的操作非常的复杂，在这上面花的时间会比较多。最后使了各种神通才终于找到问题，原来是这个用户的某某数据有异常才会出现这种情况。
-以上这种情况屡见不鲜，最麻烦的点就在于，每次都要以出现 Bug 的相同参数去请求，有时候你知道这些请求的参数，可以把它们放到 Postman 这种工具里面，但大部分时候你并不知道它对应的参数 (token)
-如果我们可以在服务端跟踪所有的请求：接口地址，Header，Body，后端返回的 Header、Body，这样我们就能查到对应的请求参数和返回值，可以直接填到 Postman 里面，要是还能一键重新请求就好了，因为我们不想修改请求的参数，只是想再以相同的参数请求一遍，这样我们来调试对应的程序。
-正好以前用过 ngrok，发现它有一个非常好的 debug 界面，可以达到以上的要求，但现在不需要它的内网穿透功能，于是只能自己写一个程序，只包含以下功能：
- 记录接口所有的 Request 和 Response
- 可以一键重新请求某个 Request
-  基本工作原理
-HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求并进行反向代理 | Response 200 OK | ---------------------------&amp;gt; | --------------------------&amp;gt; | ------┐ | | | | | | 记录返回信息并转发给客户端 | &amp;lt;----┘ | &amp;lt;--------------------------- | &amp;lt;-------------------------- | ┌----------------------------------------------------------------------------┐ | url: http://localhost:8081 | | ---------------------------------------------------------------------------| | All Transactions ┌ - - - - - - - - - - - - - - - - - - - - - - - ┐ | | ---------------------- | time: 10 hours ago Client: 127.</description>
     </item>
     
   </channel>
