@@ -8,8 +8,20 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Thu, 07 Sep 2017 22:10:09 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Sep 2017 10:22:26 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mac下搭建以太坊私有链</title>
+      <link>https://yushuangqi.com/blog/2017/mac%E4%B8%8B%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE.html</link>
+      <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/mac%E4%B8%8B%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE.html</guid>
+      <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以go-ethereum和以太坊钱包为例，详细步骤记录如何在Mac下搭建以太坊私有链运行环境。
+配置前环境准备 安装以太坊客户端 实际以太坊运行有多个不同语言实现的客户端，是多样的。可为不同用户选择他们所熟悉的客户端。
+   客户端 开发语言 开发者     go-ethereum Go 以太坊基金会   Parity Rust Ethcore   cpp-ethereum C++ 以太坊基金会   pyethapp Python 以太坊基金会   ethereumjs-lib Javascript 以太坊基金会   Ethereum(J) Java ether camp   ruby-ethereum Ruby 国人Xie Jan   ethereumH Haskell BlockApps    因为以太坊客户端以 go-ethereum 为主，故搭建私有链也使用该客户端。
+ Mac OS X上安装说明 Windows 上安装说明  在Mac上安装细节如下： 在使用brew前，需自行安装brew软件管理工具(http://brew.</description>
+    </item>
     
     <item>
       <title>技术大牛成长</title>
@@ -333,15 +345,6 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
  微服务的 API gateway ，我会专门写一篇文章。
  有些在nginx上难以开发的需求，为caddy写插件太方便了。
   入门 安装caddy  下载 caddy</description>
-    </item>
-    
-    <item>
-      <title>redigo连接池代码分析</title>
-      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
-      <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
     
   </channel>
