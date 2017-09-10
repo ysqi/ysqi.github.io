@@ -3,7 +3,7 @@ title: "Mac下搭建以太坊私有链"
 date: 2017-09-09T10:22:26+08:00
 draft: false 
 description: ""
-slug: "" 
+slug: "setup-ethereum-private-network-on-mac" 
 tags: 
 - "以太坊"
 topics: 
