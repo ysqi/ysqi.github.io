@@ -65,7 +65,7 @@ fmt.Println(data)
  fmt.Println(data)
 </code></pre><p>RIGHT JOIN</p><pre><code> t.Fileds(&quot;user.id&quot;, &quot;data.keywords&quot;, &quot;user.username&quot;, &quot;user.password&quot;).RightJoin(&quot;data&quot;, &quot;user.id = data.id&quot;).FindAll()
  fmt.Println(data)
-</code></pre><p>FULL JOIN</p><pre><code> data := t.Fileds(&quot;user.id&quot;, &quot;data.keywords&quot;, &quot;user.username&quot;, &quot;user.password&quot;).RightJoin(&quot;data&quot;, &quot;user.id = data.id&quot;).FindAll()
+</code></pre><p>FULL　JOIN</p><pre><code> data := t.Fileds(&quot;user.id&quot;, &quot;data.keywords&quot;, &quot;user.username&quot;, &quot;user.password&quot;).RightJoin(&quot;data&quot;, &quot;user.id = data.id&quot;).FindAll()
  fmt.Println(data)
 </code></pre><blockquote><p>自定义sql语句</p></blockquote><pre><code>// Query()方法 是自定义sql语句的
 </code></pre><p>insert类型的数据</p><pre><code>n := t.Query(&quot;INSERT INTO user (`username`,`password`) VALUES ('xiaoweitest','xiaowei')&quot;) //返回最后增长的id
