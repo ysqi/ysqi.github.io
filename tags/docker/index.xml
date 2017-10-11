@@ -11,6 +11,22 @@
     <atom:link href="/tags/docker.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Docker使用问题集</title>
+      <link>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</link>
+      <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
+      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。
+第一次创建镜像过程中遇到些问题，我在这里记录，希望能帮助到别人和自己。
+国内如何加速拉取Docker镜像 通过 Docker 镜像加速，国内能够快速访问最流行的 Docker 镜像。国内用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。
+ Docker官方提供的加速器 DaoClund提供的加速器，需注册 Aliyun 提供的加速器，需注册，适合在阿里云购买的服务器使用。  Docker-runc not installed on system CentOS通过命令安装Docker时，并没有安装完整。一般在重新安装Docker后出现该问题。 只运行某镜像时，出现如下错误信息：
+docker run docker.io/ysqi/gotestreport /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.  咋回事？原本好好的怎么就出问题了？原来是命令卸载Docker并没有卸载干净，导致重装或更新Docker后出问题。
+这个在红帽上有一个Issue：https://access.redhat.com/solutions/2876431 有说明此问题，暂时只能是新建一个link到最终版本：
+cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenkins: Can&amp;rsquo;t connect to Docker daemon 当Jenkins的Pipeline基于Docker运行时，提示此错误信息：
+ Cannot connect to the Docker daemon. Is the docker daemon running on this host?</description>
+    </item>
+    
+    <item>
       <title>屌炸天的新版GoGC之twitch的GC优化之路</title>
       <link>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:43 +0800</pubDate>
