@@ -11,6 +11,19 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>解析比特币区块</title>
+      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
+      <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
+      <description>在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：
+ Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat Windows: %APPDATA%/Bitcoin/blocks/blkXXXX.dat  通过Go代码的方式，一步一步讲解比特币区块的解析逻辑。
+下图是比特币区块数据结构，主要由区块头和交易清单组成。    项 name 字节 用途     神奇数 magic 4 固定为0xD9B4BEF9,作为区块间的分隔符   区块大小 block_size 4 记录当前区块的大小   区块头信息 header 80 记录当前区块的头部信息   交易总数 tx_count 1-9 当前区块所含记录数   交易清单 tx_list * 记录当前区块交易细节    其中，神奇数固定为0xD9B4BEF9，作为区块的分隔标识符。而比特币的交易数据是以128Mb为上限记录在dat文件中的。利用此神奇数和区块大小，可将区块数据读取。
+先打开文件blk00001.bat
+f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按分隔符读取区块数据：</description>
+    </item>
+    
+    <item>
       <title>程序员该掌握区块链技术</title>
       <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</link>
       <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
@@ -296,17 +309,6 @@ RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而
 比如微软的规范，
 jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
 STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
-    </item>
-    
-    <item>
-      <title>fasthttp中的协程池实现</title>
-      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
-      <description>https://segmentfault.com/a/
-fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
- 入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
     </item>
     
   </channel>
