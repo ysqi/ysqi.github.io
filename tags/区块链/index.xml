@@ -11,6 +11,26 @@
     <atom:link href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>理解与计算比特币难度值Difficulty</title>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
+      <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
+      <description>挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。
+那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。
+游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。 这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。
+比特币难度值Difficulty 难度值在区块中并不记录，仅仅是为了人类直观感受解题难度而演变出的一个浮点数。公式如下： $$ diffculty = \dfrac{difficulty\_1\_target }{ currentTarget} $$
+此处的 difficulty_1_target 为一个常数，非常大的一个数字。表示矿池挖矿最大难度。目标值越小，区块生成难度越大。
+难度值如何存储在区块中的 在区块中存储的是Target，但是将Target经类似于浮点数的一种压缩表示法，字段为bits。例如，如果区块bits记录为0x1b0404cb，那么他表示的十六进制的Target值为：
+0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000  在计算时，后面3个字节0x0404cb作为底，前面1字节0x1b表示次方数。具体压缩过程如下：
+ 将数字转换为256进制数 如果第一位数字大于127(0x7f),则前面添加0 压缩结果中的第一位存放该256进制数的位数 后面三个数存放该256进制数的前三位，如果不足三位，则后面补零  例如，将数字1000压缩，先转换为256进制数
+1000 = 0x03 * 256 + 0xe8 * 1  那么是由两个数字构成：
+03 e8  第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：0x0203e800 。
+有比如数字 2^(256-32)-1,转换为256进制为：
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  第一位已经超过0x7f,前面添加零：</description>
+    </item>
+    
+    <item>
       <title>解析比特币区块</title>
       <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
       <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>

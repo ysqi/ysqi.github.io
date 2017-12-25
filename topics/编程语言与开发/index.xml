@@ -11,6 +11,26 @@
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>理解与计算比特币难度值Difficulty</title>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
+      <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
+      <description>挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。
+那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。
+游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。 这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。
+比特币难度值Difficulty 难度值在区块中并不记录，仅仅是为了人类直观感受解题难度而演变出的一个浮点数。公式如下： $$ diffculty = \dfrac{difficulty\_1\_target }{ currentTarget} $$
+此处的 difficulty_1_target 为一个常数，非常大的一个数字。表示矿池挖矿最大难度。目标值越小，区块生成难度越大。
+难度值如何存储在区块中的 在区块中存储的是Target，但是将Target经类似于浮点数的一种压缩表示法，字段为bits。例如，如果区块bits记录为0x1b0404cb，那么他表示的十六进制的Target值为：
+0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000  在计算时，后面3个字节0x0404cb作为底，前面1字节0x1b表示次方数。具体压缩过程如下：
+ 将数字转换为256进制数 如果第一位数字大于127(0x7f),则前面添加0 压缩结果中的第一位存放该256进制数的位数 后面三个数存放该256进制数的前三位，如果不足三位，则后面补零  例如，将数字1000压缩，先转换为256进制数
+1000 = 0x03 * 256 + 0xe8 * 1  那么是由两个数字构成：
+03 e8  第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：0x0203e800 。
+有比如数字 2^(256-32)-1,转换为256进制为：
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  第一位已经超过0x7f,前面添加零：</description>
+    </item>
+    
+    <item>
       <title>解析比特币区块</title>
       <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
       <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
@@ -286,29 +306,6 @@ Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Pro
 //RequestFuture, http request promise. func RequestFuture(url string) &amp;lt;-chan []byte { c := make(chan []byte, 1) go func() { var body []byte defer func() { c &amp;lt;- body }() res, err := http.Get(url) if err != nil { return } defer res.Body.Close() body, _ = ioutil.ReadAll(res.Body) }() return c } func main() { future := RequestFuture(&amp;quot;https://api.github.com/users/octocat/orgs&amp;quot;) body := &amp;lt;-future log.Printf(&amp;quot;reponse length: %d&amp;quot;, len(body)) }  RequestFuture方法理科返回一个channel，这个时候http请求还在一个goroutine后台异步运行。main方法可以继续执行其他的代码，比如触发其他的Future等。当需要结果的时候，我们需要从channel里读取结果。如果http请求还没有返回的话就会阻塞当前的goroutine，知道结果返回。
 然而，以上的方法还有一点局限。错误无法返回。在上面的例子里，如果http请求出现错误的话，body的值会是nil/empty。但是，由于channel只能返回一个值，你需要创建一个单独的struct来包装两个返回的结果。
 修改以后的结果：</description>
-    </item>
-    
-    <item>
-      <title>对echo框架进行统一的自定义错误处理</title>
-      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
-      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
-用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
-你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
-ECHO 框架 由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，
-用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。 不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。 要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。
-但是来到2017年，一个叫 Echo 的框架脱颖而出。这是我目前最推荐的框架。 Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：
-这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，
-因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。
-我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，
-如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。
-其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。
-RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。
-比如微软的规范，
-jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
-STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
     </item>
     
   </channel>
