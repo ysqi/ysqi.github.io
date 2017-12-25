@@ -28,6 +28,7 @@
 </ul>
 <p>©2015-2016 {{.Site.Author.name}}-{{.Site.Author.title}}。欢迎<a href="/about.html" rel="nofollow">联系我</a>，{{if .Site.Params.beian}}<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9;">{{.Site.Params.beian}}</a>{{end}} </p>
 </footer> 
+{{ partial "mathjax.html" . }}
 {{ partial "analytics.html" . }}
 </body>
 </html>
