@@ -1,0 +1,468 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golangredis操作初体验 |虞双齐的博客</title><meta name="description" content="安装 我使用的是 https://github.com/go-redis/r&amp;hellip; 这个 "><meta name="keywords" content="golang, redis, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html.html"><meta property="og:title" content="Golangredis操作初体验"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:01"><meta property="article:modified_time" content="2016-12-31 11:33:01"><meta property="article:tag" content="golang"><meta property="article:tag" content="redis"><meta name="og:description" content="安装 我使用的是 https://github.com/go-redis/r&amp;hellip; 这个 "><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html.html">Golangredis操作初体验</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007078961" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h2 id="安装">安装</h2><p>我使用的是 <a href="https://github.com/go-redis/redis">https://github.com/go-redis/r&hellip;</a> 这个 golang 客户端, 因此安装方式如下:</p><pre><code>go get gopkg.in/redis.v4
+</code></pre><p>接着在代码中导入此包即可:</p><pre><code>import &quot;gopkg.in/redis.v4&quot;
+</code></pre><h2 id="基本操作">基本操作</h2><h3 id="创建客户端">创建客户端</h3><p>通过 redis.NewClient 函数即可创建一个 redis 客户端, 这个方法接收一个 redis.Options 对象参数, 通过这个参数, 我们可以配置 redis 相关的属性, 例如 redis 服务器地址, 数据库名, 数据库密码等.<br>下面是一个连接的例子:</p><pre><code>// 创建 redis 客户端
+func createClient() *redis.Client {
+    client := redis.NewClient(&amp;redis.Options{
+        Addr:     &quot;localhost:6379&quot;,
+        Password: &quot;&quot;,
+        DB:       0,
+    })
+
+    // 通过 cient.Ping() 来检查是否成功连接到了 redis 服务器
+    pong, err := client.Ping().Result()
+    fmt.Println(pong, err)
+
+    return client
+}
+</code></pre><h3 id="string-操作">String 操作</h3><p>redis 的 String 操作有:</p><pre><code>set(key, value)：给数据库中名称为key的string赋予值value
+get(key)：返回数据库中名称为key的string的value
+getset(key, value)：给名称为key的string赋予上一次的value
+mget(key1, key2,…, key N)：返回库中多个string的value
+setnx(key, value)：添加string，名称为key，值为value
+setex(key, time, value)：向库中添加string，设定过期时间time
+mset(key N, value N)：批量设置多个string的值
+msetnx(key N, value N)：如果所有名称为key i的string都不存在
+incr(key)：名称为key的string增1操作
+incrby(key, integer)：名称为key的string增加integer
+decr(key)：名称为key的string减1操作
+decrby(key, integer)：名称为key的string减少integer
+append(key, value)：名称为key的string的值附加value
+substr(key, start, end)：返回名称为key的string的value的子串
+</code></pre><p>在 go-redis 中, 我们可以直接找到对应的操作方法, 直接上代码:</p><pre><code>// String 操作
+func stringOperation(client *redis.Client) {
+    // 第三个参数是过期时间, 如果是0, 则表示没有过期时间.
+    err := client.Set(&quot;name&quot;, &quot;xys&quot;, 0).Err()
+    if err != nil {
+        panic(err)
+    }
+
+    val, err := client.Get(&quot;name&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;name&quot;, val)
+
+
+    // 这里设置过期时间.
+    err = client.Set(&quot;age&quot;, &quot;20&quot;, 1 * time.Second).Err()
+    if err != nil {
+        panic(err)
+    }
+
+    client.Incr(&quot;age&quot;) // 自增
+    client.Incr(&quot;age&quot;) // 自增
+    client.Decr(&quot;age&quot;) // 自减
+
+    val, err = client.Get(&quot;age&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;age&quot;, val) // age 的值为21
+
+    // 因为 key &quot;age&quot; 的过期时间是一秒钟, 因此当一秒后, 此 key 会自动被删除了.
+    time.Sleep(1 * time.Second)
+    val, err = client.Get(&quot;age&quot;).Result()
+    if err != nil {
+        // 因为 key &quot;age&quot; 已经过期了, 因此会有一个 redis: nil 的错误.
+        fmt.Printf(&quot;error: %v\n&quot;, err)
+    }
+    fmt.Println(&quot;age&quot;, val)
+}
+</code></pre><h3 id="list-操作">list 操作</h3><p>redis 的 list 操作有:</p><pre><code>rpush(key, value)：在名称为key的list尾添加一个值为value的元素
+lpush(key, value)：在名称为key的list头添加一个值为value的 元素
+llen(key)：返回名称为key的list的长度
+lrange(key, start, end)：返回名称为key的list中start至end之间的元素
+ltrim(key, start, end)：截取名称为key的list
+lindex(key, index)：返回名称为key的list中index位置的元素
+lset(key, index, value)：给名称为key的list中index位置的元素赋值
+lrem(key, count, value)：删除count个key的list中值为value的元素
+lpop(key)：返回并删除名称为key的list中的首元素
+rpop(key)：返回并删除名称为key的list中的尾元素
+blpop(key1, key2,… key N, timeout)：lpop命令的block版本。
+brpop(key1, key2,… key N, timeout)：rpop的block版本。
+rpoplpush(srckey, dstkey)：返回并删除名称为srckey的list的尾元素，并将该元素添加到名称为dstkey的list的头部
+</code></pre><p>同样地, 在 go-redis 中也可以找到对应的方法, 下面是一个简单的示例:</p><pre><code>// list 操作
+func listOperation(client *redis.Client) {
+    client.RPush(&quot;fruit&quot;, &quot;apple&quot;) //在名称为 fruit 的list尾添加一个值为value的元素
+    client.LPush(&quot;fruit&quot;, &quot;banana&quot;) //在名称为 fruit 的list头添加一个值为value的 元素
+    length, err := client.LLen(&quot;fruit&quot;).Result() //返回名称为 fruit 的list的长度
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;length: &quot;, length) // 长度为2
+
+    value, err := client.LPop(&quot;fruit&quot;).Result() //返回并删除名称为 fruit 的list中的首元素
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fruit: &quot;, value)
+
+    value, err = client.RPop(&quot;fruit&quot;).Result() // 返回并删除名称为 fruit 的list中的尾元素
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fruit: &quot;, value)
+}
+</code></pre><h3 id="set-操作">set 操作</h3><p>redis 的 set 操作:</p><pre><code>sadd(key, member)：向名称为key的set中添加元素member
+srem(key, member) ：删除名称为key的set中的元素member
+spop(key) ：随机返回并删除名称为key的set中一个元素
+smove(srckey, dstkey, member) ：移到集合元素
+scard(key) ：返回名称为key的set的基数
+sismember(key, member) ：member是否是名称为key的set的元素
+sinter(key1, key2,…key N) ：求交集
+sinterstore(dstkey, (keys)) ：求交集并将交集保存到dstkey的集合
+sunion(key1, (keys)) ：求并集
+sunionstore(dstkey, (keys)) ：求并集并将并集保存到dstkey的集合
+sdiff(key1, (keys)) ：求差集
+sdiffstore(dstkey, (keys)) ：求差集并将差集保存到dstkey的集合
+smembers(key) ：返回名称为key的set的所有元素
+srandmember(key) ：随机返回名称为key的set的一个元素
+</code></pre><p>接下来是 go-redis 的 set 操作:</p><pre><code>// set 操作
+func setOperation(client *redis.Client) {
+    client.SAdd(&quot;blacklist&quot;, &quot;Obama&quot;) // 向 blacklist 中添加元素
+    client.SAdd(&quot;blacklist&quot;, &quot;Hillary&quot;) // 再次添加
+    client.SAdd(&quot;blacklist&quot;, &quot;the Elder&quot;) // 添加新元素
+
+    client.SAdd(&quot;whitelist&quot;, &quot;the Elder&quot;) // 向 whitelist 添加元素
+
+    // 判断元素是否在集合中
+    isMember, err := client.SIsMember(&quot;blacklist&quot;, &quot;Bush&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;Is Bush in blacklist: &quot;, isMember)
+
+
+    // 求交集, 即既在黑名单中, 又在白名单中的元素
+    names, err := client.SInter(&quot;blacklist&quot;, &quot;whitelist&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    // 获取到的元素是 &quot;the Elder&quot;
+    fmt.Println(&quot;Inter result: &quot;, names)
+
+
+    // 获取指定集合的所有元素
+    all, err := client.SMembers(&quot;blacklist&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;All member: &quot;, all)
+}
+</code></pre><h3 id="hash-操作">hash 操作</h3><p>redis 的 hash 操作:</p><pre><code>hset(key, field, value)：向名称为key的hash中添加元素field
+hget(key, field)：返回名称为key的hash中field对应的value
+hmget(key, (fields))：返回名称为key的hash中field i对应的value
+hmset(key, (fields))：向名称为key的hash中添加元素field 
+hincrby(key, field, integer)：将名称为key的hash中field的value增加integer
+hexists(key, field)：名称为key的hash中是否存在键为field的域
+hdel(key, field)：删除名称为key的hash中键为field的域
+hlen(key)：返回名称为key的hash中元素个数
+hkeys(key)：返回名称为key的hash中所有键
+hvals(key)：返回名称为key的hash中所有键对应的value
+hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value
+</code></pre><p>go-redis 中的 hash 操作:</p><pre><code>// hash 操作
+func hashOperation(client *redis.Client) {
+    client.HSet(&quot;user_xys&quot;, &quot;name&quot;, &quot;xys&quot;); // 向名称为 user_xys 的 hash 中添加元素 name
+    client.HSet(&quot;user_xys&quot;, &quot;age&quot;, &quot;18&quot;); // 向名称为 user_xys 的 hash 中添加元素 age
+
+    // 批量地向名称为 user_test 的 hash 中添加元素 name 和 age
+    client.HMSet(&quot;user_test&quot;, map[string]string{&quot;name&quot;: &quot;test&quot;, &quot;age&quot;:&quot;20&quot;})
+    // 批量获取名为 user_test 的 hash 中的指定字段的值.
+    fields, err := client.HMGet(&quot;user_test&quot;, &quot;name&quot;, &quot;age&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fields in user_test: &quot;, fields)
+
+
+    // 获取名为 user_xys 的 hash 中的字段个数
+    length, err := client.HLen(&quot;user_xys&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;field count in user_xys: &quot;, length) // 字段个数为2
+
+    // 删除名为 user_test 的 age 字段
+    client.HDel(&quot;user_test&quot;, &quot;age&quot;)
+    age, err := client.HGet(&quot;user_test&quot;, &quot;age&quot;).Result()
+    if err != nil {
+        fmt.Printf(&quot;Get user_test age error: %v\n&quot;, err)
+    } else {
+        fmt.Println(&quot;user_test age is: &quot;, age) // 字段个数为2
+    }
+}
+</code></pre><h2 id="关于连接池">关于连接池</h2><p>redis.v4 包实现了 redis 的连接池管理, 因此我们就不需要自己手动管理 redis 的连接了.<br>默认情况下, redis.v4 的 redis 连接池大小是10, 不过我们可以在初始化 redis 客户端时自行设置连接池的大小, 例如:</p><pre><code>client := redis.NewClient(&amp;redis.Options{
+    Addr:     &quot;localhost:6379&quot;,
+    Password: &quot;&quot;,
+    DB:       0,
+    PoolSize: 5,
+})
+</code></pre><p>通过 redis.Options 的 PoolSize 属性, 我们设置了 redis 连接池的大小为5.<br>那么接下来我们来看一下这个设置有什么效果吧:</p><pre><code>// redis.v4 的连接池管理
+func connectPool(client *redis.Client) {
+    wg := sync.WaitGroup{}
+    wg.Add(10)
+
+    for i := 0; i &lt; 10; i++ {
+        go func() {
+            defer wg.Done()
+
+            for j := 0; j &lt; 100; j++ {
+                client.Set(fmt.Sprintf(&quot;name%d&quot;, j), fmt.Sprintf(&quot;xys%d&quot;, j), 0).Err()
+                client.Get(fmt.Sprintf(&quot;name%d&quot;, j)).Result()
+            }
+
+            fmt.Printf(&quot;PoolStats, TotalConns: %d, FreeConns: %d\n&quot;, client.PoolStats().TotalConns, client.PoolStats().FreeConns);
+        }()
+    }
+
+    wg.Wait()
+}
+</code></pre><p>上面的例子启动了10个 routine 来不断向 redis 读写数据, 然后我们通过 client.PoolStats() 获取连接池的信息. 运行这个例子, 输出如下:</p><pre><code>PoolStats, TotalConns: 5, FreeConns: 1
+PoolStats, TotalConns: 5, FreeConns: 1
+PoolStats, TotalConns: 5, FreeConns: 1
+PoolStats, TotalConns: 5, FreeConns: 1
+PoolStats, TotalConns: 5, FreeConns: 1
+PoolStats, TotalConns: 5, FreeConns: 2
+PoolStats, TotalConns: 5, FreeConns: 2
+PoolStats, TotalConns: 5, FreeConns: 3
+PoolStats, TotalConns: 5, FreeConns: 4
+PoolStats, TotalConns: 5, FreeConns: 5
+</code></pre><p>通过输出可以看到, 此时最大的连接池数量确实是 5 了, 并且一开始时, 因为 coroutine 的数量大于5, 会造成 redis 连接不足的情况(反映在 FreeConns 上就是前几次的输出 FreeConns 一直是1), 当某个 coroutine 结束后, 会释放此 redis 连接, 因此 FreeConns 会增加.</p><h2 id="完整示例">完整示例</h2><pre><code>//
+// author xiongyongshun
+// project go_redis
+// version 1.0
+// created 16/10/6 03:49
+//
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;gopkg.in/redis.v4&quot;
+    &quot;time&quot;
+    &quot;sync&quot;
+)
+
+func main() {
+    client := createClient()
+    defer client.Close()
+
+    stringOperation(client)
+    listOperation(client)
+    setOperation(client)
+    hashOperation(client)
+
+    connectPool(client)
+
+}
+
+// 创建 redis 客户端
+func createClient() *redis.Client {
+    client := redis.NewClient(&amp;redis.Options{
+        Addr:     &quot;localhost:6379&quot;,
+        Password: &quot;&quot;,
+        DB:       0,
+        PoolSize: 5,
+    })
+
+    pong, err := client.Ping().Result()
+    fmt.Println(pong, err)
+
+    return client
+}
+
+
+// String 操作
+func stringOperation(client *redis.Client) {
+    // 第三个参数是过期时间, 如果是0, 则表示没有过期时间.
+    err := client.Set(&quot;name&quot;, &quot;xys&quot;, 0).Err()
+    if err != nil {
+        panic(err)
+    }
+
+    val, err := client.Get(&quot;name&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;name&quot;, val)
+
+
+    // 这里设置过期时间.
+    err = client.Set(&quot;age&quot;, &quot;20&quot;, 1 * time.Second).Err()
+    if err != nil {
+        panic(err)
+    }
+
+    client.Incr(&quot;age&quot;) // 自增
+    client.Incr(&quot;age&quot;) // 自增
+    client.Decr(&quot;age&quot;) // 自减
+
+    val, err = client.Get(&quot;age&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;age&quot;, val) // age 的值为21
+
+    // 因为 key &quot;age&quot; 的过期时间是一秒钟, 因此当一秒后, 此 key 会自动被删除了.
+    time.Sleep(1 * time.Second)
+    val, err = client.Get(&quot;age&quot;).Result()
+    if err != nil {
+        // 因为 key &quot;age&quot; 已经过期了, 因此会有一个 redis: nil 的错误.
+        fmt.Printf(&quot;error: %v\n&quot;, err)
+    }
+    fmt.Println(&quot;age&quot;, val)
+}
+
+// list 操作
+func listOperation(client *redis.Client) {
+    client.RPush(&quot;fruit&quot;, &quot;apple&quot;) //在名称为 fruit 的list尾添加一个值为value的元素
+    client.LPush(&quot;fruit&quot;, &quot;banana&quot;) //在名称为 fruit 的list头添加一个值为value的 元素
+    length, err := client.LLen(&quot;fruit&quot;).Result() //返回名称为 fruit 的list的长度
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;length: &quot;, length) // 长度为2
+
+    value, err := client.LPop(&quot;fruit&quot;).Result() //返回并删除名称为 fruit 的list中的首元素
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fruit: &quot;, value)
+
+    value, err = client.RPop(&quot;fruit&quot;).Result() // 返回并删除名称为 fruit 的list中的尾元素
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fruit: &quot;, value)
+}
+
+// set 操作
+func setOperation(client *redis.Client) {
+    client.SAdd(&quot;blacklist&quot;, &quot;Obama&quot;) // 向 blacklist 中添加元素
+    client.SAdd(&quot;blacklist&quot;, &quot;Hillary&quot;) // 再次添加
+    client.SAdd(&quot;blacklist&quot;, &quot;the Elder&quot;) // 添加新元素
+
+    client.SAdd(&quot;whitelist&quot;, &quot;the Elder&quot;) // 向 whitelist 添加元素
+
+    // 判断元素是否在集合中
+    isMember, err := client.SIsMember(&quot;blacklist&quot;, &quot;Bush&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;Is Bush in blacklist: &quot;, isMember)
+
+
+    // 求交集, 即既在黑名单中, 又在白名单中的元素
+    names, err := client.SInter(&quot;blacklist&quot;, &quot;whitelist&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    // 获取到的元素是 &quot;the Elder&quot;
+    fmt.Println(&quot;Inter result: &quot;, names)
+
+
+    // 获取指定集合的所有元素
+    all, err := client.SMembers(&quot;blacklist&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;All member: &quot;, all)
+}
+
+
+// hash 操作
+func hashOperation(client *redis.Client) {
+    client.HSet(&quot;user_xys&quot;, &quot;name&quot;, &quot;xys&quot;); // 向名称为 user_xys 的 hash 中添加元素 name
+    client.HSet(&quot;user_xys&quot;, &quot;age&quot;, &quot;18&quot;); // 向名称为 user_xys 的 hash 中添加元素 age
+
+    // 批量地向名称为 user_test 的 hash 中添加元素 name 和 age
+    client.HMSet(&quot;user_test&quot;, map[string]string{&quot;name&quot;: &quot;test&quot;, &quot;age&quot;:&quot;20&quot;})
+    // 批量获取名为 user_test 的 hash 中的指定字段的值.
+    fields, err := client.HMGet(&quot;user_test&quot;, &quot;name&quot;, &quot;age&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;fields in user_test: &quot;, fields)
+
+
+    // 获取名为 user_xys 的 hash 中的字段个数
+    length, err := client.HLen(&quot;user_xys&quot;).Result()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(&quot;field count in user_xys: &quot;, length) // 字段个数为2
+
+    // 删除名为 user_test 的 age 字段
+    client.HDel(&quot;user_test&quot;, &quot;age&quot;)
+    age, err := client.HGet(&quot;user_test&quot;, &quot;age&quot;).Result()
+    if err != nil {
+        fmt.Printf(&quot;Get user_test age error: %v\n&quot;, err)
+    } else {
+        fmt.Println(&quot;user_test age is: &quot;, age) // 字段个数为2
+    }
+}
+
+// redis.v4 的连接池管理
+func connectPool(client *redis.Client) {
+    wg := sync.WaitGroup{}
+    wg.Add(10)
+
+    for i := 0; i &lt; 10; i++ {
+        go func() {
+            defer wg.Done()
+
+            for j := 0; j &lt; 100; j++ {
+                client.Set(fmt.Sprintf(&quot;name%d&quot;, j), fmt.Sprintf(&quot;xys%d&quot;, j), 0).Err()
+                client.Get(fmt.Sprintf(&quot;name%d&quot;, j)).Result()
+            }
+
+            fmt.Printf(&quot;PoolStats, TotalConns: %d, FreeConns: %d\n&quot;, client.PoolStats().TotalConns, client.PoolStats().FreeConns);
+        }()
+    }
+
+    wg.Wait()
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="1339"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/redis.html" rel="tag">redis</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html.html">一条命令即可将Vim配置为功能强大的IDE</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/interfaces-and-composition-for-effective-unit-testing-in-golang.html.html">InterfacesandCompositionforEffectiveUnitTestinginGolang</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="6320571e42cad47056fdbbe8bce90852"></div><div id="cyReward" role="cylabs" data-use="reward" sid="6320571e42cad47056fdbbe8bce90852" style="text-align:center"></div><div id="SOHUCS" sid="6320571e42cad47056fdbbe8bce90852"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-redis-cao-zuo-chu-ti-yan.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-redis-cao-zuo-chu-ti-yan.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

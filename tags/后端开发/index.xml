@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>后端开发 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.html</link>
+    <description>在 虞双齐的博客上关于in 后端开发 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:29 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>年度语言golang使用感受</title>
-      <link>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</link>
+      <link>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html.html</guid>
       <description>https://segmentfault.com/a/
 首先，无意进行语言之争，毕竟，PHP是世界上最好的语言，没有之一。这个话题可以停下来了。
 2016年已经过去，16年的年度语言给了go语言，而正好这一年我都是用go用得比较多，而且版本从1.2一直用到了1.8，有一些感受，来说说我对这个年度编程语言的一些粗浅理解吧。之前也写过一篇go语言的文章，但是那时候用得还不是很多，有些特性没有用上，所以理解上和今天的有些不同。

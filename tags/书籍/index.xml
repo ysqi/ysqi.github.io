@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E4%B9%A6%E7%B1%8D.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>书籍 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E4%B9%A6%E7%B1%8D.html</link>
+    <description>在 虞双齐的博客上关于in 书籍 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E4%B9%A6%E7%B1%8D.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2017 13:19:55 +0800</lastBuildDate>
+    <atom:link href="/tags/%E4%B9%A6%E7%B1%8D.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>计算机专业必读书籍</title>
-      <link>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</link>
+      <link>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html.html</link>
       <pubDate>Tue, 21 Feb 2017 13:19:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html.html</guid>
       <description>石头经过高考后20天的思考，终于将自己的专业金融经济改成了计算机，这个决定由衷的让我一阵窃喜。从事了20多来年计算机出版和市场推广的我，看到象石头一样的少年，成为新一代程序员，心里非常自豪又能给下一代孩子们做学习计算机技术的引路人，推荐一些好书了。
 对于刚高考完的孩子们，既然选择了计算机专业，这个暑假当然还是先好好玩玩，打游戏、学车、上网看各种电影和同学出去毕业旅游等等。
 在休息娱乐之余，我建议孩子们选一门语言（推荐Python和JavaScript），网上找本完整的电子书或去京东当当买本纸书(同样我推荐图灵出版的Python基础教程和JS方面的书及人邮社计算机分社出版的几本Python和JS书都不错）。推荐这个网站，可以从零开始学python：https://docs.python.org/3/ 。

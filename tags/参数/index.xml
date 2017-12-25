@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%8F%82%E6%95%B0.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>参数 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%8F%82%E6%95%B0.html</link>
+    <description>在 虞双齐的博客上关于in 参数 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%8F%82%E6%95%B0.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:26 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%8F%82%E6%95%B0.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>go-可变参数</title>
-      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</guid>
       <description>https://segmentfault.com/a/
 今天在尝试用go写一个简单的orm的时候 发现 在调用可变参数函数时，不是总能使用省略号将一个切片展开，有时候编译器可能会报错 再此用几个简单的例子作为说明
 当不太确定数据类型的时候我们通常采用空接口

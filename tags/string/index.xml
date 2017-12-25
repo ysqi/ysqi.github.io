@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/string.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>String on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/string.html</link>
+    <description>在 虞双齐的博客上关于in String 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/string.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:36 +0800</lastBuildDate>
+    <atom:link href="/tags/string.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>xstrings:Go语言字符串库的补完</title>
-      <link>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</link>
+      <link>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html.html</guid>
       <description>项目地址：https://github.com/huandu/xstrings
 xstrings 是一个很简单的 Go 语言库，简单说就是提供了一些标准库 strings 没提供但依然很有用的字符串算法。每个字符串算法都对效率进行了优化，所有函数都可以做到不超过 O(n) 的复杂度，并且尽量节省内存使用，仅在需要分配内存的时候分配。
 现在实现的算法几乎都是其他语言（主要是 Python/Ruby/PHP/Perl）标准库里提供的算法，用 Go 重新实现一遍。未来也许我还会继续加入更多的方法，不过我不希望这个库成为一个算法大杂烩，因此仅仅会考虑那些特别有名且语言无关的函数。

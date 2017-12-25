@@ -1,0 +1,88 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>go-oci8编译安装过程(有别于官方说明) |虞双齐的博客</title><meta name="description" content="go-oci8下载地址以及说明地址：https://github.com/wendal/go-oci"><meta name="keywords" content="oracle, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html.html"><meta property="og:title" content="go-oci8编译安装过程(有别于官方说明)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:56"><meta property="article:modified_time" content="2016-12-31 11:33:56"><meta property="article:tag" content="oracle"><meta property="article:tag" content="golang"><meta name="og:description" content="go-oci8下载地址以及说明地址：https://github.com/wendal/go-oci"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html.html">go-oci8编译安装过程(有别于官方说明)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000004504170" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><blockquote><p>go-oci8下载地址以及说明地址：<a href="https://github.com/wendal/go-oci">https://github.com/wendal/go-oci</a></p><p>go-oci8官方说明</p></blockquote><ol><li><p>安装最新版的git,并设置可以从命令行直接调用git命令</p></li><li><p>这个步骤多一些</p><pre><code>2.1 下载OCI最新版,存放于C:\instantclient_11_2
+2.2 下载OCI SDK最新版,存放于C:\instantclient_11_2\sdk
+2.3 下载MinGW最新版,安装在C:\mingw
+2.4 下载pkg-config.exe和oci8.pc (已经存放在windows文件夹下)
+2.5 将pkg-config.exe复制到C:\mingw\bin\下
+2.6 将oci8.pc复制到C:\mingw\lib\pkg-config\下
+</code></pre></li><li><p>修改系统环境变量,添加</p></li></ol><pre><code>    PATH=原有PATH;C:\instantclient_11_2;C:\mingw\bin;
+    PKG_CONFIG_PATH=C:\mingw\lib\pkg-config
+</code></pre><ol><li><p>执行 <code>go get github.com/wendal/go-oci8</code></p><p>其中第二步下载，可以在 <a href="https://github.com/downloads/wendal/go-oci8/mingw_oci_win32.7z">这里</a> 下载到，其中的环境已经配置好了<br>如果这一步没在go-oci8官方下载，而是和我当时一样，一步步去各个软件官网下载，那么要注意了</p></li></ol><hr><ol><li>下载并安装完之后，需要修改oci8.pc；</li></ol><pre><code>    # Package Information for pkg-config
+
+    prefix=C:/instantclient_11_2
+    exec_prefix=C:/instantclient_11_2
+    libdir=${exec_prefix}
+    includedir=${prefix}/sdk/include/
+
+    Name: OCI
+    Description: Oracle database engine
+    Version: 11.2
+    Libs: -L${libdir} -loci
+    Libs.private: 
+    Cflags: -I${includedir}
+
+需要把prefix、exec_prefix指向你的安装目录
+</code></pre><ol><li><p>这个包是不支持win x64的，我也没测试64位版本的安装</p></li><li><p>这时候，<code>go get github.com/wendal/go-oci</code></p></li><li><p>如果和我一样出现了</p><pre><code>   C:\Documents and Settings\Administrator&gt;go get github.com/wendal/go-oci8
+   # github.com/wendal/go-oci8
+   C:\GoPath\src\github.com\wendal\go-oci8\oci8.go:119: cannot use (**C.struct_OCIS erver)(unsafe.Pointer(&amp;conn.svc)) (type **C.struct_OCIServer) as type **C.struct
+   _OCISvcCtx in argument to _Cfunc_OCILogon
+   C:\GoPath\src\github.com\wendal\go-oci8\oci8.go:136: cannot use (*C.struct_OCIServer)(c.svc) (type *C.struct_OCIServer) as type *C.struct_OCISvcCtx in argument to _Cfunc_OCILogoff
+   C:\GoPath\src\github.com\wendal\go-oci8\oci8.go:263: cannot use (*C.struct_OCIServer)(s.c.svc) (type *C.struct_OCIServer) as type *C.struct_OCISvcCtx in argument to _Cfunc_OCIStmtExecute
+   C:\GoPath\src\github.com\wendal\go-oci8\oci8.go:383: cannot use (*C.struct_OCIServer)(s.c.svc) (type *C.struct_OCIServer) as type *C.struct_OCISvcCtx in argument to _Cfunc_OCIStmtExecute
+</code></pre></li></ol><blockquote><p>这样的出错提示，表示你安装的oci版本和go-oci8不一致，这个时候找到<code>%GOPATH%\src\github.com\wendal\go-oci8\oci8.go</code>文件</p><p><strong>有4个地方需要修改</strong></p></blockquote><ul><li>119行</li></ul><pre><code>(**C.OCIServer)(unsafe.Pointer(&amp;conn.svc)),
+改为
+(**C.OCISvcCtx)(unsafe.Pointer(&amp;conn.svc)),
+</code></pre><ul><li>136行</li></ul><pre><code>(*C.OCIServer)(c.svc),
+改为
+(*C.OCISvcCtx)(c.svc),
+</code></pre><ul><li>263行</li></ul><pre><code>(*C.OCIServer)(c.svc),
+改为
+(*C.OCISvcCtx)(c.svc),
+</code></pre><ul><li>383行</li></ul><pre><code>(*C.OCIServer)(c.svc),
+改为
+(*C.OCISvcCtx)(c.svc),
+</code></pre><blockquote><p>或者直接替换OCIServer为OCISvcCtx。 重新执行</p><pre><code>go get github.com/wendal/go-oci
+</code></pre></blockquote><p>搞定收工。</p></div><aside id="meta"><meta itemprop="wordCount" content="145"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/oracle.html" rel="tag">oracle</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html.html">Golang开发支持平滑升级(优雅重启)的HTTP服务</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html.html">shipyard中文版v3_0_2更新</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="0c3068d6d587acdd3b494c0049aee9fc"></div><div id="cyReward" role="cylabs" data-use="reward" sid="0c3068d6d587acdd3b494c0049aee9fc" style="text-align:center"></div><div id="SOHUCS" sid="0c3068d6d587acdd3b494c0049aee9fc"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

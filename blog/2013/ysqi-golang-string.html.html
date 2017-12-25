@@ -1,0 +1,186 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>老虞学golang-字符串 |虞双齐的博客</title><meta name="description" content="在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中"><meta name="keywords" content="Golang, 笔记, 教程, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html"><meta property="og:title" content="老虞学golang-字符串"><meta property="og:type" content="article"><meta property="article:published_time" content="2013-04-06 00:00:00"><meta property="article:modified_time" content="2013-04-06 00:00:00"><meta property="article:tag" content="Golang"><meta property="article:tag" content="笔记"><meta property="article:tag" content="教程"><meta name="og:description" content="在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html">老虞学golang-字符串</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2013-04-06">2013年04月06日</time></span></p></header><div itemprop="articleBody"><blockquote><p><strong>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。</strong></p></blockquote><h2 id="初始化">初始化</h2><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    <span style="color:#007020;font-weight:700">var</span> str <span style="color:#902000">string</span> <span style="color:#60a0b0;font-style:italic">//声明一个字符串
+</span><span style="color:#60a0b0;font-style:italic"></span>    str = <span style="color:#4070a0">&#34;laoYu&#34;</span>  <span style="color:#60a0b0;font-style:italic">//赋值
+</span><span style="color:#60a0b0;font-style:italic"></span>    ch <span style="color:#666">:=</span>str[<span style="color:#40a070">0</span>]    <span style="color:#60a0b0;font-style:italic">//获取第一个字符
+</span><span style="color:#60a0b0;font-style:italic"></span>    len <span style="color:#666">:=</span><span style="color:#007020">len</span>(str) <span style="color:#666">//</span>字符串的长度,len是内置函数 ,len=<span style="color:#40a070">5</span></code></pre></div><h2 id="字符串操作">字符串操作</h2><blockquote><p><strong>编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中<code>&quot;老虞&quot;[0]</code>来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。</strong></p></blockquote><p><a href="https://github.com/devYu/GoLangStudy/blob/master/codeDemo/strings/stringDemo.go">查看示例代码</a></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    str <span style="color:#666">:=</span><span style="color:#4070a0">&#34;laoYu老虞&#34;</span>
+
+    <span style="color:#007020;font-weight:700">for</span>  i<span style="color:#666">:=</span><span style="color:#40a070">0</span>;i&lt;<span style="color:#007020">len</span>(str);i<span style="color:#666">++</span> {
+             fmt.Println(str[i])
+    }
+
+    <span style="color:#007020;font-weight:700">for</span>  i,s <span style="color:#666">:=</span>  <span style="color:#007020;font-weight:700">range</span> str {
+            fmt.Println(i,<span style="color:#4070a0">&#34;Unicode(&#34;</span>,s,<span style="color:#4070a0">&#34;) string=&#34;</span>,<span style="color:#007020">string</span>(s))
+    }
+
+    r <span style="color:#666">:=</span> []<span style="color:#007020">rune</span>(str)
+    fmt.Println(<span style="color:#4070a0">&#34;rune=&#34;</span>,r)
+    <span style="color:#007020;font-weight:700">for</span> i<span style="color:#666">:=</span><span style="color:#40a070">0</span>;i&lt;<span style="color:#007020">len</span>(r) ; i<span style="color:#666">++</span> {
+           fmt.Println(<span style="color:#4070a0">&#34;r[&#34;</span>,i,<span style="color:#4070a0">&#34;]=&#34;</span>,r[i],<span style="color:#4070a0">&#34;string=&#34;</span>,<span style="color:#007020">string</span>(r[i]))
+    }
+
+    Outut<span style="">：</span>
+    <span style="color:#40a070">108</span>
+    <span style="color:#40a070">97</span>
+    <span style="color:#40a070">111</span>
+  	<span style="color:#40a070">89</span>
+  	<span style="color:#40a070">117</span>
+  	<span style="color:#40a070">232</span>
+  	<span style="color:#40a070">128</span>
+  	<span style="color:#40a070">129</span>
+  	<span style="color:#40a070">232</span>
+  	<span style="color:#40a070">153</span>
+  	<span style="color:#40a070">158</span>
+  	<span style="color:#40a070">0</span> Unicode( <span style="color:#40a070">108</span> ) <span style="color:#902000">string</span>= l
+  	<span style="color:#40a070">1</span> Unicode( <span style="color:#40a070">97</span> ) <span style="color:#902000">string</span>= a
+  	<span style="color:#40a070">2</span> Unicode( <span style="color:#40a070">111</span> ) <span style="color:#902000">string</span>= o
+  	<span style="color:#40a070">3</span> Unicode( <span style="color:#40a070">89</span> ) <span style="color:#902000">string</span>= Y
+  	<span style="color:#40a070">4</span> Unicode( <span style="color:#40a070">117</span> ) <span style="color:#902000">string</span>= u
+  	<span style="color:#40a070">5</span> Unicode( <span style="color:#40a070">32769</span> ) <span style="color:#902000">string</span>= 老
+  	<span style="color:#40a070">8</span> Unicode( <span style="color:#40a070">34398</span> ) <span style="color:#902000">string</span>= 虞
+  	<span style="color:#902000">rune</span>= [<span style="color:#40a070">108</span> <span style="color:#40a070">97</span> <span style="color:#40a070">111</span> <span style="color:#40a070">89</span> <span style="color:#40a070">117</span> <span style="color:#40a070">32769</span> <span style="color:#40a070">34398</span>]
+  	r[ <span style="color:#40a070">0</span> ]= <span style="color:#40a070">108</span> <span style="color:#902000">string</span>= l
+  	r[ <span style="color:#40a070">1</span> ]= <span style="color:#40a070">97</span> <span style="color:#902000">string</span>= a
+  	r[ <span style="color:#40a070">2</span> ]= <span style="color:#40a070">111</span> <span style="color:#902000">string</span>= o
+  	r[ <span style="color:#40a070">3</span> ]= <span style="color:#40a070">89</span> <span style="color:#902000">string</span>= Y
+  	r[ <span style="color:#40a070">4</span> ]= <span style="color:#40a070">117</span> <span style="color:#902000">string</span>= u
+  	r[ <span style="color:#40a070">5</span> ]= <span style="color:#40a070">32769</span> <span style="color:#902000">string</span>= 老
+  	r[ <span style="color:#40a070">6</span> ]= <span style="color:#40a070">34398</span> <span style="color:#902000">string</span>= 虞</code></pre></div><h3 id="对字符串的操作非常重要-来了解下strings包中提供了哪些函数">对字符串的操作非常重要，来了解下strings包中提供了哪些函数</h3><p><strong>获取总字节数</strong> <code>func Len(v type) int</code></p><blockquote><p>len函数是Go中内置函数，不引入strings包即可使用。len(string)返回的是字符串的字节数。len函数所支持的入参类型如下：</p><ul><li>len(Array) 数组的元素个数</li><li>len(*Array) 数组指针中的元素个数,如果入参为nil则返回0</li><li>len(Slice) 数组切片中元素个数,如果入参为nil则返回0</li><li>len(map) 字典中元素个数,如果入参为nil则返回0</li><li>len(Channel) Channel buffer队列中元素个数</li></ul></blockquote><p><a href="https://github.com/devYu/GoLangStudy/blob/master/codeDemo/strings/lenDemo.go">查看示例代码</a></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    str <span style="color:#666">:=</span><span style="color:#4070a0">&#34;laoYu老虞&#34;</span>
+    str2 <span style="color:#666">:=</span><span style="color:#4070a0">&#34;laoYu&#34;</span>
+    fmt.Println(<span style="color:#4070a0">&#34;len(&#34;</span>,str,<span style="color:#4070a0">&#34;)=&#34;</span>,<span style="color:#007020">len</span>(str))      <span style="color:#60a0b0;font-style:italic">//len=11=5+6,一个汉字在UTF-8&gt;中占3个字节
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(&#34;</span>,str2,<span style="color:#4070a0">&#34;)=&#34;</span>,<span style="color:#007020">len</span>(str2))    <span style="color:#60a0b0;font-style:italic">//len=5
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;str[0]=&#34;</span>,str[<span style="color:#40a070">0</span>])              <span style="color:#60a0b0;font-style:italic">//l
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    str <span style="color:#666">:=</span><span style="color:#4070a0">&#34;str&#34;</span>
+    arr <span style="color:#666">:=</span>[<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>{<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>,<span style="color:#40a070">3</span>}
+    slice <span style="color:#666">:=</span><span style="color:#007020">make</span>([]<span style="color:#902000">int</span>,<span style="color:#40a070">5</span>)
+
+    m <span style="color:#666">:=</span><span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">int</span>] <span style="color:#902000">string</span>)
+    m[<span style="color:#40a070">2</span>]=<span style="color:#4070a0">&#34;len&#34;</span>
+
+    ch <span style="color:#666">:=</span><span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span>)
+
+    fmt.Println(<span style="color:#4070a0">&#34;len(string)=&#34;</span>,<span style="color:#007020">len</span>(str))   <span style="color:#60a0b0;font-style:italic">//3
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(array)=&#34;</span>,<span style="color:#007020">len</span>(arr))     <span style="color:#60a0b0;font-style:italic">//5invalid argument user (type *UserInfo) for len
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    fmt.Println(<span style="color:#4070a0">&#34;len(slice)=&#34;</span>,<span style="color:#007020">len</span>(slice))   <span style="color:#60a0b0;font-style:italic">//5
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(map)=&#34;</span>,<span style="color:#007020">len</span>(m))         <span style="color:#60a0b0;font-style:italic">//1
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(chat)=&#34;</span>,<span style="color:#007020">len</span>(ch))       <span style="color:#60a0b0;font-style:italic">//0
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#60a0b0;font-style:italic">//user :=&amp;UserInfo{id:1,name:&#34;laoYu&#34;}
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">//interger :=2
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">//fmt.Println(&#34;len(my struct)=&#34;,len(user))//invalid argument user (type *UserInfo) for len
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">//fmt.Println(&#34;len(interger)=&#34;,len(interger))
+</span><span style="color:#60a0b0;font-style:italic"></span>
+    <span style="color:#007020;font-weight:700">var</span> str2 <span style="color:#902000">string</span>
+    <span style="color:#007020;font-weight:700">var</span> arr2  [<span style="color:#40a070">5</span>]<span style="color:#902000">int</span>
+    <span style="color:#007020;font-weight:700">var</span> slice2  []<span style="color:#902000">int</span>
+    <span style="color:#007020;font-weight:700">var</span>  m2 <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">int</span>] <span style="color:#902000">string</span>
+    <span style="color:#007020;font-weight:700">var</span>  ch2 <span style="color:#007020;font-weight:700">chan</span> <span style="color:#902000">int</span>
+
+    fmt.Println(<span style="color:#4070a0">&#34;len(string)=&#34;</span>,<span style="color:#007020">len</span>(str2))    <span style="color:#60a0b0;font-style:italic">//0
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(array)=&#34;</span>,<span style="color:#007020">len</span>(arr2))     <span style="color:#60a0b0;font-style:italic">//5
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(slice)=&#34;</span>,<span style="color:#007020">len</span>(slice2))   <span style="color:#60a0b0;font-style:italic">//0
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(map)=&#34;</span>,<span style="color:#007020">len</span>(m2))         <span style="color:#60a0b0;font-style:italic">//0
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(<span style="color:#4070a0">&#34;len(chat)=&#34;</span>,<span style="color:#007020">len</span>(ch2))       <span style="color:#666">//</span><span style="color:#40a070">0</span></code></pre></div><p><strong>字符串中是否包含某字符串</strong> <code>func Contains(s, substr string) bool</code></p><blockquote><p>确定是否包含某字符串，这是区分大小写的。实际上内部是通过Index(s,sub string) int 实现的。如果索引!=-1则表示包含该字符串。空字符串&rdquo;&ldquo;在任何字符串中均存在。</p></blockquote><p><strong>源代码</strong></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    <span style="color:#60a0b0;font-style:italic">// Contains returns true if substr is within s.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:700">func</span> Contains(s, substr <span style="color:#902000">string</span>) <span style="color:#902000">bool</span> {
+         <span style="color:#007020;font-weight:700">return</span> Index(s, substr) <span style="color:#666">!=</span> <span style="color:#666">-</span><span style="color:#40a070">1</span>
+    }</code></pre></div><p>**示例，使用请需导入包:&rsquo; import &ldquo;strings&rdquo; &lsquo; **</p><p><a href="https://github.com/devYu/GoLangStudy/blob/master/codeDemo/strings/containsDemo.go">查看示例代码</a></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    str <span style="color:#666">:=</span><span style="color:#4070a0">&#34;laoYuStudyGotrue是否包含某字符串&#34;</span>
+    fmt.Println(strings.Contains(str,<span style="color:#4070a0">&#34;go&#34;</span>))         <span style="color:#60a0b0;font-style:italic">//false
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Contains(str,<span style="color:#4070a0">&#34;Go&#34;</span>))         <span style="color:#60a0b0;font-style:italic">//true
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Contains(str,<span style="color:#4070a0">&#34;laoyu&#34;</span>))      <span style="color:#60a0b0;font-style:italic">//false
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Contains(str,<span style="color:#4070a0">&#34;是&#34;</span>))         <span style="color:#60a0b0;font-style:italic">//true
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.Println(strings.Contains(str,<span style="color:#4070a0">&#34;&#34;</span>)) 			<span style="color:#666">//</span><span style="color:#007020;font-weight:700">true</span></code></pre></div><blockquote><p>在实际工作中常需要在不区分大小写的情况下确认是否包含某字符串,(我们应该减少这种情况，以免每次验证时都需要进行一次大小写转换)。 这里我局部修改源代码提供一个验证字符串中是否包含某字符串的函数,当然你也可以直接使用<code>strings.Contains(strings.ToLower(s),strings.ToLower(substr))</code></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    str <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;laoYuStudyGotrue是否包含某字符串&#34;</span>
+    fmt.Println(Contains(str, <span style="color:#4070a0">&#34;go&#34;</span>, <span style="color:#007020;font-weight:700">true</span>))  <span style="color:#60a0b0;font-style:italic">//true
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(Contains(str,<span style="color:#4070a0">&#34;go&#34;</span>,<span style="color:#007020;font-weight:700">false</span>))   <span style="color:#666">//</span><span style="color:#007020;font-weight:700">false</span></code></pre></div></blockquote><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">		<span style="color:#60a0b0;font-style:italic">//在字符串s中是否包含字符串substr,ignoreCase表示是否忽略大小写
+</span><span style="color:#60a0b0;font-style:italic"></span>		<span style="color:#007020;font-weight:700">func</span> Contains(s <span style="color:#902000">string</span>, substr <span style="color:#902000">string</span>, ignoreCase <span style="color:#902000">bool</span>) <span style="color:#902000">bool</span> {
+				<span style="color:#007020;font-weight:700">return</span> Index(s, substr, ignoreCase) <span style="color:#666">!=</span> <span style="color:#666">-</span><span style="color:#40a070">1</span>
+
+		}
+
+		<span style="color:#60a0b0;font-style:italic">//字符串subst在字符串s中的索引位置,ignoreCase表示是否忽略大小写
+</span><span style="color:#60a0b0;font-style:italic"></span>		<span style="color:#007020;font-weight:700">func</span> Index(s <span style="color:#902000">string</span>, sep <span style="color:#902000">string</span>, ignoreCase <span style="color:#902000">bool</span>) <span style="color:#902000">int</span> {
+
+				n <span style="color:#666">:=</span> <span style="color:#007020">len</span>(sep)
+				<span style="color:#007020;font-weight:700">if</span> n <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
+				        <span style="color:#007020;font-weight:700">return</span> <span style="color:#40a070">0</span>
+				}
+
+				<span style="color:#60a0b0;font-style:italic">//to Lower
+</span><span style="color:#60a0b0;font-style:italic"></span>				<span style="color:#007020;font-weight:700">if</span> ignoreCase <span style="color:#666">==</span> <span style="color:#007020;font-weight:700">true</span> {
+				        s = strings.ToLower(s)
+				        sep = strings.ToLower(sep)
+				}
+
+				c <span style="color:#666">:=</span> sep[<span style="color:#40a070">0</span>]
+				<span style="color:#007020;font-weight:700">if</span> n <span style="color:#666">==</span> <span style="color:#40a070">1</span> {
+				        <span style="color:#60a0b0;font-style:italic">// special case worth making fast
+</span><span style="color:#60a0b0;font-style:italic"></span>				        <span style="color:#007020;font-weight:700">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i &lt; <span style="color:#007020">len</span>(s); i<span style="color:#666">++</span> {
+				                <span style="color:#007020;font-weight:700">if</span> s[i] <span style="color:#666">==</span> c {
+				                        <span style="color:#007020;font-weight:700">return</span> i
+				                }
+				        }
+				        <span style="color:#007020;font-weight:700">return</span> <span style="color:#666">-</span><span style="color:#40a070">1</span>
+				}
+				<span style="color:#60a0b0;font-style:italic">// n &gt; 1
+</span><span style="color:#60a0b0;font-style:italic"></span>				<span style="color:#007020;font-weight:700">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i<span style="color:#666">+</span>n <span style="color:#666">&lt;=</span> <span style="color:#007020">len</span>(s); i<span style="color:#666">++</span> {
+				        <span style="color:#007020;font-weight:700">if</span> s[i] <span style="color:#666">==</span> c <span style="color:#666">&amp;&amp;</span> s[i:i<span style="color:#666">+</span>n] <span style="color:#666">==</span> sep {
+				                <span style="color:#007020;font-weight:700">return</span> i
+				        }
+				}
+				<span style="color:#007020;font-weight:700">return</span> <span style="color:#666">-</span><span style="color:#40a070">1</span>
+		}</code></pre></div><p>** 获取字符串sep在字符串s中出现的次数 ** <code>Count(s,sep string)</code> &gt; 注意：如果sep=&ldquo;&ldquo;，则无论s为何字符串都会返回 len(s)+1</p><p><a href="https://github.com/devYu/GoLangStudy/blob/master/codeDemo/strings/countDemo.go">查看示例代码</a></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo&#34;</span>, <span style="color:#4070a0">&#34;o&#34;</span>))                 <span style="color:#60a0b0;font-style:italic">//2
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo&#34;</span>, <span style="color:#4070a0">&#34;O&#34;</span>))                 <span style="color:#60a0b0;font-style:italic">//0
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo&#34;</span>, <span style="color:#4070a0">&#34;&#34;</span>))                  <span style="color:#60a0b0;font-style:italic">//13=12+1
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo老虞学习Go语言&#34;</span>, <span style="color:#4070a0">&#34;虞&#34;</span>))  <span style="color:#60a0b0;font-style:italic">//1
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo老虞学习Go语言&#34;</span>, <span style="color:#4070a0">&#34;Go&#34;</span>))  <span style="color:#60a0b0;font-style:italic">//2
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo老虞学习Go语言&#34;</span>, <span style="color:#4070a0">&#34;老虞&#34;</span>))<span style="color:#60a0b0;font-style:italic">//1
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;&#34;</span>, <span style="color:#4070a0">&#34;&#34;</span>))                             <span style="color:#60a0b0;font-style:italic">//1=0+1
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;aaaaaaaa&#34;</span>,<span style="color:#4070a0">&#34;aa&#34;</span>))                     <span style="color:#60a0b0;font-style:italic">//4
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Count(<span style="color:#4070a0">&#34;laoYuStudyGo_n&#34;</span>,<span style="color:#4070a0">&#34;\n&#34;</span>))               <span style="color:#666">//</span><span style="color:#40a070">0</span></code></pre></div><p>** 使用（多个）空格分割字符串 Fields(s string) ,返回分割后的数组 ** &gt; 将字符串分割成数组，其分割符为空格。</p><p><a href="https://github.com/devYu/GoLangStudy/blob/master/codeDemo/strings/fieldsDemo.go">查看示例代码</a></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    fmt.Println(strings.Fields(<span style="color:#4070a0">&#34;lao Yu Study Go &#34;</span>)) <span style="color:#60a0b0;font-style:italic">//OutPut: [lao Yu Study Go]
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Fields(<span style="color:#4070a0">&#34;   Go    &#34;</span>))        <span style="color:#60a0b0;font-style:italic">//[Go]
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Fields(<span style="color:#4070a0">&#34;&#34;</span>))                 <span style="color:#60a0b0;font-style:italic">//[]
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.Println(strings.Fields(<span style="color:#4070a0">&#34; \n go&#34;</span>))           <span style="color:#666">//</span>[<span style="color:#007020;font-weight:700">go</span>]</code></pre></div><p>** 其实其内部实现调用的是FieldsFunc(s,unicode.IsSpace),我们也可以自定义分割方式 **</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    canSplit <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">func</span> (c <span style="color:#902000">rune</span>)  <span style="color:#902000">bool</span> { <span style="color:#007020;font-weight:700">return</span> c<span style="color:#666">==</span><span style="color:#4070a0">&#39;#&#39;</span>}
+    fmt.Println(strings.FieldsFunc(<span style="color:#4070a0">&#34;lao###Yu#Study####Go#G &#34;</span>,canSplit)) <span style="color:#666">//</span>[lao Yu Study Go G&lt;space&gt;]</code></pre></div><p>** 检查字符串是否已某字符串开头 ** HasPrefix(s,prefix string) bool</p><p>** 如果想查看更多关于strings包下的字符串操作函数，请查看 **</p><ul><li><a href="https://golang.org/pkg/strings">官方strings包地址</a></li><li><a href="https://github.com/astaxie/gopkg/tree/master/strings">对应的函数翻译地址</a></li></ul></div><aside id="meta"><meta itemprop="wordCount" content="520"><meta itemprop="url" content="https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">Golang</a> <a href="/tags/%E6%95%99%E7%A8%8B.html" rel="tag">教程</a> <a href="/tags/%E7%AC%94%E8%AE%B0.html" rel="tag">笔记</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html.html">老虞学Golang-函数上</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2013/ysqi-golang-const.html.html">老虞学Golang-常量</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="cc3f187662b6c16e236ada3ca240e9ea"></div><div id="cyReward" role="cylabs" data-use="reward" sid="cc3f187662b6c16e236ada3ca240e9ea" style="text-align:center"></div><div id="SOHUCS" sid="cc3f187662b6c16e236ada3ca240e9ea"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside><div><section id="author"><h4>关于作者</h4><p><strong>虞双齐</strong>，一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男</p><p>活跃在 <a href="https://www.zhihu.com/people/_ysqi" title="虞双齐知乎主页">知乎</a>，开源项目在<a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐的博客">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2013%2fysqi-golang-string.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2013%2fysqi-golang-string.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>在Beego中使用Jade模板 |虞双齐的博客</title><meta name="description" content="Jade是一个高性能的HTML模板引擎，它受到Haml的影响,是使用JavaScript实现的。Ja"><meta name="keywords" content="jade, golang, beego, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html.html"><meta property="og:title" content="在Beego中使用Jade模板"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:52"><meta property="article:modified_time" content="2016-12-31 11:32:52"><meta property="article:tag" content="jade"><meta property="article:tag" content="golang"><meta property="article:tag" content="beego"><meta name="og:description" content="Jade是一个高性能的HTML模板引擎，它受到Haml的影响,是使用JavaScript实现的。Ja"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html.html">在Beego中使用Jade模板</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007532274" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><a href="https://pugjs.org/api/getting-started.html">Jade</a>是一个高性能的HTML模板引擎，它受到<a href="http://haml-lang.com/">Haml</a>的影响,是使用JavaScript实现的。Jade在客户端也有支持，它的代码比html可读性要高很多，Jade是一个比较常用的HTML模板。<br><a href="https://beego.me/">Beego</a>是一个go语言的web应用程序开源web框架，而Beego从1.7.0开始支持更加复杂的模板引擎，当然也包括了对于jade的支持，支持更复杂模板引擎的PR地址<a href="https://github.com/astaxie/beego/pull/1940">https://github.com/astaxie/beego/pull/1940</a>。<br>在介绍Jade的使用之前先来看下Go下面的<code>html/template</code>包。</p><h2 id="html-template">html/template</h2><p>在Go语言中，<code>html/template</code>包是一个很强大的html模板包，结合<code>text/template</code>的模板语法，基本上可以满足大部分的HTML模板需求，无论是Beego中是默认支持的两种模板格式<code>.tpl</code>和<code>.html</code>,以及<code>jade</code>和<code>ace</code>都是可以解析为<code>html/template</code>中的Template对象使用，就是说我们所使用的html模板最终都是基于<code>html/template</code>包实现的。<br><code>html/template</code>使用实例:</p><pre><code>package main
+import (
+    &quot;html/template&quot;
+)
+type User struct {
+    Name string
+}
+func main() {
+    t := template.New(&quot;template example&quot;)
+    t, _ = t.Parse(&quot;hello {{.Name}}!&quot;)
+    p := User{Name: &quot;jjz&quot;}
+    t.Execute(os.Stdout, p)
+}
+</code></pre><p>上面的例子会输出字符串：<code>hello jjz</code>。<br>通过上面的例子我们可以看到，如何新建一个模板，再使用模板函数<code>Parse()</code>从字符串中加载模板内容，使用模板函数<code>Execute()</code>可以给模板替换字段。替换模板字段的语法,<code>{{}}</code>中的字段就是要替换字段,<code>{{. Name}}</code>表示需要替换的字段名称。<br><code>Beego</code>使用复杂模板的方式很简单，增加一个模板引擎函数，在项目运行的时候遍历<code>views</code>中的文件，把指定的文件解析为<code>template.Template</code>对象，返回该对象提供使用，这个模板引擎函数就是：`beego.AddTemplateEngine<br>`。</p><h2 id="addtemplateengine">AddTemplateEngine</h2><p><code>beego.AddTemplateEngine</code>是一个用来把指定的文件，转换为<code>template.Template</code>的对象的函数。它的第一个参数是文件的后缀名，在<code>views</code>中的含有此后缀名的文件都会进入该方法进行处理。他的第二个参数是一个函数，用来处理文件的转换，最后会返回一个<code>template.Template</code>的对象。有了这个函数，我们还少一个把jade文件解析为<code>template.Template</code>的方法，还好有人已经做了jade的Go语言实现。</p><h2 id="jade-go">jade.go</h2><p><a href="https://github.com/Joker/jade">jade.go</a>是Jade的Go语言实现。<br><code>jade.go</code>的使用，首先安装jade.go：</p><blockquote><p>go get github.com/Joker/jade</p></blockquote><p><code>jade.go</code>使用示例:</p><pre><code>func main() {
+    tpl, err := jade.Parse(&quot;name_of_tpl&quot;, &quot;doctype 5: html: body: p Hello world!&quot;)
+    if err != nil {
+        return
+    }
+    fmt.Printf( &quot;%s&quot;, tpl  )
+}
+</code></pre><p>输出字符串:</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;p&gt;Hello world!&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>有了<code>jade.go</code>就可以在Beego中使用，把jade文件转换为Template对象，在beego中添加<code>jade.go</code>解析jade模板的方法：</p><pre><code>func addJadeTemplate() {
+    beego.AddTemplateEngine(&quot;jade&quot;, func(root, path string, funcs template.FuncMap) (*template.Template, error) {
+        jadePath := filepath.Join(root, path)
+        content, err := utils.ReadFile(jadePath)
+        fmt.Println(content)
+        if err != nil {
+            return nil, fmt.Errorf(&quot;error loading jade template: %v&quot;, err)
+        }
+        tpl, err := jade.Parse(&quot;name_of_tpl&quot;, content)
+        if err != nil {
+            return nil, fmt.Errorf(&quot;error loading jade template: %v&quot;, err)
+        }
+        fmt.Println(&quot;html:\n%s&quot;,tpl)
+        tmp := template.New(&quot;Person template&quot;)
+        tmp, err = tmp.Parse(tpl)
+        if err != nil {
+            return nil, fmt.Errorf(&quot;error loading jade template: %v&quot;, err)
+        }
+        fmt.Println(tmp)
+        return tmp, err
+
+    })
+}
+</code></pre><p><code>jade.go</code>目前只支持使用字符串的方式接卸jade模板，因此需要先把.jade文件的内容以字符串的方式读取出来。读取文件的方法:</p><pre><code>func ReadFile(path string) (str string, err error) {
+    fi, err := os.Open(path)
+    defer fi.Close()
+    fd, err := ioutil.ReadAll(fi)
+    str = string(fd)
+    return
+}
+</code></pre><p>jade.go解析出的结果也是一个字符串，因此在代码中需要把字符串转换为<code>template.Template</code>对象，使用了<code>Template.Parse()</code>方法。<br>解析jade模板的引擎方法需要在<code>main()</code>中调用，添加完jade的模板转换引擎之后，就可以在<code>Beego</code>中使用jade模板了。</p><h2 id="jade模板的使用">jade模板的使用</h2><p>首先定义一个页面<code>home.jade</code>:</p><pre><code>doctype html
+html
+  head
+    title pageTitle
+  body
+    h1 jade
+    .content {{.content}}
+</code></pre><p>其中<code>{{.content}}</code>是需要替换的字段，<code>Controller</code>层代码：</p><pre><code>func (c *MainController) Jade() {
+    c.Data[&quot;content&quot;] = &quot;this is jade template&quot;
+    c.TplName = &quot;home.jade&quot;
+}
+</code></pre><p>运行之后生成的页面代码：</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+        &lt;title&gt;pageTitle&lt;/title&gt;
+     &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;jade&lt;/h1&gt;
+        &lt;div class=&quot;content&quot;&gt;this is jade template&lt;/div&gt;  
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>通过添加一个解析模板的引擎就可以在beego中使用jade的模板，beego从1.7.0之后开始支持复杂的模板引擎，不仅仅是对于jade的支持，也包括对于其他模板引擎的支持。<br>除了jade之外，在这个PR中推荐使用的是<a href="https://github.com/yosssi/ace">ace</a>HTML模板引擎。</p><h2 id="ace">ace</h2><p><a href="https://github.com/yosssi/ace">ace</a>是一个Go语言的HTML模板引擎，它借鉴了<a href="http://slim-lang.com/">Slim</a>和<a href="https://pugjs.org/api/getting-started.html">Jade</a>,在Go语言里有超高的人气。<br><code>ace模板</code>在beego中的使用与使用<code>Jade</code>类似，首先安装<code>ace</code>的依赖包:</p><blockquote><p>go get github.com/yosssi/ace</p></blockquote><p>在main函数中添加ace模板解析引擎:</p><pre><code>func addAceTemplate()  {
+    beego.AddTemplateEngine(&quot;ace&quot;, func(root, path string, funcs template.FuncMap) (*template.Template, error) {
+        aceOptions := &amp;ace.Options{DynamicReload: true, FuncMap: funcs}
+        aceBasePath := filepath.Join(root, &quot;base&quot;)
+        aceInnerPath := filepath.Join(root, strings.TrimSuffix(path, &quot;.ace&quot;))
+        tpl, err := ace.Load(aceBasePath, aceInnerPath, aceOptions)
+        if err != nil {
+            return nil, fmt.Errorf(&quot;error loading ace template: %v&quot;, err)
+        }
+        return tpl, nil
+    })    
+}
+</code></pre><p>注意使用ace模板需要指定一个<code>base.ace</code>，另外使用<code>ace.Load()</code>函数可以直接返回一个<code>template.Template</code>对象，不需要再做其他转换的工作。<br>添加完模板引擎之后就可以直接在views中添加.ace文件使用，新建一个<code>home.ace</code>文件:</p><pre><code>= doctype html
+html lang=en
+  head
+    meta charset=utf-8
+    title Base and Inner Template
+  body
+    h1 ace
+    .content {{.content}}
+</code></pre><p>同样的{{.content}}是也需要在<code>controller</code>层本替换成需要的内容,controller层代码:</p><pre><code>func (c *MainController)Ace() {
+    c.Data[&quot;content&quot;] = &quot;this is ace template&quot;
+    c.TplName = &quot;home.ace&quot;
+}
+</code></pre><p>示例代码地址：<a href="https://github.com/jjz/go/tree/master/template">https://github.com/jjz/go/tree/master/template</a></p></div><aside id="meta"><meta itemprop="wordCount" content="344"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/beego.html" rel="tag">beego</a> <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/jade.html" rel="tag">jade</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/shi-yong-contextshi-xian-duo-ge-goroutinede-yi-lai-guan-li.html.html">使用context实现多个goroutine的依赖管理</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html.html">编写可测试的Go代码</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="37fd0cbfd0fac07d2cd25eec7e568079"></div><div id="cyReward" role="cylabs" data-use="reward" sid="37fd0cbfd0fac07d2cd25eec7e568079" style="text-align:center"></div><div id="SOHUCS" sid="37fd0cbfd0fac07d2cd25eec7e568079"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fzai-beegozhong-shi-yong-jademo-ban.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fzai-beegozhong-shi-yong-jademo-ban.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/defer.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Defer on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/defer.html</link>
+    <description>在 虞双齐的博客上关于in Defer 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/defer.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:07 +0800</lastBuildDate>
+    <atom:link href="/tags/defer.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golangdefer使用小结与注意要点</title>
-      <link>https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html.html</guid>
       <description>https://segmentfault.com/a/
 关于延时调用函数(Deferred Function Calls) 延时调用函数的语法如下:
 defer func_name(param-list)  当一个函数调用前有关键字 defer 时, 那么这个函数的执行会推迟到包含这个 defer 语句的函数即将返回前才执行. 例如:

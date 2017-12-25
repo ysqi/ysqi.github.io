@@ -1,0 +1,72 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>为什么golang的gzip和php的gzencode压缩结果不一样 |虞双齐的博客</title><meta name="description" content="一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老"><meta name="keywords" content="gzip, 问题, Golang, PHP, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html"><meta property="og:title" content="为什么golang的gzip和php的gzencode压缩结果不一样"><meta property="og:type" content="article"><meta property="article:published_time" content="2015-07-31 00:00:00"><meta property="article:modified_time" content="2015-07-31 00:00:00"><meta property="article:tag" content="gzip"><meta property="article:tag" content="问题"><meta property="article:tag" content="Golang"><meta property="article:tag" content="PHP"><meta name="og:description" content="一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html">为什么golang的gzip和php的gzencode压缩结果不一样</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2015-07-31">2015年07月31日</time></span></p></header><div itemprop="articleBody"><p>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。</p><p><strong>首先看源代码</strong></p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">package</span> main
+
+<span style="color:#007020;font-weight:700">import</span> (
+	<span style="color:#4070a0">&#34;bytes&#34;</span>
+	<span style="color:#4070a0">&#34;compress/gzip&#34;</span>
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+)
+
+<span style="color:#007020;font-weight:700">func</span> main() {
+
+	data <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;a&#34;</span>
+
+	buffer <span style="color:#666">:=</span> <span style="color:#007020">new</span>(bytes.Buffer)
+	w, _ <span style="color:#666">:=</span> gzip.NewWriterLevel(buffer, <span style="color:#40a070">9</span>) <span style="color:#60a0b0;font-style:italic">//php: gzencode($json_data,9)
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:700">defer</span> w.Close()
+	w.Write([]<span style="color:#007020">byte</span>(data))
+	w.Flush()
+
+	fmt.Println(buffer.Bytes()[:])
+}</code></pre></div><p>不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于<a href="https://tools.ietf.org/html/rfc1952">RFC 1952</a> ,gzip数据格式如下：</p><pre><code>+---+---+---+---+---+---+---+---+---+---+
+
+|ID1|ID2|CM |FLG|  MTIME        |XFL|OS | (more--&gt;)
+
++---+---+---+---+---+---+---+---+---+---+
+</code></pre><p>再对比PHP和GoLang的头部定义</p><table><thead><tr><th>-</th><th>PHP</th><th>Go</th></tr></thead><tbody><tr><td>D1</td><td>31</td><td>31</td></tr><tr><td>D2</td><td>139</td><td>139</td></tr><tr><td>CM (compression method)</td><td>8</td><td>8</td></tr><tr><td>FLG (flags)</td><td>0</td><td>0</td></tr><tr><td>MTIME (modification time)</td><td>0 0 0 0</td><td>0 9 110 136</td></tr><tr><td>XFL (extra flags)</td><td>0</td><td>0</td></tr><tr><td>OS (operating system)</td><td>0</td><td>255</td></tr></tbody></table><p>上面看到，Go 设置的头信息和PHP有部分差役，Go都设置了MTime（修改时间） 和OS（操作系统，为255 ，不知道代表什么意思），而PHP中的OS＝0表示是 FAT文件系统。</p><h3 id="有差役是正常的-重要的是能相互解压出数据">有差役是正常的，重要的是能相互解压出数据</h3><p>不同语言，默认的压缩级别不一样，也会导致压缩结果不一样，Go中默认级别是-1(DefaultCompression)。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">func</span> NewWriter(w io.Writer) <span style="color:#666">*</span>Writer {
+    z, _ <span style="color:#666">:=</span> NewWriterLevel(w, DefaultCompression)
+    <span style="color:#007020;font-weight:700">return</span> z
+}</code></pre></div><p>虽然我们设置了和PHP中一样的压缩级别，但是结果依旧可能还是不一样，这是因为GZIP 软件核心算法deflate，是LZ77和Huffman压缩的结合，所使用的频率树来决定输出码。</p><h3 id="最重要的压缩数据能够被正确的解压">最重要的压缩数据能够被正确的解压</h3><p>不同语言，不同算法，结果有所不同，但最重要的是，数据能够被解压，再不同语言间相互解压，则就满足了，所以不需要太关注为什么Go和PHP的Gzip压缩结果不一样。</p></div><aside id="meta"><meta itemprop="wordCount" content="108"><meta itemprop="url" content="https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">Golang</a> <a href="/tags/php.html" rel="tag">PHP</a> <a href="/tags/gzip.html" rel="tag">gzip</a> <a href="/tags/%E9%97%AE%E9%A2%98.html" rel="tag">问题</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html">MAC下快速安装Wget</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html.html">老虞学Golang-控制语句</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="f9e546cb487e86ba1b1302955348b12d"></div><div id="cyReward" role="cylabs" data-use="reward" sid="f9e546cb487e86ba1b1302955348b12d" style="text-align:center"></div><div id="SOHUCS" sid="f9e546cb487e86ba1b1302955348b12d"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside><div><section id="author"><h4>关于作者</h4><p><strong>虞双齐</strong>，一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男</p><p>活跃在 <a href="https://www.zhihu.com/people/_ysqi" title="虞双齐知乎主页">知乎</a>，开源项目在<a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐的博客">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2fgolang-php-gzencode-difrent.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2015%2fgolang-php-gzencode-difrent.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/idea.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Idea on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/idea.html</link>
+    <description>在 虞双齐的博客上关于in Idea 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/idea.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:33 +0800</lastBuildDate>
+    <atom:link href="/tags/idea.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>IDEA写Golang的一些操作_技巧</title>
-      <link>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html</link>
+      <link>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html.html</guid>
       <description>https://segmentfault.com/a/
 之前一直用vscode来写Golang，直到有人向我推荐了IDEA，便折服于它的强大。在这里分享一些IDEA的操作和技巧（只说Golang，但一些技巧对其他语言同样有效）。
  Help -&amp;gt; Keymap Reference能够打开快捷键映射的PDF文件，方便我们查看

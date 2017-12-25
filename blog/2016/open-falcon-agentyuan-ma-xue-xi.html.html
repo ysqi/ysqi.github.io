@@ -1,0 +1,707 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>open-falcon-agent源码学习 |虞双齐的博客</title><meta name="description" content="最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释
+ 代"><meta name="keywords" content="go语言, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html.html"><meta property="og:title" content="open-falcon-agent源码学习"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:21"><meta property="article:modified_time" content="2016-12-31 11:33:21"><meta property="article:tag" content="go语言"><meta property="article:tag" content="golang"><meta name="og:description" content="最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释
+ 代"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html.html">open-falcon-agent源码学习</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000006047609" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><blockquote><p>最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释</p></blockquote><p>代码地址：<a href="https://github.com/beyondskyway/falcon-agent-learn">https://github.com/beyondskyw&hellip;</a></p><p>标签（空格分隔）： falcon go</p><hr><h3 id="监控数据">监控数据</h3><ul><li><p>机器性能指标：cpu，mem，网卡，磁盘……</p></li><li><p>业务监控</p></li><li><p>开源软件状态：Nginx，Redis，MySQL</p></li><li><p>snmp采集网络设备指标</p></li></ul><h3 id="设计原理">设计原理</h3><ul><li><p>自发现采集值</p></li><li><p>不同类型数据采集分不同goroutine</p></li><li><p>进程和端口通过用户配置进行监控</p></li></ul><h3 id="配置文件">配置文件</h3><ul><li><p>hostname和ip默认留空，agent自动探测</p></li><li><p>hbs和transfer都是配置其rpc地址</p></li><li><p>collector网卡采集前缀</p></li><li><p>ignore为true时取消上报</p></li></ul><h3 id="组织结构">组织结构</h3><ul><li><p>cron：间隔执行的代码，即定时任务</p></li><li><p>funcs：信息采集</p></li><li><p>g:全局数据结构</p></li><li><p>http：简单的dashboard的server，获取单机监控指标数据</p></li><li><p>plugins：插件处理机制</p></li><li><p>public：静态资源文件</p></li></ul><h3 id="心跳机制">心跳机制</h3><ul><li><p>了解agent、plugin版本信息，方便升级</p></li><li><p>获取监听的进程和端口</p></li><li><p>获取本机执行的插件列表</p></li></ul><h3 id="与hbs-transfer交互">与HBS、Transfer交互</h3><h3 id="调用关系">调用关系</h3><h3 id="代码解读">代码解读</h3><ul><li>main入口</li></ul><pre><code>go cron.InitDataHistory()
+// 上报本机状态
+cron.ReportAgentStatus()
+// 同步插件
+cron.SyncMinePlugins()
+// 同步监控端口、路径、进程和URL
+cron.SyncBuiltinMetrics()
+// 后门调试agent,允许执行shell指令的ip列表
+cron.SyncTrustableIps()
+// 开始数据次采集
+cron.Collect()
+// 启动dashboard server
+go http.Start()
+</code></pre><ul><li>ReportAgentStatus：汇报agent本身状态</li></ul><pre><code>// 判断hbs配置是否正常，正常则上报agent状态
+if g.Config().Heartbeat.Enabled &amp;&amp; g.Config().Heartbeat.Addr != &quot;&quot; {
+    // 根据配置的interval间隔上报信息
+    go reportAgentStatus(time.Duration(g.Config().Heartbeat.Interval) * time.Second)
+}
+
+func reportAgentStatus(interval time.Duration) {
+    for {
+        // 获取hostname, 出错则错误赋值给hostname
+        hostname, err := g.Hostname()
+        if err != nil {
+            hostname = fmt.Sprintf(&quot;error:%s&quot;, err.Error())
+        }
+        // 请求发送信息
+        req := model.AgentReportRequest{
+            Hostname:      hostname,
+            IP:            g.IP(),
+            AgentVersion:  g.VERSION,
+            // 通过shell指令获取plugin版本，能否go实现
+            PluginVersion: g.GetCurrPluginVersion(),
+        }
+
+        var resp model.SimpleRpcResponse
+        // 调用rpc接口
+        err = g.HbsClient.Call(&quot;Agent.ReportStatus&quot;, req, &amp;resp)
+        if err != nil || resp.Code != 0 {
+            log.Println(&quot;call Agent.ReportStatus fail:&quot;, err, &quot;Request:&quot;, req, &quot;Response:&quot;, resp)
+        }
+
+        time.Sleep(interval)
+    }
+}
+</code></pre><ul><li>SyncMinePlugins：同步插件</li></ul><pre><code>func syncMinePlugins() {
+    var (
+        timestamp  int64 = -1
+        pluginDirs []string
+    )
+
+    duration := time.Duration(g.Config().Heartbeat.Interval) * time.Second
+
+    for {
+        time.Sleep(duration)
+
+        hostname, err := g.Hostname()
+        if err != nil {
+            continue
+        }
+
+        req := model.AgentHeartbeatRequest{
+            Hostname: hostname,
+        }
+
+        var resp model.AgentPluginsResponse
+        // 调用rpc接口,返回plugin
+        err = g.HbsClient.Call(&quot;Agent.MinePlugins&quot;, req, &amp;resp)
+        if err != nil {
+            log.Println(&quot;ERROR:&quot;, err)
+            continue
+        }
+        // 保证时间顺序正确
+        if resp.Timestamp &lt;= timestamp {
+            continue
+        }
+
+        pluginDirs = resp.Plugins
+        // 存放时间保证最新
+        timestamp = resp.Timestamp
+
+        if g.Config().Debug {
+            log.Println(&amp;resp)
+        }
+        // 无插件则清空plugin
+        if len(pluginDirs) == 0 {
+            plugins.ClearAllPlugins()
+        }
+
+        desiredAll := make(map[string]*plugins.Plugin)
+        // 读取所有plugin
+        for _, p := range pluginDirs {
+            underOneDir := plugins.ListPlugins(strings.Trim(p, &quot;/&quot;))
+            for k, v := range underOneDir {
+                desiredAll[k] = v
+            }
+        }
+        // 停止不需要的插件,启动增加的插件
+        plugins.DelNoUsePlugins(desiredAll)
+        plugins.AddNewPlugins(desiredAll)
+    }
+}
+</code></pre><ul><li>SyncBuiltinMetrics：同步内置metric,包括端口、目录和进程信息</li></ul><pre><code>func syncBuiltinMetrics() {
+    var timestamp int64 = -1
+    var checksum string = &quot;nil&quot;
+
+    duration := time.Duration(g.Config().Heartbeat.Interval) * time.Second
+
+    for {
+        time.Sleep(duration)
+        // 监控端口、目录大小、进程
+        var ports = []int64{}
+        var paths = []string{}
+        var procs = make(map[string]map[int]string)
+        var urls = make(map[string]string)
+
+        hostname, err := g.Hostname()
+        if err != nil {
+            continue
+        }
+
+        req := model.AgentHeartbeatRequest{
+            Hostname: hostname,
+            Checksum: checksum,
+        }
+
+        var resp model.BuiltinMetricResponse
+        err = g.HbsClient.Call(&quot;Agent.BuiltinMetrics&quot;, req, &amp;resp)
+        if err != nil {
+            log.Println(&quot;ERROR:&quot;, err)
+            continue
+        }
+
+        if resp.Timestamp &lt;= timestamp {
+            continue
+        }
+
+        if resp.Checksum == checksum {
+            continue
+        }
+
+        timestamp = resp.Timestamp
+        checksum = resp.Checksum
+
+        for _, metric := range resp.Metrics {
+
+            if metric.Metric == g.URL_CHECK_HEALTH {
+                arr := strings.Split(metric.Tags, &quot;,&quot;)
+                if len(arr) != 2 {
+                    continue
+                }
+                url := strings.Split(arr[0], &quot;=&quot;)
+                if len(url) != 2 {
+                    continue
+                }
+                stime := strings.Split(arr[1], &quot;=&quot;)
+                if len(stime) != 2 {
+                    continue
+                }
+                if _, err := strconv.ParseInt(stime[1], 10, 64); err == nil {
+                    urls[url[1]] = stime[1]
+                } else {
+                    log.Println(&quot;metric ParseInt timeout failed:&quot;, err)
+                }
+            }
+            // {metric: net.port.listen, tags: port=22}
+            if metric.Metric == g.NET_PORT_LISTEN {
+                arr := strings.Split(metric.Tags, &quot;=&quot;)
+                if len(arr) != 2 {
+                    continue
+                }
+
+                if port, err := strconv.ParseInt(arr[1], 10, 64); err == nil {
+                    ports = append(ports, port)
+                } else {
+                    log.Println(&quot;metrics ParseInt failed:&quot;, err)
+                }
+
+                continue
+            }
+            // metric: du.bs tags: path=/home/works/logs
+            // du -bs /home/works/logs
+            if metric.Metric == g.DU_BS {
+                arr := strings.Split(metric.Tags, &quot;=&quot;)
+                if len(arr) != 2 {
+                    continue
+                }
+
+                paths = append(paths, strings.TrimSpace(arr[1]))
+                continue
+            }
+            //mereic: proc.num tags: name=crond
+            //或者metric: proc.num tags: cmdline=cfg.json
+            if metric.Metric == g.PROC_NUM {
+                arr := strings.Split(metric.Tags, &quot;,&quot;)
+
+                tmpMap := make(map[int]string)
+
+                for i := 0; i &lt; len(arr); i++ {
+                    if strings.HasPrefix(arr[i], &quot;name=&quot;) {
+                        tmpMap[1] = strings.TrimSpace(arr[i][5:])
+                    } else if strings.HasPrefix(arr[i], &quot;cmdline=&quot;) {
+                        tmpMap[2] = strings.TrimSpace(arr[i][8:])
+                    }
+                }
+
+                procs[metric.Tags] = tmpMap
+            }
+        }
+
+        g.SetReportUrls(urls)
+        g.SetReportPorts(ports)
+        g.SetReportProcs(procs)
+        g.SetDuPaths(paths)
+
+    }
+}
+</code></pre><ul><li>SyncTrustableIps：同步可信IP列表<br>请求获取远程访问执行shell命令的IP白名单，在通过http/run.go调用shell命令是会判断请求IP是否可信</li></ul><pre><code>func syncTrustableIps() {
+    duration := time.Duration(g.Config().Heartbeat.Interval) * time.Second
+
+    for {
+        time.Sleep(duration)
+
+        var ips string
+        err := g.HbsClient.Call(&quot;Agent.TrustableIps&quot;, model.NullRpcRequest{}, &amp;ips)
+        if err != nil {
+            log.Println(&quot;ERROR: call Agent.TrustableIps fail&quot;, err)
+            continue
+        }
+        // 设置到本地可信IP列表
+        g.SetTrustableIps(ips)
+    }
+}
+</code></pre><ul><li>FuncsAndInterval：拆分不同的采集函数集，方便通过不同goroutine运行</li></ul><pre><code>// 间隔internal时间执行fs中的函数
+type FuncsAndInterval struct {
+    Fs       []func() []*model.MetricValue
+    Interval int
+}
+
+var Mappers []FuncsAndInterval
+
+// 根据调用指令类型和是否容易被挂起而分类(通过不同的goroutine去执行,避免相互之间的影响)
+func BuildMappers() {
+    interval := g.Config().Transfer.Interval
+    Mappers = []FuncsAndInterval{
+        FuncsAndInterval{
+            Fs: []func() []*model.MetricValue{
+                AgentMetrics,
+                CpuMetrics,
+                NetMetrics,
+                KernelMetrics,
+                LoadAvgMetrics,
+                MemMetrics,
+                DiskIOMetrics,
+                IOStatsMetrics,
+                NetstatMetrics,
+                ProcMetrics,
+                UdpMetrics,
+            },
+            Interval: interval,
+        },
+        // 容易出问题
+        FuncsAndInterval{
+            Fs: []func() []*model.MetricValue{
+                DeviceMetrics,
+            },
+            Interval: interval,
+        },
+        // 调用相同指令
+        FuncsAndInterval{
+            Fs: []func() []*model.MetricValue{
+                PortMetrics,
+                SocketStatSummaryMetrics,
+            },
+            Interval: interval,
+        },
+        FuncsAndInterval{
+            Fs: []func() []*model.MetricValue{
+                DuMetrics,
+            },
+            Interval: interval,
+        },
+        FuncsAndInterval{
+            Fs: []func() []*model.MetricValue{
+                UrlMetrics,
+            },
+            Interval: interval,
+        },
+    }
+}
+</code></pre><ul><li>Colleet：配置信息读取，读取Mapper中的FuncsAndInterval，根据func调用采集函数，采集所有信息（<strong>并非先过滤采集项</strong>），从所有采集到的数据中过滤ignore的项，并上报到transfer。</li></ul><pre><code>func Collect() {
+    // 配置信息判断
+    if !g.Config().Transfer.Enabled {
+        return
+    }
+
+    if len(g.Config().Transfer.Addrs) == 0 {
+        return
+    }
+    // 读取mapper中的FuncsAndInterval集,并通过不同的goroutine运行
+    for _, v := range funcs.Mappers {
+        go collect(int64(v.Interval), v.Fs)
+    }
+}
+
+// 间隔采集信息
+func collect(sec int64, fns []func() []*model.MetricValue) {
+    // 启动断续器,间隔执行
+    t := time.NewTicker(time.Second * time.Duration(sec)).C
+    for {
+        &lt;-t
+
+        hostname, err := g.Hostname()
+        if err != nil {
+            continue
+        }
+
+        mvs := []*model.MetricValue{}
+        // 读取忽略metric名单
+        ignoreMetrics := g.Config().IgnoreMetrics
+        // 从funcs的list中取出每个采集函数
+        for _, fn := range fns {
+            // 执行采集函数
+            items := fn()
+            if items == nil {
+                continue
+            }
+
+            if len(items) == 0 {
+                continue
+            }
+            // 读取采集数据,根据忽略的metric忽略部分采集数据
+            for _, mv := range items {
+                if b, ok := ignoreMetrics[mv.Metric]; ok &amp;&amp; b {
+                    continue
+                } else {
+                    mvs = append(mvs, mv)
+                }
+            }
+        }
+        // 获取上报时间
+        now := time.Now().Unix()
+        // 设置上报采集项的间隔、agent主机、上报时间
+        for j := 0; j &lt; len(mvs); j++ {
+            mvs[j].Step = sec
+            mvs[j].Endpoint = hostname
+            mvs[j].Timestamp = now
+        }
+        // 调用transfer发送采集数据
+        g.SendToTransfer(mvs)
+    }
+}
+</code></pre><ul><li>采集信息结构</li></ul><pre><code>type MetricValue struct {
+    Endpoint  string      // 主机名
+    Metric    string      // 信息标识cpu.idle、mem.memtotal等
+    Value     interface{} // 采集结果
+    Step      int64       // 该项上报间隔
+    Type      string      // GAUGE或COUNTER
+    Tags      string      // 配置报警策略
+    Timestamp int64       // 此次上报时间
+}
+</code></pre><ul><li>采集信息组成metricValue结构</li></ul><pre><code>func NewMetricValue(metric string, val interface{}, dataType string, tags ...string) *model.MetricValue {
+    mv := model.MetricValue{
+        Metric: metric,
+        Value:  val,
+        Type:   dataType,
+    }
+
+    size := len(tags)
+
+    if size &gt; 0 {
+        mv.Tags = strings.Join(tags, &quot;,&quot;)
+    }
+
+    return &amp;mv
+}
+// 原值类型
+func GaugeValue(metric string, val interface{}, tags ...string) *model.MetricValue {
+    return NewMetricValue(metric, val, &quot;GAUGE&quot;, tags...)
+}
+
+// 计数器类型
+func CounterValue(metric string, val interface{}, tags ...string) *model.MetricValue {
+    return NewMetricValue(metric, val, &quot;COUNTER&quot;, tags...)
+}
+</code></pre><ul><li>rpc组件</li></ul><pre><code>// 简单封装rpc.Cilent
+type SingleConnRpcClient struct {
+    sync.Mutex
+    rpcClient *rpc.Client
+    RpcServer string
+    Timeout   time.Duration
+}
+
+// 关闭rpc
+func (this *SingleConnRpcClient) close() {
+    if this.rpcClient != nil {
+        this.rpcClient.Close()
+        this.rpcClient = nil
+    }
+}
+
+// 保证rpc存在,为空则重新创建, 如果server宕机, 死循环????
+func (this *SingleConnRpcClient) insureConn() {
+    if this.rpcClient != nil {
+        return
+    }
+
+    var err error
+    var retry int = 1
+
+    for {
+        if this.rpcClient != nil {
+            return
+        }
+        // 根据timeout和server地址去连接rpc的server
+        this.rpcClient, err = net.JsonRpcClient(&quot;tcp&quot;, this.RpcServer, this.Timeout)
+        if err == nil {
+            return
+        }
+
+        log.Printf(&quot;dial %s fail: %v&quot;, this.RpcServer, err)
+
+        if retry &gt; 6 {
+            retry = 1
+        }
+
+        time.Sleep(time.Duration(math.Pow(2.0, float64(retry))) * time.Second)
+
+        retry++
+    }
+}
+
+// rpc client调用hbs函数
+func (this *SingleConnRpcClient) Call(method string, args interface{}, reply interface{}) error {
+    // 加锁保证一个agent只与server有一个连接,保证性能
+    this.Lock()
+    defer this.Unlock()
+    // 保证rpc连接可用
+    this.insureConn()
+
+    timeout := time.Duration(50 * time.Second)
+    done := make(chan error)
+
+    go func() {
+        err := this.rpcClient.Call(method, args, reply)
+        done &lt;- err
+    }()
+    // 超时控制
+    select {
+    case &lt;-time.After(timeout):
+        log.Printf(&quot;[WARN] rpc call timeout %v =&gt; %v&quot;, this.rpcClient, this.RpcServer)
+        this.close()
+    case err := &lt;-done:
+        if err != nil {
+            this.close()
+            return err
+        }
+    }
+    return nil
+}
+</code></pre><ul><li>Transfer部件</li></ul><pre><code>// 定义transfer的rpcClient对应Map, transferClients读写锁
+var (
+    TransferClientsLock *sync.RWMutex                   = new(sync.RWMutex)
+    TransferClients     map[string]*SingleConnRpcClient = map[string]*SingleConnRpcClient{}
+)
+
+// 发送数据到随机的transfer
+func SendMetrics(metrics []*model.MetricValue, resp *model.TransferResponse) {
+    rand.Seed(time.Now().UnixNano())
+    // 随机transferClient发送数据,直到发送成功
+    for _, i := range rand.Perm(len(Config().Transfer.Addrs)) {
+        addr := Config().Transfer.Addrs[i]
+        if _, ok := TransferClients[addr]; !ok {
+            initTransferClient(addr)
+        }
+        if updateMetrics(addr, metrics, resp) {
+            break
+        }
+    }
+}
+
+// 初始化addr对应的transferClient
+func initTransferClient(addr string) {
+    TransferClientsLock.Lock()
+    defer TransferClientsLock.Unlock()
+    TransferClients[addr] = &amp;SingleConnRpcClient{
+        RpcServer: addr,
+        Timeout:   time.Duration(Config().Transfer.Timeout) * time.Millisecond,
+    }
+}
+
+// 调用rpc接口发送metric
+func updateMetrics(addr string, metrics []*model.MetricValue, resp *model.TransferResponse) bool {
+    TransferClientsLock.RLock()
+    defer TransferClientsLock.RUnlock()
+    err := TransferClients[addr].Call(&quot;Transfer.Update&quot;, metrics, resp)
+    if err != nil {
+        log.Println(&quot;call Transfer.Update fail&quot;, addr, err)
+        return false
+    }
+    return true
+}
+</code></pre><ul><li>采集插件同步</li></ul><pre><code>// 插件信息: 路径、修改时间、运行周期(来自plugin插件)
+type Plugin struct {
+    FilePath string
+    MTime    int64
+    Cycle    int
+}
+
+// 插件map和调度器map
+var (
+    Plugins              = make(map[string]*Plugin)
+    PluginsWithScheduler = make(map[string]*PluginScheduler)
+)
+
+// 删除不需要的plugin
+func DelNoUsePlugins(newPlugins map[string]*Plugin) {
+    for currKey, currPlugin := range Plugins {
+        newPlugin, ok := newPlugins[currKey]
+        if !ok || currPlugin.MTime != newPlugin.MTime {
+            deletePlugin(currKey)
+        }
+    }
+}
+
+// 添加同步时增加的plugin
+func AddNewPlugins(newPlugins map[string]*Plugin) {
+    for fpath, newPlugin := range newPlugins {
+        // 去除重复插件
+        if _, ok := Plugins[fpath]; ok &amp;&amp; newPlugin.MTime == Plugins[fpath].MTime {
+            continue
+        }
+        // 为新添加的插件新建调度器
+        Plugins[fpath] = newPlugin
+        sch := NewPluginScheduler(newPlugin)
+        PluginsWithScheduler[fpath] = sch
+        // 启动plugin调度
+        sch.Schedule()
+    }
+}
+
+func ClearAllPlugins() {
+    for k := range Plugins {
+        deletePlugin(k)
+    }
+}
+
+func deletePlugin(key string) {
+    v, ok := PluginsWithScheduler[key]
+    if ok {
+        // 暂停调度plugin
+        v.Stop()
+        delete(PluginsWithScheduler, key)
+    }
+    delete(Plugins, key)
+}
+</code></pre><ul><li>插件调度策略</li></ul><pre><code>// 持续间隔执行plugin
+type PluginScheduler struct {
+    Ticker *time.Ticker
+    Plugin *Plugin
+    Quit   chan struct{}
+}
+
+// 根据plugin创建新的schedule
+func NewPluginScheduler(p *Plugin) *PluginScheduler {
+    scheduler := PluginScheduler{Plugin: p}
+    scheduler.Ticker = time.NewTicker(time.Duration(p.Cycle) * time.Second)
+    scheduler.Quit = make(chan struct{})
+    return &amp;scheduler
+}
+
+// plugin调度,间隔执行PluginRun,除非收到quit消息
+func (this *PluginScheduler) Schedule() {
+    go func() {
+        for {
+            select {
+            case &lt;-this.Ticker.C:
+                PluginRun(this.Plugin)
+            case &lt;-this.Quit:
+                this.Ticker.Stop()
+                return
+            }
+        }
+    }()
+}
+
+// 停止plugin调度
+func (this *PluginScheduler) Stop() {
+    close(this.Quit)
+}
+
+// 执行插件,读取插件运行返回数据并上报transfer
+func PluginRun(plugin *Plugin) {
+
+    timeout := plugin.Cycle*1000 - 500
+    fpath := filepath.Join(g.Config().Plugin.Dir, plugin.FilePath)
+
+    if !file.IsExist(fpath) {
+        log.Println(&quot;no such plugin:&quot;, fpath)
+        return
+    }
+
+    debug := g.Config().Debug
+    if debug {
+        log.Println(fpath, &quot;running...&quot;)
+    }
+
+    cmd := exec.Command(fpath)
+    var stdout bytes.Buffer
+    cmd.Stdout = &amp;stdout
+    var stderr bytes.Buffer
+    cmd.Stderr = &amp;stderr
+    cmd.Start()
+
+    err, isTimeout := sys.CmdRunWithTimeout(cmd, time.Duration(timeout)*time.Millisecond)
+
+    errStr := stderr.String()
+    if errStr != &quot;&quot; {
+        logFile := filepath.Join(g.Config().Plugin.LogDir, plugin.FilePath+&quot;.stderr.log&quot;)
+        if _, err = file.WriteString(logFile, errStr); err != nil {
+            log.Printf(&quot;[ERROR] write log to %s fail, error: %s\n&quot;, logFile, err)
+        }
+    }
+
+    if isTimeout {
+        // has be killed
+        if err == nil &amp;&amp; debug {
+            log.Println(&quot;[INFO] timeout and kill process&quot;, fpath, &quot;successfully&quot;)
+        }
+
+        if err != nil {
+            log.Println(&quot;[ERROR] kill process&quot;, fpath, &quot;occur error:&quot;, err)
+        }
+
+        return
+    }
+
+    if err != nil {
+        log.Println(&quot;[ERROR] exec plugin&quot;, fpath, &quot;fail. error:&quot;, err)
+        return
+    }
+
+    // exec successfully
+    data := stdout.Bytes()
+    if len(data) == 0 {
+        if debug {
+            log.Println(&quot;[DEBUG] stdout of&quot;, fpath, &quot;is blank&quot;)
+        }
+        return
+    }
+
+    var metrics []*model.MetricValue
+    err = json.Unmarshal(data, &amp;metrics)
+    if err != nil {
+        log.Printf(&quot;[ERROR] json.Unmarshal stdout of %s fail. error:%s stdout: \n%s\n&quot;, fpath, err, stdout.String())
+        return
+    }
+
+    g.SendToTransfer(metrics)
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="1636"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/go%E8%AF%AD%E8%A8%80.html" rel="tag">go语言</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html.html">Go语言学习笔记(一)</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html.html">open-falcon-hbs学习</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="805147767431d2febfca922e1bda2fd9"></div><div id="cyReward" role="cylabs" data-use="reward" sid="805147767431d2febfca922e1bda2fd9" style="text-align:center"></div><div id="SOHUCS" sid="805147767431d2febfca922e1bda2fd9"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fopen-falcon-agentyuan-ma-xue-xi.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fopen-falcon-agentyuan-ma-xue-xi.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

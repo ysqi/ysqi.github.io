@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/node.js.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Node.js on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/node.js.html</link>
+    <description>在 虞双齐的博客上关于in Node.js 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/node.js.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:51 +0800</lastBuildDate>
+    <atom:link href="/tags/node.js.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GNVM--Windows下Node_js多版本管理器</title>
-      <link>https://yushuangqi.com/blog/2016/gnvm----windowsxia-node_jsduo-ban-ben-guan-li-qi.html</link>
+      <link>https://yushuangqi.com/blog/2016/gnvm----windowsxia-node_jsduo-ban-ben-guan-li-qi.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:51 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gnvm----windowsxia-node_jsduo-ban-ben-guan-li-qi.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gnvm----windowsxia-node_jsduo-ban-ben-guan-li-qi.html.html</guid>
       <description>gnvm，是一个 windows 下 简单的 Node.js 多版本管理器，类似 nvmw | nodist 等。
 原本是 14 年 为了学习 Go 语言 而建立的一个项目，后来一直没有维护，结果前阵子，陆陆续续的收到了 很多 issues ，既然有人用，本着不想挖坑不填的想法，又继续更新了。
 先给个运行效果： c:\&amp;gt; gnvm install latest 1.0.0-x86 1.0.0-x64 5.0.0 Start download Node.js versions [5.10.1, 1.0.0, 1.0.0-x86, 5.0.0]. 5.10.1: 18% [=========&amp;gt;__________________________________________] 4s 1.0.0: 80% [==========================================&amp;gt;_________] 40s 1.0...: 50% [==========================&amp;gt;_________________________] 30s 5.0.1: 100% [==================================================&amp;gt;] 20s End download. c:\&amp;gt; gnvm ls 5.1.1 -- latest 1.0.0 1.0.0 -- x86 5.0.0 -- global c:\&amp;gt; gnvm use latest Set success, current Node.</description>
@@ -23,10 +24,10 @@
     
     <item>
       <title>谷歌:谁拥有下一代云平台的DNA？机器学习和云端智能是云的未来</title>
-      <link>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</link>
+      <link>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html.html</guid>
       <description>在“NEXT2016”会议上，Google的Eric Schmidt提到Google所占最大的优势之一就是站在云计算下一个十年的前沿。它不是基础设施或者软件，也不像纯数据一样简单。
 Crowdsourced 智能，是个进化，可以创建更加智能的从上到下各级用户都可以利用、重新训练、改变、为自己目的输出的系统。这一切将会点燃新一代云平台的未来发展方向。
 Crowdsourcing数据的这个概念会令训练变得更好、变得更加智能、范围更加宽广，这也是谷歌在接下来云计算的十年里有竞争力的核心优势，Schmidt说道。“我坚信快速评估模型，谷歌云计算，机器学习，以及crowdsourcing将会是每一个IPO的基础，在下一个5年里成为赢家。”这会是一个跟产生应用程序的过程很相似的评估——将用户眼下真正需要的智能创建然后放进去，在这背后还有着底层基础设施，很多这样的抽象层次才会让用户有无缝体验。Schmidt比较说，这跟汽车产业十分相像——从早期的时候，到离合器，再到未来的自驾。
@@ -46,10 +47,10 @@ AWS之前所有的努力都值得被认可，然而现在AWS和他的云计算�
     
     <item>
       <title>nsqjs客户端的部署</title>
-      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</link>
+      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</guid>
       <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。
 首先安装nsq，这个没什么好说的，我是直接在官网下载bin文件，直接部署的，环境是centOS 6.7，安装在/opt/nsq-0.3.7.linux-amd64.go1.6目录下；
 其次是安装nodejs，我安装的是v6.1.0版本，这步也没什么好讲；
@@ -61,10 +62,10 @@ $ rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-6
     
     <item>
       <title>深入体验bashonwindows在windows上搭建原生的linux开发环境酷！</title>
-      <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</link>
+      <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html.html</guid>
       <description>今年微软Build 2016大会最让开发人员兴奋的消息之一，就是在Windows上可以原生运行Linux bash，对开发人员来说，这是一个喜闻乐见的消息。
 1 安装 你必须安装开发者预览版本，才能使用windows的linux subsystem功能。
  首先打开你的Windows 10的设置，在&amp;rdquo;更新和安全&amp;rdquo;选项中（我的机器是英文操作系统，但中文操作系统类似），选择&amp;rdquo;开发者&amp;rdquo;，然后选择&amp;rdquo;开发者模式&amp;rdquo;：
@@ -81,10 +82,10 @@ webmaster@FEKETERIGO-PC:~$ uname -a Linux FEKETERIGO-PC 3.4.0+ #1 PREEMPT Thu Au
     
     <item>
       <title>基于HTTP标准协议的API接口设计规范构思</title>
-      <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</link>
+      <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html.html</guid>
       <description>https://segmentfault.com/a/
 开发规范  版本控制git
  开发流程git flow

@@ -1,0 +1,402 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Goforgophers |虞双齐的博客</title><meta name="description" content="注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote"><meta name="keywords" content="channels, concurrency, goroutine, gopher, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-for-gophers.html.html"><meta property="og:title" content="Goforgophers"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:45"><meta property="article:modified_time" content="2016-12-31 11:34:45"><meta property="article:tag" content="channels"><meta property="article:tag" content="concurrency"><meta property="article:tag" content="goroutine"><meta property="article:tag" content="gopher"><meta property="article:tag" content="golang"><meta name="og:description" content="注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-for-gophers.html.html">Goforgophers</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000000655746" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><blockquote><p>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote<br>25 April 2014 上的演讲，原文地址为 <a href="http://talks.golang.org/2014/go4gophers.slide#1">Go for gophers</a></p><p>注：这个是视频集合 <a href="https://www.youtube.com/watch?v=dKGmK_Z1Zl0">Watch the talk on YouTube</a>，赞伟大的长城，需要翻墙INGINGING.</p></blockquote><h1 id="interfaces">Interfaces</h1><h2 id="interfaces-第一印象">Interfaces: 第一印象</h2><p>我曾经对 classes 和 types 感兴趣。</p><p>Go 反对这些：</p><ul><li>没有继承</li><li>没有子类型多态</li><li>没有泛型</li></ul><p>它反而强调 interfaces。</p><h2 id="interfaces-go-的方式">Interfaces: Go 的方式</h2><p>Go interfaces 是小的。</p><pre><code>type Stringer interface {
+    String() string
+}
+</code></pre><p>Stringer 能完美的打印它自己。<br>任何实现了 String 的都是一个 Stringer。</p><h2 id="一个-interface-示例">一个 interface 示例</h2><p>一个 io.Reader 的值发出了一个二进制的数据流。</p><pre><code>type Reader interface {
+    Read([]byte) (int, error)
+}
+</code></pre><p>像一个 UNIX 管道。</p><h2 id="实现-interfaces">实现 interfaces</h2><pre><code>// ByteReader implements an io.Reader that emits a stream of its byte value.
+type ByteReader byte
+
+func (b ByteReader) Read(buf []byte) (int, error) {
+    for i := range buf {
+        buf[i] = byte(b)
+    }
+    return len(buf), nil
+}
+</code></pre><h2 id="封装-interfaces">封装 interfaces</h2><pre><code>type LogReader struct {
+    io.Reader
+}
+
+func (r LogReader) Read(b []byte) (int, error) {
+    n, err := r.Reader.Read(b)
+    log.Printf(&quot;read %d bytes, error: %v&quot;, n, err)
+    return n, err
+}
+</code></pre><p>使用一个 LogReader 封装一个 ByteReader</p><pre><code>r := LogReader{ByteReader('A')}
+b := make([]byte, 10)
+r.Read(b)
+fmt.Printf(&quot;b: %q&quot;, b)
+</code></pre><p>通过封装我们构成了 interface 的值。</p><h2 id="chaining-interfaces">Chaining interfaces</h2><p>封装 wrappers 来构建 chains：</p><pre><code>var r io.Reader = ByteReader('A')
+r = io.LimitReader(r, 1e6)
+r = LogReader{r}
+io.Copy(ioutil.Discard, r)
+</code></pre><p>更简洁：</p><pre><code>io.Copy(ioutil.Discard, LogReader{io.LimitReader(ByteReader('A'), 1e6)})
+</code></pre><p>通过组合小的片段来实现复杂的行为。</p><h2 id="使用-interfaces-编程">使用 interfaces 编程</h2><p>Interfaces 从行为上分离数据。</p><p>interfaces, functions 能从表现上区分：</p><pre><code>// Copy copies from src to dst until either EOF is reached
+// on src or an error occurs.  It returns the number of bytes
+// copied and the first error encountered while copying, if any.
+func Copy(dst Writer, src Reader) (written int64, err error) {
+
+ io.Copy(ioutil.Discard, LogReader{io.LimitReader(ByteReader('A'), 1e6)})
+</code></pre><p>Copy 不知道底层数据结构。</p><h2 id="一个更大的-interface">一个更大的 interface</h2><p>sort.Interface 描述了要求排序一个 collection 的操作。</p><pre><code>type Interface interface {
+    Len() int
+    Less(i, j int) bool
+    Swap(i, j int)
+}
+</code></pre><p>IntSlice 可以排序一个 ints 的 slice ：</p><pre><code>type IntSlice []int
+
+func (p IntSlice) Len() int           { return len(p) }
+func (p IntSlice) Less(i, j int) bool { return p[i] &lt; p[j] }
+func (p IntSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+</code></pre><p>sort.Sort 可以使用 IntSlice 排序一个 []int：</p><pre><code>s := []int{7, 5, 3, 11, 2}
+sort.Sort(IntSlice(s))
+fmt.Println(s)
+</code></pre><h2 id="另外一个-interface-示例">另外一个 interface 示例</h2><p>Organ 类型描述了一个 body 部分以及它可以打印自己。</p><pre><code>type Organ struct {
+    Name   string
+    Weight Grams
+}
+
+func (o *Organ) String() string { return fmt.Sprintf(&quot;%v (%v)&quot;, o.Name, o.Weight) }
+
+type Grams int
+
+func (g Grams) String() string { return fmt.Sprintf(&quot;%dg&quot;, int(g)) }
+
+func main() {
+    s := []*Organ{{&quot;brain&quot;, 1340}, {&quot;heart&quot;, 290},
+        {&quot;liver&quot;, 1494}, {&quot;pancreas&quot;, 131}, {&quot;spleen&quot;, 162}}
+
+    for _, o := range s {
+        fmt.Println(o)
+    }
+}
+</code></pre><h2 id="排序-organs">排序 organs</h2><p>Organs 类型怎样描述和改变一个 organs slice。</p><pre><code>type Organs []*Organ
+
+func (s Organs) Len() int      { return len(s) }
+func (s Organs) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+</code></pre><p>ByName 和 ByWeight 类型通过不同的属性嵌入 Organs 来排序。</p><pre><code>type ByName struct{ Organs }
+
+func (s ByName) Less(i, j int) bool { return s.Organs[i].Name &lt; s.Organs[j].Name }
+
+type ByWeight struct{ Organs }
+
+func (s ByWeight) Less(i, j int) bool { return s.Organs[i].Weight &lt; s.Organs[j].Weight }
+</code></pre><p>通过嵌入我们组合了类型。</p><p>为了排序 []*Organ，使用 ByName 或是 ByWeight 封装它，然后把它传给 sort.Sort：</p><pre><code>    s := []*Organ{
+        {&quot;brain&quot;, 1340},
+        {&quot;heart&quot;, 290},
+        {&quot;liver&quot;, 1494},
+        {&quot;pancreas&quot;, 131},
+        {&quot;spleen&quot;, 162},
+    }
+
+    sort.Sort(ByWeight{s})
+    printOrgans(&quot;Organs by weight&quot;, s)
+
+    sort.Sort(ByName{s})
+    printOrgans(&quot;Organs by name&quot;, s)
+</code></pre><h2 id="另外一个封装">另外一个封装</h2><p>Reverse 函数获取了一个 sort.Interface 和 使用一个 inverted Less 方法返回一个 sort.Interface：</p><pre><code>func Reverse(data sort.Interface) sort.Interface {
+    return &amp;reverse{data}
+}
+
+type reverse struct{ sort.Interface }
+
+func (r reverse) Less(i, j int) bool {
+    return r.Interface.Less(j, i)
+}
+</code></pre><p>为了使用降序排序 organs，使用 Reverse 组合我们的 sort 类型。</p><pre><code>    sort.Sort(Reverse(ByWeight{s}))
+    printOrgans(&quot;Organs by weight (descending)&quot;, s)
+
+    sort.Sort(Reverse(ByName{s}))
+    printOrgans(&quot;Organs by name (descending)&quot;, s)
+</code></pre><h2 id="interfaces-为什么这样做">Interfaces: 为什么这样做</h2><p>他们不仅仅是非常 cool 的技巧。<br>这是我们如何在 Go 中结构化编程。</p><h2 id="interfaces-sigourney">Interfaces: Sigourney</h2><p>Sigourney 是一个我用 Go 编写的模块化的音频合成器。</p><p>音频是由一连串的 Processor 生成。</p><pre><code>type Processor interface {
+    Process(buffer []Sample)
+}
+</code></pre><p>（<a href="https://github.com/nf/sigourney">github.com/nf/sigourney</a>）</p><h2 id="interfaces-roshi">Interfaces: Roshi</h2><p>Roshi 是一个 Peter Bourgon 编写的时间序列事件存储，它提供 API：</p><pre><code>Insert(key, timestamp, value)
+Delete(key, timestamp, value)
+Select(key, offset, limit) []TimestampValue
+</code></pre><p>同样的 API 是由系统的 farm 和 cluster 部分实现：</p><p>展示组合的一个优雅设计：</p><p>(<a href="https://github.com/soundcloud/roshi">github.com/soundcloud/roshi</a>)</p><h2 id="interfaces-为什么这样做-1">Interfaces: 为什么这样做</h2><p>Interfaces 是泛型编程机制。<br>他们给了 Go 一个熟悉的形式。<br>少即是多。</p><p>这都是组成。<br>Interfaces - 通过设计和规范 - 鼓励我们编写可组合的代码。</p><p>Interfaces 类型仅仅是类型。<br>interface 值仅仅是值。<br>对于其他语言，它们是正交的。</p><p>Interfaces 从行为区分数据。（Classes 合并它们）。</p><pre><code>type HandlerFunc func(ResponseWriter, *Request)
+
+func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
+    f(w, r)
+}
+</code></pre><h2 id="interfaces-我学到了什么">Interfaces: 我学到了什么</h2><p>多思考组合。<br>做很多小的事情比做一个大而复杂的事情更好。<br>并且：我认为小也是相当大的。<br>当大是有益的，一些重复的小也是好的。</p><h1 id="concurrency">Concurrency</h1><h2 id="concurrency-第一印象">Concurrency: 第一印象</h2><p>我第一次接触并发是在：C, Java, 和 Python 中。<br>然后：在 Python 和 JavaScript 接触事件驱动模型。</p><p>当我看到 Go 时，我看到的是：</p><p>“一个没有回调的高效事件驱动模型”。</p><p>但是我还有问题：“为什么我不能等待或是 kill 一个 goroutine？”</p><h2 id="concurrency-go-的方式">Concurrency: Go 的方式</h2><p>Goroutines 提供并发执行。</p><p>Channels 表示通讯和同步是用独立的进程。</p><p>Select 使得在 channel 操作上运算。</p><h2 id="一个并发示例">一个并发示例</h2><p>来自于 Go Tour 的二叉树的比较执行。</p><p>“实现一个函数</p><pre><code>func Same(t1, t2 *tree.Tree) bool
+</code></pre><p>来比较两个二叉树的内容”</p><h2 id="walking-a-tree">Walking a tree</h2><pre><code>type Tree struct {
+    Left, Right *Tree
+    Value int
+}
+</code></pre><p>一个简单的深度优先树的遍历：</p><pre><code>func Walk(t *tree.Tree) {
+    if t.Left != nil {
+        Walk(t.Left)
+    }
+    fmt.Println(t.Value)
+    if t.Right != nil {
+        Walk(t.Right)
+    }
+}
+
+func main() {
+    Walk(tree.New(1))
+}
+</code></pre><p>一个并发的 walker：</p><pre><code>func Walk(root *tree.Tree) chan int {
+    ch := make(chan int)
+    go func() {
+        walk(root, ch)
+        close(ch)
+    }()
+    return ch
+}
+
+func walk(t *tree.Tree, ch chan int) {
+    if t.Left != nil {
+        walk(t.Left, ch)
+    }
+    ch &lt;- t.Value
+    if t.Right != nil {
+        walk(t.Right, ch)
+    }
+}
+</code></pre><p>并发的 Walking 两个树：</p><pre><code>func Same(t1, t2 *tree.Tree) bool {
+    w1, w2 := Walk(t1), Walk(t2)
+    for {
+        v1, ok1 := &lt;-w1
+        v2, ok2 := &lt;-w2
+        if v1 != v2 || ok1 != ok2 {
+            return false
+        }
+        if !ok1 {
+            return true
+        }
+    }
+}
+
+func main() {
+    fmt.Println(Same(tree.New(3), tree.New(3)))
+    fmt.Println(Same(tree.New(1), tree.New(2)))
+}
+</code></pre><h2 id="不使用-channels-比较树">不使用 channels 比较树</h2><pre><code>func Same(t1, t2 *tree.Tree) bool {
+    w1, w2 := Walk(t1), Walk(t2)
+    for {
+        v1, ok1 := w1.Next()
+        v2, ok2 := w2.Next()
+        if v1 != v2 || ok1 != ok2 {
+            return false
+        }
+        if !ok1 {
+            return true
+        }
+    }
+}
+</code></pre><p>Walk 函数几乎有相同的签名：</p><pre><code>func Walk(root *tree.Tree) *Walker {
+func (w *Walker) Next() (int, bool) {
+</code></pre><p>（我可以调用 Next 代替 channel receive）</p><p>但是实现是更加复杂的：</p><pre><code>func Walk(root *tree.Tree) *Walker {
+    return &amp;Walker{stack: []*frame{{t: root}}}
+}
+
+type Walker struct {
+    stack []*frame
+}
+
+type frame struct {
+    t  *tree.Tree
+    pc int
+}
+
+func (w *Walker) Next() (int, bool) {
+    if len(w.stack) == 0 {
+        return 0, false
+    }
+
+    // continued next slide ...
+    f := w.stack[len(w.stack)-1]
+    if f.pc == 0 {
+        f.pc++
+        if l := f.t.Left; l != nil {
+            w.stack = append(w.stack, &amp;frame{t: l})
+            return w.Next()
+        }
+    }
+    if f.pc == 1 {
+        f.pc++
+        return f.t.Value, true
+    }
+    if f.pc == 2 {
+        f.pc++
+        if r := f.t.Right; r != nil {
+            w.stack = append(w.stack, &amp;frame{t: r})
+            return w.Next()
+        }
+    }
+    w.stack = w.stack[:len(w.stack)-1]
+    return w.Next()
+}
+</code></pre><h2 id="另一个-channel-版本">另一个 channel 版本</h2><pre><code>func Walk(root *tree.Tree) chan int {
+    ch := make(chan int)
+    go func() {
+        walk(root, ch)
+        close(ch)
+    }()
+    return ch
+}
+
+func walk(t *tree.Tree, ch chan int) {
+    if t.Left != nil {
+        walk(t.Left, ch)
+    }
+    ch &lt;- t.Value
+    if t.Right != nil {
+        walk(t.Right, ch)
+    }
+}
+</code></pre><p>但是有一个问题：当 inequality 被发现，一个 goroutine 发送给 ch 可能会被阻塞。</p><h2 id="stopping-early">Stopping early</h2><p>给 walker 加入一个 quit channel 以便我们可以停止它。</p><pre><code>func Walk(root *tree.Tree, quit chan struct{}) chan int {
+    ch := make(chan int)
+    go func() {
+        walk(root, ch, quit)
+        close(ch)
+    }()
+    return ch
+}
+
+func walk(t *tree.Tree, ch chan int, quit chan struct{}) {
+    if t.Left != nil {
+        walk(t.Left, ch, quit)
+    }
+    select {
+    case ch &lt;- t.Value:
+    case &lt;-quit:
+        return
+    }
+    if t.Right != nil {
+        walk(t.Right, ch, quit)
+    }
+}
+</code></pre><p>创建一个 quit channel 并传给每个 walker。<br>当 Same 退出的时候，通过关闭 quit，任何正在运行的 walkers 都将中断。</p><pre><code>func Same(t1, t2 *tree.Tree) bool {
+    quit := make(chan struct{})
+    defer close(quit)
+    w1, w2 := Walk(t1, quit), Walk(t2, quit)
+    for {
+        v1, ok1 := &lt;-w1
+        v2, ok2 := &lt;-w2
+        if v1 != v2 || ok1 != ok2 {
+            return false
+        }
+        if !ok1 {
+            return true
+        }
+    }
+}
+</code></pre><h2 id="为什么不仅仅-kill-goroutines">为什么不仅仅 kill goroutines？</h2><p>Goroutines 在 Go 的代码中是不可见的。不能杀掉它或是等待。</p><p>你已经自己构建了。</p><p>这里是原因：<br>一旦 Go 代码知道它运行的哪个 thread，你就能你得到 thread-locality 。<br>Thread-locality 使得并发模型失败。</p><h2 id="concurrency-why-it-works">Concurrency: why it works</h2><p>这个模型使得 concurrent 代码可读和可写。<br>（使得并发是可理解的）</p><p>鼓励分解独立的计算。</p><p>简单的并发模型使得它足够灵活。<br>Channels 仅仅是值，它们适合正确的类型系统。</p><p>Goroutines 在 Go 代码中是不可见的，这可以让你在任何地方 concurrency 。</p><p>少即是多。</p><h2 id="concurrency-我学到了什么">Concurrency: 我学到了什么</h2><p>Concurrency 不仅仅是做更快的做更多事情。<br>编写更好的代码。</p><h1 id="语法">语法</h1><h2 id="syntax-第一印象">Syntax: 第一印象</h2><p>首先， Go 的语法一点也不刻板和冗长。<br>我习惯了它提供的便利。</p><p>例如：</p><ul><li>在属性中没有 getters/setters</li><li>没有 map/filter/reduce/zip</li><li>没有可选参数</li></ul><h2 id="syntax-go-的方式">Syntax: Go 的方式</h2><p>可读性优于一切。<br>提供足够的语法糖使得它有效率，但是不会太多。</p><h2 id="getters-and-setters-or-properties">Getters and setters (or &ldquo;properties&rdquo;)</h2><p>Getters and setters 使得 assignments 和 reads 变成函数调用。<br>这会导致令人惊讶的隐藏行为。</p><p>在 Go 中，仅仅 write (and call) 方法。</p><p>控制流不会被掩盖。</p><h2 id="map-filter-reduce-zip">Map/filter/reduce/zip</h2><p>Map/filter/reduce/zip 在 Python 中非常有用：</p><pre><code>a = [1, 2, 3, 4]
+b = map(lambda x: x+1, a)
+</code></pre><p>在 Go 中，你只能写循环。</p><pre><code>a := []int{1, 2, 3, 4}
+b := make([]int, len(a))
+for i, x := range a {
+    b[i] = x+1
+}
+</code></pre><p>这有一点冗长。<br>但是使得性能特性更明显。</p><p>很容易写代码，并且你可以得到更加多的掌控。</p><h2 id="可选参数">可选参数</h2><p>Go 的函数没有可选参数。</p><p>使用函数变化代替：</p><pre><code>func NewWriter(w io.Writer) *Writer
+func NewWriterLevel(w io.Writer, level int) (*Writer, error)
+</code></pre><p>或是使用一个 options struct：</p><pre><code>func New(o *Options) (*Jar, error)
+
+type Options struct {
+    PublicSuffixList PublicSuffixList
+}
+</code></pre><p>或是一个可变的选项列表。</p><p>创建小而简单的事情，而不是大而复杂的事情。</p><h2 id="syntax-why-it-works">Syntax: why it works</h2><p>该语言拒绝复杂的代码。</p><p>使用明显的控制流，可以非常容易的进入不熟悉的代码。</p><p>相反，我们创建更加的事情，使得非常容易记录文档和明白。</p><p>因此 Go 代码非常容易读。</p><p>（使用 gofmt，会使得代码更加可读）</p><h2 id="syntax-我学到了什么">Syntax: 我学到了什么</h2><p>我是非常聪明的为自己好。</p><p>我非常欣赏 Go 代码的一致性，清晰性和透明性。</p><p>我有时候会丢失便利性，但是很少。</p><h1 id="错误处理">错误处理</h1><h2 id="错误处理-第一印象">错误处理：第一印象</h2><p>我以前使用 exceptions 处理过错误。</p><p>通过比较，Go 的错误处理模型非常冗长。</p><p>我是立即讨厌键入这个：</p><pre><code>if err != nil {
+    return err
+}
+</code></pre><h2 id="error-handling-go-的方式">Error handling: Go 的方式</h2><p>Go 使用内建的内建的 error 接口编码错误：</p><pre><code>type error interface {
+    Error() string
+}
+</code></pre><p>Error 的值使用起来就像其他任何值。</p><pre><code>func doSomething() error
+
+err := doSomething()
+if err != nil {
+    log.Println(&quot;An error occurred:&quot;, err)
+}
+</code></pre><p>错误处理的代码仅仅是代码。</p><p>（以一个约定（os.Error）开始），在 Go 1 是内建的。</p><h2 id="error-handling-why-it-works">Error handling: why it works</h2><p>错误处理被引进。</p><p>Go 使得错误处理和其他任何代码一样重要。</p><p>Errors 仅仅是值，它们很容易融入语言的其他部分（interfaces, channels 等等）。</p><p>结果：Go 代码处理错误是正确的且优雅的。</p><p>我们为错误使用同样的语言。<br>没有隐藏的控制流（throw/try/catch/finally）提升了可读性。</p><p>少即是多。</p><h2 id="error-handling-我学到了什么">Error handling: 我学到了什么</h2><p>为了写出更好的代码，必须考虑错误处理。</p><p>Exceptions 使得非常容易避免思考 errors。<br>（错误不应该是异常）</p><p>Go 鼓励我们考虑每一种错误情况。</p><p>我的 Go 程序比我的其他程序更具有鲁棒性。<br>（我根本不会错过错误。）</p><h1 id="packages">Packages</h1><h2 id="packages-第一印象">Packages: 第一印象</h2><p>我发现 capital-letter-visibility 规则很怪异；<br>“让我使用我自己的命名方案！”</p><p>我不喜欢每个目录一个包；<br>“让我使用我自己的结构！”</p><p>我对于缺乏 monkey patching 非常失望。</p><h2 id="packages-go-的方式">Packages: Go 的方式</h2><p>Go packages 是一个类型、函数、变量和常量的命名空间。</p><h2 id="visibility">Visibility</h2><p>Visibility 在包级别。</p><p>当它们使用一个大写字母的时候，Names 被导出。</p><pre><code>package zip
+
+func NewReader(r io.ReaderAt, size int64) (*Reader, error) // exported
+
+type Reader struct {    // exported
+    File    []*File     // exported
+    Comment string      // exported
+    r       io.ReaderAt // unexported
+}
+
+func (f *File) Open() (rc io.ReadCloser, err error)   // exported
+
+func (f *File) findBodyOffset() (int64, error)        // unexported
+
+func readDirectoryHeader(f *File, r io.Reader) error  // unexported
+</code></pre><p>好的可读性：非常容易的知道一个名字是否是公共接口的一部分<br>好的设计：couples naming decisions with interface decisions</p><h2 id="package-结构">Package 结构</h2><p>Packages 可以跨越多个文件传播。</p><p>允许共享私有的实现和非正式的代码组织。</p><p>Packages 文件必须存在在包的唯一目录中。</p><p>目录的路径绝对了 import 的路径。</p><p>构建系统查找依赖从源码中独立。</p><h2 id="monkey-patching">&ldquo;Monkey patching&rdquo;</h2><p>GO 禁止从包外面修改包的声明。</p><p>但是我们可以使用全局变量实现类似的行为：</p><pre><code>package flag
+
+var Usage = func() {
+    fmt.Fprintf(os.Stderr, &quot;Usage of %s:\n&quot;, os.Args[0])
+    PrintDefaults()
+}
+</code></pre><p>或是注册函数：</p><pre><code>package http
+
+func Handle(pattern string, handler Handler)
+</code></pre><p>这给了 monkey patching 足够的灵活性但是要注意包上作者的条款。</p><p>（这依赖于 Go 的初始化语义）。</p><h2 id="packages-why-they-work">Packages: why they work</h2><p>松散的包组织让我们写代码和重构代码都很容易。</p><p>但是包鼓励程序员考虑公共接口。</p><p>这导致了好的命名和简单的接口。</p><p>源作为唯一的值得信赖的来源，它们没有 makefiles 来同步。</p><p>（这个涉及促使了好的工具如 <a href="http://godoc.org/">godoc.org</a> 和 goimports）。</p><p>可预测的语义使得包非常容易读，明白以及使用。</p><h2 id="packages-我学到了什么">Packages: 我学到了什么</h2><p>Go 的包教会了我优先考虑我的代码的使用者。<br>（即使这使用者是我）</p><p>它也阻止了我做恶心的东西。</p><p>在任何情况下，包都是精确的。<br>那种感觉还不错。</p><p>也许是我最喜欢的语言的一部分。</p><h1 id="documentation">Documentation</h1><h2 id="documentation-第一印象">Documentation: 第一印象</h2><p>Godoc 从 Go 的源码读文档，像 pydoc 或 javadoc。</p><p>但是与这两个不同的是，它不支持复杂的格式或者是其他的元数据。</p><p>为什么？</p><h2 id="documentation-go-的方式">Documentation: Go 的方式</h2><p>Godoc 注释在一个导出的声明标示符之前：</p><pre><code>// Join concatenates the elements of a to create a single string.
+// The separator string sep is placed between elements in the resulting string.
+func Join(a []string, sep string) string {
+</code></pre><p>它提取注释并且显示它们：</p><pre><code>$ godoc strings Join
+func Join(a []string, sep string) string
+    Join concatenates the elements of a to create a single string. The
+    separator string sep is placed between elements in the resulting string.
+</code></pre><p>也集成测试框架来提供测试函数示例：</p><pre><code>func ExampleJoin() {
+    s := []string{&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;}
+    fmt.Println(strings.Join(s, &quot;, &quot;))
+    // Output: foo, bar, baz
+}
+</code></pre><h2 id="documentation-why-it-works">Documentation: why it works</h2><p>Godoc 想让你写更好的注释，因此这源码看起来不错：</p><pre><code>// ValidMove reports whether the specified move is valid.
+func ValidMove(from, to Position) bool
+</code></pre><p>Javadoc 仅仅想生成漂亮的文档，因此源码看起来是丑陋的。</p><pre><code>/**
+ * Validates a chess move.
+ *
+ * @param fromPos  position from which a piece is being moved
+ * @param toPos    position to which a piece is being moved
+ * @return         true if the move is valid, otherwise false
+ */
+boolean isValidMove(Position fromPos, Position toPos)
+</code></pre><p>（一个 &ldquo;ValidMove&rdquo; 的 grep 会返回文档的第一行）</p><h2 id="documentation-我学到了什么">Documentation: 我学到了什么</h2><p>Godoc 教会了我如写代码一样写文档。<br>写文档提升了我写代码的技能。</p><h2 id="更多">更多</h2><p>这里有许多示例。</p><p>最重要的主题：</p><ul><li>首先，一些东西看起来奇怪或是缺乏。</li><li>我认识到那是一个设计决定。</li></ul><p>这些决定使得这个语言 - 和 Go 代码 - 更好</p><p>有时候，你应该和一个语言生活一段时间再去看它。</p><h1 id="经验教训">经验教训</h1><h2 id="代码是用来交流的">代码是用来交流的</h2><p>说清楚：</p><ul><li>选择一个好的名字</li><li>设计简单的接口</li><li>写精确的文档</li><li>不要自作聪明</li></ul><h2 id="少即是多">少即是多</h2><p>新特性会减弱已经存在的特性。<br>特性使复杂度增加。<br>复杂性击败正交性。&mdash;- Complexity defeats orthogonality （这个真的是这样翻译的吗？求大神）。<br>正交性是至关重要的 - 它有利于组合。</p><h2 id="组合是关键">组合是关键</h2><p>不要通过构建一个事情来解决问题。<br>组合简单的工具并且组成它们来代替。</p><h2 id="设计好的接口">设计好的接口</h2><ul><li>不要过分细化</li><li>寻找关键点（靶心）</li><li>不要太粗糙</li></ul><h2 id="简化是困难的">简化是困难的</h2><p>花时间找出简单的解决方案。</p><h2 id="go-对我的影响">Go 对我的影响</h2><p>这些经验教训是我所知道的所有事情。</p><p>Go 帮助我认识到了它们。</p><p>Go 使得我变成了一个更好的程序员。</p><h2 id="一个给任何地方的-gophers-的信息">一个给任何地方的 gophers 的信息</h2><p>让我们一起构建小的，简单的，漂亮的东西。</p></div><aside id="meta"><meta itemprop="wordCount" content="1835"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-for-gophers.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/channels.html" rel="tag">channels</a> <a href="/tags/concurrency.html" rel="tag">concurrency</a> <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/gopher.html" rel="tag">gopher</a> <a href="/tags/goroutine.html" rel="tag">goroutine</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/go-dai-ma-shen-cha-jian-yi.html.html">Go代码审查建议</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/iota-golang-zhong-you-ya-de-chang-liang.html.html">iota:Golang中优雅的常量</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="d50c4dc77d1b5925eeedc8840b59a061"></div><div id="cyReward" role="cylabs" data-use="reward" sid="d50c4dc77d1b5925eeedc8840b59a061" style="text-align:center"></div><div id="SOHUCS" sid="d50c4dc77d1b5925eeedc8840b59a061"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-for-gophers.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-for-gophers.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

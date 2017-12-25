@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>分布式系统 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.html</link>
+    <description>在 虞双齐的博客上关于in 分布式系统 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:55 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>一个实现TwitterSnowFlake算法的Go分布式UID生成器</title>
-      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html.html</guid>
       <description>goSnowFlake [](https://travis-ci.org/zheng-ji/goSnowFlake)https://godoc.org/github.com/zheng-ji/goSnowFlake)
 根据 Twitter SnowFlake 算法, 实现的分布式线程安全 UID 生成器
 Feature  线程安全的 UID 生成器
@@ -23,15 +24,15 @@ Feature  线程安全的 UID 生成器
  适合分布式系统
  实现 Twitter SnowFlake 理论
   Description 0 41 51 64 +---------------+----------------+-----------+ |timestamp(ms) | worker node id | sequence | +---------------+----------------+-----------+ id = timestamp | workerid | sequence (eg. 1451063443347648410)  由三部分与运算组合而成，分别是毫秒级别的时间戳，机器 workerid, 以及为了解决冲突的序列号
-Installation go get github.com/zheng-ji/goSnowFlake  Example  import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/zheng-ji/goSnowFlake&amp;quot; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024 iw, err := goSnowFlake.</description>
+Installation go get github.com/zheng-ji/goSnowFlake  Example import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/zheng-ji/goSnowFlake&amp;#34; ) func main() { // Params: Given the workerId, 0 &amp;lt; workerId &amp;lt; 1024  iw, err := goSnowFlake.</description>
     </item>
     
     <item>
       <title>分布式系统测试那些事儿-错误注入</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
 接上篇：
 当然测试可能会让你代码变得没有那么漂亮，举个例子：
@@ -41,10 +42,10 @@ Installation go get github.com/zheng-ji/goSnowFlake  Example  import ( &amp;quot
     
     <item>
       <title>分布式系统测试那些事儿-信心的毁灭与重建</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。
 接中篇：
 ScyllaDB 有一个开源的东西，是专门用来给文件系统做 Failure Injection 的, 名字叫做 CharybdeFS。如果你想测试你的系统，就是文件系统在哪不断出问题，比如说写磁盘失败了，驱动程序分配内存失败了，文件已经存在等等，它都可以测模拟出来。

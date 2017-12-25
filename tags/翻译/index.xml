@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E7%BF%BB%E8%AF%91.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>翻译 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E7%BF%BB%E8%AF%91.html</link>
+    <description>在 虞双齐的博客上关于in 翻译 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E7%BF%BB%E8%AF%91.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:39 +0800</lastBuildDate>
+    <atom:link href="/tags/%E7%BF%BB%E8%AF%91.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>【翻译】go是面向对象语言吗？</title>
-      <link>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html</link>
+      <link>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html.html</guid>
       <description>原文：http://spf13.com/post/is-go-object-oriented
 前言 为了真正理解面向对象的含义，我们需要回顾一下这个概念的起源。第一个面向对象语言-simula问世于19世纪60年代。它引入了对象（object)、类（class）、继承（inheritance）、子类（subclass）、虚方法（virtual method）、协程（coroutine）等概念。然而simula最重要的贡献可能是它引入颠覆性的思想——将数据和逻辑完全分离。
 你可能不熟悉simula语言，但你肯定熟悉Java, C++, C# &amp;amp; Smalltalk中的一种，这些语言深受simula的影响，当然这些语言又同时影响着现今几乎所有的高级语言如：Objective C, Python, Ruby, Javascript, Scala, PHP, Perl… 大部分程序员都遵循着将数据和逻辑完全分离的原则。
@@ -25,9 +26,10 @@
 go中的对象 go语言中没有对象(object)这个关键词。对象（object）仅仅是一个单词，重要的是它所表示的含义。尽管go中没有object这种类型，但是go中的struct有着跟object相同的特性。
  struct是一种包含了命名域和方法的类型
  让我们从一个例子中来理解它：
- type rect struct { width int height int } func (r *rect) area() int { return r.width * r.height } func main() { r := rect{width: 10, height: 5} fmt.Println(&amp;quot;area: &amp;quot;, r.area()) }  我们一行行来解释一下上面的代码。代码的第一块定义了一个叫做rect的struct类型，该struct含有两个int类型的域；接下来定义了一个绑定在rect struct类型上的area方法。严格来说，area方法是绑定在指向rectct struct的指针上。如果方法绑定在rect type而非指针上，则在调用方法的时候需要使用该类型的值来调用，即使该值是空值，本例的空值实际是一个nil值；代码的最后一块是main函数，main函数第一行创建了一个rect类型的值,当然也有其他的方法来创建一个类型的值，这里给出的是一个地道的方法。main函数的最后一行是打印作用在r值上的area方法的返回结果。
+type rect struct { width int height int } func (r *rect) area() int { return r.width * r.height } func main() { r := rect{width: 10, height: 5} fmt.Println(&amp;#34;area: &amp;#34;, r.area()) } 我们一行行来解释一下上面的代码。代码的第一块定义了一个叫做rect的struct类型，该struct含有两个int类型的域；接下来定义了一个绑定在rect struct类型上的area方法。严格来说，area方法是绑定在指向rectct struct的指针上。如果方法绑定在rect type而非指针上，则在调用方法的时候需要使用该类型的值来调用，即使该值是空值，本例的空值实际是一个nil值；代码的最后一块是main函数，main函数第一行创建了一个rect类型的值,当然也有其他的方法来创建一个类型的值，这里给出的是一个地道的方法。main函数的最后一行是打印作用在r值上的area方法的返回结果。
 通过上面的描述，可以看出这很像对象的行为，我们可以创建一个结构化的数据类型，然后定义方法和这些数据进行交互。上述的简单例子并没有完成展示面向对象的所有特性，比如继承和多态。需要说明的是go不仅可以在struct上定义方法，在任何命名的类型上同样也可以。比如，可以定义一个名为Counter的新类型，该类型是int型的别名，然后在Counter类型上定义方法。例子详见：http://play.golang.org/p/LGB-2j707c
-继承和多态 定义对象间的关系的方法有如下几种，它们之间都有一些差别，但目的都是一样的：复用代码。</description>
+继承和多态 定义对象间的关系的方法有如下几种，它们之间都有一些差别，但目的都是一样的：复用代码。
+ 单继承（Inheritance） 多继承（Multiple Inheritance） 多态（Subtyping/Polymorphism） 对象组合（Object composition）  继承：一个对象基于另外一个对象，使用其实现。有两种不同的继承实现：单继承和多继承。它们的不同在于对象是继承自一个对象还是多个对象。单继承关系是一棵树，而多继承关系是一个格状结构。单继承语言包括PHP、C#、Java、Ruby等，多继承语言包括Perl、Python、C++等</description>
     </item>
     
   </channel>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/tf-idf.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Tf Idf on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/tf-idf.html</link>
+    <description>在 虞双齐的博客上关于in Tf Idf 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/tf-idf.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:48 +0800</lastBuildDate>
+    <atom:link href="/tags/tf-idf.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x05)---文本相关性排序</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x05----wen-ben-xiang-guan-xing-pai-xu.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x05----wen-ben-xiang-guan-xing-pai-xu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x05----wen-ben-xiang-guan-xing-pai-xu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x05----wen-ben-xiang-guan-xing-pai-xu.html.html</guid>
       <description>https://segmentfault.com/a/
 上面我们已经说过了一些倒排索引的东西，并且也知道了如何来实现一个倒排索引完成检索功能，那么检索完了以后如何排序呢，这一篇简单的说一下倒排索引的文本相关性排序，因为排序实在是太复杂了，我们这里就说说文本的相关性排序，而且是最简单的TD-IDF排序，之后有机会可以再说说整个搜索的排序算法有些什么。
 文本相关性排序 首先明白几个概念：

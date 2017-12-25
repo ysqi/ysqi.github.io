@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>性能调优 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html</link>
+    <description>在 虞双齐的博客上关于in 性能调优 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go程序的性能调试问题-内存篇</title>
-      <link>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html.html</guid>
       <description>标签（空格分隔）： Go Memory Profiler 性能调试 性能分析
  注：该文作者是 Dmitry Vyukov，原文地址 Debugging performance issues in Go programs
 这个是原文中的 Memory Profiler 段落

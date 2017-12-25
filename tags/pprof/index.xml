@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/pprof.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Pprof on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/pprof.html</link>
+    <description>在 虞双齐的博客上关于in Pprof 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/pprof.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:53 +0800</lastBuildDate>
+    <atom:link href="/tags/pprof.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go程序的性能调试问题-CPU篇</title>
-      <link>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html.html</guid>
       <description>注：本文的原文 Debugging performance issues in Go programs 由 Dmitry Vyukov 在 05/10/2014 - 07:06 编写
 注：原文太长，大家要看全部的请看原文，其他的部分，后续慢慢翻译。
  让我们假设你想提升你的GO程序的性能。这里有一些工具可以帮助你完成这个任务。这些工具能帮助你定位多种类型的热点（CPU，IO，内存），你为了能够显著提升程序性能，你必须专注于热点发生的地方。尽管如此，另外一个结果是可能的&amp;ndash;这些工具能帮助你确定程序中明显的性能缺陷。例如，当你在每个程序启动的时候，你可以在每次查询的之前准备一个 SQL 语句。另外一个例子是如果一个 O(N^2) 算法在某种程度上陷入了一个明显存在并且期望的 O(N) 情况。为了确定这样的情况，你需要完整性的检查你在 profiles 中看到的。例如第一种情况下大量的时间花费在 SQL 语句的准备上，这已经超越了告警线了。

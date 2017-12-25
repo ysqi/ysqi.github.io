@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/go-test.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Go Test on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/go-test.html</link>
+    <description>在 虞双齐的博客上关于in Go Test 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/go-test.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2016 19:51:14 +0800</lastBuildDate>
+    <atom:link href="/tags/go-test.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何判断是否是在GolangTest运行代码</title>
-      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</link>
+      <link>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html.html</link>
       <pubDate>Mon, 03 Oct 2016 19:51:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html.html</guid>
       <description>在进行Go Test时需要对代码进行特殊初始化,但是如何才能在运行Go Test时就能知晓代码是运行在Go Test模式下的呢?
 经过各种尝试,总算能非常靠谱的进行Go Test 识别!
 需求 在运行Go Test时需要和 Go 调式区分配置文件,Test下使用特定配置文件,已区别其他情况下的数据库等配置信息. 如: + 在 go run 下使用的配置信息
-APP = DEV开发 port = 8080 dbName = DevATOP   在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP  解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
+APP = DEV开发 port = 8080 dbName = DevATOP  在 go test 下使用的配置信息  APP = JUSTTest port = 6060 dbName = TESTATOP 解决方案 在初始化配置时,判断所属模式.不同模式使用不同配置文件: + go run 模式下通过文件 app.dev.cfg 初始化配置 + go test 模式下通过文件 app.test.cfg 初始化配置
 代码实现 如何运行时判断模式,一般有几种做饭,但即便上就是需要一个模式标记
  运行时携带参数 -runmode=test|dev的方式,解析运行参数来加载
-func init() { runMode := flag.String(&amp;quot;runMode&amp;quot;,&amp;quot;dev&amp;quot;,&amp;quot;代码运行模式&amp;quot;) flag.</description>
+func init() { runMode := flag.String(&amp;#34;runMode&amp;#34;,&amp;#34;dev&amp;#34;,&amp;#34;代码运行模式&amp;#34;) flag.Parse() cfg :=&amp;#34;app.</description>
     </item>
     
   </channel>

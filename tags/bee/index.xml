@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/bee.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Bee on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/bee.html</link>
+    <description>在 虞双齐的博客上关于in Bee 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/bee.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:34 +0800</lastBuildDate>
+    <atom:link href="/tags/bee.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>beego自动化部署</title>
-      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</link>
+      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html</guid>
       <description>beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一个项目小项目，golang是编译语言，需要编译之后再部署，每次部署到服务上是件很麻烦的事情。就写了一个自动打包部署到服务器的脚本，方便发布部署。
 项目结构 先看看beego项目的结构：
 beepkg |-- conf | `-- app.conf |-- controllers | `-- default.go |-- main.go |-- models |-- routers | `-- router.go |-- static | |-- css | |-- img | `-- js |-- tests | `-- default_test.go `-- views `-- index.tpl  其中controllers，views.models以及其他的.go文件会被打包成可执行文件beepkg。

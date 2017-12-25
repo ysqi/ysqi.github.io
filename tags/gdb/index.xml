@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/gdb.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Gdb on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/gdb.html</link>
+    <description>在 虞双齐的博客上关于in Gdb 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/gdb.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:43 +0800</lastBuildDate>
+    <atom:link href="/tags/gdb.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>介绍GDB调试Go</title>
-      <link>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html</link>
+      <link>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:43 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html.html</guid>
       <description>注：本文作者是 YANN，原文是 Introduction to Go Debugging with GDB
  在过去的 4 年中，我花了我绝大部分的时间用来写，读以及调试 Python 或 JavaScript 代码。在学习 Go 的过程中，像穿着一双有小石子的鞋子在美丽的山中远行。很多事情给我留下了深刻的印象，但是使用 println 调试我的代码在过去走的太远了。在 Python 中，当代码在运行的时候，我们使用 pdb/ipdb 调试它，JavaScript 提供了类似的工具。在这些年中，这个模式已经变成了我工作流中非常重要的一部分了。
 今天，我认识到 Go 已经内建支持 Gnu debugger (aka GDB)。
 为了这篇文章，我们使用以下这个简单的程序：
- package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func counting(c chan&amp;lt;- int) { for i := 0; i &amp;lt; 10; i++ { time.Sleep(2 * time.Second) c &amp;lt;- i } close(c) } func main() { msg := &amp;quot;Starting main&amp;quot; fmt.</description>
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func counting(c chan&amp;lt;- int) { for i := 0; i &amp;lt; 10; i++ { time.Sleep(2 * time.Second) c &amp;lt;- i } close(c) } func main() { msg := &amp;#34;Starting main&amp;#34; fmt.</description>
     </item>
     
   </channel>

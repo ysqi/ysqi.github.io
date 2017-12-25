@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/mock.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Mock on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/mock.html</link>
+    <description>在 虞双齐的博客上关于in Mock 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/mock.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/mock.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>mockgo程序的新方法</title>
-      <link>https://yushuangqi.com/blog/2016/mock-go-cheng-xu-de-xin-fang-fa.html</link>
+      <link>https://yushuangqi.com/blog/2016/mock-go-cheng-xu-de-xin-fang-fa.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/mock-go-cheng-xu-de-xin-fang-fa.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/mock-go-cheng-xu-de-xin-fang-fa.html.html</guid>
       <description>一直以来，我都认为在 go 里面 mock 是非常困难的。不像动态语言或者跑在 VM 上的语言，go 要求在开发的时候就给 mock 介入预留空间，不然测试的时候会不得其门而入。开发的时候需要头疼的事情可多了，还要求再考虑下可测试性，真有点强人所难。另外第三方库并不一定给 mock 预留空间，遇到这种情况只能干瞪眼绕路走。很多时候，无法 mock 掉某些带副作用的函数，就不能覆盖掉目标路径。既然测试不到关键的路径，那干脆就不写测试了。结果是，项目里很多 go 代码事实上一直都没有被测试覆盖掉。
 但最近我发现了一个库：https://github.com/bouk/monkey
 似乎可以跟开头的烦恼永别了？小范围地体验了下，感觉还是挺好用的。

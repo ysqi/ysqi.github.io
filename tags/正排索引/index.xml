@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>正排索引 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.html</link>
+    <description>在 虞双齐的博客上关于in 正排索引 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:47 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x07)---正排索引</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html.html</guid>
       <description>https://segmentfault.com/a/
 最近各种技术盛会太多，朋友圈各种刷屏，有厂商发的各种广告，有讲师发的各种自拍，各种参会的朋友们各种自拍，好不热闹，不知道你的朋友圈是不是也是这样啊，去年还没这么多技术会议，今年感觉爆发了，呵呵，真是一个互联网技术的好时代，而且还有各种撕B可看，真想八一八，怕得罪人，我们这种码农还是专注技术专注写代码吧。
 你有什么想了解的也可以给我留言哈，欢迎交流，我的工作之前主要做的是搜索的，也做推荐和广告，这部分的东西可能写得多点，对了，嵌入式领域也行（跨得有点大，这个嵌入式不是iOS和Android，是真的嵌入式），没什么高端背景，也不是BAT这种大厂的，就是一小公司写代码的，所以有很多东西还是不懂，你要是和我交流了发现我答不上来很正常啊，人艰不拆啊。。

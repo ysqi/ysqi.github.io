@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/ffmpeg.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Ffmpeg on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/ffmpeg.html</link>
+    <description>在 虞双齐的博客上关于in Ffmpeg 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/ffmpeg.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:37 +0800</lastBuildDate>
+    <atom:link href="/tags/ffmpeg.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>在CentOS下利用FFMPEG对视频进行转码</title>
-      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</link>
+      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</guid>
       <description>https://segmentfault.com/a/
 先按照ffmpeg的安装攻略，搞定你CentOS上的ffmpeg，我目前使用的版本是3.0.2
 然后直接上代码

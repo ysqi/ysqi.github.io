@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E8%A1%8C%E6%83%85.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>行情 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E8%A1%8C%E6%83%85.html</link>
+    <description>在 虞双齐的博客上关于in 行情 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E8%A1%8C%E6%83%85.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Jul 2017 10:32:00 +0000</lastBuildDate>
+    <atom:link href="/tags/%E8%A1%8C%E6%83%85.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go读取通达信历史日线数据</title>
-      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</link>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</guid>
       <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
 准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
 下载后数据按股票市场分别存放：

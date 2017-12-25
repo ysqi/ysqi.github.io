@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/sort.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Sort on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/sort.html</link>
+    <description>在 虞双齐的博客上关于in Sort 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/sort.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:32 +0800</lastBuildDate>
+    <atom:link href="/tags/sort.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golang对自定义类型排序</title>
-      <link>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html.html</guid>
       <description>https://segmentfault.com/a/
 golang 对自定义类型排序  在实际项目中，我们常常需要根据一个结构体类型的某个字段进行排序。之前遇到这个问题不知道如何解决，后来在网上搜索了相关问题，找到了一些好的解决方案，此处参考下，做个总结吧。
  由于 golang 的 sort 包本身就提供了相应的功能， 我们就没必要重复的造个轮子了，来看看如何利用 sort 包来实现吧。

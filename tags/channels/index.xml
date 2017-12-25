@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/channels.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Channels on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/channels.html</link>
+    <description>在 虞双齐的博客上关于in Channels 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/channels.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:55 +0800</lastBuildDate>
+    <atom:link href="/tags/channels.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GoByExample系列:非阻塞Channels操作</title>
-      <link>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html.html</guid>
       <description>注：该系列文章全部来自 Go By Example 系列翻译而来，个人翻译水平以及理解水平有限，如要更加精确的理解，请看原文Go by Example: Non-Blocking Channel Operations。
  在 channels （信道？） 上基本的 sends （发送） 和 receives （接收）是阻塞模式的。尽管如此， 我们可以使用 select 和一个 default 子句来非阻塞的 sends、receives，甚至是非阻塞的多路选择。
  注：感谢@lidashuang的说明提醒，文章没有描述清楚，修改如下：select默认是阻塞的，但在select里面还有default语法，这类似于switch，default就是当监听的channel都没有准备好的时候，默认执行的（select不再阻塞等待channel）
@@ -26,10 +27,10 @@ package main import &amp;quot;fmt&amp;quot; func main() { messages := make(chan 
     
     <item>
       <title>Go-Channel原理</title>
-      <link>https://yushuangqi.com/blog/2016/go---channel-yuan-li.html</link>
+      <link>https://yushuangqi.com/blog/2016/go---channel-yuan-li.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:51 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go---channel-yuan-li.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go---channel-yuan-li.html.html</guid>
       <description>注：该文原文为 Channel Axioms ，作者是 Dave Cheney，这是他的博客地址
  大部分的新的 Go 程序员能快速理解 channel 是作为一个 queue 的值和认同当 channel 是满的或者是空的时候， 操作是阻塞的概念。
 这篇文章探讨了 channel 四个不太常见的特性：
@@ -40,10 +41,10 @@ package main func main() { var c chan string c &amp;lt;- &amp;quot;let&#39;s get
     
     <item>
       <title>Goforgophers</title>
-      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</guid>
       <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote
 25 April 2014 上的演讲，原文地址为 Go for gophers
 注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING.

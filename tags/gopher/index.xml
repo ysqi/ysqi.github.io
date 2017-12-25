@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/gopher.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Gopher on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/gopher.html</link>
+    <description>在 虞双齐的博客上关于in Gopher 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/gopher.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:45 +0800</lastBuildDate>
+    <atom:link href="/tags/gopher.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Goforgophers</title>
-      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</guid>
       <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote
 25 April 2014 上的演讲，原文地址为 Go for gophers
 注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING.

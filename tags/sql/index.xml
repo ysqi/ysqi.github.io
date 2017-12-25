@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/sql.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Sql on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/sql.html</link>
+    <description>在 虞双齐的博客上关于in Sql 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/sql.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Feb 2017 08:17:16 +0800</lastBuildDate>
+    <atom:link href="/tags/sql.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>TiDB架构的演进和开发哲学</title>
-      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
+      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html.html</guid>
       <description>https://segmentfault.com/a/
  本文来自 CSDN《程序员》2017 年 2 月的封面报道。
 对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太多的问题需要去考量。
@@ -31,10 +32,10 @@
     
     <item>
       <title>关于Golang中database_sql包的学习笔记</title>
-      <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</link>
+      <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html.html</guid>
       <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
  概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
 使用DB 导入driver 这里使用的是MySQL drivers
@@ -46,10 +47,10 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
     
     <item>
       <title>GolangSQL操作初体验</title>
-      <link>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html.html</guid>
       <description>https://segmentfault.com/a/
 简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了.
 对于 sql.DB, 我们需要强调的是, 它并不代表一个数据库连接, 它是一个已存在的数据库的抽象访问接口. sql.DB 为我们提供了两个重要的功能:
@@ -63,10 +64,10 @@ import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/m
     
     <item>
       <title>分布式系统测试那些事儿-理念</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</guid>
       <description>https://segmentfault.com/a/
 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
 文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。
@@ -84,16 +85,16 @@ We should walk through all of the bugs in:
     
     <item>
       <title>BeegoOrmInsert记录时报错</title>
-      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
+      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html.html</link>
       <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html.html</guid>
       <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
 当时代码是这样写的
-o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err }  在执行此代码报错，错误信息：
-&amp;lt;Ormer&amp;gt; table: `.` not found, maybe not RegisterModel  上面代码的错误性是否非常明显的，是因为本身record是指针对性，而在Insert时又传入的是指针的指针&amp;amp;record
+o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err } 在执行此代码报错，错误信息：
+&amp;lt;Ormer&amp;gt; table: `.` not found, maybe not RegisterModel 上面代码的错误性是否非常明显的，是因为本身record是指针对性，而在Insert时又传入的是指针的指针&amp;amp;record
 来看下Beego ORM 内部是如何获取表名的 源代码如下：
-// get model info and model reflect value func (o *orm) getMiInd(md interface{}, needPtr bool) (mi *modelInfo, ind reflect.Value) { val := reflect.ValueOf(md) ind = reflect.Indirect(val) typ := ind.Type() if needPtr &amp;amp;&amp;amp; val.Kind() !</description>
+// get model info and model reflect value func (o *orm) getMiInd(md interface{}, needPtr bool) (mi *modelInfo, ind reflect.Value) { val := reflect.ValueOf(md) ind = reflect.Indirect(val) typ := ind.Type() if needPtr &amp;amp;&amp;amp; val.Kind() != reflect.Ptr { panic(fmt.</description>
     </item>
     
   </channel>

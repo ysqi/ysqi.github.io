@@ -1,0 +1,194 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>golang使用protobuf |虞双齐的博客</title><meta name="description" content="为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但"><meta name="keywords" content="protobuf, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html.html"><meta property="og:title" content="golang使用protobuf"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-05-24 09:17:29"><meta property="article:modified_time" content="2017-05-24 09:17:29"><meta property="article:tag" content="protobuf"><meta property="article:tag" content="golang"><meta name="og:description" content="为什么要使用protobuf 最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html.html">golang使用protobuf</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000009277748" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-05-24">2017年05月24日</time></span></p></header><div itemprop="articleBody"><h1 id="为什么要使用protobuf">为什么要使用protobuf</h1><p>最近的项目中，一直使用Json做数据传输。Json用起来的确很方便。但相对于protobuf数据量更大些。做一个移动端应用，为用户省点流量还是很有必要的。正好也可以学习一下protobuf的使用</p><p>跟Json相比protobuf性能更高，更加规范</p><ul><li><p>编解码速度快，数据体积小</p></li><li><p>使用统一的规范，不用再担心大小写不同导致解析失败等蛋疼的问题了</p></li></ul><p>但也失去了一些便利性</p><ul><li><p>改动协议字段，需要重新生成文件。</p></li><li><p>数据没有可读性</p></li></ul><h1 id="安装">安装</h1><p>在go中使用protobuf，有两个可选用的包goprotobuf（go官方出品）和gogoprotobuf。<br>gogoprotobuf完全兼容google protobuf，它生成的代码质量和编解码性能均比goprotobuf高一些</p><h2 id="安装protoc">安装protoc</h2><p>首先去<a href="https://github.com/google/protobuf/releases">https://github.com/google/pro&hellip;</a> 上下载protobuf的编译器protoc，windows上可以直接下到exe文件(linux则需要编译)，最后将下载好的可执行文件拷贝到\$GOPATH的bin目录下(\$GOPATH/bin目录最好添加到系统环境变量里)</p><h2 id="安装protobuf库文件">安装protobuf库文件</h2><pre><code>go get github.com/golang/protobuf/proto
+</code></pre><h2 id="goprotobuf">goprotobuf</h2><h3 id="安装插件">安装插件</h3><pre><code>go get github.com/golang/protobuf/protoc-gen-go
+</code></pre><h3 id="生成go文件">生成go文件</h3><pre><code>protoc --go_out=. *.proto
+</code></pre><h2 id="gogoprotobuf">gogoprotobuf</h2><h3 id="安装插件-1">安装插件</h3><p>gogoprotobuf有两个插件可以使用</p><ul><li><p>protoc-gen-gogo：和protoc-gen-go生成的文件差不多，性能也几乎一样(稍微快一点点)</p></li><li><p>protoc-gen-gofast：生成的文件更复杂，性能也更高(快5-7倍)</p></li></ul><pre><code>//gogo
+go get github.com/gogo/protobuf/protoc-gen-gogo
+
+//gofast
+go get github.com/gogo/protobuf/protoc-gen-gofast
+</code></pre><h3 id="安装gogoprotobuf库文件">安装gogoprotobuf库文件</h3><pre><code>go get github.com/gogo/protobuf/proto
+go get github.com/gogo/protobuf/gogoproto  //这个不装也没关系
+</code></pre><h3 id="生成go文件-1">生成go文件</h3><pre><code>//gogo
+protoc --gogo_out=. *.proto
+
+//gofast
+protoc --gofast_out=. *.proto
+</code></pre><h1 id="性能测试">性能测试</h1><p>这里只是简单的用go test测试了一下</p><pre><code>//goprotobuf
+&quot;编码&quot;：447ns/op
+&quot;解码&quot;：422ns/op
+
+//gogoprotobuf-go
+&quot;编码&quot;：433ns/op
+&quot;解码&quot;：427ns/op
+
+//gogoprotobuf-fast
+&quot;编码&quot;：112ns/op
+&quot;解码&quot;：112ns/op
+</code></pre><h1 id="go-protobuf的简单使用">go_protobuf的简单使用</h1><h2 id="test-proto">test.proto</h2><pre><code>syntax = &quot;proto3&quot;;  //指定版本，必须要写（proto3、proto2）  
+package proto;
+
+enum FOO 
+{ 
+    X = 0; 
+};
+
+//message是固定的。UserInfo是类名，可以随意指定，符合规范即可
+message UserInfo{
+    string message = 1;   //消息
+    int32 length = 2;    //消息大小
+    int32 cnt = 3;      //消息计数
+}
+</code></pre><h2 id="client-protobuf-go">client_protobuf.go</h2><pre><code>package main
+
+import (
+    &quot;bufio&quot;
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    stProto &quot;proto&quot;
+    &quot;time&quot;
+
+    //protobuf编解码库,下面两个库是相互兼容的，可以使用其中任意一个
+    &quot;github.com/golang/protobuf/proto&quot;
+    //&quot;github.com/gogo/protobuf/proto&quot;
+)
+
+func main() {
+    strIP := &quot;localhost:6600&quot;
+    var conn net.Conn
+    var err error
+
+    //连接服务器
+    for conn, err = net.Dial(&quot;tcp&quot;, strIP); err != nil; conn, err = net.Dial(&quot;tcp&quot;, strIP) {
+        fmt.Println(&quot;connect&quot;, strIP, &quot;fail&quot;)
+        time.Sleep(time.Second)
+        fmt.Println(&quot;reconnect...&quot;)
+    }
+    fmt.Println(&quot;connect&quot;, strIP, &quot;success&quot;)
+    defer conn.Close()
+
+    //发送消息
+    cnt := 0
+    sender := bufio.NewScanner(os.Stdin)
+    for sender.Scan() {
+        cnt++
+        stSend := &amp;stProto.UserInfo{
+            Message: sender.Text(),
+            Length:  *proto.Int(len(sender.Text())),
+            Cnt:     *proto.Int(cnt),
+        }
+
+        //protobuf编码
+        pData, err := proto.Marshal(stSend)
+        if err != nil {
+            panic(err)
+        }
+
+        //发送
+        conn.Write(pData)
+        if sender.Text() == &quot;stop&quot; {
+            return
+        }
+    }
+}
+</code></pre><h2 id="server-protobuf-go">server_protobuf.go</h2><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    stProto &quot;proto&quot;
+
+    //protobuf编解码库,下面两个库是相互兼容的，可以使用其中任意一个
+    &quot;github.com/golang/protobuf/proto&quot;
+    //&quot;github.com/gogo/protobuf/proto&quot;
+)
+
+func main() {
+    //监听
+    listener, err := net.Listen(&quot;tcp&quot;, &quot;localhost:6600&quot;)
+    if err != nil {
+        panic(err)
+    }
+
+    for {
+        conn, err := listener.Accept()
+        if err != nil {
+            panic(err)
+        }
+        fmt.Println(&quot;new connect&quot;, conn.RemoteAddr())
+        go readMessage(conn)
+    }
+}
+
+//接收消息
+func readMessage(conn net.Conn) {
+    defer conn.Close()
+    buf := make([]byte, 4096, 4096)
+    for {
+        //读消息
+        cnt, err := conn.Read(buf)
+        if err != nil {
+            panic(err)
+        }
+
+        stReceive := &amp;stProto.UserInfo{}
+        pData := buf[:cnt]
+
+        //protobuf解码
+        err = proto.Unmarshal(pData, stReceive)
+        if err != nil {
+            panic(err)
+        }
+
+        fmt.Println(&quot;receive&quot;, conn.RemoteAddr(), stReceive)
+        if stReceive.Message == &quot;stop&quot; {
+            os.Exit(1)
+        }
+    }
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="309"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/protobuf.html" rel="tag">protobuf</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html.html">gocron-定时任务web管理系统</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html.html">Golang读写Excel</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="47481212340499b189e03f6578c59033"></div><div id="cyReward" role="cylabs" data-use="reward" sid="47481212340499b189e03f6578c59033" style="text-align:center"></div><div id="SOHUCS" sid="47481212340499b189e03f6578c59033"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangshi-yong-protobuf.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangshi-yong-protobuf.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/martini.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Martini on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/martini.html</link>
+    <description>在 虞双齐的博客上关于in Martini 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/martini.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:22 +0800</lastBuildDate>
+    <atom:link href="/tags/martini.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用Go语言框架进行web开发笔记</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html.html</guid>
       <description>最近需要用Instagram的api抓取其用户的图片，由于需要用oauth2验证, 所以应用必须包含一个web界面。设想能够实时返回下载数量，所以用websocket。还有需要考虑到效率问题，综合以上几点，想用一门语言开发的话，最终选择用golang进行开发，node的回调实在不喜欢。
  前言 关于golang的web开发有不少框架，例如 martini, gin, revel，gorilla等。 之前玩过revel，感觉封装的太多了，作为一个小应用不需要这么复杂，而且google得到结果是revel的效率相对较差。gin的benchmark显示效率是martini的40倍，但是gin比较新所以他的的生态圈相对较少。最终选择了martini, 有很多middleware可以选择，其中就包括了websocket，并且背后用的是gorilla websocket这个包。
 界面和功能  一个跳转到Oauth2登陆授权页面的链接

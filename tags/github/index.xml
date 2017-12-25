@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/github.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Github on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/github.html</link>
+    <description>在 虞双齐的博客上关于in Github 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/github.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:37 +0800</lastBuildDate>
+    <atom:link href="/tags/github.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>途牛原创｜途牛周刊</title>
-      <link>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</link>
+      <link>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html.html</guid>
       <description>Tuniu Weekly  Inspired By 《湾区日报》
 我们团队也想基于这种模式，让大家感受到技术的人文。
  《Tuniu Weekly》就这样产生了。
@@ -45,10 +46,10 @@
     
     <item>
       <title>Go学习【二】学习资料</title>
-      <link>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html</link>
+      <link>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:25 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html.html</guid>
       <description>接触go也已经有一个星期多了 相比与java 感觉最大的不足就是没有强大的IDE其他方面都还不错 然后 把自己最今一段时间学习Go的资料整理了一下
 快速入门
 Go指南
@@ -77,10 +78,10 @@ Go语言圣经（中文版）
     
     <item>
       <title>一步一步教你写BT种子嗅探器之一---原理篇</title>
-      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html.html</guid>
       <description>之前看到 lantern 这个十分火的翻墙工具，其利用了P2P的思想，就想了解一下P2P相关的协议。看了下最流行的BT协议官方文档，就产生了实现BT协议的想法，顺便根据协议实现了一个BT种子嗅探器。
 也有人将BT种子嗅探器称为BT种子爬虫，个人觉得其行为特性和传统的web爬虫相差较大，反而和嗅探器很类似，因此暂且称之为BT种子嗅探器吧。
 接下来将写一系列文章来介绍其原理和具体实现方式。这篇文章先提纲挈领，介绍其工作原理，以对全局有一个把握。后序的文章再介绍具体细节。
@@ -110,10 +111,10 @@ http://bthub.io 是基于上面这个嗅探器写的一个BT种子搜索引擎�
     
     <item>
       <title>一步一步教你写BT种子嗅探器之二---DHT篇</title>
-      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html.html</guid>
       <description>之前写了原理篇，在原理篇里简单的介绍了一下DHT，但是还不够详细。今天我们就专门详细的讲一下嗅探器的核心-DHT，这里默认原理篇你已经读了。
 背景知识 DHT全称 Distributed Hash Table，中文翻译过来就是分布式哈希表。它是一种去中心化的分布式系统，特点主要有自动去中心化，强大的容错能力，支持扩展。另外它规定了自己的架构，包括keyspace和overlay network（覆盖网络）两部分。但是他没有规定具体的算法细节，所以出现了很多不同的实现方式，比如Chord，Pastry，Kademlia等。BitTorrent中的DHT是基于Kademlia的一种变形，它的官方名称叫做 Mainline DHT。
 DHT人如其名，把它看成一个整体，从远处看它，它就是一张哈希表，只不过这张表是分布式的，存在于很多机器上。它同时支持set(key, val)，get(key)操作。DHT可以用于很多方面，比如分布式文件系统，DNS，即时消息(IM)，以及我们最熟悉的点对点文件共享（比如BT协议）等。
@@ -138,10 +139,10 @@ Overlay network Overlay network主要是关于DHT内部节点是怎么存储数�
     
     <item>
       <title>TiKV源码解析系列-PlacementDriver</title>
-      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</link>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</guid>
       <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
 本文为本系列文章第三节。
@@ -152,16 +153,18 @@ TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强�
     
     <item>
       <title>Wecrcker自动部署到Github过程中问题记录</title>
-      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html.html</link>
       <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html.html</guid>
       <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
-wercker 配置 deploy: box: samueldebruyn/debian-git steps: - ysqi/git-push: gh_oauth: $GIT_TOKEN basedir: public clean_removed_files: true branch: $GIT_BRANCH repo: $GIT_REPO gh_pages_domain: $GIT_DOMAIN  又麻利又大方地分享下我的设置：
+wercker 配置 deploy:box:samueldebruyn/debian-gitsteps:-ysqi/git-push:gh_oauth:$GIT_TOKENbasedir:publicclean_removed_files:truebranch:$GIT_BRANCHrepo:$GIT_REPOgh_pages_domain:$GIT_DOMAIN 又麻利又大方地分享下我的设置：
  box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
  __ysqi/git-push __
 step 使用我自己的 git-push ，原来鼻祖的leipert/git-push 有问题，报错信息“getAllStepVars: command not found”
-source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push</description>
+source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&amp;quot; &amp;lt; /dev/null /pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh: line 5: getAllStepVars: command not found using github repo &amp;quot;ysqi.github.io&amp;quot; remote URL will be https://oauth-token@github.com/ysqi.github.io.git  这鼻祖没法玩，硬是不合并别人的PR，没法办只能自己动手，我也Fork了一份好好先生的。你也可以用我的 git-push
+ $GIT_TOKEN 是在 github 添加 token 后将生成的token 保存在 wercker 环境变量中，主要不要直接写在配置文件中，防止泄漏。
+  先在 github 上生成 token：去设置 再在 wecrcker 上添加环境变量 GIT_TOKEN: 主要勾选 proteced 这样才能更严格的保护Token</description>
     </item>
     
   </channel>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>架构模式 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html</link>
+    <description>在 虞双齐的博客上关于in 架构模式 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:35:02 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go并发模式:管道和取消</title>
-      <link>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</link>
+      <link>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html.html</guid>
       <description>原地址：[](http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html)http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html
 译自[](http://blog.golang.org/pipelines)http://blog.golang.org/pipelines。
 这是Go官方blog的一篇文章，介绍了如何使用Go来编写并发程序，并按照程序的演化顺序，介绍了不同模式遇到的问题以及解决的问题。主要解释了用管道模式链接不同的线程，以及如何在某个线程取消工作时，保证所有线程以及管道资源的正常回收。

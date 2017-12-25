@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/golang</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Golang#grpc on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/golang#grpc.html</link>
+    <description>在 虞双齐的博客上关于in Golang#grpc 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/golang#grpc.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Feb 2017 11:13:46 +0800</lastBuildDate>
+    <atom:link href="/tags/golang#grpc.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>go用slice模拟vector功能</title>
-      <link>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:46 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html.html</guid>
       <description>appendVector ``` - 编程语言与开发 a = append(a, b&amp;hellip;)
  copy ==== ``` - 编程语言与开发 b = append([]T(nil), a...)  ``` - 编程语言与开发 b = make([]T, len(a)) copy(b, a)
  cut删除一段范围i\~j =================== ``` - 编程语言与开发 copy(a[i:], a[j:]) for k, n := len(a) - j + i, len(a); k &amp;lt; n; k++ { a[k] = nil //or the zero value of T } a = a[:len(a) - j + i]  delete删除指定i ``` - 编程语言与开发 copy(a[i:], a[i+1:] a[len(a] - 1] = nil //or zero value of T a = a[:len(a)-1]</description>

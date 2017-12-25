@@ -1,0 +1,392 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Kubernetes监控之InfluxDB |虞双齐的博客</title><meta name="description" content="什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序"><meta name="keywords" content="监控, 数据库, influxdb, kubernetes, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html"><meta property="og:title" content="Kubernetes监控之InfluxDB"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:45"><meta property="article:modified_time" content="2016-12-31 11:32:45"><meta property="article:tag" content="监控"><meta property="article:tag" content="数据库"><meta property="article:tag" content="influxdb"><meta property="article:tag" content="kubernetes"><meta property="article:tag" content="golang"><meta name="og:description" content="什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html">Kubernetes监控之InfluxDB</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007702597" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h2 id="什么是influxdb">什么是InfluxDB？</h2><h3 id="influxdb介绍">InfluxDB介绍</h3><p>InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。<br>该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。<br>InfluxDB特征：</p><ul><li><p>无结构(无模式)：可以是任意数量的列</p></li><li><p>可以设置metric的保存时间</p></li><li><p>支持与时间有关的相关函数(如min、max、sum、count、mean、median等)，方便统计</p></li><li><p>支持存储策略:可以用于数据的删改。(influxDB没有提供数据的删除与修改方法)</p></li><li><p>支持连续查询:是数据库中自动定时启动的一组语句，和存储策略搭配可以降低InfluxDB的系统占用量。</p></li><li><p>原生的HTTP支持，内置HTTP API</p></li><li><p>支持类似sql语法</p></li><li><p>支持设置数据在集群中的副本数</p></li><li><p>支持定期采样数据，写入另外的measurement，方便分粒度存储数据。</p></li><li><p>自带web管理界面，方便使用(登入方式：<a href="http://%3C">http://%3C</a> InfluxDB-IP &gt;:8083)</p></li></ul><h3 id="关键概念">关键概念</h3><p>InfluxDB关键概念列表：</p><p>database</p><p>field key</p><p>field set</p><p>field value</p><p>measurement</p><p>point</p><p>retention policy</p><p>series</p><p>tag key</p><p>tag set</p><p>tag value</p><p>timestamp</p><p>下面举个例子进行概念介绍：<br>我们虚拟一组数据，其中有一张数据表(<strong>measurement</strong>)为census，该表记录了由两个科学家(langstroth和perpetua)在两个不同的位置(1和2)，统计了butterflies和honeybees的数据，时间段是2015-08-18 00: 00:00 &ndash; 2015-08-18 06: 12:00. 我们假设这些数据属于叫my_database的数据库(<strong>database</strong>)，且该数据存储在autogen的存储策略(<strong>retention policy</strong>)中。<br>数据展示如下：</p><pre><code>name: census
+---------------------
+time                    butterflies     honeybees     location     scientist
+2015-08-18T00:00:00Z      12             23              1         langstroth
+2015-08-18T00:00:00Z      1              30              1         perpetua
+2015-08-18T00:06:00Z      11             28              1         langstroth
+2015-08-18T00:06:00Z      3              28              1         perpetua
+2015-08-18T05:54:00Z      2              11              2         langstroth
+2015-08-18T06:00:00Z      1              10              2         langstroth
+2015-08-18T06:06:00Z      8              23              2         perpetua
+2015-08-18T06:12:00Z      7              22              2         perpetua
+</code></pre><p>我们针对数据来进行概念分析：<br>InfluxDB是时序数据库，所以怎么都绕不开时间,第一纵列time存储着时间戳，而时间戳是与数据进行关联，这样才能将时间和数据进行展示。<br>接下去两纵列(butterflies和honeybees)，称为<strong>Fields</strong>。<strong>Fields由field keys和field values组成</strong>。butterflies和honeybees两个字符串就是field keys；而butterflies这个field key对应的field values就是12 &ndash; 7, honeybees这个field key对应的field values就是23 &ndash; 22。<br>Field values就是你的数据，它们可以是string、float、int或者bool等。因为influxdb是时序数据库，所以field values总是要和timestamp关联。</p><p><strong>field set</strong>是在数据层之上应用概念，由field key和field value组成了field set，如这里有8组field set数据：</p><ul><li><p>butterflies = 12 honeybees = 23</p></li><li><p>butterflies = 1 honeybees = 30</p></li><li><p>butterflies = 11 honeybees = 28</p></li><li><p>butterflies = 3 honeybees = 28</p></li><li><p>butterflies = 2 honeybees = 11</p></li><li><p>butterflies = 1 honeybees = 10</p></li><li><p>butterflies = 8 honeybees = 23</p></li><li><p>butterflies = 7 honeybees = 22</p></li></ul><p>field是InfluxDB的必要结构，但也需要注意field是没有索引的。</p><p>剩下的两个纵列是location和scientist，它们是<strong>tags</strong>。<strong>Tags也是由键值对(tag keys和tag values)组成。</strong>这里的tag keys是字符串location和scientist；location 这个tag key有两个tag values: 1和2；scientist这个tag key也有两个tag values：perpetua和langstroth。<br><strong>tag set</strong>也是数据之上的概念，是不同的tag key-value组合，这里有4组tag sets数据：</p><ul><li><p>location = 1, scientist = langstroth</p></li><li><p>location = 2, scientist = langstroth</p></li><li><p>location = 1, scientist = perpetua</p></li><li><p>location = 2, scientist = perpetua</p></li></ul><p>Tags是可选的参数，也就是说你存储的数据结构中不一定非要带tags，但是它非常好用，因为可以索引。一般都会通过tags来查询数据会快很多。</p><p><strong>measurement</strong>包含了tags、fields和time，就类似于传统数据库的表。一个measurement可以属于不同的retention policy(存储策略)，存储策略描述了InfluxDB怎么去保持数据(DURATION)，需要在集群中存储多少份数据副本(REPLICATION)。<br>示例中的数据都属于census这个measurement，而该measurement又属于autogen这个存储策略。InfluxDB一般都会创建一个default存储策略，它有无限长的持续时间和等于1的副本数。</p><p>我们了解过了measurements、tag sets和retention policies的概念后，是时候该知道<strong>series</strong>了。<br>在同一个database中，series由retention policy、measurement、tag sets三部分组成，在我们上面的数据中有如下4个series：</p><p>Arbitrary series number Retention policy Measurement Tag set</p><hr><p>series 1 autogen census location = 1,scientist = langstroth series 2 autogen census location = 2,scientist = langstroth series 3 autogen census location = 1,scientist = perpetua series 4 autogen census location = 2,scientist = perpetua</p><p>同一个Series的数据在物理上会按照时间顺序排列存储在一起。<br>Series的key为measurement + 所有tags的序列化字符串。<br>代码结构如下：</p><pre><code>tyep Series struct {
+    mu           sync.RWMutex
+    Key          string
+    Tags         map[string]string  
+    id           uint64
+    measurement  *Measurement
+}
+</code></pre><p>介绍完Series后，就可以解释point了。point是在一个series中有相同时间戳的field set，也可以理解如表里的一行数据。示例中一个Point：</p><pre><code>name: census
+-----------------
+time                   butterflies     honeybees     location     scientist
+2015-08-18T00:00:00Z        1              30           1         perpetua
+</code></pre><p>上例中，series由retention policy(autogen), measurement(census)和tag set(location=1,scientist=perpetua)进行定义。而这个point的时间戳则是2015-08-18T 00: 00: 00Z。</p><p>InfluxDB Database可以有多个users、continuous queries、retention policy、measurement。因为InfluxDB是一个结构化的数据库，我们可以轻松的去新增measurements、tags、fields。</p><h3 id="高级概念">高级概念</h3><h4 id="retention-policy-https-docs-influxdata-com-influxdb-v1-1-query-language-database-management-retention-policy-management"><a href="https://docs.influxdata.com/influxdb/v1.1/query_language/database_management/#retention-policy-management"><strong>Retention Policy</strong></a></h4><p>之前讲关键性概念时有简单介绍了RP，这里会进行较详细的介绍。<br>InfluxDB的数据保留策略(RP)是用来定义数据在数据库中存放的时间，或者定义保存某个期间的数据。<br>RP在InfluxDB中是比较重要的概念，因为InfluxDB本身是没有提供数据的删除操作，所以需要通过定义RP来控制数据量的问题。<br>(一个数据库可以有多个RP，但是每个RP必须是独一无二的。)</p><p>在具体介绍RP之前，先介绍下另外一个跟RP相关的基础概念(<strong>shard</strong>)。<br><strong>shard:</strong><br>每个RP下面会存在很多shard，每个shard都存储了实际编码和压缩数据，并且不重复。例如你在创建RP时指定了shard duration为1h，那么7&ndash;8点存入shard_group0,8&ndash;9点就会存入shard_group1中。所以shard才是真实存储InfluxDB数据的地方。<br>每个shard都属于唯一一个shard group，一个group中会有多个shard；而每个shard包含一组特定的series；所有的points都落在给定的series中，而series是都落在给定的shard group中；</p><blockquote><p>问题1：每个shard group指定了一段时间区域，而且其中有多个shard；每个shard包含一组特定的series。那么shard中存的数据是怎么区分的？series是由RP、meansurement、tags组成，那么shard的区分是根据tags？？</p></blockquote><p><strong>shard duration:</strong><br>shard duration决定了每个shard group存放数据的时间区域。这段时间是在定义RP时由&rdquo;SHARD DURATION&rdquo;字段决定。<br>例如你创建RP时指定了SHARD DURATION为1w,那么每个shard group的时间跨度就为1w，它将包含所有在这一周时间戳内的points。</p><p>OK，大概了解了shard之后，继续回到Retention Policy。</p><p>当你创建一个数据库时，InfluxDB会自动给你创建一个叫&rdquo;autogen&rdquo;的retention Policy，这个RP的数据保留时间是无限。<br>1.创建RP语法：</p><pre><code>CREATE RETETION POLICY {rp_name} ON {database_name} DURATION {duration} REPLICATION {n} [SHARD DURATION {duration}] [DEFAULT]
+</code></pre><p>注：<br>DURATION: 用于描述数据保留时间。可设置的时间区间是1h &ndash; INF(无穷大)。<br>REPLICATION: 用于指定数据的备份数量，n是表示数据节点的数量。<br>SHARD DURATION: 用于指定shard group的时间区域，这个字段的duration是不支持INF的。默认情况下，shard group的duration由RP的duration决定。</p><p>Retention Policy&rsquo;s DURATION Shard Group Duration</p><hr><p>&lt; 2 days 1h &gt;= 2 days and &lt;= 6 mouths 1day &gt; 6 mouths 7days</p><p>DEFAULT: 可选参数，用于指定使用新的RP来作为数据库的默认RP。(具体新在哪？需要进一步查看)</p><p>2.修改RP语法：</p><pre><code>ALTER RETENTION POLICY {rp_name} ON {database_name} DURATION {duration} REPLICATION {n} SHARD DURATION {duration} DEFAULT
+</code></pre><p>注：<br>后面的参数字段都一样，主要差别就在于关键字段：ALTER RETENTION POLICY</p><p>3.删除RP语法：</p><pre><code>DROP RETENTION POLICY {rp_name} ON {database_name}
+</code></pre><p>注：<br>即使你企图去删除一个不存在的rp，命令返回值也是空，不会返回一个错误码。</p><h4 id="continuous-queries-https-docs-influxdata-com-influxdb-v1-1-query-language-continuous-queries"><a href="https://docs.influxdata.com/influxdb/v1.1/query_language/continuous_queries/"><strong>Continuous Queries</strong></a></h4><p>之前我们介绍了数据保存策略，数据超过保存策略里指定的时间之后，就会被删除。但我们不想完全删除这些数据，比如我们想把每秒的监控数据至少保留成每小时，就需要用到连续查询(Continuous Queries)功能。<br>连续查询主要用在将数据归档，以降低系统空间的占用率，但这主要是以降低数据精度为代价。<br><strong>基本语法：</strong></p><pre><code>CREATE CONTINUOUS QUERY {cq_name} ON {database_name}
+BEGIN
+    {cq_query}
+END
+注：cq_name表示创建的Continuous query的名字；database_name表示要操作的数据库。
+
+cq_query是操作函数，如下：
+SELECT {function[s]} INTO {destnation_measurement} FROM {measurement} [WHERE {stuff}] GROUP BY time({interval})[,{tag_key[s]}]
+注：destnation_measurement表示新生成的数据存放的表；measurement表示数据查询的表；
+GROUP BY time表示采样分析的数据时间，比如设置1h，如果当前是17:00,那么需要计算的数据时间就是16:00 -- 16：59。
+</code></pre><p><strong>例子1： 自动降低精度来采样数据</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_basic&quot; ON &quot;transportation&quot;
+BEGIN
+    SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(1h)
+END
+
+查看结果：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   7
+2016-08-28T08:00:00Z   13.75
+</code></pre><p>连续查询（cq_basic）通过在数据库&rdquo;transportation&rdquo;中的&rdquo;bus_data&rdquo;表，计算每小时平均的旅客数，然后在该数据库中新建&rdquo;average_passengers&rdquo;表，并将数据存入该表中。该cq_basic每小时执行一遍，然后将每个小时的point写入表中。</p><p><strong>例子2：自动降低精度来采样数据，并将数据存入另外一个Retention Policy(RP)</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_basic_rp&quot; ON &quot;transportation&quot;
+BEGIN
+    SELECT mean(&quot;passengers&quot;) INTO &quot;transportation&quot;.&quot;three_weeks&quot;.&quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(1h)
+END
+
+查看结果：
+&gt; SELECT * FROM &quot;transportation&quot;.&quot;three_weeks&quot;.&quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   7
+2016-08-28T08:00:00Z   13.75
+</code></pre><p>连续查询（cq_basic_rp）通过在数据库&rdquo;transportation&rdquo;中的&rdquo;bus_data&rdquo;表，计算每小时平均的旅客数，然后将数据存入transportation数据库中的three_weeks(RP)的average_passengers表中。该cq_basic_rp每小时执行一遍，然后将每个小时的point写入表中。</p><p><strong>例子3：采用通配符，自动降低精度采样数据</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_basic_br&quot; ON &quot;transportation&quot;
+BEGIN
+    SELECT mean(*) INTO &quot;dowmsample_transportation&quot;.&quot;autogen&quot;.:MEASUREMENT FROM /.*/ GROUP BY time(30m),*
+END
+
+查看结果：
+&gt; SELECT * FROM &quot;downsample_transportation&quot;.&quot;autogen&quot;.&quot;bus_data&quot;
+name: bus_data
+--------------
+time                   mean_complaints   mean_passengers
+2016-08-28T07:00:00Z   9                 6.5
+2016-08-28T07:30:00Z   9                 7.5
+2016-08-28T08:00:00Z   8                 11.5
+2016-08-28T08:30:00Z   7                 16
+</code></pre><p>连续查询（cq_basic_br），计算数据库(transportation)中每张表(这里只有一张表&rdquo;bus_data&rdquo;)，每30分钟平均的<strong>旅客数和投诉量</strong>，然后将数据存入downsample_transportation数据库中的autogen(RP)中。该cq_basic_br每30分钟执行一遍，然后将每个小时的point写入表中。</p><p><strong>例子4：配置CQ的时间偏移，来采集数据：</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_basic_offset&quot; ON &quot;transportation&quot;
+BEGIN
+    SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(1h,15m)
+END
+
+查看结果：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:15:00Z   7.75      //注意时间是从7:15 -- 8:15
+2016-08-28T08:15:00Z   16.75
+</code></pre><dl><dt>该CQ(cq_basic_offset)，设置了每整点往后偏移15分钟，再进行每小时的平均值计算。比如会将8</dt><dd>15&ndash;9: 15，来代替8: 00&ndash;9: 00。</dd></dl><p><strong>高级语法：</strong></p><pre><code>CREATE CONTINUOUS QUERY {cq_name} ON {database_name}
+RESAMPLE EVERY {val1} FOR {val2}
+BEGIN
+    {cq_query}
+END
+
+注意： cq_name、database_name、cq_query和之前的基本语法都一致。
+EVERY后面带的时间，表示每val1点时间就触发一次数据采样，而数据的区间是和cq_query、FOR有关。在这段时间内每val1点时间再采集一次。比如cq_query设置1h，val1设置为30m,表示在1h内会有两次数据计算。比如8点--9点之间就会有两次数据的计算，第一次计算是8:30触发的，计算的区间是8:00--8:30，第二次计算是9:00触发的，计算的区间是8:00--9:00。在目的数据库中，默认第二次的计算结果会覆盖第一次的计算结果。
+FOR后面带的时间，表示修改了cq_query计算的数据区间，比如cq_query时间设置为30m，val2设置的是1h。那么cq每30m会触发一次数据计算，计算的区间是(now-1h)--now。
+</code></pre><p>示例数据： 给下面的例子使用</p><pre><code>name: bus_data
+--------------
+time                   passengers
+2016-08-28T06:30:00Z   2
+2016-08-28T06:45:00Z   4
+2016-08-28T07:00:00Z   5
+2016-08-28T07:15:00Z   8
+2016-08-28T07:30:00Z   8
+2016-08-28T07:45:00Z   7
+2016-08-28T08:00:00Z   8
+2016-08-28T08:15:00Z   15
+2016-08-28T08:30:00Z   15
+2016-08-28T08:45:00Z   17
+2016-08-28T09:00:00Z   20
+</code></pre><p><strong>例子1：配置执行间隔</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_advanced_every&quot; ON &quot;transportation&quot;
+RESAMPLE EVERY 30m
+BEGIN
+  SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(1h)
+END
+
+中间的执行过程：
+At 8:00, cq_advanced_every executes a query with the time range WHERE time &gt;= '7:00' AND time &lt; '8:00'.
+cq_advanced_every writes one point to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   7
+
+At 8:30, cq_advanced_every executes a query with the time range WHERE time &gt;= '8:00' AND time &lt; '9:00'.
+cq_advanced_every writes one point to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T08:00:00Z   12.6667
+
+At 9:00, cq_advanced_every executes a query with the time range WHERE time &gt;= '8:00' AND time &lt; '9:00'.
+cq_advanced_every writes one point to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T08:00:00Z   13.75
+
+查看结果：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   7
+2016-08-28T08:00:00Z   13.75
+</code></pre><p>cq_advanced_every在8点&ndash;9点执行了两次。第一次8:30触发，因为cq_query设置了1h,所以数据区间是8: 00&ndash;9: 00,但因为是在8:30触发的，8: 30&ndash;9: 00的数据还没产生呢，所以实际采集的数据区间是在8: 00&ndash;8: 30,即数据(8, 15, 15), 计算的平均值为12.6667；第二次9:00触发，计算的区间是8: 00&ndash;9: 00，即数据(8, 15, 15, 17)，计算的平均值为13.75.</p><p><strong>例子2：配置重采样的时间区间</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_advanced_for&quot; ON &quot;transportation&quot;
+RESAMPLE FOR 1h
+BEGIN
+  SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(30m)
+END
+
+采样过程：
+At 8:00 cq_advanced_for executes a query with the time range WHERE time &gt;= '7:00' AND time &lt; '8:00'.
+cq_advanced_for writes two points to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   6.5
+2016-08-28T07:30:00Z   7.5
+
+At 8:30 cq_advanced_for executes a query with the time range WHERE time &gt;= '7:30' AND time &lt; '8:30'.
+cq_advanced_for writes two points to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:30:00Z   7.5
+2016-08-28T08:00:00Z   11.5
+
+At 9:00 cq_advanced_for executes a query with the time range WHERE time &gt;= '8:00' AND time &lt; '9:00'.
+cq_advanced_for writes two points to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T08:00:00Z   11.5
+2016-08-28T08:30:00Z   16
+
+结果查询：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:00:00Z   6.5
+2016-08-28T07:30:00Z   7.5
+2016-08-28T08:00:00Z   11.5
+2016-08-28T08:30:00Z   16
+</code></pre><p>该cq_advanced_for，每30m重采样一次，采样的区间是(now-1h &ndash; now), 也就是每触发一次执行，就会进行两次计算。因为采样的区间是1h，而需要计算的是每30m的平均值。</p><p><strong>例子3：配置cq的执行区间和时间范围</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_advanced_every_for&quot; ON &quot;transportation&quot;
+RESAMPLE EVERY 1h FOR 90m
+BEGIN
+  SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(30m)
+END
+
+采样过程：
+At 8:00 cq_advanced_every_for executes a query with the time range WHERE time &gt;= '6:30' AND time &lt; '8:00'.
+cq_advanced_every_for writes three points to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T06:30:00Z   3
+2016-08-28T07:00:00Z   6.5
+2016-08-28T07:30:00Z   7.5
+
+At 9:00 cq_advanced_every_for executes a query with the time range WHERE time &gt;= '7:30' AND time &lt; '9:00'.
+cq_advanced_every_for writes three points to the average_passengers measurement:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T07:30:00Z   7.5
+2016-08-28T08:00:00Z   11.5
+2016-08-28T08:30:00Z   16
+
+结果查询：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T06:30:00Z   3
+2016-08-28T07:00:00Z   6.5
+2016-08-28T07:30:00Z   7.5
+2016-08-28T08:00:00Z   11.5
+2016-08-28T08:30:00Z   16
+</code></pre><p>该cq_advanced_every_for，需要计算30m的平均值，每1小时触发一次cq执行,采样的数据区间是90m，所以每触发一次就会计算3次平均值。</p><p><strong>例子4：配置CQ的采样时间区间，并且填充空结果</strong></p><pre><code>CREATE CONTINUOUS QUERY &quot;cq_advanced_for_fill&quot; ON &quot;transportation&quot;
+RESAMPLE FOR 2h
+BEGIN
+  SELECT mean(&quot;passengers&quot;) INTO &quot;average_passengers&quot; FROM &quot;bus_data&quot; GROUP BY time(1h) fill(1000)
+END
+
+采样过程：
+At 6:00, cq_advanced_for_fill executes a query with the time range WHERE time &gt;= '4:00' AND time &lt; '6:00'.
+cq_advanced_for_fill writes nothing to average_passengers; bus_data has no data that fall within that time range. 
+
+At 7:00, cq_advanced_for_fill executes a query with the time range WHERE time &gt;= '5:00' AND time &lt; '7:00'.
+cq_advanced_for_fill writes two points to average_passengers:
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T05:00:00Z   1000          &lt;------ fill(1000)
+2016-08-28T06:00:00Z   3             &lt;------ average of 2 and 4
+
+[…] 
+
+At 11:00, cq_advanced_for_fill executes a query with the time range WHERE time &gt;= '9:00' AND time &lt; '11:00'.
+cq_advanced_for_fill writes two points to average_passengers:
+name: average_passengers
+------------------------
+2016-08-28T09:00:00Z   20            &lt;------ average of 20
+2016-08-28T10:00:00Z   1000          &lt;------ fill(1000)     
+
+At 12:00, cq_advanced_for_fill executes a query with the time range WHERE time &gt;= '10:00' AND time &lt; '12:00'.
+cq_advanced_for_fill writes nothing to average_passengers; bus_data has no data that fall within that time range.
+
+结果查询：
+&gt; SELECT * FROM &quot;average_passengers&quot;
+name: average_passengers
+------------------------
+time                   mean
+2016-08-28T05:00:00Z   1000
+2016-08-28T06:00:00Z   3
+2016-08-28T07:00:00Z   7
+2016-08-28T08:00:00Z   13.75
+2016-08-28T09:00:00Z   20
+2016-08-28T10:00:00Z   1000
+</code></pre><p>该cq_advcanced_for_fill，增加了空数据区的默认值填充，使用fill(value)来实现。</p><p><strong>连续查询使用案例：</strong><br>1.实现重采样和数据保留：<br>使用CQ和retention policy配合达到该功能。可以降低数据库存储压力。</p><p>2.预先计算来解决费时的查询：<br>CQ会自动进行重采样，将高精度的数据转换为低精度的数据。低精度的数据查询会耗费更少的资源和时间。</p><p>3.替代HAVING条款：<br>InfluxDB不支持HAVING字段，需要使用CQ+别的命令来实现替换。<br>例子：</p><pre><code>SELECT mean(&quot;bees&quot;) FROM &quot;farm&quot; GROUP BY time(30m) HAVING mean(&quot;bees&quot;) &gt; 20
+</code></pre><p>以上的命令，InfluxDB不支持。其实就是需要实现采集30m的平均值，然后取那些大于20的值。<br>InfluxDB的替代方案：</p><ul><li>先创建CQ：</li></ul><pre><code>CREATE CONTINUOUS QUERY &quot;bee_cq&quot; ON &quot;mydb&quot; 
+BEGIN
+    SELECT mean(&quot;bees&quot;) AS &quot;mean_bees&quot; INTO &quot;aggregate_bees&quot; FROM &quot;farm&quot; GROUP BY time(30m) 
+END
+</code></pre><p>该创建的CQ，每30m进行bees的平均值计算，并将结果写入aggregate_bees表中的mean_bees field中。</p><ul><li>查询CQ结果：<br>这一步就是需要运行HAVING mean(&ldquo;bees&rdquo;) &gt; 20这条命令。InfluxDB命令使用如下：</li></ul><pre><code>SELECT &quot;mean_bees&quot; FROM &quot;aggregate_bees&quot; WHERE &quot;mean_bees&quot; &gt; 20
+</code></pre><p>4.替代内嵌函数：<br>InfluxDB不支持内嵌函数，比如：</p><pre><code>SELECT mean(count(&quot;bees&quot;)) FROM &quot;farm&quot; GROUP BY time(30m)
+</code></pre><p>替换上述方案：</p><ul><li>创建CQ:</li></ul><pre><code>CREATE CONTINUOUS QUERY &quot;bee_cq&quot; ON &quot;mydb&quot; 
+BEGIN
+    SELECT count(&quot;bees&quot;) AS &quot;count_bees&quot; INTO &quot;aggregate_bees&quot; FROM &quot;farm&quot; GROUP BY time(30m) 
+END
+</code></pre><ul><li>查询CQ结果：<br>这一步就是需要执行mean([&hellip;])这条命令，其实就是计算某段区间的count(&ldquo;bees&rdquo;)平均值,如下：</li></ul><pre><code>SELECT mean(&quot;count_bees&quot;) FROM &quot;aggregate_bees&quot; WHERE time &gt;= {start_time} AND time &lt;= {end_time}
+</code></pre><p>Kapacitor是InfluxData的数据处理引擎，它可以达到CQ一样的功能。参考<a href="https://docs.influxdata.com/kapacitor/v1.1/examples/continuous_queries/"><strong>HERE</strong></a></p><h2 id="influxdb使用">InfluxDB使用</h2><h3 id="数据库配置">数据库配置</h3><p>参考<a href="https://docs.influxdata.com/influxdb/v1.1/administration/config/#meta"><strong>Here</strong></a></p><h3 id="database">Database</h3><p>1.查询：</p><pre><code>SHOW DATABASES 
+</code></pre><p>2.创建：</p><pre><code>CREATE DATABASE {database_name} [WITH [DURATION &lt;duration&gt;] [REPLICATION &lt;n&gt;] [SHARD DURATION &lt;duration&gt;] [NAME &lt;retention-policy-name&gt;]]
+注：WITH带的这段属性，就是Retention Policy的，可以参考它。
+</code></pre><p>3.删除：</p><pre><code>DROP DATABASE {database_name}
+</code></pre><h3 id="retention-policy">RETENTION POLICY</h3><p>1.查询：</p><pre><code>SHOW RETETION POLICIES
+</code></pre><p>2.创建：</p><pre><code>CREATE RETENTION POLICY {retention_policy_name} ON {database_name} DURATION {duration} REPLICATION {n} [SHARD DURATION {duration}] [DEFAULT]
+</code></pre><p>3.修改：</p><pre><code>ALTER RETENTION POLICY {rp_name} ON {database_name} DURATION {duration} REPLICATION {n} SHARD DURATION {duration} DEFAULT
+</code></pre><p>4.删除：</p><pre><code>DROP RETENTION POLICY {rp_name} ON {database_name}
+</code></pre><h3 id="continuous-query">CONTINUOUS QUERY:</h3><p>1.查询：</p><pre><code>SHOW CONTINUOUS QUERY
+</code></pre><p>2.创建：</p><pre><code>参考之前的例子，介绍了较多的创建方式。
+</code></pre><p>3.删除：</p><pre><code>DROP CONTINUOUS QUERY {cq_name} ON {database_name}
+</code></pre><p>举了部分例子，具体的可以再查看官方资料。</p><h2 id="api">API</h2><p>InfluxDB API提供了较简单的方式用于数据库交互。该API使用了HTTP的方式，并以JSON格式进行返回。<br>下面对API进行介绍：</p><h3 id="支持的endpoints">支持的Endpoints</h3><p>Endpoint 描述</p><hr><p>/ping 使用/ping用于检查InfluxDB的状态或者版本信息 /query 使用/query用于查询数据，管理数据库、rp、users等 /write 使用/write去写数据到数据库中</p><h3 id="ping">/ping</h3><p>/ping支持GET和HEAD，都可用于获取指定信息。<br>定义：</p><ul><li><p>GET <a href="http://localhost:8086/ping">http://localhost:8086/ping</a></p></li><li><p>HEAD <a href="http://localhost:8086/ping">http://localhost:8086/ping</a></p></li></ul><p>示例：<br>获取InfluxDB版本信息：</p><pre><code>$ curl -sl -I http://localhost:8086/ping
+HTTP/1.1 204 No Content
+Request-Id: 245a330d-baba-11e6-8098-000000000000
+X-Influxdb-Version: 0.9.4.1
+Date: Mon, 05 Dec 2016 07:12:11 GMT
+</code></pre><h3 id="query">/query</h3><p>/query支持GET和POST的HTTP请求。可用于查询数据和管理数据库、rp、users。<br><strong>定义：</strong></p><ul><li><p>GET <a href="http://localhost:8086/query">http://localhost:8086/query</a></p></li><li><p>POST <a href="http://localhost:8086/query">http://localhost:8086/query</a></p></li></ul><p><strong>用法说明：</strong></p><hr><p>动作 查询类型</p><hr><p>GET 用于所有数据的查询：<br>SELECT *<br>SHOW</p><p>POST 支持的动作如下：<br>ALTER<br>CREATE<br>DELETE<br>DROP<br>GRANT<br>KILL<br>REVOKE</p><hr><blockquote><p>只有SELECT特殊点，支持INTO字段</p></blockquote><p><strong>示例：</strong><br>1.使用SELECT查询数据：</p><pre><code>$ curl -G 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot;'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;myfield&quot;,&quot;mytag1&quot;,&quot;mytag2&quot;],&quot;values&quot;:[[&quot;2016-05-20T21:30:00Z&quot;,12,&quot;1&quot;,null],[&quot;2016-05-20T21:30:20Z&quot;,11,&quot;2&quot;,null],[&quot;2016-05-20T21:30:40Z&quot;,18,null,&quot;1&quot;],[&quot;2016-05-20T21:31:00Z&quot;,19,null,&quot;3&quot;]]}]}]}
+</code></pre><p>再使用额外的INTO字段：</p><pre><code>$ curl -XPOST 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * INTO &quot;newmeas&quot; FROM &quot;mymeas&quot;'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;result&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;written&quot;],&quot;values&quot;:[[&quot;1970-01-01T00:00:00Z&quot;,4]]}]}]}
+</code></pre><p>2.创建数据库：</p><pre><code>$ curl -XPOST 'http://localhost:8086/query' --data-urlencode 'q=CREATE DATABASE &quot;mydb&quot;'
+
+{&quot;results&quot;:[{}]}
+</code></pre><p><strong>Query参数说明：</strong></p><p>参数 是否可选 描述</p><hr><p>chunked=[true or {number_of_points}] 可选 返回批量的points信息，以代替单个响应。设置成true，InfluxDB返回一批series或者10000个points；或者设置对应的points数量 db={db_name} 必选 设置数据库名 epoch=[h,m,s,ms,u,ns] 可选 指定时间戳的精度，默认是ns p={password} 可选 如果设置了认证，则需要用户密码 pretty=true 可选 优化输出格式，设置之后会议json格式进行输出，利于调试 rp={rp_name} 可选 设置查询的rp。如果没有设置，则查询默认的rp u={username} 可选 如果设置了认证，则需要用户密码</p><p>示例1：使用http认证来创建数据库：</p><pre><code>$ curl -XPOST 'http://localhost:8086/query?u=myusername&amp;p=mypassword' --data-urlencode 'q=CREATE DATABASE &quot;mydb&quot;'
+
+{&quot;results&quot;:[{}]}
+</code></pre><p>示例2：使用基础认证来创建数据库：</p><pre><code>$ curl -XPOST -u myusername:mypassword 'http://localhost:8086/query' --data-urlencode 'q=CREATE DATABASE &quot;mydb&quot;'
+
+{&quot;results&quot;:[{}]}
+</code></pre><p><strong>数据请求体：</strong></p><pre><code>--data-urlencode 'q=&lt; influxDB query &gt;'
+</code></pre><ul><li><p>可支持多条请求命令： 需要使用分号(;)，来进行命令分隔</p></li><li><p>可支持导入文件的格式进行查询： 如果文件中使用了多条请求命令，则也需要使用分号(;)进行分隔</p><pre><code>语法：
+curl -F &quot;q=@&lt;path_to_file&gt;&quot; -F &quot;async=true&quot; http://localhost:8086/query
+</code></pre></li><li><p>以CSV的格式返回请求结果：</p><pre><code>语法：
+curl -H &quot;Accept: application/csv&quot; -G 'http://localhost:8086/query [...]
+</code></pre></li><li><p>支持绑定参数：<br>该API支持使用WHERE绑定参数，来进行指定field values或者tag vaules。</p><pre><code>Query语法：
+--data-urlencode 'q= SELECT [...] WHERE [ &lt; field_key &gt; | &lt; tag_key &gt; ] = $&lt; placeholder_key &gt;'
+
+Map语法：
+--data-urlencode 'params={&quot;&lt; placeholder_key &gt;&quot;:[ &lt; placeholder_float_field_value &gt; | &lt; placeholder_integer_field_value &gt; | &quot;&lt; placeholder_string_field_value &gt;&quot; | &lt; placeholder_boolean_field_value &gt; | &quot;&lt; placeholder_tag_value &gt;&quot; ]}'
+</code></pre></li></ul><p>示例1：发送多条Query命令</p><pre><code>$ curl -G 'http://localhost:8086/query?db=mydb&amp;epoch=s' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot;;SELECT mean(&quot;myfield&quot;) FROM &quot;mymeas&quot;'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;myfield&quot;,&quot;mytag1&quot;,&quot;mytag2&quot;],&quot;values&quot;:[[1463779800,12,&quot;1&quot;,null],[1463779820,11,&quot;2&quot;,null],[1463779840,18,null,&quot;1&quot;],[1463779860,19,null,&quot;3&quot;]]}]},{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;mean&quot;],&quot;values&quot;:[[0,15]]}]}]}
+</code></pre><p>示例2：以CSV格式返回请求结果</p><pre><code>curl -H &quot;Accept: application/csv&quot; -G 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot; LIMIT 3'
+
+name,tags,time,tag1,tag2,value
+mymeas,,1478030187213306198,blue,tag2,23
+mymeas,,1478030189872408710,blue,tag2,44
+mymeas,,1478030203683809554,blue,yellow,101
+</code></pre><p>示例3：通过文件的形式导入Queries</p><pre><code>curl -F &quot;q=@queries.txt&quot; -F &quot;async=true&quot; 'http://localhost:8086/query'
+文本内容如下:
+CREATE DATABASE mydb;
+CREATE RETENTION POLICY four_weeks ON mydb DURATION 4w REPLICATION 1;
+</code></pre><p>示例4：通过WHERE字段指定tag value</p><pre><code>curl -G 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot; WHERE &quot;mytagkey&quot; = $tag_value' --data-urlencode 'params={&quot;tag_value&quot;:&quot;mytagvalue1&quot;}'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;myfieldkey&quot;,&quot;mytagkey&quot;],&quot;values&quot;:[[&quot;2016-09-05T18:25:08.479629934Z&quot;,9,&quot;mytagvalue1&quot;],[&quot;2016-09-05T18:25:20.892472038Z&quot;,8,&quot;mytagvalue1&quot;],[&quot;2016-09-05T18:25:30.408555195Z&quot;,10,&quot;mytagvalue1&quot;],[&quot;2016-09-05T18:25:39.108978991Z&quot;,111,&quot;mytagvalue1&quot;]]}]}]}
+</code></pre><p>示例5：通过WHERE字段指定数字区间</p><pre><code>curl -G 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot; WHERE &quot;myfieldkey&quot; &gt; $field_value' --data-urlencode 'params={&quot;field_value&quot;:9}'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;myfieldkey&quot;,&quot;mytagkey&quot;],&quot;values&quot;:[[&quot;2016-09-05T18:25:30.408555195Z&quot;,10,&quot;mytagvalue1&quot;],[&quot;2016-09-05T18:25:39.108978991Z&quot;,111,&quot;mytagvalue1&quot;],[&quot;2016-09-05T18:25:46.587728107Z&quot;,111,&quot;mytagvalue2&quot;]]}]}]}
+</code></pre><p>示例6：通过WHERE字段指定多个条件</p><pre><code>curl -G 'http://localhost:8086/query?db=mydb' --data-urlencode 'q=SELECT * FROM &quot;mymeas&quot; WHERE &quot;mytagkey&quot; = $tag_value AND  &quot;myfieldkey&quot; &gt; $field_value' --data-urlencode 'params={&quot;tag_value&quot;:&quot;mytagvalue2&quot;,&quot;field_value&quot;:9}'
+
+{&quot;results&quot;:[{&quot;series&quot;:[{&quot;name&quot;:&quot;mymeas&quot;,&quot;columns&quot;:[&quot;time&quot;,&quot;myfieldkey&quot;,&quot;mytagkey&quot;],&quot;values&quot;:[[&quot;2016-09-05T18:25:46.587728107Z&quot;,111,&quot;mytagvalue2&quot;]]}]}]}
+</code></pre><h3 id="write">/write</h3><p>/wirte只支持POST的HTTP请求，使用该Endpoint可以写数据到已存在的数据库中。<br><strong>定义：</strong><br>POST <a href="http://localhost:8086/write">http://localhost:8086/write</a></p><p><strong>Query参数说明：</strong></p><p>参数 是否可选 描述</p><hr><p>consistency=[any,one,quorum,all] 可选 设置point的写入一致性，默认是one.详细的请参考<a href="https://docs.influxdata.com/enterprise/v1.1/concepts/clustering#write-consistency"><strong>HERE</strong></a> db={db_name} 必选 设置数据库名 precision=[h,m,s,ms,u,n] 可选 指定时间戳的精度，默认是ns p={password} 可选 如果设置了认证，则需要用户密码 rp={rp_name} 可选 设置查询的rp。如果没有设置，则查询默认的rp u={username} 可选 如果设置了认证，则需要用户密码</p><p>示例1：使用秒级的时间戳，将一个point写入数据库mydb</p><pre><code>$ curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&amp;precision=s&quot; --data-binary 'mymeas,mytag=1 myfield=90 1463683075'
+</code></pre><p>示例2：将一个point写入数据库mydb，并指定RP为myrp</p><pre><code>$ curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&amp;rp=myrp&quot; --data-binary 'mymeas,mytag=1 myfield=90'
+</code></pre><p>示例3：使用HTTP认证的方式，将一个point写入数据库mydb</p><pre><code>$ curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&amp;u=myusername&amp;p=mypassword&quot; --data-binary 'mymeas,mytag=1 myfield=91'
+</code></pre><p>示例4：使用基础认证的方式，将一个point写入数据库mydb</p><pre><code>$ curl -i -XPOST -u myusername:mypassword &quot;http://localhost:8086/write?db=mydb&quot; --data-binary 'mymeas,mytag=1 myfield=91'
+</code></pre><p><strong>数据请求体：</strong></p><pre><code>--data-binary '&lt; Data in Line Protocol format &gt;'
+</code></pre><p>所有写入的数据必须是二进制，且使用<a href="https://docs.influxdata.com/influxdb/v1.1/concepts/glossary/#line-protocol"><strong>Line Protocol</strong></a>格式。</p><p>示例1：写多个points到数据库中,需要使用新的一行</p><pre><code>$ curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&quot; --data-binary 'mymeas,mytag=3 myfield=89
+mymeas,mytag=2 myfield=34 1463689152000000000'
+</code></pre><p>示例2：通过导入文件的形式，写入多个points。需要使用@来指定文件</p><pre><code>$ curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&quot; --data-binary @data.txt
+文件内容如下
+mymeas,mytag1=1 value=21 1463689680000000000
+mymeas,mytag1=1 value=34 1463689690000000000
+mymeas,mytag2=8 value=78 1463689700000000000
+mymeas,mytag3=9 value=89 1463689710000000000
+</code></pre><p><strong>响应的状态码：</strong></p><p>HTTP状态码 描述</p><hr><p>204 No Content 成功 400 Bad Request 不能接受的请求。可能是Line Protocol语法错误；写入错误的field values类型；等。。 404 Not Fount 不能接受的请求。可能是数据库不存在，或者别的原因 500 Internal Server Error 系统超负荷了或者明显受损。可能是用户企图去写一个不存在的RP。或者别的原因</p><h2 id="influxdb集群化">InfluxDB集群化</h2><p>InfluxDB v0.12及以上版本已经不再开源其集群部分代码，转为商业版本功能。<br>可以参考支持集群的最新版本v0.11。</p><h2 id="参考资料">参考资料</h2><p>1.官方概念介绍： <a href="https://docs.influxdata.com/influxdb/v1.1/concepts/key_concepts/">https://docs.influxdata.com/i&hellip;</a><br>2.InfluxDB详解之TSM存储引擎解析(一)： <a href="http://blog.fatedier.com/2016/08/05/detailed-in-influxdb-tsm-storage-engine-one/">http://blog.fatedier.com/2016&hellip;</a><br>　InfuxDB详解之TSM存储引擎解析(二)：<a href="http://blog.fatedier.com/2016/08/15/detailed-in-influxdb-tsm-storage-engine-two/">http://blog.fatedier.com/2016&hellip;</a></p></div><aside id="meta"><meta itemprop="wordCount" content="1930"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/influxdb.html" rel="tag">influxdb</a> <a href="/tags/kubernetes.html" rel="tag">kubernetes</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.html" rel="tag">数据库</a> <a href="/tags/%E7%9B%91%E6%8E%A7.html" rel="tag">监控</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html.html">Golang流式解析Json</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html.html">open-falcon开发笔记(一):从零开始搭建虚拟服务器和监测环境</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="9c315608f168b3d2d33009e736a80629"></div><div id="cyReward" role="cylabs" data-use="reward" sid="9c315608f168b3d2d33009e736a80629" style="text-align:center"></div><div id="SOHUCS" sid="9c315608f168b3d2d33009e736a80629"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fkubernetesjian-kong-zhi-influxdb.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fkubernetesjian-kong-zhi-influxdb.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

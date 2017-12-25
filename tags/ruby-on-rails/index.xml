@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/ruby-on-rails.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Ruby on Rails on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/ruby-on-rails.html</link>
+    <description>在 虞双齐的博客上关于in Ruby on Rails 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/ruby-on-rails.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:59 +0800</lastBuildDate>
+    <atom:link href="/tags/ruby-on-rails.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用Go代替Ruby将服务器数量从30降到2</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-godai-ti-rubyjiang-fu-wu-qi-shu-liang-cong-30jiang-dao-2.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-godai-ti-rubyjiang-fu-wu-qi-shu-liang-cong-30jiang-dao-2.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:59 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-godai-ti-rubyjiang-fu-wu-qi-shu-liang-cong-30jiang-dao-2.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-godai-ti-rubyjiang-fu-wu-qi-shu-liang-cong-30jiang-dao-2.html.html</guid>
       <description>使用另一种语言去重写一个服务，听起来是不是很折腾？然而云服务供应商Iron.io就这么做了，并成功的将服务器从30台降至了2台。Iron.io在其官方博客上公布了整个事件的始末，下面来了解一下：
 Iron.io与IronWorker Iron.io起初为帮助其它公司建立应用程序的咨询公司，现为云服务供应商。Iron.io开发IronWorker的理由同样很老套。
 之前说过Iron.io曾是家咨询公司，而在IronWorker开发的那段时间，AWS和Ruby on Rails是两个非常火的领域。而Iron.io有几个客户建立的硬件设施会不断的（7X24小时）给其发送数据，为了收集和处理这些数 据，Inro.io建立了他们自己的内部服务“worker as a service”。至于发行的原因就很老套了，在自己使用的同时，忽然觉得其它机构可能也会有类似的需求（很类似“书贩子”Amazon？），于是就诞生

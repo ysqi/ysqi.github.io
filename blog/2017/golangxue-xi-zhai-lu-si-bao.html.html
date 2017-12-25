@@ -1,0 +1,88 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang学习摘录四:包 |虞双齐的博客</title><meta name="description" content="包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html.html"><meta property="og:title" content="Golang学习摘录四:包"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-24 08:31:54"><meta property="article:modified_time" content="2017-02-24 08:31:54"><meta property="article:tag" content="golang"><meta name="og:description" content="包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html.html">Golang学习摘录四:包</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="http://www.jianshu.com/p/d9f5224be517" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-24">2017年02月24日</time></span></p></header><div itemprop="articleBody"><p>包是函数和数据的集合。用 package 关键字定义一个包。文件名不需要与包名 一致。包名的约定是使用小写字符。Go 包可以由多个文件组成,但是使用相同的 package &lt;name&gt; 这一行。</p><pre><code>package even
+func Even(i int) bool {
+  return i%2==0
+}
+func odd(i int) bool {
+  return i%2==1
+}
+</code></pre><p>名称以大写字母起始的是可导出的，可以在包的外部调用。<br>共有函数的名称以大写字母开头。<br>私有函数的名称以小写字母开头。</p><pre><code>package main
+import ( //导入下面的包
+  &quot;event&quot; //本地包even在这里导入
+  &quot;fmt&quot;
+)
+func main(){
+  i := 5
+  fmt.Printf(&quot;Is %d event? %v\n&quot;, i,event.Even(i))// 调用even包中的函数。访问一个包中的函数的语法是&lt;package&gt;.Function()。
+}
+</code></pre><p>Go程序的命名规则：包名约定小写字母开头；方法名最好使用驼峰式名称，避免使用下划线，方法名应简洁清晰。</p><h2 id="包的文档">包的文档</h2><p>每个包都应该有包注释,在 package 前的一个注释块。对于多文件包,包注释只需要 出现在一个文件前,任意一个文件都可以。包注释应当对包进行介绍,并提供相关于 包的整体信息。这会出现在 go doc 生成的关于包的页面上,并且相关的细节会一并 显示。<br>官方regexp包的例子：</p><pre><code> /*
+       The regexp package implements a simple library for
+       regular expressions.
+       The syntax of the regular expressions accepted is:
+       regexp:
+           concatenation  '|' concatenation
+   */
+   package regexp
+</code></pre><p>每个定义（并且导出）的函数应当有一小段文字描述该函数的行为。<br>fmt包的例子：</p><pre><code>   // Printf formats according to a format specifier and writes to standard
+   // output. It returns the number of bytes written and any write error
+   // encountered.
+   func Printf(format string, a ...interface) (n int, err error)
+</code></pre><h2 id="测试包">测试包</h2><p>在Go中为包编写单元测试应当是一种习惯。编写测试需要包含testing包和程序go test。两者都有良好的文档。<br>go test程序调用了所有的测试函数。<br>even包没有定义任何测试函数，执行go test，是这样的：</p><pre><code>% go test
+?    even  [no test files]
+</code></pre><p>在测试文件中定义一个测试来修复这个。测试文件也在包目录中，被命名为*_rest.go。这些测试文件同Go程序中的其他文件一样，但是go test只会执行测试函数。每个测试函数都有相同的标示，他的名字以Test开头：</p><pre><code>func TestXxx(t *testing.T)
+</code></pre><p>编写测试时，需要告诉go test测试是失败还是成功。测试成功则直接返回。当测 试失败可以用下面的函数标记 。</p><pre><code>func (t *T) Fail() // Fail标记测试函数失败，但仍然继续执行。
+func (t *T) FailNow() // FailNow标记测试函数失败，并且中断其执行。当前文件中的其余的测试将被跳过,然后执行下一个文件中的测试。
+func (t *T) Log(args ...interface{}) // Log 用默认格式对其参数进行格式化,与 Print() 类似,并且记录文本到错误日志。
+func (t *T) Fatal(args ...interface{}) // Fatal 等价于 Log() 后跟随 FailNow()。
+</code></pre><p>event_test.go</p><pre><code>package even // 测试使用与被测试的包使用相同的名称空间
+import &quot;testing&quot;
+func TestEven(t *testing.T) { // 定义测试函数
+  if ! Even(2) { 
+    t.Log(&quot;should be even!&quot;) 
+    t.Fail() 
+  }
+}
+</code></pre><h2 id="常用的包">常用的包</h2><p>标准的 Go 代码库中包含了大量的包,并且在安装 Go 的时候多数会伴随一起安装。浏 览 \$GOROOT/src/pkg 目录并且查看那些包会非常有启发。</p><ul><li>fmt<br>包 fmt 实现了格式化的 I/O 函数,这与 C 的 printf 和 scanf 类似。格式化短语 派生于 C 。一些短语(%-序列)这样使用:<br>%v<br>默认格式的值。当打印结构时,加号(%+v)会增加字段名; %#v<br>Go 样式的值表达;<br>%T<br>带有类型的 Go 样式的值表达;</li><li>io<br>这个包提供了原始的 I/O 操作界面。它主要的任务是对 os 包这样的原始的 I/O 进 行封装,增加一些其他相关,使其具有抽象功能用在公共的接口上。</li><li>bufio<br>这个包实现了缓冲的 I/O。它封装于 io.Reader 和 io.Writer 对象,创建了另 一个对象(Reader 和 Writer)在提供缓冲的同时实现了一些文本 I/O 的功能。</li><li>sort<br>sort 包提供了对数组和用户定义集合的原始的排序功能。</li><li>strconv<br>strconv 包提供了将字符串转换成基本数据类型,或者从基本数据类型转换为字 符串的功能。</li><li>os<br>os 包提供了与平台无关的操作系统功能接口。其设计是 Unix 形式的。</li><li>sync<br>sync 包提供了基本的同步原语,例如互斥锁。</li><li>flag<br>flag 包实现了命令行解析。参阅 “命令行参数” 在第 92 页。</li><li>encoding/json<br>encoding/json 包实现了编码与解码 RFC 4627 [2] 定义的 JSON 对象。</li><li>html/template<br>数据驱动的模板,用于生成文本输出,例如 HTML。<br>将模板关联到某个数据结构上进行解析。模板内容指向数据结构的元素(通常结 构的字段或者 map 的键)控制解析并且决定某个值会被显示。模板扫描结构以 便解析,而 “游标” @ 决定了当前位置在结构中的值。</li><li>net/http<br>net/http 实现了 HTTP 请求、响应和 URL 的解析,并且提供了可扩展的 HTTP 服 务和基本的 HTTP 客户端。</li><li>unsafe<br>unsafe 包包含了 Go 程序中数据类型上所有不安全的操作。通常无须使用这个。</li><li>reflect<br>reflect 包实现了运行时反射,允许程序通过抽象类型操作对象。通常用于处理静 态类型 interface{} 的值,并且通过 Typeof 解析出其动态类型信息,通常会返回 一个有接口类型 Type 的对象。</li><li>os/exec<br>os/exec 包执行外部命令。</li></ul></div><aside id="meta"><meta itemprop="wordCount" content="333"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html.html">Golang学习摘录六:接口</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go-reflectbao.html.html">Goreflect包</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="084f78f1094504833a487bc5b94e2a80"></div><div id="cyReward" role="cylabs" data-use="reward" sid="084f78f1094504833a487bc5b94e2a80" style="text-align:center"></div><div id="SOHUCS" sid="084f78f1094504833a487bc5b94e2a80"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangxue-xi-zhai-lu-si-bao.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangxue-xi-zhai-lu-si-bao.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

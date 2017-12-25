@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/gitbook.cn</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Gitbook.cn##管理 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/gitbook.cn#%23%E7%AE%A1%E7%90%86.html</link>
+    <description>在 虞双齐的博客上关于in Gitbook.cn##管理 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/gitbook.cn#%23%E7%AE%A1%E7%90%86.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 May 2017 08:58:05 +0800</lastBuildDate>
+    <atom:link href="/tags/gitbook.cn#%23%E7%AE%A1%E7%90%86.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>可视化管理六原则</title>
-      <link>https://yushuangqi.com/blog/2017/ke-shi-hua-guan-li-liu-yuan-ze.html</link>
+      <link>https://yushuangqi.com/blog/2017/ke-shi-hua-guan-li-liu-yuan-ze.html.html</link>
       <pubDate>Wed, 24 May 2017 08:58:05 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ke-shi-hua-guan-li-liu-yuan-ze.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/ke-shi-hua-guan-li-liu-yuan-ze.html.html</guid>
       <description>一、精益可视化发展历程 精益思想是人类历史上的一个重大发明。每个被精益触达的行业都会出现10倍生产率提升。而可视化是精益中一种重要实践，下面将概述一下精益可视化的发展历史。
 精益发展可以分成四个大的阶段：1. 流水线生产阶段；2. 精益生产阶段；3. 精益管理阶段；4. 精益创新阶段。流水线生产最知名的案例是福特的T型车生产线，它将汽车的生产周期从12.5个小时缩短到1.5个小时。流水线就是对生产过程的可视化管理。
 精益生产阶段发展出的可视化手段是价值流建模（Value Stream Mapping）。在价值流中，流动的是价值单元，生产就是一个价值单元不断流动，不断增值的过程，而精益生产的目标就是让价值单元流动的更快，实现更快速增值。

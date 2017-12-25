@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/import.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Import on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/import.html</link>
+    <description>在 虞双齐的博客上关于in Import 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/import.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Mar 2016 10:44:36 +0800</lastBuildDate>
+    <atom:link href="/tags/import.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>理解Go import</title>
-      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</link>
+      <link>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html.html</link>
       <pubDate>Tue, 08 Mar 2016 10:44:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html.html</guid>
       <description>Go 的源代码是按 package 方式组织，再通过 import 引入使用。在理解 improt 前有必要来罗嗦下 Go 的代码组织结构 和理解 package。
 工作目录 在 Go 中代码保持在称之为 workspace 的系统文件夹中。这个工作目录下有三个根目录：
  bin 包含可执行文件 。 pkg 包含不同操作系统架构的包二进制文件。相当于编译后的库文件。 src 包含按包方式组织的源代码。  其中 bin 和 pkg 文件夹是在调用 go 命令安装和编译源代码时自动生成。而 src 下可组织多个包，且能使用版本控制工具。
@@ -24,7 +25,7 @@ export GOPATH=/home/dev/gowork/  导入包 improt 便是用一个独一无二的
 标准包使用的是给定的短路径，如“fmt”、“net/http”，但你自己的包，需要在工作目录下指定一个目录，同时预防和以后的代码包路径发生冲突。以便我们作为个人开发者，基于 github 的话，那么我们可以建立自己的代码基目录，github.com/user 。
 improt 则导入包，既然是包地址，实际上就是基于工作目录的文件夹目录。如：
 先创建代码库: $GOPATH/src/ysqi/lib/lib.go
-package lib import &amp;quot;fmt&amp;quot; func SayHello() { fmt.Println(&amp;quot;Hello,YSQ :) &amp;quot;) }  再新建一个App：$GOPATH/src/ysqi/app/main.</description>
+package lib import &amp;#34;fmt&amp;#34; func SayHello() { fmt.Println(&amp;#34;Hello,YSQ :) &amp;#34;) } 再新建一个App：$GOPATH/src/ysqi/app/main.</description>
     </item>
     
   </channel>

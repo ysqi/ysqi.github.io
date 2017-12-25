@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/mgo.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Mgo on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/mgo.html</link>
+    <description>在 虞双齐的博客上关于in Mgo 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/mgo.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:35:01 +0800</lastBuildDate>
+    <atom:link href="/tags/mgo.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Golangmgo驱动指定Mongo服务器读取</title>
-      <link>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html.html</guid>
       <description>Replica Sets搭建 服务器采用Replica Sets搭建，可参考Deploy a Replica Set
 读模式 Mongod的读模式共有五种：
  primary. 在主节点上进行所有的读操作 primaryPreferred. 优先在主节点上进行读操作，如果主节点不可用，再从从节点操作。 secondary.所有的读操作在从节点上进行。 secondaryPreferred.优先在从节点进行读操作，如果所有从节点都不可用，再从主节点操作。 nearest. 根据网络延迟时间 ，就近进行读操作，不考虑节点类型。  配置节点Tags Sets Tag sets 允许指定一个replica set进行读操作，其中Mongod的读模式必须是以下四种之一：

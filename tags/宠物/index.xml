@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%AE%A0%E7%89%A9.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>宠物 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%AE%A0%E7%89%A9.html</link>
+    <description>在 虞双齐的博客上关于in 宠物 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%AE%A0%E7%89%A9.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2017 09:32:00 +0000</lastBuildDate>
+    <atom:link href="/tags/%E5%AE%A0%E7%89%A9.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>你误会蟑螂了</title>
-      <link>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</link>
+      <link>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html.html</link>
       <pubDate>Sat, 15 Jul 2017 09:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html.html</guid>
       <description>一说蟑螂，就鸡皮疙瘩一顿爆。其实你误会蟑螂了！
 对蟑螂的普遍看法
  恶心 南方蟑螂大，会飞 跑得快 有传染病  其实你的偏见都是来自于出没于居家环境中的蟑螂。

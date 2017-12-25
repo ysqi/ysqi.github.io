@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E7%BD%91%E7%AB%99.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>网站 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E7%BD%91%E7%AB%99.html</link>
+    <description>在 虞双齐的博客上关于in 网站 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E7%BD%91%E7%AB%99.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:58 +0800</lastBuildDate>
+    <atom:link href="/tags/%E7%BD%91%E7%AB%99.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Goji-基于Go语言的微型web框架</title>
-      <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</link>
+      <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:58 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html.html</guid>
       <description>Goji 是一个基于 Go 的微型 web 框架，其设计受到了 Sinatra 的启发。
 示例 一个简单的 Hello World 示例
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;github.com/zenazn/goji&amp;quot; &amp;quot;github.com/zenazn/goji/web&amp;quot; ) func hello(c web.C, w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello, %s!&amp;quot;, c.URLParams[&amp;quot;name&amp;quot;]) } func main() { goji.Get(&amp;quot;/hello/:name&amp;quot;, hello) goji.Serve() }  Goji 的代码的 example 目录下包含了一个示例应用

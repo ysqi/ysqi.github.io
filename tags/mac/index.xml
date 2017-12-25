@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/mac.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Mac on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/mac.html</link>
+    <description>在 虞双齐的博客上关于in Mac 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/mac.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Aug 2016 09:08:27 +0800</lastBuildDate>
+    <atom:link href="/tags/mac.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何使用MAC远程连接Win10操作系统</title>
-      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html.html</link>
       <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html.html</guid>
       <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
 那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
  提示“远程桌面连接无法验证您希望连接的计算机的身份”。
@@ -27,10 +28,10 @@
     
     <item>
       <title>Mac下安装Redis用于开发测试</title>
-      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</link>
       <pubDate>Sat, 15 Aug 2015 09:12:01 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</guid>
       <description>Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开发程序使用Redis的安装过程。
 下载Redis安装包 上一篇文章我说了如何在Mac下快速安装Wget，因此下载Redis安装包就可以利用wget命令了。
  首先到下载列表看看最新的版本是什么  国内快速的查看Redis地址： http://www.redis.cn/download.html
@@ -41,10 +42,10 @@ Redis server v=3.0.3 sha=00000000:0 malloc=libc bits=64 build=abcd09569d8d24f9  
     
     <item>
       <title>MAC下快速安装Wget</title>
-      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</link>
       <pubDate>Sat, 15 Aug 2015 08:45:07 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</guid>
       <description> wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。
 安装Wget前提条件 Mac已安装Xcode，我相信Mac下的开发人员必然会安装Xcode
 下载安装包 GUN Wget FTP下载地址:http://www.gnu.org/software/wget/

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/linux.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Linux on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/linux.html</link>
+    <description>在 虞双齐的博客上关于in Linux 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/linux.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 May 2017 09:17:30 +0800</lastBuildDate>
+    <atom:link href="/tags/linux.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>golang使用原始套接字构造UDP包</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html.html</link>
       <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html.html</guid>
       <description>https://segmentfault.com/a/
 RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA)三种套接字。原始套接字能够对底层传输进行控制，允许自行组装数据包，比如修改本地IP，发送Ping包，进行网络监听。这里不做详细介绍，要了解更多可以网上自己查询。
 实现 这里先看IP头结构：
@@ -27,10 +28,10 @@ func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n
     
     <item>
       <title>PDO批量并发执行SSH工具介绍</title>
-      <link>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</link>
+      <link>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:06 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html.html</guid>
       <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具.
 本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离出其中都可以使用的部分.
  工具名称: pdo(parallel do something) https://github.com/ohlinux/pdo  安装 依赖  需要有一个中控机与被管理机器建立了无密码的密钥关系. 需要有go语言的环境,进行编译安装.这里没有提供bin文件. 自己所测试的环境有,centos macos.  编译 先获取依赖的第三方库:
@@ -43,10 +44,10 @@ pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三�
     
     <item>
       <title>统一配置管理工具confd</title>
-      <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</link>
+      <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html.html</guid>
       <description>confd Github: https://github.com/sumory/confd
 confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。
 你可以用它：
@@ -67,10 +68,10 @@ confd是一个统一配置管理工具，目前仍在开发中，基于本地文
     
     <item>
       <title>shipyard中文版发布</title>
-      <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</link>
+      <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html.html</guid>
       <description> shipyard中文版正式发布  一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括：
  支持节点动态集群，可扩展节点的规模（swarm、etcd方案）
  支持镜像管理、容器管理、节点管理等功能
@@ -83,10 +84,10 @@ confd是一个统一配置管理工具，目前仍在开发中，基于本地文
     
     <item>
       <title>centos7下安装go语言</title>
-      <link>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</link>
+      <link>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html.html</guid>
       <description>1.下载 并且 安装 Go安装包
 百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg
 ===========================================================
@@ -103,10 +104,10 @@ $ go version  go version go1.5.2 linux/amd64</description>
     
     <item>
       <title>RemoteTail-集群日志同步查看小工具</title>
-      <link>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</link>
+      <link>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:03 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html.html</guid>
       <description>RemoteTail 是一款支持同步显示多台远程服务器的日志文件内容更新的工具，使用它可以让你同时监控多台服务器中某个（某些）日志文件的变更，将多台服务器的tail -f xxx.log命令的输出合并展示。
 使用场景 假设公司有两台web服务器A和B，由于初期没有专业运维进行配置集中式的日志服务系统，两台服务器上分别部署了两套相同的代码提供web服务，使用nginx作为负载均衡，请求根据设定的策略转发的这两台web服务器上。
 AB两台服务器中的项目均将日志写到文件系统的/home/data/logs/laravel.log文件。这种情况下如果我们需要查看web日志是否正常，一般情况下就需要分别登陆两台服务器，然后分别执行tail -f /home/data/logs/laravel.log查看日志文件的最新内容，这在排查问题的时候是非常不方便的。RemoteTail就是为了解决这种问题的，开发人员可以使用它同步显示两台（多台）服务器的日志信息。
@@ -121,10 +122,10 @@ remote-tail -conf=example.toml  如果对本项目感兴趣，欢迎关注 https
     
     <item>
       <title>一条命令即可将Vim配置为功能强大的IDE</title>
-      <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html.html</guid>
       <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
 安装：
 curl -o - https://raw.githubusercontent.com/HmyBmny/vimrc/master/install-vim-plugins | sh  部分插件的使用需要安装一些依赖，诸如 ctags 之类的，具体请参考：https://github.com/HmyBmny/vimrc
@@ -137,10 +138,10 @@ Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配�
     
     <item>
       <title>open-falcon开发笔记(一):从零开始搭建虚拟服务器和监测环境</title>
-      <link>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</link>
+      <link>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html.html</guid>
       <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在
 open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以有必要写篇文章记一下。
 这篇文章主要包括：

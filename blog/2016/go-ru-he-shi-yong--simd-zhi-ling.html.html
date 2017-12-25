@@ -1,0 +1,92 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>go如何使用SIMD指令 |虞双齐的博客</title><meta name="description" content="Java SIMD Lucene Elasticsearch 我们首先来看一下 JAVA 如何使用 "><meta name="keywords" content="lucene, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html.html"><meta property="og:title" content="go如何使用SIMD指令"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:26"><meta property="article:modified_time" content="2016-12-31 11:34:26"><meta property="article:tag" content="lucene"><meta property="article:tag" content="golang"><meta name="og:description" content="Java SIMD Lucene Elasticsearch 我们首先来看一下 JAVA 如何使用 "><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html.html">go如何使用SIMD指令</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000002982384" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h2 id="java-simd-lucene-elasticsearch">Java SIMD Lucene Elasticsearch</h2><p>我们首先来看一下 JAVA 如何使用 CPU 的 SIMD 指令。这是一个ru的哥们尝试在lucene里使用SIMD指令加速lucene的postings list（也就是指定term对应的文档id列表）的解码：</p><p><a href="http://blog.griddynamics.com/2015/02/proposing-simd-codec-for-lucene.html">http://blog.griddynamics.com/2015/02/proposing-simd-codec-for-lucene.h&hellip;</a><br><a href="https://www.youtube.com/watch?v=2HQdbpgHfnQ&amp;index=15&amp;list=PLq-odUc2x7i-_qWWixXHZ6w-MxyLxEC7s">https://www.youtube.com/watch?v=2HQdbpgHfnQ&amp;index=15&amp;list=PLq-&hellip;</a></p><p>最重要的结论就是 java 自身还不支持JIT（运行时产生的机器码）出SIMD指令。如果用 c/asm 编写 SIMD 的代码，在 java 里调用的话 JNI 本身的开销抵消了 SIMD 带来的好处。所以最终需要使</p><p>用一种更底层的方式访问 native 代码：</p><p><a href="http://stackoverflow.com/questions/24746776/what-does-a-jvm-have-to-do-when-calling-a-native-method/24747484#24747484">http://stackoverflow.com/questions/24746776/what-does-a-jvm-have-to-do&hellip;</a></p><p>值得一提的是 elasticsearch 从 2.0 大幅加强了 aggregation，现在已经开始支持 pipeline 了。可以写出类似 select sum(money) / sum(users_count) from payment 之类的代码了。自然 SIMD 的优化也可以做到 aggregation 阶段里去。</p><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/search-aggregations-pipeline-bucket-script-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/master/search-&hellip;</a></p><h2 id="go-cgo">Go CGO</h2><p>CGO 慢，显而易见。</p><p><a href="https://github.com/golang/go/blob/master/src/runtime/cgocall.go">https://github.com/golang/go/blob/master/src/runtime/cgocall.go</a></p><p>具体来说就是这几行</p><pre><code>    /*
+     * Announce we are entering a system call
+     * so that the scheduler knows to create another
+     * M to run goroutines while we are in the
+     * foreign code.
+     *
+     * The call to asmcgocall is guaranteed not to
+     * split the stack and does not allocate memory,
+     * so it is safe to call while &quot;in a system call&quot;, outside
+     * the $GOMAXPROCS accounting.
+     */
+    entersyscall(0)
+    errno := asmcgocall(fn, arg)
+    exitsyscall(0)
+</code></pre><p>每次调用 c 的函数都假设了这个函数是阻塞的。entersyscall 会保存当前协程的堆栈信息。所以Go的策略和Java一样，通过让JNI很慢，迫使用户把尽可能多的代码都写到Go里。</p><h2 id="go-plan9-assembly">Go Plan9 Assembly</h2><p>Go有两个编译器，一个是gc（go compiler），一个是gccgo（用的是gcc的后端）。gc编译器是把代码从go编译成plan 9的汇编。plan 9的汇编不是平台无关的，而是每个平台有一个版本，然后和这</p><p>个平台本身的汇编语法又有不同。<br>首先我们可以来看一下 gc 编译器是不是会产生 SIMD 指令：</p><p><a href="https://github.com/golang/go/blob/master/src/cmd/compile/internal/amd64/prog.go">https://github.com/golang/go/blob/master/src/cmd/compile/internal/amd6&hellip;</a></p><p>可以看到，在这个列表里是没有 ADDPD 这样的 SIMD 指令的。说明 gc 编译器目前还不支持把普通的加法编译成向量加法。用 Intel 的编译器，如果把代码协程 struct of array 的形式而不是</p><p>array of struct 形式的话，编译器可以自动做向量化优化。显然 gc 编译器还没有把这个做为一个优化方向。</p><p><a href="https://software.intel.com/sites/default/files/8c/a9/CompilerAutovectorizationGuide.pdf">https://software.intel.com/sites/default/files/8c/a9/CompilerAutovecto&hellip;</a></p><p>虽然gc编译器不支持 SIMD，但是其 plan9 的 assembler 是支持在 amd64 的 SIMD 指令的。</p><p><a href="https://github.com/golang/go/blob/master/src/cmd/internal/obj/x86/asm6.go">https://github.com/golang/go/blob/master/src/cmd/internal/obj/x86/asm6&hellip;</a></p><p>其中有 AADDPD （也就是 ADDPD）。而 Go 是支持在代码里混用 go 和 plan9 汇编的。所以 gonum 这个项目就写了一些 plan9 汇编来优化性能：</p><p><a href="https://github.com/gonum/internal/blob/master/asm/ddot_amd64.s">https://github.com/gonum/internal/blob/master/asm/ddot_amd64.s</a></p><p>简单做了一个benchmark：</p><pre><code>package main
+
+import &quot;fmt&quot;
+import &quot;simd/asm&quot;
+import &quot;testing&quot;
+
+func BenchmarkFunction(b *testing.B) {
+    x := make([]float64, 10000)
+    for i := 0; i &lt; len(x); i++ {
+        x[i] = float64(i)
+    }
+    y := make([]float64, 10000)
+    for i := 0; i &lt; len(y); i++ {
+        y[i] = float64(i)
+    }
+    for i := 0; i &lt; b.N; i++ {
+        _ = asm.DdotUnitary(x, y)
+    }
+}
+
+func main() {
+    br := testing.Benchmark(BenchmarkFunction)
+    fmt.Println(br)
+}
+</code></pre><p>使用 SIMD 版本的点乘，速度为 4616 ns/op。使用非 SIMD 版本的点乘，速度为 12340 ns/op。目前 Go 并不支持 inline plan9 的汇编代码。也就是汇编写的函数每次调用都要付出一个函数call</p><p>的成本，也就是没法当成 SIMD intrinsics 那样来用。不过仍然比 java 强多了……</p><h2 id="gccgo">GCCGO</h2><p>Go还有另外一个编译器。它提供了另外一种Cgo的方式，extern。</p><p><a href="https://golang.org/doc/install/gccgo">https://golang.org/doc/install/gccgo</a></p><p>使用 extern 可以把任意的 c 的代码链接到 go 代码里来。至于 scheduler 和 garbage collector 这些就自己好自为之了。甚至类型互相转换的细节都还是 subject to change 的。可以把它理解</p><p>为去掉了安全保护的 cgo。</p><p>利用这条路也可以把 SIMD 指令链接到 go 代码里来使用：</p><p><a href="http://stackoverflow.com/questions/2951028/is-it-possible-to-include-inline-assembly-in-google-go-code">http://stackoverflow.com/questions/2951028/is-it-possible-to-include-i&hellip;</a></p><p>使用 gccgo 可能还可以把这些 SIMD 调用在link时做inline：</p><p><a href="https://groups.google.com/forum/#!topic/golang-nuts/kGgkcOFCBtc">https://groups.google.com/forum/#!topic/golang-nuts/kGgkcOFCBtc</a><br><a href="https://groups.google.com/forum/#!topic/golang-nuts/TqMTWdYGKOk">https://groups.google.com/forum/#!topic/golang-nuts/TqMTWdYGKOk</a></p><p>引用一段</p><pre><code>Answering specifically about gccgo.  Gccgo is of course just a 
+frontend to GCC.  GCC can not inline functions written in pure 
+assembly.  However, GCC provides CPU-specific builtin functions usable 
+in C/C++ for many things that people want to do (e.g., vector 
+instructions) and it also provides a sophisticated asm expression as a 
+C/C++ extension.  This means that you can write your assembly code in 
+extended C/C++ instead, and a function written that way can be 
+inlined.  It can even be inlined into Go code if you use LTO 
+(link-time optimization, see GCC's -flto options). 
+</code></pre><h2 id="总结">总结</h2><p>Go有三种调用native的代码的方式：</p><ul><li>cgo</li><li>plan9 assembly</li><li>gccgo extern</li></ul><p>相比Java的JNI来说，可选项更多。不远的将来 go 可以在 spark/lucene 这两个领域从速度上超过 Java。<br>go 1.5 的编译器已经是用 go 写的。也许将来 go 的编译器可以和 Intel 的编译器一样，自动产生向量化的代码。</p></div><aside id="meta"><meta itemprop="wordCount" content="436"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/lucene.html" rel="tag">lucene</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html.html">beego自动化文档</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/goyu-yan-de-yi-xie-tu-cao.html.html">go语言的一些吐槽</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="337cbafbc9e85976293c3fb7b45026e7"></div><div id="cyReward" role="cylabs" data-use="reward" sid="337cbafbc9e85976293c3fb7b45026e7" style="text-align:center"></div><div id="SOHUCS" sid="337cbafbc9e85976293c3fb7b45026e7"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-ru-he-shi-yong--simd-zhi-ling.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgo-ru-he-shi-yong--simd-zhi-ling.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

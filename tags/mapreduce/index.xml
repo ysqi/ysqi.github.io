@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/mapreduce.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Mapreduce on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/mapreduce.html</link>
+    <description>在 虞双齐的博客上关于in Mapreduce 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/mapreduce.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:27 +0800</lastBuildDate>
+    <atom:link href="/tags/mapreduce.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>老司机带你用Go语言实现MapReduce框架</title>
-      <link>https://yushuangqi.com/blog/2016/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--mapreduce-kuang-jia.html</link>
+      <link>https://yushuangqi.com/blog/2016/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--mapreduce-kuang-jia.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--mapreduce-kuang-jia.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--mapreduce-kuang-jia.html.html</guid>
       <description>MapReduce 是 Google 提出的一个软件架构，用于大规模数据集（大于1TB）的并行运算。简而言之，就是将任务切分成很小的任务然后一个一个区的执行最后汇总，这就像小时候我们老师经常教育我们一样，大事化小，小事化了（瞬间感觉那时候老师好言简意赅啊!!!）思想就这么一个思想，那么按照这个思想在现代软件定义一切的世界里面，我们怎么运用这样的方式来解决海量数据的处理，这篇就告诉你一个这样的一个简单的实现使用 Go 语言。
 上车了  简单介绍一下几个概念：
  概念“Map（映射）”和“Reduce（归纳）”，及他们的主要思想，都是从函数式编程语言借来的，还有从矢量编程语言借来的特性。当前的软件实现是指定一个 Map（映射）函数，用来把一组键值对映射成一组新的键值对，指定并发的 Reduce（归纳）函数，用来保证所有映射的键值对中的每一个共享相同的键组。

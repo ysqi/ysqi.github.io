@@ -1,0 +1,112 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>beego自动化部署 |虞双齐的博客</title><meta name="description" content="beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一"><meta name="keywords" content="shell, 部署, bee, beego, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html"><meta property="og:title" content="beego自动化部署"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:34"><meta property="article:modified_time" content="2016-12-31 11:33:34"><meta property="article:tag" content="shell"><meta property="article:tag" content="部署"><meta property="article:tag" content="bee"><meta property="article:tag" content="beego"><meta property="article:tag" content="golang"><meta name="og:description" content="beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html">beego自动化部署</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000005165491" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><code>beego</code>是Golang写的应用程序开源框架<a href="http://beego.me/">http://beego.me/</a>，我使用<code>beego</code>写了一个项目小项目，golang是编译语言，需要编译之后再部署，每次部署到服务上是件很麻烦的事情。就写了一个自动打包部署到服务器的脚本，方便发布部署。</p><h2 id="项目结构">项目结构</h2><p>先看看beego项目的结构：</p><pre><code>beepkg
+|-- conf
+|   `-- app.conf
+|-- controllers
+|   `-- default.go
+|-- main.go
+|-- models
+|-- routers
+|   `-- router.go
+|-- static
+|   |-- css
+|   |-- img
+|   `-- js
+|-- tests
+|   `-- default_test.go
+`-- views
+    `-- index.tpl  
+</code></pre><p>其中<code>controllers</code>，<code>views</code>.<code>models</code>以及其他的.go文件会被打包成可执行文件<strong>beepkg</strong>。<br>而静态文件<code>static</code>以及<code>conf</code>文件不会被编译，需要打包上传部署到服务器上。<br>因此在打包文件的时候需要忽略一些文件：</p><pre><code>1.go文件，已经编译成可执行文件
+2.本地生成的一些临时文件
+3.项目的一些配置文件
+</code></pre><p>因此我们在使用<code>bee pack</code>打包的时候需要忽略这些文件，<code>bee pack</code>在编译之后压缩的的时候会默认忽略这三种文件:.go:.DS_Store:.tmp。因此我们只需要忽略其他的文件即可。<br>使用命令<code>-exr</code>用正则表达式忽略文件：</p><blockquote><p>bee pack -be GOOS=linux -ba -exr=&rsquo;\^[0-9a-f]|[*.iml]\$&rsquo;</p></blockquote><p>因为使用了文件存储的session，本地目录下会生成session的文件夹需要忽略打包<code>[0-9a-f]</code>,<code>[*.iml]</code>是IntelliJ生成的项目配置文件,在打包的时候需要忽略这些文件。</p><h2 id="打包脚本">打包脚本</h2><p>打包beego项目，同步到服务端，需要做三件事情:</p><pre><code>1.更新代码
+2.编译可执行文件，打包资源
+3.同步到压缩包到服务器
+4.服务器解压，重启应用程序
+</code></pre><p>首先是第一步更新代码:</p><pre><code>git reset HEAD --hard
+git pull origin master
+</code></pre><p>然后需要编译可执行文件和打包资源:</p><pre><code>bee pack -be GOOS=linux  -ba -exr='^[0-9a-f]|[*.iml]$'
+</code></pre><p>同步压缩包到服务器:</p><pre><code>scp .tar.gz  jjz@192.168.1.10:/root/goapp/beepkg
+</code></pre><p>解压和重启服务需要在服务器端执行，可以通过<code>ssh</code>执行在服务器端执行脚本:</p><pre><code>ssh jjz@192.168.1.10 'bash -s' &lt; restart.sh
+</code></pre><h2 id="supervisor">Supervisor</h2><p>服务器端可以使用<code>tar</code>命令解压文件,但是如何重启应用程序呢,在服务器端可以使用<code>Supervisor</code>管理beego进程，重启应用程序。<br><code>Supervisor</code>是一个*python*写的进程管理工具，用途就是有一个进程需要每时每刻不断的跑(web服务)，但是这个进程又有可能由于各种原因有可能中断。当进程中断的时候又希望能自动重启它，这个时候，我们就需要使用<code>Supervisor</code>，这里我们更多的是利用<code>Supervisor</code>的重启进程功能。</p><p>安装Supervisor:</p><blockquote><p>pip install supervisor</p></blockquote><p>初始化配置文件:</p><blockquote><p>echo_supervisord_conf &gt;/etc/supervisord.conf</p></blockquote><p>修改配置文件<code>/etc/supervisord.conf</code>添加配置:</p><pre><code>;指定进程名称
+[program:beepkg]
+directory=/opt/goapp/beepkg
+command=/opt/goapp/beepkg
+autostart=true
+user=root
+redirect_stderr=true
+stdout_logfile =/var/log/supervidrod/beepkg.log
+</code></pre><p>启动<code>Supervisor</code>：</p><blockquote><p>supervisord -c /etc/supervisord.conf</p></blockquote><p>使用<code>supervisorctl</code>命令可以进入shell界面，管理<code>program</code>。<br>比如：</p><pre><code>#启动进程
+strat beepkg
+#停止进程
+stop beepkg
+#重启进程
+restart beepkg
+</code></pre><p>注意如果<code>Supervisor</code>的配置文件更改之后一定要使用<code>reload</code>才能使配置修改的配置文件生效。</p><p>在修改配置文件的过程中，遇到了一个错误</p><pre><code> * Starting Supervisor daemon manager...
+    Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.
+    For help, use /usr/bin/supervisord -h
+   ...fail!
+</code></pre><p>解决办法：</p><pre><code>find / -name supervisor.sock
+unlink /tmp/supervisor.sock
+</code></pre><h2 id="最终脚本">最终脚本</h2><p>解压文件并重启服务的脚本<code>restart.sh</code>:</p><pre><code>#! /bin/bash
+#默认进入的是登录用户的目录
+cd test/bee
+tar -xzvf beepkg.tar.gz
+#remove conf of dev
+rm -rf conf/app.conf
+cp conf/app.conf.bat conf/app.conf
+supervisorctl restart beepkg
+</code></pre><p>本地开发环境部署脚本<code>deploy.sh</code>:</p><pre><code>#! /bin/bash
+echo 'update code'
+git reset HEAD --hard
+git pull origin master
+echo 'pack'
+bee pack -be GOOS=linux -exr='^[0-9a-f]|[*.iml]$'
+echo 'upload'
+scp beepkg.tar.gz  jjz@192.168.1.10:/root/goapp/beepkg
+echo 'restart'
+ssh jjz@192.168.1.10 'bash -s' &lt; restart.sh
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="232"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/bee.html" rel="tag">bee</a> <a href="/tags/beego.html" rel="tag">beego</a> <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/shell.html" rel="tag">shell</a> <a href="/tags/%E9%83%A8%E7%BD%B2.html" rel="tag">部署</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html">nsqjs客户端的部署</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html.html">开源了一个简单的http服务压测工具Alex自带webuigolang实现</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="293849e3eada1e763a9927930e09b38b"></div><div id="cyReward" role="cylabs" data-use="reward" sid="293849e3eada1e763a9927930e09b38b" style="text-align:center"></div><div id="SOHUCS" sid="293849e3eada1e763a9927930e09b38b"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fbeegozi-dong-hua-bu-shu.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fbeegozi-dong-hua-bu-shu.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

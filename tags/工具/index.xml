@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%B7%A5%E5%85%B7.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>工具 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%B7%A5%E5%85%B7.html</link>
+    <description>在 虞双齐的博客上关于in 工具 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%B7%A5%E5%85%B7.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Jul 2017 21:01:02 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%B7%A5%E5%85%B7.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>简述电子邮件发展历史</title>
-      <link>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</link>
+      <link>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html.html</link>
       <pubDate>Sun, 02 Jul 2017 21:01:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html.html</guid>
       <description>平均每天发送10封邮件，日常工作中邮件是重要的沟通方式。虽然现在也有QQ消息，微信等其他即使通讯工具，但思想都源于电子邮件。
 是否有兴趣了解电子邮件的发展历史？这里虞双齐多方收集资料，整理成文，以简述电子邮件发展历史。
 电子邮件的启蒙期 70年代计算机已被各研究机构使用，美国军方机构为最。当时美国军方分支机构ARPA「高等研究计划署 （Advanced Research Projects Agency）」为美国军事机构之间的信息交流做防护而设计为异地间的计算机之间进行信息交换的网络ARPANET（阿帕网），此网乃当今互联网的鼻祖。
@@ -44,10 +45,10 @@
     
     <item>
       <title>给电脑小白精挑细选的五个免费软件</title>
-      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html.html</link>
       <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html.html</guid>
       <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？
 下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则： + 免费
 + 提升效率

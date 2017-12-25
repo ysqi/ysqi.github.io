@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>语法 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95.html</link>
+    <description>在 虞双齐的博客上关于in 语法 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E8%AF%AD%E6%B3%95.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:44 +0800</lastBuildDate>
+    <atom:link href="/tags/%E8%AF%AD%E6%B3%95.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>为什么Go语言把类型放在后面？</title>
-      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</link>
+      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</guid>
       <description>本文整理自知乎，原文作者 @林建入。
 不是为了与众不同。而是为了更加清晰易懂。
 Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blog.golang.org/gos-declaration-syntax），简略翻译如下（水平有限翻译的不对的地方见谅）：

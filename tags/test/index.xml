@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/test.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Test on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/test.html</link>
+    <description>在 虞双齐的博客上关于in Test 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/test.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:58 +0800</lastBuildDate>
+    <atom:link href="/tags/test.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>对beego的控制器函数进行单测</title>
-      <link>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</link>
+      <link>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:58 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html.html</guid>
       <description>根据astaxie大神的意见，在beego上对controller做单测比较困难，他的建议就是把所有逻辑都拆分出来，放到model中。然后对model中的public函数进行测试。
 但是这就会多很多封装，而且，有些时候对controller的测试可能是绕不开的。
 其实对controller进行单测也不是那么麻烦，重点就是把http需要的Request和ResponseWriter需要的数据都构造出来即可。

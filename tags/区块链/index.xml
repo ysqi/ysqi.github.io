@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>区块链 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.html</link>
+    <description>在 虞双齐的博客上关于in 区块链 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Dec 2017 07:29:55 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>理解与计算比特币难度值Difficulty</title>
-      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html.html</link>
       <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html.html</guid>
       <description>挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。
 那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。
 游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。 这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。
 比特币难度值Difficulty 难度值在区块中并不记录，仅仅是为了人类直观感受解题难度而演变出的一个浮点数。公式如下： $$ diffculty = \dfrac{difficulty\_1\_target }{ currentTarget} $$
 此处的 difficulty_1_target 为一个常数，非常大的一个数字。表示矿池挖矿最大难度。目标值越小，区块生成难度越大。
 难度值如何存储在区块中的 在区块中存储的是Target，但是将Target经类似于浮点数的一种压缩表示法，字段为bits。例如，如果区块bits记录为0x1b0404cb，那么他表示的十六进制的Target值为：
-0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000  在计算时，后面3个字节0x0404cb作为底，前面1字节0x1b表示次方数。具体压缩过程如下：
+0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000 在计算时，后面3个字节0x0404cb作为底，前面1字节0x1b表示次方数。具体压缩过程如下：
  将数字转换为256进制数 如果第一位数字大于127(0x7f),则前面添加0 压缩结果中的第一位存放该256进制数的位数 后面三个数存放该256进制数的前三位，如果不足三位，则后面补零  例如，将数字1000压缩，先转换为256进制数
-1000 = 0x03 * 256 + 0xe8 * 1  那么是由两个数字构成：
-03 e8  第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：0x0203e800 。
+1000 = 0x03 * 256 + 0xe8 * 1 那么是由两个数字构成：
+03 e8 第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：0x0203e800 。
 有比如数字 2^(256-32)-1,转换为256进制为：
-ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  第一位已经超过0x7f,前面添加零：</description>
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 第一位已经超过0x7f,前面添加零：</description>
     </item>
     
     <item>
       <title>解析比特币区块</title>
-      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
+      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html.html</link>
       <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html.html</guid>
       <description>在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：
  Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat Windows: %APPDATA%/Bitcoin/blocks/blkXXXX.dat  通过Go代码的方式，一步一步讲解比特币区块的解析逻辑。
 下图是比特币区块数据结构，主要由区块头和交易清单组成。    项 name 字节 用途     神奇数 magic 4 固定为0xD9B4BEF9,作为区块间的分隔符   区块大小 block_size 4 记录当前区块的大小   区块头信息 header 80 记录当前区块的头部信息   交易总数 tx_count 1-9 当前区块所含记录数   交易清单 tx_list * 记录当前区块交易细节    其中，神奇数固定为0xD9B4BEF9，作为区块的分隔标识符。而比特币的交易数据是以128Mb为上限记录在dat文件中的。利用此神奇数和区块大小，可将区块数据读取。
@@ -45,10 +46,10 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
     
     <item>
       <title>程序员该掌握区块链技术</title>
-      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</link>
+      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html.html</link>
       <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html.html</guid>
       <description>周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。 也请你行动起来，花两个小时了解区块链的原理，你会被其巧妙的运作方式所折服，拜倒在中本聪的石榴裙下。
 区块链是什么？ &amp;gt;区块链（Blockchain）是由节点参与的分布式数据库系统，它的特点是不可更改，不可伪造，也可以将其理解为账簿系统(ledger)。它是比特币的一个重要概念，完整比特币区块链的副本，记录了其代币（token）的每一笔交易。通过这些信息，我们可以找到每一个地址，在历史上任何一点所拥有的价值。
  区块链是由一串使用密码学方法产生的数据块组成的，每一个区块都包含了上一个区块的哈希值（hash），从创始区块（genesis block）开始连接到当前区块，形成块链。每一个区块都确保按照时间顺序在上一个区块之后产生，否则前一个区块的哈希值是未知的。这些特征使得比特币的双花非常困难。区块链是比特币的核心创新。
@@ -81,10 +82,10 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
     
     <item>
       <title>区块链比特币学习路线与资源</title>
-      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</link>
+      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html.html</link>
       <pubDate>Mon, 18 Sep 2017 12:02:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html.html</guid>
       <description>小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。 注意：某些网站也许得翻墙。
 比特币-基础篇 比特币实际是一个去中心化的共识网络，可看作在云端的账簿，但此云是任意一人都可加入的环境，一帮子人共同维护一个账本。 比特币他爹是中本聪，2008年中本聪在邮件组中抛出了一份点对点的电子现金交易系统白皮书，同时他也着手开始技术实现。从比特币白皮书：一种点对点的电子现金系统开始了解比特币技术与原理。文中所谈及比特币术语在比特币官网有简介。
 技术小白不要看直接看白皮书，学习任何技术应该从官网开始，而比特币官网所提供的中文资料对小白来说完全够用。到官网看关于比特币的常见问题。可直接看莱特币矿池创始人江卓尔关于“比特币是什么&amp;ldquo;的知乎回答(赞超11K，收藏超24K)。

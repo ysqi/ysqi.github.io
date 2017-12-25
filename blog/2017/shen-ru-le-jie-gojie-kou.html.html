@@ -1,0 +1,177 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>深入了解Go接口 |虞双齐的博客</title><meta name="description" content="http://studygolang.com/articles/
+深入了解Go接口
+如果说gorou"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html.html"><meta property="og:title" content="深入了解Go接口"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-18 11:13:37"><meta property="article:modified_time" content="2017-02-18 11:13:37"><meta property="article:tag" content="golang"><meta name="og:description" content="http://studygolang.com/articles/
+深入了解Go接口
+如果说gorou"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html.html">深入了解Go接口</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://my.oschina.net/xinxingegeya/blog/837546" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-18">2017年02月18日</time></span></p></header><div itemprop="articleBody"><p><a href="http://studygolang.com/articles/">http://studygolang.com/articles/</a></p><p>深入了解Go接口</p><p>如果说goroutine和channel是Go并发的两大基石，那么接口是Go语言编程中数据类型的关键。在Go语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是Go语言中所有数据结构的核心。</p><p>Go语言中的接口是一些方法的集合（method set），它指定了对象的行为：如果它（任何数据类型）可以做这些事情，那么它就可以在这里使用。</p><pre><code>type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+
+type Closer interface {
+    Close() error
+}
+
+type Seeker interface {
+    Seek(offset int64, whence int) (int64, error)
+}
+</code></pre><p>上面的代码定义了4个接口。</p><p>假设我们在另一个地方中定义了下面这个结构体：</p><pre><code>type File struct { // ...
+}
+func (f *File) Read(buf []byte) (n int, err error)
+func (f *File) Write(buf []byte) (n int, err error)
+func (f *File) Seek(off int64, whence int) (pos int64, err error) func (f *File) Close() error
+</code></pre><p>我们在实现File的时候，可能并不知道上面4个接口的存在，但不管怎样，File实现了上面所有的4个接口。我们可以将File对象赋值给上面任何一个接口。</p><pre><code>var file1 Reader = new(File) 
+var file2 Writer = new(File) 
+var file3 Closer = new(File)
+var file4 Seeker = new(File)
+</code></pre><p>因为File可以做这些事情，所以，File就可以在这里使用。File在实现的时候，并不需要指定实现了哪个接口，它甚至根本不知道这4个接口的存在。这种“松耦合”的做法完全不同于传统的面向对象编程。</p><p>实际上，上面4个接口来自标准库中的io package。</p><p> </p><h1 id="接口赋值">接口赋值</h1><p>我们可以将一个实现接口的对象实例赋值给接口，也可以将另外一个接口赋值给接口。</p><p>（1）通过对象实例赋值</p><p>将一个对象实例赋值给一个接口之前，要保证该对象实现了接口的所有方法。考虑如下示例：</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;reflect&quot;
+)
+
+// 定义接口
+type LessAdder interface {
+    Less(b Integer) bool
+    Add(b Integer)
+}
+
+// int 类型的别名 Integer
+type Integer int
+
+func (a Integer) Less(b Integer) bool {
+    return a &lt; b
+}
+func (a *Integer) Add(b Integer) {
+    *a += b
+}
+
+func main() {
+    var a Integer = 1
+    var b1 LessAdder = &amp;a           //OK
+    fmt.Println(reflect.TypeOf(b1)) //*main.Integer
+
+    var b2 LessAdder = a  //not OK
+    fmt.Println(reflect.TypeOf(b2))
+}
+</code></pre><p>b2的赋值会报编译错误，</p><blockquote><p>cannot use a (type Integer) as type LessAdder in assignment:<br>    Integer does not implement LessAdder (Add method has pointer receiver)</p></blockquote><p>为什么呢？</p><blockquote><p>The method set of any other named type T consists of all methods with receiver type T. The method set of the corresponding pointer type T is the set of all methods with receiver T or T (that is, it also contains the method set of T).</p><p><strong><em>也就是说*Integer实现了接口LessAdder的所有方法，而Integer只实现了Less方法，所以不能赋值。</em></strong></p></blockquote><p>（2）通过接口赋值</p><pre><code>var r io.Reader = new(os.File)
+var rw io.ReadWriter = r   //not ok
+
+var rw2 io.ReadWriter = new(os.File)
+var r2 io.Reader = rw2    //ok
+</code></pre><p>因为r没有Write方法，所以不能赋值给rw。</p><p> </p><h1 id="空接口-empty-interface">空接口（empty interface）</h1><p>空接口比较特殊，它不包含任何方法：</p><pre><code>interface{}
+</code></pre><p>在Go语言中，所有其它数据类型都实现了空接口。<br> </p><pre><code>var v1 interface{} = 1
+
+var v2 interface{} = &quot;abc&quot;
+
+var v3 interface{} = struct{ X int }{1}
+</code></pre><p>如果函数打算接收任何数据类型，则可以将参考声明为interface{}。最典型的例子就是标准库fmt包中的Print和Fprint系列的函数：</p><pre><code>func Fprint(w io.Writer, a ...interface{}) (n int, err error)
+
+func Fprintf(w io.Writer, format string, a ...interface{})
+
+func Fprintln(w io.Writer, a ...interface{})
+
+func Print(a ...interface{}) (n int, err error)
+
+func Printf(format string, a ...interface{})
+
+func Println(a ...interface{}) (n int, err error)
+</code></pre><p>注意，[]T不能直接赋值给[]interface{}</p><pre><code>t := []int{1, 2, 3, 4}
+
+var s []interface{} = t
+</code></pre><p>编译时会输出下面的错误：</p><blockquote><p>cannot use t (type []int) as type []interface {} in assignment</p></blockquote><p>我们必须通过下面这种方式：</p><pre><code>t := []int{1, 2, 3, 4}
+
+s := make([]interface{}, len(t))
+
+for i, v := range t {
+
+    s[i] = v
+
+}
+</code></pre><p> </p><h1 id="type-switch与type-assertions">Type switch与Type assertions</h1><p>在Go语言中，我们可以使用type switch语句查询接口变量的真实数据类型，语法如下：</p><pre><code>switch x.(type) {
+// cases
+}
+</code></pre><p>x必须是接口类型。来看一个详细的示例：</p><pre><code>package main
+
+import &quot;fmt&quot;
+
+type Stringer interface {
+    String() string
+}
+
+func extractStr(value interface{}) string {
+    switch str := value.(type) {
+    case string:
+        return str //type of str is string
+    case Stringer: //type of str is Stringer
+        return str.String()
+    default:
+        return &quot;&quot;
+    }
+}
+
+func main() {
+    var str string = &quot;hello world&quot;
+    res := extractStr(str)
+    fmt.Println(res)
+}
+</code></pre><p>语句switch中的value必须是接口类型，变量str的类型为转换后的类型。</p><blockquote><p>If the switch declares a variable in the expression, the variable will have the corresponding type in each clause. It&rsquo;s also idiomatic to reuse the name in such cases, in effect declaring a new variable with the same name but a different type in each case.</p><p>如果我们只关心一种类型该如何做？如果我们知道值为一个string，只是想将它抽取出来该如何做？只有一个case的类型switch是可以的，不过也可以用类型断言（type assertions）。类型断言接受一个接口值，从中抽取出显式指定类型的值。其语法借鉴了类型switch子句，不过是使用了显式的类型，而不是type关键字，如下：</p></blockquote><pre><code>x.(T)
+</code></pre><p>同样，x必须是接口类型。</p><p>str := value.(string)</p><p>上面的转换有一个问题，如果该值不包含一个字符串，则程序会产生一个运行时错误。为了避免这个问题，可以使用“comma, ok”的习惯用法来安全地测试值是否为一个字符串：</p><pre><code>str, ok := value.(string)
+if ok {
+    fmt.Printf(&quot;string value is: %q\n&quot;, str)
+} else {
+    fmt.Println(&quot;value is not a string&quot;)
+}
+</code></pre><p>如果类型断言失败，则str将依然存在，并且类型为字符串，不过其为零值，即一个空字符串。</p><p>我们可以使用类型断言来实现type switch的中例子：</p><pre><code>if str, ok := value.(string); ok {
+    return str
+} else if str, ok := value.(Stringer); ok {
+    return str.String()
+}
+</code></pre><p>这种做法没有多大实用价值。</p><p>=======END=======</p></div><aside id="meta"><meta itemprop="wordCount" content="567"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/cmdbfa-bu-ping-tai-gofa-bu-guan-li.html.html">CMDB发布平台:go发布管理</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html.html">Go1_8graceful优雅的重启HTTP服务</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="1113001e195097b5d1c9e22279e377c4"></div><div id="cyReward" role="cylabs" data-use="reward" sid="1113001e195097b5d1c9e22279e377c4" style="text-align:center"></div><div id="SOHUCS" sid="1113001e195097b5d1c9e22279e377c4"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fshen-ru-le-jie-gojie-kou.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fshen-ru-le-jie-gojie-kou.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

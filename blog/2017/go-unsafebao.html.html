@@ -1,0 +1,297 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Gounsafe包 |虞双齐的博客</title><meta name="description" content="Go unsafe包
+unsafe包概述 直到现在（Go1.7），unsafe包含以下资源：
+三个函"><meta name="keywords" content="Go1.8, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go-unsafebao.html.html"><meta property="og:title" content="Gounsafe包"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-18 11:13:48"><meta property="article:modified_time" content="2017-02-18 11:13:48"><meta property="article:tag" content="Go1.8"><meta name="og:description" content="Go unsafe包
+unsafe包概述 直到现在（Go1.7），unsafe包含以下资源：
+三个函"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/go-unsafebao.html.html">Gounsafe包</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://my.oschina.net/xinxingegeya/blog/841058" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-18">2017年02月18日</time></span></p></header><div itemprop="articleBody"><p>Go unsafe包</p><h1 id="unsafe包概述">unsafe包概述</h1><p>直到现在（Go1.7），unsafe包含以下资源：</p><p>三个函数：</p><pre><code>// unsafe.Sizeof函数返回操作数在内存中的字节大小,参数可以是任意类型的表达式,但是它并不会对表达式进行求值.
+// 一个Sizeof函数调用是一个对应uintptr类型的常量表达式,
+// 因此返回的结果可以用作数组类型的长度大小，或者用作计算其他的常量.
+func Sizeof(x ArbitraryType) uintptr
+
+//函数的参数必须是一个字段 x.f, 然后返回 f 字段相对于 x 起始地址的偏移量, 包括可能的空洞.
+func Offsetof(x ArbitraryType) uintptr
+
+//unsafe.Alignof 函数返回对应参数的类型需要对齐的倍数.
+func Alignof(x ArbitraryType) uintptr
+</code></pre><blockquote><p>内存空洞是编译器自动添加的没有被使用的内存空间，用于保证后面每个字段或元素的地址相对于结构或数组的开始地址能够合理地对齐（译注：内存空洞可能会存在一些随机数据，可能会对用unsafe包直接操作内存的处理产生影响）。</p></blockquote><p>和一种类型：</p><pre><code>type Pointer *ArbitraryType
+</code></pre><p>这里，ArbitraryType不是一个真正的类型。官方导出这个类型只是出于完善文档的考虑，在其他的库和任何项目中都没有使用价值，除非程序员故意使用它。</p><p> </p><h1 id="unsafe-sizeof-alignof-和-offsetof">unsafe.Sizeof, Alignof 和 Offsetof</h1><blockquote><p>计算机在加载和保存数据时，如果内存地址合理地对齐的将会更有效率。例如2字节大小的int16类型的变量地址应该是偶数，一个4字节大小的rune类型变量的地址应该是4的倍数，一个8字节大小的float64、uint64或64-bit指针类型变量的地址应该是8字节对齐的。但是对于再大的地址对齐倍数则是不需要的，即使是complex128等较大的数据类型最多也只是8字节对齐。</p><p> </p><p><strong><em>由于地址对齐这个因素，一个聚合类型（结构体或数组）的大小至少是所有字段或元素大小的总和，或者更大因为可能存在内存空洞。内存空洞是编译器自动添加的没有被使用的内存空间，用于保证后面每个字段或元素的地址相对于结构或数组的开始地址能够合理地对齐</em></strong>（译注：内存空洞可能会存在一些随机数据，可能会对用unsafe包直接操作内存的处理产生影响）。</p></blockquote><p>一个结构体变量 x 以及其在64位机器上的典型的内存. 灰色区域是空洞.</p><pre><code>var x struct {
+    a bool
+    b int16
+    c []int
+}
+</code></pre><p><img src="https://static.oschina.net/uploads/space/2017/0217/165238_zUMW_1469576.png" alt=""></p><p>对结构体变量的三个字段调用unsafe包相关函数的计算结果如下，</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+
+    var x struct {
+        a bool
+        b int16
+        c []int
+    }
+
+    //通常情况下布尔和数字类型需要对齐到它们本身的大小(最多8个字节),其它的类型对齐到机器字大小.(64位的机器字大小为64位,8字节)
+
+    fmt.Printf(&quot;%-30s%-30s%-30s%-50s\n&quot;,
+        &quot;Row&quot;, &quot;Sizeof&quot;, &quot;Alignof(对齐倍数)&quot;, &quot;Offsetof(偏移量)&quot;)
+
+    fmt.Printf(&quot;%-30s%-30d%-30d%-50s\n&quot;,
+        &quot;x&quot;, unsafe.Sizeof(x), unsafe.Alignof(x), &quot;&quot;)
+    fmt.Printf(&quot;%-30s%-30d%-30d%-50d\n&quot;,
+        &quot;x.a&quot;, unsafe.Sizeof(x.a), unsafe.Alignof(x.a), unsafe.Offsetof(x.a))
+    fmt.Printf(&quot;%-30s%-30d%-30d%-50d\n&quot;,
+        &quot;x.b&quot;, unsafe.Sizeof(x.b), unsafe.Alignof(x.b), unsafe.Offsetof(x.b))
+    fmt.Printf(&quot;%-30s%-30d%-30d%-50d\n&quot;,
+        &quot;x.c&quot;, unsafe.Sizeof(x.c), unsafe.Alignof(x.c), unsafe.Offsetof(x.c))
+}
+</code></pre><p>运行结果，</p><pre><code>Row                           Sizeof                        Alignof(对齐倍数)                 Offsetof(偏移量)                                     
+x                             32                            8                                                                               
+x.a                           1                             1                             0                                                 
+x.b                           2                             2                             2                                                 
+x.c                           24                            8                             8                            
+</code></pre><p> </p><h1 id="unsafe-pointer">unsafe.Pointer</h1><p>大多数指针类型会写成*T，表示是“一个指向T类型变量的指针”。unsafe.Pointer是特别定义的一种指针类型（译注：类似C语言中的void*类型的指针），它可以包含任意类型变量的地址。当然，我们不可以直接通过*p来获取unsafe.Pointer指针指向的真实变量的值，因为我们并不知道变量的具体类型。和普通指针一样，unsafe.Pointer指针也是可以比较的，并且支持和nil常量比较判断是否为空指针。</p><p>一个普通的*T类型指针可以被转化为unsafe.Pointer类型指针，并且一个unsafe.Pointer类型指针也可以被转回普通的指针，被转回普通的指针类型并不需要和原始的*T类型相同。通过将*float64类型指针转化为*uint64类型指针，我们可以查看一个浮点数变量的位模式。</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;unsafe&quot;
+    &quot;reflect&quot;
+)
+
+func Float64bits(f float64) uint64 {
+    fmt.Println(reflect.TypeOf(unsafe.Pointer(&amp;f)))  //unsafe.Pointer
+    fmt.Println(reflect.TypeOf((*uint64)(unsafe.Pointer(&amp;f))))  //*uint64
+    return *(*uint64)(unsafe.Pointer(&amp;f))
+}
+
+func main() {
+    fmt.Printf(&quot;%#016x\n&quot;, Float64bits(1.0)) // &quot;0x3ff0000000000000&quot;
+}
+</code></pre><p>通过转为新类型指针，我们可以更新浮点数的位模式。通过位模式操作浮点数是可以的，<strong><em>但是更重要的意义是指针转换语法让我们可以在不破坏类型系统的前提下向内存写入任意的值。</em></strong></p><p>一个unsafe.Pointer指针也可以被转化为uintptr类型，然后保存到指针型数值变量中（译注：这只是和当前指针相同的一个数字值，并不是一个指针），然后用以做必要的指针数值运算。（第三章内容，uintptr是一个无符号的整型数，足以保存一个地址）这种转换虽然也是可逆的，但是将uintptr转为unsafe.Pointer指针可能会破坏类型系统，因为并不是所有的数字都是有效的内存地址。</p><p>许多将unsafe.Pointer指针转为原生数字，然后再转回为unsafe.Pointer类型指针的操作也是不安全的。比如下面的例子需要将变量x的地址加上b字段地址偏移量转化为*int16类型指针，然后通过该指针更新x.b：</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+
+    var x struct {
+        a bool
+        b int16
+        c []int
+    }
+
+    // 和 pb := &amp;x.b 等价
+    pb := (*int16)(unsafe.Pointer(
+        uintptr(unsafe.Pointer(&amp;x)) + unsafe.Offsetof(x.b)))
+    *pb = 42
+    fmt.Println(x.b) // &quot;42&quot;
+}
+</code></pre><p>上面的写法尽管很繁琐，但在这里并不是一件坏事，因为这些功能应该很谨慎地使用。不要试图引入一个uintptr类型的临时变量，因为它可能会破坏代码的安全性（译注：这是真正可以体会unsafe包为何不安全的例子）。下面段代码是错误的：</p><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+
+    var x struct {
+        a bool
+        b int16
+        c []int
+    }
+
+    // NOTE: subtly incorrect!
+    tmp := uintptr(unsafe.Pointer(&amp;x)) + unsafe.Offsetof(x.b)
+    pb := (*int16)(unsafe.Pointer(tmp))
+    *pb = 42
+    fmt.Println(x.b) // &quot;42&quot;
+}
+</code></pre><p>产生错误的原因很微妙。有时候垃圾回收器会移动一些变量以降低内存碎片等问题。这类垃圾回收器被称为移动GC。当一个变量被移动，所有的保存改变量旧地址的指针必须同时被更新为变量移动后的新地址。从垃圾收集器的视角来看，一个unsafe.Pointer是一个指向变量的指针，因此当变量被移动是对应的指针也必须被更新；但是uintptr类型的临时变量只是一个普通的数字，所以其值不应该被改变。上面错误的代码因为引入一个非指针的临时变量tmp，导致垃圾收集器无法正确识别这个是一个指向变量x的指针。当第二个语句执行时，变量x可能已经被转移，这时候临时变量tmp也就不再是现在的&amp;x.b地址。第三个向之前无效地址空间的赋值语句将彻底摧毁整个程序！</p><p>===================</p><p>unsafe.Pointer的使用规则，</p><blockquote><p>（1）任何类型的指针都可以被转化为Pointer</p><p>（2）Pointer可以被转化为任何类型的指针</p><p>（3）uintptr可以被转化为Pointer</p><p>（4）Pointer可以被转化为uintptr</p></blockquote><p>举个例子：</p><pre><code>package main
+
+import (
+    &quot;unsafe&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    var n int64 = 5
+    var pn = &amp;n
+    var pf = (*float64)(unsafe.Pointer(pn))
+    fmt.Println(*pf) //2.5e-323
+    *pf = 3.1415
+    fmt.Println(n) //4614256447914709615
+}
+</code></pre><p>在这个例子中的转换可能是无意义的，但它是安全和合法的。</p><p>uintptr 和 unsafe.Pointer 的互相转换，</p><pre><code>package main
+
+import (
+    &quot;unsafe&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    a := [4]int{0, 1, 2, 3}
+    p := &amp;a[1] // 内存地址
+    p1 := unsafe.Pointer(p) 
+    p2 := uintptr(p1)
+    p3 := unsafe.Pointer(p2)
+    fmt.Println(p1) // 0xc420014208
+    fmt.Println(p2) // 842350543368
+    fmt.Println(p3) // 0xc420014208
+}
+</code></pre><p> </p><h1 id="uintptr">uintptr</h1><p>关于 uintptr ,</p><pre><code>// uintptr is an integer type that is large enough to hold the bit pattern of
+// any pointer.
+type uintptr uintptr
+</code></pre><p>uintptr 的底层实现如下，在\$GOROOT/src/pkg/runtime/runtime.h中，</p><pre><code>#ifdef _64BIT
+typedef uint64          uintptr;
+typedef int64           intptr;
+typedef int64           intgo; // Go's int
+typedef uint64          uintgo; // Go's uint
+#else
+typedef uint32          uintptr;
+typedef int32           intptr;
+typedef int32           intgo; // Go's int
+typedef uint32          uintgo; // Go's uint
+#endif
+</code></pre><p>uintptr和intptr是无符号和有符号的指针类型，并且确保在64位平台上是8个字节，在32位平台上是4个字节，uintptr主要用于golang中的指针运算。</p><p> </p><h1 id="合法用例1-在-t和-myt之间转换">合法用例1：在[]T和[]MyT之间转换</h1><p>在这个例子里，我们用int作为T：</p><pre><code>type MyInt int
+</code></pre><p>在Golang中，[]int 和 []MyInt是两种不同的类型。 因此，[]int的值不能转换为[]MyInt，反之亦然。 但是在unsafe.Pointer的帮助下，转换是可能的：</p><pre><code>package main
+
+import (
+    &quot;unsafe&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    type MyInt int
+
+    a := []MyInt{0, 1, 2}
+    // b := ([]int)(a) // error: cannot convert a (type []MyInt) to type []int
+    b := *(*[]int)(unsafe.Pointer(&amp;a))
+
+    b[0] = 3
+
+    fmt.Println(&quot;a =&quot;, a) // a = [3 1 2]
+    fmt.Println(&quot;b =&quot;, b) // b = [3 1 2]
+
+    a[2] = 9
+
+    fmt.Println(&quot;a =&quot;, a) // a = [3 1 9]
+    fmt.Println(&quot;b =&quot;, b) // b = [3 1 9]
+}
+</code></pre><p> </p><h1 id="合法用例2-调用sync-atomic包中指针相关的函数">合法用例2: 调用sync/atomic包中指针相关的函数</h1><p>sync / atomic包中的以下函数的大多数参数和结果类型都是unsafe.Pointer或*unsafe.Pointer：</p><pre><code>// CompareAndSwapPointer executes the compare-and-swap operation for a unsafe.Pointer value.
+func CompareAndSwapPointer(addr *unsafe.Pointer, old, new unsafe.Pointer) (swapped bool)
+
+// LoadPointer atomically loads *addr.
+func LoadPointer(addr *unsafe.Pointer) (val unsafe.Pointer)
+
+// StorePointer atomically stores val into *addr.
+func StorePointer(addr *unsafe.Pointer, val unsafe.Pointer)
+
+// SwapPointer atomically stores new into *addr and returns the previous *addr value.
+func SwapPointer(addr *unsafe.Pointer, new unsafe.Pointer) (old unsafe.Pointer)
+</code></pre><p>要使用这些功能，必须导入unsafe包。</p><pre><code>package main
+
+import (
+    &quot;unsafe&quot;
+    &quot;fmt&quot;
+    &quot;sync/atomic&quot;
+    &quot;time&quot;
+    &quot;sync&quot;
+    &quot;log&quot;
+    &quot;math/rand&quot;
+)
+
+var data *string
+
+func Data() string {
+    p := (*string)(atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&amp;data))))
+    if p == nil {
+        return &quot;&quot;
+    } else {
+        return *p
+    }
+}
+
+// set data atomically
+func SetData(d string) {
+    atomic.StorePointer((*unsafe.Pointer)(unsafe.Pointer(&amp;data)), unsafe.Pointer(&amp;d))
+}
+
+func main() {
+
+    var wg sync.WaitGroup
+    wg.Add(200)
+
+    for range [100]struct{}{} {
+        go func() {
+            time.Sleep(time.Second * time.Duration(rand.Intn(1000)) / 1000)
+
+            log.Println(Data())
+            wg.Done()
+        }()
+    }
+
+    for i := range [100]struct{}{} {
+        go func(i int) {
+            time.Sleep(time.Second * time.Duration(rand.Intn(1000)) / 1000)
+            s := fmt.Sprint(&quot;#&quot;, i)
+            log.Println(&quot;====&quot;, s)
+
+            SetData(s)
+            wg.Done()
+        }(i)
+    }
+
+    wg.Wait()
+
+    fmt.Println(&quot;final data = &quot;, *data)
+}
+</code></pre><p>转载：</p><p><a href="https://shifei.me/gopl-zh/ch13/ch13-02.html">https://shifei.me/gopl-zh/ch13/ch13-02.html</a></p><p><a href="http://www.open-open.com/lib/view/open1391347613192.html">http://www.open-open.com/lib/view/open1391347613192.html</a></p><p>=======END=======</p></div><aside id="meta"><meta itemprop="wordCount" content="657"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/go-unsafebao.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/go1.8.html" rel="tag">Go1.8</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html.html">go协程与主线程强占运行</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html.html">Go1_8httpgraceful体验</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="cc857a3c050f77aeca347715c4668e30"></div><div id="cyReward" role="cylabs" data-use="reward" sid="cc857a3c050f77aeca347715c4668e30" style="text-align:center"></div><div id="SOHUCS" sid="cc857a3c050f77aeca347715c4668e30"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-unsafebao.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-unsafebao.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

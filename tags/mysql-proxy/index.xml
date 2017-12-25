@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/mysql-proxy.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Mysql Proxy on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/mysql-proxy.html</link>
+    <description>在 虞双齐的博客上关于in Mysql Proxy 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/mysql-proxy.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:58 +0800</lastBuildDate>
+    <atom:link href="/tags/mysql-proxy.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>kingshardSQL黑名单功能介绍</title>
-      <link>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</link>
+      <link>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html.html</guid>
       <description>https://segmentfault.com/a/
 kingshard SQL黑名单功能介绍  应用场景介绍 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;  在kingshard开源之后，有用户多次提到能不能在kingshard中加入SQL黑名单机制，让kingshard能够根据特定的规则来拦截在黑名单中的SQL。有几个比较典型的应用场景：
  DBA定义一些比较危险的SQL，放在SQL黑名单文件中。可以避免前端应用发过来的SQL对数据库造成危害。这种SQL有可能是开发者粗心编写的，也有可能是被SQL注入生成的SQL。例如：delete from mytable，这种不带where条件的SQL，会把整个表删除。
@@ -28,10 +29,10 @@ SELECT c FROM t WHERE id=1 select c from t where id=? SELECT * FROM prices.rt_5m
     
     <item>
       <title>kingshard按时间分表功能介绍</title>
-      <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</link>
+      <link>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html.html</guid>
       <description>kingshard按时间分表功能介绍 在文档中主要介绍了kingshard的Hash和Range方式的分表，最近又开发了按时间维度的分表方式。按时间维度分表的场景非常普遍，下面介绍一下kingshard的时间分表功能
  支持的时间类型 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;  kingshard中的分表字段支持MySQL中三种类型的时间格式
  date类型，格式：YYYY-MM-DD，例如:2016-03-04,注意：2016-3-04，2016-03-4，2016-3-4等格式kingshard都是不支持的。

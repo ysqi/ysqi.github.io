@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E8%B7%B3%E8%B7%83%E8%A1%A8.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>跳跃表 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E8%B7%B3%E8%B7%83%E8%A1%A8.html</link>
+    <description>在 虞双齐的博客上关于in 跳跃表 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E8%B7%B3%E8%B7%83%E8%A1%A8.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:49 +0800</lastBuildDate>
+    <atom:link href="/tags/%E8%B7%B3%E8%B7%83%E8%A1%A8.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x03)---跳跃表哈希表</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x03----tiao-yue-biao-ha-xi-biao.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x03----tiao-yue-biao-ha-xi-biao.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:49 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x03----tiao-yue-biao-ha-xi-biao.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x03----tiao-yue-biao-ha-xi-biao.html.html</guid>
       <description>前面已经说了倒排索引的基本原理了，原理非常简单，也很好理解，关键是如何设计第二个倒排表，倒排表的第二列也很好设计，第一列就是关键了，为了满足快速查找的性能，设计第一列的结构，我们需要满足以下两个条件。
  查找非常快，能在极短的时间内找到我们需要的关键词所在的位置。
  添加关键词也需要比较快，能保证输入文档的时候尽可能的快。

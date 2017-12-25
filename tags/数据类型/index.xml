@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>数据类型 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html</link>
+    <description>在 虞双齐的博客上关于in 数据类型 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:44 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>为什么Go语言把类型放在后面？</title>
-      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</link>
+      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</guid>
       <description>本文整理自知乎，原文作者 @林建入。
 不是为了与众不同。而是为了更加清晰易懂。
 Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blog.golang.org/gos-declaration-syntax），简略翻译如下（水平有限翻译的不对的地方见谅）：
@@ -30,10 +31,10 @@ int main(int argc, char *argv[]) { /* .</description>
     
     <item>
       <title>Go语言的标识符、关键字、字面量、类型</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html.html</guid>
       <description>https://segmentfault.com/a/
 一直在 Segment Fault 上面实行自己的拿来主义，但其实我是一直很乐意分享的人，而且特别喜欢写，以前一直都是在自己的博客里面写，但是没啥人看，也形成不了交流，所以，申请在 Segment Fault 上面开个专栏，以后还忘大家多多指教，这篇文章只是想试试 Segment Fault的编辑器，内容是前几天写的。
 Go语言的语言符号又称记法元素，共包括5类，标签符（identifier）、关键字（keyword）、操作符（operator）、分隔符（delimiter）、字面量（literal），它们是组成Go语言代码和程序的最基本单位。

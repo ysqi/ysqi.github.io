@@ -1,0 +1,104 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Gobuild命令说明 |虞双齐的博客</title><meta name="description" content="go help build
+ 构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.
+使"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/ming-ling--go-build.html.html"><meta property="og:title" content="Gobuild命令说明"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-22 08:37:16"><meta property="article:modified_time" content="2017-02-22 08:37:16"><meta property="article:tag" content="golang"><meta name="og:description" content="go help build
+ 构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.
+使"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/ming-ling--go-build.html.html">Gobuild命令说明</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000008428749" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-22">2017年02月22日</time></span></p></header><div itemprop="articleBody"><blockquote><p>go help build</p></blockquote><p>构建编译由导入路径命名的包，以及它们的依赖关系，但它不会安装结果.</p><h1 id="使用">使用</h1><pre><code>go build [-o 输出名] [-i] [编译标记] [包名]
+</code></pre><p>如果参数为***.go文件或文件列表，则编译为一个个单独的包。<br>当编译单个main包（文件），则生成可执行文件。<br>当编译单个或多个包非主包时，只构建编译包，<strong>但丢弃生成的对象（.a）</strong>，仅用作检查包可以构建。<br>当编译包时，会自动忽略&rsquo;_test.go&rsquo;的测试文件。</p><h1 id="参数">参数</h1><h2 id="o">-o</h2><pre><code>output 指定编译输出的名称，代替默认的包名。
+</code></pre><h2 id="i">-i</h2><pre><code>install 安装作为目标的依赖关系的包(用于增量编译提速)。
+</code></pre><h2 id="以下-build-参数可用在-build-clean-get-install-list-run-test">以下 build 参数可用在 build, clean, get, install, list, run, test</h2><pre><code>-a
+    完全编译，不理会-i产生的.a文件(文件会比不带-a的编译出来要大？)
+-n
+    仅打印输出build需要的命令，不执行build动作（少用）。
+-p n
+    开多少核cpu来并行编译，默认为本机CPU核数（少用）。
+-race
+    同时检测数据竞争状态，只支持 linux/amd64, freebsd/amd64, darwin/amd64 和 windows/amd64.
+-msan
+    启用与内存消毒器的互操作。仅支持linux / amd64，并且只用Clang / LLVM作为主机C编译器（少用）。
+-v
+    打印出被编译的包名（少用）.
+-work
+    打印临时工作目录的名称，并在退出时不删除它（少用）。
+-x
+    同时打印输出执行的命令名（-n）（少用）.
+-asmflags 'flag list'
+    传递每个go工具asm调用的参数（少用）
+-buildmode mode
+    编译模式（少用）
+    'go help buildmode'
+-compiler name
+    使用的编译器 == runtime.Compiler
+    (gccgo or gc)（少用）.
+-gccgoflags 'arg list'
+    gccgo 编译/链接器参数（少用）
+-gcflags 'arg list'
+    垃圾回收参数（少用）.
+-installsuffix suffix
+    ？？？？？？不明白
+    a suffix to use in the name of the package installation directory,
+    in order to keep output separate from default builds.
+    If using the -race flag, the install suffix is automatically set to race
+    or, if set explicitly, has _race appended to it.  Likewise for the -msan
+    flag.  Using a -buildmode option that requires non-default compile flags
+    has a similar effect.
+-ldflags 'flag list'
+    '-s -w': 压缩编译后的体积
+    -s: 去掉符号表
+    -w: 去掉调试信息，不能gdb调试了
+-linkshared
+    链接到以前使用创建的共享库
+    -buildmode=shared.
+-pkgdir dir
+    从指定位置，而不是通常的位置安装和加载所有软件包。例如，当使用非标准配置构建时，使用-pkgdir将生成的包保留在单独的位置。
+-tags 'tag list'
+    构建出带tag的版本.
+-toolexec 'cmd args'
+    ？？？？？？不明白
+    a program to use to invoke toolchain programs like vet and asm.
+    For example, instead of running asm, the go command will run
+    'cmd args /path/to/asm &lt;arguments for asm&gt;'.
+</code></pre><p>以上命令，单引号/双引号均可。</p><p>对包的操作<code>'go help packages'</code><br>对路径的描述<code>'go help gopath'</code><br>对 C/C++ 的互操作<code>'go help c'</code></p><p><strong>注意</strong></p><blockquote><p>构建遵守某些约定(<code>'go help gopath'</code>),但不是所有的项目都遵循这些约定，当使用自己的惯例或使用单独的软件构建系统时可以选择使用较低级别的调用<code>go tool compile</code>和<code>go tool link</code>来避免一些构建工具的开销和设计决策</p></blockquote><p>See also: go install, go get, go clean.</p></div><aside id="meta"><meta itemprop="wordCount" content="231"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/ming-ling--go-build.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/go-reflectbao.html.html">Goreflect包</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html.html">从设计到实战:Go如何扛住100亿次请求</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="c59c9bd553f47cb45b33d2e8e04478e3"></div><div id="cyReward" role="cylabs" data-use="reward" sid="c59c9bd553f47cb45b33d2e8e04478e3" style="text-align:center"></div><div id="SOHUCS" sid="c59c9bd553f47cb45b33d2e8e04478e3"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fming-ling--go-build.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fming-ling--go-build.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Book-rsses on 虞双齐的博客</title>
-    <link>https://yushuangqi.com/book.xml</link>
-    <description>在 虞双齐的博客上关于in Book-rsses 的内容</description>
+    <title>Books on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/book.html</link>
+    <description>在 虞双齐的博客上关于in Books 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 04 Mar 2016 13:17:33 +0800</lastBuildDate>
-    <atom:link href="/book.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/book.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GobyExample中文版</title>
@@ -32,7 +32,7 @@ Go 通过向一个通道发送 os.Signal 值来进行信号通知。我们将创
 signal.Notify 注册这个给定的通道用于接收特定信号。
 这个 Go 协程执行一个阻塞的信号接收操作。当它得到一个值时，它将打印这个值，然后通知程序可以退出。
 程序将在这里进行等待，直到它得到了期望的信号（也就是上面的 Go 协程发送的 done 值）然后退出。
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/signal&amp;quot; import &amp;quot;syscall&amp;quot; func main() { sigs := make(chan os.Signal, 1) done := make(chan bool, 1) signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM) go func() { sig := &amp;lt;-sigs fmt.Println() fmt.Println(sig) done &amp;lt;- true }() fmt.Println(&amp;quot;awaiting signal&amp;quot;) &amp;lt;-done fmt.Println(&amp;quot;exiting&amp;quot;) }  </description>
+package main import &amp;#34;fmt&amp;#34; import &amp;#34;os&amp;#34; import &amp;#34;os/signal&amp;#34; import &amp;#34;syscall&amp;#34; func main() { sigs := make(chan os.Signal, 1) done := make(chan bool, 1) signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM) go func() { sig := &amp;lt;-sigs fmt.Println() fmt.Println(sig) done &amp;lt;- true }() fmt.Println(&amp;#34;awaiting signal&amp;#34;) &amp;lt;-done fmt.Println(&amp;#34;exiting&amp;#34;) } </description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; import
 当使用 os.Exit 时 defer 将不会 执行，所以这里的 fmt.Println将永远不会被调用。
 退出并且退出状态为 3。
 注意，不像例如 C 语言，Go 不使用在 main 中返回一个整数来指明退出状态。如果你想以非零状态退出，那么你就要使用 os.Exit。
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; func main() { defer fmt.Println(&amp;quot;!&amp;quot;) os.Exit(3) }  </description>
+package main import &amp;#34;fmt&amp;#34; import &amp;#34;os&amp;#34; func main() { defer fmt.Println(&amp;#34;!&amp;#34;) os.Exit(3) } </description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;os&amp;quot; func m
 Exec 需要的参数是切片的形式的（不是放在一起的一个大字符串）。我们给 ls 一些基本的参数。注意，第一个参数需要是程序名。
 Exec 同样需要使用环境变量。这里我们仅提供当前的环境变量。
 这里是 os.Exec 调用。如果这个调用成功，那么我们的进程将在这里被替换成 /bin/ls -a -l -h 进程。如果存在错误，那么我们将会得到一个返回值。
-package main import &amp;quot;syscall&amp;quot; import &amp;quot;os&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { binary, lookErr := exec.LookPath(&amp;quot;ls&amp;quot;) if lookErr != nil { panic(lookErr) } args := []string{&amp;quot;ls&amp;quot;, &amp;quot;-a&amp;quot;, &amp;quot;-l&amp;quot;, &amp;quot;-h&amp;quot;} env := os.Environ() execErr := syscall.Exec(binary, args, env) if execErr != nil { panic(execErr) } }  </description>
+package main import &amp;#34;syscall&amp;#34; import &amp;#34;os&amp;#34; import &amp;#34;os/exec&amp;#34; func main() { binary, lookErr := exec.LookPath(&amp;#34;ls&amp;#34;) if lookErr != nil { panic(lookErr) } args := []string{&amp;#34;ls&amp;#34;, &amp;#34;-a&amp;#34;, &amp;#34;-l&amp;#34;, &amp;#34;-h&amp;#34;} env := os.Environ() execErr := syscall.Exec(binary, args, env) if execErr != nil { panic(execErr) } } </description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@ package main import &amp;quot;syscall&amp;quot; import &amp;quot;os&amp;quot; im
 这里我们明确的获取输入/输出管道，运行这个进程，写入一些输入信息，读取输出的结果，最后等待程序运行结束。
 上面的例子中，我们忽略了错误检测，但是你可以使用if err != nil 的方式来进行错误检查，我们也只收集StdoutPipe 的结果，但是你可以使用相同的方法收集StderrPipe 的结果。
 注意，当我们需要提供一个明确的命令和参数数组来生成命令，和能够只需要提供一行命令行字符串相比，你想使用通过一个字符串生成一个完整的命令，那么你可以使用 bash命令的 -c 选项：
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;io/ioutil&amp;quot; import &amp;quot;os/exec&amp;quot; func main() { dateCmd := exec.Command(&amp;quot;date&amp;quot;) dateOut, err := dateCmd.Output() if err != nil { panic(err) } fmt.Println(&amp;quot;&amp;gt; date&amp;quot;) fmt.Println(string(dateOut)) grepCmd := exec.Command(&amp;quot;grep&amp;quot;, &amp;quot;hello&amp;quot;) grepIn, _ := grepCmd.StdinPipe() grepOut, _ := grepCmd.</description>
+package main import &amp;#34;fmt&amp;#34; import &amp;#34;io/ioutil&amp;#34; import &amp;#34;os/exec&amp;#34; func main() { dateCmd := exec.Command(&amp;#34;date&amp;#34;) dateOut, err := dateCmd.Output() if err != nil { panic(err) } fmt.Println(&amp;#34;&amp;gt; date&amp;#34;) fmt.Println(string(dateOut)) grepCmd := exec.Command(&amp;#34;grep&amp;#34;, &amp;#34;hello&amp;#34;) grepIn, _ := grepCmd.StdinPipe() grepOut, _ := grepCmd.</description>
     </item>
     
     <item>
@@ -87,7 +87,7 @@ package main import &amp;quot;fmt&amp;quot; import &amp;quot;io/ioutil&amp;quot;
       <description>命令行参数是指定程序运行参数的一个常见方式。例如，go run hello.go，程序 go 使用了 run 和 hello.go 两个参数。
 os.Args 提供原始命令行参数访问功能。注意，切片中的第一个参数是该程序的路径，并且 os.Args[1:]保存所有程序的的参数。
 你可以使用标准的索引位置方式取得单个参数的值。
-package main import &amp;quot;os&amp;quot; import &amp;quot;fmt&amp;quot; func main() { argsWithProg := os.Args argsWithoutProg := os.Args[1:] arg := os.Args[3] fmt.Println(argsWithProg) fmt.Println(argsWithoutProg) fmt.Println(arg) }  </description>
+package main import &amp;#34;os&amp;#34; import &amp;#34;fmt&amp;#34; func main() { argsWithProg := os.Args argsWithoutProg := os.Args[1:] arg := os.Args[3] fmt.Println(argsWithProg) fmt.Println(argsWithoutProg) fmt.Println(arg) } </description>
     </item>
     
     <item>
@@ -103,7 +103,7 @@ Go 提供了一个 flag 包，支持基本的命令行标志解析。我们将�
 用程序中已有的参数来声明一个标志也是可以的。注意在标志声明函数中需要使用该参数的指针。
 所有标志都声明完成以后，调用 flag.Parse() 来执行命令行解析。
 这里我们将仅输出解析的选项以及后面的位置参数。注意，我们需要使用类似 *wordPtr 这样的语法来对指针解引用，从而得到选项的实际值。
-package main import &amp;quot;flag&amp;quot; import &amp;quot;fmt&amp;quot; func main() { wordPtr := flag.String(&amp;quot;word&amp;quot;, &amp;quot;foo&amp;quot;, &amp;quot;a string&amp;quot;) numbPtr := flag.Int(&amp;quot;numb&amp;quot;, 42, &amp;quot;an int&amp;quot;) boolPtr := flag.Bool(&amp;quot;fork&amp;quot;, false, &amp;quot;a bool&amp;quot;) var svar string flag.StringVar(&amp;amp;svar, &amp;quot;svar&amp;quot;, &amp;quot;bar&amp;quot;, &amp;quot;a string var&amp;quot;) flag.Parse() fmt.Println(&amp;quot;word:&amp;quot;, *wordPtr) fmt.Println(&amp;quot;numb:&amp;quot;, *numbPtr) fmt.</description>
+package main import &amp;#34;flag&amp;#34; import &amp;#34;fmt&amp;#34; func main() { wordPtr := flag.String(&amp;#34;word&amp;#34;, &amp;#34;foo&amp;#34;, &amp;#34;a string&amp;#34;) numbPtr := flag.Int(&amp;#34;numb&amp;#34;, 42, &amp;#34;an int&amp;#34;) boolPtr := flag.Bool(&amp;#34;fork&amp;#34;, false, &amp;#34;a bool&amp;#34;) var svar string flag.StringVar(&amp;amp;svar, &amp;#34;svar&amp;#34;, &amp;#34;bar&amp;#34;, &amp;#34;a string var&amp;#34;) flag.Parse() fmt.Println(&amp;#34;word:&amp;#34;, *wordPtr) fmt.Println(&amp;#34;numb:&amp;#34;, *numbPtr) fmt.</description>
     </item>
     
     <item>
@@ -115,7 +115,7 @@ package main import &amp;quot;flag&amp;quot; import &amp;quot;fmt&amp;quot; func
       <description>环境变量是一个在为 Unix 程序传递配置信息的普遍方式。让我们来看看如何设置，获取并列举环境变量。
 使用 os.Setenv 来设置一个键值队。使用 os.Getenv获取一个键对应的值。如果键不存在，将会返回一个空字符串。
 使用 os.Environ 来列出所有环境变量键值队。这个函数会返回一个 KEY=value 形式的字符串切片。你可以使用strings.Split 来得到键和值。这里我们打印所有的键。
-package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; import &amp;quot;fmt&amp;quot; func main() { os.Setenv(&amp;quot;FOO&amp;quot;, &amp;quot;1&amp;quot;) fmt.Println(&amp;quot;FOO:&amp;quot;, os.Getenv(&amp;quot;FOO&amp;quot;)) fmt.Println(&amp;quot;BAR:&amp;quot;, os.Getenv(&amp;quot;BAR&amp;quot;)) fmt.Println() for _, e := range os.Environ() { pair := strings.Split(e, &amp;quot;=&amp;quot;) fmt.Println(pair[0]) } }  </description>
+package main import &amp;#34;os&amp;#34; import &amp;#34;strings&amp;#34; import &amp;#34;fmt&amp;#34; func main() { os.Setenv(&amp;#34;FOO&amp;#34;, &amp;#34;1&amp;#34;) fmt.Println(&amp;#34;FOO:&amp;#34;, os.Getenv(&amp;#34;FOO&amp;#34;)) fmt.Println(&amp;#34;BAR:&amp;#34;, os.Getenv(&amp;#34;BAR&amp;#34;)) fmt.Println() for _, e := range os.Environ() { pair := strings.Split(e, &amp;#34;=&amp;#34;) fmt.Println(pair[0]) } } </description>
     </item>
     
     <item>
@@ -130,7 +130,7 @@ package main import &amp;quot;os&amp;quot; import &amp;quot;strings&amp;quot; im
 Text 返回当前的 token，现在是输入的下一行。
 写出大写的行。
 检查 Scan 的错误。文件结束符是可以接受的，并且不会被 Scan 当作一个错误。
- package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;quot;error:&amp;quot;, err) os.Exit(1) } }  </description>
+package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; &amp;#34;strings&amp;#34; ) func main() { scanner := bufio.NewScanner(os.Stdin) for scanner.Scan() { ucl := strings.ToUpper(scanner.Text()) fmt.Println(ucl) } if err := scanner.Err(); err != nil { fmt.Fprintln(os.Stderr, &amp;#34;error:&amp;#34;, err) os.Exit(1) } } </description>
     </item>
     
     <item>
@@ -148,7 +148,7 @@ WriteString 也是可用的。
 调用 Sync 来将缓冲区的信息写入磁盘。
 bufio 提供了和我们前面看到的带缓冲的读取器一样的带缓冲的写入器。
 使用 Flush 来确保所有缓存的操作已写入底层写入器。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { d1 := []byte(&amp;quot;hello\ngo\n&amp;quot;) err := ioutil.WriteFile(&amp;quot;/tmp/dat1&amp;quot;, d1, 0644) check(err) f, err := os.Create(&amp;quot;/tmp/dat2&amp;quot;) check(err) defer f.Close() d2 := []byte{115, 111, 109, 101, 10} n2, err := f.Write(d2) check(err) fmt.</description>
+package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;os&amp;#34; ) func check(e error) { if e != nil { panic(e) } } func main() { d1 := []byte(&amp;#34;hello\ngo\n&amp;#34;) err := ioutil.WriteFile(&amp;#34;/tmp/dat1&amp;#34;, d1, 0644) check(err) f, err := os.Create(&amp;#34;/tmp/dat2&amp;#34;) check(err) defer f.Close() d2 := []byte{115, 111, 109, 101, 10} n2, err := f.Write(d2) check(err) fmt.</description>
     </item>
     
     <item>
@@ -167,7 +167,7 @@ io 包提供了一些可以帮助我们进行文件读取的函数。例如，�
 没有内置的回转支持，但是使用 Seek(0, 0) 实现。
 bufio 包实现了带缓冲的读取，这不仅对有很多小的读取操作的能提升性能，也提供了很多附加的读取函数。
 任务结束后要关闭这个文件（通常这个操作应该在 Open操作后立即使用 defer 来完成）。
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; ) func check(e error) { if e != nil { panic(e) } } func main() { dat, err := ioutil.ReadFile(&amp;quot;/tmp/dat&amp;quot;) check(err) fmt.Print(string(dat)) f, err := os.Open(&amp;quot;/tmp/dat&amp;quot;) check(err) b1 := make([]byte, 5) n1, err := f.</description>
+package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;os&amp;#34; ) func check(e error) { if e != nil { panic(e) } } func main() { dat, err := ioutil.ReadFile(&amp;#34;/tmp/dat&amp;#34;) check(err) fmt.Print(string(dat)) f, err := os.Open(&amp;#34;/tmp/dat&amp;#34;) check(err) b1 := make([]byte, 5) n1, err := f.</description>
     </item>
     
     <item>
@@ -182,7 +182,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;fmt&amp;quot; &amp;quo
 Go 同时支持标准的和 URL 兼容的 base64 格式。编码需要使用 []byte 类型的参数，所以要将字符串转成此类型。
 解码可能会返回错误，如果不确定输入信息格式是否正确，那么，你就需要进行错误检查了。
 使用 URL 兼容的 base64 格式进行编解码。
-package main import b64 &amp;quot;encoding/base64&amp;quot; import &amp;quot;fmt&amp;quot; func main() { data := &amp;quot;abc123!?$*&amp;amp;()&amp;#39;-=@~&amp;quot; sEnc := b64.StdEncoding.EncodeToString([]byte(data)) fmt.Println(sEnc) sDec, _ := b64.StdEncoding.DecodeString(sEnc) fmt.Println(string(sDec)) fmt.Println() uEnc := b64.URLEncoding.EncodeToString([]byte(data)) fmt.Println(uEnc) uDec, _ := b64.URLEncoding.DecodeString(uEnc) fmt.Println(string(uDec)) }  </description>
+package main import b64 &amp;#34;encoding/base64&amp;#34; import &amp;#34;fmt&amp;#34; func main() { data := &amp;#34;abc123!?$*&amp;amp;()&amp;#39;-=@~&amp;#34; sEnc := b64.StdEncoding.EncodeToString([]byte(data)) fmt.Println(sEnc) sDec, _ := b64.StdEncoding.DecodeString(sEnc) fmt.Println(string(sDec)) fmt.Println() uEnc := b64.URLEncoding.EncodeToString([]byte(data)) fmt.Println(uEnc) uDec, _ := b64.URLEncoding.DecodeString(uEnc) fmt.Println(string(uDec)) } </description>
     </item>
     
     <item>
@@ -197,7 +197,7 @@ Go 在多个 crypto/* 包中实现了一系列散列函数。
 写入要处理的字节。如果是一个字符串，需要使用[]byte(s) 来强制转换成字节数组。
 这个用来得到最终的散列值的字符切片。Sum 的参数可以用来都现有的字符切片追加额外的字节切片：一般不需要要。
 SHA1 值经常以 16 进制输出，例如在 git commit 中。使用%x 来将散列结果格式化为 16 进制字符串。
-package main import &amp;quot;crypto/sha1&amp;quot; import &amp;quot;fmt&amp;quot; func main() { s := &amp;quot;sha1 this string&amp;quot; h := sha1.New() h.Write([]byte(s)) bs := h.Sum(nil) fmt.Println(s) fmt.Printf(&amp;quot;%x\n&amp;quot;, bs) }  </description>
+package main import &amp;#34;crypto/sha1&amp;#34; import &amp;#34;fmt&amp;#34; func main() { s := &amp;#34;sha1 this string&amp;#34; h := sha1.New() h.Write([]byte(s)) bs := h.Sum(nil) fmt.Println(s) fmt.Printf(&amp;#34;%x\n&amp;#34;, bs) } </description>
     </item>
     
     <item>
@@ -214,7 +214,7 @@ User 包含了所有的认证信息，这里调用 Username和 Password 来获�
 Host 同时包括主机名和端口信息，如过端口存在的话，使用 strings.Split() 从 Host 中手动提取端口。
 这里我们提出路径和查询片段信息。
 要得到字符串中的 k=v 这种格式的查询参数，可以使用 RawQuery 函数。你也可以将查询参数解析为一个map。已解析的查询参数 map 以查询字符串为键，对应值字符串切片为值，所以如何只想得到一个键对应的第一个值，将索引位置设置为 [0] 就行了。
-package main import &amp;quot;fmt&amp;quot; import &amp;quot;net/url&amp;quot; import &amp;quot;strings&amp;quot; func main() { s := &amp;quot;postgres://user:pass@host.com:5432/path?k=v#f&amp;quot; u, err := url.Parse(s) if err != nil { panic(err) } fmt.Println(u.Scheme) fmt.Println(u.User) fmt.Println(u.User.Username()) p, _ := u.User.Password() fmt.Println(p) fmt.Println(u.Host) h := strings.</description>
+package main import &amp;#34;fmt&amp;#34; import &amp;#34;net/url&amp;#34; import &amp;#34;strings&amp;#34; func main() { s := &amp;#34;postgres://user:pass@host.com:5432/path?k=v#f&amp;#34; u, err := url.Parse(s) if err != nil { panic(err) } fmt.Println(u.Scheme) fmt.Println(u.User) fmt.Println(u.User.Username()) p, _ := u.User.Password() fmt.Println(p) fmt.Println(u.Host) h := strings.</description>
     </item>
     
     <item>
@@ -231,7 +231,7 @@ ParseInt 会自动识别出十六进制数。
 ParseUint 也是可用的。
 Atoi 是一个基础的 10 进制整型数转换函数。
 在输入错误时，解析函数会返回一个错误。
-package main import &amp;quot;strconv&amp;quot; import &amp;quot;fmt&amp;quot; func main() { f, _ := strconv.ParseFloat(&amp;quot;1.234&amp;quot;, 64) fmt.Println(f) i, _ := strconv.ParseInt(&amp;quot;123&amp;quot;, 0, 64) fmt.Println(i) d, _ := strconv.ParseInt(&amp;quot;0x1c8&amp;quot;, 0, 64) fmt.Println(d) u, _ := strconv.ParseUint(&amp;quot;789&amp;quot;, 0, 64) fmt.Println(u) k, _ := strconv.Atoi(&amp;quot;135&amp;quot;) fmt.Println(k) _, e := strconv.</description>
+package main import &amp;#34;strconv&amp;#34; import &amp;#34;fmt&amp;#34; func main() { f, _ := strconv.ParseFloat(&amp;#34;1.234&amp;#34;, 64) fmt.Println(f) i, _ := strconv.ParseInt(&amp;#34;123&amp;#34;, 0, 64) fmt.Println(i) d, _ := strconv.ParseInt(&amp;#34;0x1c8&amp;#34;, 0, 64) fmt.Println(d) u, _ := strconv.ParseUint(&amp;#34;789&amp;#34;, 0, 64) fmt.Println(u) k, _ := strconv.Atoi(&amp;#34;135&amp;#34;) fmt.Println(k) _, e := strconv.</description>
     </item>
     
   </channel>

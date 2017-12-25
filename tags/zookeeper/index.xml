@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/zookeeper.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Zookeeper on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/zookeeper.html</link>
+    <description>在 虞双齐的博客上关于in Zookeeper 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/zookeeper.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:52 +0800</lastBuildDate>
+    <atom:link href="/tags/zookeeper.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>_gozk_zookeeper_zk_gofatalerror:zookeeper_hfilenotfound</title>
-      <link>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html</link>
+      <link>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:52 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html.html</guid>
       <description>这个错误查了好久，最后在medium上找到了答案，遂记于此！
 系统： mac os
 错误信息：

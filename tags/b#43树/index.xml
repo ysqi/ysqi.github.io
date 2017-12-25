@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/b</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>B#43树 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/b#43%E6%A0%91.html</link>
+    <description>在 虞双齐的博客上关于in B#43树 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/b#43%E6%A0%91.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:48 +0800</lastBuildDate>
+    <atom:link href="/tags/b#43%E6%A0%91.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>用Golang写一个搜索引擎(0x04)---B&amp;#43;树</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html.html</guid>
       <description>本篇较长较枯燥，请保持耐心看完。
 前面两章介绍了一下倒排索引以及倒排索引字典的两种存储结构，分别是跳跃表和哈希表，本篇我们介绍另一种数据结构，他也被大量使用在信息检索领域，我在github上实现的搜索引擎的词典也是用的这个数据结构，它就是B+树。
 首先，我们看看什么是树，树是程序设计中一个非常基础的数据结构，记得大学时候的数据结构课，链表，栈，队列，然后就是树了，虽然那时候想必大家都被前序遍历，中序遍历，后序遍历折腾过，不过树确实是一种非常有用的数据结构。

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/rust.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Rust on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/rust.html</link>
+    <description>在 虞双齐的博客上关于in Rust 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/rust.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Feb 2017 08:17:16 +0800</lastBuildDate>
+    <atom:link href="/tags/rust.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>TiDB架构的演进和开发哲学</title>
-      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</link>
+      <link>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html.html</guid>
       <description>https://segmentfault.com/a/
  本文来自 CSDN《程序员》2017 年 2 月的封面报道。
 对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太多的问题需要去考量。
@@ -31,10 +32,10 @@
     
     <item>
       <title>Service层的是否必要性分析及案例</title>
-      <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</link>
+      <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html.html</guid>
       <description>序言 此前，我看过这样的一个提问“Yii2框架中，有必要再分离service层么？”，从别人的回答中，自己也收获了答案，但我觉得还需要有个活生生的粟子，才具有更加清晰明了和强有力的说服力。如对我的实战经历感兴趣的继续往下看，喜欢的还可以点击推荐和收藏。在举粟子前，我先讲讲service是什么？有什么作用吧？免得还有人糊涂。
 1、service是什么？
 在面向OO的系统里，service就是biz manager，在面向过程的系统里service就是TS脚本。
@@ -52,10 +53,10 @@ use common\service\CluesBranchService; $query = CluesBranchService::getIndex(); 
     
     <item>
       <title>分布式系统测试那些事儿-理念</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</guid>
       <description>https://segmentfault.com/a/
 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
 文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。
@@ -73,10 +74,10 @@ We should walk through all of the bugs in:
     
     <item>
       <title>分布式系统测试那些事儿-错误注入</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
 接上篇：
 当然测试可能会让你代码变得没有那么漂亮，举个例子：
@@ -86,10 +87,10 @@ We should walk through all of the bugs in:
     
     <item>
       <title>分布式系统测试那些事儿-信心的毁灭与重建</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为下篇。
 接中篇：
 ScyllaDB 有一个开源的东西，是专门用来给文件系统做 Failure Injection 的, 名字叫做 CharybdeFS。如果你想测试你的系统，就是文件系统在哪不断出问题，比如说写磁盘失败了，驱动程序分配内存失败了，文件已经存在等等，它都可以测模拟出来。
@@ -105,10 +106,10 @@ Simulate the following errors:
     
     <item>
       <title>TiKV源码解析系列-multi-raft设计与实现</title>
-      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</link>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html.html</guid>
       <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
 TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
@@ -120,10 +121,10 @@ PD 是一个非常重要的中心节点，它通过集成 etcd，自动的支持
     
     <item>
       <title>TiKV源码解析系列-如何使用Raft</title>
-      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</link>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html.html</guid>
       <description>TiKV 源码解析系列——如何使用 Raft 本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 需要注意，TiKV 使用 Rust 语言编写，用户需要对 Rust 语言有一个大概的了解。另外，本系列文章并不会涉及到 TiKV 中心控制服务 Placement Driver(PD) 的详细介绍，但是会说明一些重要流程 TiKV 是如何与 PD 交互的。
 TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
@@ -134,10 +135,10 @@ TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强�
     
     <item>
       <title>TiKV源码解析系列-PlacementDriver</title>
-      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</link>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</guid>
       <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
 本文为本系列文章第三节。
@@ -148,10 +149,10 @@ TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强�
     
     <item>
       <title>TiDB优化器实现的基础:统计信息的收集</title>
-      <link>https://yushuangqi.com/blog/2016/tidb-you-hua-qi-shi-xian-de-ji-chu-tong-ji-xin-xi-de-shou-ji.html</link>
+      <link>https://yushuangqi.com/blog/2016/tidb-you-hua-qi-shi-xian-de-ji-chu-tong-ji-xin-xi-de-shou-ji.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tidb-you-hua-qi-shi-xian-de-ji-chu-tong-ji-xin-xi-de-shou-ji.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tidb-you-hua-qi-shi-xian-de-ji-chu-tong-ji-xin-xi-de-shou-ji.html.html</guid>
       <description>https://segmentfault.com/a/
  收集统计信息的意义
 一个 SQL 数据库里，优化器实现的好坏对性能的影响是决定性的。一个未经优化的执行计划和经过充分优化后的执行计划，执行时间的差别往往是成千上万倍。而对一个 SQL 优化器来说，统计信息是必不可少的条件，只有依赖统计信息提供的数据，优化器才可以正确估算不同的执行计划的执行代价，以选择最优的执行计划。就像一个大厨无论多么优秀，没有上等食材也是无法做出美味的饭菜。
@@ -170,10 +171,10 @@ Column 统计信息包含 Null Count，Max Value，Min Value，Distinct Count �
     
     <item>
       <title>TiDB源码初探</title>
-      <link>https://yushuangqi.com/blog/2016/tidb-yuan-ma-chu-tan.html</link>
+      <link>https://yushuangqi.com/blog/2016/tidb-yuan-ma-chu-tan.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tidb-yuan-ma-chu-tan.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tidb-yuan-ma-chu-tan.html.html</guid>
       <description>作者: @申砾
 本文档面向 TiDB 社区开发者，主要介绍 TiDB 的系统架构、代码结构以及执行流程。 目的是使得开发者阅读文档后，可以对 TiDB 项目有一个整体的了解，更好的参与进来。首先会介绍一下大体的结构以及 Golang 包的结构，然后会介绍内部的执行流程，最后会对优化器、执行器这两个最重要的组件做一些说明。
 系统架构 TiDB Server 在整个系统中位于 Load Balancer(或者是 Application) 与底层的存储引擎之间，主要部分分为三层：

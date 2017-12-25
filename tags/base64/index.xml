@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/base64.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Base64 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/base64.html</link>
+    <description>在 虞双齐的博客上关于in Base64 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/base64.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:33:16 +0800</lastBuildDate>
+    <atom:link href="/tags/base64.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Golang实现RSA加密解密(附带php)</title>
-      <link>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html.html</guid>
       <description>https://segmentfault.com/a/
 安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES加密算法本身，请查阅相关资料）
 在PHP中，很多功能经常是一个函数解决；而Go中的却不是。本文会通过PHP加密，Go解密；Go加密，PHP解密来学习Go的RSA和DES相关的API。

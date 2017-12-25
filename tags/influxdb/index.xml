@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/influxdb.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Influxdb on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/influxdb.html</link>
+    <description>在 虞双齐的博客上关于in Influxdb 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/influxdb.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:32:45 +0800</lastBuildDate>
+    <atom:link href="/tags/influxdb.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kubernetes监控之InfluxDB</title>
-      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</link>
+      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</guid>
       <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
 该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
 InfluxDB特征：

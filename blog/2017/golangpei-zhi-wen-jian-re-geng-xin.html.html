@@ -1,0 +1,149 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go配置文件热更新 |虞双齐的博客</title><meta name="description" content="配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html.html"><meta property="og:title" content="Go配置文件热更新"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-03-13 08:39:17"><meta property="article:modified_time" content="2017-03-13 08:39:17"><meta property="article:tag" content="golang"><meta name="og:description" content="配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html.html">Go配置文件热更新</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000008487440" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-03-13">2017年03月13日</time></span></p></header><div itemprop="articleBody"><p>配置文件热更新是服务器程序的一个基本功能，通过热更新可以不停机调整程序的配置，特别是在生产环境可以提供极大的便利，比如发现log打得太多了可以动态调高日志等级，业务逻辑参数变化，甚至某个功能模块的开关等都可以动态调整。</p><p>每种语言都有自己的热更新实现方式，在golang里面我看到了有人采用了一种错误的实现方式，如下：</p><pre><code>type Config struct {
+    Test1 string `json:&quot;Test1&quot;`
+    Test2 int `json:&quot;Test2&quot;`
+}
+
+var (
+    config *Config
+)
+
+func loadConfig() {
+    f, err := ioutil.ReadFile(&quot;config.json&quot;)
+    if err != nil {
+        fmt.Println(&quot;load config error: &quot;, err)
+    }
+    err = json.Unmarshal(f, &amp;config)
+    if err != nil {
+        fmt.Println(&quot;Para config failed: &quot;, err)
+    }
+
+}
+func init() {
+    loadConfig()
+    fmt.Println(&quot;Load config: &quot;, *config)
+    s := make(chan os.Signal, 1)
+    signal.Notify(s, syscall.SIGUSR2)
+    go func() {
+        for {
+            &lt;-s
+            loadConfig()
+            fmt.Println(&quot;ReLoad config: &quot;, *config)
+        }
+    }()
+
+}
+</code></pre><p>这种方式，的问题就在于config可能被多个routine同时访问，那么loadcofig的时候直接在config上做解析是有问题的。在上面例子中，还是用的最简单的json配置，如果是其他更复杂的配置形式，如xml，需要自己写解析函数（而不是一个json.Unmarshal）的时候更容易放大问题。</p><p>可以采用更新的时候对config加锁来解决这个问题：</p><pre><code>package main
+
+import (
+    &quot;encoding/json&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;sync&quot;
+    &quot;syscall&quot;
+)
+
+//用json配置测试
+type Config struct {
+    Test1 string `json:&quot;Test1:`
+    Test2 int    `json:&quot;Test1:`
+}
+
+var (
+    config     *Config
+    configLock = new(sync.RWMutex)
+)
+
+func loadConfig() bool {
+    f, err := ioutil.ReadFile(&quot;config.json&quot;)
+    if err != nil {
+        fmt.Println(&quot;load config error: &quot;, err)
+        return false
+    }
+
+    //不同的配置规则，解析复杂度不同
+    temp := new(Config)
+    err = json.Unmarshal(f, &amp;config)
+    if err != nil {
+        fmt.Println(&quot;Para config failed: &quot;, err)
+        return false
+    }
+
+    configLock.Lock()
+    config = temp
+    configLock.Unlock()
+    return true
+}
+
+func GetConfig() *Config {
+    configLock.RLock()
+    defer configLock.RUnlock()
+    return config
+}
+
+func init() {
+    if !loadConfig() {
+        os.Exit(1)
+    }
+
+    //热更新配置可能有多种触发方式，这里使用系统信号量sigusr1实现
+    s := make(chan os.Signal, 1)
+    signal.Notify(s, syscall.SIGUSR1)
+    go func() {
+        for {
+            &lt;-s
+            log.Println(&quot;Reloaded config:&quot;, loadConfig())
+        }
+    }()
+}
+
+func main() {
+    select {}
+}
+</code></pre><p>因为热加载的时候，可能有很多未知的routine在使用config，通过切换配置的时候加锁可以保证多个routine对config的正确操作，不过需要注意的是，获取配置文件的时候也需要加锁。</p><p>不知道在golang里面，有没有不加锁的方案可以实现配置热更新？</p></div><aside id="meta"><meta itemprop="wordCount" content="212"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/wo-de-shi-cao-jing-yan-fen-xiang-ru-he-tong-guo-adsensezhuan-3mo-mei-jin.html.html">我的实操经验分享:如何通过Adsense赚3万美金</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html.html">互联网数据库“跨库分页”架构技术实践</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="0342ab47c0e284ddd7f0a832417146c6"></div><div id="cyReward" role="cylabs" data-use="reward" sid="0342ab47c0e284ddd7f0a832417146c6" style="text-align:center"></div><div id="SOHUCS" sid="0342ab47c0e284ddd7f0a832417146c6"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics/"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangpei-zhi-wen-jian-re-geng-xin.html.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangpei-zhi-wen-jian-re-geng-xin.html.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

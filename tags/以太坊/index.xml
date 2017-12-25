@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>以太坊 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.html</link>
+    <description>在 虞双齐的博客上关于in 以太坊 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Sep 2017 10:22:26 +0800</lastBuildDate>
+    <atom:link href="/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mac下搭建以太坊私有链</title>
-      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</link>
+      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html.html</link>
       <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html.html</guid>
       <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以go-ethereum和以太坊钱包为例，详细步骤记录如何在Mac下搭建以太坊私有链运行环境。
 配置前环境准备 安装以太坊客户端 实际以太坊运行有多个不同语言实现的客户端，是多样的。可为不同用户选择他们所熟悉的客户端。
    客户端 开发语言 开发者     go-ethereum Go 以太坊基金会   Parity Rust Ethcore   cpp-ethereum C++ 以太坊基金会   pyethapp Python 以太坊基金会   ethereumjs-lib Javascript 以太坊基金会   Ethereum(J) Java ether camp   ruby-ethereum Ruby 国人Xie Jan   ethereumH Haskell BlockApps    因为以太坊客户端以 go-ethereum 为主，故搭建私有链也使用该客户端。

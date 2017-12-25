@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客</title>
-    <link>https://yushuangqi.com/tags/doc.xml</link>
-    <description>在 虞双齐的博客上关于的内容</description>
+    <title>Doc on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/tags/doc.html</link>
+    <description>在 虞双齐的博客上关于in Doc 的内容</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <atom:link href="/tags/doc.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Dec 2016 11:34:27 +0800</lastBuildDate>
+    <atom:link href="/tags/doc.html" rel="self" type="application/rss+xml" />
     
     <item>
       <title>beego自动化文档</title>
-      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</link>
+      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html.html</guid>
       <description>beego是什么？ beego是一个快速开发*go应用*的http框架，go 语言技术大牛ASTA谢的开源项目。
 beego可以用来快速开发*API*、*Web*以及*后端服务*等各种应用，是一个RESTFul的框架，主要设计灵感来源于tornado、sinatra、flask这三个框架，结合了Go本身的一些特性(interface、struct继承等)而设计的。
 beego结合swagger就能实现自动化的文档。
