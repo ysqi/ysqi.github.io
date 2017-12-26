@@ -13,10 +13,10 @@
     
     <item>
       <title>golang的类型转换的坑和分析</title>
-      <link>https://yushuangqi.com/blog/2016/golangde-lei-xing-zhuai-huan-de-keng-he-fen-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golangde-lei-xing-zhuai-huan-de-keng-he-fen-xi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:41 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangde-lei-xing-zhuai-huan-de-keng-he-fen-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golangde-lei-xing-zhuai-huan-de-keng-he-fen-xi.html</guid>
       <description>首先，我们来看一个例子
 type Stringer interface { String() string } type String struct { data string } func (s *String) String() string { return s.data }  上面是类型，然后
 func GetString() *String { return nil } func CheckString(s Stringer) bool { return s == nil } func main() { println(CheckString(GetString())) }  你们猜答案是什么？

@@ -13,10 +13,10 @@
     
     <item>
       <title>glide使用</title>
-      <link>https://yushuangqi.com/blog/2016/glideshi-yong.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/glideshi-yong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/glideshi-yong.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/glideshi-yong.html</guid>
       <description>github: https://github.com/Masterminds/glide
 document: http://glide.readthedocs.io/en/stable/?badge=stable
 golang环境设置 设置环境变量 使用vendor目录 GO15VENDOREXPERIMENT=1  安装 获取 $ go get github.com/Masterminds/glide 进入目录 $ cd github.com/Masterminds/glide 编译 $ make build $ go build -o glide -ldflags &amp;quot;-X main.version=v0.11.0&amp;quot; glide.go  使用 # 创建glide.yaml文件 提示选择N(选择Y 是重新配置文件需手动指定) $ glide create #打开配置文件 $ open glide.yaml #使用glide获取包会自动写入glide.yaml文件中 $ glide get github.com/Masterminds/cookoo # 安装glide.yaml所需的包 $ glide install # 项目编译 $ go build # glide更新包 $ glide up  *注意 可以指定下载包的地址，版本号，下载方式

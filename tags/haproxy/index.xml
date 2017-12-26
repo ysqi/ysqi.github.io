@@ -13,10 +13,10 @@
     
     <item>
       <title>使用Etcd和Haproxy做Docker服务发现</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</guid>
       <description>使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service
  本文作者是 jwilder，本文的原文是 Docker Service Discovery Using Etcd and Haproxy
  在前一篇文章中，我们展示了一种为 Docker 容器在同一台主机上创建一个自动化 Nginx 反向代理的方式。那个设置对于前端 web app 来说工作的很好，但是对于后端服务来说它不是一个好的点子，因为通常它们跨越多个主机。

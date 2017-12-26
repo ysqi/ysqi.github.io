@@ -1,0 +1,84 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>GO学习笔记(一) |虞双齐的博客</title><meta name="description" content="https://segmentfault.com/a/
+变量 变量声明 通过关键字var声明变量，数"><meta name="keywords" content="变量, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html"><meta property="og:title" content="GO学习笔记(一)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:04"><meta property="article:modified_time" content="2016-12-31 11:33:04"><meta property="article:tag" content="变量"><meta property="article:tag" content="golang"><meta name="og:description" content="https://segmentfault.com/a/
+变量 变量声明 通过关键字var声明变量，数"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html">GO学习笔记(一)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000006897440" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><a href="https://segmentfault.com/a/">https://segmentfault.com/a/</a></p><h3 id="变量">变量</h3><h4 id="变量声明">变量声明</h4><p>通过关键字var声明变量，数据类型在变量名后。</p><pre><code>var a int
+var b int = 10
+</code></pre><p>变量声明语句可以不需要使用分号作为结束符。</p><p>可以将若干个需要声明的变量放置在一起，避免重复写var关键字。</p><pre><code>var (
+     a int
+     b string
+)
+</code></pre><h4 id="初始化变量">初始化变量</h4><p>初始化变量时可以不用声明数据类型，go编译器会根据表达式右值推导出该声明为哪种类型。</p><pre><code>var a int = 10
+var a = 10
+</code></pre><p>可以使用 := 操作符，用于明确表达同时进行变量声明和初始化工作，可以减少写关键字var跟数据类型。</p><h4 id="变量赋值">变量赋值</h4><p>go支持<code>多重赋值</code></p><pre><code>var i
+var j
+i, j = j, i
+</code></pre><p>这样就可以减少引入一个中间变量。</p><pre><code>var t = i;
+var i = j;
+var j = t;
+</code></pre><h4 id="匿名变量">匿名变量</h4><p>在函数返回多个值，但只希望获取个别返回值的情况下，可以使用匿名变量，这样就可以省去定义没用的变量。</p><pre><code>func GetName() (firstName, lastName, nickName string) {
+    return &quot;May&quot;, &quot;Chan&quot;, &quot;Chibi Maruko&quot;
+}
+</code></pre><p>取nickName的值，可以写成下面的写法</p><pre><code>_, _, nickName := GetName()
+</code></pre><p>使用匿名变量的好处是可以大幅降低沟通的复杂度和代码维护的难度。</p><h3 id="常量">常量</h3><p>常量是在编译期间就已知且不能改变的值。（整形、浮点型、复数型）</p><p>在Go中，以<code>大写字母开头</code>的常量在<code>包外可见</code>。</p><h4 id="字面常量">字面常量</h4><p>go中的字面常量是无类型的，只要该常量在相应类型的值域范围内，就可以作为该类型的常量。</p><h4 id="定义常量">定义常量</h4><p>使用<code>const</code>关键字声明常量，定义常量的时候可以限定常量类型，但是非必需的，如果定义时没有指定类型，那么该常量与字面常量一样是无类型的。</p><pre><code>const Pi float64 = 3.14159265358979323846
+const zero = 0.0
+const (
+    size int64 = 1024
+    eof = -1
+)
+const a, b, c = 1, 2, &quot;hello&quot;
+</code></pre><p>常量定义表达式的右边的值可以是一个在编译期的常量表达式，如：</p><pre><code>const Mask = 1 &lt;&lt; 3
+</code></pre><p>但由于常量的赋值是一个编译期行为，所以右值不能出现任何需要运行期才能得出结果的表达式，如：</p><pre><code>const Home = os.GetEnv(&quot;HOME&quot;)
+</code></pre><h4 id="预定义常量">预定义常量</h4><p>go内置的常量有<code>true</code>、<code>false</code>、<code>iota</code>;</p><p><code>iota</code>是可以被编译器修改的常量，在每一个const关键字出现时会被重置为0，然后在下一个<code>const</code>出现之前，没出现一次<code>iota</code>，其值都会自增1。</p><pre><code>const (
+    c0 = iota      // c0 = 0
+    c1 = iota      // c0 = 1
+    c2 = iota      // c0 = 2
+)
+</code></pre><p>如果两个以上<code>const</code>的赋值语句的表达式是一样的，那么刻意省略从第二个开始的赋值表达式，因为，上面的代码可以简写为：</p><pre><code>const (
+    c0 = iota      // c0 = 0
+    c1             // c0 = 1
+    c2             // c0 = 2
+)
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="175"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/%E5%8F%98%E9%87%8F.html" rel="tag">变量</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html">开源一个Golang写的Excel(xlsx)导入MySQL小工具</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/yong-golangxie-le-ge-jian-chan-yi-yong-de-wei-xin-sdk.html">用Golang写了个简单易用的微信SDK</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="f3fbb7eba1217bfaac22e17395e4fac6"></div><div id="cyReward" role="cylabs" data-use="reward" sid="f3fbb7eba1217bfaac22e17395e4fac6" style="text-align:center"></div><div id="SOHUCS" sid="f3fbb7eba1217bfaac22e17395e4fac6"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgoxue-xi-bi-ji-yi-.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgoxue-xi-bi-ji-yi-.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

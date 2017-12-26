@@ -13,10 +13,10 @@
     
     <item>
       <title>用Golang写一个搜索引擎(0x00)---从零开始</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x00----cong-ling-kai-shi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x00----cong-ling-kai-shi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:50 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x00----cong-ling-kai-shi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x00----cong-ling-kai-shi.html</guid>
       <description>很早就想写一系列的这样的文章了，之前在一个电商公司做搜索，对搜索引擎有一些认识，来到一个新的创业公司以后非常高兴还有机会继续做这方面的事情，虽然领域已经变了，而且不是做搜索了，但是技术还是那些技术，并且有机会接触到了Go语言，对于一个将近10年C/C++的程序员来说，Go的一些特质让我觉得非常舒服，可参见我之前的这篇文章。
 从公司项目衍生出了一个自己的搜索引擎项目，然后有了这篇文章。
 先聊聊目标吧，我希望实现一个这样的搜索引擎
@@ -48,10 +48,10 @@
     
     <item>
       <title>用Golang写一个搜索引擎(0x01)---基本概念</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x01----ji-ben-gai-nian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x01----ji-ben-gai-nian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:50 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x01----ji-ben-gai-nian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x01----ji-ben-gai-nian.html</guid>
       <description>从零开始，写一个搜索引擎 （0x01） 第零部分我们已经列了一个提纲了，这一篇文章开始要详细说说了。
 搜索引擎基本概念 在说搜索引擎架构分层之前，我们先确定几个搜索引擎的概念。
  文档，搜索引擎的基本数据单元，比如一张网页，一个商品，多个文档合在一起就是一个搜索引擎的完整数据

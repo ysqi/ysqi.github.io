@@ -13,10 +13,10 @@
     
     <item>
       <title>PHP编程中的并发</title>
-      <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</guid>
       <description>PHP编程中的并发  周末去北京面了两个公司，认识了几位技术牛人，面试中聊了很多，感觉收获颇丰。认识到了自己的不足之处，也坚定了自己对计算机学习的信心。本文是对其中一道面试题的总结。
  面试中有一个问题没有很好的回答出来，题目为：并发3个http请求，只要其中一个请求有结果，就返回，并中断其他两个。
 当时考虑的内容有些偏离题目原意， 一直在考虑如何中断http请求，大概是在 client-&amp;gt;recv() 之前去判断结果是否已经产生，所以回答的是用 socket 去发送一个 http 请求，把 socket 加入 libevent 循环监听，在callback中判断是否已经得到结果，如果已经得到结果，就直接 return。

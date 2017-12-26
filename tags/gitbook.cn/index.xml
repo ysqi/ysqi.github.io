@@ -13,10 +13,10 @@
     
     <item>
       <title>互联网数据库“跨库分页”架构技术实践</title>
-      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</link>
       <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
       <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
  微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
  有一个业务主键id，例如msg_id，order_id，tiezi_id 分页排序是按照非业务主键id来排序的，业务中经常按照时间time来排序order by  在数据量不大时，可以通过在排序字段time上建立索引，利用SQL提供的offset/limit功能就能满足分页查询需求：

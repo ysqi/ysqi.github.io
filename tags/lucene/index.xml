@@ -13,10 +13,10 @@
     
     <item>
       <title>go如何使用SIMD指令</title>
-      <link>https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html</guid>
       <description>Java SIMD Lucene Elasticsearch 我们首先来看一下 JAVA 如何使用 CPU 的 SIMD 指令。这是一个ru的哥们尝试在lucene里使用SIMD指令加速lucene的postings list（也就是指定term对应的文档id列表）的解码：
 http://blog.griddynamics.com/2015/02/proposing-simd-codec-for-lucene.h&amp;hellip;
 https://www.youtube.com/watch?v=2HQdbpgHfnQ&amp;amp;index=15&amp;amp;list=PLq-&amp;hellip;

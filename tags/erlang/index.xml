@@ -13,10 +13,10 @@
     
     <item>
       <title>不是语言之争---GovsErlang</title>
-      <link>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:28 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html</guid>
       <description>因为 云巴 系统对高并发、低延迟的需求，我们对各个语言、平台做了很多的调研比较工作。这自然就包括致力于开发高并发应用的 Go 和 Erlang。
 并发 Go 对高并发的支持通过 goroutine 实现。goroutine 可以理解为轻量级的 线程（thread）。同一个 Go 应用创建的 goroutine 共享地址空间。
 Erlang 的高并发通过轻量级 进程（process）实现，每一个进程都有独立的状态记录。

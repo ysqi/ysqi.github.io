@@ -13,10 +13,10 @@
     
     <item>
       <title>开源了一个简单的http服务压测工具Alex自带webuigolang实现</title>
-      <link>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html</guid>
       <description>Alex Alex是基于vegeta library和boom封装的压力测试web UI。Vegeta提供稳定的qps压力源，boom提供稳定的并发数压力源。
 github地址 https://github.com/ireaderlab/alex
 English

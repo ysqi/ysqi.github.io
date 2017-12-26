@@ -13,10 +13,10 @@
     
     <item>
       <title>写了个爬取淘宝购买文胸的评论的爬虫数据共享。</title>
-      <link>https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:58 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html</guid>
       <description>上个月用 go 语言写的，超低性能的服务器，爬了一个晚上，两百多万条评论。当时简单的分析了一下，后来就去忙考试了。最近又搞了搞，不过发现目前淘宝 ip 禁的比较严，已经不能用了，本来想发代码的，现在就不发了。目前正在尝试用代理 ip 解决。
 下面是简单统计的数据。感觉挺好玩儿的，比如说在我统计的几种颜色中，购买黑色胸罩的比例竟然占百分之 40 ，还有 B 罩杯占百分之 44 ，购买最多的型号是 75B 。
 让女友做了一个简单的展示页面：http://nladuo.github.io/bra/

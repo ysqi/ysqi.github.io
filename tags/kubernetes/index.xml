@@ -13,10 +13,10 @@
     
     <item>
       <title>Kubernetes监控之InfluxDB</title>
-      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
       <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
 该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
 InfluxDB特征：
@@ -51,10 +51,10 @@ name: census --------------------- time butterflies honeybees location scientist
     
     <item>
       <title>Kubernetes监控之Heapster介绍</title>
-      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html</guid>
       <description>什么是Heapster？ Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
 Kubernetes有个出名的监控agent&amp;mdash;cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
 在较新的版本中，K8S已经将cAdvisor功能集成到kubelet组件中。每个Node节点可以直接进行web访问。

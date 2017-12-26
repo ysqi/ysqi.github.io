@@ -1,0 +1,185 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>用go实现跨平台Autoit_AutoHotkey和按键精灵功能示例代码 |虞双齐的博客</title><meta name="description" content="Robotgo v0.40.0对鼠标键盘操作进行了大幅度的完善,由于跨平台切换测试麻烦(合并几个平台"><meta name="keywords" content="autohotkey, golang, c, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html"><meta property="og:title" content="用go实现跨平台Autoit_AutoHotkey和按键精灵功能示例代码"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:50"><meta property="article:modified_time" content="2016-12-31 11:32:50"><meta property="article:tag" content="autohotkey"><meta property="article:tag" content="golang"><meta property="article:tag" content="c"><meta name="og:description" content="Robotgo v0.40.0对鼠标键盘操作进行了大幅度的完善,由于跨平台切换测试麻烦(合并几个平台"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html">用go实现跨平台Autoit_AutoHotkey和按键精灵功能示例代码</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007590542" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>Robotgo v0.40.0对鼠标键盘操作进行了大幅度的完善,由于跨平台切换测试麻烦(合并几个平台的代码到对比上传代码都浪费了不少时间)和C代码生产效率与Go和JavaScript不在一个级别上,没有支持窗口和进程对应窗口的选择以及窗口Bounds,将在下一个版本完善,键盘操作可能在某些输入法上有些问题请切换到系统输入法(目前优先完成窗口句柄的问题,后面会解决该问题).</p><p>项目地址:<a href="https://github.com/go-vgo/robotgo">https://github.com/go-vgo/rob&hellip;</a></p><p>下面整理本机测试部分的代码,将会在以后版本陆续完善,并附上注释(请看清代码再运行):</p><pre><code>package main
+
+import (
+    . &quot;fmt&quot;
+    &quot;github.com/go-vgo/robotgo&quot;
+)
+
+func main() {
+    //键盘控制
+    robotgo.TypeString(&quot;Hello World&quot;)//输入Hello World
+    robotgo.KeyTap(&quot;enter&quot;)//按下enter键
+    robotgo.KeyTap(&quot;a&quot;, &quot;control&quot;)
+    robotgo.KeyTap(&quot;h&quot;, &quot;command&quot;) //隐藏窗口
+
+    robotgo.KeyTap(&quot;i&quot;, &quot;alt&quot;, &quot;command&quot;)
+    //按下&quot;i&quot;, &quot;alt&quot;, &quot;command&quot;组合键
+    arr := []string{&quot;alt&quot;, &quot;command&quot;}
+    robotgo.KeyTap(&quot;i&quot;, arr)
+    //按下&quot;i&quot;, &quot;alt&quot;, &quot;command&quot;组合键
+
+    robotgo.KeyTap(&quot;w&quot;, &quot;command&quot;) //关闭窗口
+    robotgo.KeyTap(&quot;m&quot;, &quot;command&quot;) //最小化窗口
+    robotgo.KeyTap(&quot;f1&quot;, &quot;control&quot;)
+    robotgo.KeyTap(&quot;a&quot;, &quot;control&quot;)
+    robotgo.KeyToggle(&quot;a&quot;, &quot;down&quot;)//切换a键
+    robotgo.KeyToggle(&quot;a&quot;, &quot;down&quot;, &quot;alt&quot;)
+    robotgo.KeyToggle(&quot;a&quot;, &quot;down&quot;, &quot;alt&quot;, &quot;command&quot;)
+    robotgo.KeyToggle(&quot;enter&quot;, &quot;down&quot;)
+    robotgo.TypeString(&quot;en&quot;)
+
+    //鼠标控制
+    robotgo.MoveMouse(100, 200)//移动鼠标到100, 200位置
+    robotgo.MouseClick()//鼠标左键单击
+    robotgo.MouseClick(&quot;right&quot;, false) //右键单击
+    robotgo.MouseClick(&quot;left&quot;, true)   //左键双击
+    robotgo.ScrollMouse(10, &quot;up&quot;)//向上滚动鼠标
+    robotgo.MouseToggle(&quot;down&quot;, &quot;right&quot;)//鼠标右键切换
+    robotgo.MoveMouseSmooth(100, 200)//平滑移动鼠标到100, 200
+    robotgo.MoveMouseSmooth(100, 200, 1.0, 100.0)//设置平滑移动速度
+    x, y := robotgo.GetMousePos()//获取鼠标坐标位置
+    Println(&quot;pos:&quot;, x, y)
+    if x == 456 &amp;&amp; y == 586 {
+        Println(&quot;mouse...&quot;, &quot;586&quot;)
+    }
+
+    robotgo.MouseToggle(&quot;up&quot;)
+    robotgo.MoveMouse(x, y)
+    robotgo.MoveMouse(100, 200)
+
+    for i := 0; i &lt; 1080; i += 1000 {
+        Println(i)
+        robotgo.MoveMouse(800, i)
+    }
+    //屏幕控制
+    //robotgo.CaptureScreen()
+    // bit_map := robotgo.CaptureScreen()
+    // Println(&quot;CaptureScreen...&quot;, bit_map)
+    //gbit_map := robotgo.Capture_Screen()
+    gbit_map := robotgo.BCaptureScreen()//获取屏幕位图
+    Println(&quot;Capture_Screen...&quot;, gbit_map.Width)
+
+    sx, sy := robotgo.GetScreenSize()//获取屏幕width和height
+    Println(&quot;...&quot;, sx, sy)
+
+    color := robotgo.GetPixelColor(100, 200)//获取坐标100, 200的颜色
+    Println(&quot;color----&quot;, color, &quot;-----------------&quot;)
+
+    color2 := robotgo.GetPixelColor(10, 20)//获取坐标10, 20的颜色
+    Println(&quot;color---&quot;, color2)
+
+    // Bitmap
+    abit_map := robotgo.CaptureScreen()//获取全屏位图
+    Println(&quot;a...&quot;, abit_map)
+
+    bit_map := robotgo.CaptureScreen(100, 200, 30, 40)
+    //获取100, 200, 30, 40的位图
+    Println(&quot;CaptureScreen...&quot;, bit_map)
+    // Println(&quot;...&quot;, bit_map.Width, bit_map.BytesPerPixel)
+
+    fx, fy := robotgo.FindBitmap(bit_map)//查找位图
+    Println(&quot;FindBitmap------&quot;, fx, fy)
+
+    bit_pos := robotgo.GetPortion(bit_map, 10, 10, 11, 10)//截取位图
+    Println(bit_pos)
+
+    bit_str := robotgo.TostringBitmap(bit_map)//Tostring位图
+    Println(&quot;bit_str...&quot;, bit_str)
+
+    // sbit_map := robotgo.BitmapFromstring(bit_str, 2)
+    // Println(&quot;...&quot;, sbit_map)
+
+    robotgo.SaveBitmap(bit_map, &quot;test.png&quot;)//保存位图为图片
+    robotgo.SaveBitmap(bit_map, &quot;test31.tif&quot;, 1)
+    robotgo.Convert(&quot;test.png&quot;, &quot;test.tif&quot;)//转换位图图片格式
+
+    open_bit := robotgo.OpenBitmap(&quot;test.tif&quot;)//打开图片位图
+    Println(&quot;open...&quot;, open_bit)
+
+    //全局监听事件
+    Println(&quot;---请按v键---&quot;)
+    eve := robotgo.AddEvent(&quot;v&quot;)
+
+    if eve == 0 {
+        Println(&quot;---你按下v键---&quot;, &quot;v&quot;)
+    }
+
+    Println(&quot;---请按k键---&quot;)
+    keve := robotgo.AddEvent(&quot;k&quot;)
+    if keve == 0 {
+        Println(&quot;---你按下k键---&quot;, &quot;k&quot;)
+    }
+
+    Println(&quot;---请按鼠标左键---&quot;)
+    mleft := robotgo.AddEvent(&quot;mleft&quot;)
+    if mleft == 0 {
+        Println(&quot;---你按下左键---&quot;, &quot;mleft&quot;)
+    }
+
+    // mright := robotgo.AddEvent(&quot;mright&quot;)
+    // if mright == 0 {
+    //  Println(&quot;---你按下右键---&quot;, &quot;mright&quot;)
+    // }
+
+    // robotgo.LStop()
+
+    //窗口
+    abool := robotgo.ShowAlert(&quot;hello&quot;, &quot;robotgo&quot;)//弹出窗口
+    if abool == 0 {
+        Println(&quot;ok@@@&quot;, &quot;确认&quot;)
+    }
+    robotgo.ShowAlert(&quot;hello&quot;, &quot;robotgo&quot;, &quot;确认&quot;, &quot;取消&quot;)
+    // robotgo.GetPID()
+    mdata := robotgo.GetActive()//获取当前窗口
+    hwnd := robotgo.GetHandle()//获取当前窗口hwnd
+    Println(&quot;hwnd---&quot;, hwnd)
+    title := robotgo.GetTitle()//获取当前窗口标题
+    Println(&quot;title-----&quot;, title)
+    robotgo.CloseWindow()//关闭当前窗口
+    robotgo.SetActive(mdata)//SetActive窗口
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="314"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/autohotkey.html" rel="tag">autohotkey</a> <a href="/tags/c.html" rel="tag">c</a> <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html">编写可测试的Go代码</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/liao-liao-tcplian-jie-chi.html">聊聊TCP连接池</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="76c443b9a536a6b1b945ef2237d6165b"></div><div id="cyReward" role="cylabs" data-use="reward" sid="76c443b9a536a6b1b945ef2237d6165b" style="text-align:center"></div><div id="SOHUCS" sid="76c443b9a536a6b1b945ef2237d6165b"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fyong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fyong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

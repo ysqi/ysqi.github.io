@@ -1,0 +1,207 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>理解Go语言的nil |虞双齐的博客</title><meta name="description" content="最近在油管上面看了一个视频：Understanding nil，挺有意思，这篇文章就对视频做一个归纳"><meta name="keywords" content=", "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html"><meta property="og:title" content="理解Go语言的nil"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-03-03 08:36:22"><meta property="article:modified_time" content="2017-03-03 08:36:22"><meta property="article:tag" content=""><meta name="og:description" content="最近在油管上面看了一个视频：Understanding nil，挺有意思，这篇文章就对视频做一个归纳"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html">理解Go语言的nil</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="http://www.jianshu.com/p/dd80f6be7969" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-03-03">2017年03月03日</time></span></p></header><div itemprop="articleBody"><p>最近在油管上面看了一个视频：<a href="https://www.youtube.com/watch?v=ynoY2xz-F8s">Understanding nil</a>，挺有意思，这篇文章就对视频做一个归纳总结，代码示例都是来自于视频。</p><h1 id="nil是什么">nil是什么</h1><p>相信写过Golang的程序员对下面一段代码是非常非常熟悉的了：</p><pre><code>if err != nil {
+    // do something....
+}
+</code></pre><p>当出现不等于<code>nil</code>的时候，说明出现某些错误了，需要我们对这个错误进行一些处理，而如果等于<code>nil</code>说明运行正常。那什么是<code>nil</code>呢？查一下词典可以知道，<code>nil</code>的意思是无，或者是零值。零值，zero value，是不是有点熟悉？在Go语言中，如果你声明了一个变量但是没有对它进行赋值操作，那么这个变量就会有一个类型的默认零值。这是每种类型对应的零值：</p><pre><code>bool      -&gt; false                              
+numbers -&gt; 0                                 
+string    -&gt; &quot;&quot;      
+
+pointers -&gt; nil
+slices -&gt; nil
+maps -&gt; nil
+channels -&gt; nil
+functions -&gt; nil
+interfaces -&gt; nil
+</code></pre><p>举个例子，当你定义了一个struct：</p><pre><code>type Person struct {
+  AgeYears int
+  Name string
+  Friends []Person
+}
+
+var p Person // Person{0, &quot;&quot;, nil}
+</code></pre><p>变量<code>p</code>只声明但没有赋值，所以p的所有字段都有对应的零值。那么，这个<code>nil</code>到底是什么呢？Go的文档中说到，*nil是预定义的标识符，代表指针、通道、函数、接口、映射或切片的零值*，也就是预定义好的一个变量：</p><pre><code>type Type int
+var nil Type
+</code></pre><p>是不是有点惊讶？<code>nil</code>并不是Go的关键字之一，你甚至可以自己去改变<code>nil</code>的值：</p><pre><code>var nil = errors.New(&quot;hi&quot;)
+</code></pre><p>这样是完全可以编译得过的，但是最好不要这样子去做。</p><h1 id="nil有什么用">nil有什么用</h1><p>在了解了什么是<code>nil</code>之后，再来说说<code>nil</code>有什么用。</p><h2 id="pointers">pointers</h2><pre><code>var p *int
+p == nil    // true
+*p          // panic: invalid memory address or nil pointer dereference
+</code></pre><p>指针表示指向内存的地址，如果对为nil的指针进行解引用的话就会导致panic。那么为<code>nil</code>的指针有什么用呢？先来看一个计算二叉树和的例子：</p><pre><code>type tree struct {
+  v int
+  l *tree
+  r *tree
+}
+
+// first solution
+func (t *tree) Sum() int {
+  sum := t.v
+  if t.l != nil {
+    sum += t.l.Sum()
+  }
+  if t.r != nil {
+    sum += t.r.Sum()
+  }
+  return sum
+}
+</code></pre><p>上面的代码有两个问题，一个是代码重复：</p><pre><code>if v != nil {
+  v.m()
+}
+</code></pre><p>另一个是当<code>t</code>是<code>nil</code>的时候会panic：</p><pre><code>var t *tree
+sum := t.Sum()   // panic: invalid memory address or nil pointer dereference
+</code></pre><p>怎么解决上面的问题？我们先来看看一个指针接收器的例子：</p><pre><code>type person struct {}
+func sayHi(p *person) { fmt.Println(&quot;hi&quot;) }
+func (p *person) sayHi() { fmt.Println(&quot;hi&quot;) }
+var p *person
+p.sayHi() // hi
+</code></pre><p>对于指针对象的方法来说，就算指针的值为<code>nil</code>也是可以调用的，基于此，我们可以对刚刚计算二叉树和的例子进行一下改造：</p><pre><code>func(t *tree) Sum() int {
+  if t == nil {
+    return 0
+  }
+  return t.v + t.l.Sum() + t.r.Sum()
+}
+</code></pre><p>跟刚才的代码一对比是不是简洁了很多？对于<code>nil</code>指针，只需要在方法前面判断一下就ok了，无需重复判断。换成打印二叉树的值或者查找二叉树的某个值都是一样的：</p><pre><code>func(t *tree) String() string {
+  if t == nil {
+    return &quot;&quot;
+  }
+  return fmt.Sprint(t.l, t.v, t.r)
+}
+
+// nil receivers are useful: Find
+func (t *tree) Find(v int) bool {
+  if t == nil {
+    return false
+  }
+  return t.v == v || t.l.Find(v) || t.r.Find(v)
+}
+</code></pre><p>所以如果不是很需要的话，不要用NewX()去初始化值，而是使用它们的默认值。</p><h2 id="slices">slices</h2><pre><code>// nil slices
+var s []slice
+len(s)  // 0
+cap(s)  // 0
+for range s  // iterates zero times
+s[i]  // panic: index out of range
+</code></pre><p>一个为<code>nil</code>的slice，除了不能索引外，其他的操作都是可以的，当你需要填充值的时候可以使用<code>append</code>函数，slice会自动进行扩充。那么为<code>nil</code>的slice的底层结构是怎样的呢？根据官方的文档，slice有三个元素，分别是长度、容量、指向数组的指针：</p><p><img src="https://static.yushuangqi.com/blog/2017/0303081604e3kul3dcpdi.png" alt=""></p><p>slice</p><p><br>当有元素的时候：</p><p><img src="https://static.yushuangqi.com/blog/2017/0303081604di0gzkadpmu.png" alt=""></p><p>slice</p><p><br>所以我们并不需要担心slice的大小，使用append的话slice会自动扩容。（视频中说slice自动扩容速度很快，不必担心性能问题，这个值得商榷，在确定slice大小的情况只进行一次内存分配总是好的）</p><h2 id="map">map</h2><p>对于Go来说，map，function，channel都是特殊的指针，指向各自特定的实现，这个我们暂时可以不用管。</p><pre><code>// nil maps
+var m map[t]u
+len(m)  // 0
+for range m // iterates zero times
+v, ok := m[i] // zero(u), false
+m[i] = x // panic: assignment to entry in nil map
+</code></pre><p>对于<code>nil</code>的map，我们可以简单把它看成是一个只读的map，不能进行写操作，否则就会panic。那么<code>nil</code>的map有什么用呢？看一下这个例子：</p><pre><code>func NewGet(url string, headers map[string]string) (*http.Request, error) {
+  req, err := http.NewRequest(http.MethodGet, url, nil)
+  if err != nil {
+    return nil, err
+  }
+
+  for k, v := range headers {
+    req.Header.Set(k, v)
+  }
+  return req, nil
+}
+</code></pre><p>对于<code>NewGet</code>来说，我们需要传入一个类型为map的参数，并且这个函数只是对这个参数进行读取，我们可以传入一个非空的值：</p><pre><code>NewGet(&quot;http://google.com&quot;, map[string]string{
+  &quot;USER_AGENT&quot;: &quot;golang/gopher&quot;,
+},)
+</code></pre><p>或者这样传：</p><pre><code>NewGet(&quot;http://google.com&quot;, map[string]string{})
+</code></pre><p>但是前面也说了，map的零值是<code>nil</code>，所以当<code>header</code>为空的时候，我们也可以直接传入一个<code>nil</code>：</p><pre><code>NewGet(&quot;http://google.com&quot;, nil)
+</code></pre><p>是不是简洁很多？所以，把<code>nil</code> map作为一个只读的空的map进行读取吧。</p><h2 id="channel">channel</h2><pre><code>// nil channels
+var c chan t
+&lt;- c      // blocks forever
+c &lt;- x    // blocks forever
+close(c)  // panic: close of nil channel
+</code></pre><p>关闭一个<code>nil</code>的channel会导致程序<code>panic</code>（如何关闭channel可以看这篇文章：<a href="http://www.jianshu.com/p/d24dfbb33781">如何优雅地关闭Go channel</a>）举个例子，假如现在有两个channel负责输入，一个channel负责汇总，简单的实现代码：</p><pre><code>func merge(out chan&lt;- int, a, b &lt;-chan int) {
+  for {
+    select {
+      case v := &lt;-a:
+        out &lt;- v
+      case v := &lt;- b:
+        out &lt;- v
+    }
+  }
+}
+</code></pre><p>如果在外部调用中关闭了a或者b，那么就会不断地从a或者b中读出0，这和我们想要的不一样，我们想关闭a和b后就停止汇总了，修改一下代码：</p><pre><code>func merge(out chan&lt;- int, a, b &lt;-chan int) {
+  for a != nil || b != nil {
+    select {
+      case v, ok := &lt;-a:
+          if !ok {
+            a = nil
+            fmt.Println(&quot;a is nil&quot;)
+            continue
+          }
+          out &lt;- v
+      case v, ok := &lt;-b:
+          if !ok {
+            b = nil
+            fmt.Println(&quot;b is nil&quot;)
+            continue
+          }
+          out &lt;- v
+    }
+  }
+  fmt.Println(&quot;close out&quot;)
+  close(out)
+}
+</code></pre><p>在知道channel关闭后，将channel的值设为nil，这样子就相当于将这个select case子句停用了，因为<code>nil</code>的channel是永远阻塞的。</p><h2 id="interface">interface</h2><p>interface并不是一个指针，它的底层实现由两部分组成，一个是类型，一个值，也就是类似于：(Type, Value)。只有当类型和值都是<code>nil</code>的时候，才等于<code>nil</code>。看看下面的代码：</p><pre><code>func do() error {   // error(*doError, nil)
+  var err *doError
+  return err  // nil of type *doError
+}
+
+func main() {
+  err := do()
+  fmt.Println(err == nil)
+}
+</code></pre><p>输出结果是<code>false</code>。<code>do</code>函数声明了一个<code>*doErro</code>的变量<code>err</code>，然后返回，返回值是<code>error</code>接口，但是这个时候的Type已经变成了：（*doError，nil），所以和<code>nil</code>肯定是不会相等的。所以我们在写函数的时候，不要声明具体的error变量，而是应该直接返回<code>nil</code>：</p><pre><code>func do() error {
+  return nil
+}
+</code></pre><p>再来看看这个例子：</p><pre><code>func do() *doError {  // nil of type *doError
+  return nil
+}
+
+func wrapDo() error { // error (*doError, nil)
+  return do()       // nil of type *doError
+}
+
+func main() {
+  err := wrapDo()   // error  (*doError, nil)
+  fmt.Println(err == nil) // false
+}
+</code></pre><p>这里最终的输出结果也是<code>false</code>。为什么呢？尽管<code>wrapDo</code>函数返回的是<code>error</code>类型，但是<code>do</code>返回的却是<code>*doError</code>类型，也就是变成了（*doError，nil），自然也就和<code>nil</code>不相等了。因此，不要返回具体的错误类型。遵从这两条建议，才可以放心地使用<code>if x != nil</code>。</p><h1 id="总结">总结</h1><p>看完了那个视频，发现<code>nil</code>还有这么多用处，真是意外之喜。<br>油管上面还有很多干货满满的视频，可以多学习学习咯。</p></div><aside id="meta"><meta itemprop="wordCount" content="596"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/.html" rel="tag"></a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html">为什么Go语言在中国格外的火</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html">谢孟军:THESTATEOFGO</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="af84cdff5f176493b6c1a80e402231f0"></div><div id="cyReward" role="cylabs" data-use="reward" sid="af84cdff5f176493b6c1a80e402231f0" style="text-align:center"></div><div id="SOHUCS" sid="af84cdff5f176493b6c1a80e402231f0"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fli-jie-goyu-yan-de-nil.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fli-jie-goyu-yan-de-nil.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

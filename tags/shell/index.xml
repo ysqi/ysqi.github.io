@@ -13,10 +13,10 @@
     
     <item>
       <title>centos7下安装go语言</title>
-      <link>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</guid>
       <description>1.下载 并且 安装 Go安装包
 百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg
 ===========================================================
@@ -33,10 +33,10 @@ $ go version  go version go1.5.2 linux/amd64</description>
     
     <item>
       <title>beego自动化部署</title>
-      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</guid>
       <description>beego是Golang写的应用程序开源框架http://beego.me/，我使用beego写了一个项目小项目，golang是编译语言，需要编译之后再部署，每次部署到服务上是件很麻烦的事情。就写了一个自动打包部署到服务器的脚本，方便发布部署。
 项目结构 先看看beego项目的结构：
 beepkg |-- conf | `-- app.conf |-- controllers | `-- default.go |-- main.go |-- models |-- routers | `-- router.go |-- static | |-- css | |-- img | `-- js |-- tests | `-- default_test.go `-- views `-- index.tpl  其中controllers，views.models以及其他的.go文件会被打包成可执行文件beepkg。
@@ -52,10 +52,10 @@ beepkg |-- conf | `-- app.conf |-- controllers | `-- default.go |-- main.go |-- 
     
     <item>
       <title>go实现高性能直播服务</title>
-      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</guid>
       <description>livego
 go 实现直播服务
 服务器部署
@@ -78,10 +78,10 @@ http://localhost:8080/camera (录视频)(由于chrome的安全限制，建议在
     
     <item>
       <title>Liunx查找删除历史备份文件批命令</title>
-      <link>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</link>
       <pubDate>Mon, 15 Feb 2016 13:06:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</guid>
       <description>NAS作为数据备份中心，但需要经常清理历史备份文件，仅需要保留一部分备份文件即可。由于NAS是改造后的Liunx 操作系统，故有些命令无法直接执行，因此独立写了一个脚本来搜索历史备份文件，并记录待删除文件信息，自动生成脚本删除文件。
 Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
 #!/bin/bash  NOW=$(date +&amp;#34;%Y%m%d%M%S&amp;#34;) FILE=&amp;#34;NeedDeleteFile_$NOW.sh&amp;#34; # 遍历文件，写入文件中 function findFile(){ # 记录查找目录 	echo &amp;#34;# find from $1-mtime $2&amp;#34; &amp;gt;&amp;gt; $FILE #遍历目录，将指定日期的  find $1 -mtime $2 -type f \( -iname &amp;#34;*.bak&amp;#34; -o -iname &amp;#34;*.log&amp;#34; -o -iname &amp;#34;*.zip&amp;#34; -o -iname &amp;#34;*.rar&amp;#34; \) -print0 | while IFS= read -r -d $&amp;#39;\0&amp;#39; line; do echo &amp;#34;rm \&amp;#34;$line\&amp;#34;;&amp;#34; &amp;gt;&amp;gt; $FILE done } # 标记sh文件 echo &amp;#34;#!/bin/bash&amp;#34; &amp;gt;&amp;gt; $FILE # 记录创建日期 echo &amp;#34;# $NOWcreate file.</description>
@@ -89,10 +89,10 @@ Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
     
     <item>
       <title>如何按多个文件名查找文件</title>
-      <link>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</link>
       <pubDate>Mon, 15 Feb 2016 12:44:59 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</guid>
       <description>一个问题是如何在 Liunx 下按多个文件名或者文件后缀查找文件。例如，我想要查找当前项目下所有的 .go 和 .md 文件。
 此时，你可以使用 Liunx 命令 find ，命名具体用法参见gnu 文档。 使用 find 命令能够通过选项-o ( or 的意思) 来按多个条件查找文件。
 示例：按两个文件名查找文件 我们想查找当前命令目录下的 .go 和 .md 文件。

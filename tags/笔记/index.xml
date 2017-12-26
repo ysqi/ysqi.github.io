@@ -13,10 +13,10 @@
     
     <item>
       <title>终于找到我要的读书方法了</title>
-      <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
       <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
       <description>自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。
 曾遭遇的困惑  买过很多不需要的书，在角落里干灰。 我好像读过这本书。 一口气读完一本书，就没有然后了。  现在买书很克制，不读完并吸收掌握就不继续买。先放到购物车或购书清单中，反正电商的图书活动不断，不怕下次没法优惠购。
 如果你有同感请继续看，否则请打道回府，欢迎下次光临🙈。
@@ -36,10 +36,10 @@
     
     <item>
       <title>老虞学Golang-控制语句</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</link>
       <pubDate>Mon, 08 Apr 2013 23:31:47 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</guid>
       <description>Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活
 if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执行语句块，否则则执行else语句块(如果存在else时)，此逻辑和其他语言中的if一样，但是在Go中还是有一些不同之处。
  if条件表达式不能使用花括号()包含 if语句代码段必须使用{}，并且左括号必须和if在同一行 if条件表达式的前面可以包含初始化语句，支持平行赋值，但不支持多个赋值语句  赋值+条件判断
@@ -50,10 +50,10 @@ func getName(id int) string { if id == 1 { return &amp;#34;YourName&amp;#34; }el
     
     <item>
       <title>老虞学Golang-函数上</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</link>
       <pubDate>Sun, 07 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</guid>
       <description>不可或缺的函数，在Go中定义函数的方式如下：
 func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return } 通过函数定义，我们可以看到Go中函数和其他语言中的共性和特性
 共性  关键字——func 方法名——funcName 入参——— a,b int,b string 返回值—— r,s int 函数体—— {}  特性 Go中函数的特性是非常酷的，给我们带来不一样的编程体验。
@@ -64,10 +64,10 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return } 通�
     
     <item>
       <title>老虞学golang-字符串</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</link>
       <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
       <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
  初始化 var str string //声明一个字符串  str = &amp;#34;laoYu&amp;#34; //赋值  ch :=str[0] //获取第一个字符  len :=len(str) //字符串的长度,len是内置函数 ,len=5 字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
  查看示例代码
@@ -76,10 +76,10 @@ str :=&amp;#34;laoYu老虞&amp;#34; for i:=0;i&amp;lt;len(str);i++ { fmt.Println
     
     <item>
       <title>老虞学Golang-常量</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</link>
       <pubDate>Fri, 05 Apr 2013 23:31:47 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</guid>
       <description>###常量
 常量和C#中的概念相同，在编译期被创建。因为在编译期必须确定其值，因此在声明常量时有一些限制。
  其类型必须是：数值、字符串、布尔值 表达式必须是在编译期可计算的 声明常量的同时必须进行初始化，其值不可再次修改  ####Doc
@@ -96,10 +96,10 @@ const ( //批量声明  Monday, Tuesday, Wednesday = 1, 2, 3 Thursday, Friday, S
     
     <item>
       <title>老虞学Golang-数组和切片</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</link>
       <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</guid>
       <description>数组 Arrays 数组是内置(build-in)类型,是一组同类型数据的集合，它是值类型，通过从0开始的下标索引访问元素值。在初始化后长度是固定的，无法修改其长度。当作为方法的入参传入时将复制一份数组而不是引用同一指针。数组的长度也是其类型的一部分，通过内置函数len(array)获取其长度。
 初始化 数组的初始化有多种形式,查看示例代码 , 在线运行示例代码
  [5] int {1,2,3,4,5} 长度为5的数组，其元素值依次为：1，2，3，4，5 [5] int {1,2} 长度为5的数组，其元素值依次为：1，2，0，0，0 。在初始化时没有指定初值的元素将会赋值为其元素类型int的默认值0,string的默认值是&amp;rdquo;&amp;rdquo; [...] int {1,2,3,4,5} 长度为5的数组，其长度是根据初始化时指定的元素个数决定的 [5] int { 2:1,3:2,4:3} 长度为5的数组，key:value,其元素值依次为：0，0，1，2，3。在初始化时指定了2，3，4索引中对应的值：1，2，3 [...] int {2:1,4:3} 长度为5的数组，起元素值依次为：0，0，1，0，3。由于指定了最大索引4对应的值3，根据初始化的元素个数确定其长度为5  赋值与使用 数组通过下标访问元素，可修改其元素值
@@ -109,10 +109,10 @@ arr := [5]int{5, 4, 3} for index, value := range arr { fmt.Printf(&amp;#34;arr[%
     
     <item>
       <title>老虞学golang-变量声明与初始化</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</link>
       <pubDate>Wed, 03 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</guid>
       <description>变量声明  官方doc: http://golang.org//spec#Variable_declarations
  Go中使用全新的关键字var来声明变量。var我们并不陌生，在Javascript 和C#中均有出现。不同的是Go和C#中变量属于强类型，在声明变量后就不允许改变其数据类型。
 声明变量有多种形态:
@@ -127,10 +127,10 @@ var name [type] = value
     
     <item>
       <title>老虞学Golang-代码规范</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</link>
       <pubDate>Tue, 02 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</guid>
       <description>&lt;p&gt;开始一项新语言前需要先了解该语言的语法(如果你有其他语言的编程知识的话)，开始学习前，我们一起了解下Go的格式。
 如果大家都统一编码风格，那么在维护他人代码时就能带来便利。同时我们在提交代码前执行一次fmt命令，以便提交统一风格的代码。&lt;/p&gt;
 
@@ -139,10 +139,10 @@ var name [type] = value
     
     <item>
       <title>老虞学GoLang-为什么会学习goLang</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</link>
       <pubDate>Mon, 01 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</guid>
       <description>2009年开始接触软件开发，一直深爱着它，喜爱淘腾些新技术新技能，却至今没有所成。也许专心才能做好一些事，2013年初接触Go Lang,感受着这门语言带来的魅力，自己该在这条路上留下足迹，以此见证自己的成长历程。
 为什么会学习Go Lang  编程本身是一门艺术，Go Lang 有着无尽想象的魅力。
  Gmail, Google Search, Google Translate,YouTube 这些已成为我生活工作不可缺少的一部分，足够证明Google的产品是优秀的，同样Go Lang也是优秀的，事实证明确实如此。

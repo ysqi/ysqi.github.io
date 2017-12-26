@@ -13,10 +13,10 @@
     
     <item>
       <title>GoLangstrings包函数用法</title>
-      <link>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</guid>
       <description>https://segmentfault.com/a/
 package main
 import (

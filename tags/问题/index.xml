@@ -13,10 +13,10 @@
     
     <item>
       <title>如何解决nodejs执行命令报错Promise is not defined</title>
-      <link>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</link>
       <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</guid>
       <description>&lt;p&gt;在使用c9.io时默认的node.js版本是v0.10.35，使得一些模块安装警告版本过低，而执行命令时报错。
 Module build failed: ReferenceError: Promise is not defined&lt;/p&gt;
 
@@ -25,10 +25,10 @@ Module build failed: ReferenceError: Promise is not defined&lt;/p&gt;
     
     <item>
       <title>BeegoOrmInsert记录时报错</title>
-      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</link>
       <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
       <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
 当时代码是这样写的
 o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err } 在执行此代码报错，错误信息：
@@ -39,20 +39,20 @@ o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{}
     
     <item>
       <title>如何解决覆盖网络映射盘失败</title>
-      <link>https://yushuangqi.com/blog/2015/net-map-use-do-error.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</link>
       <pubDate>Mon, 07 Sep 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/net-map-use-do-error.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</guid>
       <description>&lt;p&gt;周日重启了服务器，导致网络映射盘断开，现在无法成功映射，在重新映射提示需要先移除现有盘符，但是我已经断开了啊，各种痛，今天总算解决了！
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411</title>
-      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</link>
       <pubDate>Mon, 31 Aug 2015 10:01:36 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</guid>
       <description>终于在 Coding.net 上部署搭建了写作环境,同时提交到我的博客,但在deploy到百度应用时有报错,在这里记录下解决方案.
 问题表现 执行hexo deploy 时提示error:RPC failed;result=22,HTTP code=411&#39; 具体错误信息见下
 hexo deploy error: RPC failed; result=22, HTTP code = 411 fatal: The remote end hung up unexpectedly fatal: The remote end hung up unexpectedly ...... Everything up-to-date 错误原因 新搭建的环境,public 内容初始状态不是来源于 BAE git,而在首次 deploy 时提交的内容过大,而被 BAE 拒绝.
@@ -63,10 +63,10 @@ cd .deploy_git/.git vim config 再在文档中添加或修改配置项,修改到
     
     <item>
       <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
-      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
       <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
 首先看源代码
 package main import ( &amp;#34;bytes&amp;#34; &amp;#34;compress/gzip&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { data := &amp;#34;a&amp;#34; buffer := new(bytes.Buffer) w, _ := gzip.NewWriterLevel(buffer, 9) //php: gzencode($json_data,9) 	defer w.Close() w.Write([]byte(data)) w.Flush() fmt.Println(buffer.Bytes()[:]) } 不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于RFC 1952 ,gzip数据格式如下：

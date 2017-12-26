@@ -13,10 +13,10 @@
     
     <item>
       <title>fasthttp中的协程池实现</title>
-      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
       <description>https://segmentfault.com/a/
 fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
  入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
@@ -24,10 +24,10 @@ fasthttp中的协程池实现  协程池可以控制并行度，复用协程。f
     
     <item>
       <title>Goforgophers</title>
-      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html</guid>
       <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote
 25 April 2014 上的演讲，原文地址为 Go for gophers
 注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING.
@@ -43,10 +43,10 @@ type Reader interface { Read([]byte) (int, error) }  像一个 UNIX 管道。</d
     
     <item>
       <title>使用Go语言框架进行web开发笔记</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html</guid>
       <description>最近需要用Instagram的api抓取其用户的图片，由于需要用oauth2验证, 所以应用必须包含一个web界面。设想能够实时返回下载数量，所以用websocket。还有需要考虑到效率问题，综合以上几点，想用一门语言开发的话，最终选择用golang进行开发，node的回调实在不喜欢。
  前言 关于golang的web开发有不少框架，例如 martini, gin, revel，gorilla等。 之前玩过revel，感觉封装的太多了，作为一个小应用不需要这么复杂，而且google得到结果是revel的效率相对较差。gin的benchmark显示效率是martini的40倍，但是gin比较新所以他的的生态圈相对较少。最终选择了martini, 有很多middleware可以选择，其中就包括了websocket，并且背后用的是gorilla websocket这个包。
 界面和功能  一个跳转到Oauth2登陆授权页面的链接
@@ -64,10 +64,10 @@ Stop Goroutine 如何中断一个goroutine是一个问题，因为需要控制�
     
     <item>
       <title>Golang并发模式:超时和继续GoConcurrencyPatterns:Timingoutmovingon</title>
-      <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</guid>
       <description>翻译自 Go Blog。
 原文地址：https://blog.golang.org/go-concurrency-patterns-timing-out-and
 并发编程有自己的一些习惯用语，超时就是其中之一。虽然 Golang 的管道并没有直接支持超时，但是实现起来并不难。假设遇到了这样一种场景：在从 管道 ch 中取值之前至少等待 1 秒钟。我们可以创建一个管道用来传递信号，开启一个协程休眠一秒钟，然后给管道传递一个值。
@@ -77,10 +77,10 @@ select { case &amp;lt;-ch: // a read from ch has occurred case &amp;lt;-timeout:
     
     <item>
       <title>Golang 并发模式超时和继续 Go Concurrency Patterns: Timing out moving on</title>
-      <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</link>
       <pubDate>Sat, 31 Dec 2016 11:18:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</guid>
       <description>翻译自 Go Blog。
 原文地址：https://blog.golang.org/go-concurrency-patterns-timing-out-and
 并发编程有自己的一些习惯用语，超时就是其中之一。虽然 Golang 的管道并没有直接支持超时，但是实现起来并不难。假设遇到了这样一种场景：在从 管道 ch 中取值之前至少等待 1 秒钟。我们可以创建一个管道用来传递信号，开启一个协程休眠一秒钟，然后给管道传递一个值。

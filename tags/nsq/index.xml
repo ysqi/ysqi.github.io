@@ -13,10 +13,10 @@
     
     <item>
       <title>golang使用Nsq</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
       <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现了Nsq这个由golang开发的消息队列，毕竟是golang原汁原味的东西，功能齐全，关键是性能还不错。其中支持动态拓展，消除单点故障等特性， 都可以很好的满足我的需求
 下面上一张Nsq与其他mq的对比图，看上去的确强大。下面简单记录一下Nsq的使用方法
 图片来自golang2017开发者大会
@@ -52,10 +52,10 @@ Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费�
     
     <item>
       <title>nsqjs客户端的部署</title>
-      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</guid>
       <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。
 首先安装nsq，这个没什么好说的，我是直接在官网下载bin文件，直接部署的，环境是centOS 6.7，安装在/opt/nsq-0.3.7.linux-amd64.go1.6目录下；
 其次是安装nodejs，我安装的是v6.1.0版本，这步也没什么好讲；

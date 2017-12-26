@@ -13,10 +13,10 @@
     
     <item>
       <title>编写可测试的Go代码</title>
-      <link>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:51 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</guid>
       <description>原文链接：http://tabalt.net/blog/golang&amp;hellip;
 Golang作为一门标榜工程化的语言，提供了非常简便、实用的编写单元测试的能力。本文通过Golang源码包中的用法，来学习在实际项目中如何编写可测试的Go代码。
 第一个测试 “Hello Test!” 首先，在我们$GOPATH/src目录下创建hello目录，作为本文涉及到的所有示例代码的根目录。

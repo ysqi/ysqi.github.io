@@ -13,10 +13,10 @@
     
     <item>
       <title>Golang Generate命令说明与使用</title>
-      <link>https://yushuangqi.com/blog/2017/go-command-generate.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
       <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
       <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
 命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
 通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
@@ -30,10 +30,10 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
     
     <item>
       <title>Go读取通达信历史日线数据</title>
-      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
       <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
 准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
 下载后数据按股票市场分别存放：
@@ -43,10 +43,10 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
     
     <item>
       <title>Go面试题答案与解析</title>
-      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
       <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
 1、写出下面代码输出内容。 package main import ( &amp;#34;fmt&amp;#34; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;#34;打印前&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印中&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印后&amp;#34;) }() panic(&amp;#34;触发异常&amp;#34;) }  在线运行
 答： 输出内容为：
@@ -59,10 +59,10 @@ package main import ( &amp;#34;fmt&amp;#34; ) func main() { fmt.Println(doubleSc
     
     <item>
       <title>gRPC服务发现&amp;amp;负载均衡</title>
-      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
       <description>gRPC服务发现&amp;amp;负载均衡  构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：
  1、集中式LB（Proxy Model） 在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如 F5，或者基于软件如 LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。 该方案主要问题：
  单点问题，所有服务调用流量都经过LB，当服务数量和调用量大的时候，LB容易成为瓶颈，且一旦LB发生故障影响整个系统；
@@ -85,10 +85,10 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
     
     <item>
       <title>Caddy新兴的web服务器caddy</title>
-      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
       <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
 然后呢，它还有下面这些开箱即用的特性:
@@ -111,19 +111,19 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
     
     <item>
       <title>redigo连接池代码分析</title>
-      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
       <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
     
     <item>
       <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
-      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
       <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
       <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
 一、后端测试了一下发现没有问题
 “我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
@@ -140,10 +140,10 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
     
     <item>
       <title>协作式go程</title>
-      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
       <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻辑处理goroutine负责从队列中提取逻辑包并处理(这样主处理逻辑中基本上不用考虑多线程竞争的锁问题了)。
 如果逻辑包的处理涉及到调用可能会阻塞的函数调用怎么办，如果在处理函数中直接调用这样的函数将导致逻辑处理goroutine被阻塞，无法继续处理队列中被排队的数据包，这将严重降低服务的处理能力。
 一种方式是启动一个新的go程去执行阻塞调用，并注册回调函数，当阻塞调用返回后将回调闭包重新push到消息对列中，由逻辑处理goroutine继续处理后续逻辑。但我本人不大喜欢在逻辑处理上使用回调的方式(node的callback hell)。我希望可以线性的编写逻辑代码。
@@ -156,10 +156,10 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot
     
     <item>
       <title>Golang里的Future_Promise</title>
-      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
       <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
 一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
 Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Promise和async-await，Scala内置了Future，最后在Golang里有goroutine和channel可以实现类似的功能。下面给出一个简单的实现。
@@ -170,10 +170,10 @@ Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Pro
     
     <item>
       <title>对echo框架进行统一的自定义错误处理</title>
-      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
       <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
 你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
@@ -193,10 +193,10 @@ STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot
     
     <item>
       <title>fasthttp中的协程池实现</title>
-      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
       <description>https://segmentfault.com/a/
 fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
  入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
@@ -204,10 +204,10 @@ fasthttp中的协程池实现  协程池可以控制并行度，复用协程。f
     
     <item>
       <title>golang使用Nsq</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
       <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现了Nsq这个由golang开发的消息队列，毕竟是golang原汁原味的东西，功能齐全，关键是性能还不错。其中支持动态拓展，消除单点故障等特性， 都可以很好的满足我的需求
 下面上一张Nsq与其他mq的对比图，看上去的确强大。下面简单记录一下Nsq的使用方法
 图片来自golang2017开发者大会
@@ -243,10 +243,10 @@ Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费�
     
     <item>
       <title>golang使用原始套接字构造UDP包</title>
-      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</link>
       <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</guid>
       <description>https://segmentfault.com/a/
 RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA)三种套接字。原始套接字能够对底层传输进行控制，允许自行组装数据包，比如修改本地IP，发送Ping包，进行网络监听。这里不做详细介绍，要了解更多可以网上自己查询。
 实现 这里先看IP头结构：
@@ -258,10 +258,10 @@ func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n
     
     <item>
       <title>关于golang在树莓派下获取ip和mac地址</title>
-      <link>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html</guid>
       <description>https://segmentfault.com/a/
 前言 最近工作需要，需求为获取树莓派以太网ip
 地址和mac地址，看了下golang的文档，发现net.InterfaceByName可以完成这个目标。
@@ -271,10 +271,10 @@ func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n
     
     <item>
       <title>Go语言暴力入门2-工欲善其事</title>
-      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
       <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
 个人网站：http://www.linganmin.cn
 最近刚写了一个手机在线播放的H5电影站：http://www.ifilm.ltd

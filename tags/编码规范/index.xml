@@ -13,10 +13,10 @@
     
     <item>
       <title>Go开发规范之常见问题汇总</title>
-      <link>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</link>
       <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</guid>
       <description>这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是一份规范指引。可以当作一份GO开发规范的补充信息。
 goimports 虽 Go 默认带有 gofmt 工具，但还是强烈推荐增强性工具 goimport ,该工具在 gofmt 工具基础上增强提供自动删除和引入包功能。
 你可在保存文件时，让编辑器自动执行命令，如 Sublime 编辑器插件 GoSublime 和 Atom 编辑器插件 go-plus均可实现。

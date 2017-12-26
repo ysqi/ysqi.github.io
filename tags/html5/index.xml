@@ -13,10 +13,10 @@
     
     <item>
       <title>go实现高性能直播服务</title>
-      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</guid>
       <description>livego
 go 实现直播服务
 服务器部署

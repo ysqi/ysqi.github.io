@@ -13,10 +13,10 @@
     
     <item>
       <title>golang调用php7</title>
-      <link>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</guid>
       <description>使用 https://github.com/taowen/go-php7
 基于 https://github.com/deuill/go-php 修改而来，fork缘由（https://github.com/deuill/go-&amp;hellip;）
 执行php文件 func Test_exec(t *testing.T) { engine.Initialize() ctx := &amp;amp;engine.Context{ Output: os.Stdout, } err := engine.RequestStartup(ctx) if err != nil { fmt.Println(err) } defer engine.RequestShutdown(ctx) err = ctx.Exec(&amp;quot;/tmp/index.php&amp;quot;) if err != nil { fmt.Println(err) } }  其中 /tmp/index.php 的内容为

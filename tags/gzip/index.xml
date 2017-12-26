@@ -13,10 +13,10 @@
     
     <item>
       <title>为什么golang的gzip和php的gzencode压缩结果不一样</title>
-      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</guid>
       <description>一次功能需要接对百度统计dataApi，根据百度提供的PHP Demo，写golang的实现，但是老提示数据格式错误，数据已损坏，一路分析，解决了不少问题，其中对golang和php的gzip压缩结果不一样产生了疑问，各种求助，最终知道数据不一样是正常的。
 首先看源代码
 package main import ( &amp;#34;bytes&amp;#34; &amp;#34;compress/gzip&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { data := &amp;#34;a&amp;#34; buffer := new(bytes.Buffer) w, _ := gzip.NewWriterLevel(buffer, 9) //php: gzencode($json_data,9) 	defer w.Close() w.Write([]byte(data)) w.Flush() fmt.Println(buffer.Bytes()[:]) } 不管是哪种语言的压缩，其实基本上都是基于标准的，而Golang和PHP都是基于RFC 1952 ,gzip数据格式如下：

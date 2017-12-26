@@ -13,10 +13,10 @@
     
     <item>
       <title>Golang里的Future_Promise</title>
-      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
       <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
 一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
 Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Promise和async-await，Scala内置了Future，最后在Golang里有goroutine和channel可以实现类似的功能。下面给出一个简单的实现。

@@ -13,10 +13,10 @@
     
     <item>
       <title>及时通信最佳实践</title>
-      <link>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:28 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html</guid>
       <description>描述 Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长连接的应用。
 使用Lhttp可以大量减少服务端开发的工作量，实现非常好的模块化和业务功能的解耦合。
 可以定制任何你想要的功能。

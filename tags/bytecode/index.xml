@@ -13,10 +13,10 @@
     
     <item>
       <title>通过拆分多帧的方式WebSocket发送图片</title>
-      <link>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html</guid>
       <description>https://segmentfault.com/a/
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/net/websocket&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;time&amp;quot; ) var ( dirPath string test byte lenFile int ) func check(e error) { if e != nil { panic(e) } } func ChatServer(ws *websocket.Conn) { defer ws.Close() var test []byte var payload []byte for { err := websocket.Message.Receive(ws, &amp;amp;payload) if err != nil { log.Println(err) } fmt.Println(&amp;quot;Payload: &amp;quot;, len(payload)) test = append(test, payload...) fmt.Println(&amp;quot;Test: &amp;quot;, len(test)) fo, err := os.</description>
     </item>

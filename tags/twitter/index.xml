@@ -13,10 +13,10 @@
     
     <item>
       <title>一个实现TwitterSnowFlake算法的Go分布式UID生成器</title>
-      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</guid>
       <description>goSnowFlake [](https://travis-ci.org/zheng-ji/goSnowFlake)https://godoc.org/github.com/zheng-ji/goSnowFlake)
 根据 Twitter SnowFlake 算法, 实现的分布式线程安全 UID 生成器
 Feature  线程安全的 UID 生成器

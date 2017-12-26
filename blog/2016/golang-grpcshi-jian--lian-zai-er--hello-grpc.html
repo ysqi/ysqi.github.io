@@ -1,0 +1,167 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>GolanggRPC实践连载二HellogRPC |虞双齐的博客</title><meta name="description" content="Hello gRPC 按照惯例，这里从一个Hello项目开始，本项目定义了一个Hello Servi"><meta name="keywords" content="golang, grpc, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html"><meta property="og:title" content="GolanggRPC实践连载二HellogRPC"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:40"><meta property="article:modified_time" content="2016-12-31 11:32:40"><meta property="article:tag" content="golang"><meta property="article:tag" content="grpc"><meta name="og:description" content="Hello gRPC 按照惯例，这里从一个Hello项目开始，本项目定义了一个Hello Servi"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html">GolanggRPC实践连载二HellogRPC</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007909829" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h1 id="hello-grpc">Hello gRPC</h1><p>按照惯例，这里从一个Hello项目开始，本项目定义了一个Hello Service，客户端发送包含字符串名字的请求，服务端返回Hello消息。</p><h2 id="流程">流程：</h2><ol><li><p>编写<code>.proto</code>描述文件</p></li><li><p>编译生成<code>.pb.go</code>文件</p></li><li><p>服务端实现约定的接口并提供服务</p></li><li><p>客户端按照约定调用方法请求服务</p></li></ol><h2 id="项目目录">项目目录：</h2><pre><code>$GOPATH/src/grpc-go-practice/
+
+example/
+|—— hello/
+    |—— client/
+        |—— main.go   // 客户端
+    |—— server/
+        |—— main.go   // 服务端
+|—— proto/
+    |—— hello.proto   // proto描述文件
+    |—— hello.pb.go   // proto编译后文件
+</code></pre><h2 id="示例代码">示例代码</h2><h3 id="描述文件-proto-hello-proto">描述文件：proto/hello.proto</h3><pre><code>syntax = &quot;proto3&quot;; // 指定proto版本
+
+package proto;     // 指定包名
+
+// 定义Hello服务
+service Hello {
+    // 定义SayHello方法
+    rpc SayHello(HelloRequest) returns (HelloReply) {}
+}
+
+// HelloRequest 请求结构
+message HelloRequest {
+    string name = 1;
+}
+
+// HelloReply 响应结构
+message HelloReply {
+    string message = 1;
+}
+</code></pre><p>hello.proto文件中定义了一个Hello Service，该服务包含一个<code>SayHello</code>方法，同时声明了<code>HelloRequest</code>和<code>HelloReply</code>消息结构用于请求和响应。客户端使用<code>HelloRequest</code>参数调用<code>SayHello</code>方法请求服务端，服务端响应<code>HelloReply</code>消息。protobuf的语法后面会详细介绍，这里先不用过多纠结。</p><h3 id="编译生成-pb-go-文件">编译生成<code>.pb.go</code>文件：</h3><pre><code># 编译hello.proto
+protoc -I . --go_out=plugins=grpc:. ./hello.proto
+</code></pre><p>生成的<code>.pb.go</code>文件，按照<code>.proto</code>文件中的说明，包含服务端接口<code>HelloServer</code>描述，客户端接口及实现<code>HelloClient</code>，及<code>HelloRequest</code>、<code>HelloResponse</code>结构体，<strong>不要手动编辑该文件</strong>。</p><h3 id="实现服务端接口-server-main-go">实现服务端接口：server/main.go</h3><pre><code>package main
+
+import (
+    &quot;net&quot;
+
+    pb &quot;go-grpc-practice/example/proto&quot; // 引入编译生成的包
+
+    &quot;golang.org/x/net/context&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;google.golang.org/grpc/grpclog&quot;
+)
+
+const (
+    // Address gRPC服务地址
+    Address = &quot;127.0.0.1:50052&quot;
+)
+
+// 定义helloService并实现约定的接口
+type helloService struct{}
+
+// HelloService ...
+var HelloService = helloService{}
+
+func (h helloService) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    resp := new(pb.HelloReply)
+    resp.Message = &quot;Hello &quot; + in.Name + &quot;.&quot;
+
+    return resp, nil
+}
+
+func main() {
+    listen, err := net.Listen(&quot;tcp&quot;, Address)
+    if err != nil {
+        grpclog.Fatalf(&quot;failed to listen: %v&quot;, err)
+    }
+
+    // 实例化grpc Server
+    s := grpc.NewServer()
+
+    // 注册HelloService
+    pb.RegisterHelloServer(s, HelloService)
+
+    grpclog.Println(&quot;Listen on &quot; + Address)
+
+    s.Serve(listen)
+}
+</code></pre><p>运行：</p><pre><code>go run main.go
+
+Listen on 50051  //服务端已开启并监听50051端口
+</code></pre><p>服务端引入编译后的<code>proto</code>包，实现约定的接口，接口描述可以查看<code>hello.pb.go</code>文件中的<code>HelloServer</code>接口描述。实例化grpc Server并注册HelloService，开始提供服务。</p><h3 id="客户端调用-client-main-go">客户端调用：client/main.go</h3><pre><code>package main
+
+import (
+    pb &quot;go-grpc-practice/example/proto&quot; // 引入proto包
+
+    &quot;golang.org/x/net/context&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;google.golang.org/grpc/grpclog&quot;
+)
+
+const (
+    // Address gRPC服务地址
+    Address = &quot;127.0.0.1:50052&quot;
+)
+
+func main() {
+    // 连接
+    conn, err := grpc.Dial(Address, grpc.WithInsecure())
+
+    if err != nil {
+        grpclog.Fatalln(err)
+    }
+
+    defer conn.Close()
+
+    // 初始化客户端
+    c := pb.NewHelloClient(conn)
+
+    // 调用方法
+    reqBody := new(pb.HelloRequest)
+    reqBody.Name = &quot;gRPC&quot;
+    r, err := c.SayHello(context.Background(), reqBody)
+    if err != nil {
+        grpclog.Fatalln(err)
+    }
+
+    grpclog.Println(r.Message)
+}
+</code></pre><p>运行：</p><pre><code>go run main.go
+
+Hello gRPC     // 接收到服务端响应
+</code></pre><p>客户端初始化连接后直接调用声明的方法，即可向服务端发起请求，使用姿势就像调用本地方法一样。如果你收到了&rdquo;Hello gRPC&rdquo;的回复，恭喜你已经会使用go-gRPC了。</p><p>下节将详细介绍protobuf的语法，并详细解析protobuf声明与编译后golang代码的对应关系。</p><h2 id="参考">参考</h2><h3 id="本系列示例代码">本系列示例代码</h3><ul><li><a href="https://github.com/Jergoo/go-grpc-example">go-grpc-example</a></li></ul></div><aside id="meta"><meta itemprop="wordCount" content="281"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/grpc.html" rel="tag">grpc</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html">GolanggRPC实践连载三Protobuf语法</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html">GolanggRPC实践连载四gRPC认证</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="1704e5bf1e0b52747eba1a5aba84d1be"></div><div id="cyReward" role="cylabs" data-use="reward" sid="1704e5bf1e0b52747eba1a5aba84d1be" style="text-align:center"></div><div id="SOHUCS" sid="1704e5bf1e0b52747eba1a5aba84d1be"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-grpcshi-jian--lian-zai-er--hello-grpc.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang-grpcshi-jian--lian-zai-er--hello-grpc.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -13,10 +13,10 @@
     
     <item>
       <title>互联网数据库“跨库分页”架构技术实践</title>
-      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</link>
       <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
       <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
  微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
  有一个业务主键id，例如msg_id，order_id，tiezi_id 分页排序是按照非业务主键id来排序的，业务中经常按照时间time来排序order by  在数据量不大时，可以通过在排序字段time上建立索引，利用SQL提供的offset/limit功能就能满足分页查询需求：
@@ -31,10 +31,10 @@ select * from t_msg order by time offset 200 limit 100 select * from t_order ord
     
     <item>
       <title>使用golang在与数据库访问过程中的一点想法</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:11 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</guid>
       <description> https://segmentfault.com/a/
 遇到的问题 golang对于基本类型初始化的处理，是自动给基本类型赋值为默认值。比如：
 var i int//在这里如果不对i做任何赋值，那么i的值为零  这个特性在很多地方能够避免访问到未初始化变量的尴尬，但是由此也引出了另外一个问题，就是在进行数据库访问操作时应该如果对待这样的默认值。
@@ -46,10 +46,10 @@ type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BI
     
     <item>
       <title>关于Golang中database_sql包的学习笔记</title>
-      <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
       <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
  概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
 使用DB 导入driver 这里使用的是MySQL drivers
@@ -61,10 +61,10 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
     
     <item>
       <title>Kubernetes监控之InfluxDB</title>
-      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
       <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
 该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
 InfluxDB特征：

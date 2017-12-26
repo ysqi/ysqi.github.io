@@ -13,10 +13,10 @@
     
     <item>
       <title>在CentOS下利用FFMPEG对视频进行转码</title>
-      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</guid>
       <description>https://segmentfault.com/a/
 先按照ffmpeg的安装攻略，搞定你CentOS上的ffmpeg，我目前使用的版本是3.0.2
 然后直接上代码

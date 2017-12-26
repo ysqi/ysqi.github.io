@@ -13,10 +13,10 @@
     
     <item>
       <title>Go语言将支持Android</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-jiang-zhi-chi-android.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-jiang-zhi-chi-android.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:50 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-jiang-zhi-chi-android.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-jiang-zhi-chi-android.html</guid>
       <description>在前些日子谷歌于2009年发布的第二款自家语言Go语言刚刚发布了1.3正式版，大幅度解决了GC问题，最近谷歌开发版里又有了新爆料：谷歌终于要在1.4版本中正式支持Android系统开发，可以编译器直接编译发布到Android平台
  概述 我们建议将Go语言引入Android平台，重点是用Go语言编写游戏程序，API将在Android NDK中定义。
 背景 Android平台被设定为一个多应用操作系统，一个相对于传统UNIX系统来说更依赖于网络库和服务的操作系统，这意味着我们将为Go运行时开放更多的API。

@@ -13,10 +13,10 @@
     
     <item>
       <title>用Golang写一个搜索引擎(0x02)---倒排索引技术</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x02----dao-pai-suo-yin-ji-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x02----dao-pai-suo-yin-ji-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:50 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x02----dao-pai-suo-yin-ji-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x02----dao-pai-suo-yin-ji-shu.html</guid>
       <description>https://segmentfault.com/a/
 这一篇，我们来说说搜索引擎最核心的技术，倒排索引技术，倒排索引可能需要分成几篇文章才说得完，我们先会说说倒排索引的技术原理，然后会讲讲怎么用一些数据结构和算法来实现一个倒排索引，然后会说一个索引器怎么通过文档来生成一个倒排索引。
 倒排索引 什么是倒排索引呢？索引我们都知道，就是为了能更快的找到文档的数据结构，比如给文档编个号，那么通过这个号就可以很快的找到某一篇文档，而倒排索引不是根据文档编号，而是通过文档中的某些个词而找到文档的索引结构。

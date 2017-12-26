@@ -13,10 +13,10 @@
     
     <item>
       <title>Golang时间格式化的奇怪设定-为什么你一直出错</title>
-      <link>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html</guid>
       <description>首发于：http://blog.shajiquan.com/2015/12/golang-time-format/
 今天有人在群里问：
 问一个时间格式化问题： fmt.Println(time.Now().Format(&amp;quot;2006year 01month 02day&amp;quot;)) 2015year 12month 18day fmt.Println(time.Now().Format(&amp;quot;2015year 01month 01day&amp;quot;)) 181253year 12month 12day 为什么？ 困扰好久  首先，这是一个很奇葩的问题。
@@ -30,10 +30,10 @@ const ( ANSIC = &amp;quot;Mon Jan _2 15:04:05 2006&amp;quot; UnixDate = &amp;quo
     
     <item>
       <title>installgolang开发环境withwin64</title>
-      <link>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html</guid>
       <description>1.下载 并且 安装 Go安装包
 百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg
 ===========================================================
@@ -61,10 +61,10 @@ http://pan.baidu.com/s/1bjg9zg
     
     <item>
       <title>GoLangstrings包函数用法</title>
-      <link>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</guid>
       <description>https://segmentfault.com/a/
 package main
 import (
@@ -75,10 +75,10 @@ fmt.Println(&amp;quot;查找子串是否在指定的字符串中&amp;quot;) fmt.
     
     <item>
       <title>Go语言学习笔记(一)</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:21 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html</guid>
       <description>主要是看《the way to go》时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。
  标签（空格分隔）： go 监控
 关键字 break default func interface select case defer go map struct chan else goto
@@ -90,10 +90,10 @@ real recover string true uint uint8 uintptr</description>
     
     <item>
       <title>open-falcon-agent源码学习</title>
-      <link>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:21 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html</guid>
       <description>最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释
  代码地址：https://github.com/beyondskyw&amp;hellip;
 标签（空格分隔）： falcon go
@@ -122,10 +122,10 @@ real recover string true uint uint8 uintptr</description>
     
     <item>
       <title>open-falcon-hbs学习</title>
-      <link>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:20 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html</guid>
       <description>open-falcon-hbs 标签（空格分隔）： go falcon
 主要功能  处理agent心跳请求，填充host表
  ip白名单下发所有agent

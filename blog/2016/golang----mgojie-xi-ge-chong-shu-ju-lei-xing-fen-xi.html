@@ -1,0 +1,112 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>golang--mgo解析各种数据类型分析 |虞双齐的博客</title><meta name="description" content="https://segmentfault.com/a/
+package main import ( "><meta name="keywords" content="mongodb, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html"><meta property="og:title" content="golang--mgo解析各种数据类型分析"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:45"><meta property="article:modified_time" content="2016-12-31 11:33:45"><meta property="article:tag" content="mongodb"><meta property="article:tag" content="golang"><meta name="og:description" content="https://segmentfault.com/a/
+package main import ( "><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html">golang--mgo解析各种数据类型分析</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000005026413" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p><a href="https://segmentfault.com/a/">https://segmentfault.com/a/</a></p><pre><code>package main
+
+import (
+    &quot;gopkg.in/mgo.v2&quot;
+    &quot;log&quot;
+    &quot;reflect&quot;
+)
+
+func main() {
+    session, err := mgo.Dial(&quot;usr:pwd@127.0.0.1:27017/dbname&quot;)
+    if err != nil {
+        log.Fatal(&quot;无法打开MongoDB！&quot;)
+        return
+    }
+    defer session.Close()
+
+    clt := session.DB(&quot;mydb&quot;).C(&quot;userinfo&quot;)
+    type row struct {
+        UserName, 
+        Telephone string
+    }
+
+    var _row, _row2 interface{}
+    // _row和_row2 都是interface，也就是说它们可以指向任意类型，此时是指向row结构的指针
+    _row = new(row)
+    _row2 = new(row)
+    // _row3 是具体struct
+    _row3 := row{}
+
+    log.Printf(&quot;type of &amp;row: %v\n&quot;, reflect.TypeOf(&amp;_row))
+    log.Printf(&quot;type of row:  %v\n&quot;, reflect.TypeOf(_row2))
+    log.Printf(&quot;type of &amp;row3: %v\n&quot;, reflect.TypeOf(&amp;_row3))
+
+    it := clt.Find(nil).Limit(1).Iter()
+    log.Println(&quot;test unmarshal using&quot;, reflect.TypeOf(&amp;_row))
+    for it.Next(&amp;_row) {
+        // 此时&amp;_row是指针，指向的类型是interface 
+        // mongo会把row当成map对待, 所有域的信息都会输出来
+        log.Println(_row)
+    }
+
+    it = clt.Find(nil).Limit(1).Iter()
+    log.Println(&quot;test unmarshal using&quot;, reflect.TypeOf(_row2))
+    for it.Next(_row2) {
+        // 此时row2是指向row结构的指针
+        // 只有确定了类型后，才会当成具体类型
+        log.Println(_row2)
+    }
+
+    it = clt.Find(nil).Limit(1).Iter()
+    log.Println(&quot;test unmarshal using&quot;, reflect.TypeOf(&amp;_row3))
+    for it.Next(&amp;_row3) {
+        // 只有确定了类型后，才会当成具体类型
+        log.Println(_row3)
+    }
+}
+</code></pre><p>输出结果如下：</p><pre><code>2016/04/28 16:23:22 type of &amp;row: *interface {}
+2016/04/28 16:23:22 type of row:  *main.row
+2016/04/28 16:23:22 type of &amp;row3: *main.row
+2016/04/28 16:23:22 test unmarshal using *interface {}
+2016/04/28 16:23:22 map[_id:ObjectIdHex(&quot;5721c757a8917850b210f0ca&quot;) username:xiaoming telephone:2222 address:beijing]
+2016/04/28 16:23:22 test unmarshal using *main.row
+2016/04/28 16:23:22 &amp;{xiaoming  2222}
+2016/04/28 16:23:22 test unmarshal using *main.row
+2016/04/28 16:23:22 {xiaoming  2222}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="172"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/mongodb.html" rel="tag">mongodb</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--3_10.html">Go性能优化技巧3_10</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--4_10.html">Go性能优化技巧4_10</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="4d7632165692af69a9ec0ce9d1e45df0"></div><div id="cyReward" role="cylabs" data-use="reward" sid="4d7632165692af69a9ec0ce9d1e45df0" style="text-align:center"></div><div id="SOHUCS" sid="4d7632165692af69a9ec0ce9d1e45df0"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -13,10 +13,10 @@
     
     <item>
       <title>[leetcode]FindMinimuminRotatedSortedArrayII</title>
-      <link>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</guid>
       <description>code：https://play.golang.org/p/luj1fdu03F
 problem: https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp;quot;sort&amp;quot; &amp;quot;time&amp;quot; ) //rotate数组方法一 func rotateArray1(a []int, pos int) { if pos &amp;lt; 0 { return } lenA := len(a) pos = pos % lenA tmpArray := make([]int, pos) for i := 0; i &amp;lt; pos; i++ { tmpArray[i] = a[i] } for i := pos; i &amp;lt; lenA; i++ { a[i-pos] = a[i] } for i := 0; i &amp;lt; pos; i++ { a[lenA-pos+i] = tmpArray[i] } } //rotate数组方法2 func rotateArray2(a []int, pos int) { if pos &amp;lt; 0 { return } lenA := len(a) pos = pos % lenA reverseArray(a[:pos]) reverseArray(a[pos:]) reverseArray(a) } //reverse数组，反转 func reverseArray(a []int) { for i, j := 0, len(a)-1; i &amp;lt; j; i, j = i+1, j-1 { a[i], a[j] = a[j], a[i] } } func main() { len := 20 a := make([]int, len) seedNum := 0 rand.</description>
@@ -24,10 +24,10 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp
     
     <item>
       <title>[leetcode]wordsearch</title>
-      <link>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-search/
 代码：https://play.golang.org/p/d5wP691Pbg
 package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;}, {&#39;S&#39;, &#39;F&#39;, &#39;C&#39;, &#39;S&#39;}, {&#39;A&#39;, &#39;D&#39;, &#39;E&#39;, &#39;E&#39;}, } //word := []byte(&amp;quot;ABCESC&amp;quot;) word := []byte(&amp;quot;SFCE&amp;quot;) arrI, arrJ, ok := FindFirstCharPositions(arr, word[0]) if ok { fmt.Printf(&amp;quot;%d, %d\n&amp;quot;, arrI, arrJ) } fmt.Println(DFSTraverse(arr, word, arrI, arrJ)) } func DFSTraverse(arr [][]byte, word []byte, arrI []int, arrJ []int) (ret bool) { //初始化visited函数 lenArr := len(arr) visited := make([][]bool, lenArr) for i := 0; i &amp;lt; lenArr; i++ { visited[i] = make([]bool, len(arr[i])) } lenArrI := len(arrI) //lenArrJ := len(arrJ) for i := 0; i &amp;lt; lenArrI; i++ { //fmt.</description>
@@ -35,10 +35,10 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {
     
     <item>
       <title>[leetcode]wordladderii</title>
-      <link>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</guid>
       <description>problem: https://oj.leetcode.com/problems/word-ladder-ii/
 代码：https://play.golang.org/p/qdmadQUcEC
 package main import ( &amp;quot;fmt&amp;quot; ) func main() { start := &amp;quot;hit&amp;quot; end := &amp;quot;cog&amp;quot; dict := []string{&amp;quot;hot&amp;quot;, &amp;quot;dot&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;lot&amp;quot;, &amp;quot;log&amp;quot;} dict = append(dict, start, end) mapAdjacency := createAdjacencyGraph(dict, start, end) findLadders(mapAdjacency, start, end) } func findLadders(mapAdjacency map[string][]string, start, end string) { visited := make(map[string]int, len(mapAdjacency)) visited[start] = 1 queue := make([]string, len(mapAdjacency)) queue = append(queue, start) mapParent := make(map[string][]string, len(mapAdjacency)) bfs(mapAdjacency, visited, queue, mapParent, start, end) stack := []string{} stack = append(stack, end) printShortestPath(mapParent, stack, start, end) } func printShortestPath(mapParent map[string][]string, stack []string, start, end string) { if end == start { printStack(stack) return } for _, v := range mapParent[end] { stack = append(stack, v) printShortestPath(mapParent, stack, start, v) stack = stack[:len(stack)-1] } } func printStack(stack []string) { lenStack := len(stack) for i := lenStack - 1; i &amp;gt;= 0; i-- { fmt.</description>

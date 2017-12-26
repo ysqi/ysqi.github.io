@@ -13,10 +13,10 @@
     
     <item>
       <title>谈谈一些关于mgo的用法</title>
-      <link>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</link>
       <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</guid>
       <description>前言 最近在项目中使用mongodb进行简单的数据分析，在使用mongodb驱动mgo时遇到一些问题，比如在mongodb中执行命令成功，到了mgo中就执行失败。在这里谈一谈实践过程中遇到的问题，基础的用法不再说明了，可以自行百度。
 使用 查找(Find) 这个估计是mongodb里用的最多的了吧，mgo中使用Find(query interface{})，query参数一般传入[]bson.M。下面给个例子：
 m := bson.M{ &amp;quot;CurTimestamp&amp;quot;: bson.M{ &amp;quot;$gte&amp;quot;: start, &amp;quot;$lte&amp;quot;: end, }, &amp;quot;Account&amp;quot;: account, &amp;quot;ToNodeType&amp;quot;: &amp;quot;cloud&amp;quot;, } session.DB(&amp;quot;db&amp;quot;).C(&amp;quot;collect&amp;quot;).Find(m).Count()  这里查找时间戳内，账号为account，节点类型为cloud的数据并统计个数。
@@ -28,10 +28,10 @@ m := new(mgo.MapReduce) m.Map = `function() { var date = new Date(); date.</desc
     
     <item>
       <title>Golangmgo驱动指定Mongo服务器读取</title>
-      <link>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</guid>
       <description>Replica Sets搭建 服务器采用Replica Sets搭建，可参考Deploy a Replica Set
 读模式 Mongod的读模式共有五种：
  primary. 在主节点上进行所有的读操作 primaryPreferred. 优先在主节点上进行读操作，如果主节点不可用，再从从节点操作。 secondary.所有的读操作在从节点上进行。 secondaryPreferred.优先在从节点进行读操作，如果所有从节点都不可用，再从主节点操作。 nearest. 根据网络延迟时间 ，就近进行读操作，不考虑节点类型。  配置节点Tags Sets Tag sets 允许指定一个replica set进行读操作，其中Mongod的读模式必须是以下四种之一：
@@ -44,20 +44,20 @@ session, err := mgo.Dial(&amp;quot;localhost&amp;quot;) if err !</description>
     
     <item>
       <title>golang--mgo解析各种数据类型分析</title>
-      <link>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html</guid>
       <description>https://segmentfault.com/a/
 package main import ( &amp;quot;gopkg.in/mgo.v2&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; ) func main() { session, err := mgo.Dial(&amp;quot;usr:pwd@127.0.0.1:27017/dbname&amp;quot;) if err != nil { log.Fatal(&amp;quot;无法打开MongoDB！&amp;quot;) return } defer session.Close() clt := session.DB(&amp;quot;mydb&amp;quot;).C(&amp;quot;userinfo&amp;quot;) type row struct { UserName, Telephone string } var _row, _row2 interface{} // _row和_row2 都是interface，也就是说它们可以指向任意类型，此时是指向row结构的指针 _row = new(row) _row2 = new(row) // _row3 是具体struct _row3 := row{} log.Printf(&amp;quot;type of &amp;amp;row: %v\n&amp;quot;, reflect.TypeOf(&amp;amp;_row)) log.Printf(&amp;quot;type of row: %v\n&amp;quot;, reflect.TypeOf(_row2)) log.Printf(&amp;quot;type of &amp;amp;row3: %v\n&amp;quot;, reflect.</description>
     </item>
     
     <item>
       <title>利用mongo的findAndModify原子性操作实现autoincrementID</title>
-      <link>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html</guid>
       <description>https://segmentfault.com/a/
 实际情况 默认情况下，mongo使用_id自动生成uniq id，而且在mongo自带的命令里，无法指定一个自增字段。自增字段在多线程时必须是原子性的，这在大数据情况下很难实现伸缩性(scalability)。
  Generally in MongoDB, you would not use an auto-increment pattern for

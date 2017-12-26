@@ -13,10 +13,10 @@
     
     <item>
       <title>Gox:简单实在的Go平台交叉编译工具</title>
-      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</guid>
       <description>Gox 是一个简单的，不花俏的Go平台交叉编译工具，它的用处就和标准的 go build 一样。Gox 会并行地为多种平台编译。Gox 同时也提供了一套交叉编译工具链。
 Gox 项目地址：https://github.com/mitchellh/gox
 安装 为了安装 Gox，请使用 go get。我们已经为版本打上了标签，所以可以随便切换标签进行编译：

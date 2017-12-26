@@ -13,10 +13,10 @@
     
     <item>
       <title>IDEA写Golang的一些操作_技巧</title>
-      <link>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html</guid>
       <description>https://segmentfault.com/a/
 之前一直用vscode来写Golang，直到有人向我推荐了IDEA，便折服于它的强大。在这里分享一些IDEA的操作和技巧（只说Golang，但一些技巧对其他语言同样有效）。
  Help -&amp;gt; Keymap Reference能够打开快捷键映射的PDF文件，方便我们查看

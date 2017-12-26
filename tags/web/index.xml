@@ -13,10 +13,10 @@
     
     <item>
       <title>对echo框架进行统一的自定义错误处理</title>
-      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
       <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
 你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
@@ -36,10 +36,10 @@ STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot
     
     <item>
       <title>fasthttp中的协程池实现</title>
-      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
       <description>https://segmentfault.com/a/
 fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
  入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
@@ -47,10 +47,10 @@ fasthttp中的协程池实现  协程池可以控制并行度，复用协程。f
     
     <item>
       <title>GolangWeb框架TinyGoWeb</title>
-      <link>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</guid>
       <description>Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架，TGW的诞生是因为作者在使用beego时有种挫败感，决定自己重新写一个适合自己网站用的(私人借书网，因为网站没有完成备案，暂时由托管在US的vps进行反向代理到ucloud主机，访问可能会有一定的延时)，从构思到完成总共只花了一天时间，因为觉得它已经够用了，就没有继续添加新的功能。
 项目地址:[](http://github.com/icattlecoder/tgw)http://github.com/icattlecoder/tgw
 Qiuck Start &amp;gt; go get github.com/icattlecoder/tgw &amp;gt; cd src/github.com/icattlecoder/tgw/example &amp;gt; go build &amp;gt; ./example  控制器 控制器实现自动路由注册，例如有以下的结构

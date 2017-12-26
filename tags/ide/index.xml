@@ -13,10 +13,10 @@
     
     <item>
       <title>Go语言暴力入门2-工欲善其事</title>
-      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</guid>
       <description>工欲善其事-打造漂亮的Go语言编辑器 关于作者  程序开发人员，不拘泥于语言与技术，目前主要从事PHP和前端开发，使用Laravel和VueJs，App端使用Apicloud混合式开发。合适和够用是永不停息的追求。2017.05.04开始在空闲时间学习Go语言
 个人网站：http://www.linganmin.cn
 最近刚写了一个手机在线播放的H5电影站：http://www.ifilm.ltd
@@ -34,10 +34,10 @@ Gogland继承了JetBrains家族IDE中诸如database管理的众多优秀的功�
     
     <item>
       <title>使用intelliJ做为Golang的IDE</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:11 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html</guid>
       <description> intelliJ是java的开发利器，一个非常好用的IDE，Android Studio就是基于intelliJ改的，选择使用intelliJ作为Golang的IDE，很是便利。
 下载intelliJ 首先要下载http://www.jetbrains.com/idea/
 intelliJ分为社区版和专业版，建议使用专业版,如果暂时还不想付费，也可以考虑先实现社区版是免费的，对于做Golang或者Java开发的影响很小，但是使用社区版的intelliJ想要开发html,css和JavaScript就没有那么方便了。

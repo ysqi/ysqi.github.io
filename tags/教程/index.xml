@@ -13,10 +13,10 @@
     
     <item>
       <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
-      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
       <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
 ssh root@218.244.147.196 @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
 安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
@@ -27,10 +27,10 @@ yum install nginx 安装好以后测试一下 nginx 服务： service nginx stat
     
     <item>
       <title>如何提取Piwik中记录的访客IP地址</title>
-      <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</link>
       <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</guid>
       <description>最近在使用Piwik做网站数据统计，基于PIWIK做二次开发，各种文档，而昨天死活不知道PIWIK中记录访客IP的格式是什么，拉个粑粑后茅塞顿开，下面记记录下如何在PIWIK中获取访客的IP地址信息。
 ### 访客IP地址Piwik存储在哪里？ Piwk将访客信息记录在表log_visit中，当然访客IP也是跟随访客继续记录的，也在这个表中，字段是location_ip ,该表的表结构如下：
  idsite:the ID of the the website it was tracked for idvisitor:a visitor ID (an 8 byte binary string) visitor_localtime:the visit datetime in the visitor&amp;rsquo;s time of day visitor_returning:whether the visit is the first visit for this visitor or not visitor_count_visits:the number of visits the visitor has made up to this one visitor_days_since_last:the number of days since this visitor&amp;rsquo;s last visit (if any) visitor_days_since_order:the number of days since this visitor&amp;rsquo;s last order (if any) visitor_days_since_first:the number of days since this visitors&amp;rsquo; first visit visit_first_action_time:the datetime of the visit&amp;rsquo;s first action visit_last_action_time:the datetime of the visit&amp;rsquo;s last action visit_exit_idaction_url:the ID of the URL action type of the visit&amp;rsquo;s last action visit_exit_idaction_name:the ID of the page title action type of the visit&amp;rsquo;s last action visit_entry_idaction_url:the ID of the URL action type of the visit&amp;rsquo;s first action visit_entry_idaction_name:the ID of the page title action type of this visit&amp;rsquo;s first action visit_total_actions:the count of actions performed during this visit visit_total_searches:the count of site searches performed during this visit visit_total_events:the count of custom events performed during this visit visit_total_time:the total elapsed time of the visit visit_goal_converted:whether this visit converted a goal or not visit_goal_buyer:whether the visitor ordered something during this visit or not referer_type:the type of this visitor&amp;rsquo;s referrer.</description>
@@ -38,20 +38,20 @@ yum install nginx 安装好以后测试一下 nginx 服务： service nginx stat
     
     <item>
       <title>在线云开发平台coding&#43;七牛搭建超级个人博客</title>
-      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</link>
       <pubDate>Sun, 23 Aug 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</guid>
       <description>&lt;p&gt;昨天加入了codefollow这个大家庭，话说要鼓励大家写作与分享，趁着老婆睡觉偷偷的写一篇如何利用云开发平台coding以及七牛这条大黄牛来搭建一个超级方便又稳定的个人博客。
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>如何进行计数场景的优化</title>
-      <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</link>
       <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</guid>
       <description>社交网络信息爆发，如何衡量你在社交舆论上的影响力？计数！
 计数是应用最方便、简单实现的数据挖掘应用，拿Facebook举例，你的Feed被评论多少次，转发多少次，赞多少次，被浏览多少次，你有多少个好友等等。可以说计数得多少的价值可能超过你本身或者你发布的内容本身。
 今天着重介绍下Redis在计数器场景上的应用。 对于计数器大家肯定还有或多或少的疑问。
@@ -73,10 +73,10 @@ struct sdshdr { len = 11; free = 0; buf = “hello world\0″; // buf 的实际�
     
     <item>
       <title>Mac下安装Redis用于开发测试</title>
-      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 09:12:01 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</guid>
       <description>Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开发程序使用Redis的安装过程。
 下载Redis安装包 上一篇文章我说了如何在Mac下快速安装Wget，因此下载Redis安装包就可以利用wget命令了。
  首先到下载列表看看最新的版本是什么  国内快速的查看Redis地址： http://www.redis.cn/download.html
@@ -87,10 +87,10 @@ Redis server v=3.0.3 sha=00000000:0 malloc=libc bits=64 build=abcd09569d8d24f9  
     
     <item>
       <title>MAC下快速安装Wget</title>
-      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 08:45:07 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</guid>
       <description> wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。
 安装Wget前提条件 Mac已安装Xcode，我相信Mac下的开发人员必然会安装Xcode
 下载安装包 GUN Wget FTP下载地址:http://www.gnu.org/software/wget/
@@ -103,10 +103,10 @@ wget www.superzhu.com wget ftp://ftp.gnu.org/gnu/wget/wget-1.10.1.tar.gz  </desc
     
     <item>
       <title>老虞学Golang-控制语句</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</link>
       <pubDate>Mon, 08 Apr 2013 23:31:47 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</guid>
       <description>Go中的控制语句较精简，仅有if、for、select和switch。但使用时均比较灵活
 if 在Go中条件语句*if*中如果条件部分的计算结果为true时将执行语句块，否则则执行else语句块(如果存在else时)，此逻辑和其他语言中的if一样，但是在Go中还是有一些不同之处。
  if条件表达式不能使用花括号()包含 if语句代码段必须使用{}，并且左括号必须和if在同一行 if条件表达式的前面可以包含初始化语句，支持平行赋值，但不支持多个赋值语句  赋值+条件判断
@@ -117,10 +117,10 @@ func getName(id int) string { if id == 1 { return &amp;#34;YourName&amp;#34; }el
     
     <item>
       <title>老虞学Golang-函数上</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</link>
       <pubDate>Sun, 07 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</guid>
       <description>不可或缺的函数，在Go中定义函数的方式如下：
 func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return } 通过函数定义，我们可以看到Go中函数和其他语言中的共性和特性
 共性  关键字——func 方法名——funcName 入参——— a,b int,b string 返回值—— r,s int 函数体—— {}  特性 Go中函数的特性是非常酷的，给我们带来不一样的编程体验。
@@ -131,10 +131,10 @@ func (p myType ) funcName ( a, b int , c string ) ( r , s int ) { return } 通�
     
     <item>
       <title>老虞学golang-字符串</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</link>
       <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</guid>
       <description>在所有编程语言中都涉及到大量的字符串操作，可见熟悉对字符串的操作是何等重要。 Go中的字符串和C#中的一样，字符串内容在初始化后不可修改。 需要注意的是在Go中字符串是有UTF-8编码的，请注意保存文件时将文件编码格式改成UTF-8(特别是在windows下)。
  初始化 var str string //声明一个字符串  str = &amp;#34;laoYu&amp;#34; //赋值  ch :=str[0] //获取第一个字符  len :=len(str) //字符串的长度,len是内置函数 ,len=5 字符串操作  编码过程中避免不了中文字符，那我们该如何提取一个中文呢？首先我们要知道string[index]获取的是字符byte,就无法像C#中&amp;quot;老虞&amp;quot;[0]来取到‘老’，在Go中需要将字符串转换成rune数组，runne数组中就可以通过数组下标获取一个汉字所标识的Unicode码，再将Unicode码按创建成字符串即可。
  查看示例代码
@@ -143,10 +143,10 @@ str :=&amp;#34;laoYu老虞&amp;#34; for i:=0;i&amp;lt;len(str);i++ { fmt.Println
     
     <item>
       <title>老虞学Golang-常量</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</link>
       <pubDate>Fri, 05 Apr 2013 23:31:47 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</guid>
       <description>###常量
 常量和C#中的概念相同，在编译期被创建。因为在编译期必须确定其值，因此在声明常量时有一些限制。
  其类型必须是：数值、字符串、布尔值 表达式必须是在编译期可计算的 声明常量的同时必须进行初始化，其值不可再次修改  ####Doc
@@ -163,10 +163,10 @@ const ( //批量声明  Monday, Tuesday, Wednesday = 1, 2, 3 Thursday, Friday, S
     
     <item>
       <title>老虞学Golang-数组和切片</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</link>
       <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</guid>
       <description>数组 Arrays 数组是内置(build-in)类型,是一组同类型数据的集合，它是值类型，通过从0开始的下标索引访问元素值。在初始化后长度是固定的，无法修改其长度。当作为方法的入参传入时将复制一份数组而不是引用同一指针。数组的长度也是其类型的一部分，通过内置函数len(array)获取其长度。
 初始化 数组的初始化有多种形式,查看示例代码 , 在线运行示例代码
  [5] int {1,2,3,4,5} 长度为5的数组，其元素值依次为：1，2，3，4，5 [5] int {1,2} 长度为5的数组，其元素值依次为：1，2，0，0，0 。在初始化时没有指定初值的元素将会赋值为其元素类型int的默认值0,string的默认值是&amp;rdquo;&amp;rdquo; [...] int {1,2,3,4,5} 长度为5的数组，其长度是根据初始化时指定的元素个数决定的 [5] int { 2:1,3:2,4:3} 长度为5的数组，key:value,其元素值依次为：0，0，1，2，3。在初始化时指定了2，3，4索引中对应的值：1，2，3 [...] int {2:1,4:3} 长度为5的数组，起元素值依次为：0，0，1，0，3。由于指定了最大索引4对应的值3，根据初始化的元素个数确定其长度为5  赋值与使用 数组通过下标访问元素，可修改其元素值
@@ -176,10 +176,10 @@ arr := [5]int{5, 4, 3} for index, value := range arr { fmt.Printf(&amp;#34;arr[%
     
     <item>
       <title>老虞学golang-变量声明与初始化</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</link>
       <pubDate>Wed, 03 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</guid>
       <description>变量声明  官方doc: http://golang.org//spec#Variable_declarations
  Go中使用全新的关键字var来声明变量。var我们并不陌生，在Javascript 和C#中均有出现。不同的是Go和C#中变量属于强类型，在声明变量后就不允许改变其数据类型。
 声明变量有多种形态:
@@ -194,10 +194,10 @@ var name [type] = value
     
     <item>
       <title>老虞学Golang-代码规范</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</link>
       <pubDate>Tue, 02 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</guid>
       <description>&lt;p&gt;开始一项新语言前需要先了解该语言的语法(如果你有其他语言的编程知识的话)，开始学习前，我们一起了解下Go的格式。
 如果大家都统一编码风格，那么在维护他人代码时就能带来便利。同时我们在提交代码前执行一次fmt命令，以便提交统一风格的代码。&lt;/p&gt;
 
@@ -206,10 +206,10 @@ var name [type] = value
     
     <item>
       <title>老虞学GoLang-为什么会学习goLang</title>
-      <link>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</link>
       <pubDate>Mon, 01 Apr 2013 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</guid>
       <description>2009年开始接触软件开发，一直深爱着它，喜爱淘腾些新技术新技能，却至今没有所成。也许专心才能做好一些事，2013年初接触Go Lang,感受着这门语言带来的魅力，自己该在这条路上留下足迹，以此见证自己的成长历程。
 为什么会学习Go Lang  编程本身是一门艺术，Go Lang 有着无尽想象的魅力。
  Gmail, Google Search, Google Translate,YouTube 这些已成为我生活工作不可缺少的一部分，足够证明Google的产品是优秀的，同样Go Lang也是优秀的，事实证明确实如此。
@@ -231,10 +231,10 @@ go语言的开发团队
     
     <item>
       <title>Go示例之Hello World</title>
-      <link>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html.html</link>
+      <link>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html</link>
       <pubDate>Tue, 22 Jan 2013 08:33:32 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html</guid>
       <description>&lt;p&gt;这个Golang示例系列篇旨在给新手提供入门指导，通过直观的代码示例来学习Golang。
 本篇我们的第一个程序，都是按照国际惯例，打印“Hello,World” 通过直观的代码示例来学习Golang。&lt;/p&gt;
 

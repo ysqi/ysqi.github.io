@@ -13,10 +13,10 @@
     
     <item>
       <title>open-falcon开发笔记(一):从零开始搭建虚拟服务器和监测环境</title>
-      <link>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</guid>
       <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在
 open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以有必要写篇文章记一下。
 这篇文章主要包括：

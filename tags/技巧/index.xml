@@ -13,10 +13,10 @@
     
     <item>
       <title>如何提高邮件件打开率和回复率</title>
-      <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</link>
       <pubDate>Sun, 09 Jul 2017 22:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</guid>
       <description>现在虽有即时通讯软件，但邮件依旧是日常办公必备的沟通方式。那么如何写出牛哄哄的、得体的、打开率高、回复即时的邮件呢？ 小编我虞双齐结合实际工作，总结出四个字：礼貌、清晰 。
  凡人之所以贵于禽兽者，以有礼也。 ——《晏子春秋》
  写好开场白 谁会讨厌礼貌地人儿？礼多人不怪，礼貌性的称呼是邮件不可或缺的内容。
@@ -33,10 +33,10 @@
     
     <item>
       <title>Golang新手开发需要注意的七个细节</title>
-      <link>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</link>
       <pubDate>Fri, 18 Sep 2015 12:55:08 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</guid>
       <description>&lt;p&gt;Go以简洁著称，但简洁中不乏值得玩味的细节。这些小细节不如goroutine、interface和channel那样&amp;rdquo;高大上&amp;rdquo;，&amp;rdquo;屌丝&amp;rdquo;得可能不经常被人注意到，但它们却对理解Go语言有着重要的作用。这里大家一起通过详实的例子来逐一展开和理解一些细节内容。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

@@ -13,10 +13,10 @@
     
     <item>
       <title>[译]CockroachDBGC优化总结</title>
-      <link>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:05 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html</guid>
       <description>几周前我们分享了一个帖子讲述我们为什么选择Go语言编写CockroachDB，我们收到一些问题，询问我们是如何解决Go语言的一些已知问题，特别是关于性能、GC和死锁的问题。
 本文中我们将分享几个非常有用的优化技巧用以改善许多常见的GC性能问题（接下来还将覆盖一些有趣的死锁问题）。我们将重点分享如何通过嵌套结构体、使用 sync.Pool、和复用后端数组减少内存分配和降低GC开销。
 减少内存分配和GC优化 将Go与其他语言（比如java）区别开来的是Go语言能让你管理内存布局。通过GO语言，你可以合并碎片，而其他垃圾集合语言不能。

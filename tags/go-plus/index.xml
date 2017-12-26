@@ -13,10 +13,10 @@
     
     <item>
       <title>使用Atom配置Golang开发环境</title>
-      <link>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:49 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</guid>
       <description>Golang作为一种新的编程语言，也有着非常多的IDE，其中个人觉得使用IntelliJ开发是一种很不错的选择，但是免费版有功能是缺失的，如果又不想付费购买专业版的，Atom就是一种不错的选择。
 Atom是更为先进的文本代码编辑器，是由Github打造的下一代编程开发利器，Atom是开源的，美观，各种炫酷效果,还有有各种强大的插件。
 Atom上面配置Golang的开发环境，使用Atom作用IDE,发现效果很不错，下面记录下配置的步骤。

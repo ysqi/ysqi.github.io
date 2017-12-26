@@ -13,10 +13,10 @@
     
     <item>
       <title>jquery和angular的ajax请求的区别</title>
-      <link>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</guid>
       <description>最近用angular替换我blog的部分页面。结果悲剧的发现，post请求到revel以后，revel的ParamsFilter解析不粗来参数。
 看了下请求信息，发现jquery和angular的post请求是有些不同的。
 jquery的content type是application/x-www-form-urlencoded，会把post的参数拼接到url上，格式如foo=bar&amp;amp;baz=moe这样的。

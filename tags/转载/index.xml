@@ -13,10 +13,10 @@
     
     <item>
       <title>【转载】Go语言设计模式实践:迭代器(Iterator)</title>
-      <link>https://yushuangqi.com/blog/2016/zhuai-zai-goyu-yan-she-ji-mo-shi-shi-jian-die-dai-qi-iterator.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/zhuai-zai-goyu-yan-she-ji-mo-shi-shi-jian-die-dai-qi-iterator.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zhuai-zai-goyu-yan-she-ji-mo-shi-shi-jian-die-dai-qi-iterator.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zhuai-zai-goyu-yan-she-ji-mo-shi-shi-jian-die-dai-qi-iterator.html</guid>
       <description>原文：http://www.cnblogs.com/newgame/p/4061083.html
 关于本系列 决定开个新坑。
 这个系列首先是关于Go语言实践的。在项目中实际使用Go语言也有段时间了，一个体会就是不论是官方文档、图书还是网络资料，关于Go语言惯用法（idiom）的介绍都比较少，基本只能靠看标准库源代码自己琢磨，所以我特别想在这方面有一些收集和总结。

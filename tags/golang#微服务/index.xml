@@ -13,10 +13,10 @@
     
     <item>
       <title>Go微服务实践</title>
-      <link>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</link>
       <pubDate>Wed, 22 Feb 2017 08:37:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</guid>
       <description>简介  近一两年来，微服务架构已经成为热门话题（microservices.io)，与传统的一体化应用架构相比，微服务架构在开发、测试、部署方面都有众多吸引人之处，越来越多没有历史包袱的新项目都启用微服务架构的模式来开发。
 我们这个团队经过深入思考之后，决定在一起美这个APP的后端开发中，选择Go作为开发语言，采用微服务模式来实现，经过近半年的实践，形成了一些心得，简单总结后分享出来，希望能够给大家一些帮助。
 框架选择 不同的团队在选择基础框架（库）时考虑的要素不同，我们团队更喜欢小而美的框架，尽可能不要让框架侵入业务，易于升级、维护和替换，所以我们更愿意选择Library而不是Framework。

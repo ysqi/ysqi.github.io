@@ -13,10 +13,10 @@
     
     <item>
       <title>树莓派上编译Goand安装Cow</title>
-      <link>https://yushuangqi.com/blog/2016/shu-mei-pa-shang-bian-yi--go-and-an-zhuang--cow.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shu-mei-pa-shang-bian-yi--go-and-an-zhuang--cow.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shu-mei-pa-shang-bian-yi--go-and-an-zhuang--cow.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shu-mei-pa-shang-bian-yi--go-and-an-zhuang--cow.html</guid>
       <description>PS:老Blog文章转移, 年代久远, 连接可能已失效.
 Cow 是不错的软件，相当好用，我在公司是直接把它挂到了服务器上，然后办公室的人都在用它。但是回到了家里我就无法用移动设备或者 PSP 之类的连接它了，我的电脑也不能一天 24 小时的在家中开机，碰巧这两天买了连个树莓派，上面运行的是专门定制过的 Debian Linux，我就想着是否能够使用它来运行 Cow。十分不幸的是，似乎作者的网站上并没有提供 ARM 设备的 Cow 版本，我尝试的下载了 Linux 32 位的版本，但是无法在树莓派上运行。所幸 Cow 是用 Go 语言写的，而 Go 支持 ARM，大不了自己编译 Cow。
 我不知道是因为我的的问题还是因为什么奇怪的问题，树莓派的官方源里有 Golang，但是我安装之后却无法使用。So，干脆连 Go 也自己编译好了。

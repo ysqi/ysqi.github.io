@@ -13,10 +13,10 @@
     
     <item>
       <title>Go语言并发模型:使用context</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--context.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--context.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--context.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--context.html</guid>
       <description>简介 在 Go http包的Server中，每一个请求在都有一个对应的 goroutine 去处理。请求处理函数通常会启动额外的 goroutine 用来访问后端服务，比如数据库和RPC服务。用来处理一个请求的 goroutine 通常需要访问一些与请求特定的数据，比如终端用户的身份认证信息、验证相关的token、请求的截止时间。 当一个请求被取消或超时时，所有用来处理该请求的 goroutine 都应该迅速退出，然后系统才能释放这些 goroutine 占用的资源。
 在Google 内部，我们开发了 Context 包，专门用来简化 对于处理单个请求的多个 goroutine 之间与请求域的数据、取消信号、截止时间等相关操作，这些操作可能涉及多个 API 调用。你可以通过 go get golang.org/x/net/context 命令获取这个包。本文要讲的就是如果使用这个包，同时也会提供一个完整的例子。
 阅读建议 本文内容涉及到了 done channel，如果你不了解这个概念，那么请先阅读 &amp;ldquo;Go语言并发模型：像Unix Pipe那样使用channel&amp;rdquo;。

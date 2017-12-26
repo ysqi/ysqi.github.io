@@ -13,10 +13,10 @@
     
     <item>
       <title>给电脑小白精挑细选的五个免费软件</title>
-      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
       <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
       <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？
 下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则： + 免费
 + 提升效率
@@ -35,10 +35,10 @@ Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开�
     
     <item>
       <title>如何使用MAC远程连接Win10操作系统</title>
-      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
       <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
       <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。
 那么如何才能使用Mac远程连接到Win10呢？ 无法连接的原因:
  提示“远程桌面连接无法验证您希望连接的计算机的身份”。
@@ -50,20 +50,20 @@ Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开�
     
     <item>
       <title>日志文件自动归档工具</title>
-      <link>https://yushuangqi.com/blog/2015/log_file-job-archiving.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</link>
       <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/log_file-job-archiving.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</guid>
       <description>&lt;p&gt;公司生产环境日志非常大，且日志需要存档两年，以便检查的。故写了一个小工具来自动打包压缩日志文件。
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411</title>
-      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</link>
       <pubDate>Mon, 31 Aug 2015 10:01:36 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</guid>
       <description>终于在 Coding.net 上部署搭建了写作环境,同时提交到我的博客,但在deploy到百度应用时有报错,在这里记录下解决方案.
 问题表现 执行hexo deploy 时提示error:RPC failed;result=22,HTTP code=411&#39; 具体错误信息见下
 hexo deploy error: RPC failed; result=22, HTTP code = 411 fatal: The remote end hung up unexpectedly fatal: The remote end hung up unexpectedly ...... Everything up-to-date 错误原因 新搭建的环境,public 内容初始状态不是来源于 BAE git,而在首次 deploy 时提交的内容过大,而被 BAE 拒绝.
@@ -74,20 +74,20 @@ cd .deploy_git/.git vim config 再在文档中添加或修改配置项,修改到
     
     <item>
       <title>在线云开发平台coding&#43;七牛搭建超级个人博客</title>
-      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</link>
       <pubDate>Sun, 23 Aug 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</guid>
       <description>&lt;p&gt;昨天加入了codefollow这个大家庭，话说要鼓励大家写作与分享，趁着老婆睡觉偷偷的写一篇如何利用云开发平台coding以及七牛这条大黄牛来搭建一个超级方便又稳定的个人博客。
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Mac下安装Redis用于开发测试</title>
-      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 09:12:01 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</guid>
       <description>Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开发程序使用Redis的安装过程。
 下载Redis安装包 上一篇文章我说了如何在Mac下快速安装Wget，因此下载Redis安装包就可以利用wget命令了。
  首先到下载列表看看最新的版本是什么  国内快速的查看Redis地址： http://www.redis.cn/download.html
@@ -98,10 +98,10 @@ Redis server v=3.0.3 sha=00000000:0 malloc=libc bits=64 build=abcd09569d8d24f9  
     
     <item>
       <title>MAC下快速安装Wget</title>
-      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 08:45:07 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</guid>
       <description> wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。
 安装Wget前提条件 Mac已安装Xcode，我相信Mac下的开发人员必然会安装Xcode
 下载安装包 GUN Wget FTP下载地址:http://www.gnu.org/software/wget/

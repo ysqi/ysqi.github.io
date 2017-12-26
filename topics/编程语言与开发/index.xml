@@ -13,10 +13,10 @@
     
     <item>
       <title>理解与计算比特币难度值Difficulty</title>
-      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
       <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
       <description>挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。
 那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。
 游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。 这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。
@@ -33,10 +33,10 @@ ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
     
     <item>
       <title>解析比特币区块</title>
-      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
       <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
       <description>在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：
  Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat Windows: %APPDATA%/Bitcoin/blocks/blkXXXX.dat  通过Go代码的方式，一步一步讲解比特币区块的解析逻辑。
 下图是比特币区块数据结构，主要由区块头和交易清单组成。    项 name 字节 用途     神奇数 magic 4 固定为0xD9B4BEF9,作为区块间的分隔符   区块大小 block_size 4 记录当前区块的大小   区块头信息 header 80 记录当前区块的头部信息   交易总数 tx_count 1-9 当前区块所含记录数   交易清单 tx_list * 记录当前区块交易细节    其中，神奇数固定为0xD9B4BEF9，作为区块的分隔标识符。而比特币的交易数据是以128Mb为上限记录在dat文件中的。利用此神奇数和区块大小，可将区块数据读取。
@@ -46,10 +46,10 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
     
     <item>
       <title>程序员该掌握区块链技术</title>
-      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</link>
       <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</guid>
       <description>周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。 也请你行动起来，花两个小时了解区块链的原理，你会被其巧妙的运作方式所折服，拜倒在中本聪的石榴裙下。
 区块链是什么？ &amp;gt;区块链（Blockchain）是由节点参与的分布式数据库系统，它的特点是不可更改，不可伪造，也可以将其理解为账簿系统(ledger)。它是比特币的一个重要概念，完整比特币区块链的副本，记录了其代币（token）的每一笔交易。通过这些信息，我们可以找到每一个地址，在历史上任何一点所拥有的价值。
  区块链是由一串使用密码学方法产生的数据块组成的，每一个区块都包含了上一个区块的哈希值（hash），从创始区块（genesis block）开始连接到当前区块，形成块链。每一个区块都确保按照时间顺序在上一个区块之后产生，否则前一个区块的哈希值是未知的。这些特征使得比特币的双花非常困难。区块链是比特币的核心创新。
@@ -82,10 +82,10 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
     
     <item>
       <title>Docker使用问题集</title>
-      <link>https://yushuangqi.com/blog/2017/use-docker-question-answer.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</link>
       <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
       <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。
 第一次创建镜像过程中遇到些问题，我在这里记录，希望能帮助到别人和自己。
 国内如何加速拉取Docker镜像 通过 Docker 镜像加速，国内能够快速访问最流行的 Docker 镜像。国内用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。
@@ -98,10 +98,10 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
     
     <item>
       <title>区块链比特币学习路线与资源</title>
-      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</link>
       <pubDate>Mon, 18 Sep 2017 12:02:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</guid>
       <description>小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。 注意：某些网站也许得翻墙。
 比特币-基础篇 比特币实际是一个去中心化的共识网络，可看作在云端的账簿，但此云是任意一人都可加入的环境，一帮子人共同维护一个账本。 比特币他爹是中本聪，2008年中本聪在邮件组中抛出了一份点对点的电子现金交易系统白皮书，同时他也着手开始技术实现。从比特币白皮书：一种点对点的电子现金系统开始了解比特币技术与原理。文中所谈及比特币术语在比特币官网有简介。
 技术小白不要看直接看白皮书，学习任何技术应该从官网开始，而比特币官网所提供的中文资料对小白来说完全够用。到官网看关于比特币的常见问题。可直接看莱特币矿池创始人江卓尔关于“比特币是什么&amp;ldquo;的知乎回答(赞超11K，收藏超24K)。
@@ -142,10 +142,10 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
     
     <item>
       <title>Mac下搭建以太坊私有链</title>
-      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</link>
       <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</guid>
       <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以go-ethereum和以太坊钱包为例，详细步骤记录如何在Mac下搭建以太坊私有链运行环境。
 配置前环境准备 安装以太坊客户端 实际以太坊运行有多个不同语言实现的客户端，是多样的。可为不同用户选择他们所熟悉的客户端。
    客户端 开发语言 开发者     go-ethereum Go 以太坊基金会   Parity Rust Ethcore   cpp-ethereum C++ 以太坊基金会   pyethapp Python 以太坊基金会   ethereumjs-lib Javascript 以太坊基金会   Ethereum(J) Java ether camp   ruby-ethereum Ruby 国人Xie Jan   ethereumH Haskell BlockApps    因为以太坊客户端以 go-ethereum 为主，故搭建私有链也使用该客户端。
@@ -154,10 +154,10 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
     
     <item>
       <title>Golang Generate命令说明与使用</title>
-      <link>https://yushuangqi.com/blog/2017/go-command-generate.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
       <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
       <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
 命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
 通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
@@ -171,10 +171,10 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
     
     <item>
       <title>Go读取通达信历史日线数据</title>
-      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
       <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
 准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
 下载后数据按股票市场分别存放：
@@ -184,10 +184,10 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
     
     <item>
       <title>Go面试题答案与解析</title>
-      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
       <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
 1、写出下面代码输出内容。 package main import ( &amp;#34;fmt&amp;#34; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;#34;打印前&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印中&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印后&amp;#34;) }() panic(&amp;#34;触发异常&amp;#34;) }  在线运行
 答： 输出内容为：
@@ -200,10 +200,10 @@ package main import ( &amp;#34;fmt&amp;#34; ) func main() { fmt.Println(doubleSc
     
     <item>
       <title>gRPC服务发现&amp;amp;负载均衡</title>
-      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
       <description>gRPC服务发现&amp;amp;负载均衡  构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：
  1、集中式LB（Proxy Model） 在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如 F5，或者基于软件如 LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。 该方案主要问题：
  单点问题，所有服务调用流量都经过LB，当服务数量和调用量大的时候，LB容易成为瓶颈，且一旦LB发生故障影响整个系统；
@@ -226,10 +226,10 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
     
     <item>
       <title>Caddy新兴的web服务器caddy</title>
-      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
       <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
 然后呢，它还有下面这些开箱即用的特性:
@@ -252,19 +252,19 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
     
     <item>
       <title>redigo连接池代码分析</title>
-      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
       <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性 TestOnBorrow func(c Conn, t time.Time) error // 定义连接池中最大连接数（超过这个数会关闭老的链接，总会保持这个数） MaxIdle int // 当前连接池中可用的链接数. MaxActive int // 定义链接的超时时间，每次p.Get()的时候会检测这个连接是否超时（超时会关闭，并释放可用连接数）. IdleTimeout time.Duration // 当可用连接数为0是，那么当wait=true,那么当调用p.Get()时，会阻塞等待，否则，返回nil. Wait bool // 读写锁控制. mu sync.Mutex // 用来条件控制，这里主要是当链接被关闭时，提醒在等待的进程可以使用了，或者可以自行创建了 cond *sync.Cond // 当前连接池是否已经关闭 closed bool // 当前可用的链接数 active int // 链接存储在一个栈中. idle list.List }  连接池关闭方法 func (p *Pool) Close() error { p.mu.Lock() // 获取连接池所有链接栈 idle := p.</description>
     </item>
     
     <item>
       <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
-      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
       <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
       <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
 一、后端测试了一下发现没有问题
 “我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
@@ -281,10 +281,10 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
     
     <item>
       <title>协作式go程</title>
-      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
       <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻辑处理goroutine负责从队列中提取逻辑包并处理(这样主处理逻辑中基本上不用考虑多线程竞争的锁问题了)。
 如果逻辑包的处理涉及到调用可能会阻塞的函数调用怎么办，如果在处理函数中直接调用这样的函数将导致逻辑处理goroutine被阻塞，无法继续处理队列中被排队的数据包，这将严重降低服务的处理能力。
 一种方式是启动一个新的go程去执行阻塞调用，并注册回调函数，当阻塞调用返回后将回调闭包重新push到消息对列中，由逻辑处理goroutine继续处理后续逻辑。但我本人不大喜欢在逻辑处理上使用回调的方式(node的callback hell)。我希望可以线性的编写逻辑代码。
@@ -297,10 +297,10 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot
     
     <item>
       <title>Golang里的Future_Promise</title>
-      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
       <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
 一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
 Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Promise和async-await，Scala内置了Future，最后在Golang里有goroutine和channel可以实现类似的功能。下面给出一个简单的实现。

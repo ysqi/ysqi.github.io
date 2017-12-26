@@ -13,10 +13,10 @@
     
     <item>
       <title>gocron-定时任务web管理系统</title>
-      <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</link>
       <pubDate>Wed, 24 May 2017 09:17:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</guid>
       <description>gocron - 定时任务web管理系统 项目简介 使用Go语言开发的定时任务集中调度和管理系统, 用于替代Linux-crontab 项目地址 查看文档
 功能特性  支持任务CURD
  crontab时间表达式，可精确到每秒

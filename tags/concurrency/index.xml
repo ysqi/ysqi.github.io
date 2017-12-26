@@ -13,10 +13,10 @@
     
     <item>
       <title>Goforgophers</title>
-      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-for-gophers.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html</guid>
       <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote
 25 April 2014 上的演讲，原文地址为 Go for gophers
 注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING.
@@ -32,10 +32,10 @@ type Reader interface { Read([]byte) (int, error) }  像一个 UNIX 管道。</d
     
     <item>
       <title>Go语言并发模型:像UnixPipe那样使用channel</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:13 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</guid>
       <description>简介 Go语言的并发原语允许开发者以类似于 Unix Pipe 的方式构建数据流水线 (data pipelines)，数据流水线能够高效地利用 I/O和多核 CPU 的优势。
 本文要讲的就是一些使用流水线的一些例子，流水线的错误处理也是本文的重点。
 阅读建议 数据流水线充分利用了多核特性，代码层面是基于 channel 类型 和 go 关键字。
@@ -54,10 +54,10 @@ channel 和 go 贯穿本文的始终。如果你对这两个概念不太了解�
     
     <item>
       <title>Go语言并发模型:使用select</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</guid>
       <description>简介 作为一种现代语言，go语言实现了对并发的原生支持。上几期文章中，我们对goroutine 和 channel进行了详细的讲解。但是要实现对 channel 的控制，从语言层面上来说，select 语句是必不可少的部分。本文中，我们就 select 语句的行为和使用方法进行深入讨论。
 阅读建议 本文中的内容是 Go语言并发模型的一篇，但是与上几期关系不是特别密切，可以独立阅读。本文的内容源自于 [go language specifications]() 和 Rob Pike 在2012年进行的一场名为&amp;ldquo;concurrency&amp;rdquo; 的演讲。如果有时间的话，建议在 YouTube 上看一下他本人的演讲。
 select 语句的行为 为了便于理解，我们首先给出一个代码片段：
@@ -66,10 +66,10 @@ select 语句的行为 为了便于理解，我们首先给出一个代码片段
     
     <item>
       <title>入门goroutine并发设计模式以及goroutine可视化工具</title>
-      <link>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html</guid>
       <description>Daisy-Chain 首先，为了防止过于枯燥，我先列出我最喜欢的一个模式：Daisy-Chain。这个模式比较复杂，对go的并发编程不太熟悉的同学，可以先看下面的模式。然后回过头来看这个。
 daisy chain会创建很多channel，然后把这些channel首尾相接级联起来，组成一条单向链，每个channel都在处理不同的子任务，最后的结果在链的末端输出。这是在2012年的golang talks中由Rob Pike提出的：
 func f(left, right chan int) { // 这个函数就把right的输出和left的输入联系起来了。 left &amp;lt;- 1 + &amp;lt;-right } func main() { const n = 10000 leftmost := make(chan int) right := leftmost left := leftmost // 创建长度为n的daisy链 for i := 0; i &amp;lt; n; i++ { right = make(chan int) go f(left, right) left = right } // 在链的最右端输入1，那么最左端就会得到10001 go func(c chan int) { c &amp;lt;- 1 }(right) fmt.</description>

@@ -13,10 +13,10 @@
     
     <item>
       <title>Gounsafe包</title>
-      <link>https://yushuangqi.com/blog/2017/go-unsafebao.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-unsafebao.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-unsafebao.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-unsafebao.html</guid>
       <description>Go unsafe包
 unsafe包概述 直到现在（Go1.7），unsafe包含以下资源：
 三个函数：
@@ -31,10 +31,10 @@ var x struct { a bool b int16 c []int }  对结构体变量的三个字段调用
     
     <item>
       <title>Go1_8httpgraceful体验</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</link>
       <pubDate>Sat, 18 Feb 2017 11:13:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</guid>
       <description>很高兴Go 1.8发布了，这是个值得庆祝的日子。
 如何优雅的关闭http服务在Go Web开发中一直被提及和讨论的话题，今天Go 1.8的发布终于为我们带来了这个特性。
 文档中是这样介绍的：

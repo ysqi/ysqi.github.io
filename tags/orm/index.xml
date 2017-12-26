@@ -13,10 +13,10 @@
     
     <item>
       <title>beego的ORM-配置数据库</title>
-      <link>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</guid>
       <description>https://segmentfault.com/a/
 Object Relational Mapping,简称ORM，用于实现面向对象编程语言里不通类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的“虚拟对象数据库”。
 beego是谢大神开发的一个快速开发Go应用的Http框架，一个RESTful的框架。
@@ -46,10 +46,10 @@ beego默认使用time.Local本地时区，可以用来自动创建时间，从�
     
     <item>
       <title>Go学习【三】一个简单的orm</title>
-      <link>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:23 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html</guid>
       <description>https://segmentfault.com/a/
 碎语：（请自行跳过）
 距离上篇文章发布也有半个月的时间了

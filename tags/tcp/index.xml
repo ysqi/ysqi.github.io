@@ -13,10 +13,10 @@
     
     <item>
       <title>Golangtransferfilewithsocket</title>
-      <link>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</guid>
       <description>https://segmentfault.com/a/
 package main import ( &amp;quot;bufio&amp;quot; &amp;quot;code.google.com/p/mahonia&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net&amp;quot; &amp;quot;os&amp;quot; ) func main() { fmt.Println(&amp;quot;create a server or client?&amp;quot;) reader := bufio.NewReader(os.Stdin) input, _, _ := reader.ReadLine() if string(input) == &amp;quot;server&amp;quot; { Server() } if string(input) == &amp;quot;client&amp;quot; { Client() } else { fmt.Println(Show(&amp;quot;err arguments,entering again!.\r\n alternaltive argument is server or client&amp;quot;)) os.Exit(0) } } func Show(s string) string { enc := mahonia.NewEncoder(&amp;quot;gbk&amp;quot;) //中文转码有错误的函数。 return enc.ConvertString(s) } func Server() { exit := make(chan bool) ip := net.</description>
     </item>

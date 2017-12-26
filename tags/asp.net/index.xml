@@ -13,10 +13,10 @@
     
     <item>
       <title>Service层的是否必要性分析及案例</title>
-      <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</guid>
       <description>序言 此前，我看过这样的一个提问“Yii2框架中，有必要再分离service层么？”，从别人的回答中，自己也收获了答案，但我觉得还需要有个活生生的粟子，才具有更加清晰明了和强有力的说服力。如对我的实战经历感兴趣的继续往下看，喜欢的还可以点击推荐和收藏。在举粟子前，我先讲讲service是什么？有什么作用吧？免得还有人糊涂。
 1、service是什么？
 在面向OO的系统里，service就是biz manager，在面向过程的系统里service就是TS脚本。

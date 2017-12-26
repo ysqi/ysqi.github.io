@@ -13,10 +13,10 @@
     
     <item>
       <title>MAC下快速安装Wget</title>
-      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</link>
       <pubDate>Sat, 15 Aug 2015 08:45:07 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</guid>
       <description> wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。
 安装Wget前提条件 Mac已安装Xcode，我相信Mac下的开发人员必然会安装Xcode
 下载安装包 GUN Wget FTP下载地址:http://www.gnu.org/software/wget/

@@ -13,10 +13,10 @@
     
     <item>
       <title>一条命令即可将Vim配置为功能强大的IDE</title>
-      <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
       <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
 安装：
 curl -o - https://raw.githubusercontent.com/HmyBmny/vimrc/master/install-vim-plugins | sh  部分插件的使用需要安装一些依赖，诸如 ctags 之类的，具体请参考：https://github.com/HmyBmny/vimrc
@@ -29,10 +29,10 @@ Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配�
     
     <item>
       <title>mac下vim&amp;#43;golang开发环境搭建</title>
-      <link>https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:59 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html</guid>
       <description>今天费了好大劲搞定了mac 下 vim golang 的开发环境，mark 一下
 基本参照 http://studygolang.com/articl&amp;hellip;
 其中有几点需要注意一下

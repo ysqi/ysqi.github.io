@@ -13,10 +13,10 @@
     
     <item>
       <title>Jsoniter0_9_8发布:JSON性能对标Protobuf</title>
-      <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</guid>
       <description>Jsoniter 是一款快且灵活的 JSON 解析器，同时提供 Java 和 Go 两个版本。
 最近发布的 0.9.8 版本对性能对标 Jackson 和 Protobuf 进行了详细的评测： https://github.com/json-itera&amp;hellip; 。性能优化的原理会近期会发布于 infoq 中文站，尽请期待。
 同时提供 PHP 一般的体验。在 PHP 里，你只需要记得 json_decode ，什么文档都可以解析。现在在 Java 里，你也可以这么做了。
@@ -25,10 +25,10 @@ Any any = Jsoniter.deserialize(input); // deserialize 返回 &amp;quot;Any&amp;q
     
     <item>
       <title>Golang中JSON的使用</title>
-      <link>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:25 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html</guid>
       <description>https://segmentfault.com/a/
 GO Json  author: qcliu
 date: 2015/07/21
@@ -45,10 +45,10 @@ fp, _ os.Open(&amp;quot;json.txt&amp;quot;) dec := json.NewDecoder(fp) for { var
     
     <item>
       <title>Go抓取网页数据并存入MySQL和返回json数据&amp;amp;lt;一&amp;amp;gt;</title>
-      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</guid>
       <description>前言 很久前就想学习GO，但是由于准备读研和要实习就一直耽搁没动手，只是偶尔看一下相关的基本语法，并没有将其具体地运用到实际的编码中。大四了，课程一下子少了很多，于是决定用它从网上抓一些图片数据，然后提供接口，为后面学习iOS提供一些网络数据。
 有关GO的介绍我就不在这里说了，对于我这种初学者本来说得就不清不楚，多给自己落下话柄。
 我要实现的功能主要有如下几点：
@@ -67,10 +67,10 @@ indiepic ├── README.md ├── crawldata │ ├── crawldata.go │
     
     <item>
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;二&gt;</title>
-      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</guid>
       <description>上一节已经说明了要做什么，以及整个小程序的目录结构，接下来就开始编码部分。
 首先在入口文件中引入项目下的包crawldata,然后调用其中抓取数据的函数，暂时取名为Crawl:
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;indiepic/crawldata&amp;quot; ) func main () { // 使用crawldata包里面的Crawl()抓取需要的数据存到数据库 crawldata.Crawl() fmt.Println(&amp;quot;主函数&amp;quot;) }  然后就是实现包crawldata里面的Crawl函数。将该函数放在crawldata.go文件中：
@@ -81,10 +81,10 @@ package crawldata import ( &amp;quot;fmt&amp;quot; &amp;quot;github.com/Puerkito
     
     <item>
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;三&gt;</title>
-      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</guid>
       <description>上一节主要实现了使用 goquery 从图片网站 [](http://www.gratisography.com/)http://www.gratisography.com/ 抓取数据。主要抓取图片的data-original、width、height、alt、type 五项数据。因此需要先创建数据库和相应的表，在mac上我使用 Sequel Pro 数据库管理软件，连接之后创建新的数据库indiepic,然后创建表gratisography:
 CREATE TABLE `gratisography` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `img_url` varchar(255) DEFAULT NULL, `type_name` varchar(50) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;  创建完数据库之后，就开始使用GO来实现连接数据库等操作了。在GO中使用Go-MySQL-Driver is a lightweight and fast MySQL-Driver for Go&amp;rsquo;s (golang) database/sql package
 文档：[](http://godoc.org/github.com/go-sql-driver/mysql)http://godoc.org/github.com/go-sql-driver/mysql
@@ -94,10 +94,10 @@ go get github.com/go-sql-driver/mysql  然后在database.</description>
     
     <item>
       <title>Go抓取网页数据并存入MySQL和返回json数据&lt;四&gt;</title>
-      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:13 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</guid>
       <description>上一节已将将需要的数据从网站[](http://www.gratisography.com/)http://www.gratisography.com/ 抓取并存入数据库【使用crawldata.go中的InsertData(&amp;amp;imageDatas)函数】，现在需要将数据从数据库indiepic的表gratisography中取出并然会json格式的数据。
 项目文件夹结构如下：
 indiepic ├── README.md ├── crawldata │ ├── crawldata.go │ └── database.go └── indiepic.go  现在将获取数据的函数写在database.go中：
@@ -106,10 +106,10 @@ func GetAllImages() (imageDatas ImageDatas, err error) { // 连接数据库 db, 
     
     <item>
       <title>Golang流式解析Json</title>
-      <link>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:46 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html</guid>
       <description>json-iterator 库：https://github.com/json-iterator/go
 动机 现有的golang解析json的库都是push模式的，缺少一种基于pull api的库。另外就是看一下golang解析json的速度到底如何，还有多少的提高空间。
 API 风格 api 风格上是以 StAX 为基础，但是针对 JSON 做了特别的优化。比 StAX 和 SAX 都更简单可控。当然如果需要最简单，还是 DOM 类的 api 最简单。使用流式pull的api为的就是最大化控制解析过程。
@@ -119,10 +119,10 @@ API 风格 api 风格上是以 StAX 为基础，但是针对 JSON 做了特别�
     
     <item>
       <title>golangjson解析器哪家强？</title>
-      <link>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:43 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html</guid>
       <description>全文链接： https://github.com/json-iterator/go-benchmark
 目的不是推销 json-iterator 。而是证明 json-iterator 不比其他的库更慢，从而使得大家可以把吐槽点放到其他方面：比如特性是不是齐全， api 是不是友好。重新发明 json 解析器是因为经常需要处理奇怪格式的 json ，而又不想把数据转两遍。市面上没有 api 满足我的需求的，后面我会专门写一篇 api 介绍的文章来演示 json-iterator 的独特性。（ https://github.com/json-itera&amp;hellip; ）
  jsonparser: https://github.com/buger/jsonparser

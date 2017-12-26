@@ -13,10 +13,10 @@
     
     <item>
       <title>采用一门新编程语言或不采用</title>
-      <link>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</guid>
       <description>我大体上对编程语言感兴趣。特别低，我一直对另一门编程语言 如何能够提供给我表达程序的新特性以及允许我成长为一名程序员 感到好奇。
 我在校时学到了第一门语言。那儿的电脑&amp;mdash;&amp;mdash;一屋子都是PET 2001，那时候他们是新潮的&amp;mdash;&amp;mdash;只有BASIC，很快就让我失望了。在大学，我开始了一门Pascal的课程，闲暇做了很多编程。Pascal很快填补了我在BASIC发现的恼人的不足。
 带着兴趣我学习了FORTRAN基础，但是从来没有真正用过。Modula 2 出现了，甚至有更大的编程分配，但是没有真正引起我的兴趣。我发现Ada更有意思，不过在进程控制课程之外很少有机会使用。我接触了一点儿Forth，但是再一次没有真正的应用程序来实践。
@@ -35,10 +35,10 @@
     
     <item>
       <title>GC垃圾回收机制:浅析与理解</title>
-      <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
       <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
 基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。
  内存压缩：对内存碎片进行压缩。（和win10的那个“内存压缩”不太一样啦）
@@ -64,10 +64,10 @@ char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指�
     
     <item>
       <title>JavaScript新鲜事·第6期</title>
-      <link>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</guid>
       <description>微软公布TypeScript 2.0 RC版本 在8月30日，微软公布了TypeScript 2.0 RC版本，增加了一些特性，已经离正式版不远了，目测功能应该不会再有太大的变化。
 原文地址：https://blogs.msdn.microsoft.com/typescript/2016/08/30/announcing-typescript-2-0-rc/
 Angular 2.0 RC6发布 总感觉Angular 2.0在跟谁TypeScript 2.0的脚步，在8月的最后一天，也就是TypeScript 2.0 RC发布后的第二天，Angular 2.0发布了第6个RC版本。增强了静态编译、表单功能和国际化。Angular 2.0难道要等TypeScript 2.0出正式版才肯Release吗？
@@ -102,10 +102,10 @@ GopherJS 1.</description>
     
     <item>
       <title>go实现高性能直播服务</title>
-      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</guid>
       <description>livego
 go 实现直播服务
 服务器部署
@@ -128,10 +128,10 @@ http://localhost:8080/camera (录视频)(由于chrome的安全限制，建议在
     
     <item>
       <title>基于HTTP标准协议的API接口设计规范构思</title>
-      <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
       <description>https://segmentfault.com/a/
 开发规范  版本控制git
  开发流程git flow

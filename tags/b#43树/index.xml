@@ -13,10 +13,10 @@
     
     <item>
       <title>用Golang写一个搜索引擎(0x04)---B&amp;#43;树</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html</guid>
       <description>本篇较长较枯燥，请保持耐心看完。
 前面两章介绍了一下倒排索引以及倒排索引字典的两种存储结构，分别是跳跃表和哈希表，本篇我们介绍另一种数据结构，他也被大量使用在信息检索领域，我在github上实现的搜索引擎的词典也是用的这个数据结构，它就是B+树。
 首先，我们看看什么是树，树是程序设计中一个非常基础的数据结构，记得大学时候的数据结构课，链表，栈，队列，然后就是树了，虽然那时候想必大家都被前序遍历，中序遍历，后序遍历折腾过，不过树确实是一种非常有用的数据结构。

@@ -13,10 +13,10 @@
     
     <item>
       <title>架构感悟-从美国宪法学习架构设计原则</title>
-      <link>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html</link>
       <pubDate>Tue, 21 Feb 2017 13:20:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html</guid>
       <description>2017年1月20日注定是一个会在历史上留下记录的日子，美国第45任总统Donald Trump宣誓就职。他的就职宣誓词非常简短：
  I do solemnly swear that I will faithfully execute the office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States.
  令人惊讶的是，自从1787年美国宪法在费城制宪会议通过以来，在宪法第二条第一款中规定的总统宣誓词，竟然历经230年，从未变化。
@@ -46,10 +46,10 @@
     
     <item>
       <title>互联网高可用架构技术实践</title>
-      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html</link>
       <pubDate>Tue, 21 Feb 2017 13:19:40 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html</guid>
       <description>一、什么是高可用 高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。
 假设系统一直能够提供服务，我们说系统的可用性是100%。如果系统每运行100个时间单位，会有1个时间单位无法提供服务，我们说系统的可用性是99%。很多公司的高可用目标是4个9，也就是99.99%，这就意味着，系统的年停机时间为8.76个小时。
 百度的搜索首页，是业内公认高可用保障非常出色的系统，甚至人们会通过www.baidu.com能不能访问来判断“网络的连通性”，百度高可用的服务让人留下啦“网络通畅，百度就能访问”，“百度打不开，应该是网络连不上”的印象，这其实是对百度HA最高的褒奖。
@@ -85,10 +85,10 @@
     
     <item>
       <title>从美国制宪和中国改革来学架构设计</title>
-      <link>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html</link>
       <pubDate>Tue, 21 Feb 2017 13:19:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html</guid>
       <description>2017年2月6日周一晚8点30分，GitChat团队迎来了华为公司内源社区平台架构师、开源社理事庄表伟“从美国宪法学习架构设计原则”主题交流。以下是主持人赫阳整理的问题精华，记录下了作者和读者的问答精彩片段。
 问： 1）架构中对合作博弈的机制设计是否重要？如果是，则如何设计引入？老架构的调整中，如何破解纳什均衡中的“锁定效应”和“路径依赖”等问题？2） 美国宪法架构设计中，如何处理经费预算的问题呢？或者是预算问题是否是架构问题的先决条件？或者别的某些先决条件属于必要的存在？
 答： 1）先引用一段评论。钟晖说：“以前，看过一篇IT同仁用苹果、安卓等操作系统来解释伊斯兰教、基督教等宗教的文章，喻示法灵活显，直白易懂，让大家明白了伊斯兰教是什么鬼。”

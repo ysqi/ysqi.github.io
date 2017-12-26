@@ -13,10 +13,10 @@
     
     <item>
       <title>shipyard中文版发布</title>
-      <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</guid>
       <description> shipyard中文版正式发布  一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括：
  支持节点动态集群，可扩展节点的规模（swarm、etcd方案）
  支持镜像管理、容器管理、节点管理等功能

@@ -1,0 +1,293 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>fasthttp中的协程池实现 |虞双齐的博客</title><meta name="description" content="https://segmentfault.com/a/
+fasthttp中的协程池实现  协程池可以"><meta name="keywords" content="goroutine, web, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html"><meta property="og:title" content="fasthttp中的协程池实现"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-05-24 09:17:31"><meta property="article:modified_time" content="2017-05-24 09:17:31"><meta property="article:tag" content="goroutine"><meta property="article:tag" content="web"><meta property="article:tag" content="golang"><meta name="og:description" content="https://segmentfault.com/a/
+fasthttp中的协程池实现  协程池可以"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html">fasthttp中的协程池实现</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000009133154" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-05-24">2017年05月24日</time></span></p></header><div itemprop="articleBody"><p><a href="https://segmentfault.com/a/">https://segmentfault.com/a/</a></p><h1 id="fasthttp中的协程池实现">fasthttp中的协程池实现</h1><blockquote><p>协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。</p></blockquote><h2 id="入口">入口</h2><pre><code>// server.go
+
+func (s *Server) Serve(ln net.Listener) error {
+    var lastOverflowErrorTime time.Time
+    var lastPerIPErrorTime time.Time
+    var c net.Conn
+    var err error
+
+    maxWorkersCount := s.getConcurrency()
+    s.concurrencyCh = make(chan struct{}, maxWorkersCount)
+    wp := &amp;workerPool{
+        WorkerFunc:      s.serveConn,
+        MaxWorkersCount: maxWorkersCount,
+        LogAllErrors:    s.LogAllErrors,
+        Logger:          s.logger(),
+    }
+    // break-00
+    wp.Start()
+
+    for {
+        // break-02
+        if c, err = acceptConn(s, ln, &amp;lastPerIPErrorTime); err != nil {
+            wp.Stop()
+            if err == io.EOF {
+                return nil
+            }
+            return err
+        }
+
+        // break-03
+        if !wp.Serve(c) {
+            s.writeFastError(c, StatusServiceUnavailable,
+                &quot;The connection cannot be served because Server.Concurrency limit exceeded&quot;)
+            c.Close()
+            if time.Since(lastOverflowErrorTime) &gt; time.Minute {
+                s.logger().Printf(&quot;The incoming connection cannot be served, because %d concurrent connections are served. &quot;+
+                    &quot;Try increasing Server.Concurrency&quot;, maxWorkersCount)
+                lastOverflowErrorTime = CoarseTimeNow()
+            }
+
+            // The current server reached concurrency limit,
+            // so give other concurrently running servers a chance
+            // accepting incoming connections on the same address.
+            //
+            // There is a hope other servers didn't reach their
+            // concurrency limits yet :)
+            time.Sleep(100 * time.Millisecond)
+        }
+        c = nil
+    }
+}
+
+// 有必要了解一下 workerPool 的结构
+type workerPool struct {
+    // Function for serving server connections.
+    // It must leave c unclosed.
+    WorkerFunc func(c net.Conn) error
+
+    MaxWorkersCount int
+
+    LogAllErrors bool
+
+    MaxIdleWorkerDuration time.Duration
+
+    Logger Logger
+
+    lock         sync.Mutex
+    workersCount int
+    mustStop     bool
+
+    ready []*workerChan
+
+    stopCh chan struct{}
+
+    workerChanPool sync.Pool
+}
+</code></pre><p>goroutine status:</p><ol><li>main0: wp.Start()</li></ol><h2 id="break-00">break-00</h2><pre><code>// workerpool.go
+
+// 启动一个 goroutine， 每隔一段时间，清理一下 []*workerChan; 
+// wp.clean() 的操作是 查看最近使用的workerChan, 如果他的最近使用间隔大于某个值，那么把这个workerChan清理了。
+func (wp *workerPool) Start() {
+    if wp.stopCh != nil {
+        panic(&quot;BUG: workerPool already started&quot;)
+    }
+    wp.stopCh = make(chan struct{})
+    stopCh := wp.stopCh
+    go func() {
+        var scratch []*workerChan
+        for {
+            // break-01
+            wp.clean(&amp;scratch)
+            select {
+            case &lt;-stopCh:
+                return
+            default:
+                time.Sleep(wp.getMaxIdleWorkerDuration())
+            }
+        }
+    }()
+}
+</code></pre><p>goroutine status:</p><ol><li><p>main0: wp.Start()</p></li><li><p>g1: for loop to clean idle workerChan</p></li></ol><h2 id="break-01">break-01</h2><pre><code>func (wp *workerPool) clean(scratch *[]*workerChan) {
+    maxIdleWorkerDuration := wp.getMaxIdleWorkerDuration()
+
+    // Clean least recently used workers if they didn't serve connections
+    // for more than maxIdleWorkerDuration.
+    currentTime := time.Now()
+
+    wp.lock.Lock()
+    ready := wp.ready
+    n := len(ready)
+    i := 0
+    // 这里从队列头部取出超过 最大空闲时间 的workerChan。
+    // 可以看出，最后使用的workerChan 一定是放回队列尾部的。
+    for i &lt; n &amp;&amp; currentTime.Sub(ready[i].lastUseTime) &gt; maxIdleWorkerDuration {
+        i++
+    }
+    // 把空闲的放入 scratch, 剩余的放回 ready
+    *scratch = append((*scratch)[:0], ready[:i]...)
+    if i &gt; 0 {
+        m := copy(ready, ready[i:])
+        for i = m; i &lt; n; i++ {
+            ready[i] = nil
+        }
+        wp.ready = ready[:m]
+    }
+    wp.lock.Unlock()
+
+    // Notify obsolete workers to stop.
+    // This notification must be outside the wp.lock, since ch.ch
+    // may be blocking and may consume a lot of time if many workers
+    // are located on non-local CPUs.
+    tmp := *scratch
+    // 销毁的操作就是向 chan net.Conn 中塞入一个 nil, 后面会看到解释
+    for i, ch := range tmp {
+        ch.ch &lt;- nil
+        tmp[i] = nil
+    }
+}
+</code></pre><h2 id="break-02">break-02</h2><p><code>acceptConn(s, ln, &amp;lastPerIPErrorTime)</code> 主要处理 ln.Accept()，判断err是否是 Temporary 的，最终返回一个 net.Conn</p><h2 id="break-03">break-03</h2><pre><code>// workerpool.go
+
+func (wp *workerPool) Serve(c net.Conn) bool {
+    // break-04
+    ch := wp.getCh()
+    if ch == nil {
+        return false
+    }
+    ch.ch &lt;- c
+    return true
+}
+
+type workerChan struct {
+    lastUseTime time.Time
+    ch          chan net.Conn
+}
+</code></pre><p>wp.getCh() 返回一个 *workerChan, 可以看到， workerChan 有一个 ch 属性，参数传入的 net.Conn 直接往里面塞。</p><h2 id="break-04">break-04</h2><pre><code>// workerpool.go
+
+func (wp *workerPool) getCh() *workerChan {
+    var ch *workerChan
+    createWorker := false
+
+    wp.lock.Lock()
+    ready := wp.ready
+    n := len(ready) - 1
+    if n &lt; 0 {
+        // ready 为空，并且总数小于 MaxWorkersCount，那么需要创建新的 workerChan
+        if wp.workersCount &lt; wp.MaxWorkersCount {
+            createWorker = true
+            wp.workersCount++
+        }
+    } else {
+        // 从队列尾部取出一个 workerChan
+        ch = ready[n]
+        ready[n] = nil
+        wp.ready = ready[:n]
+    }
+    wp.lock.Unlock()
+
+    if ch == nil {
+        if !createWorker {
+            return nil
+        }
+        // 走入创建流程，从 Pool中取出 workerChan
+        vch := wp.workerChanPool.Get()
+        if vch == nil {
+            vch = &amp;workerChan{
+                ch: make(chan net.Conn, workerChanCap),
+            }
+        }
+        ch = vch.(*workerChan)
+        // 创建goroutine处理请求，接收一个 chan *workerChan 作为参数
+        go func() {
+            // break-05
+            wp.workerFunc(ch)
+            wp.workerChanPool.Put(vch)
+        }()
+    }
+    return ch
+}
+</code></pre><p>这里我们只看创建的流程。如果ready为空，说明ready被耗尽，并且小于 MaxWorkersCount，那么需要创建新的 workerChan。<br>创建时，先从 Pool 中取出复用，如果为nil，再创建新的。<br>可以预测到，这里 wp.workerFunc(ch) 必定包含一个 for 循环，处理 workerChan 中的 net.Conn。</p><p>goroutine status:</p><ol><li><p>main0: wp.Start()</p></li><li><p>g1: for loop to clean idle workerChan</p></li><li><p>g2: wp.workerFunc(ch) blocks for handling connection</p></li></ol><h2 id="break-05">break-05</h2><pre><code>// workerpool.go
+
+func (wp *workerPool) workerFunc(ch *workerChan) {
+    var c net.Conn
+
+    var err error
+    for c = range ch.ch {
+        if c == nil {
+            break
+        }
+
+        // 正真的处理请求的函数
+        if err = wp.WorkerFunc(c); err != nil &amp;&amp; err != errHijacked {
+            errStr := err.Error()
+            if wp.LogAllErrors || !(strings.Contains(errStr, &quot;broken pipe&quot;) ||
+                strings.Contains(errStr, &quot;reset by peer&quot;) ||
+                strings.Contains(errStr, &quot;i/o timeout&quot;)) {
+                wp.Logger.Printf(&quot;error when serving connection %q&lt;-&gt;%q: %s&quot;, c.LocalAddr(), c.RemoteAddr(), err)
+            }
+        }
+        if err != errHijacked {
+            c.Close()
+        }
+        c = nil
+
+        // 释放 workerChan
+        // break-06
+        if !wp.release(ch) {
+            break
+        }
+    }
+
+    // 跳出 for range 循环， 意味着 从chan中取得一个 nil，或者 wp.mustStop 被设为了true，这是主动停止的方法。
+    wp.lock.Lock()
+    wp.workersCount--
+    wp.lock.Unlock()
+}
+</code></pre><p>for range 不断从 chan net.Conn 中获取连接。大家是否还记得 在 <code>func (wp *workerPool) Serve(c net.Conn) bool</code> 函数中，一个重要操作就是把 accept 到的connection，放入 channel.<br>最后，需要把当前的 workerChan 释放回 workerPool 的 ready 中。</p><h2 id="break-06">break-06</h2><pre><code>func (wp *workerPool) release(ch *workerChan) bool {
+    ch.lastUseTime = CoarseTimeNow()
+    wp.lock.Lock()
+    if wp.mustStop {
+        wp.lock.Unlock()
+        return false
+    }
+    wp.ready = append(wp.ready, ch)
+    wp.lock.Unlock()
+    return true
+}
+</code></pre><p>释放操作中，注意到 修改了 ch.lastUseTime ， 还记得 clean 操作吗？在 g1 协程中运行着呢。<br>所以最后的运行状态是：</p><p>goroutine status:</p><ol><li><p>main0: wp.Start()</p></li><li><p>g1: for loop to clean idle workerChan</p></li><li><p>g2: wp.workerFunc(ch) blocks for handling connection</p></li><li><p>g3: &hellip;.</p></li><li><p>g4: &hellip;.</p></li></ol><p>按需增长 goroutine 数量，但是也有一个最大值, 所以并行度是可控的。当请求密集时，一个 worker goroutine 可能会串行处理多个 connection。<br>wokerChan 在 Pool 中被复用，对GC的压力会减小很多。</p><p>而对比原生的 net/http 包，并行度不可控（可能不确定，runtime 会有控制? ），goroutine 不可被复用，体现在一个请求一个goroutine, 用完就销毁了，对机器压力更大。</p></div><aside id="meta"><meta itemprop="wordCount" content="852"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/goroutine.html" rel="tag">goroutine</a> <a href="/tags/web.html" rel="tag">web</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html">对echo框架进行统一的自定义错误处理</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html">golang使用Nsq</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="7890f3efebf13dd44f6ebd707e491f93"></div><div id="cyReward" role="cylabs" data-use="reward" sid="7890f3efebf13dd44f6ebd707e491f93" style="text-align:center"></div><div id="SOHUCS" sid="7890f3efebf13dd44f6ebd707e491f93"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2ffasthttpzhong-de-xie-cheng-chi-shi-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2ffasthttpzhong-de-xie-cheng-chi-shi-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

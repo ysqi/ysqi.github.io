@@ -13,10 +13,10 @@
     
     <item>
       <title>150行Go代码实现gitcheckout功能</title>
-      <link>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</guid>
       <description>由于历史原由，git一直是被黑成比较难用的版本控制器。其实近年来git的用户界面已经被简化的非常简单了，配上github、bitbucket等hosting,已接近完美。
 git其实挺简单的，本文用了约150行golang代码实现了git checkout功能，阅读代码之前，您应该读过《Git Pro》中的git内部原理一节。
  数据定义： type blob struct { sha1 string filename string } type tree struct { b []*blob name string child []*tree } type commit struct { sha1 string tree *tree parent *commit }
@@ -31,10 +31,10 @@ func readSha1FileContent(sha1 string) (content []byte, err error) {</description
     
     <item>
       <title>【新功能】GitCafe已经支持Go语言Package托管</title>
-      <link>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html</guid>
       <description>之前有用户希望 GitCafe 可以支持 go get，使其能够直接导入 GitCafe 上托管的代码。
 现在，我们想要告诉各位一个好消息，为了方便更多的开发者，任何托管在 GitCafe 上的 Go 语言 package 都可以直接在项目中使用，通过 go get 工具安装和更新。
 例如，我们可以在本机创建一个 hello_world.go 文件，内容如下：
@@ -48,10 +48,10 @@ go get 是 golang 默认的包管理工具，它支持通过 git/mercurial 等�
     
     <item>
       <title>独孤九剑(0x00)-我为什么要做Dit</title>
-      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x00---wo-wei-shen-me-yao-zuo--dit.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x00---wo-wei-shen-me-yao-zuo--dit.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:19 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x00---wo-wei-shen-me-yao-zuo--dit.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x00---wo-wei-shen-me-yao-zuo--dit.html</guid>
       <description>又挖了一个深坑，不是没事专坑自己。只是想在无聊的时光里，找点乐子，找点事做。
  小时候，最令我着迷的就是邻家的 DVD。印象中的男主角都会经历三个阶段: 被虐-&amp;gt;上山学艺-&amp;gt;下山报仇。
 再长大一点，我成了金庸迷。被金大侠天马行空的想象力所折服，一个人的脑子里，怎么会容得下那么多东西，而且如此的自然，令人信服。巧合的是，那些快意恩仇的大侠们，也都有过独自修练的经历。
@@ -68,10 +68,10 @@ Dit 对，接下来我会模仿 Git 实现一个类似的工具 Dit ，来打发
     
     <item>
       <title>独孤九剑(0x01)-总决</title>
-      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x01---zong-jue.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x01---zong-jue.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:19 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x01---zong-jue.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x01---zong-jue.html</guid>
       <description>总诀：“归妹趋无妄，无妄趋同人，同人趋大有。甲转丙，丙转庚，庚转癸。子丑之交，辰巳之交，午未之交。风雷是一变，山泽是一变，水火是一变。乾坤相激，震兑相激，离巽相激。三增而成五，五增而成九……”（共三千余字）
  独孤九剑讲究料敌先机，无招胜有招。在程序世界里，需要根据不同的需求不断的迭代。系统不能像剑法一样随手变更，往往需要花费无数个人月「最近体会到可以把变化做成接口，留给用户，来应对一部分需求变更」。程序＝算法＋数据结构, 很少有像 TeX 那样，在算法和数据结构两方面都趋近完美，Donald 独自完成了 99.99%，甚至连 bug 数，都少到了惊人的地步。我认为程序设计最重要的是数据结构，深刻理解数据结构，设计最合适的数据结构，以不变应万变，才能抓住需求的本质，解决用户的痛点，做到在需求变化或者转型时，改变最小。
 总决 以不变应万变
@@ -87,10 +87,10 @@ Git的设计思想  直接记录快照，而非差异比较  Git 不存储文件
     
     <item>
       <title>独孤九剑(0x03)-当前目录缓存篇</title>
-      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x03---dang-qian-mu-lu-huan-cun-pian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x03---dang-qian-mu-lu-huan-cun-pian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x03---dang-qian-mu-lu-huan-cun-pian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x03---dang-qian-mu-lu-huan-cun-pian.html</guid>
       <description>每个人都会变成自己讨厌的人
  Git 通过二进制文件 .git/index 来缓存当前目录，实现工作目录和仓库数据的快速交换。Git 的缓存却保存在 index 文件里，为什么不是 cache，很奇怪。
 Git 当前目录缓存至少应该满足以下功能：
@@ -108,10 +108,10 @@ Dit 选择使用 version 2 版本的 index 文件格式实现。</description>
     
     <item>
       <title>独孤九剑(0x04)-测试篇</title>
-      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x04---ce-shi-pian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x04---ce-shi-pian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:17 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x04---ce-shi-pian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x04---ce-shi-pian.html</guid>
       <description>《南皮县志·风土志下·歌谣》：“兵马不动，粮草先行”。作战时兵马还没出动，军用粮草的运输要先行一步。在开发新功能之前，先编写测试代码，然后只编写使测试通过的功能代码，这种测试驱动开发的软件开发模式是我非常推荐的。
  对 Dit 的贡献要求需要通过单元测试，编写 Dit 的任意模块，都需要一并编写测试用例。本文先简述一下 Go 对测试的支持，后续会陆续提供 Dit 的测试方案和测试报告。
 Go 对测试的支持 Go 自带的测试框架 testing 支持单元测试和性能测试。Go 规定测试文件以 _test.go 为后缀，使用命令 go test 命令自动运行测试用例。
@@ -124,10 +124,10 @@ func BenchmarkXxx(*testing.B)  使用 go test 运行性能测试用例时，需�
     
     <item>
       <title>深入体验bashonwindows在windows上搭建原生的linux开发环境酷！</title>
-      <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</guid>
       <description>今年微软Build 2016大会最让开发人员兴奋的消息之一，就是在Windows上可以原生运行Linux bash，对开发人员来说，这是一个喜闻乐见的消息。
 1 安装 你必须安装开发者预览版本，才能使用windows的linux subsystem功能。
  首先打开你的Windows 10的设置，在&amp;rdquo;更新和安全&amp;rdquo;选项中（我的机器是英文操作系统，但中文操作系统类似），选择&amp;rdquo;开发者&amp;rdquo;，然后选择&amp;rdquo;开发者模式&amp;rdquo;：
@@ -144,10 +144,10 @@ webmaster@FEKETERIGO-PC:~$ uname -a Linux FEKETERIGO-PC 3.4.0+ #1 PREEMPT Thu Au
     
     <item>
       <title>Wecrcker自动部署到Github过程中问题记录</title>
-      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</link>
       <pubDate>Thu, 10 Mar 2016 14:21:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</guid>
       <description>TMD总算顺利的将项目自动发布github中，这里分享下利用 wercker 自动部署到 github 时遇到的一系列问题。
 wercker 配置 deploy:box:samueldebruyn/debian-gitsteps:-ysqi/git-push:gh_oauth:$GIT_TOKENbasedir:publicclean_removed_files:truebranch:$GIT_BRANCHrepo:$GIT_REPOgh_pages_domain:$GIT_DOMAIN 又麻利又大方地分享下我的设置：
  box 是必须要的，并且要包含 git 环境，尝试了各种 box 最终挑选了 samueldebruyn/debian-git 满足要求。
@@ -160,10 +160,10 @@ source &amp;quot;/pipeline/git-push-36805875-502f-4737-a412-1b6f6880f7a4/run.sh&
     
     <item>
       <title>hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411</title>
-      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</link>
       <pubDate>Mon, 31 Aug 2015 10:01:36 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</guid>
       <description>终于在 Coding.net 上部署搭建了写作环境,同时提交到我的博客,但在deploy到百度应用时有报错,在这里记录下解决方案.
 问题表现 执行hexo deploy 时提示error:RPC failed;result=22,HTTP code=411&#39; 具体错误信息见下
 hexo deploy error: RPC failed; result=22, HTTP code = 411 fatal: The remote end hung up unexpectedly fatal: The remote end hung up unexpectedly ...... Everything up-to-date 错误原因 新搭建的环境,public 内容初始状态不是来源于 BAE git,而在首次 deploy 时提交的内容过大,而被 BAE 拒绝.

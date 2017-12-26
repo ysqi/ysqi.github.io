@@ -1,0 +1,152 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>LRU算法 |虞双齐的博客</title><meta name="description" content="LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加"><meta name="keywords" content="golang, 算法, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/lru-suan-fa.html"><meta property="og:title" content="LRU算法"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:35:05"><meta property="article:modified_time" content="2016-12-31 11:35:05"><meta property="article:tag" content="golang"><meta property="article:tag" content="算法"><meta name="og:description" content="LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/lru-suan-fa.html">LRU算法</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000000410708" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。</p><h2 id="原理">原理</h2><pre><code>添加元素时，放到链表头
+缓存命中，将元素移动到链表头
+缓存满了之后，将链表尾的元素删除
+</code></pre><h2 id="lru算法实现">LRU算法实现</h2><ul><li>可以用一个双向链表保存数据</li><li>使用hash实现O(1)的访问</li></ul><p>groupcache中LRU算法实现（Go语言）<br><a href="https://github.com/golang/groupcache/blob/master/lru/lru.go">https://github.com/golang/groupcache/blob/master/lru/lru.go</a></p><p>源码简单注释：</p><pre><code>package lru
+
+import &quot;container/list&quot;
+
+// Cache 结构体，定义lru cache 不是线程安全的
+type Cache struct {
+    // 数目限制，0是无限制 
+    MaxEntries int
+
+    // 删除时, 可以添加可选的回调函数
+    OnEvicted func(key Key, value interface{})
+
+    ll    *list.List // 使用链表保存数据
+    cache map[interface{}]*list.Element  // map 
+}
+
+// Key 是任何可以比较的值  http://golang.org/ref/spec#Comparison_operators
+type Key interface{}
+
+type entry struct {
+    key   Key
+    value interface{}
+}
+
+// 创建新的cache 对象
+func New(maxEntries int) *Cache {
+    return &amp;Cache{
+        MaxEntries: maxEntries,
+        ll:         list.New(),
+        cache:      make(map[interface{}]*list.Element),
+    }
+}
+
+// 添加新的值到cache里
+func (c *Cache) Add(key Key, value interface{}) {
+    if c.cache == nil {
+        c.cache = make(map[interface{}]*list.Element)
+        c.ll = list.New()
+    }
+    if ee, ok := c.cache[key]; ok {
+                // 缓存命中移动到链表的头部
+        c.ll.MoveToFront(ee)
+        ee.Value.(*entry).value = value
+        return
+    }
+        // 添加数据到链表头部
+    ele := c.ll.PushFront(&amp;entry{key, value})
+    c.cache[key] = ele
+    if c.MaxEntries != 0 &amp;&amp; c.ll.Len() &gt; c.MaxEntries {
+        // 满了删除最后访问的元素
+        c.RemoveOldest()
+    }
+}
+
+// 从cache里获取值.
+func (c *Cache) Get(key Key) (value interface{}, ok bool) {
+    if c.cache == nil {
+        return
+    }
+    if ele, hit := c.cache[key]; hit {
+        // 缓存命中，将命中元素移动到链表头
+        c.ll.MoveToFront(ele)
+        return ele.Value.(*entry).value, true
+    }
+    return
+}
+
+// 删除指定key的元素
+func (c *Cache) Remove(key Key) {
+    if c.cache == nil {
+        return
+    }
+    if ele, hit := c.cache[key]; hit {
+        c.removeElement(ele)
+    }
+}
+
+// 删除最后访问的元素
+func (c *Cache) RemoveOldest() {
+    if c.cache == nil {
+        return
+    }
+    ele := c.ll.Back()
+    if ele != nil {
+        c.removeElement(ele)
+    }
+}
+
+func (c *Cache) removeElement(e *list.Element) {
+    c.ll.Remove(e)
+    kv := e.Value.(*entry)
+    delete(c.cache, kv.key)
+    if c.OnEvicted != nil {
+        c.OnEvicted(kv.key, kv.value)
+    }
+}
+
+// cache 缓存数
+func (c *Cache) Len() int {
+    if c.cache == nil {
+        return 0
+    }
+    return c.ll.Len()
+}
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="266"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/lru-suan-fa.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/%E7%AE%97%E6%B3%95.html" rel="tag">算法</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html">PDO批量并发执行SSH工具介绍</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html">100行代码写一个golang上传下载静态服务器</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="3108c350d0b0c46be81d195c624bad74"></div><div id="cyReward" role="cylabs" data-use="reward" sid="3108c350d0b0c46be81d195c624bad74" style="text-align:center"></div><div id="SOHUCS" sid="3108c350d0b0c46be81d195c624bad74"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2flru-suan-fa.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2flru-suan-fa.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

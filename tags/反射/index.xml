@@ -13,10 +13,10 @@
     
     <item>
       <title>Go语言反射三定律</title>
-      <link>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html</guid>
       <description>简介 Reflection（反射）在计算机中表示 程序能够检查自身结构的能力，尤其是类型。它是元编程的一种形式，也是最容易让人迷惑的一部分。
 本文中，我们将解释Go语言中反射的运作机制。每个编程语言的反射模型不大相同，很多语言索性就不支持反射（C、C++）。由于本文是介绍Go语言的，所以当我们谈到“反射”时，默认为是Go语言中的反射。
 阅读建议 本文中，我们将解释Go语言中反射的运作机制。每个编程语言的反射模型不大相同，很多语言索性就不支持反射（C、C++）。

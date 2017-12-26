@@ -13,10 +13,10 @@
     
     <item>
       <title>Caddy新兴的web服务器caddy</title>
-      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
       <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
 然后呢，它还有下面这些开箱即用的特性:

@@ -13,10 +13,10 @@
     
     <item>
       <title>通过Mesos、Docker和Go使用300行代码创建一个分布式系统</title>
-      <link>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:23 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</guid>
       <description>【摘要】虽然 Docker 和 Mesos 已成为不折不扣的 Buzzwords ，但是对于大部分人来说它们仍然是陌生的，下面我们就一起领略 Mesos 、Docker 和 Go 配合带来的强大破坏力，如何通过 300 行代码打造一个比特币开采系统。
 时下，对于大部分 IT 玩家来说， Docker 和 Mesos 都是熟悉和陌生的：熟悉在于这两个词无疑已成为大家讨论的焦点，而陌生在于这两个技术并未在生产环境得到广泛使用，因此很多人仍然不知道它们究竟有什么优势，或者能干什么。近日， John Walter 在 Dzone 上撰文 Creating a Distributed System in 300 Lines With Mesos, Docker, and Go，讲述了 Mesos、Docker 和 Go 配合带来的强大破坏力，本文由 OneAPM 工程师编译整理。
 诚然，构建一个分布式系统是很困难的，它需要可扩展性、容错性、高可用性、一致性、可伸缩以及高效。为了达到这些目的，分布式系统需要很多复杂的组件以一种复杂的方式协同工作。例如，Apache Hadoop 在大型集群上并行处理 TB 级别的数据集时，需要依赖有着高容错的文件系统（ HDFS ）来达到高吞吐量。

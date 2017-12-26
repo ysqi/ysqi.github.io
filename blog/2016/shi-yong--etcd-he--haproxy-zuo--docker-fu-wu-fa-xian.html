@@ -1,0 +1,113 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>使用Etcd和Haproxy做Docker服务发现 |虞双齐的博客</title><meta name="description" content="使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Hap"><meta name="keywords" content="architecture, golang, docker, haproxy, etcd, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html"><meta property="og:title" content="使用Etcd和Haproxy做Docker服务发现"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:34:39"><meta property="article:modified_time" content="2016-12-31 11:34:39"><meta property="article:tag" content="architecture"><meta property="article:tag" content="golang"><meta property="article:tag" content="docker"><meta property="article:tag" content="haproxy"><meta property="article:tag" content="etcd"><meta name="og:description" content="使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Hap"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html">使用Etcd和Haproxy做Docker服务发现</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000000730186" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h1 id="使用-etcd-和-haproxy-做-docker-服务发现">使用 Etcd 和 Haproxy 做 Docker 服务发现</h1><p>标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service</p><hr><blockquote><p>本文作者是 <a href="https://github.com/jwilder">jwilder</a>，本文的原文是 <a href="http://jasonwilder.com/blog/2014/07/15/docker-service-discovery/">Docker Service Discovery Using Etcd and Haproxy</a></p></blockquote><p>在前一篇文章中，我们展示了一种为 Docker 容器在同一台主机上创建一个<a href="http://jasonwilder.com/blog/2014/03/25/automated-nginx-reverse-proxy-for-docker/">自动化 Nginx 反向代理</a>的方式。那个设置对于前端 web app 来说工作的很好，但是对于后端服务来说它不是一个好的点子，因为通常它们跨越多个主机。</p><p>这篇文章描述了一个为后端服务的 Docker 容器提供服务发现的解决方案。</p><p>我们将构建的架构体系是模仿 <a href="http://nerds.airbnb.com/smartstack-service-discovery-cloud/">SmartStack</a>，但是使用 <a href="http://coreos.com/using-coreos/etcd/">etcd</a> 代替 <a href="http://zookeeper.apache.org/">Zookeeper</a>，和两个 docker 容器运行 <a href="https://github.com/jwilder/docker-gen">docker-gen</a> 和 <a href="http://www.haproxy.org/">haproxy</a> 代替 <a href="https://github.com/airbnb/nerve">nerve</a> 和 <a href="https://github.com/airbnb/synapse">synapse</a>。</p><h2 id="它怎样工作的">它怎样工作的</h2><p>类似于 SmartStack，我们的组件服务作为一个注册（etcd），一个注册伙伴进程（docker-register），发现伙伴进程（docker-discover），一些后端服务（whoami）以及最后一个消费者（ubuntu/curl）。</p><p>注册和发现组件作为设备与应用程序容器工作，因此在后端或消费者容器的注册或发现代码不是被嵌入的。它们仅仅监听端口或连接其他本地端口。</p><h2 id="服务注册-etcd">服务注册 - Etcd</h2><p>在任何事情被注册之前，我们需要一些地方跟踪注册条目（比如，服务的 IP 和端口）。我们使用 etcd，因为它由服务注册的简单程序模型和支持键的 TTLs 以及目录。</p><p>通常，你将运行 3到5个 etcd 节点，但是我们仅仅使用一个来保持事情简化。</p><p>没有理由为什么我们不能使用 <a href="http://consul.io/">Consul</a> 或任何其他存储选项支持 TTL 过期。</p><p>开始 etcd：</p><pre><code>docker run -d --name etcd -p 4001:4001 -p 7001:7001 coreos/etcd
+</code></pre><h2 id="服务注册-docker-register">服务注册 - docker-register</h2><p>注册服务容器被 <a href="https://registry.hub.docker.com/u/jwilder/docker-register/">jwilder/docker-register</a> 容器处理。这个容器注册其他运行在同一台主机上的容器到 etcd 中。我们想注册的容器必须暴露一个端口。容器在不同的主机上运行相同的镜像是在 etcd 中被分组并将构成一个负载均衡集群。容器怎样分组是有点乱的，为这个演练我已经选择了容器镜像名字。在一个真实的部署中，你可能想通过环境变量，服务版本或其他的元数据分组。</p><p>（当前的实现仅仅支持每个容器一个端口并假设它当前是 TCP，没有理由为什么不能支持多个端口和类型以及不同的分组属性）</p><p>docker-register 使用 <a href="https://github.com/jwilder/docker-gen">docker-gen</a>连同一个 <a href="https://github.com/jwilder/docker-register/blob/master/etcd.tmpl">Python 脚本</a>作为一个模板。当运行的时候，动态的生成一个脚本，将在 <code>/backends</code> 目录注册每个容器的 IP 和端口。</p><p>docker-gen 关注监控 docker events和调用在一个间隔调用生成脚本来确保 TTLs 始终在最近的日期，如果 docker-register 停止了，注册过期。</p><p>为了启动 docker-register，我们需要传递主机的外部 IP，其他的主机能访问它的容器以及你的 etcd 主机的地址。 为了调用它的 API，docker-gen 要求访问 docker daemon，因此我们也绑定挂载 docker 的 unix socket 到容器中。</p><pre><code>HOST_IP=$(hostname --all-ip-addresses | awk '{print $1}')
+ETCD_HOST=w.x.y.z:4001
+docker run --name docker-register -d -e HOST_IP=$HOST_IP -e ETCD_HOST=$ETCD_HOST -v /var/run/docker.sock:/var/run/docker.sock -t jwilder/docker-register
+</code></pre><h2 id="服务发现-docker-discover">服务发现 - docker-discover</h2><p>服务发现被 <a href="https://registry.hub.docker.com/u/jwilder/docker-discover/">jwilder/docker-discover</a> 容器处理。 docker-discover 周期性的投票 etcd 并通过监听每个服务类型来生成一个 haproxy 配置文件。</p><p>比如，容器运行 <a href="https://registry.hub.docker.com/u/jwilder/whoami/">jwilder/whoami</a> 被注册在 <code>/backends/whoami/&lt;id&gt;</code>以及被暴露在主机上的端口是 8000。</p><p>其他的容器需要调用 <a href="https://registry.hub.docker.com/u/jwilder/whoami/">jwilder/whoami</a> 服务，可以发送请求到 docker bridge IP:8000 或主机 IP:8000。</p><p>如果任何的后端服务宕了，haproxy 健康检查从池子中移除它并将在一台健康的主机上尝试请求。这确保后端服务可以随着需求被启动和停止，以及处理注册信息的不一致同时确保最小化的客户端影响。</p><p>最后，stats 可以通过在 docker-discover 容器上访问端口 1936 来查看。</p><p>运行 docker-discover：</p><pre><code>ETCD_HOST=w.x.y.z:4001
+docker run -d --net host --name docker-discover -e ETCD_HOST=$ETCD_HOST -p 127.0.0.1:1936:1936 -t jwilder/docker-discover
+</code></pre><p>我们正在使用 <code>--net host</code> 以至于容器使用主机网络栈。当这个容器绑定 8000 端口，它实际是绑定在主机的网络上。这个简化了代理的设置。</p><h2 id="aws-demo">AWS Demo</h2><p>我们将在 4 台 AWS 主机上运行整套服务：一台 etcd 主机, 一台 client 主机 和 两台后端主机。<a href="https://registry.hub.docker.com/u/jwilder/whoami/">后端服务</a> 是一个简单的返回主机名的 golang HTTP 服务。</p><h3 id="etcd-主机">Etcd 主机</h3><p>首先，我们启动 etcd 注册：</p><pre><code>$ hostname --all-ip-addresses | awk '{print $1}'
+10.170.71.226
+
+$ docker run -d --name etcd -p 4001:4001 -p 7001:7001 coreos/etcd
+</code></pre><p>我们的 etcd 地址是 <code>10.170.71.226</code>。我们将在其他主机上使用它。如果我们正在运行的是一个在线环境，我们可以分配一个 EIP 和 DNS 地址给它使得它更容易配置。</p><h2 id="后端主机">后端主机</h2><p>下一步，我们在每台主机上启动这个服务和 docker-register。该服务被配置成监听容器中的 8000 端口并且我们让 docker 把它发布在一台主机上的随机端口。</p><p>后端主机 1：</p><pre><code>$ docker run -d -p 8000:8000 --name whoami -t jwilder/whoami
+736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541
+$ docker run --name docker-register -d -e HOST_IP=$(hostname --all-ip-addresses | awk '{print $1}') -e ETCD_HOST=10.170.71.226:4001 -v /var/run/docker.sock:/var/run/docker.sock -t jwilder/docker-register
+77a49f732797333ca0c7695c6b590a64a7d75c14b5ffa0f89f8e0e21ae47ae3e
+
+$ docker ps
+CONTAINER ID        IMAGE                            COMMAND                CREATED             STATUS              PORTS                     NAMES
+736ab83847bb        jwilder/whoami:latest            /app/http              48 seconds ago      Up 47 seconds       0.0.0.0:49153-&gt;8000/tcp   whoami
+77a49f732797        jwilder/docker-register:latest   &quot;/bin/sh -c 'docker-   28 minutes ago      Up 28 minutes                                 docker-register
+</code></pre><p>后端主机 2：</p><pre><code>$ docker run -d -p 8000:8000 --name whoami -t jwilder/whoami
+4eb0498e52076275ee0702d80c0d8297813e89d492cdecbd6df9b263a3df1c28
+$ docker run --name docker-register -d -e HOST_IP=$(hostname --all-ip-addresses | awk '{print $1}') -e ETCD_HOST=10.170.71.226:4001 -v /var/run/docker.sock:/var/run/docker.sock -t jwilder/docker-register
+832e77c83591cb33bba53859153eb91d897f5a278a74d4ec1f66bc9b97deb221
+
+$ docker ps
+CONTAINER ID        IMAGE                            COMMAND                CREATED             STATUS              PORTS                     NAMES
+4eb0498e5207        jwilder/whoami:latest            /app/http              59 seconds ago      Up 58 seconds       0.0.0.0:49154-&gt;8000/tcp   whoami
+832e77c83591        jwilder/docker-register:latest   &quot;/bin/sh -c 'docker-   34 minutes ago      Up 34 minutes                                 docker-register
+</code></pre><h3 id="客户端主机">客户端主机</h3><p>在客户端主机，我们需要启动 docker-discover 和一个客户端服务。对于这个客户端容器，我使用 Ubuntu Trusty 并将做一些 <code>curl</code> 请求。</p><p>首先，启动 docker-discover：</p><pre><code>$ docker run -d --net host --name docker-discover -e ETCD_HOST=10.170.71.226:4001 -p 127.0.0.1:1936:1936 -t jwilder/docker-discover
+</code></pre><p>然后，启动一个简单的客户端容器并传给它 <code>HOST_IP</code>。我们正在使用 eth0 地址，但也可以使用 docker0 IP。我们正以一个环境变量传给它因为<a href="http://12factor.net/config">它是被配置的在两个部署之间变化的</a>。</p><pre><code>$ docker run -e HOST_IP=$(hostname --all-ip-addresses | awk '{print $1}') -i -t ubuntu:14.04 /bin/bash
+$ root@2af5f52de069:/# apt-get update &amp;&amp; apt-get -y install curl
+</code></pre><p>这时，构造一些请求给 whoami 服务端口 8000 来看他们的负载。</p><pre><code>$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 4eb0498e5207
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 4eb0498e5207
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+</code></pre><p>我们可以在后端启动一些实例：</p><pre><code>$ docker run -d -p :8000 --name whoami-2 -t jwilder/whoami
+$ docker run -d -p :8000 --name whoami-3 -t jwilder/whoami
+
+$ docker ps
+CONTAINER ID        IMAGE                            COMMAND                CREATED             STATUS              PORTS                     NAMES
+5d5c12c96192        jwilder/whoami:latest            /app/http              3 seconds ago       Up 1 seconds        0.0.0.0:49156-&gt;8000/tcp   whoami-2
+bb2a408b8ec5        jwilder/whoami:latest            /app/http              21 seconds ago      Up 20 seconds       0.0.0.0:49155-&gt;8000/tcp   whoami-3
+4eb0498e5207        jwilder/whoami:latest            /app/http              2 minutes ago       Up 2 minutes        0.0.0.0:49154-&gt;8000/tcp   whoami
+832e77c83591        jwilder/docker-register:latest   &quot;/bin/sh -c 'docker-   36 minutes ago      Up 36 minutes                                 docker-register
+</code></pre><p>然后再次在客户端主机上构造一些请求：</p><pre><code>$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 4eb0498e5207
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm bb2a408b8ec5
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 5d5c12c96192
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+</code></pre><p>最后，我们关闭一些容器，路由将被更新。这个杀死在后端 2 的任何东西。</p><pre><code>$ docker kill 5d5c12c96192 bb2a408b8ec5 4eb0498e5207
+
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 67c3cccbb8ba
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 736ab83847bb
+$ root@2af5f52de069:/# curl $HOST_IP:8000
+I'm 67c3cccbb8ba
+</code></pre><p>如果你想看 haproxy 是怎样负载流量的或监控错误，我们可以在 web 浏览器访问客户端主机的 1936 端口。</p><h2 id="总结">总结</h2><p>虽然有不同的方式来实现<a href="http://jasonwilder.com/blog/2014/02/02/service-discovery-in-the-cloud/">服务发现</a>，SmartStack 的伙伴注册行为和代理保持应用程序代码简单以及非常容易的融合进一个分布式环境，真的适合 Docker 容器。</p><p>同样地，Docker 的事件和容器 APIs 减轻了服务注册和使用注册服务发现（比如 etcd）的困难。</p><p><a href="https://github.com/jwilder/docker-register">docker-register</a> 和 <a href="https://github.com/jwilder/docker-discover">docker-discover</a> 的代码在 github 上。虽然两个都是有用的，但是有很多地方需要提升。请随时提交或提出改进意见。</p></div><aside id="meta"><meta itemprop="wordCount" content="642"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/architecture.html" rel="tag">architecture</a> <a href="/tags/docker.html" rel="tag">docker</a> <a href="/tags/etcd.html" rel="tag">etcd</a> <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/haproxy.html" rel="tag">haproxy</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html">【翻译】go是面向对象语言吗？</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/leetcode-wordsearch.html">[leetcode]wordsearch</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="dd3dcc19e1c6f7b52e0b5a52c7b292db"></div><div id="cyReward" role="cylabs" data-use="reward" sid="dd3dcc19e1c6f7b52e0b5a52c7b292db" style="text-align:center"></div><div id="SOHUCS" sid="dd3dcc19e1c6f7b52e0b5a52c7b292db"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fshi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fshi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

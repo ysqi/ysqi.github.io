@@ -13,10 +13,10 @@
     
     <item>
       <title>[go]method的指针声明及非指针声明</title>
-      <link>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:17 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html</guid>
       <description>刚入手golang，大概弄清楚了method在go里的概念。
 以下大部分为搬运过程重写代码。
 method可以为一个type添加(声明)一个方法，例如：

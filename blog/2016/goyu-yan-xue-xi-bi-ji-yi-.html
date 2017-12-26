@@ -1,0 +1,1060 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go语言学习笔记(一) |虞双齐的博客</title><meta name="description" content="主要是看《the way to go》时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。
+ 标签（空"><meta name="keywords" content="go语言, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html"><meta property="og:title" content="Go语言学习笔记(一)"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:21"><meta property="article:modified_time" content="2016-12-31 11:33:21"><meta property="article:tag" content="go语言"><meta property="article:tag" content="golang"><meta name="og:description" content="主要是看《the way to go》时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。
+ 标签（空"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html">Go语言学习笔记(一)</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000006047562" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><blockquote><p>主要是看<a href="https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/preface.md">《the way to go》</a>时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。</p></blockquote><p>标签（空格分隔）： go 监控</p><hr><h3 id="关键字">关键字</h3><p><code>break</code> <code>default</code> <code>func</code> <code>interface</code> <code>select</code> <code>case</code> <code>defer</code> <code>go</code> <code>map</code> <code>struct</code> <code>chan</code> <code>else</code> <code>goto</code><br><code>package</code> <code>switch</code> <code>const</code> <code>fallthrough</code> <code>if</code> <code>range</code> <code>type</code> <code>continue</code> <code>for</code> <code>import</code> <code>return</code> <code>var</code></p><h3 id="基本类型-内置函数">基本类型，内置函数</h3><p><code>append</code> <code>bool</code> <code>byte</code> <code>cap</code> <code>close</code> <code>complex</code> <code>complex64</code> <code>complex128</code> <code>uint16</code> <code>copy</code> <code>false</code> <code>float32</code> <code>float64</code><br><code>imag</code> <code>int</code> <code>int8</code> <code>int16</code> <code>uint32</code> <code>int32</code> <code>int64</code> <code>iota</code> <code>len</code> <code>make</code> <code>new</code> <code>nil</code> <code>panic</code> <code>uint64</code> <code>print</code> <code>println</code><br><code>real</code> <code>recover</code> <code>string</code> <code>true</code> <code>uint</code> <code>uint8</code> <code>uintptr</code></p><h3 id="可见性">可见性</h3><p>首字母大写相当于public，小写相当于pivate</p><h3 id="包重命名">包重命名</h3><pre><code>package main
+
+import fm &quot;fmt&quot; // alias3
+
+func main() {
+   fm.Println(&quot;hello, world&quot;)
+}
+</code></pre><h3 id="global-virable">global virable</h3><p>declare after package import</p><h3 id="func-params-and-return-values">func params and return values</h3><pre><code>func Sum(a, b int) int { return a + b }
+
+func functionName(parameter_list) (return_value_list) {
+   …
+}
+
+//????????????
+func (t T) Method1() {
+   //...
+}
+</code></pre><p>parameter_list 的形式为 (param1 type1, param2 type2, …)<br>return_value_list 的形式为 (ret1 type1, ret2 type2, …)</p><h3 id="常量定义">常量定义</h3><p>可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。常量的定义格式<code>const identifier [type] = value</code></p><ul><li><p>显式类型定义： <code>const b string = &quot;abc&quot;</code></p></li><li><p>隐式类型定义： <code>const b = &quot;abc&quot;</code></p></li></ul><blockquote><p>常量的值必须是能够在编译时就能够确定的，数字型的常量是没有大小和符号的，并且可以使用任何精度而不会导致溢出</p></blockquote><h3 id="变量">变量</h3><pre><code>var a, b *int
+var a int
+var b bool
+var str string
+var (
+    a int
+    b bool
+    str string
+)
+</code></pre><blockquote><p>变量被声明之后，系统自动赋予它该类型的零值：int 为 0，float 为 0.0，bool 为 false，string 为空字符串，指针为 nil。</p></blockquote><p>编译时即可推断类型</p><pre><code>var identifier [type] = value
+var a int = 15
+var i = 5
+var b bool = false
+var str string = &quot;Go says hello to the world!&quot;
+
+//编译时推断类型
+var a = 15
+var b = false
+var str = &quot;Go says hello to the world!&quot;
+
+var (
+    a = 15
+    b = false
+    str = &quot;Go says hello to the world!&quot;
+    numShips = 50
+    city string
+)
+
+//运行时自动推断
+var (
+    HOME = os.Getenv(&quot;HOME&quot;)
+    USER = os.Getenv(&quot;USER&quot;)
+    GOROOT = os.Getenv(&quot;GOROOT&quot;)
+)
+</code></pre><blockquote><p>函数内部变量首字母大写全局or局部:<strong>函数内部变量均为局部</strong></p></blockquote><h3 id="基本类型何运算符">基本类型何运算符</h3><h3 id="数字类型">数字类型</h3><p><strong>整数</strong><br>int8（-128 -&gt; 127）<br>int16（-32768 -&gt; 32767）<br>int32（-2,147,483,648 -&gt; 2,147,483,647）<br>int64（-9,223,372,036,854,775,808 -&gt; 9,223,372,036,854,775,807）</p><p><strong>无符号整数</strong><br>uint8（0 -&gt; 255）<br>uint16（0 -&gt; 65,535）<br>uint32（0 -&gt; 4,294,967,295）<br>uint64（0 -&gt; 18,446,744,073,709,551,615）</p><p><strong>浮点型（IEEE-754 标准）</strong><br>float32（+- 1e-45 -&gt; +- 3.4 * 1e38）<br>float64（+- 5 <em>1e-324 -&gt; 107</em> 1e308）</p><blockquote><p>float32 精确到小数点后 7 位，float64 精确到小数点后 15 位。通过增加前缀 0 来表示 8 进制数（如：077），增加前缀 0x 来表示 16 进制数（如：0xFF），以及使用 e 来表示 10 的连乘（如： 1e3 = 1000，或者 6.022e23 = 6.022 x 1e23）。</p></blockquote><pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var n int16 = 34
+    var m int32
+    // compiler error: cannot use n (type int16) as type int32 in assignment
+    //m = n
+    m = int32(n)
+
+    fmt.Printf(&quot;32 bit int is: %d\n&quot;, m)
+    fmt.Printf(&quot;16 bit int is: %d\n&quot;, n)
+}
+</code></pre><p><strong>格式化输出</strong><br><code>%d</code> 用于格式化整数（<code>%x</code> 和 <code>%X</code> 用于格式化 16 进制表示的数字），<code>%g</code> 用于格式化浮点型（<code>%f</code> 输出浮点数，<code>%e</code> 输出科学计数表示法），<code>%0d</code> 用于规定输出定长的整数，其中开头的数字 0 是必须的。<code>%n.mg</code> 用于表示数字 n 并精确到小数点后 m 位，除了使用 g 之外，还可以使用 e 或者 f，例如：使用格式化字符串 <code>%5.2e</code> 来输出 3.4 的结果为 <code>3.40e+00</code>。</p><p><strong>类型转换</strong></p><pre><code>func IntFromFloat64(x float64) int {
+    if math.MinInt32 &lt;= x &amp;&amp; x &lt;= math.MaxInt32 { // x lies in the integer range
+        whole, fraction := math.Modf(x)
+        if fraction &gt;= 0.5 {
+            whole++
+        }
+        return int(whole)
+    }
+    panic(fmt.Sprintf(&quot;%g is out of the int32 range&quot;, x))
+}
+</code></pre><p><strong>运算符优先级</strong></p><pre><code>优先级   运算符
+ 7      ^ !
+ 6      * / % &lt;&lt; &gt;&gt; &amp; &amp;^
+ 5      + - | ^
+ 4      == != &lt; &lt;= &gt;= &gt;
+ 3      &lt;-
+ 2      &amp;&amp;
+ 1      ||
+</code></pre><h3 id="字符串">字符串</h3><p><strong>解释字符串</strong><br>该类字符串使用双引号括起来，其中的相关的转义字符将被替换，这些转义字符包括：</p><pre><code>\n：换行符
+\r：回车符
+\t：tab 键
+\u 或 \U：Unicode 字符
+\\：反斜杠自身
+</code></pre><p><strong>非解释字符串</strong><br>该类字符串使用反引号括起来，支持换行，例如：<br><code>This is a raw string \n</code> 中的 <code>\n</code> 会被原样输出。</p><blockquote><p>在循环中使用加号+拼接字符串并不是最高效的做法，更好的办法是使用函数 strings.Join()，有没有更好地办法了？有！使用字节缓冲（bytes.Buffer）拼接更加给力！</p></blockquote><p><strong>字符串操作</strong><br><code>strings和strconv包</code></p><pre><code>//前缀和后缀
+strings.HasPrefix(s, prefix string) bool
+strings.HasSuffix(s, suffix string) bool
+//包含关系
+strings.Contains(s, substr string) bool
+strings.ContainsAny(s, chars string) bool
+strings.ContainsRune(s string, r rune) bool
+//索引
+strings.Index(s, str string) int
+strings.LastIndex(s, str string) int
+strings.IndexRune(s string, r rune) int
+//替换
+strings.Replace(str, old, new, n) string
+//次数统计
+strings.Count(s, str string) int
+//重复次数
+strings.Repeat(s, count int) string
+//大小写
+strings.ToLower(s) string
+strings.ToLower(s) string
+//修剪字符串
+func Trim(s string, cutset string) string
+func TrimLeft(s string, cutset string) string
+func TrimRight(s string, cutset string) string
+func TrimSpace(s string) string
+//分割字符串
+strings.Fields(s) []string
+strings.Split(s, sep string) []string
+//拼接字符串
+strings.Join(sl []string, sep string) string
+</code></pre><p><strong>日期和时间</strong></p><pre><code>func timeTest(){
+    t := time.Now()
+    fm.Println(t)
+    fm.Println(t.Day(), t.Hour(), t.Minute())
+    t = time.Now().UTC()
+    fm.Println(t)
+    fm.Println(t.Format(time.RFC822))
+    fm.Println(t.Format(time.ANSIC))
+    fm.Println(t.Format(&quot;02 Jan 2006 15:04&quot;))
+}
+</code></pre><p><strong>指针</strong></p><pre><code>//声明方式
+var intP *int
+//使用方式
+intP = &amp;i1
+</code></pre><p>不允许指针运算<code>pointer+2</code>、<code>c=*p++</code>，空指针的反向引用是不合法。</p><p><strong>控制结构</strong></p><ul><li><p>if-esle语句</p></li><li><p>switch语句<br>不需要break，执行完分支自动退出switch，如果需要继续执行则使用fallthrough</p></li></ul><pre><code>switch num1 {
+case 98, 99:
+    fmt.Println(&quot;It's equal to 98&quot;)
+case 100: 
+    fmt.Println(&quot;It's equal to 100&quot;)
+default:
+    fmt.Println(&quot;It's not equal to 98 or 100&quot;)
+}
+
+//多条件同行，fallthrough，return跳出
+func switchStruct() int {
+    a := 4
+    switch a {
+    case 1,2,3: fmt.Println(a)
+    case 4: fallthrough
+    case 5:
+        fm.Println(&quot;break&quot;)
+        return 1
+    default:
+        fmt.Println(&quot;ALL&quot;)
+    }
+    return 0
+}
+
+//bool用法
+switch {
+    case num1 &lt; 0:
+        fmt.Println(&quot;Number is negative&quot;)
+    case num1 &gt; 0 &amp;&amp; num1 &lt; 10:
+        fmt.Println(&quot;Number is between 0 and 10&quot;)
+    default:
+        fmt.Println(&quot;Number is 10 or greater&quot;)
+}
+
+//初始化用法
+switch a, b := x[i], y[j]; {
+    case a &lt; b: t = -1
+    case a == b: t = 0
+    case a &gt; b: t = 1
+}
+</code></pre><ul><li>for语句</li></ul><pre><code>func forStatement()  {
+    for i := 1; i &lt; 15; i++{
+        fm.Println(i)
+    }
+
+    j := 1
+    GO:
+    fm.Println(j)
+    j++
+    if j &lt; 15{
+        goto GO
+    }
+
+    for k := 0; k &lt; 5; k++ {
+        for m := 0; m &lt; k; m++ {
+            fm.Printf(&quot;G&quot;)
+        }
+        fm.Println()
+    }
+
+    str := &quot;GGGGGGGGGGGGGGGGGGGGGGGG&quot;
+    for i := 0; i &lt; 5; i++ {
+        fm.Println(str[0:i+1])
+    }
+
+    str1 := &quot;G&quot;
+    for i := 0; i &lt; 5; i++ {
+        fm.Println(str1)
+        str1 += &quot;G&quot;
+    }
+}
+</code></pre><h3 id="函数">函数</h3><p>Go 里面有三种类型的函数：</p><ol><li><p>普通的带有名字的函数</p></li><li><p>匿名函数或者lambda函数</p></li><li><p>方法（Methods）</p></li></ol><p><strong>defer关键字</strong></p><blockquote><p>在函数return之后执行相关语句，多个defer逆序执行</p></blockquote><pre><code>func a() {
+    i := 0
+    defer fmt.Println(i)
+    i++
+    return
+}
+//输出0，输出语句之前的值
+</code></pre><ul><li><p>关闭文件流：<br>// open a file defer file.Close() （详见第 12.2 节）</p></li><li><p>解锁一个加锁的资源<br>mu.Lock() defer mu.Unlock() （详见第 9.3 节）</p></li><li><p>打印最终报告<br>printHeader() defer printFooter()</p></li><li><p>关闭数据库链接<br>// open a database connection defer disconnectFromDB()</p></li></ul><pre><code>func testDefer()  {
+    fmt.Printf(&quot;In function1 at the top\n&quot;)
+    defer func2()
+    fmt.Printf(&quot;In function1 at the bottom!\n&quot;)
+    i := 0
+    i++
+    defer fmt.Println(i)
+    i++
+    for i := 0; i &lt; 5; i++ {
+        defer fmt.Printf(&quot;%d&quot;, i)
+    }
+
+    defer deferC(deferA(), deferB())
+    fm.Println(&quot;Begin:\n&quot;)
+
+    return
+}
+
+func deferA() (rtn string) {
+    fm.Println(&quot;in A&quot;)
+    rtn = &quot;AA&quot;
+    tmp := &quot;tmp1&quot;
+    defer func() {
+        fm.Println(tmp)
+    }()
+    defer fm.Println(rtn)
+    tmp = &quot;tmp2&quot;
+    return &quot;AAAA&quot;
+}
+
+func deferB() string {
+    fm.Println(&quot;in B&quot;)
+    return &quot;B&quot;
+}
+
+func deferC(str1, str2 string)  {
+    fm.Println(&quot;in C&quot;)
+}
+/*输出
+In function1 at the top
+In function1 at the bottom!
+in A
+AA
+tmp2
+in B
+Begin:
+
+in C
+432101
+function2: Deferred until the end of the calling function!
+*/
+</code></pre><blockquote><p><code>defer</code>函数中的函数（<code>defer deferC(deferA(), deferB())</code>中的<code>A</code>和<code>B</code>）会先于return执行，<code>defer func()</code>可以<code>rentun</code>语句执行完变量的最新的值，无<code>func()</code>时则函数参数取对应<code>defer</code>语句执行完变量的最新值。</p></blockquote><p><strong>内置函数</strong></p><p><strong>递归函数</strong></p><p><strong>函数作参数</strong></p><pre><code>func main() {
+    callback(1, Add)
+}
+
+func Add(a, b int) {
+    fmt.Printf(&quot;The sum of %d and %d is: %d\n&quot;, a, b, a+b)
+}
+
+func callback(y int, f func(int, int)) {
+    f(y, 2) // this becomes Add(1, 2)
+}
+</code></pre><p><strong>闭包</strong></p><pre><code>func main() {
+    var f = Adder()
+    fmt.Print(f(1), &quot; - &quot;)
+    fmt.Print(f(20), &quot; - &quot;)
+    fmt.Print(f(300))
+}
+
+func Adder() func(int) int {
+    var x int
+    return func(delta int) int {
+        x += delta
+        return x
+    }
+}
+// 1,21,321
+</code></pre><h3 id="数组与切片">数组与切片</h3><p><strong>数组</strong></p><p>Go 语言中的数组是一种<strong>值类型</strong>（不像 C/C++ 中是指向首元素的指针），所以可以通过 new() 来创建： var arr1 = new([5]int)。<strong>arr1 的类型是 *[5]int，而 arr2的类型是 [5]int</strong>。结果就是当把一个数组赋值给另一个时，需要在做一次数组内存的拷贝操作。例如：</p><pre><code>arr2 := arr1
+arr2[2] = 100
+</code></pre><p>两个数组就有了不同的值，在赋值后修改 arr2 不会对 arr1 生效。</p><pre><code>func f(a [3]int) { fmt.Println(a) }
+func fp(a *[3]int) { fmt.Println(a) }
+
+func main() {
+    var ar [3]int
+    f(ar)   // passes a copy of ar
+    fp(&amp;ar) // passes a pointer to ar
+}
+</code></pre><blockquote><p>当数组赋值时，发生了数组内存拷贝。</p></blockquote><p><strong>切片</strong><br>切片是引用，所以它们不需要使用额外的内存并且比使用数组更有效率。</p><pre><code>var identifier []type
+var slice1 []type = arr1[start:end]
+var slice1 []type = arr1[:] //全部
+slice1 = &amp;arr1              //全部
+</code></pre><blockquote><p>一个由数字 1、2、3 组成的切片可以这么生成：<code>s := [3]int{1,2,3}</code>甚至更简单的 <code>s := []int{1,2,3}</code>。<strong>数组区别:数组是切片的特例</strong></p></blockquote><p><strong>buffer 串联字符串</strong><br>创建一个 buffer，通过 <code>buffer.WriteString(s)</code> 方法将字符串 s 追加到后面，最后再通过 <code>buffer.String()</code> 方法转换为 string，这种实现方式比使用 <code>+=</code> 要更节省内存和 CPU。</p><pre><code>var buffer bytes.Buffer
+for {
+    if s, ok := getNextString(); ok { //method getNextString() not shown here
+        buffer.WriteString(s)
+    } else {
+        break
+    }
+}
+fmt.Print(buffer.String(), &quot;\n&quot;)
+
+func AppendByte(slice []byte, data ...byte) []byte {
+    m := len(slice)
+    n := m + len(data)
+    if n &gt; cap(slice) { // if necessary, reallocate
+        // allocate double what's needed, for future growth.
+        newSlice := make([]byte, (n+1)*2)
+        copy(newSlice, slice)
+        slice = newSlice
+    }
+    slice = slice[0:n]
+    copy(slice[m:n], data)
+    return slice
+}
+</code></pre><p><strong>for-range</strong></p><pre><code>seasons := []string{&quot;Spring&quot;, &quot;Summer&quot;, &quot;Autumn&quot;, &quot;Winter&quot;}
+//index&amp;val
+for ix, season := range seasons {
+    fmt.Printf(&quot;Season %d is: %s\n&quot;, ix, season)
+}
+//just val
+var season string
+for _, season = range seasons {
+    fmt.Printf(&quot;%s\n&quot;, season)
+}
+//just index
+for ix := range seasons {
+    fmt.Printf(&quot;%d&quot;, ix)
+}
+</code></pre><p><strong>复制与追加</strong></p><pre><code>func main() {
+    // count number of characters:
+    str1 := &quot;asSASA ddd dsjkdsjs dk&quot;
+    fmt.Printf(&quot;The number of bytes in string str1 is %d\n&quot;,len(str1))
+    fmt.Printf(&quot;The number of characters in string str1 is %d\n&quot;,utf8.RuneCountInString(str1))
+    str2 := &quot;asSASA ddd dsjkdsjsこん dk&quot;
+    fmt.Printf(&quot;The number of bytes in string str2 is %d\n&quot;,len(str2))
+    fmt.Printf(&quot;The number of characters in string str2 is %d&quot;,utf8.RuneCountInString(str2))
+}
+/* Output:
+The number of bytes in string str1 is 22
+The number of characters in string str1 is 22
+The number of bytes in string str2 is 28
+The number of characters in string str2 is 24
+*/
+
+//将一个字符串追加到某一个字符数组的尾部
+var b []byte
+var s string
+b = append(b, s...)
+</code></pre><blockquote><p>Go 语言中的字符串是不可变的,必须先将字符串转换成字节数组，然后再通过修改数组中的元素值来达到修改字符串的目的，最后将字节数组转换回字符串格式。</p></blockquote><pre><code>s := &quot;hello&quot;
+c := []byte(s)
+c[0] = ’c’
+s2 := string(c) // s2 == &quot;cello&quot;
+</code></pre><p><strong>append操作</strong></p><ul><li><p>将切片 b 的元素追加到切片 a 之后：<code>a = append(a, b...)</code></p></li><li><p>复制切片 a 的元素到新的切片 b 上：</p></li></ul><pre><code>b = make([]T, len(a))
+copy(b, a)
+</code></pre><ul><li><p>删除位于索引 i 的元素：<br><code>a = append(a[:i], a[i+1:]...)</code></p></li><li><p>切除切片 a 中从索引 i 至 j 位置的元素：<br><code>a = append(a[:i], a[j:]...)</code></p></li><li><p>为切片 a 扩展 j 个元素长度：<br><code>a = append(a, make([]T, j)...)</code></p></li><li><p>在索引 i 的位置插入元素 x：<br><code>a = append(a[:i], append([]T{x}, a[i:]...)...)</code></p></li><li><p>在索引 i 的位置插入长度为 j 的新切片：<br><code>a = append(a[:i], append(make([]T, j), a[i:]...)...)</code></p></li><li><p>在索引 i 的位置插入切片 b 的所有元素：<br><code>a = append(a[:i], append(b, a[i:]...)...)</code></p></li><li><p>取出位于切片 a 最末尾的元素 x：<br><code>x, a = a[len(a)-1], a[:len(a)-1]</code></p></li><li><p>将元素 x 追加到切片 a：<br><code>a = append(a, x)</code></p></li></ul><p><strong>垃圾回收</strong></p><pre><code>var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)
+
+func FindDigits(filename string) []byte {
+    b, _ := ioutil.ReadFile(filename)
+    return digitRegexp.Find(b)
+}
+// 通过拷贝避免小切片占用大内存（整个文件）
+func FindDigits(filename string) []byte {
+   b, _ := ioutil.ReadFile(filename)
+   b = digitRegexp.Find(b)
+   c := make([]byte, len(b))
+   copy(c, b)
+   return c
+}
+</code></pre><blockquote><p><code>error: rune is not a Type</code>:代码中又于rune重名的函数</p></blockquote><h3 id="map">Map</h3><p><code>var map1 map[keytype]valuetype</code></p><blockquote><p>不要使用 new，永远用 make 来构造 map</p></blockquote><p><strong>map类型是非线程安全的，并行访问map数据会出错。并且为了性能map没有锁机制</strong></p><pre><code>// map排序
+var (
+barVal = map[string]int{&quot;alpha&quot;: 34, &quot;bravo&quot;: 56, &quot;charlie&quot;: 23,&quot;delta&quot;: 87, &quot;echo&quot;: 56, &quot;foxtrot&quot;: 12,&quot;golf&quot;: 34, &quot;hotel&quot;: 16, &quot;indio&quot;: 87,&quot;juliet&quot;: 65, &quot;kili&quot;: 43, &quot;lima&quot;: 98}
+)
+
+func main() {
+    fmt.Println(&quot;unsorted:&quot;)
+    for k, v := range barVal {
+        fmt.Printf(&quot;Key: %v, Value: %v / &quot;, k, v)
+    }
+    keys := make([]string, len(barVal))
+    i := 0
+    for k, _ := range barVal {
+        keys[i] = k
+    i++
+    }
+    sort.Strings(keys)
+    fmt.Println()
+    fmt.Println(&quot;sorted:&quot;)
+    for _, k := range keys {
+        fmt.Printf(&quot;Key: %v, Value: %v / &quot;, k, barVal[k])
+    }
+}
+</code></pre><h3 id="包-package">包（package）</h3><p><strong>regexp包</strong><br><strong>锁和sync包</strong><br><strong>big包</strong></p><h3 id="struct和method">struct和method</h3><p>可以使用 make() 的三种类型：<br><code>slices / maps / channels（见第 14 章）</code></p><blockquote><p>在一个结构体中对于每一种数据类型只能有一个匿名字段。</p></blockquote><p><strong>内嵌结构体</strong></p><pre><code>package main
+
+import &quot;fmt&quot;
+
+type A struct {
+    ax, ay int
+}
+
+type B struct {
+    A
+    bx, by float32
+}
+
+func main() {
+    b := B{A{1, 2}, 3.0, 4.0}
+    fmt.Println(b.ax, b.ay, b.bx, b.by)
+    fmt.Println(b.A)
+}
+</code></pre><p>定义方法的一般格式：<br><code>func (recv receiver_type) methodName(parameter_list) (return_value_list) { ... }</code></p><p>结构体方法</p><pre><code>type TwoInts struct {
+    a int
+    b int
+}
+
+func main() {
+    two1 := new(TwoInts)
+    two1.a = 12
+    two1.b = 10
+
+    fmt.Printf(&quot;The sum is: %d\n&quot;, two1.AddThem())
+    fmt.Printf(&quot;Add them to the param: %d\n&quot;, two1.AddToParam(20))
+
+    two2 := TwoInts{3, 4}
+    fmt.Printf(&quot;The sum is: %d\n&quot;, two2.AddThem())
+}
+
+func (tn *TwoInts) AddThem() int {
+    return tn.a + tn.b
+}
+
+func (tn *TwoInts) AddToParam(param int) int {
+    return tn.a + tn.b + param
+}
+</code></pre><p>非结构体类型方法</p><pre><code>type IntVector []int
+
+func (v IntVector) Sum() (s int) {
+    for _, x := range v {
+        s += x
+    }
+    return
+}
+
+func main() {
+    fmt.Println(IntVector{1, 2, 3}.Sum()) // 输出是6
+}
+</code></pre><blockquote><p>类型和作用在它上面定义的方法可以不同文件，但是必须在同一个包里定义，除非定义别名：</p></blockquote><pre><code>type myTime struct {
+    time.Time //anonymous field
+}
+func (t myTime) first3Chars() string {
+    return t.Time.String()[0:3]
+}
+func main() {
+    m := myTime{time.Now()}
+    // 调用匿名Time上的String方法
+    fmt.Println(&quot;Full time now:&quot;, m.String())
+    // 调用myTime.first3Chars
+    fmt.Println(&quot;First 3 chars:&quot;, m.first3Chars())
+}
+/* Output:
+Full time now: Mon Oct 24 15:34:54 Romance Daylight Time 2011
+First 3 chars: Mon
+*/
+</code></pre><p>指针方法和值方法都可以在指针或非指针上被调用</p><pre><code>type List []int
+
+func (l List) Len() int        { return len(l) }
+func (l *List) Append(val int) { *l = append(*l, val) }
+
+func main() {
+    // 值
+    var lst List
+    lst.Append(1)
+    fmt.Printf(&quot;%v (len: %d)&quot;, lst, lst.Len()) // [1] (len: 1)
+
+    // 指针
+    plst := new(List)
+    plst.Append(2)
+    fmt.Printf(&quot;%v (len: %d)&quot;, plst, plst.Len()) // &amp;[2] (len: 1)
+}
+</code></pre><p><strong>并发访问对象</strong></p><pre><code>import  “sync”
+
+type Info struct {
+    mu sync.Mutex
+    // ... other fields, e.g.: Str string
+}
+
+func Update(info *Info) {
+    info.mu.Lock()
+    // critical section:
+    info.Str = // new value
+    // end critical section
+    info.mu.Unlock()
+}
+</code></pre><p><strong>内嵌方法</strong></p><pre><code>//内嵌方法测试
+func methodTest() {
+    point := &amp;NamedPoint{Point{3, 4}, &quot;name&quot;}
+    fm.Println(point.Abs(), point.Point.Abs())
+}
+
+type Point struct {
+    x, y float64
+}
+
+func (p *Point)Abs() float64 {
+    return math.Sqrt(p.x*p.x + p.y*p.y)
+}
+
+type NamedPoint struct {
+    Point
+    name string
+}
+
+func (p *NamedPoint)Abs() float64 {
+    return p.Point.Abs() * p.Point.Abs()
+}
+</code></pre><p><strong>多重继承</strong></p><pre><code>type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+    return &quot;Click&quot;
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+    return &quot;Ring Ring&quot;
+}
+
+type CameraPhone struct {
+    Camera
+    Phone
+}
+
+func main() {
+    cp := new(CameraPhone)
+    fmt.Println(&quot;Our new CameraPhone exhibits multiple behaviors...&quot;)
+    fmt.Println(&quot;It exhibits behavior of a Camera: &quot;, cp.TakeAPicture())
+    fmt.Println(&quot;It works like a Phone too: &quot;, cp.Call())
+}
+</code></pre><p><strong>垃圾回收和SetFinalizer</strong><br>内存状态</p><pre><code>// fmt.Printf(&quot;%d\n&quot;, runtime.MemStats.Alloc/1024)
+// 此处代码在 Go 1.5.1下不再有效，更正为
+var m runtime.MemStats
+runtime.ReadMemStats(&amp;m)
+fmt.Printf(&quot;%d Kb\n&quot;, m.Alloc / 1024)
+</code></pre><p>回收对象时，对象移除前操作：</p><pre><code>runtime.SetFinalizer(obj, func(obj *typeObj))
+</code></pre><h3 id="接口和反射">接口和反射</h3><p>不同的结构实现interface中定义的接口，通过接口变量自动识别对应结构来实现多态，所有类型必须完全实现interface中的所有函数</p><pre><code>type Shaper interface {
+    Area() float32
+}
+
+type Square struct {
+    side float32
+}
+
+func (sq *Square) Area() float32 {
+    return sq.side * sq.side
+}
+
+type Rectangle struct {
+    length, width float32
+}
+
+func (r Rectangle) Area() float32 {
+    return r.length * r.width
+}
+
+func main() {
+
+    r := Rectangle{5, 3} // Area() of Rectangle needs a value
+    q := &amp;Square{5}      // Area() of Square needs a pointer
+    // shapes := []Shaper{Shaper(r), Shaper(q)}
+    // or shorter
+    shapes := []Shaper{r, q}
+    fmt.Println(&quot;Looping through shapes for area ...&quot;)
+    for n, _ := range shapes {
+        fmt.Println(&quot;Shape details: &quot;, shapes[n])
+        fmt.Println(&quot;Area of this shape is: &quot;, shapes[n].Area())
+    }
+}
+</code></pre><blockquote><p>接口的实现通过指针则变量必须传入指针；接口可以嵌套。</p></blockquote><p><strong>类型判断</strong></p><pre><code>switch t := areaIntf.(type) {
+case *Square:
+    fmt.Printf(&quot;Type Square %T with value %v\n&quot;, t, t)
+case *Circle:
+    fmt.Printf(&quot;Type Circle %T with value %v\n&quot;, t, t)
+case nil:
+    fmt.Printf(&quot;nil value: nothing to check?\n&quot;)
+default:
+    fmt.Printf(&quot;Unexpected type %T\n&quot;, t)
+}
+
+//简洁版
+switch areaIntf.(type) {
+case *Square:
+    // TODO
+case *Circle:
+    // TODO
+...
+default:
+    // TODO
+}
+</code></pre><blockquote><p>也可用于测试变量是否实现某接口</p></blockquote><pre><code>type Stringer interface {
+    String() string
+}
+
+if sv, ok := v.(Stringer); ok {
+    fmt.Printf(&quot;v implements String(): %s\n&quot;, sv.String()) // note: sv, not v
+}
+</code></pre><p><strong>接口调用</strong></p><ul><li><p>指针方法可以通过指针调用</p></li><li><p>值方法可以通过值调用</p></li><li><p>接收者是值的方法可以通过指针调用，因为指针会首先被解引用</p></li><li><p>接收者是指针的方法不可以通过值调用，因为存储在接口中的值没有地址</p></li><li><p>类型 <em>T 的可调用方法集包含接受者为</em> T 或 T 的所有方法集</p></li><li><p>类型 T 的可调用方法集包含接受者为 T 的所有方法</p></li><li><p>类型 T 的可调用方法集不包含接受者为 *T 的方法</p></li></ul><p><strong>自定义类型排序接口</strong></p><pre><code>package sort
+
+// 排序接口
+type Sorter interface {
+    Len() int
+    Less(i, j int) bool
+    Swap(i, j int)
+}
+
+func Sort(data Sorter)  {
+    len := data.Len()
+    for i := 1; i &lt; len; i++{
+        for j := 0; j &lt; len - i; j++ {
+            if data.Less(j+1, j) {
+                data.Swap(j+1, j)
+            }
+        }
+    }
+}
+
+func main(){
+    Sunday    := day{0, &quot;SUN&quot;, &quot;Sunday&quot;}
+    Monday    := day{1, &quot;MON&quot;, &quot;Monday&quot;}
+    Tuesday   := day{2, &quot;TUE&quot;, &quot;Tuesday&quot;}
+    Wednesday := day{3, &quot;WED&quot;, &quot;Wednesday&quot;}
+    Thursday  := day{4, &quot;THU&quot;, &quot;Thursday&quot;}
+    Friday    := day{5, &quot;FRI&quot;, &quot;Friday&quot;}
+    Saturday  := day{6, &quot;SAT&quot;, &quot;Saturday&quot;}
+
+    data2 := []day{Tuesday, Thursday, Wednesday, Sunday, Monday, Friday, Saturday, Thursday}
+    array2 := dayArr(data2)
+    sort.Sort(array2)
+    for _, d := range data2 {
+        fmt.Printf(&quot;%v &quot;, d)
+    }
+    fmt.Printf(&quot;\n&quot;)
+    fm.Println(array2)
+    fmt.Printf(&quot;\n&quot;)
+}
+
+// 自己想到的实现方式
+type day struct {
+    num int
+    shortName string
+    longName string
+}
+
+type dayArr []day
+
+func (p dayArr)Len() int {
+    return len(p)
+}
+
+func (p dayArr)Less(i, j int) bool {
+    return p[i].num &lt; p[j].num
+}
+
+func (p dayArr)Swap(i, j int) {
+    p[i], p[j] = p[j], p[i]
+}
+
+func main(){
+    Sunday    := day{0, &quot;SUN&quot;, &quot;Sunday&quot;}
+    Monday    := day{1, &quot;MON&quot;, &quot;Monday&quot;}
+    Tuesday   := day{2, &quot;TUE&quot;, &quot;Tuesday&quot;}
+    Wednesday := day{3, &quot;WED&quot;, &quot;Wednesday&quot;}
+    Thursday  := day{4, &quot;THU&quot;, &quot;Thursday&quot;}
+    Friday    := day{5, &quot;FRI&quot;, &quot;Friday&quot;}
+    Saturday  := day{6, &quot;SAT&quot;, &quot;Saturday&quot;}
+
+    data3 := []*day{&amp;Tuesday, &amp;Thursday, &amp;Wednesday, &amp;Sunday, &amp;Monday, &amp;Friday, &amp;Saturday}
+    // 结构体初始化
+    array3 := dayArray{data3}
+    sort.Sort(&amp;array3)
+    for _, d := range data3 {
+        fmt.Printf(&quot;%v &quot;, d)
+    }
+    fmt.Printf(&quot;\n&quot;)
+    fm.Println(array3)
+    fmt.Printf(&quot;\n&quot;)
+}
+
+// 作者实现方式
+type dayArray struct {
+    data []*day
+}
+
+func (p *dayArray)Len() int {
+    return len(p.data)
+}
+
+func (p *dayArray)Less(i, j int) bool {
+    return p.data[i].num &lt; p.data[j].num
+}
+
+func (p *dayArray)Swap(i, j int) {
+    p.data[i], p.data[j]= p.data[j], p.data[i]
+}
+</code></pre><blockquote><p>两种方式对比:</p></blockquote><ul><li><p>第一种方式使用struct数组(切片更恰当)和变量，都是通过值拷贝；第二种通过struct指针数组和数组的指针，通过引用。故内存占用和调用消耗有差别。</p></li><li><p>暂时没想到，以后补充</p></li></ul><p><strong>构建通用类型或包含不同类型变量的数组</strong><br>对于返回值未知的接口，可以通过返回空接口。</p><pre><code>package min
+
+type Miner interface {
+    Len() int
+    ElemIx(ix int) interface{}
+    Less(i, j int) bool
+}
+
+func Min(data Miner) interface{}  {
+    min := data.ElemIx(0)
+    for i:=1; i &lt; data.Len(); i++ {
+        if data.Less(i, i-1) {
+                min = data.ElemIx(i)
+        }
+    }
+    return min
+}
+
+type IntArray []int
+func (p IntArray) Len() int { return len(p) }
+func (p IntArray) ElemIx(ix int) interface{} { return p[ix] }
+func (p IntArray) Less(i, j int) bool { return p[i] &lt; p[j] }
+
+type StringArray []string
+func (p StringArray) Len() int { return len(p) }
+func (p StringArray) ElemIx(ix int) interface{} { return p[ix] }
+func (p StringArray) Less(i, j int) bool { return p[i] &lt; p[j] }
+</code></pre><p><strong>复制数据切片至空接口切片</strong><br>内存布局不一样，需要一个个赋值</p><pre><code>var dataSlice []myType = FuncReturnSlice()
+var interfaceSlice []interface{} = make([]interface{}, len(dataSlice))
+for ix, d := range dataSlice {
+    interfaceSlice[ix] = d
+}
+</code></pre><p><strong>通用节点数据结构</strong></p><pre><code>type Node struct {
+    le   *Node
+    data interface{}
+    ri   *Node
+}
+
+func NewNode(left, right *Node) *Node {
+    return &amp;Node{left, nil, right}
+}
+
+func (n *Node) SetData(data interface{}) {
+    n.data = data
+}
+</code></pre><p><strong>接口和动态类型</strong></p><p><strong>函数重载</strong><br>通过函数参数<code>...T</code>实现，或空接口<br><code>fmt.Printf(format string, a ...interface{}) (n int, errno error)</code></p><p><strong>接口继承</strong><br>当一个类型包含（内嵌）另一个类型（实现了一个或多个接口）的指针时，这个类型就可以使用（另一个类型）所有的接口方法。</p><pre><code>type Task struct {
+    Command string
+    *log.Logger
+}
+
+func NewTask(command string, logger *log.Logger) *Task {
+    return &amp;Task{command, logger}
+}
+
+task.Log()
+
+//多重继承
+type ReaderWriter struct {
+    *io.Reader
+    *io.Writer
+}
+</code></pre><p><strong>类型转换问题</strong><br><a href="http://stackoverflow.com/questions/18041334/convert-interface-to-int-in-go-lang">对空接口interface{}进行强制类型转换报错</a></p><blockquote><p>Conversions are expressions of the form T(x) where T is a type and x is an expression that can be converted to type T.</p></blockquote><p>A non-constant value x can be converted to type T in any of these cases:</p><ol><li><p>x is assignable to T.</p></li><li><p>x&rsquo;s type and T have identical underlying types.</p></li><li><p>x&rsquo;s type and T are unnamed pointer types and their pointer base types have identical underlying types.</p></li><li><p>x&rsquo;s type and T are both integer or floating point types.</p></li><li><p>x&rsquo;s type and T are both complex types.</p></li><li><p>x is an integer or a slice of bytes or runes and T is a string type.</p></li><li><p>x is a string and T is a slice of bytes or runes.</p></li></ol><blockquote><p>转换是形如<code>T(x)</code>的表达式，其中<code>T</code>是一种类型，而<code>x</code>是能转换为类型<code>T</code>的表达式</p></blockquote><p>下面任何一种情况中非常量x都能转换为类型<code>T</code></p><ol><li><p>x可赋值给T</p></li><li><p>x的类型和T的底层类型一致</p></li><li><p>x的类型和T是匿名指针类型且它们的指针基类型的底层类型一致</p></li><li><p>x的类型和T都是整型或浮点型</p></li><li><p>x的类型和T都是复数类型</p></li><li><p>x是整数、bytes切片或runes，且T是string</p></li><li><p>x是string且T是bytes切片或runes</p></li></ol><h3 id="go中的oo">GO中的OO</h3><p>OO 语言最重要的三个方面分别是：封装，继承和多态，在 Go 中它们是怎样表现的呢？</p><ol><li>封装（数据隐藏）：Go 把它从4层简化为了2层:</li></ol><ul><li><p>包范围内的：通过标识符首字母小写，对象只在它所在的包内可见</p></li><li><p>可导出的：通过标识符首字母大写，对象 对所在包以外也可见</p></li></ul><ol><li><p>继承：用组合实现：内嵌一个（或多个）包含想要的行为（字段和方法）的类型；多重继承可以通过内嵌多个类型实现</p></li><li><p>多态：用接口实现：某个类型的实例可以赋给它所实现的任意接口类型的变量。类型和接口是松耦合的，并且多重继承可以通过实现多个接口实现。</p></li></ol><h3 id="读写数据">读写数据</h3><p><strong>输入输出</strong><br><strong>文件读写</strong></p><pre><code>inputFile, inputError := os.Open(&quot;input.dat&quot;)
+if inputError != nil {
+    fmt.Printf(&quot;An error occurred on opening the inputfile\n&quot; +
+        &quot;Does the file exist?\n&quot; +
+        &quot;Have you got acces to it?\n&quot;)
+    return // exit the function on error
+}
+defer inputFile.Close()
+
+inputReader := bufio.NewReader(inputFile)
+for {
+    inputString, readerError := inputReader.ReadString('\n')
+    if readerError == io.EOF {
+        return
+    }
+    fmt.Printf(&quot;The input was: %s&quot;, inputString)
+}
+</code></pre><p><strong>读到字符串</strong></p><pre><code>func main() {
+    inputFile := &quot;products.txt&quot;
+    outputFile := &quot;products_copy.txt&quot;
+    buf, err := ioutil.ReadFile(inputFile)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;File Error: %s\n&quot;, err)
+        // panic(err.Error())
+        }
+    fmt.Printf(&quot;%s\n&quot;, string(buf))
+    err = ioutil.WriteFile(outputFile, buf, 0644) // oct, not hex
+    if err != nil {
+        panic(err. Error())
+    }
+}
+</code></pre><p><strong>缓冲读取</strong></p><pre><code>buf := make([]byte, 1024)
+...
+n, err := inputReader.Read(buf)
+if (n == 0) { break}
+</code></pre><p><strong>按列读取</strong></p><pre><code>func main() {
+    file, err := os.Open(&quot;products2.txt&quot;)
+    if err != nil {
+        panic(err)
+    }
+    defer file.Close()
+
+    var col1, col2, col3 []string
+    for {
+        var v1, v2, v3 string
+        _, err := fmt.Fscanln(file, &amp;v1, &amp;v2, &amp;v3)
+        // scans until newline
+        if err != nil {
+            break
+        }
+        col1 = append(col1, v1)
+        col2 = append(col2, v2)
+        col3 = append(col3, v3)
+    }
+    fmt.Println(col1)
+    fmt.Println(col2)
+    fmt.Println(col3)
+}
+</code></pre><p><strong>写文件</strong></p><pre><code>func main () {
+    outputFile, outputError := os.OpenFile(&quot;output.dat&quot;, os.O_WRONLY|os.O_CREATE, 0666)
+    if outputError != nil {
+        fmt.Printf(&quot;An error occurred with file opening or creation\n&quot;)
+        return  
+    }
+    defer outputFile.Close()
+
+    outputWriter := bufio.NewWriter(outputFile)
+    outputString := &quot;hello world!\n&quot;
+
+    for i:=0; i&lt;10; i++ {
+        outputWriter.WriteString(outputString)
+    }
+    outputWriter.Flush()
+}
+</code></pre><ul><li><p>os.O_RDONLY：只读</p></li><li><p>os.O_WRONLY：只写</p></li><li><p>os.O_CREATE：创建：如果指定文件不存在，就创建该文件。</p></li><li><p>os.O_TRUNC：截断：如果指定文件已存在，就将该文件的长度截为0。</p></li></ul><pre><code>// 非缓冲写入
+func main() {
+    os.Stdout.WriteString(&quot;hello, world\n&quot;)
+    f, _ := os.OpenFile(&quot;test&quot;, os.O_CREATE|os.O_WRONLY, 0)
+    defer f.Close()
+    f.WriteString(&quot;hello, world in a file\n&quot;)
+}
+</code></pre><p><strong>文件拷贝</strong></p><pre><code>func CopyFile(dstName, srcName string) (written int64, err error) {
+    src, err := os.Open(srcName)
+    if err != nil {
+        return
+    }
+    defer src.Close()
+
+    dst, err := os.OpenFile(dstName, os.O_WRONLY|os.O_CREATE, 0644)
+    if err != nil {
+        return
+    }
+    defer dst.Close()
+
+    return io.Copy(dst, src)
+}
+</code></pre><p><strong>读取参数</strong></p><pre><code>func main() {
+    who := &quot;Alice &quot;
+    if len(os.Args) &gt; 1 {
+        who += strings.Join(os.Args[1:], &quot; &quot;)
+    }
+    fmt.Println(&quot;Good Morning&quot;, who)
+}
+</code></pre><p><strong>JSON</strong></p><ol><li>JSON 与 Go 类型对应如下</li></ol><ul><li><p>bool 对应 JSON 的 booleans</p></li><li><p>float64 对应 JSON 的 numbers</p></li><li><p>string 对应 JSON 的 strings</p></li><li><p>nil 对应 JSON 的 null</p></li></ul><ol><li>不是所有的数据都可以编码为JSON类型：只有验证通过的数据结构才能被编码：</li></ol><ul><li><p>JSON 对象只支持字符串类型的 key；要编码一个 Go map 类型，map 必须是 map[string]T（T是json包中支持的任何类型）</p></li><li><p>Channel，复杂类型和函数类型不能被编码</p></li><li><p>不支持循环数据结构；它将引起序列化进入一个无限循环指针可以被编码，实际上是对指针指向的值进行编码（或者指针是 nil）</p></li></ul><h3 id="错误处理与测试">错误处理与测试</h3><h3 id="协程与通道">协程与通道</h3><blockquote><p>不要通过共享内存来通信，而通过通信来共享内存。</p></blockquote><pre><code>func main() {
+    runtime.GOMAXPROCS(2)
+    ch1 := make(chan int)
+    ch2 := make(chan int)
+
+    go pump1(ch1)
+    go pump2(ch2)
+    go suck(ch1, ch2)
+
+    time.Sleep(1e9)
+}
+
+func pump1(ch chan int) {
+    for i:=0; ; i++ {
+        ch &lt;- i*2
+    }
+}
+
+func pump2(ch chan int) {
+    for i:=0; ; i++ {
+        ch &lt;- i+5
+    }
+}
+
+func suck(ch1,ch2 chan int) {
+    for i := 0; ; i++ {
+        select {
+            case v := &lt;- ch1:
+                fmt.Printf(&quot;%d - Received on channel 1: %d\n&quot;, i, v)
+            case v := &lt;- ch2:
+                fmt.Printf(&quot;%d - Received on channel 2: %d\n&quot;, i, v)
+        }
+    }
+}
+</code></pre><p><strong>协程间通信</strong><br>通道声明：</p><pre><code>var identifier chan type
+id := make(chan type)
+
+// 缓冲通道
+iden := make(chan type, len)
+</code></pre><ol><li><p>流向通道（发送）<br><code>ch &lt;- int1</code>表示：用通道 ch 发送变量int1（双目运算符，中缀 = 发送）</p></li><li><p>从通道流出（接收），三种方式：</p></li></ol><ul><li><p><code>int2 = &lt;- ch</code> 表示：变量 int2 从通道 ch（一元运算的前缀操作符，前缀 = 接收）接收数据（获取新值）</p></li><li><p>假设 int2 已经声明过了，如果没有的话可以写成：<code>int2 := &lt;- ch</code></p></li><li><p>&lt;- ch 可以单独调用获取通道的（下一个）值，当前值会被丢弃，但是可以用来验证，以下代码是合法的：</p></li></ul><pre><code>if &lt;- ch != 1000{
+    ...
+}
+</code></pre><p>数据传输</p><pre><code>func TestChan() {
+    ch := make(chan string)
+    go sendData(ch)
+    go recvData(ch)
+    time.Sleep(1e9)
+}
+
+func sendData(ch chan  string)  {
+    ch &lt;- &quot;hu&quot;
+    ch &lt;- &quot;yuan&quot;
+    ch &lt;- &quot;sky&quot;
+}
+
+func recvData(ch chan string)  {
+    recv := &quot;&quot;
+    for {
+        recv = &lt;-ch
+        fmt.Println(recv)
+    }
+}
+</code></pre><p><strong>阻塞</strong></p><pre><code>// 发送阻塞
+func main() {
+    ch1 := make(chan int)
+    go pump(ch1)       // pump hangs
+    time.Sleep(2*1e9)
+    fmt.Println(&quot;Recv&quot;, &lt;-ch1) // prints only 0
+    time.Sleep(1e9)
+}
+
+func pump(ch chan int) {
+    for i := 1; ; i++ {
+        ch &lt;- i
+        fmt.Println(&quot;Send &quot;,i)
+    }
+}
+
+//发送阻塞
+func main() {
+    c := make(chan int)
+    go func() {
+        time.Sleep(15 * 1e9)
+        x := &lt;-c
+        fmt.Println(&quot;received&quot;, x)
+    }()
+    fmt.Println(&quot;sending&quot;, 10)
+    c &lt;- 10
+    fmt.Println(&quot;sent&quot;, 10)
+}
+</code></pre><p><strong>信号量模式</strong><br>循环并行执行</p><pre><code>// 测试同步执行
+type Empty interface {}
+
+const N =  100000
+
+func Compare() {
+    ch_buf := make(chan Empty, N)
+    data := make([]float64, N)
+    for i:=0; i &lt; N; i++{
+        data[i] = float64(i)
+    }
+    s := time.Now()
+    TestChannal(data, ch_buf)
+    fmt.Println(time.Now().Sub(s))
+    //fmt.Println(data)
+
+    for i:=0; i &lt; N; i++{
+        data[i] = float64(i)
+    }
+    s = time.Now()
+    TestNormal(data)
+    fmt.Println(time.Now().Sub(s))
+    //fmt.Println(data)
+}
+
+func TestChannal(data []float64, ch_buf chan Empty) {
+    var em Empty
+    for ix, val :=range data {
+        go func(ix int, val float64) {
+            for j := 0; j &lt; N; j++ {
+                data[ix] += val
+            }
+            ch_buf &lt;- em
+        }(ix, val)
+    }
+    for i := 0; i &lt; N; i++ { &lt;-ch_buf}
+}
+
+func TestNormal(data []float64){
+    for ix, val := range data {
+        for j := 0; j &lt; N; j++ {
+            data[ix] += val
+        }
+    }
+}
+</code></pre><p><strong>通道的方向</strong></p><pre><code>var send_only chan&lt;- int    // channel can only send data
+var recv_only &lt;-chan int    // channel can onley recv data
+</code></pre><blockquote><p>只接收的通道（<code>&lt;-chan T</code>）无法关闭，因为关闭通道是发送者用来表示不再给通道发送值了，所以对只接收通道是没有意义的。</p></blockquote><h3 id="网络-模板和网络应用">网络、模板和网络应用</h3><h3 id="注意事项">注意事项</h3><ul><li><p>所有的包名使用小写</p></li><li><p>如果对一个包进行更改或重新编译，所有引用了这个包的客户端程序都必须全部重新编译。</p></li><li><p>must define main function in main package else you will get error &lsquo;undefined&rsquo;. main function has not params and return value</p></li><li><p>init function execute before main</p></li><li><p>production server must use function in package &ldquo;fmt&rdquo;</p></li><li><p>全局变量是允许声明但不使用</p></li></ul></div><aside id="meta"><meta itemprop="wordCount" content="3801"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/go%E8%AF%AD%E8%A8%80.html" rel="tag">go语言</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golangbing-fa-bian-cheng-de-liang-chong-xian-su-fang-fa.html">golang并发编程的两种限速方法</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html">open-falcon-agent源码学习</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="f3eb232d51f0192b49c248275ecc601f"></div><div id="cyReward" role="cylabs" data-use="reward" sid="f3eb232d51f0192b49c248275ecc601f" style="text-align:center"></div><div id="SOHUCS" sid="f3eb232d51f0192b49c248275ecc601f"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgoyu-yan-xue-xi-bi-ji-yi-.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgoyu-yan-xue-xi-bi-ji-yi-.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

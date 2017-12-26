@@ -13,10 +13,10 @@
     
     <item>
       <title>统一配置管理工具confd</title>
-      <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</guid>
       <description>confd Github: https://github.com/sumory/confd
 confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。
 你可以用它：

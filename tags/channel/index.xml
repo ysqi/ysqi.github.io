@@ -13,19 +13,19 @@
     
     <item>
       <title>在Golang中使用Go关键字和Channel实现并行</title>
-      <link>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html</guid>
       <description>Go 关键字和 channel 的用法 go 关键字用来创建 goroutine (协程)，是实现并发的关键。go 关键字的用法如下： //go 关键字放在方法调用前新建一个 goroutine 并让他执行方法体 go GetThingDone(param1, param2); //上例的变种，新建一个匿名方法并执行 go func(param1, param2) { }(val1, val2) //直接新建一个 goroutine 并在 goroutine 中执行代码块 go { //do someting... }  因为 goroutine 在多核 cpu 环境下是并行的。如果代码块在多个 goroutine 中执行，我们就实现了代码并行。那么问题来了，怎么拿到并行的结果呢？这就得用 channel 了。 //resultChan 是一个 int 类型的 channel。类似一个信封，里面放的是 int 类型的值。 var resultChan chan int //将 123 放到这个信封里面，供别人从信封中取用 resultChan &amp;lt;- 123 //从 resultChan 中取值。这个时候 result := 123 result := &amp;lt;- resultChan  使用 go 关键字和 channel 实现非阻塞调用 阻塞的意思是调用方在被调用的代码返回之前必须一直等待，不能处理别的事情。而非阻塞调用则不用等待，调用之后立刻返回。那么返回值如何获取呢？Node.</description>
     </item>
     
     <item>
       <title>Go语言并发模型:像UnixPipe那样使用channel</title>
-      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:13 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</guid>
       <description>简介 Go语言的并发原语允许开发者以类似于 Unix Pipe 的方式构建数据流水线 (data pipelines)，数据流水线能够高效地利用 I/O和多核 CPU 的优势。
 本文要讲的就是一些使用流水线的一些例子，流水线的错误处理也是本文的重点。
 阅读建议 数据流水线充分利用了多核特性，代码层面是基于 channel 类型 和 go 关键字。

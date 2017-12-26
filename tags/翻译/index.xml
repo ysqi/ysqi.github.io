@@ -13,10 +13,10 @@
     
     <item>
       <title>【翻译】go是面向对象语言吗？</title>
-      <link>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html</guid>
       <description>原文：http://spf13.com/post/is-go-object-oriented
 前言 为了真正理解面向对象的含义，我们需要回顾一下这个概念的起源。第一个面向对象语言-simula问世于19世纪60年代。它引入了对象（object)、类（class）、继承（inheritance）、子类（subclass）、虚方法（virtual method）、协程（coroutine）等概念。然而simula最重要的贡献可能是它引入颠覆性的思想——将数据和逻辑完全分离。
 你可能不熟悉simula语言，但你肯定熟悉Java, C++, C# &amp;amp; Smalltalk中的一种，这些语言深受simula的影响，当然这些语言又同时影响着现今几乎所有的高级语言如：Objective C, Python, Ruby, Javascript, Scala, PHP, Perl… 大部分程序员都遵循着将数据和逻辑完全分离的原则。

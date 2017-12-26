@@ -13,10 +13,10 @@
     
     <item>
       <title>Go1_8rc3源代码学习:token</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</guid>
       <description>https://segmentfault.com/a/
 前言 token package 包含了 golang 词法分析相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/token
 token.go 源代码中的注释很赞！
@@ -27,10 +27,10 @@ const ( // Special tokens ILLEGAL Token = iota EOF COMMENT literal_begin ... lit
     
     <item>
       <title>Go1_8rc3源代码学习:scanner</title>
-      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</link>
       <pubDate>Fri, 17 Feb 2017 08:17:14 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</guid>
       <description>https://segmentfault.com/a/
 前言 scanner package 包含了 golang 词法分析器相关的数据结构和方法，源代码位于 &amp;lt;go-src&amp;gt;/src/go/scanner
 example_test.go example_test.go 包含了一个使用 scanner 包的示例方法，该方法对 Euler 公式进行词法扫描
@@ -39,10 +39,10 @@ func ExampleScanner_Scan() { // src is the input that we want to tokenize. src :
     
     <item>
       <title>MiniJava语言编译器的Golang实现。</title>
-      <link>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html</guid>
       <description> Dog-comp Abstract 文章介绍一个编译器的实现流程。源语言选用MiniJava. MiniJava是一个面向对象语言，支持继承，对象创建等面向对象的特性。具体语法参考Tiger book 附录。
 Dog-comp是一个用golang实现的minijava编译器，目前可以将minijava翻译成c。dog-comp包括前端的lexer，parser，type-checking，codegen，后端还有基于minijava-AST的优化，基于控制流图的优化。为了满足minijava面向对象的特性，Dog-comp还带有一个runtime，实现了一个垃圾收集器。Dog-comp可以作为学习编译器和语言优化的一个小工具。
 lexer 虽然目前已经有了词法分析器的生成器，但是Dog-comp使用了转移图(TDA)算法手工实现lexer。

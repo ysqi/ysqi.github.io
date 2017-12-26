@@ -13,10 +13,10 @@
     
     <item>
       <title>【新功能】GitCafe已经支持Go语言Package托管</title>
-      <link>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html</guid>
       <description>之前有用户希望 GitCafe 可以支持 go get，使其能够直接导入 GitCafe 上托管的代码。
 现在，我们想要告诉各位一个好消息，为了方便更多的开发者，任何托管在 GitCafe 上的 Go 语言 package 都可以直接在项目中使用，通过 go get 工具安装和更新。
 例如，我们可以在本机创建一个 hello_world.go 文件，内容如下：

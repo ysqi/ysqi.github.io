@@ -13,10 +13,10 @@
     
     <item>
       <title>gRPC服务发现&amp;amp;负载均衡</title>
-      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
       <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
       <description>gRPC服务发现&amp;amp;负载均衡  构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：
  1、集中式LB（Proxy Model） 在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如 F5，或者基于软件如 LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。 该方案主要问题：
  单点问题，所有服务调用流量都经过LB，当服务数量和调用量大的时候，LB容易成为瓶颈，且一旦LB发生故障影响整个系统；
@@ -39,10 +39,10 @@ package etcdv3 import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;
     
     <item>
       <title>GolanggRPC实践连载一gRPC介绍与安装</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:41 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html</guid>
       <description>gRPC介绍与安装  A high performance, open source, general RPC framework that puts mobile and HTTP/2 first. ——gRPC Website
  gRPC 是一个高性能、开源、通用的RPC框架，由Google推出，基于HTTP/2协议标准设计开发，默认采用Protocol Buffers数据序列化协议，支持多种开发语言。gRPC提供了一种简单的方法来精确的定义服务，并且为客户端和服务端自动生成可靠的功能库。
 主要特性  强大的IDL
@@ -62,10 +62,10 @@ brew tap grpc/grpc brew install --with-plugins grpc  安装结果：</descriptio
     
     <item>
       <title>GolanggRPC实践连载三Protobuf语法</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:40 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html</guid>
       <description>Protobuf语法 gRPC推荐使用proto3，本节只介绍常用语法，更多高级使用姿势请参考官方文档
 Message定义 一个message类型定义描述了一个请求或相应的消息格式，可以包含多种类型字段。例如定义一个搜索请求的消息格式，每个请求包含查询字符串、页码、每页数目。
 syntax = &amp;quot;proto3&amp;quot;; message SearchRequest { string query = 1; // 查询字符串 int32 page_number = 2; // 页码 int32 result_per_page = 3; // 每页条数 }  首行声明使用的protobuf版本为proto3
@@ -81,10 +81,10 @@ syntax = &amp;quot;proto3&amp;quot;; // SearchRequest 搜索请求 message Searc
     
     <item>
       <title>GolanggRPC实践连载二HellogRPC</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:40 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html</guid>
       <description>Hello gRPC 按照惯例，这里从一个Hello项目开始，本项目定义了一个Hello Service，客户端发送包含字符串名字的请求，服务端返回Hello消息。
 流程：  编写.proto描述文件
  编译生成.pb.go文件
@@ -95,10 +95,10 @@ syntax = &amp;quot;proto3&amp;quot;; // SearchRequest 搜索请求 message Searc
     
     <item>
       <title>GolanggRPC实践连载四gRPC认证</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html</guid>
       <description>gRPC 默认提供了两种认证方式：
  基于SSL/TLS认证方式
  远程调用认证方式
@@ -110,10 +110,10 @@ TLS认证示例 这里直接扩展hello项目，实现TLS认证机制
     
     <item>
       <title>GolanggRPC实践连载五拦截器Interceptor</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-wu--lan-jie-qi--interceptor.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-wu--lan-jie-qi--interceptor.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-wu--lan-jie-qi--interceptor.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-wu--lan-jie-qi--interceptor.html</guid>
       <description>Interceptor grpc服务端提供了interceptor功能，可以在服务端接收到请求时优先对请求中的数据做一些处理后再转交给指定的服务处理并响应，功能类似middleware，很适合在这里处理验证、日志等流程。
 在自定义Token认证的示例中，认证信息是由每个服务中的方法处理并认证的，如果有大量的接口方法，这种姿势就太蛋疼了，每个接口实现都要先处理认证信息。这个时候interceptor就站出来解决了这个问题，可以在请求被转到具体接口之前处理认证信息，一处认证，到处无忧，看代码吧，修改hello-token项目的服务端实现：
 server/main.go
@@ -122,10 +122,10 @@ package main import ( &amp;quot;net&amp;quot; pb &amp;quot;git.vodjk.com/go-grpc
     
     <item>
       <title>基于Golang的IP地址信息查询服务</title>
-      <link>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html</guid>
       <description>原文链接：http://tabalt.net/blog/ipquer&amp;hellip;
 工作中经常会有通过IP匹配用户信息的需求，如确定用户所在的地区（国家/省份/城市）、运营商、时区、经纬度等等。前一阵有个Golang开发的项目也有这样的需求，于是简单实现了一个包，最近忙里偷闲又包了一个支持HTTP和GRPC方式调用的服务，并开源在GitHub上了。本文主要介绍IP地址信息查询的实现细节和使用方式。
 首先交代一下GitHub地址：
@@ -147,10 +147,10 @@ type IpRange struct { Begin uint32 End uint32 Data []byte } type IpData []*IpRan
     
     <item>
       <title>GolanggRPC实践连载六内置Trace</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-liu--nei-zhi-trace.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-liu--nei-zhi-trace.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-liu--nei-zhi-trace.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-liu--nei-zhi-trace.html</guid>
       <description>内置Trace grpc默认提供了客户端和服务端的trace日志，可惜没有提供自定义接口，当前只能查看基本的事件日志和请求日志，对于基本的请求状态查看也是很有帮助的，客户端与服务端基本一致，这里已服务端开启trace为例，修改hello项目的server代码：
 server/main.go
 package main import ( &amp;quot;net&amp;quot; &amp;quot;net/http&amp;quot; pb &amp;quot;git.vodjk.com/go-grpc/example/proto&amp;quot; // 引入编译生成的包 &amp;quot;golang.org/x/net/context&amp;quot; &amp;quot;golang.org/x/net/trace&amp;quot; // 引入trace包 &amp;quot;google.golang.org/grpc&amp;quot; &amp;quot;google.golang.org/grpc/grpclog&amp;quot; ) const ( // Address gRPC服务地址 Address = &amp;quot;127.0.0.1:50052&amp;quot; ) // 定义helloService并实现约定的接口 type helloService struct{} // HelloService ... var HelloService = helloService{} func (h helloService) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) { resp := new(pb.HelloReply) resp.Message = &amp;quot;Hello &amp;quot; + in.Name + &amp;quot;.&amp;quot; return resp, nil } func main() { listen, err := net.</description>
@@ -158,10 +158,10 @@ package main import ( &amp;quot;net&amp;quot; &amp;quot;net/http&amp;quot; pb &a
     
     <item>
       <title>GolanggRPC实践连载七HTTP协议转换</title>
-      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-qi--httpxie-yi-zhuai-huan.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-qi--httpxie-yi-zhuai-huan.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-qi--httpxie-yi-zhuai-huan.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-qi--httpxie-yi-zhuai-huan.html</guid>
       <description>gRPC HTTP协议转换 正当有这个需求的时候，就看到了这个实现姿势。源自coreos的一篇博客，转载到了grpc官方博客gRPC with REST and Open APIs。
 etcd3改用grpc后为了兼容原来的api，同时要提供http/json方式的API，为了满足这个需求，要么开发两套API，要么实现一种转换机制，他们选择了后者，而我们选择跟随他们的脚步。
 他们实现了一个协议转换的网关，对应github上的项目grpc-gateway，这个网关负责接收客户端请求，然后决定直接转发给grpc服务还是转给http服务，当然，http服务也需要请求grpc服务获取响应，然后转为json响应给客户端。结构如图：

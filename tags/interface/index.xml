@@ -13,10 +13,10 @@
     
     <item>
       <title>golang中cannotuse**(typeinterface{})astype**解决方案</title>
-      <link>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</guid>
       <description>https://segmentfault.com/a/
 在beego中从session中取值的时候，取出来的是intergace{}，但是我先返回的值是int型，或者是string，这个时候会出现一个错误：
 cannot use ** （变量）(type interface {}) as type **（类型）
@@ -29,10 +29,10 @@ func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&
     
     <item>
       <title>go-可变参数</title>
-      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</guid>
       <description>https://segmentfault.com/a/
 今天在尝试用go写一个简单的orm的时候 发现 在调用可变参数函数时，不是总能使用省略号将一个切片展开，有时候编译器可能会报错 再此用几个简单的例子作为说明
 当不太确定数据类型的时候我们通常采用空接口

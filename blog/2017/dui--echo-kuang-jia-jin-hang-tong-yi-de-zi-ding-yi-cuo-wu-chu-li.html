@@ -1,0 +1,147 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>对echo框架进行统一的自定义错误处理 |虞双齐的博客</title><meta name="description" content="借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
+用各种语言去写后端 API "><meta name="keywords" content="golang, 微服务, api设计, web, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html"><meta property="og:title" content="对echo框架进行统一的自定义错误处理"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-05-24 09:17:32"><meta property="article:modified_time" content="2017-05-24 09:17:32"><meta property="article:tag" content="golang"><meta property="article:tag" content="微服务"><meta property="article:tag" content="api设计"><meta property="article:tag" content="web"><meta name="og:description" content="借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
+用各种语言去写后端 API "><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html">对echo框架进行统一的自定义错误处理</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000009025685" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-05-24">2017年05月24日</time></span></p></header><div itemprop="articleBody"><p>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，<br>用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，<br>你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。</p><h2 id="echo-框架">ECHO 框架</h2><p>由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，<br>用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。<br>不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。<br>要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。<br>但是来到2017年，一个叫 <code>Echo</code> 的框架脱颖而出。这是我目前最推荐的框架。<br>Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：</p><p>这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，<br>因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。<br>我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，<br>如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。</p><p>其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。</p><h2 id="restful-api-错误返回">RESTful API 错误返回</h2><p>一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。<br>比如<a href="https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md">微软的规范</a>，<br><a href="http://jsonapi.org/format/upcoming/">jsonapi.org 推荐规范</a>等等。<br>大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：</p><pre><code>STATUS 400 Bad Request
+{
+  &quot;error&quot;: &quot;InvalidID&quot;,
+  &quot;message&quot;: &quot;invalid id in your url query parameters&quot;
+}
+</code></pre><p>传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，<br>如今我们把正常的响应格式变成了 JSON ，那么把错误返回也用 JSON 吧。<br>除了用 JSON 之外，我们又增加了一个 error 字段，<br>这个字段是一个比 Status code 要详细一个级别的 Key，<br>消费端可以用这个约定的 Key 做更为灵活的错误处理。</p><p>好了，我们就用这个简单的例子进行下去，今天主题讲的是 Echo 去统一处理的方法。</p><h2 id="echo-怎么统一处理错误">Echo 怎么统一处理错误？</h2><p>其实 Echo 的文档虽然很漂亮，但是不够详细，深入一点的内容和例子并没有。<br>但一个漂亮的 golang 项目，代码即是文档，我们应该有去 godoc.org 查文档的习惯。<br>我们找到 Echo 的 <a href="https://godoc.org/github.com/labstack/echo">GoDoc</a>，<br>看 Echo 类型：</p><pre><code>type Echo struct {
+    Server           *http.Server
+    TLSServer        *http.Server
+    Listener         net.Listener
+    TLSListener      net.Listener
+    DisableHTTP2     bool
+    Debug            bool
+    HTTPErrorHandler HTTPErrorHandler
+    Binder           Binder
+    Validator        Validator
+    Renderer         Renderer
+    AutoTLSManager   autocert.Manager
+    Mutex            sync.RWMutex
+    Logger           Logger
+    // contains filtered or unexported fields
+}
+</code></pre><p>果然可以定义 <strong>HTTPErrorHandler</strong>, 顺着找过去，</p><pre><code>// HTTPErrorHandler is a centralized HTTP error handler.
+type HTTPErrorHandler func(error, Context)
+</code></pre><p>它是一个传入 error 和 Context 并且没有返回值的函数。<br>可是知道这些还是有点晕？并不知道怎么写这个函数啊。<br>没关系，我这篇文章就是讲怎么写这个函数的。往下看吧。</p><h2 id="定义错误结构">定义错误结构</h2><p>由于 golang 是静态类型，我们干啥都需要先定义个结构，代码如下：</p><pre><code>type httpError struct {
+    code    int
+    Key     string `json:&quot;error&quot;`
+    Message string `json:&quot;message&quot;`
+}
+
+func newHTTPError(code int, key string, msg string) *httpError {
+    return &amp;httpError{
+        code:    code,
+        Key:     key,
+        Message: msg,
+    }
+}
+
+// Error makes it compatible with `error` interface.
+func (e *httpError) Error() string {
+    return e.Key + &quot;: &quot; + e.Message
+}
+</code></pre><p>这里我们做了三件事</p><ol><li><p>定义了错误的结构，其中包含 code，key 和 message，key 和 message 可以被导出为 JSON。</p></li><li><p>做了个新建错误结构的函数，这样就可以用一行代码去新建一个错误了。</p></li><li><p>给这个结构增加了 <code>Error</code> 函数，这样这个结构就成了一个 golang 的 error 接口。</p></li></ol><h2 id="处理错误">处理错误</h2><p>我们终于可以写上文提到的自定义函数了，先看示例代码我再做解释，然后你就能写自己的了：</p><pre><code>package main
+
+import (
+    &quot;net/http&quot;
+
+    &quot;github.com/labstack/echo&quot;
+)
+
+// httpErrorHandler customize echo's HTTP error handler.
+func httpErrorHandler(err error, c echo.Context) {
+    var (
+        code = http.StatusInternalServerError
+        key  = &quot;ServerError&quot;
+        msg  string
+    )
+
+    if he, ok := err.(*httpError); ok {
+        code = he.code
+        key = he.Key
+        msg = he.Message
+    } else if ee, ok := err.(*echo.HTTPError); ok {
+        code = ee.Code
+        key = http.StatusText(code)
+        msg = key
+    } else if config.Debug {
+        msg = err.Error()
+    } else {
+        msg = http.StatusText(code)
+    }
+
+    if !c.Response().Committed {
+        if c.Request().Method == echo.HEAD {
+            err := c.NoContent(code)
+            if err != nil {
+                c.Logger().Error(err)
+            }
+        } else {
+            err := c.JSON(code, newHTTPError(code, key, msg))
+            if err != nil {
+                c.Logger().Error(err)
+            }
+        }
+    }
+}
+</code></pre><p>这个函数的功能就是根据传进来的 error 和上下文 Context，组装出合适的 HTTP 响应。<br>可因为 golang 的 error 是一个接口，也就是第一个参数可能传进来任何奇怪的东西，<br>我们需要细心的处理一下。</p><p>第一部分我们定义了默认值作为最坏的情况，在 HTTP API 里，消费端要是看到这种最坏的情况，<br>说明你要被扣奖金了，除非你可以甩锅给你依赖的模块或基础设施。</p><p>第二部分我们先看看传进来的错误是不是我们之前定义的，如果是那就太好了。如果不是的话，<br>有可能是 Echo 返回的错误，比如路由或者方法没有找到之类的。如果还不是，<br>看来是一个其他的未知错误，如果 Debug 开着，那还好，不用扣奖金，我们把错误明细直接返回<br>到 msg 里方便调试。如果也没开 Debug &hellip; 那只好硬着头皮返回 500 并什么信息都不给了。</p><p>第三部分你可以基本照抄，是检查上下文中是否声明这个响应已经提交了，只有没提交的时候，<br>我们才需要把我们准备好的错误信息以 JSON 格式提交，顺便打印错误日志。另外，如果请求<br>是 HEAD 方法的话，根据规范，你只能返回状态 204 并默默在日志记录错误了。</p><h2 id="应用">应用</h2><p>好了，我们写好了统一的错误处理，该怎么使用呢？ 来看一个极简的例子吧：</p><pre><code>func getUser(c echo.Context) error {
+    var u user
+    id := c.Param(&quot;id&quot;)
+    if !bson.IsObjectIdHex(id) {
+        return newHTTPError(http.StatusBadRequest, &quot;InvalidID&quot;, &quot;invalid user id&quot;)
+    }
+    err := db.C(&quot;user&quot;).FindId(bson.ObjectIdHex(id)).One(&amp;u)
+    if err == mgo.ErrNotFound {
+        return newHTTPError(http.StatusNotFound, &quot;NotFound&quot;, err.Error())
+    }
+    if err != nil {
+        return err
+    }
+    return c.JSON(http.StatusOK, u)
+}
+</code></pre><p>这是个从 mongodb 取 user 的例子，</p><ol><li><p>检查url中的id是不是一个合法的id，不是的话，返回我们之前自定义的错误。</p></li><li><p>去数据库里查，如果没有记录，返回 404 错误。</p></li><li><p>如果查询数据库的操作出了其他错误，这个时候我们无能为力了，只好直接把这个错误返回。</p></li><li><p>一切正常没错误的话，我们返回状态 200 和 JSON 数据。</p></li></ol><p>我们可以看出，经过这么一番折腾，在写API的时候，省心了很多。<br>我们可以随手用一行代码构造错误，也可以直接把任何预测不到的错误返回，<br>不用再麻烦的每次去构造 500 错误了。</p><p>怎么样？快去安利小伙伴们用 echo 写 HTTP API 吧，真的很方便。</p></div><aside id="meta"><meta itemprop="wordCount" content="496"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/api%E8%AE%BE%E8%AE%A1.html" rel="tag">api设计</a> <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/web.html" rel="tag">web</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1.html" rel="tag">微服务</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/golangli-de-future_promise.html">Golang里的Future_Promise</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html">fasthttp中的协程池实现</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="4e63eb623b47f6b80b51500a47ca422e"></div><div id="cyReward" role="cylabs" data-use="reward" sid="4e63eb623b47f6b80b51500a47ca422e" style="text-align:center"></div><div id="SOHUCS" sid="4e63eb623b47f6b80b51500a47ca422e"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fdui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fdui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

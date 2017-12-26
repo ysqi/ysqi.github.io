@@ -13,10 +13,10 @@
     
     <item>
       <title>VSCODE中godef无法跳转到定义的问题</title>
-      <link>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</guid>
       <description>原文链接：http://targetliu.com/vscode-can-not-go-to-def/
  之前研究GOLANG时一直用LiteIDE，不得不说，LiteIDE的确不错，但是总感觉缺乏美感，是一款很中规中矩的编辑器。网上看到大家对VSCODE评价不错，尝试后发现的确不错，布局简洁、插件化、支持中文，通过VSCODE GO扩展能够很舒服的写GO的代码。
  问题描述 不过在实际使用过程中发现 net 包无法正常跳转到定义，如下段代码 ResolveTCPAddr就无法正常跳转

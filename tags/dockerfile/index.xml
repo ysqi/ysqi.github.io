@@ -13,10 +13,10 @@
     
     <item>
       <title>创建尽可能小的Docker容器</title>
-      <link>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</guid>
       <description>注：本文由 Adriaan de Jonge 编写，本文的原文地址为 Create The Smallest Possible Docker Container
  当我们在使用 Docker 的时候，你会很快注意到你正在下载很多 MB 作为你的预先配置的容器。一个简单的 Ubuntu 容器很容易超过 200 MB，并且随着在上面安装软件，尺寸在逐渐增大。在某些情况下，你不需要任何事情都使用 Ubuntu 。例如，如果你只是简单的想运行一个 web 服务，使用 GO 编写的，没有必要围绕它使用任何工具。
 我一直在寻找尽可能小的容器入手，并且发现了一个：

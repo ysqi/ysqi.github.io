@@ -1,0 +1,74 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang服务器的网络层实现 |虞双齐的博客</title><meta name="description" content="原文：Golang服务器的网络层实现
+由于最近有接触到一些长连接的服务器实现，对网络模型有所学习。对"><meta name="keywords" content="socket服务端, socket, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html"><meta property="og:title" content="Golang服务器的网络层实现"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:36"><meta property="article:modified_time" content="2016-12-31 11:33:36"><meta property="article:tag" content="socket服务端"><meta property="article:tag" content="socket"><meta property="article:tag" content="golang"><meta name="og:description" content="原文：Golang服务器的网络层实现
+由于最近有接触到一些长连接的服务器实现，对网络模型有所学习。对"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html">Golang服务器的网络层实现</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000005132717" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>原文：<a href="http://www.pchou.info/open-source/2016/05/16/golang-network.html">Golang服务器的网络层实现</a></p><p>由于最近有接触到一些长连接的服务器实现，对网络模型有所学习。对基于C/C++的网络模型实现和基于GoLang的实现对比下来，发现Golang的网络模型编程难度大大降低，这得益于Golang的<code>goroutine</code>，可以在编程的时候肆无忌惮的创建并发&rdquo;线程&rdquo;，当服务器能为每一个客户端都开启若干&rdquo;线程&rdquo;的话，编程变的简单很多。</p><h2 id="传统语言的网络层处理">传统语言的网络层处理</h2><p>服务需要同时服务N个客户端，所以传统的编程方式是采用IO复用，这样在一个线程中对N个套接字进行事件捕获，当读写事件产生后再真正<code>read()</code>或者<code>write()</code>，这样才能提高吞吐：</p><p>上图中：</p><ul><li><p>绿色线程为接受客户端TCP链接的线程，使用阻塞的调用<code>socket.accept()</code>，当有新的连接到来后，将<code>socket</code>对象<code>conn</code>加入IO复用队列。</p></li><li><p>紫色线程为IO复用的阻塞调用，通常采用<code>epoll</code>等系统调用实现IO复用。当IO复用队列中的任意<code>socket</code>有数据到来，或者写缓冲区空闲时可触发<code>epoll</code>调用的返回，否则阻塞<code>epoll</code>调用。数据的实际发送和接收都在紫色线程中完成。所以为了提高吞吐，对某个socket的<code>read</code>和<code>write</code>都应该使用非阻塞的模式，这样才能最大限度的提高系统吞吐。例如，假设正在对某个socket调用阻塞的<code>write</code>，当数据没有完全发送完成前，<code>write</code>将无法返回，从而阻止了整个<code>epoll</code>进入下一个循环，如果这个时候其他的<code>socket</code>有读就绪的话，将无法第一时间响应。所以非阻塞的读写将在某个fd读写较慢的时候，立刻返回，而不会一直等到读写结束。这样才能提高吞吐。然而，采用非阻读写将大大提高编程难度。</p></li><li><p>紫色线程负责将数据进行解码并放入队列中，等待工作线程处理；工作线程有数据要发送时，也将数据放入发送队列，并通过某种机制通知紫色线程对应的socket有数据要写，进而使得数据在紫色线程中写入socket。</p></li></ul><p>这种模型的编程难度主要体现在：</p><ol><li><p>线程少（也不能太多），导致一个线程需要处理多个描述符，从而存在对描述符状态的维护问题。甚至，业务层面的会话等都需要小心维护</p></li><li><p>非阻塞IO调用，使描述符的状态更为复杂</p></li><li><p>队列的同步处理</p></li></ol><p>不得不说，能用C或C++来写服务器的是真大神！</p><h2 id="golang的goroutine">Golang的goroutine</h2><p><code>Golang</code>是一门比较新的语言，正在快速的发展。<code>Golang</code>从语言层面支持一种叫<code>协程</code>的轻量级线程模型，称为<code>goroutine</code>。当我们创建协程时，实际并不会创建操作系统的线程，Golang会使用现有的线程来调度协程。也就是说，从程序员的角度，协程是并发执行的，好像线程一下，而从操作系统的角度来看，程序可能只有几个线程在运行。在同一个应用程序中，协程可以有成千上万个！所以可以有成千上万个并发任务，而这些任务的调度又十分轻量，比线程调度轻量的多的多。所以从程序员的角度，使用Golang就可以在一个应用程序中同时开启成千上万个并发任务。简直逆天！</p><p>在Golang中使用<code>go</code>关键字来开启一个<code>goroutine</code>：</p><pre><code>func main() {
+    log.Println(&quot;Hello, world&quot;)
+
+    netListen, err := net.Listen(&quot;tcp&quot;, &quot;localhost:4000&quot;)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
+        os.Exit(1)
+    }
+
+    defer netListen.Close()
+
+    log.Println(&quot;Waiting for clients&quot;)
+
+    for {
+        conn, err := netListen.Accept()
+        if err != nil {
+            continue
+        }
+
+        log.Println(conn.RemoteAddr().String(), &quot; tcp connect success&quot;)
+        go handleConnection(conn)
+    }
+}
+
+func handleConnection(conn net.Conn) {
+    ...
+}
+</code></pre><h2 id="golang的channel">Golang的channel</h2><p>除了对并发的支持外，Golang中有一种叫<code>channel</code>的并发同步机制。<code>channel</code>类似队列，是<code>goroutine</code>安全的。所以结合<code>goroutine</code>和<code>channel</code>可以轻而易举的实现并发编程。</p><h2 id="golang如何实现网络层">Golang如何实现网络层</h2><p>通过参考多个Golang的开源程序，笔者得出的结论是：肆无忌惮的用<code>goroutine</code>吧。于是一个Golang版的网络模型大致是这样的：</p><p>上图是单个客户端连接的服务器模块结构，同样的一个颜色代表一个协程：</p><ul><li><p>绿色<code>goroutine</code>依然是接受TCP链接</p></li><li><p>当完成握手<code>accept</code>返回<code>conn</code>对象后，使用一个单独的<code>goroutine</code>来<code>阻塞读</code>（紫色），使用一个单独的<code>goroutine</code>来<code>阻塞写</code>（红色）</p></li><li><p>读到的数据通过解码后放入<code>读channel</code>，并由蓝色的<code>goroutine</code>来处理</p></li><li><p>需要写数据时，蓝色的<code>goroutine</code>将数据写入<code>写channel</code>，从而触发红色的<code>goroutine</code>编码并写入conn</p></li></ul><p>可以看到，针对一个客户端，服务端至少有3个<code>goroutine</code>在单独为这个客户端服务。如果从线程的角度来看，简直是浪费啊，然而这就是协程的好处。这个模型很容易理解，因为跟人们的正常思维方式是一致的。并且都是阻塞的调用，所以无需维护状态。</p><p>再来看看多个客户端的情况：</p><p>在多个客户端之间，虽然用了相同的颜色表示<code>goroutine</code>，但实际上他们都是独立的<code>goroutine</code>，可以想象<code>goroutine</code>的数量将是惊人的。然而，根本不用担心！这样的应用程序可能真正的线程只有几个而已。</p></div><aside id="meta"><meta itemprop="wordCount" content="83"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/socket.html" rel="tag">socket</a> <a href="/tags/socket%E6%9C%8D%E5%8A%A1%E7%AB%AF.html" rel="tag">socket服务端</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html">途牛原创｜途牛周刊</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x0b----di-yi-bu-fen-jie-shu.html">用Golang写一个搜索引擎(0x0B)---第一部分结束</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="1396f975903a85c89eceb4fa0201a422"></div><div id="cyReward" role="cylabs" data-use="reward" sid="1396f975903a85c89eceb4fa0201a422" style="text-align:center"></div><div id="SOHUCS" sid="1396f975903a85c89eceb4fa0201a422"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangfu-wu-qi-de-wang-lao-ceng-shi-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgolangfu-wu-qi-de-wang-lao-ceng-shi-xian.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

@@ -13,10 +13,10 @@
     
     <item>
       <title>[转载]Golanghotconfigurationreload</title>
-      <link>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html</guid>
       <description>原文：http://openmymind.net/Golang-Hot-Configuration-Reload/
 Like most, I&amp;rsquo;ve always appreciated a software package that lets me hot-reload the configuration without having to restart. Nginx immediately comes to mind, as does Postgresql (not for all settings, but most). This is something I&amp;rsquo;ve never done; so I was pretty happy when the opportunity presented itself.
 I&amp;rsquo;m not sure how anyone else does this, but it&amp;rsquo;s pretty basic stuff. When you get past the meaningless fact that you&amp;rsquo;re reloading a configuration, it&amp;rsquo;s just about providing concurrent read and write access to a shared object.</description>

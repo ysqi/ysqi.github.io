@@ -13,10 +13,10 @@
     
     <item>
       <title>从设计到实战:Go如何扛住100亿次请求</title>
-      <link>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</link>
       <pubDate>Wed, 22 Feb 2017 08:37:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</guid>
       <description>扛住100亿次请求？我们来试一试
 作者：ppmsn2005#gmail.com
 项目:https://github.com/xiaojiaqi/10billionhongbaos

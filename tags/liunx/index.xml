@@ -13,10 +13,10 @@
     
     <item>
       <title>统计文件夹下文件数量</title>
-      <link>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</link>
       <pubDate>Thu, 18 Feb 2016 11:05:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</guid>
       <description>今天同事备份数据到NAS，但感觉备份有问题，因为文件过多，所以决定通过命令的方式统计文件夹下的文件数量，来初步判断备份是否完整。而原文件在Window下，而 NAS 是Liunx操作系统，故需要通过不同的命令来统计文件数量。
 Window 统计文件数量 首先，来统计原文件数量。找了半天，发现dir命令就可以用于统计。
 dir /b /a-d | find /v /c &amp;#34;&amp;amp;#@&amp;#34;  怎么文件数量为0? 原来上面命令仅仅是统计当前目录下的文件数，而不包括子目录，那么如何也包含子目录的文件呢？
@@ -32,10 +32,10 @@ ls -lR|grep &amp;#34;^-&amp;#34;|wc -l 命令ls -lR表示列表输出该目录�
     
     <item>
       <title>Liunx查找删除历史备份文件批命令</title>
-      <link>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</link>
       <pubDate>Mon, 15 Feb 2016 13:06:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</guid>
       <description>NAS作为数据备份中心，但需要经常清理历史备份文件，仅需要保留一部分备份文件即可。由于NAS是改造后的Liunx 操作系统，故有些命令无法直接执行，因此独立写了一个脚本来搜索历史备份文件，并记录待删除文件信息，自动生成脚本删除文件。
 Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
 #!/bin/bash  NOW=$(date +&amp;#34;%Y%m%d%M%S&amp;#34;) FILE=&amp;#34;NeedDeleteFile_$NOW.sh&amp;#34; # 遍历文件，写入文件中 function findFile(){ # 记录查找目录 	echo &amp;#34;# find from $1-mtime $2&amp;#34; &amp;gt;&amp;gt; $FILE #遍历目录，将指定日期的  find $1 -mtime $2 -type f \( -iname &amp;#34;*.bak&amp;#34; -o -iname &amp;#34;*.log&amp;#34; -o -iname &amp;#34;*.zip&amp;#34; -o -iname &amp;#34;*.rar&amp;#34; \) -print0 | while IFS= read -r -d $&amp;#39;\0&amp;#39; line; do echo &amp;#34;rm \&amp;#34;$line\&amp;#34;;&amp;#34; &amp;gt;&amp;gt; $FILE done } # 标记sh文件 echo &amp;#34;#!/bin/bash&amp;#34; &amp;gt;&amp;gt; $FILE # 记录创建日期 echo &amp;#34;# $NOWcreate file.</description>
@@ -43,10 +43,10 @@ Liunx查找删除历史备份文件批命令脚本 具体执行脚本如下：
     
     <item>
       <title>如何按多个文件名查找文件</title>
-      <link>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</link>
       <pubDate>Mon, 15 Feb 2016 12:44:59 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</guid>
       <description>一个问题是如何在 Liunx 下按多个文件名或者文件后缀查找文件。例如，我想要查找当前项目下所有的 .go 和 .md 文件。
 此时，你可以使用 Liunx 命令 find ，命名具体用法参见gnu 文档。 使用 find 命令能够通过选项-o ( or 的意思) 来按多个条件查找文件。
 示例：按两个文件名查找文件 我们想查找当前命令目录下的 .go 和 .md 文件。

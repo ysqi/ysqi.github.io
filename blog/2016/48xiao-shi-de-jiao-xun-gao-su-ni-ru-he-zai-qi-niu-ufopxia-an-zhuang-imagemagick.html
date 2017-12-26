@@ -1,0 +1,71 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>48小时的教训告诉你如何在七牛ufop下安装ImageMagick |虞双齐的博客</title><meta name="description" content="背景 故事是这样的：
+公司系统里面有一个服务是 PDF2JPG (实际上应该是 PPT2JPG， 只"><meta name="keywords" content="七牛云存储, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html"><meta property="og:title" content="48小时的教训告诉你如何在七牛ufop下安装ImageMagick"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:58"><meta property="article:modified_time" content="2016-12-31 11:32:58"><meta property="article:tag" content="七牛云存储"><meta property="article:tag" content="golang"><meta name="og:description" content="背景 故事是这样的：
+公司系统里面有一个服务是 PDF2JPG (实际上应该是 PPT2JPG， 只"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html">48小时的教训告诉你如何在七牛ufop下安装ImageMagick</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000007265753" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h2 id="背景">背景</h2><p>故事是这样的：</p><p>公司系统里面有一个服务是 PDF2JPG (实际上应该是 PPT2JPG， 只是PPT2PDF这一步骤我们利用七牛的云服务来完成。) 早期的时候我们根据系统负载已经实际情况采用了 crontab 来定时获取数据库需要转换的数据。所以这个服务的QPS是 <sup>1</sup>&frasl;<sub>60</sub> QPS。是的，你没看错就是这么低，但是用起来还好，毕竟用户容量不大。</p><p>但是随着用户规模的增大，我们不得不正视一个问题:就是如何满足用户转换的动态需求 (用户的需求爆发点一般爆发在晚上6点左右）。正好七牛的 <a href="http://o9gnz92z5.bkt.clouddn.com/article/dora/ufop/ufop-introduction.html">UFOP</a> 能满足我们的需求。而且还有免费的额度。</p><pre><code>    内存    CPU    系统盘    按需￥/每小时    月计
+    M0C1    512MB    1 Core    10GB    0.088    63.36
+    M1C2    1GB    2 Core    10GB    0.176    126.72
+    M4C8    4GB    8 Core    10GB    0.650    468
+    M8C12    8GB    12 Core    10GB    1.300    936
+注意：M0C1的情况下，标准用户 和 高级用户 ，有 750 小时/月的免费额度。
+</code></pre><p><strong>我们的规划是这样的 在闲时只开启一个 M1C2 实例， 忙时再开启两个 M1C2 实例。这样既保证有效性也能保证经济性</strong></p><h2 id="实施">实施</h2><p><strong>写七牛的代码，一定不能只看官方网站的文档，一定要找他们 github 上的项目 <a href="https://github.com/qiniudemo/qiniu-ufop-go">qiniu-ufop-go</a> 、<a href="https://github.com/qiniu/ufop-golang">ufop-golang</a>。 不过即使 github 上的也不能全信，有些也是过期的。</strong></p><p>只要你记住以上这个，那么写代码根本不算什么！</p><h2 id="部署">部署</h2><p>很多人以为是最难的代码都写了，那么部署应该是分分钟的问题。那就看一下下面的血泪图吧。</p><p>七牛采用的是 docker 的方案，自建了更新源，隔离了外网链接。所以安装一个 ImageMagick 别提有多疼了！</p><p>首先需要安装 libpng ， 接着安装 ghostscript ，然后再安装 ImageMagick，可是 ImageMagick 死活都找不到 libpng 的路径，所以没办法支持 png。 你必须得先安装 pkg-config 才行。</p><p>完整的 ufop.yaml 代码如下。</p><pre><code>image: ubuntu
+build_script:
+ - echo building...
+ - mv $RESOURCE/* ./
+ - sudo ldconfig /usr/local/lib
+ - tar zxvf pkg-config-0.29.tar.gz &gt; /dev/null
+ - cd pkg-config-0.29 &amp;&amp; ./configure --with-internal-glib &amp;&amp; make &gt; /dev/null 2&gt;&amp;1 &amp;&amp; sudo make install &gt; /dev/null
+ - tar zxvf libpng-1.6.24.tar.gz &gt; /dev/null
+ - cd libpng-1.6.24 &amp;&amp; ./configure &gt; /dev/null &amp;&amp; make &gt; /dev/null &amp;&amp; sudo make install &gt; /dev/null
+ - tar zxvf ghostscript-9.15.tar.gz &gt; /dev/null
+ - cd ghostscript-9.15 &amp;&amp; ./configure &gt; /dev/null &amp;&amp; make &gt; /dev/null 2&gt;&amp;1 &amp;&amp; sudo make install &gt; /dev/null
+ - tar -zxvf ImageMagick.tar.gz &gt; /dev/null
+ - /usr/local/bin/pkg-config --list-all
+ - cd ImageMagick-7.0.3-4/ &amp;&amp; ./configure  --enable-shared=yes &gt; /dev/null &amp;&amp; make &gt; /dev/null &amp;&amp; sudo make install &gt; /dev/null
+ - sudo ldconfig /usr/local/lib
+ - echo &quot;convert -list format&quot;
+ - chmod +x ./run
+run: ./run qufop.conf
+</code></pre><p>附上结果图：</p></div><aside id="meta"><meta itemprop="wordCount" content="225"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8.html" rel="tag">七牛云存储</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html">mac下vim&amp;#43;golang开发环境搭建</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html">对beego的控制器函数进行单测</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="2dff2db136d4bbcc4c3a0661c60078bd"></div><div id="cyReward" role="cylabs" data-use="reward" sid="2dff2db136d4bbcc4c3a0661c60078bd" style="text-align:center"></div><div id="SOHUCS" sid="2dff2db136d4bbcc4c3a0661c60078bd"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2f48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2f48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

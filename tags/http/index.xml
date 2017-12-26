@@ -13,10 +13,10 @@
     
     <item>
       <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
-      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
       <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
       <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
 一、后端测试了一下发现没有问题
 “我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
@@ -33,10 +33,10 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
     
     <item>
       <title>用Go语言写HTTP中间件</title>
-      <link>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</guid>
       <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极了。
 其一，一个好的中间件拥有单一的功能，可插拔并且是自我约束的。这就意味着你可以在接口的层次上把它放到应用中，并能很好的工作。中间件并不影响你的代码风格，它也不是一个框架，仅仅是你处理请求流程中额外一层罢了。根本不需要重写代码：如果你想用一个中间件，就把它加上应用中；如果你改变主意了，去掉就好了。就这么简单。
 来看看Go，HTTP中间件非常流行，标准库中也是这样。或许咋看上去并不明显，net/http包中的函数，如StripPrefix 和TimeoutHandler 正是我们上面定义的中间件：封装处理过程并在处理输入或输出时增加额外的动作。
@@ -61,10 +61,10 @@ type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们�
     
     <item>
       <title>Go标准库剖析1(transporthttp请求的承载者)</title>
-      <link>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</guid>
       <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法
 type RoundTripper interface { RoundTrip(*Request) (*Response, error) }  RoundTrip executes a single HTTP transaction, returning the Response for the request req. (RoundTrip 代表一个http事务，给一个请求返回一个响应)
 说白了，就是你给它一个request,它给你一个response
@@ -74,10 +74,10 @@ type Transport struct { idleMu sync.Mutex wantIdle bool // user has requested to
     
     <item>
       <title>Golang学习笔记-标准库&amp;amp;quot;net_http&amp;amp;quot;的简析及自制简单路由框架</title>
-      <link>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</guid>
       <description>原文链接：http://targetliu.com/golang-http-router/
  还是在继续学习Go的路上，曾经在使用PHP的时候吃过过度依赖框架的亏。现在学习Go的时候决定先打好基础，从标准库学起走。
  源码分析 我们知道最简单的建立http服务器代码基本上都是这样的：

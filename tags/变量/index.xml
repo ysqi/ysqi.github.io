@@ -13,10 +13,10 @@
     
     <item>
       <title>GO学习笔记(一)</title>
-      <link>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:04 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html</guid>
       <description>https://segmentfault.com/a/
 变量 变量声明 通过关键字var声明变量，数据类型在变量名后。
 var a int var b int = 10  变量声明语句可以不需要使用分号作为结束符。

@@ -13,10 +13,10 @@
     
     <item>
       <title>分布式系统测试那些事儿-理念</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
       <description>https://segmentfault.com/a/
 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
 文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。
@@ -34,10 +34,10 @@ We should walk through all of the bugs in:
     
     <item>
       <title>分布式系统测试那些事儿-错误注入</title>
-      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</guid>
       <description>本话题系列文章整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。文章较长，为方便大家阅读，会分为上中下三篇，本文为中篇。
 接上篇：
 当然测试可能会让你代码变得没有那么漂亮，举个例子：
@@ -47,10 +47,10 @@ We should walk through all of the bugs in:
     
     <item>
       <title>TiKV源码解析系列-PlacementDriver</title>
-      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</guid>
       <description>本系列文章主要面向 TiKV 社区开发者，重点介绍 TiKV 的系统架构，源码结构，流程解析。目的是使得开发者阅读之后，能对 TiKV 项目有一个初步了解，更好的参与进入 TiKV 的开发中。
 TiKV 是一个分布式的 KV 系统，它采用 Raft 协议保证数据的强一致性，同时使用 MVCC + 2PC 的方式实现了分布式事务的支持。
 本文为本系列文章第三节。

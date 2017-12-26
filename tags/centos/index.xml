@@ -13,10 +13,10 @@
     
     <item>
       <title>在CentOS下利用FFMPEG对视频进行转码</title>
-      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</guid>
       <description>https://segmentfault.com/a/
 先按照ffmpeg的安装攻略，搞定你CentOS上的ffmpeg，我目前使用的版本是3.0.2
 然后直接上代码
@@ -25,10 +25,10 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;
     
     <item>
       <title>nsqjs客户端的部署</title>
-      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</guid>
       <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。
 首先安装nsq，这个没什么好说的，我是直接在官网下载bin文件，直接部署的，环境是centOS 6.7，安装在/opt/nsq-0.3.7.linux-amd64.go1.6目录下；
 其次是安装nodejs，我安装的是v6.1.0版本，这步也没什么好讲；
@@ -40,10 +40,10 @@ $ rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-6
     
     <item>
       <title>如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</title>
-      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html.html</link>
+      <link>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</link>
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
       <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
 ssh root@218.244.147.196 @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
 安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：

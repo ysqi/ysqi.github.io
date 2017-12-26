@@ -13,10 +13,10 @@
     
     <item>
       <title>Golang Generate命令说明与使用</title>
-      <link>https://yushuangqi.com/blog/2017/go-command-generate.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
       <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
       <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
 命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
 通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。

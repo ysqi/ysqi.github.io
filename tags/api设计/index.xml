@@ -13,10 +13,10 @@
     
     <item>
       <title>对echo框架进行统一的自定义错误处理</title>
-      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</link>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
       <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
 你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。

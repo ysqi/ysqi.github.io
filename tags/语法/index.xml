@@ -13,10 +13,10 @@
     
     <item>
       <title>为什么Go语言把类型放在后面？</title>
-      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
       <description>本文整理自知乎，原文作者 @林建入。
 不是为了与众不同。而是为了更加清晰易懂。
 Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blog.golang.org/gos-declaration-syntax），简略翻译如下（水平有限翻译的不对的地方见谅）：

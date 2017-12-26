@@ -13,10 +13,10 @@
     
     <item>
       <title>Golang实现ECB模式3DES算法</title>
-      <link>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html</guid>
       <description>简介 因项目需要使用ECB模式下的3DES算法加解密信息，golang默认只提供CBC模式，只能自己实现ECB模式。
 参考[](https://segmentfault.com/a/1190000004151272)[https://segmentfault.com/a/11...](https://segmentfault.com/a/1190000004151272)，文章对ECB模式的DES有解释，并实现了部分DES算法样例。这里把算法补全，提供3DES算法实现。
 基础 3DES

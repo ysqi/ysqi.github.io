@@ -1,0 +1,159 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>GoDoc文档使用 |虞双齐的博客</title><meta name="description" content="《Go语言实战》读书笔记，未完待续，欢迎关注公众号flysnow_org，第一时间看后续笔记。
+ 对"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html"><meta property="og:title" content="GoDoc文档使用"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-03-13 08:20:09"><meta property="article:modified_time" content="2017-03-13 08:20:09"><meta property="article:tag" content="golang"><meta name="og:description" content="《Go语言实战》读书笔记，未完待续，欢迎关注公众号flysnow_org，第一时间看后续笔记。
+ 对"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html">GoDoc文档使用</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="http://www.jianshu.com/p/ed6a6d2f1fdb" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-03-13">2017年03月13日</time></span></p></header><div itemprop="articleBody"><blockquote><p>《Go语言实战》读书笔记，未完待续，欢迎关注公众号<code>flysnow_org</code>，第一时间看后续笔记。</p></blockquote><p>对于协作开发或者代码共享来说，文档是一个可以帮助开发者快速了解以及使用这些代码的一个教程，文档越全面，越详细，入门越快，效率也会更高。</p><p>在Go语言中，Go为我们提供了快速生成文档以及查看文档的工具，让我们可以很容易的编写查看文档。</p><p>Go提供了两种查看文档的方式，一种是使用<code>go doc</code>命令在终端查看，这种适用于使用VIM等工具在终端开发的人员，它们不用离开终端，既可以查看想查看的文档，又可以编码。</p><p>第二种方式，是使用浏览器查看的方式，通过<code>godoc</code>命令可以在本机启动一个web服务，我们可以通过打开浏览器，访问这个服务来查看我们的Go文档。</p><h2 id="从终端查看文档">从终端查看文档</h2><p>这种方式适用于在终端开发的，它们一般不像离开终端，查完即可继续编码，这时候使用<code>go doc</code>命令是很不错的选择。</p><pre><code>➜  hello go help doc
+usage: go doc [-u] [-c] [package|[package.]symbol[.method]]
+
+Doc prints the documentation comments associated with the item identified by its
+arguments (a package, const, func, type, var, or method) followed by a one-line
+summary of each of the first-level items &quot;under&quot; that item (package-level
+declarations for a package, methods for a type, etc.).
+
+Flags:
+    -c
+        Respect case when matching symbols.
+    -cmd
+        Treat a command (package main) like a regular package.
+        Otherwise package main's exported symbols are hidden
+        when showing the package's top-level documentation.
+    -u
+        Show documentation for unexported as well as exported
+        symbols and methods.
+</code></pre><p>从以上可以看出，<code>go doc</code>的使用比较简单，接收的参数是包名，或者以包里的结构体、方法等。如果我们不输入任何参数，那么显示的是当前目录的文档，下面看个例子。</p><pre><code>/*
+ 提供的常用库，有一些常用的方法，方便使用
+ */
+package lib
+
+// 一个加法实现
+// 返回a+b的值
+func Add(a,b int) int {
+    return a+b
+}
+
+➜  lib go doc
+package lib // import &quot;flysnow.org/hello/lib&quot;
+
+提供的常用库，有一些常用的方法，方便使用
+
+func Add(a, b int) int
+</code></pre><p>在当前目录执行<code>go doc</code>，输出了当前目录下的文档信息。</p><p>除此之外，我们还可以指定一个包，就可以列出当前这个包的信息，着包括文档、方法、结构体等。</p><pre><code>➜  lib go doc json
+package json // import &quot;encoding/json&quot;
+
+Package json implements encoding and decoding of JSON as defined in RFC
+4627. The mapping between JSON and Go values is described in the
+documentation for the Marshal and Unmarshal functions.
+
+See &quot;JSON and Go&quot; for an introduction to this package:
+https://golang.org/doc/articles/json_and_go.html
+
+func Compact(dst *bytes.Buffer, src []byte) error
+func HTMLEscape(dst *bytes.Buffer, src []byte)
+func Indent(dst *bytes.Buffer, src []byte, prefix, indent string) error
+func Marshal(v interface{}) ([]byte, error)
+func MarshalIndent(v interface{}, prefix, indent string) ([]byte, error)
+func Unmarshal(data []byte, v interface{}) error
+type Decoder struct{ ... }
+    func NewDecoder(r io.Reader) *Decoder
+type Delim rune
+type Encoder struct{ ... }
+    func NewEncoder(w io.Writer) *Encoder
+type InvalidUTF8Error struct{ ... }
+type InvalidUnmarshalError struct{ ... }
+type Marshaler interface{ ... }
+type MarshalerError struct{ ... }
+type Number string
+type RawMessage []byte
+type SyntaxError struct{ ... }
+type Token interface{}
+type UnmarshalFieldError struct{ ... }
+type UnmarshalTypeError struct{ ... }
+type Unmarshaler interface{ ... }
+type UnsupportedTypeError struct{ ... }
+type UnsupportedValueError struct{ ... }
+</code></pre><p>以上是我们以<code>json</code>包为例，查看该包的文档，从中我们可以看到它有一个名为<code>Decoder</code>的结构体，我们进一步查看这个结构体的文档。</p><pre><code>➜  lib go doc json.Decoder
+package json // import &quot;encoding/json&quot;
+
+type Decoder struct {
+    // Has unexported fields.
+}
+    A Decoder reads and decodes JSON values from an input stream.
+
+
+func NewDecoder(r io.Reader) *Decoder
+func (dec *Decoder) Buffered() io.Reader
+func (dec *Decoder) Decode(v interface{}) error
+func (dec *Decoder) More() bool
+func (dec *Decoder) Token() (Token, error)
+func (dec *Decoder) UseNumber()
+</code></pre><p>现在我们看到这个<code>Decoder</code>有很多方法,进一步查看这些方法的文档，比如<code>Decode</code>。</p><pre><code>➜  lib go doc json.Decoder.Decode    
+func (dec *Decoder) Decode(v interface{}) error
+    Decode reads the next JSON-encoded value from its input and stores it in the
+    value pointed to by v.
+
+    See the documentation for Unmarshal for details about the conversion of JSON
+    into a Go value.
+</code></pre><p><code>go doc</code>使用就是这样，一步步，缩小范围，查看想看的那些包、结构体、接口或者函数方法的文档。</p><h2 id="在线浏览文档">在线浏览文档</h2><p><code>go doc</code>终端查看的方式，虽然也很便捷，不过效率不高，并且没有查看细节以及进行跳转，为此Go为我们提供了基于浏览器使用的网页方式进行浏览API 文档，我们只用点点鼠标，就可以查看了，还可以在方法、包等之间进行跳转，更简洁方便。</p><p>要想启动一个Web在线API文档服务很简单，使用<code>godoc</code>就可以了。</p><pre><code>➜  lib godoc -http=:6060
+</code></pre><p>后面的http是要指定Web服务监听的IP和Port，运行后，我们就可以打开浏览器，输入<code>http://127.0.0.1:6060</code>进行访问了，你会发现打开的页面，和GoLang的官方网站一样，没错，这个其实就是官网的一个拷贝，但是包的文档<code>http://127.0.0.1:6060/pkg/</code>会和官网不一样,你自己启动的这个服务，是基于你电脑上<code>GOROOT</code>和<code>GOPATH</code>这两个路径下的所有包生成的文档，会比官网只是标准库的文档要多。</p><p>在线浏览API文档非常方便，只需要鼠标点击就可以了，也可以点击蓝色的超链接在方法、结构、接口以及包等之间跳转，还可以查看对应的源代码，示例代码，很方便，我们经常用的也是这个在线浏览方式。</p><h2 id="生成自己的文档">生成自己的文档</h2><p>Go文档工具，还有一个亮点，就是可以支持开发人员自己写的代码，只要开发者按照一定的规则，就可以自动生成文档了。</p><p>在我们编码中，文档就是注释，Go语言采用了和C、Java差不多的注释风格。一种是双斜线的方式，一种是斜线和星号的方式。</p><pre><code>/*
+ 提供的常用库，有一些常用的方法，方便使用
+ */
+package lib
+
+// 一个加法实现
+// 返回a+b的值
+func Add(a,b int) int {
+    return a+b
+}
+</code></pre><p>这还是我们刚刚那个例子，例子中文档的编写的两种风格。想要为哪些标识符生车文档，就在哪些标识符之前，使用注释的方式，加入到代码中即可。</p><p>现在我们不管是用<code>go doc</code>，还是<code>godoc</code>都可以看到我们刚刚注释的文档了。</p><h2 id="添加文档示例">添加文档示例</h2><p>我们在看很多官方API文档的时候，可以在文档里看到一些例子，这些例子会告诉我们怎么使用API，以及这个例子打印的输出是什么，我觉得这个非常好，这样看函数文档看不懂的，可以参考这个例子，那么对于我们自己写的API，怎么给API文档添加示例代码呢？</p><p>这里我参考了官方的源代码，总结了测试了一下，发现可行，这里分享一下。</p><ol><li>示例代码必须单独存放在一个文件中，文件名字为<code>example_test.go</code>。</li><li>在这个go文件里，定义一个名字为<code>Example</code>的函数，参数为空</li><li>示例的输出采用注视的方式，以//Output:开头，另起一行，每行输出占一行。</li></ol><p>说了这三个规则，下面通过一个例子更直观的了解。</p><pre><code>package lib
+
+import &quot;fmt&quot;
+
+func Example() {
+    sum:=Add(1,2)
+    fmt.Println(&quot;1+2=&quot;,sum)
+    //Output:
+    //1+2=3
+}
+</code></pre><p>这就是为刚刚那个<code>Add</code>函数写的示例代码，我们运行<code>godoc</code>就可以看到结果了。</p><p><img src="https://static.yushuangqi.com/blog/2017/0313075858bpnsb0rg3be.png" alt=""></p><p>示例代码文档</p><p>Go的文档工具非常强大，更多功能，我们可以使用帮助命令查看。这里再推荐一个比较不错的第三方的API文档网站，收录了包括官方在内的很多Go库，可以直接跳转，关联源代码，非常方便。<a href="https://gowalker.org/">https://gowalker.org/</a></p><p>《Go语言实战》读书笔记，未完待续，<strong>欢迎关注公众号<code>flysnow_org</code>，第一时间看后续笔记。</strong></p></div><aside id="meta"><meta itemprop="wordCount" content="482"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html">分布式事务一致性方案</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html">go_js简介及实例演示</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="3cb07c716cb9bf8b5c35f70dbde9c6c4"></div><div id="cyReward" role="cylabs" data-use="reward" sid="3cb07c716cb9bf8b5c35f70dbde9c6c4" style="text-align:center"></div><div id="SOHUCS" sid="3cb07c716cb9bf8b5c35f70dbde9c6c4"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgoyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgoyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

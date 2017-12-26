@@ -1,0 +1,204 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>及时通信最佳实践 |虞双齐的博客</title><meta name="description" content="描述 Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长"><meta name="keywords" content="聊天室, 及时通信, websocket, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html"><meta property="og:title" content="及时通信最佳实践"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:28"><meta property="article:modified_time" content="2016-12-31 11:32:28"><meta property="article:tag" content="聊天室"><meta property="article:tag" content="及时通信"><meta property="article:tag" content="websocket"><meta property="article:tag" content="golang"><meta name="og:description" content="描述 Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html">及时通信最佳实践</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000008145991" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><h3 id="描述">描述</h3><p>Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长连接的应用。</p><p>使用Lhttp可以大量减少服务端开发的工作量，实现非常好的模块化和业务功能的解耦合。</p><p>可以定制任何你想要的功能。</p><p><a href="https://github.com/fanux/lhttp">项目地址</a></p><h3 id="特点">特点</h3><ul><li><p>使用简单，功能强大</p></li><li><p>性能高，使用gnatsd消息队列 publish 10000 条消息耗时0.04s(single-core CPU,1G memory).</p></li><li><p>支持集群，横向扩展，通过增加服务器来获取更高的服务能力</p></li><li><p>非常容器进行定制与扩展</p></li><li><p>可以非常好的与http服务协同工作，如利用http发送消息，将消息转发给上游http服务器等。所以即便你不会go语言也可以开发一些应用。</p></li></ul><h3 id="聊天室demo-https-github-com-fanux-lhttp-web-demo"><a href="https://github.com/fanux/lhttp-web-demo">聊天室demo</a></h3><p><a href="https://github.com/fanux/lhttp-javascript-sdk">前端sdk</a></p><h4 id="协议栈">协议栈:</h4><pre><code>+--------------------+
+|       lhttp        |
++--------------------+
+|     websocket      |
++--------------------+
+|        TCP         |
++--------------------+
+</code></pre><h4 id="系统架构">系统架构</h4><pre><code>        +---------------------------------------+
+        |    message center cluster (gnatsd)    |
+        +---------------------------------------+
+ ........|.................|...............|..................
+| +-------------+   +-------------+   +-------------+        | 
+| |lhttp server |   |lhttp server |   |lhttp server |   ...  |  lhttp 服务集群
+| +-------------+   +-------------+   +-------------+        | 
+ .....|..........._____|  |___.............|  |_________......
+      |          |            |            |            |       &lt;----使用websocket链接
+ +--------+  +--------+   +--------+   +--------+   +--------+   
+ | client |  | client |   | client |   | client |   | client |   
+ +--------+  +--------+   +--------+   +--------+   +--------+  
+</code></pre><h4 id="快速入门">快速入门</h4><pre><code>go get github.com/nats-io/nats
+go get github.com/fanux/lhttp
+</code></pre><p>先启动gnatsd:</p><pre><code>cd bin
+./gnatsd &amp;
+./lhttpd 
+</code></pre><p>打开另一个终端，执行客户端程序，输入命令码：</p><pre><code>cd bin
+./lhttpClient
+</code></pre><h3 id="使用docker快速体验">使用docker快速体验</h3><pre><code>$ docker build -t lhttp:latest .
+$ docker run -p 9090:9090 -p 8081:8081 lhttp:latest
+</code></pre><p>打开浏览器，访问： <code>http://localhost:9090</code>.</p><p>打开两个窗口就可以聊起来了。</p><p>websocket 端口是 8081, 可以使用自己的websocket客户端去连 <code>ws://localhost:8081</code></p><p>也可以从dockerhub上下载镜像:</p><pre><code>$ docker run -p 9090:9090 -p 8081:8081 fanux/lhttp:latest
+</code></pre><h3 id="协议介绍">协议介绍</h3><pre><code>LHTTP/1.0 Command\r\n                --------起始行，协议名和版本，Command:非常重要，标识这条消息的命令码是什么，服务端也是根据命令码注册对应的处理器的。
+Header1:value\r\n                    --------首部
+Header2:value\r\n
+\r\n
+body                                 --------消息体
+</code></pre><p>事例：</p><pre><code>LHTTP/1.0 chat\r\n                  命令码叫`chat`
+content-type:json\r\n               消息体使用json编码
+publish:channel_jack\r\n            服务端请把这条消息publish给jack (jack订阅了channel_jack)
+\r\n
+{
+    to:jack,
+    from:mike,
+    message:hello jack,
+    time:1990-1210 5:30:48
+}
+</code></pre><h3 id="使用教程-只需三步">使用教程,只需三步</h3><blockquote><p>定义你的处理器，需要聚合 <code>BaseProcessor</code></p></blockquote><pre><code>type ChatProcessor struct {
+    *lhttp.BaseProcessor
+}
+</code></pre><blockquote><p>实现三个接口，连接打开时干嘛，关闭时干嘛，消息到来时干嘛。</p></blockquote><pre><code>type ChatProcessor struct {
+}
+func (p ChatProcessor)OnOpen(h *WsHandler) {
+    //your logic
+}
+func (p ChatProcessor)OnClose(h *WsHandler) {
+    //your logic
+}
+func (p ChatProcessor)OnMessage(h *WsHandler) {
+    //your logic
+}
+</code></pre><blockquote><p>注册你的处理器，这里的<code>chat</code> 与消息体中的<code>chat对应</code>,也就是这个处理器仅会处理<code>LHTTP/1.0 chat\r\n....</code>这类消息.</p></blockquote><pre><code>lhttp.Regist(&quot;chat&quot;,&amp;ChatProcessor{&amp;lhttp.BaseProcessor{}})
+</code></pre><p>如果命令码是 &ldquo;chat&rdquo; ChatProcessor 会处理它。</p><blockquote><p>这里比如收到消息就直接将消息返回：</p></blockquote><pre><code>func (p *ChatProcessor)OnMessage(h *WsHandler) {
+    h.Send(h.GetBody())
+}
+</code></pre><h3 id="启动服务器">启动服务器</h3><pre><code>http.Handler(&quot;/echo&quot;,lhttp.Handler(lhttp.StartServer))
+http.ListenAndServe(&quot;:8081&quot;)
+</code></pre><h3 id="一个完整的回射例子">一个完整的回射例子：</h3><pre><code>type ChatProcessor struct {
+    *lhttp.BaseProcessor
+}
+
+func (p *ChatProcessor) OnMessage (h *lhttp.WsHandler) {
+    log.Print(&quot;on message :&quot;, h.GetBody())
+    h.Send(h.GetBody())
+}
+
+func main(){
+    lhttp.Regist(&quot;chat&quot;, &amp;ChatProcessor{&amp;lhttp.BaseProcessor{}})
+
+    http.Handle(&quot;/echo&quot;,lhttp.Handler(lhttp.StartServer))
+    http.ListenAndServe(&quot;:8081&quot;,nil)
+}
+</code></pre><hr><h3 id="订阅-发布">订阅/发布</h3><p>下面来看用Lhttp开发及时通信应用有多简单</p><p>假设有两个客户端，这里的客户端比如浏览器应用。</p><p>client1:</p><pre><code>LHTTP/1.0 command\r\n
+subscribe:channelID\r\n
+\r\n
+body optional
+</code></pre><p>client1通过websocket向Lhttp发送如上字符串，就订阅了<code>channelId</code></p><p>client2:</p><pre><code>LHTTP/1.0 command\r\n
+publish:channelID\r\n
+\r\n
+body require
+</code></pre><p>client2通过websocket向Lhttp发送如上字符串，就向<code>channelID</code>发布了一条消息。 因为client1订阅了channelID,所以client1会收到这条消息。</p><p>client1不想再收消息，那么发如下字符串给服务端即可:</p><pre><code>LHTTP/1.0 command\r\n
+unsubscribe:channelID\r\n
+\r\n
+body optional
+</code></pre><p>订阅/发布 是lhttp内置功能，服务端一行代码不用写即可获取这种服务，只需要使用特定首部<code>subscribe</code>,<code>publish</code> 和<code>unsubscribe</code></p><p>同时订阅多个，如同时订阅多个聊天室。</p><pre><code>LHTTP/1.0 chat\r\n
+subscribe:channelID1 channelID2 channelID3\r\n
+\r\n
+</code></pre><h4 id="使用http发布消息">使用http发布消息</h4><p>URL: /publish .<br>方法: POST .<br>http body: 整个lhttp消息<br>for example I want send a message to who subscribe channel_test by HTTP.<br>如我想发送一条消息给订阅了channel_test的人。</p><pre><code>    resp,err := http.POST(&quot;https://www.yourserver.com/publish&quot;, &quot;text/plain&quot;,
+    &quot;LHTTP/1.0 chat\r\npublish:channel_test\r\n\r\nhello channel_test guys!&quot;)
+</code></pre><p>这里封装好了一个更好用的工具 <code>Publish</code> tools.go</p><pre><code>//func Publish(channelID []string, command string, header map[string]string, body string) (err error) {
+//}
+//send message to who subscribe mike.
+
+Publish(&quot;mike&quot;, &quot;yourCommand&quot;, nil, &quot;hello mike!&quot;)
+</code></pre><h3 id="上游服务器">上游服务器</h3><p>upstream首部可以让lhttp向上游的http服务器发送一条消息。</p><pre><code>LHTTP/1.0 command\r\n
+upstream:POST http://www.xxx.com\r\n
+\r\n
+body
+</code></pre><p>如果是POST方法，lhttp会把整个消息体当作http的body发送给 <a href="http://www.xxx.com">http://www.xxx.com</a><br>如果是GET，lhttp会忽略消息体</p><pre><code>LHTTP/1.0 command\r\n
+upstream:GET http://www.xxx.com?user=user_a&amp;age=26\r\n
+\r\n
+body
+</code></pre><h4 id="upstream有什么用">upstream有什么用：</h4><p>如我们不想改动lhttp的代码，但是想存储聊天记录。</p><p>通过upstream可以实现很好的解耦：</p><p>并且http server可以用其它语言实现.</p><pre><code>        +----+                  +----+
+        |jack|                  |mike|
+        +----+                  +----+
+         |_____________    _______|
+                       |  |
+                   +------------+
+                   |lhttp server|
+                   +------------+
+                         |(http request with chat record)
+                         V
+                   +------------+
+                   | http server|  upstream server(http://www.xxx.com/record)
+                   +------------+
+                   (save chat record)
+</code></pre><p>jack:</p><pre><code>LHTTP/1.0 chat\r\n
+upstream:POST http://www.xxx.com/record\r\n
+publish:channel_mike\r\n
+\r\n
+hello mike,I am jack
+</code></pre><p>mike:</p><pre><code>LHTTP/1.0 chat\r\n
+subscribe:channel_mike\r\n
+\r\n
+</code></pre><p>这样jack publish消息时不仅mike可以收到，后端的upstream server也可以收到，我们可以在后端服务器中处理消息存储的逻辑，如将消息</p><p>存储到redis的有序集合中。</p><h3 id="分块消息">分块消息</h3><p>试想一下，一条消息中既有图片也有文字还有语音怎么办？ lhttp的multipart首部解决这个问题</p><pre><code>LHTTP/1.0 upload\r\n
+multipart:0 56\r\n
+\r\n
+content-type:text/json\r\n
+\r\n
+{filename:file.txt,fileLen:5}
+content-type:text/plain\r\n
+\r\n
+hello
+
+content-type:text/json\r\n\r\n{filename:file.txt,fileLen:5}content-type:text/plain\r\n\r\nhello
+^                                                          ^
+|&lt;---------------------first part-------------------------&gt;|&lt;---------second part------------&gt;|
+0                                                          56                           
+</code></pre><p>http中是使用boundry实现的，lhttp使用偏移量标识分块，这样效率更高，不需要遍历整个消息体。</p><h4 id="如何获取分块消息">如何获取分块消息</h4><p>如客户端消息如下：</p><pre><code>LHTTP/1.0 upload\r\nmultipart:0 14\r\n\r\nk1:v1\r\n\r\nbody1k2:v2\r\n\r\nbody2
+</code></pre><p>服务端代码，消息存在链表中：</p><pre><code>type UploadProcessor struct {
+    *lhttp.BaseProcessor
+}
+
+func (*UploadProcessor) OnMessage(ws *lhttp.WsHandler) {
+    for m := ws.GetMultipart(); m != nil; m = m.GetNext() {
+        log.Print(&quot;multibody:&quot;, m.GetBody(), &quot; headers:&quot;, m.GetHeaders())
+    }
+}
+
+//don't forget to tegist your command processor
+
+lhttp.Regist(&quot;upload&quot;, &amp;UploadProcessor{&amp;lhttp.BaseProcessor{}})
+</code></pre><h3 id="首部过滤模块开发-https-github-com-fanux-lhttp-blob-master-doc-develop-md"><a href="https://github.com/fanux/lhttp/blob/master/doc/DEVELOP.md">首部过滤模块开发</a></h3></div><aside id="meta"><meta itemprop="wordCount" content="498"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a> <a href="/tags/websocket.html" rel="tag">websocket</a> <a href="/tags/%E5%8F%8A%E6%97%B6%E9%80%9A%E4%BF%A1.html" rel="tag">及时通信</a> <a href="/tags/%E8%81%8A%E5%A4%A9%E5%AE%A4.html" rel="tag">聊天室</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/golang-bi-ji.html">golang笔记</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/gobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html">Go编程技巧--Goroutine的优雅控制</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="1cd6a8215a6ffe8c72f7077ccc27c5c3"></div><div id="cyReward" role="cylabs" data-use="reward" sid="1cd6a8215a6ffe8c72f7077ccc27c5c3" style="text-align:center"></div><div id="SOHUCS" sid="1cd6a8215a6ffe8c72f7077ccc27c5c3"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fji-shi-tong-xin-zui-jia-shi-jian.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fji-shi-tong-xin-zui-jia-shi-jian.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

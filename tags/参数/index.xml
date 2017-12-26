@@ -13,10 +13,10 @@
     
     <item>
       <title>go-可变参数</title>
-      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</guid>
       <description>https://segmentfault.com/a/
 今天在尝试用go写一个简单的orm的时候 发现 在调用可变参数函数时，不是总能使用省略号将一个切片展开，有时候编译器可能会报错 再此用几个简单的例子作为说明
 当不太确定数据类型的时候我们通常采用空接口

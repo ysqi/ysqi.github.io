@@ -1,0 +1,82 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go编程技巧--Goroutine的优雅控制 |虞双齐的博客</title><meta name="description" content="原文：Go编程技巧&amp;ndash;Goroutine的优雅控制
+Goroutine是Go语言最重要的机"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/gobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html"><meta property="og:title" content="Go编程技巧--Goroutine的优雅控制"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:32:27"><meta property="article:modified_time" content="2016-12-31 11:32:27"><meta property="article:tag" content="golang"><meta name="og:description" content="原文：Go编程技巧&amp;ndash;Goroutine的优雅控制
+Goroutine是Go语言最重要的机"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/gobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html">Go编程技巧--Goroutine的优雅控制</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000008199710" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>原文：<a href="http://www.pchou.info/go/2017/01/23/Go-goroutine-control.html">Go编程技巧&ndash;Goroutine的优雅控制</a></p><p><code>Goroutine</code>是Go语言最重要的机制，<code>Goroutine</code>将复杂的需要异步的IO调用抽象成同步调用，符合人类正常的顺序思维，极大的简化了IO编程的难度。如同线程一样，对<code>Goroutine</code>既要掌握基本的用法，更要很好的控制<code>Goroutine</code>的退出机制。本文介绍一种<code>Goroutine</code>的退出思路。</p><p>通常<code>Goroutine</code>会因为两种情况阻塞：</p><ol><li><p>IO操作，比如对<code>Socket</code>的<code>Read</code>。</p></li><li><p><code>channel</code>操作。对一个chan的读写都有可能阻塞<code>Goroutine</code>。</p></li></ol><p>对于情况1，只需要关闭对应的描述符，阻塞的<code>Goroutine</code>自然会被唤醒。</p><p>重点讨论情况2。并发编程，<code>Goroutine</code>提供一种<code>channel</code>机制，<code>channel</code>类似管道，写入者向里面写入数据，读取者从中读取数据。如果<code>channel</code>里面没有数据，读取者将阻塞，直到有数据；如果<code>channel</code>里面数据满了，写入者将因为无法继续写入数据而阻塞。</p><p>如果在整个应用程序的生命周期里，writer和reader都表现为一个<code>Goroutine</code>，始终都在工作，那么如何在应用程序结束前，通知它们终止呢？在Go中，并不推荐像abort线程那样，强行的终止<code>Goroutine</code>。因此，抽象的说，必然需要保留一个入口，能够跟writer或reader通信，以告知它们终止。</p><p>我们先看reader。我们首先可以想到，利用<code>close</code>函数关闭正在读取的<code>channel</code>，从而可以唤醒reader，并退出。但是考虑到<code>close</code>并不能很好的处理writer（因为writer试图写入一个已经close的channel，将引发异常）。因此，我们需要设计一个额外的只读<code>channel</code>用于通知：</p><pre><code>type routineSignal struct {
+    done &lt;-chan struct{}
+}
+</code></pre><p><code>routineSignal</code>的实例，应当通过外部生成并传递给reader，例如：</p><pre><code>func (r *reader)init(s *routineSignal) {
+    r.signal = s
+}
+</code></pre><p>在reader的循环中，就可以这么写：</p><pre><code>func (r *reader)loop() {
+    for {
+        select {
+        case &lt;-r.signal.done:
+            return
+        case &lt;-r.queue:
+            ....
+        }
+    }
+}
+</code></pre><p>当需要终止<code>Goroutine</code>的时候只需要关闭这个额外的<code>channel</code>：</p><pre><code>close(signal.done)
+</code></pre><p>看起来很完备了，这可以处理大部分的情况了。这样做有个弊端，尽管，我们可以期望<code>close</code>唤醒<code>Goroutine</code>进而退出，但是并不能知道<code>Goroutine</code>什么时候完成退出，因为<code>Goroutine</code>可能在退出前还有一些善后工作，这个时候我们需要<code>sync.WaitGroup</code>。改造一下<code>routineSignal</code>：</p><pre><code>type routineSignal struct {
+    done chan struct{}
+    wg   sync.WaitGroup
+}
+</code></pre><p>增加一个sync.WaitGroup的实例，在<code>Goroutine</code>开始工作时，对wg加1，在<code>Goroutine</code>退出前，对wg减1：</p><pre><code>func (r *reader)loop() {
+    r.signal.wg.Add(1)
+    defer r.signal.wg.Done()
+    for {
+        select {
+        case &lt;-r.signal.done:
+            return
+        case &lt;-r.queue:
+            ....
+        }
+    }
+}
+</code></pre><p>外部，只需要等待<code>WaitGroup</code>返回即可：</p><pre><code>close(signal.done)
+signal.wg.Wait()
+</code></pre><p>只要<code>Wait()</code>返回就能断定<code>Goroutine</code>结束了。</p><p>推导一下，不难发现，对于writer也可以采用这种方法。于是，总结一下，我们创建了一个叫<code>routineSignal</code>的结构，结构里面包含一个<code>chan</code>用来通知<code>Goroutine</code>结束，包含一个<code>WaitGroup</code>用于<code>Goroutine</code>通知外部完成善后。这样，通过这个结构的实例优雅的终止<code>Goroutine</code>，而且还可以确保<code>Goroutine</code>终止成功。</p></div><aside id="meta"><meta itemprop="wordCount" content="84"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/gobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html">及时通信最佳实践</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html">beegoorm中时区的问题</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="b29bc0cf7d2fcbddf3c30805ba93a2eb"></div><div id="cyReward" role="cylabs" data-use="reward" sid="b29bc0cf7d2fcbddf3c30805ba93a2eb" style="text-align:center"></div><div id="SOHUCS" sid="b29bc0cf7d2fcbddf3c30805ba93a2eb"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fgobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

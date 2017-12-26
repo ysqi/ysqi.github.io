@@ -1,0 +1,100 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>从Baa开发中总结Go语言性能渐进优化 |虞双齐的博客</title><meta name="description" content="在Go生态已经有很多WEB框架，但感觉没有一个符合我们的想法，我们想要一个简洁高效的核心框架，提供路"><meta name="keywords" content="baa, gc, golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html"><meta property="og:title" content="从Baa开发中总结Go语言性能渐进优化"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-12-31 11:33:28"><meta property="article:modified_time" content="2016-12-31 11:33:28"><meta property="article:tag" content="baa"><meta property="article:tag" content="gc"><meta property="article:tag" content="golang"><meta name="og:description" content="在Go生态已经有很多WEB框架，但感觉没有一个符合我们的想法，我们想要一个简洁高效的核心框架，提供路"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html">从Baa开发中总结Go语言性能渐进优化</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://segmentfault.com/a/1190000005690821" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2016-12-31">2016年12月31日</time></span></p></header><div itemprop="articleBody"><p>在Go生态已经有很多WEB框架，但感觉没有一个符合我们的想法，我们想要一个<code>简洁高效</code>的核心框架，提供<code>路由</code>，<code>context</code>，<code>中间件</code>和<code>依赖注入</code>，而且拒绝使用<code>正则</code>和<code>反射</code>，于是我们开始构建<a href="https://github.com/go-baa/baa">Baa</a>框架。一开始使用最简单的通俗写法实现了第一版的功能，基本可用，但是性能烂到爆，优化之路漫漫开启。</p><blockquote><p>最好的文章应该是每一步都加上优化前后的benchmark对比结果，给读者以最直观的感受。我先BS一下自己，因为我懒了，没有再回头一步步去对比这个结果图。</p></blockquote><h3 id="拒绝正则和反射">拒绝正则和反射</h3><p>这是我们做这个框架时的一个基本原则，整个实现中没有使用过regexp、reflect包。这是我们对性能追求的基础。带来的另一个收益是，没有魔法，都是非常容易理解的实现，让整个框架变得简单。</p><h3 id="使用sync-pool重用对象">使用sync.Pool重用对象</h3><p>在我上次翻译的文章<a href="https://segmentfault.com/a/1190000004046212">CockroachDB GC优化总结</a>中介绍过这些方法，在《Go语言圣经》中作者也介绍了这个方法，使用 sync.Pool 可以在一次GC之间重用对象，避免对象的频繁创建和内存分配。我们在追求性能的过程中，要尽可能减少甚至达到内存零分配，这是一个最重要的用法。</p><p>在Baa中有如下代码片段：</p><pre><code>b.pool = sync.Pool{
+    New: func() interface{} {
+        return newContext(nil, nil, b)
+    },
+}
+</code></pre><p>使用的时候：</p><pre><code>c := b.pool.Get().(*Context)
+c.reset(w, r)
+</code></pre><p>使用完：</p><pre><code>b.pool.Put(c)
+</code></pre><h3 id="使用array优化slice">使用array优化slice</h3><p>slice的本质就是就是一个可变长度的array，根据存储的容量会动态的重新分配内存迁移数据。如果长度不断变化，会导致不断的重新分配内存，在特定场景下，如果我们可以使用一个定长的array来优化内存分配。</p><pre><code>var nameArr [1024]string
+pNames := nameArr[0:0]
+pNames = append(pNames, &quot;val&quot;)
+</code></pre><p>pNames 是一个slice，但数据操作总是在array nameArr上完成，在整个使用过程中不会重新分配内存。</p><blockquote><p>上面的伪代码，在Baa中已经不存在了，Baa改用了下面的技巧来取代定长的array。</p></blockquote><h3 id="slice也能重用">slice也能重用</h3><p>slice的重用，其实和上面的利用array优化基本一致，就是初始分配一个较大的容量，尽可能在使用的过程中都不会超出容量，当然也不用担心，万一不够用了，会自动扩容，只不过会进行一次内存分配。</p><p>在Baa中有如下代码片段：</p><pre><code>// newContext create a http context
+func newContext(w http.ResponseWriter, r *http.Request, b *Baa) *Context {
+    c := new(Context)
+    c.Resp = NewResponse(w, b)
+    c.baa = b
+    c.pNames = make([]string, 0, 32)
+    c.pValues = make([]string, 0, 32)
+    c.handlers = make([]HandlerFunc, len(b.middleware), len(b.middleware)+3)
+    copy(c.handlers, b.middleware)
+    c.reset(w, r)
+    return c
+}
+
+// reset ...
+func (c *Context) reset(w http.ResponseWriter, r *http.Request) {
+    c.Resp.reset(w)
+    c.Req = r
+    c.hi = 0
+    c.handlers = c.handlers[:len(c.baa.middleware)]
+    c.pNames = c.pNames[:0]
+    c.pValues = c.pValues[:0]
+    c.store = nil
+}
+</code></pre><p>注意newContext中的 c.pNames和c.pValues 以及 reset中的 c.pNames和c.pValues，通过 slice[:0] 来重用之前的slice，避免内存重新分配。至于上面的长度32，是根据经验得来的一个值，尽可能保证长度满足大部分情况下的需求又不太大。</p><h3 id="使用radix-tree重写路由">使用Radix tree重写路由</h3><p>之前在<code>黑夜路人微信群</code>中还讨论过一个问题：算法、数据结构，在实际工作中有用到过吗？说实话，一般情况下真不怎么用到，不过这里就是一个场景。</p><p>在第一版中，路由就是一个map，路由匹配就是一个range，简单，清晰，但性能自然不好。参考了 <code>macaron</code>和<code>echo</code>框架的设计，都是使用<code>基数树(radix tree)</code>来实现的，只是实现的细节不同，这里我们也有不同的细节实现，但思路基本没变。具体实现可以参考 <a href="https://en.wikipedia.org/wiki/Radix_tree">wiki</a>，和 Baa router部分 <a href="https://github.com/go-baa/baa/blob/master/router.go">router.go</a></p><h3 id="string的性能不怎样">string的性能不怎样</h3><p>很多文章介绍过了，尽量使用 []byte 替代 string，这里我们也是这么做的。</p><h3 id="map的range好低效">Map的range好低效</h3><p>map和slice的range性能差一个数量级啊，所以，你会发现我们取消了大量的map改为了slice，在<code>slice也能重用</code>这一节的代码示例中 pNames和pValues就是用来取代原来的 map[string]string，因为map range的效率太低了。</p><h3 id="凡是迭代就有开销">凡是迭代就有开销</h3><p>slice的迭代是很快，可是总还是迭代，是迭代就有开销，为了追求极致的性能也是疯了。在路由匹配时，我们给所有的路由pattern设置了单字节的index，如果首字母都不匹配，就没有必要继续后面的字符匹配了。</p><p>路由条目创建：</p><pre><code>// newRoute create a route item
+func newRoute(pattern string, handles []HandlerFunc, router *Router) *Route {
+    r := new(Route)
+    r.pattern = pattern
+    r.alpha = pattern[0]
+    r.handlers = handles
+    r.router = router
+    r.children = make([]*Route, 0)
+    return r
+}
+</code></pre><p>路由条目匹配：</p><pre><code>// findChild find child static route
+func (r *Route) findChild(b byte) *Route {
+    var i int
+    var l = len(r.children)
+    for ; i &lt; l; i++ {
+        if r.children[i].alpha == b &amp;&amp; !r.children[i].hasParam {
+            return r.children[i]
+        }
+    }
+    return nil
+}
+</code></pre><p>注意 <code>r.alpha</code> 就是用来尽可能避免迭代进一步提高性能的。</p><h3 id="defer也仅是方便">defer也仅是方便</h3><p>在追求极致性能的路上，我都快疯了，在一步步测试的过程中，发现去掉defer也能提高一些性能，<code>雨痕学堂</code>微信公众号 中的一篇文章也提到了这个问题，因为defer有额外的开销来保证延迟调用甚至panic时也能执行，而大多数时候我们可以在程序的结束时直接终止，避免defer机制，再快一点点。</p><h3 id="函数调用也是开销">函数调用也是开销</h3><p>离目标越来越近，但还有一点差距，我们也越来越疯狂，最后居然干成了这样，我们把部分频繁调用的函数取消，改为直接在一个函数中完成，因为我们发现，即使只是一个函数调用，TMD也是开销呀。</p><h3 id="pprof是神器">pprof是神器</h3><p>在整个过程中，如何一步步分析性能问题，定位可优化的地方，go test -cpuprofile, go test -memprofile, go test -bench 就是最好的工具，每修改一次，bench看结果，profile看性能分析。</p><h3 id="总结">总结</h3><p>本文简单总结了在优化过程中的各种技巧，和部分代码示例，更多使用姿势，自行体验，欢迎交流和拍砖。</p></div><aside id="meta"><meta itemprop="wordCount" content="258"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/baa.html" rel="tag">baa</a> <a href="/tags/gc.html" rel="tag">gc</a> <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/baakuang-jia-zhong-de-yi-lai-zhu-ru-dishi-ge-shen-me-gui-.html">Baa框架中的依赖注入(DI)是个什么鬼？</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html">GoLangstrings包函数用法</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="9ea397f136407aa5af211e6ce4122260"></div><div id="cyReward" role="cylabs" data-use="reward" sid="9ea397f136407aa5af211e6ce4122260" style="text-align:center"></div><div id="SOHUCS" sid="9ea397f136407aa5af211e6ce4122260"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fcong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fcong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

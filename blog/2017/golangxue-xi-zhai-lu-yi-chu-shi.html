@@ -1,0 +1,144 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang学习摘录一:初识 |虞双齐的博客</title><meta name="description" content="1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quo"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html"><meta property="og:title" content="Golang学习摘录一:初识"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-24 08:31:56"><meta property="article:modified_time" content="2017-02-24 08:31:56"><meta property="article:tag" content="golang"><meta name="og:description" content="1、Hello Word编写方式 package main import &amp;quot;fmt&amp;quo"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html">Golang学习摘录一:初识</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="http://www.jianshu.com/p/b655bd357019" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-24">2017年02月24日</time></span></p></header><div itemprop="articleBody"><h2 id="1-hello-word编写方式">1、Hello Word编写方式</h2><pre><code>package main
+import &quot;fmt&quot;  
+
+func main (){
+  fmt.Printf(&quot;Hello, world&quot;)
+}
+</code></pre><p>编译 <code>go build helloworld.go</code><br>运行 <code>./helloworld</code></p><h2 id="2-声明方式">2、声明方式</h2><pre><code>1、普通方式
+var a int = 15
+var b bool = false
+或
+var a int
+var b bool
+a = 15
+b = false
+2、   :=会自动匹配类型，只能在函数内使用
+a := 15
+b := false
+3、中括号的形式：
+var (
+      x int
+      b bool
+)
+4、平行赋值
+a,b := 20,16
+
+#注意 :Go 的编译器对声明却未使用的变量在报错。
+
+5、常量，只能是数字、字符串或布尔值
+const(     // 枚举的生成方式
+      a = iota   // a为0
+      b = iota  // b为1，改行的 “=iota”可省略
+)
+如果需要,可以明确指定常量的类型:
+const (
+        a = 0 
+        b string = &quot;0&quot;
+)
+</code></pre><h2 id="3-字符串">3、字符串</h2><pre><code>var s string = &quot;hello&quot; 
+#Go中字符串是不可变的
+</code></pre><p>如果想修改字符需要使用下面的方法</p><pre><code>s := &quot;hello&quot;
+c := []rune(s)
+c[0] = 'c'
+s2 := string(c)
+fmt.Printf(&quot;%s\n&quot;, s2)
+</code></pre><p>多行字符串</p><pre><code>基于分号的置入,你需要小心使用多行字符串。
+s := &quot;Starting part&quot; +
+     &quot;Ending part&quot;
+Go 就不会在错误的地方插入分号。另一种方式是使用反引号 ` 作为原始字符串符 号:
+s := `Starting part
+     Ending part`
+留意最后一个例子 s 现在也包含换行。不像转义字符串标识 ,原始字符串标识的值 在引号内的字符是不转义的。
+</code></pre><h2 id="4-array">4、array</h2><p>array由[n]&lt;type&gt;定义，n标示array的长度，而&lt;type&gt;标示希望存储的类型，array为值类型。</p><pre><code>var arr [10]int
+arr[0] = 42
+arr[1] = 13
+
+a := [3]int{1,2,3}
+或
+a := [...]int{1,2,3}// Go会自动统计元素的个数
+// 多维数组
+a := [3][2]int { [2]int {1,2}, [2]int {3,4}, [2]int {5,6} }
+或
+a := [3][2]int { [...]int {1,2}, [...]int {3,4}, [...]int {5,6} }
+或简写为
+a := [3][2]int { {1,2}, {3,4}, {5,6} }
+</code></pre><h2 id="5-slice">5、slice</h2><p>slice为引用类型</p><pre><code>sl := make([]int, 10)
+sl2 := []int{1,2,3,4}
+</code></pre><p>创建了一个保存有 10 个元素的 slice。需要注意的是底层的 array 并无不同。slice 总 是与一个固定长度的 array 成对出现。其影响 slice 的容量和长度。</p><pre><code>// array[n:m] 从 array 创建了一个 slice,具有元素 n 到 m-1 
+a := [...]int {1, 2, 3, 4, 5} // 定义一个5个元素的array，序号从0到4
+s1 := a[2:4] // 从序号2至3创建slice，它包含元素3，4
+s2 := a[1:5] 
+s3 := a[:]  // 用array中所有元素创建slice，这是a[0:len(a)]的简化写法
+s4 := a[:4]
+s5 := s2[:]// 从slice s2创建slice，注意s5仍然指向array a
+</code></pre><p>函数 append 向 slice s 追加零值或其他 x 值,并且返回追加后的新的、与 s 有相同类型的 slice。如果 s 没有足够的容量存储追加的值,append 分配一 个足够大的、新的 slice 来存放原有 slice 的元素和追加的值。因此,返回 的 slice 可能指向不同的底层 array。</p><pre><code>s0:= []int {0, 0}// 创建一个slice
+s1:= append(s0, 2)// 追加一个元素，s1==[]int{0,0,2}
+s2:= append(s1, 3, 5, 7)// 追加多个元素，s2==[]int{0,0,2,3,5,7}
+ s3 := append(s2, s0...)// 追加一个slice，s3==[]int{0,0,3,4,5,7,0,0}。注意这三个点！
+</code></pre><p>函数 copy 从源 slice src 复制元素到目标 dst,并且返回复制的元素的个 数。源和目标可能重 。元素复制的数量是 len(src) 和 len(dst) 中的最 小值。</p><pre><code>var a=[...]int{0,1,2,3,4,5,6,7}
+var s = make([]int, 6)
+n1 := copy(s, a[0:]) // n1 == 6, s == []int{0, 1, 2, 3, 4, 5} 
+n2 := copy(s, s[2:]) // n2 == 4, s == []int{2, 3, 4, 5, 4, 5}
+</code></pre><h2 id="6-map">6、map</h2><p>map 可以认为是一个用字符串做索引的数 组(在其最简单的形式下)。一般定义 map 的方法是:map[&lt;from type&gt;]&lt;to type&gt;</p><pre><code>monthdays := map[string]int {
+  &quot;Jan&quot;: 31, &quot;Feb&quot;: 28, &quot;Mar&quot;: 31,
+  &quot;Apr&quot;: 30, &quot;May&quot;: 31, &quot;Jun&quot;: 30,
+  &quot;Jul&quot;: 31, &quot;Aug&quot;: 31, &quot;Sep&quot;: 30,
+  &quot;Oct&quot;: 31, &quot;Nov&quot;: 30, &quot;Dec&quot;: 31,   // 最后一个逗号是必须的
+ }
+</code></pre><p>留意，但只需要声明一个map的时候，使用make的形式：monthdays := make(map[string]int)<br>当对 array、slice、string 或者 map 循环遍历的时候,range 会帮助你,每次调用,它 都会返回一个键和对应的值。</p><pre><code>year := 0
+for _, days := range monthdays { //键没有使用,因此用 _, days
+year += days
+}
+fmt.Printf(&quot;Numbers of days in a year: %d\n&quot;, year)
+</code></pre><p>向 map 增加元素,可以这样做:<br>monthdays[&ldquo;Undecim&rdquo;] = 30 ← 添加一个月 monthdays[&ldquo;Feb&rdquo;] = 29 ← 年时重写这个元素<br>检查元素是否存在,可以使用下面的方式:</p><pre><code>var value int
+var present bool
+value, present = monthdays[&quot;Jan&quot;] //如果存在,present 则有值 true
+或者更接近 Go 的方式
+v, ok := monthdays[&quot;Jan&quot;] //“逗号 ok”形式
+</code></pre><p>从 map 中移除元素:</p><pre><code>delete(monthdays, &quot;Mar&quot;) // 删除”Mar” 
+//通常来说语句 delete(m, x) 会删除 map 中由 m[x] 建立的实例
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="476"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/go-net_httpbao.html">Gonet_http包</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html">Golang语言常用算法</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="6deb5793e17c0c0a17a6ca5b70ba275b"></div><div id="cyReward" role="cylabs" data-use="reward" sid="6deb5793e17c0c0a17a6ca5b70ba275b" style="text-align:center"></div><div id="SOHUCS" sid="6deb5793e17c0c0a17a6ca5b70ba275b"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangxue-xi-zhai-lu-yi-chu-shi.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgolangxue-xi-zhai-lu-yi-chu-shi.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>

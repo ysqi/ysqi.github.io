@@ -13,10 +13,10 @@
     
     <item>
       <title>Gox:简单实在的Go平台交叉编译工具</title>
-      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</guid>
       <description>Gox 是一个简单的，不花俏的Go平台交叉编译工具，它的用处就和标准的 go build 一样。Gox 会并行地为多种平台编译。Gox 同时也提供了一套交叉编译工具链。
 Gox 项目地址：https://github.com/mitchellh/gox
 安装 为了安装 Gox，请使用 go get。我们已经为版本打上了标签，所以可以随便切换标签进行编译：
@@ -39,10 +39,10 @@ Number of parallel builds: 4
     
     <item>
       <title>heartbleeder自动检测OpenSSL心脏出血漏洞(附修复指南)</title>
-      <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</link>
       <pubDate>Sat, 31 Dec 2016 11:35:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</guid>
       <description>heartbleeder 可以探测你的服务器是否存在 OpenSSL CVE-2014-0160 漏洞 （心脏出血漏洞）。
 什么是心脏出血漏洞？ CVE-2014-0160，心脏出血漏洞，是一个非常严重的 OpenSSL 漏洞。这个漏洞使得攻击者可以从存在漏洞的服务器上读取64KB大小的内存信息。这些信息中可能包含非常敏感的信息，包括用户请求、密码甚至证书的私钥。
 据称，已经有攻击者在某宝上尝试使用漏洞读取数据，在读取200次后，获取了40多个用户名和7个密码。
@@ -59,10 +59,10 @@ $ heartbleeder -pg example.com SECURE - example:5432 does not have the heartbeat
     
     <item>
       <title>Goji-基于Go语言的微型web框架</title>
-      <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html.html</link>
+      <link>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</link>
       <pubDate>Sat, 31 Dec 2016 11:34:58 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</guid>
       <description>Goji 是一个基于 Go 的微型 web 框架，其设计受到了 Sinatra 的启发。
 示例 一个简单的 Hello World 示例
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;github.com/zenazn/goji&amp;quot; &amp;quot;github.com/zenazn/goji/web&amp;quot; ) func hello(c web.C, w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &amp;quot;Hello, %s!&amp;quot;, c.URLParams[&amp;quot;name&amp;quot;]) } func main() { goji.Get(&amp;quot;/hello/:name&amp;quot;, hello) goji.Serve() }  Goji 的代码的 example 目录下包含了一个示例应用

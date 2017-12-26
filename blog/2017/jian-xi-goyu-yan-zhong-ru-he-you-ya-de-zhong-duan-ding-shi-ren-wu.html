@@ -1,0 +1,150 @@
+<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>浅析GO语言中如何优雅地中断定时任务 |虞双齐的博客</title><meta name="description" content="问题描述 现在我们创建了一个定时器，能定时的去做某件事，并且在执行时间超时的时候，能把这个定时器关掉"><meta name="keywords" content="golang, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html"><meta property="og:title" content="浅析GO语言中如何优雅地中断定时任务"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-18 11:13:38"><meta property="article:modified_time" content="2017-02-18 11:13:38"><meta property="article:tag" content="golang"><meta name="og:description" content="问题描述 现在我们创建了一个定时器，能定时的去做某件事，并且在执行时间超时的时候，能把这个定时器关掉"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
+	doc.removeAttribute('class', 'no-js');
+	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
+		var page = document.getElementById("page");		
+		if (page.getAttribute("class") === "not-active") {
+			page.setAttribute("class", "active-sidebar");		
+		} else if (page.getAttribute("class") === "active-sidebar") {
+			page.setAttribute("class", "not-active");
+		}		
+	}
+	
+	window.onload = function() {
+		if(document.getElementById("sidebar-button")) {
+			var sidebar_button = document.getElementById("sidebar-button");
+			sidebar_button.onclick = function(event) {
+				changeActive();
+				event.preventDefault();
+			}
+		}
+		
+	}
+	
+	window.onresize = function() {
+		var page = document.getElementById("page");	
+		page.setAttribute("class", "not-active");	
+	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html">浅析GO语言中如何优雅地中断定时任务</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yq.aliyun.com/articles/69303?utm_campaign=wenzhang&amp;amp;utm_medium=article&amp;amp;utm_source=QQ-qun&amp;amp;utm_content=m_10072" rel="nofollow" target="_blank">属转载,查看原文 <span itemprop="name" style="display:none">虞双齐</span></a></span> </span><span class="right"><time itemprop="datePublished" datetime="2017-02-18">2017年02月18日</time></span></p></header><div itemprop="articleBody"><h3 id="问题描述">问题描述</h3><p>现在我们创建了一个定时器，能定时的去做某件事，并且在执行时间超时的时候，能把这个定时器关掉。例如需要收集一周的日志，创建一个定时任务去收集日志，每5秒钟执行一次，一周的时间过后需要停掉这个定时任务。</p><h3 id="标准库ticker">标准库Ticker</h3><p>标准库提供里的Ticker类，主要功能是定时重复的去做某件事情，如果没有设定超时，它会一直执行下去。常见的写法如下：</p><pre><code>t := time.NewTicker(3 * time.Second)
+timeout := time.After(10 * time.Second)
+go func() {
+        for {   
+                &lt;-t.C
+                 ...
+        }       
+}()
+&lt;-timeout
+...
+</code></pre><p><code>注意到这个Ticker对象是无法关闭的</code>，好的，你可能会发现Ticker类提供了Stop方法。但是我们看看如果你这样去关闭t的话，会出现什么情况。</p><pre><code>package main
+
+import (
+        &quot;fmt&quot;
+        &quot;time&quot;
+)
+
+func DoTickerWork(res chan interface{}, timeout &lt;-chan time.Time) {
+        t := time.NewTicker(3 * time.Second)
+        go func() {
+                defer close(res)
+                i := 1
+                for {
+                        &lt;-t.C
+                        fmt.Printf(&quot;start %d th worker\n&quot;, i)
+                        res &lt;- i
+                        i++
+                }
+        }()
+        &lt;-timeout
+        t.Stop()
+        return
+}
+
+func main() {
+        res := make(chan interface{}, 10000)
+        timeout := time.After(10 * time.Second)
+        DoTickerWork(res, timeout)
+        for v := range res {
+                fmt.Println(v)
+        }
+}
+</code></pre><p>直觉上来看，新起的goroutine在等待的过程中，主线程会把定时器关掉，似乎没有什么bug，然而输出是这样：</p><pre><code>$go run ticker.go 
+start 1 th worker
+start 2 th worker
+start 3 th worker
+1
+2
+3
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan receive]:
+main.main()
+    /home/gepin.zs/go/src/timer/ticker.go:29 +0xad
+
+goroutine 6 [chan receive]:
+main.DoTickerWork.func1(0xc42006c060, 0xc4200161c0)
+    /home/gepin.zs/go/src/timer/ticker.go:14 +0x8e
+created by main.DoTickerWork
+    /home/gepin.zs/go/src/timer/ticker.go:19 +0x60
+exit status 2
+</code></pre><p>这说明Ticker对象的stop方法<code>并没有关掉</code>这个Ticker的channel，而只是<code>阻止了channel的数据写入</code>，所以goroutine的任务依然在进行中，但是&lt;-t.C一直阻塞，出现了deadlock的情况。可能会有人说调用close(t.C)就可以了，但是编译会报错：cannot close receive-only channel， 因为t.C是一个只读队列，无法调用close方法。</p><h3 id="怎么解决">怎么解决</h3><p>不要以为stop就可以关掉Ticker了，我们可以新建一个名字为done的channel，缓存大小为1，goroutine里面采用select，然后尝试获取timeout，如果能够取到，说明已经触发超时，然后close(done)，这个时候任务结束，主线程return。代码如下：</p><pre><code>package main
+
+import (
+        &quot;fmt&quot;
+        &quot;time&quot;
+)
+
+func DoTickerWork(res chan interface{}, timeout &lt;-chan time.Time) {
+        t := time.NewTicker(3 * time.Second)
+        done := make(chan bool, 1)
+        go func() {
+                defer close(res)
+                i := 1
+                for {
+                        select {
+                        case &lt;-t.C:
+                                fmt.Printf(&quot;start %d th worker\n&quot;, i)
+                                res &lt;- i
+                                i++
+                        case &lt;-timeout:
+                                close(done)
+                                return
+                        }
+                }
+        }()
+        &lt;-done
+        return
+}
+
+func main() {
+        res := make(chan interface{}, 10000)
+        timeout := time.After(10 * time.Second)
+        DoTickerWork(res, timeout)
+        for v := range res {
+                fmt.Println(v)
+        }
+}
+</code></pre><p>程序返回结果</p><pre><code>$go run ticker.go
+start 1 th worker
+start 2 th worker
+start 3 th worker
+1
+2
+3
+</code></pre></div><aside id="meta"><meta itemprop="wordCount" content="254"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">golang</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/mac-golangxia-zai-mgo.html">Macgolang下载mgo</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/cmdbfa-bu-ping-tai-gofa-bu-guan-li.html">CMDB发布平台:go发布管理</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="a7bd5ab25664f5f06f3c694667fbc8fe"></div><div id="cyReward" role="cylabs" data-use="reward" sid="a7bd5ab25664f5f06f3c694667fbc8fe" style="text-align:center"></div><div id="SOHUCS" sid="a7bd5ab25664f5f06f3c694667fbc8fe"></div><script type="text/javascript">(function(){ 
+var appid = 'cyt7HM6Iq'; 
+var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+}else{ 
+  var loadJs=function(d,a){
+    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
+    b.setAttribute("type","text/javascript");
+    b.setAttribute("charset","UTF-8");
+    b.setAttribute("src",d);
+    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
+   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fjian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fjian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();</script></body></html>
