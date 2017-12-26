@@ -2,7 +2,7 @@
 <ul id="nav" class="navlist">
 <li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li>
 <li><a class="navabout" href="{{.Site.BaseURL}}"><span>首页</span></a></li>
-<li><a class="{{if in .Permalink "topics" }}navwritingshl{{else}}navwritings{{end}}"  href="/topics/"><span>博文</span></a></li>
+<li><a class="{{if in .Permalink "topics" }}navwritingshl{{else}}navwritings{{end}}"  href="/topics.html"><span>博文</span></a></li>
 {{if ne (len (where $.Site.Pages "Section" "book" ) ) 0 }}
 <li><a class="{{if in .Permalink "book" }}navpresoshl{{else}}navpresos{{end}}" href="/book.html"><span>电子书</span></a></li>
 {{end}}

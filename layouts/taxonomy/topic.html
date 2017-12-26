@@ -4,7 +4,7 @@
 	<h1 class="writings"><small> 文章分类：</small>{{ .Title }}</h1> 
 		<p class="feature">
 		Topic: {{.Site.Author.name}}共分享{{len .Data.Pages}}篇文章在{{.Title}}分类下。
-		<a href="/topics/" title="{{.Site.Title}}下所有文章分类">查看所有标签</a>
+		<a href="/topics.html" title="{{.Site.Title}}下所有文章分类">查看所有标签</a>
 		</p>
 		 {{ range .Data.Pages.GroupByDate "2006年01月" }}
      <h2 class="hlisting">{{ .Key }}</h2> 

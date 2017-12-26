@@ -37,7 +37,7 @@ publishdir = "public"
     topic = "topics"
 
 [permalinks]
-	blog = "/blog/:year/:slug.html"
-	top = "/:slug.html"
-  resource = "/resource/:title.html"  
+	blog = "/blog/:year/:slug"
+	top = "/:slug" 
+  resource = "/resource/:title"  
  

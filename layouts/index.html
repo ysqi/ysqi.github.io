@@ -23,7 +23,7 @@
 	<p style="text-align:right;"><a href="/about.html" class="about" rel="nofollow" >进一步了解{{.Site.Author.name}}</a></p>
 	</section>
 	
-	<h2 class="homenav homenavor"><a href="/topics/"><span class="homenav_writings">博文</span></a></h2>
+	<h2 class="homenav homenavor"><a href="/topics.html"><span class="homenav_writings">博文</span></a></h2>
 	<section class="homesec homesecwritings">
 	<h3>{{len (where .Data.Pages "Section" "blog" ) }}</h3>
 	<p>篇IT技术文章分享。</p>
@@ -36,7 +36,7 @@
                                                 </a>
                                             </li> 
     									{{ end }}
-	  <li><a href="/topics/" title="查看全部博文">全部...</a></li>
+	  <li><a href="/topics.html" title="查看全部博文">全部...</a></li>
 	</ul>
 	<h3>{{len .Site.Taxonomies.topics}}</h3>
 	<p>个文章分类</p>
