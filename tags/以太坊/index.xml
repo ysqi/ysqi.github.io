@@ -8,8 +8,27 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Sat, 09 Sep 2017 10:22:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
     <atom:link href="/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.html" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>理解以太坊Gas</title>
+      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
+      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
+      <description>背景介绍 以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 Gas计算，最终将gas以ETH支付。
+需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。
+你可在 etherscan.io 上查看交易手续费（gas limit * gas price）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。
+概要 当你听到gas时，是在讨论两个东西：
+ Gas Limit Gas Price  交易费计算就是Gas Limit*Gas Price。大家说“Gas”时，一般所值得是“Gas Limit”
+你可以把gas limit看成是汽车所需多少升燃油。把gas price看成是燃油单价。
+ 对于汽车，每升(unit)汽油 ￥6.46 （price） 对于以太坊,每gas( unit) 是 20 GWEI (price)  继续想，就是：
+ 10升汽油就是 ￥64.6 21000 个 gas 就是 20*21000 GWEI= 420000 GWEI= 0.00042 ETH  也就是说本次交易手续为 0.00042 Ether。
+发送Token一般需要 ~50000 gas 到 ~100000 gas ,因此交易手续费增加到 0.001 ETH - 0.002 ETH。
+其中以太坊ETH到GWEI的转换关系是，这些多是以太币的计算单位：
+ Kwei(Babbage) = 10^{3} Wei Mwei(Lovelace) = 10^{6} Wei Gwei(Shannon) = 10^{9} Wei Microether(Szabo) = 10^{12} Wei Milliether(Finney) = 10^{15} Wei Ether = 10^{18} Wei  Gas Gas 是以太坊中一种特定的命名，表示执行一个操作所需要的多少计算工作。 比如要执行一次加密Keccak256将消耗30gas。在以太坊中每个操作动作都有对应的gas。更多内容可查看What is gas (StackExchange)。</description>
+    </item>
     
     <item>
       <title>Mac下搭建以太坊私有链</title>

@@ -8,8 +8,27 @@
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
-    <lastBuildDate>Mon, 25 Dec 2017 07:29:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
     <atom:link href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>理解以太坊Gas</title>
+      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
+      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
+      <description>背景介绍 以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 Gas计算，最终将gas以ETH支付。
+需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。
+你可在 etherscan.io 上查看交易手续费（gas limit * gas price）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。
+概要 当你听到gas时，是在讨论两个东西：
+ Gas Limit Gas Price  交易费计算就是Gas Limit*Gas Price。大家说“Gas”时，一般所值得是“Gas Limit”
+你可以把gas limit看成是汽车所需多少升燃油。把gas price看成是燃油单价。
+ 对于汽车，每升(unit)汽油 ￥6.46 （price） 对于以太坊,每gas( unit) 是 20 GWEI (price)  继续想，就是：
+ 10升汽油就是 ￥64.6 21000 个 gas 就是 20*21000 GWEI= 420000 GWEI= 0.00042 ETH  也就是说本次交易手续为 0.00042 Ether。
+发送Token一般需要 ~50000 gas 到 ~100000 gas ,因此交易手续费增加到 0.001 ETH - 0.002 ETH。
+其中以太坊ETH到GWEI的转换关系是，这些多是以太币的计算单位：
+ Kwei(Babbage) = 10^{3} Wei Mwei(Lovelace) = 10^{6} Wei Gwei(Shannon) = 10^{9} Wei Microether(Szabo) = 10^{12} Wei Milliether(Finney) = 10^{15} Wei Ether = 10^{18} Wei  Gas Gas 是以太坊中一种特定的命名，表示执行一个操作所需要的多少计算工作。 比如要执行一次加密Keccak256将消耗30gas。在以太坊中每个操作动作都有对应的gas。更多内容可查看What is gas (StackExchange)。</description>
+    </item>
     
     <item>
       <title>理解与计算比特币难度值Difficulty</title>
@@ -293,20 +312,6 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
 我们可以实现一个逻辑上的单线程，从全局上看，只有唯一一个goroutine可以执行逻辑处理代码。核心思想就是由调度器从任务队列中提取任务，挑选一个空闲的goroutine,将其唤醒并让自己阻塞，当goroutine需要阻塞时就唤醒调度器并将自己阻塞。这样全局上就只有唯一的goroutine在执行逻辑代码。
 下面是一个使用示例：
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;coop-go&amp;quot; ) func main() { count := int32(0) var p *coop.CoopScheduler p = coop.NewCoopScheduler(func (e interface{}){ count++ if count &amp;gt;= 30000000 { p.Close() return } //调用阻塞函数 p.Call(func () { time.Sleep(time.Millisecond * time.Duration(10)) }) //继续投递任务 p.PostEvent(1) }) for i := 0; i &amp;lt; 10000; i++ { //投递任务 p.PostEvent(1) } p.Start() fmt.Printf(&amp;quot;scheduler stop,total taskCount:%d\n&amp;quot;,c2) }  首先用一个任务处理函数作为参数创建调度器。然后向调度器投递任务触发处理循环，最后启动处理。</description>
-    </item>
-    
-    <item>
-      <title>Golang里的Future_Promise</title>
-      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
-      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
-      <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行执行就是减少延迟最好的选择了。Future/Promise就是实现这一目的的手段之一。
-一个Future就是说“将来”你需要某些东西（一般就是一个网络请求的结果），但是你现在就要发起这样的请求，并且这个请求会异步执行。或者换一个说法，你需要在后台执行一个异步请求。
-Future/Promise模式在多种语言都有对应的实现。比如ES2015就有Promise和async-await，Scala内置了Future，最后在Golang里有goroutine和channel可以实现类似的功能。下面给出一个简单的实现。
-//RequestFuture, http request promise. func RequestFuture(url string) &amp;lt;-chan []byte { c := make(chan []byte, 1) go func() { var body []byte defer func() { c &amp;lt;- body }() res, err := http.Get(url) if err != nil { return } defer res.Body.Close() body, _ = ioutil.ReadAll(res.Body) }() return c } func main() { future := RequestFuture(&amp;quot;https://api.github.com/users/octocat/orgs&amp;quot;) body := &amp;lt;-future log.Printf(&amp;quot;reponse length: %d&amp;quot;, len(body)) }  RequestFuture方法理科返回一个channel，这个时候http请求还在一个goroutine后台异步运行。main方法可以继续执行其他的代码，比如触发其他的Future等。当需要结果的时候，我们需要从channel里读取结果。如果http请求还没有返回的话就会阻塞当前的goroutine，知道结果返回。
-然而，以上的方法还有一点局限。错误无法返回。在上面的例子里，如果http请求出现错误的话，body的值会是nil/empty。但是，由于channel只能返回一个值，你需要创建一个单独的struct来包装两个返回的结果。
-修改以后的结果：</description>
     </item>
     
   </channel>
