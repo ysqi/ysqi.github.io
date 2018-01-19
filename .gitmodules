@@ -1,0 +1,3 @@
+[submodule "content/book/etheraction"]
+	path = content/book/etheraction
+	url = https://github.com/ysqi/etheraction.git
