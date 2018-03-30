@@ -1,20 +1,111 @@
 baseurl = "https://yushuangqi.com"
 languageCode = "zh"
+# language support # en / zh-cn / other...
+defaultContentLanguage = "zh-cn"
 title = "虞双齐的博客" 
 pygmentsuseclasses = false
 PygmentsCodeFences = true
 pygmentsstyle = "friendly"
 uglyURLs = true
 metaDataFormat = "YAML"
-disqusShortname = "yushuangqi" 
+# disqusShortname = "yushuangqi" 
 publishdir = "public"
 
+theme = "jane"
+hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
+paginate = 3                                              # 首页每页显示的文章数
+rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 
 [params]
+  uglyURLs = true  # 扩展hugo var 尚未公开的变量，方便在模板中使用
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
   description= "Go语言,Golang开发,SRE运维实践,全栈开发-虞双齐的个人博客"
   enableDiscuss = true
+  
+  debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
+
+  since = "2015"            # Site creation time          # 站点建立时间
+  homeFullContent = false   # if false, show post summaries on home page. Othewise show full content.
+  rssFullContent = true     # if false, Rss feed instead of the summary
+
+  # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
+  # logoTitle = ""        # default: the title value    # 默认值: 上面设置的title值
+  keywords = ["智能合约开发","Go语言", "区块链技术"] 
+
+  # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
+  archive-paginate = 20
+
+  # paginate style, default use numbered pagination links
+  # if true, use original "Previous" and "Next" links.
+  paginateOriginalStyle = true 
+
+  # The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/
+  dateFormatToUse = "2006-01-02"
+
+  # show word count and read time ?                       # 是否显示字数统计与阅读时间
+  moreMeta = true
+
+  # 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。
+  # Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.
+  toc = true                                                                            # 是否开启目录
+  autoCollapseToc = false   # Auto expand and collapse toc                              # 目录自动展开/折叠
+  fancybox = true           # see https://github.com/fancyapps/fancybox                 # 是否启用fancybox（图片可点击）
+  bootcdn = true           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
+  mathjax = false           # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
+  contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
+
+
+  # changyanAppid = "cyt7HM6Iq"        # Changyan app id             # 畅言
+  # changyanAppkey = "prod_90e85fc8b207249a2493340f99075c94"       # Changyan app key
+  tencent_analytics = ""    # Tencent Analytics
+  baidu_push = false        # baidu push                  # 百度
+  baidu_analytics = "a16b3275b071ec0efc507a05422a7156"      # Baidu Analytics
+  baidu_verification = ""   # Baidu Verification
+  google_verification = ""  # Google_Verification         # 谷歌
+
+  # Link custom CSS and JS assets
+  #   (relative to /static/css and /static/js respectively)
+  customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
+  customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
+
+  [params.publicCDN]        # load these files from public cdn                          # 启用公共CDN，需自行定义
+    enable = true
+    jquery = '<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>'
+    slideout = '<script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>'
+    fancyboxJs = '<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>'
+    fancyboxCss = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">'
+    gitmentJS = '<script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>'
+    gitmentCSS = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">'
+
+  [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
+    owner = "ysqi"              # Your GitHub ID
+    repo = "ysqi/ysqi.github.io"               # The repo to store comments
+    clientId = "639ba986c281b9fcf382"           # Your client ID
+    clientSecret = "b5862135f283dd308a7f226c06980cf50b8e82f1"       # Your client secret
+
+
+  [params.reward]                                         # 文章打赏
+    enable = true
+    wechat = "/img/donateMe_wechat.png"           # 微信二维码
+    alipay = ""           # 支付宝二维码
+
+  [params.social]                                         # 社交链接
+    a-email = "mailto:ysqi@yushuangqi.com"
+    # b-stack-overflow = "http://localhost:1313"
+    # c-twitter = "http://localhost:1313"
+    # d-facebook = "http://localhost:1313"
+    # e-linkedin = "http://localhost:1313"
+    # f-google = "http://localhost:1313"
+    g-github = "http://github.com/ysqi"
+    h-weibo = "https://weibo.com/234665601"
+    i-zhihu = "https://www.zhihu.com/people/_ysqi/"
+    # j-douban = "http://localhost:1313"
+    # k-pocket = "http://localhost:1313"
+    # l-tumblr = "http://localhost:1313"
+    # m-instagram = "http://localhost:1313"
+    # n-gitlab = "http://en.xianmin.org/hugo-theme-jane/"
+    # o-goodreads = "http://en.xianmin.org/hug 
 
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
@@ -37,7 +128,39 @@ publishdir = "public"
     topic = "topics"
 
 [permalinks]
-	blog = "/blog/:year/:slug.html"
-	top = "/:slug.html"
-  resource = "/resource/:title.html"  
+	post = "/blog/:year/:slug"
+	# top = "/:slug.html"
+  resource = "/resource/:title"  
  
+ 
+[sitemap]                 # essential                     # 必需
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[[menu.main]]             # config your menu              # 配置目录
+  name = "主页"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "全部文章"
+  weight = 20
+  identifier = "archives"
+  url = "/post.html"
+[[menu.main]]
+  name = "标签"
+  weight = 30
+  identifier = "tags"
+  url = "/tags.html"
+[[menu.main]]
+  name = "分类"
+  weight = 40
+  identifier = "categories"
+  url = "/categories.html"
+
+[[menu.main]]
+  name = "关于"
+  weight = 40
+  identifier = "about"
+  url = "/about.html"
