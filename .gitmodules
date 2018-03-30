@@ -1,3 +1,7 @@
 [submodule "content/book/etheraction"]
 	path = content/book/etheraction
 	url = https://github.com/ysqi/etheraction.git
+[submodule "jane"]
+	path = themes/jane
+	url = https://github.com/ysqi/hugo-theme-jane.git
+	branch = master
