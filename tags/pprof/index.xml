@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pprof on 虞双齐的博客</title>
+    <title>Pprof on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/pprof.html</link>
-    <description>在 虞双齐的博客上关于in Pprof 的内容</description>
+    <description>Recent content in Pprof on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:53 +0800</lastBuildDate>
-    <atom:link href="/tags/pprof.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/pprof/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go程序的性能调试问题-CPU篇</title>
@@ -17,17 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</guid>
-      <description>注：本文的原文 Debugging performance issues in Go programs 由 Dmitry Vyukov 在 05/10/2014 - 07:06 编写
-注：原文太长，大家要看全部的请看原文，其他的部分，后续慢慢翻译。
- 让我们假设你想提升你的GO程序的性能。这里有一些工具可以帮助你完成这个任务。这些工具能帮助你定位多种类型的热点（CPU，IO，内存），你为了能够显著提升程序性能，你必须专注于热点发生的地方。尽管如此，另外一个结果是可能的&amp;ndash;这些工具能帮助你确定程序中明显的性能缺陷。例如，当你在每个程序启动的时候，你可以在每次查询的之前准备一个 SQL 语句。另外一个例子是如果一个 O(N^2) 算法在某种程度上陷入了一个明显存在并且期望的 O(N) 情况。为了确定这样的情况，你需要完整性的检查你在 profiles 中看到的。例如第一种情况下大量的时间花费在 SQL 语句的准备上，这已经超越了告警线了。
-同样重要的是要理解性能影响的各种边界因素。例如，一个程序通过 100 Mbps 的带宽连接通讯，并且它已经使用超过 90 Mbps，这里就没有什么可以对这程序做的来提升它的性能了。这些类似的边界因素包括 磁盘 IO，内存消耗和计算任务。
-考虑到这一点，我们可以查看这些可用的工具。
- 注意：这些工具可能相互干扰，例如，精确的内存分析可能影响CPU分析。goroutine 阻塞分析可能影响调度追踪等等，隔离地使用这些工具以便得到更加精确的信息。
-注意：这里所有的描述都是基于 Go1.3 版本的
- CPU 分析器 Go runtime 包含了内建的 CPU 分析器，这显示了函数消耗的 CPU 时间百分比，这里你有3种方式访问它：
- 最简单的一个方式是使用 go test 命令的 -cpuprofile 标记。例如，如下命令：
-$ go test -run=none -bench=ClientServerParallel4 -cpuprofile=cprof net/http
-将配置给出的基准和 CPU 的概要分析写入 cprof 文件。</description>
+      <description>注：本文的原文 Debugging performance issues in Go programs 由 Dmitry Vyukov 在 05/10/2014 - 07:06 编写 注：原文太长，大家要看全部的请看原文，其他的部分，后续慢慢翻译。 让我们假设你想提升你的GO程序的</description>
     </item>
     
   </channel>

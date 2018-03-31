@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>算法 on 虞双齐的博客</title>
+    <title>算法 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E7%AE%97%E6%B3%95.html</link>
-    <description>在 虞双齐的博客上关于in 算法 的内容</description>
+    <description>Recent content in 算法 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 03 Mar 2017 08:36:25 +0800</lastBuildDate>
-    <atom:link href="/tags/%E7%AE%97%E6%B3%95.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>插曲:关于递归</title>
@@ -17,19 +19,7 @@
       <pubDate>Fri, 03 Mar 2017 08:36:25 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</guid>
-      <description>1 概述 循环与递归是算法中最常见的控制过程的方法，循环自不必说，只要学过计算机语言，必然都会讲这种控制结构；而对于递归，大家也能写得很漂亮（树算法中和图算法中使用递归的场景也特别多）。
-递归的好处也显而易见，代码体积小，容易维护。然而，递归并不是万能钥匙，特别是当运行环境内存空间有限以及要求高性能的场景。下文首先介绍递归的运行原理，然后用实例说明递归的代价，接着讲解递归如何转换成循环及其限制，最后对本文进行总结。
-2 递归的运行原理 这里的递归特指递归函数，递归函数在程序中执行的原理是什么（冯诺伊曼体系下）？这是认识递归函数执行效率的关键。下面我们以构建斐波那契数列为例，说明递归函数的执行过程。构建斐波那契数列的递归函数(golang实现)如下：
-fun Fib(n int) int{ ret : = 0 if n == 0 || n == 1 { // 1  ret = 1 // 2  } ret = Fib(n - 1) + Fib(n - 2) // 3  return ret } 学过编译原理的童鞋都知道，函数是在栈（对，就是童鞋们在数据结构上学习的栈）上运行的，如果n=4，Fib(4)的原理示意如图1所示：
-图1:fib(4)动态示意图
-要求fib(4)，必须在栈上求Fib(3)（要求Fib(3),必须再为在栈上求Fib(2)和Fib(1)，要求Fib(2)，在栈上继续求fib(1)和Fib(0)）和Fib(2)（类似fib(3)的过程）。这样的递归算法，必须在栈上记录函内的局部变量、传递参数、返回地址（直到调用结束后回到哪）和上一栈帧的EBP和BP（恢复调用者栈），并且频繁出栈入栈是需要系统开销的，虽然单次入栈出栈开销不大，但是如果要求Fib(1000)这样的函数，恐怕一般的单机估计得跑几十分钟甚至半天了（在笔者的mac本上跑了几分钟都没出来，直接把进程杀了，不能忍）。
-为了有个直观的感受，笔者特意做了一个简单的试验（见我的git），分别以递归和非递归求解Fib(10), Fib(20), Fib(30), Fib(40), Fib(50)的运行结果，如下图所示：
-图2：递归和非递归试验结果
-
-从运行结果可以看出，当n值较小时（&amp;lt;10）时，递归运行的时间少于非递归运行时间（原因应该是非递归分配slice需要占用相对较长的时间，这种写法有些弱智，其实只需要两个中间变量即可，类似于不用第三个变量实现两变量值交换的思路），当n&amp;gt;=20后，非递归运行时间远低于递归运行时间，n越大，非递归相对递归越高效。
-当然，非递归高效运行也不是没有代价的，相比递归函数，编写代码的难度要更高并且更难维护。
-3 递归转非递归 那如何将递归函数转换为非递归函数呢？是否所有的递归函数都能换成非递归函数？
-首先必须弄清楚递归有哪些种类，递归有两种，一种是单向递归，类似于Fib(n)的这种是一种典型的单向递归（Fib(n)-&amp;gt;Fib(n-1)-&amp;gt;Fib(n-2)-&amp;gt;&amp;hellip;-&amp;gt;Fib(1)）；另一种的递归（不妨称其为交互递归，不一定准确）的形式为：F1(n) -&amp;gt; F2(n) -&amp;gt; F1(n-1) -&amp;gt; F2(n-1) -&amp;gt; &amp;hellip;</description>
+      <description>1 概述 循环与递归是算法中最常见的控制过程的方法，循环自不必说，只要学过计算机语言，必然都会讲这种控制结构；而对于递归，大家也能写得很漂亮（树</description>
     </item>
     
     <item>
@@ -38,11 +28,7 @@ fun Fib(n int) int{ ret : = 0 if n == 0 || n == 1 { // 1  ret = 1 // 2  } ret =
       <pubDate>Sat, 31 Dec 2016 11:35:05 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/lru-suan-fa.html</guid>
-      <description>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。
-原理 添加元素时，放到链表头 缓存命中，将元素移动到链表头 缓存满了之后，将链表尾的元素删除  LRU算法实现  可以用一个双向链表保存数据 使用hash实现O(1)的访问  groupcache中LRU算法实现（Go语言）
-https://github.com/golang/groupcache/blob/master/lru/lru.go
-源码简单注释：
-package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定义lru cache 不是线程安全的 type Cache struct { // 数目限制，0是无限制 MaxEntries int // 删除时, 可以添加可选的回调函数 OnEvicted func(key Key, value interface{}) ll *list.List // 使用链表保存数据 cache map[interface{}]*list.Element // map } // Key 是任何可以比较的值 http://golang.org/ref/spec#Comparison_operators type Key interface{} type entry struct { key Key value interface{} } // 创建新的cache 对象 func New(maxEntries int) *Cache { return &amp;amp;Cache{ MaxEntries: maxEntries, ll: list.</description>
+      <description>LRU 最近最少使用算法，LRU算法主要用于缓存淘汰。主要目的就是把最近最少使用的数据移除内存，以加载其他数据。 原理 添加元素时，放到链表头 缓存命中</description>
     </item>
     
     <item>
@@ -51,10 +37,7 @@ package lru import &amp;quot;container/list&amp;quot; // Cache 结构体，定�
       <pubDate>Sat, 31 Dec 2016 11:34:43 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangshi-xian-kuai-su-pai-xu.html</guid>
-      <description>快速排序的原理就不介绍了。在网上看到一个有趣的视频，大家可以看看，非常详细且有趣。
-快速排序视频
-代码：https://play.golang.org/p/Fw5gtzrPj0
-package main import ( &amp;quot;fmt&amp;quot; ) func main() { var sortArray = []int{3, 41, 24, 76, 11, 45, 3, 3, 64, 21, 69, 19, 36} fmt.Println(sortArray) qsort(sortArray, 0, len(sortArray)-1) fmt.Println(sortArray) } func qsort(array []int, low, high int) { if low &amp;lt; high { m := partition(array, low, high) // fmt.Println(m) qsort(array, low, m-1) qsort(array, m+1, high) } } func partition(array []int, low, high int) int { key := array[low] tmpLow := low tmpHigh := high for { //查找小于等于key的元素，该元素的位置一定是tmpLow到high之间，因为array[tmpLow]及左边元素小于等于key，不会越界 for array[tmpHigh] &amp;gt; key { tmpHigh-- } //找到大于key的元素，该元素的位置一定是low到tmpHigh+1之间。因为array[tmpHigh+1]必定大于key for array[tmpLow] &amp;lt;= key &amp;amp;&amp;amp; tmpLow &amp;lt; tmpHigh { tmpLow++ } if tmpLow &amp;gt;= tmpHigh { break } // swap(array[tmpLow], array[tmpHigh]) array[tmpLow], array[tmpHigh] = array[tmpHigh], array[tmpLow] fmt.</description>
+      <description>快速排序的原理就不介绍了。在网上看到一个有趣的视频，大家可以看看，非常详细且有趣。 快速排序视频 代码：https://play.golang.</description>
     </item>
     
     <item>
@@ -63,9 +46,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { var sortArray = []
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</guid>
-      <description>code：https://play.golang.org/p/luj1fdu03F
-problem: https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp;quot;sort&amp;quot; &amp;quot;time&amp;quot; ) //rotate数组方法一 func rotateArray1(a []int, pos int) { if pos &amp;lt; 0 { return } lenA := len(a) pos = pos % lenA tmpArray := make([]int, pos) for i := 0; i &amp;lt; pos; i++ { tmpArray[i] = a[i] } for i := pos; i &amp;lt; lenA; i++ { a[i-pos] = a[i] } for i := 0; i &amp;lt; pos; i++ { a[lenA-pos+i] = tmpArray[i] } } //rotate数组方法2 func rotateArray2(a []int, pos int) { if pos &amp;lt; 0 { return } lenA := len(a) pos = pos % lenA reverseArray(a[:pos]) reverseArray(a[pos:]) reverseArray(a) } //reverse数组，反转 func reverseArray(a []int) { for i, j := 0, len(a)-1; i &amp;lt; j; i, j = i+1, j-1 { a[i], a[j] = a[j], a[i] } } func main() { len := 20 a := make([]int, len) seedNum := 0 rand.</description>
+      <description>code：https://play.golang.org/p/luj1fdu03F problem: https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp;quot;sort&amp;quot; &amp;quot;time&amp;quot; ) //rotate数组方法一 func rotateArray1(a []int, pos int)</description>
     </item>
     
     <item>
@@ -74,9 +55,7 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math/rand&amp;quot; &amp
       <pubDate>Sat, 31 Dec 2016 11:34:38 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</guid>
-      <description>problem: https://oj.leetcode.com/problems/word-search/
-代码：https://play.golang.org/p/d5wP691Pbg
-package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;}, {&#39;S&#39;, &#39;F&#39;, &#39;C&#39;, &#39;S&#39;}, {&#39;A&#39;, &#39;D&#39;, &#39;E&#39;, &#39;E&#39;}, } //word := []byte(&amp;quot;ABCESC&amp;quot;) word := []byte(&amp;quot;SFCE&amp;quot;) arrI, arrJ, ok := FindFirstCharPositions(arr, word[0]) if ok { fmt.Printf(&amp;quot;%d, %d\n&amp;quot;, arrI, arrJ) } fmt.Println(DFSTraverse(arr, word, arrI, arrJ)) } func DFSTraverse(arr [][]byte, word []byte, arrI []int, arrJ []int) (ret bool) { //初始化visited函数 lenArr := len(arr) visited := make([][]bool, lenArr) for i := 0; i &amp;lt; lenArr; i++ { visited[i] = make([]bool, len(arr[i])) } lenArrI := len(arrI) //lenArrJ := len(arrJ) for i := 0; i &amp;lt; lenArrI; i++ { //fmt.</description>
+      <description>problem: https://oj.leetcode.com/problems/word-search/ 代码：https://play.golang.org/p/d5wP691Pbg package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;}, {&#39;S&#39;, &#39;F&#39;, &#39;C&#39;, &#39;S&#39;}, {&#39;A&#39;, &#39;D&#39;, &#39;E&#39;, &#39;E&#39;}, } //word := []byte(&amp;quot;ABCESC&amp;quot;) word</description>
     </item>
     
     <item>
@@ -85,9 +64,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { arr := [][]byte{ {
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</guid>
-      <description>problem: https://oj.leetcode.com/problems/word-ladder-ii/
-代码：https://play.golang.org/p/qdmadQUcEC
-package main import ( &amp;quot;fmt&amp;quot; ) func main() { start := &amp;quot;hit&amp;quot; end := &amp;quot;cog&amp;quot; dict := []string{&amp;quot;hot&amp;quot;, &amp;quot;dot&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;lot&amp;quot;, &amp;quot;log&amp;quot;} dict = append(dict, start, end) mapAdjacency := createAdjacencyGraph(dict, start, end) findLadders(mapAdjacency, start, end) } func findLadders(mapAdjacency map[string][]string, start, end string) { visited := make(map[string]int, len(mapAdjacency)) visited[start] = 1 queue := make([]string, len(mapAdjacency)) queue = append(queue, start) mapParent := make(map[string][]string, len(mapAdjacency)) bfs(mapAdjacency, visited, queue, mapParent, start, end) stack := []string{} stack = append(stack, end) printShortestPath(mapParent, stack, start, end) } func printShortestPath(mapParent map[string][]string, stack []string, start, end string) { if end == start { printStack(stack) return } for _, v := range mapParent[end] { stack = append(stack, v) printShortestPath(mapParent, stack, start, v) stack = stack[:len(stack)-1] } } func printStack(stack []string) { lenStack := len(stack) for i := lenStack - 1; i &amp;gt;= 0; i-- { fmt.</description>
+      <description>problem: https://oj.leetcode.com/problems/word-ladder-ii/ 代码：https://play.golang.org/p/qdmadQUcEC package main import ( &amp;quot;fmt&amp;quot; ) func main() { start := &amp;quot;hit&amp;quot; end := &amp;quot;cog&amp;quot; dict := []string{&amp;quot;hot&amp;quot;, &amp;quot;dot&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;lot&amp;quot;, &amp;quot;log&amp;quot;} dict = append(dict, start, end) mapAdjacency :=</description>
     </item>
     
     <item>
@@ -96,13 +73,7 @@ package main import ( &amp;quot;fmt&amp;quot; ) func main() { start := &amp;quot
       <pubDate>Sat, 31 Dec 2016 11:34:36 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</guid>
-      <description>项目地址：https://github.com/huandu/xstrings
-xstrings 是一个很简单的 Go 语言库，简单说就是提供了一些标准库 strings 没提供但依然很有用的字符串算法。每个字符串算法都对效率进行了优化，所有函数都可以做到不超过 O(n) 的复杂度，并且尽量节省内存使用，仅在需要分配内存的时候分配。
-现在实现的算法几乎都是其他语言（主要是 Python/Ruby/PHP/Perl）标准库里提供的算法，用 Go 重新实现一遍。未来也许我还会继续加入更多的方法，不过我不希望这个库成为一个算法大杂烩，因此仅仅会考虑那些特别有名且语言无关的函数。
-Go 的 strings 操作字符串的时候都是以 rune 为单位进行，但 string 类型却只能以 byte 为单位进行下标访问，要想使用 rune 就得用 []rune(str) 进行转换（有额外内存分配）或者 utf8. DecodeRuneInString(str) 一个个解码。为了和标准库保持高度统一，xstrings 也完全以 rune 为单位操作字符串，这使得算法的实现难度比其他语言稍高一点，不过总之都搞定了，这种有一点挑战的感觉很不错。٩( &amp;lsquo;ω&amp;rsquo; )و
-做这个项目有两方面原因。
-一方面是因为 Go 的 strings 自带算法实在太少，其他语言里面一些特别有趣的字符串算法，比如 Ruby 的 String#succ/String#tr 在 Go 里面都没有，网上甚至都搜不到有人实现过，所以干脆自己来实现一个。
-另一方面则是因为 Go 语言的命名风格比较另类，或者说没有什么历史包袱，在其他语言都被 C 语言遗毒深深困扰的时候，Go 采用了一种小清新的风格命名函数，读起来很舒服，只是从其他语言过来的人要想凭感觉找到某特定函数时会略微有些纠结，比如谁能想到 stricmp 在 Go 里面竟然叫做 EqualFold 呢。所以我就干脆写一个函数对应表，把 Go 的 strings 函数和其他语言类似函数对应起来，也许有朝一日能够帮到些许新晋 Go 开发者吧。</description>
+      <description>项目地址：https://github.com/huandu/xstrings xstrings 是一个很简单的 Go 语言库，简单说就是提供了一些标准库 strings 没提供但</description>
     </item>
     
   </channel>

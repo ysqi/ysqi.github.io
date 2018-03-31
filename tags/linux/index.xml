@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on 虞双齐的博客</title>
+    <title>Linux on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/linux.html</link>
-    <description>在 虞双齐的博客上关于in Linux 的内容</description>
+    <description>Recent content in Linux on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:30 +0800</lastBuildDate>
-    <atom:link href="/tags/linux.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang使用原始套接字构造UDP包</title>
@@ -17,13 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</guid>
-      <description>https://segmentfault.com/a/
-RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA)三种套接字。原始套接字能够对底层传输进行控制，允许自行组装数据包，比如修改本地IP，发送Ping包，进行网络监听。这里不做详细介绍，要了解更多可以网上自己查询。
-实现 这里先看IP头结构：
-其中16位总长度包括IP头长度和数据的长度，8位协议填写17，因为UDP协议类型为17。这里要说明一下IP头中的首部校验，这个值只校验IP头部，不包含数据。
-这里给出校验算法，IP头和UDP头中使用的校验算法是一样的。
-func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n += 2 { sum += int(msg[n])*256 + int(msg[n+1]) } sum = (sum &amp;gt;&amp;gt; 16) + (sum &amp;amp; 0xffff) sum += (sum &amp;gt;&amp;gt; 16) var ans = uint16(^sum) return ans }  下面开始填充IP头，这里使用了golang.org/x/net下的ipv4包
- //目的IP dst := net.IPv4(192, 168, 1, 2) //源IP src := net.IPv4(192, 168, 1, 3) //填充ip首部 iph := &amp;amp;ipv4.</description>
+      <description>https://segmentfault.com/a/ RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA</description>
     </item>
     
     <item>
@@ -32,14 +28,7 @@ func checkSum(msg []byte) uint16 { sum := 0 for n := 1; n &amp;lt; len(msg)-1; n
       <pubDate>Sat, 31 Dec 2016 11:35:06 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</guid>
-      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具.
-本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离出其中都可以使用的部分.
- 工具名称: pdo(parallel do something) https://github.com/ohlinux/pdo  安装 依赖  需要有一个中控机与被管理机器建立了无密码的密钥关系. 需要有go语言的环境,进行编译安装.这里没有提供bin文件. 自己所测试的环境有,centos macos.  编译 先获取依赖的第三方库:
-go get github.com/cihub/seelog go get github.com/robfig/config  安装go 环境.
-go build pdo.go  配置文件目录,默认在~/.pdo.如果不在此处指定.
-pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三种途径.(这里去掉了数据库这种特定的)
- -f 文件,host的列表文件,可以是一列,也可以是两列有相关的目录依赖.后面有例子. -a app名字;-p 产品名;-a支持多app采用 app1,app2逗号分隔. (这个是数据库的来源,因为是特定环境的所以不再有) 标准输入 cat 1.host | pdo -R当使用的时候,可以自动生成失败的列表.详细查看例子&amp;rdquo;Retry功能&amp;rdquo;  pdo 列表过滤 如果列表名称是这样的结构,xxx.yyy 那么过滤的就是yyy,如果没有这个需要,可以忽略.
- -i yf01,dbl01,cq02 过滤物理机房名称,多个可用逗号隔开. -I JX/TC 过滤逻辑机房,配置在-c configure file 中  配置文件中:</description>
+      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具. 本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离</description>
     </item>
     
     <item>
@@ -48,22 +37,7 @@ pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三�
       <pubDate>Sat, 31 Dec 2016 11:34:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</guid>
-      <description>confd Github: https://github.com/sumory/confd
-confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。
-你可以用它：
- 统一管理各种配置文件，配置文件模板和数据是分离的，可各自单独管理
- 动态修改配置属性，然后重新生成相关的配置文件
- 提供cli方式修改数据
-  Features  [x] 基础解析：配置文件使用toml格式，模板数据分离
- [x] 多种存储支持：local file、redis、zookeeper
- [x] 两种运行模式：Debug或Daemon
- [x] cli工具：修改store，批量更新配置
- [ ] 更友好的交互方式，比如通过web界面
- [ ] 分离server和client，提供客户端cli或API供拉取指定配置
- [ ] 加密支持：store中存储的配置可加密，防止泄露
-  Usage 安装
-#假设安装路径为/data/server/confd #go get获取依赖的第三方库 sh build.sh linux /data/server/confd #执行以上构建脚本后，在docs目录下生成了安装所需的文件 #若build.sh增加了参数$2，则默认加载$2/data/config.toml作为confd运行所需的配置文件 cd docs sh install.sh /data/server/confd cd /data/server/confd #注意修改${path}/data/config.toml里的ConfDir和ConnectAddr，前缀为/data/server/confd #然后使用confd、confd-cli即可  使用
-. ├── confd ├── confd-cli ├── data │ ├── config.</description>
+      <description>confd Github: https://github.com/sumory/confd confd是一个统一配置管理工具，目前仍在开发中，基于本地文件存储的部署方式已经可以用于生产环境中。 你可以用它： 统一管理各种配置文件，</description>
     </item>
     
     <item>
@@ -72,14 +46,7 @@ confd是一个统一配置管理工具，目前仍在开发中，基于本地文
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</guid>
-      <description> shipyard中文版正式发布  一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括：
- 支持节点动态集群，可扩展节点的规模（swarm、etcd方案）
- 支持镜像管理、容器管理、节点管理等功能
- 可视化的容器管理和监控管理
- 在线容器console终端
-  二、 Shipyard中文版源代码托管在github，有兴趣可以访问git获取代码。下面是一些图片的预览：
-  1.登陆界面 2.容器列表 3.容器信息创建 4.容器信息 5.终端连接 6.镜像信息 7.节点信息 8.仓库信息   三、 如何使用
- 3.1如何安装shipyard中文版  curl http://dockerclub.net/deploy | bash -s  3.2如何删除shipyard中文版  curl http://dockerclub.net/deploy | ACTION =remove bash -s  3.2如何增加一个节点  curl -sSL http://dockerclub.net/deploy | ACTION=node DISCOVERY=etcd://&amp;lt;你的首次安装主机IP&amp;gt; bash -s bash -s  </description>
+      <description>shipyard中文版正式发布 一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括： 支持节点动态集</description>
     </item>
     
     <item>
@@ -88,18 +55,7 @@ confd是一个统一配置管理工具，目前仍在开发中，基于本地文
       <pubDate>Sat, 31 Dec 2016 11:34:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</guid>
-      <description>1.下载 并且 安装 Go安装包
-百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg
-===========================================================
-在/usr/local下安装程序
-$ tar -xzf go1.5.2.linux-xxx.tar.gz -C /usr/local  在/etc/profile中添加系统范围的PATH环境变量。
-$ vi /etc/profile  export PATH=\$PATH:/usr/local/go/bin
-如果你在/usr/local之外的自定义位置中安装了Go，你同样需要设置GOROOT环境变量来指向自定义的安装位置。
-$ vi /etc/profile  export GOPATH=/root/wwwgo
-export GOROOT=/usr/local/go
-刷新环境变量
-$ source /etc/profile  检查Go语言的版本
-$ go version  go version go1.5.2 linux/amd64</description>
+      <description>1.下载 并且 安装 Go安装包 百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg =========================================================== 在/usr/</description>
     </item>
     
     <item>
@@ -108,16 +64,7 @@ $ go version  go version go1.5.2 linux/amd64</description>
       <pubDate>Sat, 31 Dec 2016 11:33:03 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</guid>
-      <description>RemoteTail 是一款支持同步显示多台远程服务器的日志文件内容更新的工具，使用它可以让你同时监控多台服务器中某个（某些）日志文件的变更，将多台服务器的tail -f xxx.log命令的输出合并展示。
-使用场景 假设公司有两台web服务器A和B，由于初期没有专业运维进行配置集中式的日志服务系统，两台服务器上分别部署了两套相同的代码提供web服务，使用nginx作为负载均衡，请求根据设定的策略转发的这两台web服务器上。
-AB两台服务器中的项目均将日志写到文件系统的/home/data/logs/laravel.log文件。这种情况下如果我们需要查看web日志是否正常，一般情况下就需要分别登陆两台服务器，然后分别执行tail -f /home/data/logs/laravel.log查看日志文件的最新内容，这在排查问题的时候是非常不方便的。RemoteTail就是为了解决这种问题的，开发人员可以使用它同步显示两台（多台）服务器的日志信息。
-安装 下载项目bin/下对应的remote-tail-平台可执行文件，将该文件加入到系统的PATH环境变量指定的目录中即可。
-比如，Centos下可以放到/usr/local/bin目录。
-mv remote-tail-linux /usr/local/bin/remote-tail  使用方法 使用前需要宿主机建立与远程主机之间的ssh公钥免密码登陆。
-remote-tail -hosts &#39;watcher@192.168.1.226,watcher@192.168.1.225&#39; \ -file &#39;/usr/local/openresty/nginx/logs/access.log&#39;  指定配置文件 通过使用-conf参数可以为命令指定读取的配置文件，配置文件为TOML格式，请参考example.toml文件。
-配置文件example.toml：
-# 全局配置,所有的servers中tail_file配置的默认值 tail_file=&amp;quot;/data/logs/laravel.log&amp;quot; # 服务器配置,可以配置多个 # 如果不提供password,则使用当前用户的ssh公钥,建议采用该方式,使用密码方式不安全 # server_name, hostname, user 配置为必选,其它可选 [servers] [servers.1] server_name=&amp;quot;测试服务器1&amp;quot; hostname=&amp;quot;test1.server.aicode.cc&amp;quot; user=&amp;quot;root&amp;quot; tail_file=&amp;quot;/var/log/messages&amp;quot; [servers.2] server_name=&amp;quot;测试服务器2&amp;quot; hostname=&amp;quot;test2.server.aicode.cc&amp;quot; user=&amp;quot;root&amp;quot; tail_file=&amp;quot;/var/log/messages&amp;quot; [servers.3] server_name=&amp;quot;测试服务器3&amp;quot; hostname=&amp;quot;test2.server.aicode.cc&amp;quot; user=&amp;quot;demo&amp;quot; password=&amp;quot;123456&amp;quot;  执行命令：
-remote-tail -conf=example.toml  如果对本项目感兴趣，欢迎关注 https://github.com/mylxsw/remote-tail。</description>
+      <description>RemoteTail 是一款支持同步显示多台远程服务器的日志文件内容更新的工具，使用它可以让你同时监控多台服务器中某个（某些）日志文件的变更，将多台服务器的ta</description>
     </item>
     
     <item>
@@ -126,14 +73,7 @@ remote-tail -conf=example.toml  如果对本项目感兴趣，欢迎关注 https
       <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
-      <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
-安装：
-curl -o - https://raw.githubusercontent.com/HmyBmny/vimrc/master/install-vim-plugins | sh  部分插件的使用需要安装一些依赖，诸如 ctags 之类的，具体请参考：https://github.com/HmyBmny/vimrc
-支持所有 Linux 平台， Mac 没试过，默认是 C/C++, 如果想用来开发 Python， Go 或者其它的语言，只需要找到相应的 Vim 插件并将仓库名加到 .vimrc 文件即可。
-开发 Python 只需将下面的代码添加到 .vimrc 文件
-Plug `klen/python-mode`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。
-开发 Go 只需将下面的代码添加到 .vimrc 文件
-Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。</description>
+      <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需</description>
     </item>
     
     <item>
@@ -142,21 +82,7 @@ Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配�
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</guid>
-      <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在
-open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以有必要写篇文章记一下。
-这篇文章主要包括：
- 如何搭一个虚拟的 linux 服务器和相关配置
- 按照官方的中文介绍安装，会踩到哪些坑。
-  目标只有一个：尽快跑起来。
-服务器选择 笔者最终选择的是 ubuntu-server 16.04 LTS 64bit。基于这款服务器，许多安装指令和介绍中不一样。具体包括
- yum 替换为 apt-get
- mysql-devel 替换为 libmysqld-dev,libmysqlclient-dev
-  等。并且 ubuntu 的源需要配置。笔者配置的是阿里云的ubuntu 16.04 源，参考 ubuntu 16.04 国内快速更新源
-这里有几点需要注意。
- open-falcon 需要 64 位的操作系统以实现快速安装，即便是源码安装也需要你手动调整命令区别。非熟悉者别擅自尝试。
- 尽量别选择 desktop 的操作系统。卡的要死。
- 安装之前会有一坨提示，别随便从电脑前走开。会问你要不要安装一些网络服务包，记得 openssh 要装，到时用什么 Xshell 啊，Powershell 啊去远程连接，支持文本复制到命令行和 vim 什么的还是很好的。当然了你到时手动装也行。
-  虚拟机选择的是Virtual Box for Windows。分配了 2G 内存和 8G 硬盘（应该够用了吧 QAQ ）。第一次启动会提示你装载ISO。之后需要配置设备-网络-高级-端口转发。以及可能需要从主机传文件过去，一会讲。</description>
+      <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在 open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以</description>
     </item>
     
   </channel>

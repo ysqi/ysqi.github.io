@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Iota on 虞双齐的博客</title>
+    <title>Iota on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/iota.html</link>
-    <description>在 虞双齐的博客上关于in Iota 的内容</description>
+    <description>Recent content in Iota on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:45 +0800</lastBuildDate>
-    <atom:link href="/tags/iota.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/iota/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>iota:Golang中优雅的常量</title>
@@ -17,14 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/iota-golang-zhong-you-ya-de-chang-liang.html</guid>
-      <description>注：该文作者是 Katrina Owen，原文地址是 iota: Elegant Constants in Golang
- 有些概念有名字，并且有时候我们关注这些名字，甚至（特别）是在我们代码中。
-const ( CCVisa = &amp;quot;Visa&amp;quot; CCMasterCard = &amp;quot;MasterCard&amp;quot; CCAmericanExpress = &amp;quot;American Express&amp;quot; )  在其他时候，我们仅仅关注能把一个东西与其他的做区分。有些时候，有些时候一件事没有本质上的意义。比如，我们在一个数据库表中存储产品，我们可能不想以 string 存储他们的分类。我们不关注这个分类是怎样命名的，此外，该名字在市场上一直在变化。
-我们仅仅关注它们是怎么彼此区分的。
-const ( CategoryBooks = 0 CategoryHealth = 1 CategoryClothing = 2 )  使用 0, 1, 和 2 代替，我们也可以选择 17， 43， 和 61。这些值是任意的。
-常量是重要的，但是它们很难推断，并且难以维护。在一些语言中像 Ruby 开发者通常只是避免它们。在 Go，常量有许多微妙之处。当用好了，可以使得代码非常优雅且易维护的。
-自增长 在 golang 中，一个方便的习惯就是使用 iota 标示符，它简化了常量用于增长数字的定义，给以上相同的值以准确的分类。
-const ( CategoryBooks = iota // 0 CategoryHealth // 1 CategoryClothing // 2 )  自定义类型 自增长常量经常包含一个自定义类型，允许你依靠编译器。</description>
+      <description>注：该文作者是 Katrina Owen，原文地址是 iota: Elegant Constants in Golang 有些概念有名字，并且有时候我们关注这些名字，甚至（特别）是在我们代码中。 const ( CCVisa = &amp;quot;Visa&amp;quot; CCMasterCard = &amp;quot;MasterCard&amp;quot; CCAmericanExpress = &amp;quot;American</description>
     </item>
     
   </channel>

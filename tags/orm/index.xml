@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Orm on 虞双齐的博客</title>
+    <title>Orm on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/orm.html</link>
-    <description>在 虞双齐的博客上关于in Orm 的内容</description>
+    <description>Recent content in Orm on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:53 +0800</lastBuildDate>
-    <atom:link href="/tags/orm.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/orm/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>beego的ORM-配置数据库</title>
@@ -17,31 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</guid>
-      <description>https://segmentfault.com/a/
-Object Relational Mapping,简称ORM，用于实现面向对象编程语言里不通类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的“虚拟对象数据库”。
-beego是谢大神开发的一个快速开发Go应用的Http框架，一个RESTful的框架。
-记录下如何在beego中配置数据库，以MySql为例
-数据库选择 目前beego的ORM支持三种数据库:
-1.Sqlite 2.PostgreSql 3.MySql  如果要使用其中的数据库必须要把对应的drive(go语言对于的数据库引擎)加入到import中:
-import ( _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; _ &amp;quot;github.com/lib/pq&amp;quot; _ &amp;quot;github.com/mattn/go-sqlite3&amp;quot; )  数据库注册  orm.RegisterDriver(&amp;ldquo;mysql&amp;rdquo;, orm.DRMySQL)
- 这句话的意思是注册了mysql的数据库,当然我们要import进来对于的ORM包:
-import( &amp;quot;github.com/astaxie/beego/orm&amp;quot; )  第一个参数是driverName,第二个参数是orm的类型对于三种数据库:
-orm.DRMySQL orm.DRSqlite orm.DRPostgres  数据库连接 beego必须注册一个别名为default的数据库，作为默认使用。
- orm.RegisterDataBase(&amp;ldquo;default&amp;rdquo;, &amp;ldquo;mysql&amp;rdquo;, &amp;ldquo;test:123456@/test?charset=utf8&amp;rdquo;,30,30)
- 第一个参数是数据库的别名，用来切换数据库使用。
-第二个是driverName，在RegisterDriver时注册的
-第三是数据库连接字符串:test:123456@/test?charset=utf8相对于用户名:密码@数据库地址+名称?字符集
-第四个参数相当于:
- orm.SetMaxIdleConns(&amp;ldquo;default&amp;rdquo;, 30)
- 设置数据库的最大空闲连接。
-第五个参数相当于：
- orm.SetMaxOpenConns(&amp;ldquo;default&amp;rdquo;, 30)
- 设置数据库的最大数据库连接。
-第四个参数和第五个参数也可以不传值，会使用数据库默认值：
-时区 曾经我遇到过一个项目，数据库的时区设置的ORM的时区不一致，导致后面的开发会复杂很多。beego中会使用DefaultTimeLoc来保证时间不会出错
-beego默认使用time.Local本地时区，可以用来自动创建时间，从数据中取出时间转换。
- orm.DefaultTimeLoc = time.UTC
- 可以设置默认的时区。</description>
+      <description>https://segmentfault.com/a/ Object Relational Mapping,简称ORM，用于实现面向对象编程语言里不通类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的</description>
     </item>
     
     <item>
@@ -50,30 +28,7 @@ beego默认使用time.Local本地时区，可以用来自动创建时间，从�
       <pubDate>Sat, 31 Dec 2016 11:33:23 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html</guid>
-      <description>https://segmentfault.com/a/
-碎语：（请自行跳过）
-距离上篇文章发布也有半个月的时间了
-然后这半个月 也没有用go写项目或继续学习 只能算简单的入门了 以后如果有需要的话 或许会深入的去了解一下这门语言 与各种常用的类库 精力有限 把自己之前尝试写一个简单orm的一些片段与大家分享
-也许在月底会尝试用go去写一个爬虫 留待下篇文章分享
-前言：
-关于go的orm框架有许多不错的 为什么自己想写一个原因无非就是想通过写orm的过程来对自己学习的知识做一个阶段性的锻炼与检验 当然目前写的这个只能算是一个玩具 如果你能在这个玩具里有所收获 那便是最好的了
-正文：
-技术需求：对反射有一些了解
-反射可以简单的划分为以下几步：
-1获取对象
-t := reflect.TypeOf(arg) #获取类型
-v := reflect.ValueOf(arg) #获取值
-2获取字段（值 或 名称）
-vf := v.Field(i)
-fv := v.Field(i).Interface() #获取值
-3设值
-vf.CanSet() #判断是否可以设值
-vf.setxxx(xx)
-然后插入 删除 更新 可以用相同的方法实现 只需要使用到 1 2 步
-查询会用到第 3 步
-有了上面的这些知识我们就可以尝试写出一个orm框架了 闲话不多说上代码
-插入 删除 与 更新省略
-func insert(arg interface{}) (sql []byte, params []interface{}, kIdstr string, err error) { if arg == nil { err = errors.</description>
+      <description>https://segmentfault.com/a/ 碎语：（请自行跳过） 距离上篇文章发布也有半个月的时间了 然后这半个月 也没有用go写项目或继续学习 只能算简单的入门了 以后如果有需要的话 或许会深</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shadowsocks on 虞双齐的博客</title>
+    <title>Shadowsocks on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/shadowsocks.html</link>
-    <description>在 虞双齐的博客上关于in Shadowsocks 的内容</description>
+    <description>Recent content in Shadowsocks on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:34 +0800</lastBuildDate>
-    <atom:link href="/tags/shadowsocks.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/shadowsocks/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>搭建golang版ss服务</title>
@@ -17,7 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/da-jian-golangban-ssfu-wu.html</guid>
-      <description>搭建golang版ss服务 第一步：安装 golang cd /usr/local # golang安装到此路径下 wget https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz tar -xvf go1.6.3linux-amd64.tar.gz vim /etc/profile # 设置系统 GOROOT 并添加环境变量 export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin source /etc/profile # 重载此文件 cd ~ # 到家目录下面设置自己的GOPATH 这样不会污染其他用户的 vim .bash_profile export GOPATH=$HOME/shadowsocks source .bash_profile  第二步：搭建 ss 服务 go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server cd shadowsocks/ ls bin pkg src cd bin/ shadowsocks-server -h # 查看帮助 vim config.json # 编写配置文件 { &amp;quot;server&amp;quot;:&amp;quot;127.0.0.1&amp;quot;, &amp;quot;server_port&amp;quot;:8388, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;xxxx&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;aes-128-cfb-auth&amp;quot;, &amp;quot;timeout&amp;quot;:600 } .</description>
+      <description>搭建golang版ss服务 第一步：安装 golang cd /usr/local # golang安装到此路径下 wget https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz tar -xvf go1.6.3linux-amd64.tar.gz vim /etc/profile # 设置系统 GOROOT 并添加环境变量 export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin source /etc/profile # 重载此文件 cd ~</description>
     </item>
     
   </channel>

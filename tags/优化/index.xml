@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>优化 on 虞双齐的博客</title>
+    <title>优化 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E4%BC%98%E5%8C%96.html</link>
-    <description>在 虞双齐的博客上关于in 优化 的内容</description>
+    <description>Recent content in 优化 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 18 Sep 2015 12:55:08 +0000</lastBuildDate>
-    <atom:link href="/tags/%E4%BC%98%E5%8C%96.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golang新手开发需要注意的七个细节</title>

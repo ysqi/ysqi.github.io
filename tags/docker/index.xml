@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on 虞双齐的博客</title>
+    <title>Docker on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/docker.html</link>
-    <description>在 虞双齐的博客上关于in Docker 的内容</description>
+    <description>Recent content in Docker on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 11 Oct 2017 07:11:07 +0800</lastBuildDate>
-    <atom:link href="/tags/docker.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Docker使用问题集</title>
@@ -17,14 +19,7 @@
       <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
-      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。
-第一次创建镜像过程中遇到些问题，我在这里记录，希望能帮助到别人和自己。
-国内如何加速拉取Docker镜像 通过 Docker 镜像加速，国内能够快速访问最流行的 Docker 镜像。国内用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。
- Docker官方提供的加速器 DaoClund提供的加速器，需注册 Aliyun 提供的加速器，需注册，适合在阿里云购买的服务器使用。  Docker-runc not installed on system CentOS通过命令安装Docker时，并没有安装完整。一般在重新安装Docker后出现该问题。 只运行某镜像时，出现如下错误信息：
-docker run docker.io/ysqi/gotestreport /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system. 咋回事？原本好好的怎么就出问题了？原来是命令卸载Docker并没有卸载干净，导致重装或更新Docker后出问题。
-这个在红帽上有一个Issue：https://access.redhat.com/solutions/2876431 有说明此问题，暂时只能是新建一个link到最终版本：
-cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenkins: Can&amp;rsquo;t connect to Docker daemon 当Jenkins的Pipeline基于Docker运行时，提示此错误信息：
- Cannot connect to the Docker daemon. Is the docker daemon running on this host?</description>
+      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。 第一次创建镜像过程中遇到些问题，我在这里记录，</description>
     </item>
     
     <item>
@@ -33,32 +28,7 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Sat, 18 Feb 2017 11:13:43 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</guid>
-      <description>此文翻译自：https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7
-我们在Twitch使用Go研发了许多高并发的系统。它的简单性，安全性，性能和可读性使其成为解决我们遇到问题的一个很好的工具，我们向数百万用户提供实况视频和聊天服务。
-但这不是另一篇关于Go对于我们有多么大作用的文章， 本文是关于我们在使用Go过程中碰到的限制以及我们如何克服这些限制的文章。
-Go 1.4和Go 1.6之间Go runtime的改进使我们的垃圾收集（GC）暂停时间缩短了20倍，我们如何在Go 1.6的停顿之上进一步缩小 10 倍的暂停时间，以及如何向Go团队分享我们的案例，使得1.7中不使用我们手动方案的同时停顿时间又降低了10倍。
-开始 我们的基于IRC的聊天系统最早是在2013年年底用Go写的，取代了以前的Python实现。使用Go 1.2的预发布版本，它能够在每个物理主机提供超过500,000并发用户，而无需特殊调整。有一组三个goroutine（Go的轻量级执行线程）为每个连接提供服务，程序在每个进程中拥有1,500,000个goroutine。即使有这么大的goroutine数量，我们在使用Go1.2的过程中碰见的唯一性能问题是GC暂停时间，执行GC将冻结我们的应用程序几十秒。
-不仅每个GC暂停非常昂贵，GC每分钟运行几次。我们努力减少内存分配的数量和大小，以便将GC运行的频率降低，如果堆每两分钟只增长50％，就意味着分配数量足够低。虽然暂停时间减少，但每一次GC暂停都是破坏性的。
-一旦Go 1.2 正式发布，GC暂停时间下降到“仅”几秒钟。我们将流量分散在更大数量的进程中，从而将停顿降低到更容易接受的范围。
-随着Go版本增长，减少分配的工作会继续有益于我们的聊天服务器，但是分解聊天进程是一个特定范围的Go版本的解决方案。这样的解决方案经不起时间的考验，但对于为我们的用户提供良好的服务非常重要。分享我们的经验有助于为Go运行时创建持久的改进，从而使单个程序受益。
-从2015年8月的Go 1.5开始，Go的垃圾收集器大多数时候是并发和增量的，这意味着在大部分阶段它不需要将应用程序完全停止。除了相对较短的标记和终止阶段，我们的程序可以继续运行，同时运行垃圾回收。升级到Go 1.5立即导致我们的聊天系统中的GC暂停时间的10倍缩小，在重负荷测试实例上的暂停时间从2秒缩短到约200ms。
-Go 1.5 GC新纪元 虽然Go 1.5的延迟减少值得庆祝，但新GC的最大意义是它为进一步的增量改进奠定了基础。
-Go 1.5的垃圾收集器仍然具有相同的两个主要阶段 -
-标记阶段（GC确定哪些内存分配仍在使用），以及扫描阶段（其中未使用的内存已准备好重用） 但是每个阶段都被分成两个子阶段。首先，应用程序暂停，而前一个扫描阶段终止。然后，并发标记阶段在用户代码运行时查找正在使用的内存。最后，应用程序第二次暂停，标记阶段终止。之后，未使用的内存将被扫描，同时应用程序将执行其业务。
-runtime的gctrace功能打印每个GC周期，包括每个阶段的持续时间。对于我们的聊天服务器，它表明大部分剩余的暂停时间在标记终止阶段，因此分析将集中在那里。
-当然，我们需要更多关于GC在这些暂停期间究竟做了什么的细节。 Go核心包有CPU profiler，同时组合使用Linux的perf工具。使用perf允许使用更高的采样频率和在内核中花费的时间可视化。在内核中使用的监视器可以帮助我们调试缓慢的系统调用，并透明地完成虚拟内存管理。
-下面的图片是我们的聊天服务器配置文件的一部分，运行go1.5.1。这是一个使用Brendan Gregg工具制作的火焰图，修剪后只包含在堆栈上具有runtime.gcMark函数的样本，这是Go 1.5在标记终止阶段花费的时间。
-火焰图将堆栈深度显示为向上增长，并且将CPU时间表示为每个部分的宽度。 （颜色是无意义的，x轴上的排序也是无关紧要的 - 它只是字母顺序。）在图表的左边，我们可以看到runtime.gcMark在几乎所有的抽样堆栈中调用runtime.parfordo。向上我们看到大多数时间花在runtime.markroot调用runtime.scang，runtime.scanobject和runtime.shrinkstack。
-runtime.scang函数用于重新扫描内存以帮助终止标记阶段。标记终止阶段背后的整个想法是完成扫描应用程序的内存。
-接下来是runtime.scanobject。这个函数做了几件事情，但在Go 1.5的聊天服务器标记终止阶段运行的原因是实现finalizer。 为什么程序会使用这么多的finalizer，他们为什么会占用这么长GC暂停时间？。有问题的应用程序是一个聊天服务器，同时处理成千上万的用户。
-Go的核心“net”软件包附加一个finalizer到每个TCP连接，以帮助控制文件描述符泄漏 并且由于每个用户都有自己的TCP连接，即使每个链接只有一个finalizer，加起来还是很可观。
-这个问题似乎值得向Go runtime 团队报告。我们通过电子邮件交流，Go团队对如何诊断性能问题以及如何将它们提炼成最小测试用例的建议非常有帮助。对于Go 1.6，运行时团队将finalizer扫描移动到并发标记阶段，导致具有大量TCP连接的应用程序的暂停时间更短。结合发布中的所有其他改进，我们的聊天服务器在Go 1.6的暂停时间是在Go 1.5的一半左右，在测试实例上降低到大约100ms。
-堆栈收缩 Go的并发使启动大量goroutine非常廉价。虽然使用10,000个操作系统线程的程序性能可能很差，但是这个数量的goroutine却很正常。一个区别是goroutine从非常小的堆栈开始 - 只有2kB - 根据需要增长，与其他地方常见的大型固定大小堆栈形成对比。
-Go的函数调用前缀确保有足够的堆栈空间用于下一次调用，如果没有，则在允许调用继续之前，将goroutine的堆栈移动到更大的内存区域 - 根据需要重写指针。
-因此对一个程序来说，为了支持他们做的最深的调用，其goroutine的堆栈将增长。垃圾收集器的一个职责是回收不再需要的堆栈内存。将goroutine堆栈移动到更适当大小的内存区域的任务由runtime.shrinkstack完成，在Go 1.5和1.6中，在标记终止期间完成。
-上面的火焰图，在其样本的3/4左右显示runtime.shrinkstack。如果这项工作可以在应用程序运行时完成，它可以大大加快我们的聊天服务器和其他程序。
-Go运行时的包docs解释如何禁用堆栈收缩。对于我们的聊天服务器，相对于浪费内存来说更短暂的暂停时间更容易接受。在禁用堆栈收缩的情况下，聊天服务器的暂停时间再次减少到30到70ms之间。
-在保持聊天服务的结构和操作相对恒定的同时，我们忍受了Go 1.</description>
+      <description>此文翻译自：https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7 我</description>
     </item>
     
     <item>
@@ -67,14 +37,7 @@ Go运行时的包docs解释如何禁用堆栈收缩。对于我们的聊天服�
       <pubDate>Sat, 31 Dec 2016 11:34:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</guid>
-      <description>注：本文由 Adriaan de Jonge 编写，本文的原文地址为 Create The Smallest Possible Docker Container
- 当我们在使用 Docker 的时候，你会很快注意到你正在下载很多 MB 作为你的预先配置的容器。一个简单的 Ubuntu 容器很容易超过 200 MB，并且随着在上面安装软件，尺寸在逐渐增大。在某些情况下，你不需要任何事情都使用 Ubuntu 。例如，如果你只是简单的想运行一个 web 服务，使用 GO 编写的，没有必要围绕它使用任何工具。
-我一直在寻找尽可能小的容器入手，并且发现了一个：
-docker pull scratch  scratch 镜像是完美的，真正的完美！它简洁，小巧以及快速。它不包含任何 bug，安全泄漏，慢的代码或是技术债务。这是因为它是一个空的镜像。除了一点由 Docker 加入的元数据。事实上，你可以使用如下命令按照 Docker 文档描述的那样创建一个自己的 scratch 镜像。
-tar cv --files-from /dev/null | docker import - scratch  所以这可能就是最小的 Docker 镜像。
-或者我们可以说说关于这个的更多东西？比如，你怎样使用 scratch 镜像。这给自己带来了一些挑战。
-为 scratch 镜像创建内容 我们可以在一个空镜像中运行什么？一个没有依赖的可执行程序。你是否有没有依赖的可执行程序？
-我过去常常使用 Python，Java 和 Javascript 编写代码。每一个这样的语言/平台都需要一个运行时的安装。最近，我开始涉及 Go（或是 golang 如果你喜欢）平台。看起来 Go 是静态连接的。因此我尝试编译一个简单的 web 服务输出 Hello World 并且运行在 scratch 容器中。下面是这个 Hello World web 服务的代码：</description>
+      <description>注：本文由 Adriaan de Jonge 编写，本文的原文地址为 Create The Smallest Possible Docker Container 当我们在使用 Docker 的时候，你会很快注意到你正在下载很多 MB 作为你的预先配置的容器。一个简单的 Ubuntu 容</description>
     </item>
     
     <item>
@@ -83,15 +46,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <pubDate>Sat, 31 Dec 2016 11:34:39 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</guid>
-      <description>使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service
- 本文作者是 jwilder，本文的原文是 Docker Service Discovery Using Etcd and Haproxy
- 在前一篇文章中，我们展示了一种为 Docker 容器在同一台主机上创建一个自动化 Nginx 反向代理的方式。那个设置对于前端 web app 来说工作的很好，但是对于后端服务来说它不是一个好的点子，因为通常它们跨越多个主机。
-这篇文章描述了一个为后端服务的 Docker 容器提供服务发现的解决方案。
-我们将构建的架构体系是模仿 SmartStack，但是使用 etcd 代替 Zookeeper，和两个 docker 容器运行 docker-gen 和 haproxy 代替 nerve 和 synapse。
-它怎样工作的 类似于 SmartStack，我们的组件服务作为一个注册（etcd），一个注册伙伴进程（docker-register），发现伙伴进程（docker-discover），一些后端服务（whoami）以及最后一个消费者（ubuntu/curl）。
-注册和发现组件作为设备与应用程序容器工作，因此在后端或消费者容器的注册或发现代码不是被嵌入的。它们仅仅监听端口或连接其他本地端口。
-服务注册 - Etcd 在任何事情被注册之前，我们需要一些地方跟踪注册条目（比如，服务的 IP 和端口）。我们使用 etcd，因为它由服务注册的简单程序模型和支持键的 TTLs 以及目录。
-通常，你将运行 3到5个 etcd 节点，但是我们仅仅使用一个来保持事情简化。</description>
+      <description>使用 Etcd 和 Haproxy 做 Docker 服务发现 标签（空格分隔）： Etcd Haproxy Docker 服务发现 architecture discovery docker-gen golang service 本文作者是 jwilder，本文的原文是 Docker Service Discovery Using Etcd and Haproxy 在前一篇文章中，我们展示</description>
     </item>
     
     <item>
@@ -100,11 +55,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <pubDate>Sat, 31 Dec 2016 11:34:23 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</guid>
-      <description>【摘要】虽然 Docker 和 Mesos 已成为不折不扣的 Buzzwords ，但是对于大部分人来说它们仍然是陌生的，下面我们就一起领略 Mesos 、Docker 和 Go 配合带来的强大破坏力，如何通过 300 行代码打造一个比特币开采系统。
-时下，对于大部分 IT 玩家来说， Docker 和 Mesos 都是熟悉和陌生的：熟悉在于这两个词无疑已成为大家讨论的焦点，而陌生在于这两个技术并未在生产环境得到广泛使用，因此很多人仍然不知道它们究竟有什么优势，或者能干什么。近日， John Walter 在 Dzone 上撰文 Creating a Distributed System in 300 Lines With Mesos, Docker, and Go，讲述了 Mesos、Docker 和 Go 配合带来的强大破坏力，本文由 OneAPM 工程师编译整理。
-诚然，构建一个分布式系统是很困难的，它需要可扩展性、容错性、高可用性、一致性、可伸缩以及高效。为了达到这些目的，分布式系统需要很多复杂的组件以一种复杂的方式协同工作。例如，Apache Hadoop 在大型集群上并行处理 TB 级别的数据集时，需要依赖有着高容错的文件系统（ HDFS ）来达到高吞吐量。
-在之前，每一个新的分布式系统，例如 Hadoop 和 Cassandra ，都需要构建自己的底层架构，包括消息处理、存储、网络、容错性和可伸缩性。庆幸的是，像 Apache Mesos 这样的系统，通过给分布式系统的关键构建模块提供类似操作系统的管理服务，简化了构建和管理分布式系统的任务。Mesos 抽离了 CPU 、存储和其它计算资源，因此开发者开发分布式应用程序时能够将整个数据中心集群当做一台巨型机对待。
-构建在 Mesos 上的应用程序被称为框架，它们能解决很多问题： Apache Spark，一种流行的集群式数据分析工具；Chronos ，一个类似 cron 的具有容错性的分布式 scheduler ，这是两个构建在 Mesos 上的框架的例子。构建框架可以使用多种语言，包括 C++，Go，Python，Java，Haskell 和 Scala。</description>
+      <description>【摘要】虽然 Docker 和 Mesos 已成为不折不扣的 Buzzwords ，但是对于大部分人来说它们仍然是陌生的，下面我们就一起领略 Mesos 、Docker 和 Go 配合带来的强大破坏力，如何</description>
     </item>
     
     <item>
@@ -113,14 +64,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</guid>
-      <description> shipyard中文版正式发布  一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括：
- 支持节点动态集群，可扩展节点的规模（swarm、etcd方案）
- 支持镜像管理、容器管理、节点管理等功能
- 可视化的容器管理和监控管理
- 在线容器console终端
-  二、 Shipyard中文版源代码托管在github，有兴趣可以访问git获取代码。下面是一些图片的预览：
-  1.登陆界面 2.容器列表 3.容器信息创建 4.容器信息 5.终端连接 6.镜像信息 7.节点信息 8.仓库信息   三、 如何使用
- 3.1如何安装shipyard中文版  curl http://dockerclub.net/deploy | bash -s  3.2如何删除shipyard中文版  curl http://dockerclub.net/deploy | ACTION =remove bash -s  3.2如何增加一个节点  curl -sSL http://dockerclub.net/deploy | ACTION=node DISCOVERY=etcd://&amp;lt;你的首次安装主机IP&amp;gt; bash -s bash -s  </description>
+      <description>shipyard中文版正式发布 一、 Docker Shipyard是什么 ？shipyard是一个开源的docker管理平台，其特性主要包括： 支持节点动态集</description>
     </item>
     
     <item>
@@ -129,24 +73,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <pubDate>Sat, 31 Dec 2016 11:34:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</guid>
-      <description>Docker之shipyard安装指南  一、前言：最近在研究shipyard的docker容器管理平台，在研究过程发现自己对docker基础理解还存在一定的欠缺，为了更好的理解docker，将我对shipyard项目的理解共享给docker爱好者，也系统的形成一份研发日志。dockerclub的shipyard研发系列详细请访问
-二、shipyard项目介绍：shipyard是一个集成管理docker容器、镜像、Registries的系统，他最大亮点应该是支持多节点的集成管理，可以动态加载节点，可托管node下的容器。这里暂时不对shipyard的细节讲解，后续章节会讲他的架构。
-三、shipyard安装使用介绍，shipyard项目的安装可以参考官网逐步操作，这里补充一些坑的解决过程。
- 3.1 首次部署脚本 curl -sSL https://shipyard-project.com/deploy | bash -s   ACTION: 可以使用的指令 (deploy, upgrade, node, remove)
- DISCOVERY: 集群系统采用Swarm进行采集和管理(在节点管理中可以使用‘node’)
- IMAGE: 镜像，默认使用shipyard的镜像
- PREFIX: 容器名字的前缀
- SHIPYARD_ARGS: 容器的常用参数
- TLS_CERT_PATH: TLS证书路径
- PORT: 主程序监听端口 (默认端口: 8080)
- PROXY_PORT: 代理端口 (默认: 2375)
-   3.2 脚本可选项  如果你要自定义部署，请参考以下规范
- 部署action：指令有效变量
- deploy: 部署新的shipyard实例
- upgrade: 更新已存在的实例（注意：你要保持相同的系统环境、变量来部署同样的配置）
- node: 使用Swarm增加一个新的node
- remove: 删除已存在的shipyard实例（容器）
-   3.</description>
+      <description>Docker之shipyard安装指南 一、前言：最近在研究shipyard的docker容器管理平台，在研究过程发现自己对docker基础理</description>
     </item>
     
     <item>
@@ -155,15 +82,7 @@ tar cv --files-from /dev/null | docker import - scratch  所以这可能就是�
       <pubDate>Sat, 31 Dec 2016 11:33:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</guid>
-      <description>Shipyard中文版官方同步更新
- 中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://github.com/dockerclubgroup/shipyard
- 本次更新内容包括
-1、不列出中间镜像列表
-  2、修复docker 1.2.1版本以上的网络状态与链接Bug
-3、修复多个容器部署bug
-4、golang依赖库更新，迁移google依赖至github
-5、支持多网络模式的部署
-欢迎大家体验新版本的镜像，镜像地址hub:https://hub.docker.com/r/dockerclub/shipyard/</description>
+      <description>Shipyard中文版官方同步更新 中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://githu</description>
     </item>
     
   </channel>

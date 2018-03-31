@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程语言与开发 on 虞双齐爱折腾</title>
+    <link>https://yushuangqi.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html</link>
+    <description>Recent content in 编程语言与开发 on 虞双齐爱折腾</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解以太坊Gas</title>
+      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
+      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
+      <description>&lt;h2 id=&#34;背景介绍&#34;&gt;背景介绍&lt;/h2&gt;
+
+&lt;p&gt;以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 &lt;code&gt;Gas&lt;/code&gt;计算，最终将gas以ETH支付。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。&lt;/p&gt;
+
+&lt;p&gt;你可在 &lt;a href=&#34;etherscan.io&#34;&gt;etherscan.io&lt;/a&gt; 上查看交易手续费（&lt;code&gt;gas limit&lt;/code&gt; * &lt;code&gt;gas price&lt;/code&gt;）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>理解与计算比特币难度值Difficulty</title>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
+      <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/27123601.png&#34; alt=&#34;比特币历史难度&#34; /&gt;
+挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。&lt;/p&gt;
+
+&lt;p&gt;那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/28423175.png&#34; alt=&#34;比特币历史难度&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。
+这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解析比特币区块</title>
+      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
+      <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
+      <description>&lt;p&gt;在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;li&gt;Windows:  %APPDATA%/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/23266460.png&#34; alt=&#34;比特币钱包&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>程序员该掌握区块链技术</title>
+      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</link>
+      <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</guid>
+      <description>周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。 也请</description>
+    </item>
+    
+    <item>
+      <title>Docker使用问题集</title>
+      <link>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</link>
+      <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
+      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。 第一次创建镜像过程中遇到些问题，我在这里记录，</description>
+    </item>
+    
+    <item>
+      <title>区块链比特币学习路线与资源</title>
+      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</link>
+      <pubDate>Mon, 18 Sep 2017 12:02:35 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</guid>
+      <description>小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。 注意：某些网站也许</description>
+    </item>
+    
+    <item>
+      <title>Mac下搭建以太坊私有链</title>
+      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</link>
+      <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</guid>
+      <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以</description>
+    </item>
+    
+    <item>
+      <title>Golang Generate命令说明与使用</title>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
+      <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
+      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene</description>
+    </item>
+    
+    <item>
+      <title>Go读取通达信历史日线数据</title>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。 准备工作 下载</description>
+    </item>
+    
+    <item>
+      <title>Go面试题答案与解析</title>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
+      <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
+      <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度</description>
+    </item>
+    
+    <item>
+      <title>gRPC服务发现&amp;amp;负载均衡</title>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
+      <description>gRPC服务发现&amp;amp;负载均衡 构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的</description>
+    </item>
+    
+    <item>
+      <title>Caddy新兴的web服务器caddy</title>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
+      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单， 然后呢，它还有</description>
+    </item>
+    
+    <item>
+      <title>redigo连接池代码分析</title>
+      <link>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</guid>
+      <description>结构体分析 type Pool struct { // 用来创建redis连接的方法 Dial func() (Conn, error) // 如果设置了给func,那么每次p.Get()的时候都会调用改方法来验证连接的可用性</description>
+    </item>
+    
+    <item>
+      <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
+      <link>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
+      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况： 一、后端测试了一</description>
+    </item>
+    
+    <item>
+      <title>协作式go程</title>
+      <link>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:33 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</guid>
+      <description>协作式go程 为什么要协作式go程 考虑如下开发框架，一组网络接收goroutine接收网络包，解包，然后将逻辑包推送到消息队列，由一个单一的逻</description>
+    </item>
+    
+    <item>
+      <title>Golang里的Future_Promise</title>
+      <link>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</guid>
+      <description>现如今，应用执行时最普遍存在的瓶颈就是网络请求了。网络请求只要几毫秒，但是等到返回却要百倍的时间。所以，如果你执行多个网络请求，让他们都并行</description>
+    </item>
+    
+    <item>
+      <title>对echo框架进行统一的自定义错误处理</title>
+      <link>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
+      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行， 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表， 你可以用不输 python/ruby 这类动态</description>
+    </item>
+    
+    <item>
+      <title>fasthttp中的协程池实现</title>
+      <link>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
+      <description>https://segmentfault.com/a/ fasthttp中的协程池实现 协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，</description>
+    </item>
+    
+    <item>
+      <title>golang使用Nsq</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
+      <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现</description>
+    </item>
+    
+    <item>
+      <title>golang使用原始套接字构造UDP包</title>
+      <link>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:30 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</guid>
+      <description>https://segmentfault.com/a/ RAW SOCKET 介绍 TCP/IP协议中，最常见的就是原始(SOCKET_RAW)、tcp(SOCKET_STREAM)、udp(SOCKET_DGRA</description>
+    </item>
+    
+  </channel>
+</rss>

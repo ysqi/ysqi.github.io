@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>虞双齐的博客 on 虞双齐的博客</title>
+    <title>虞双齐爱折腾</title>
     <link>https://yushuangqi.com/</link>
-    <description>在 虞双齐的博客上关于in 虞双齐的博客 的内容</description>
+    <description>Recent content on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
-    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+        <atom:link href="https://yushuangqi.com/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>理解以太坊Gas</title>
@@ -17,17 +19,115 @@
       <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
-      <description>背景介绍 以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 Gas计算，最终将gas以ETH支付。
-需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。
-你可在 etherscan.io 上查看交易手续费（gas limit * gas price）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。
-概要 当你听到gas时，是在讨论两个东西：
- Gas Limit Gas Price  交易费计算就是Gas Limit*Gas Price。大家说“Gas”时，一般所值得是“Gas Limit”
-你可以把gas limit看成是汽车所需多少升燃油。把gas price看成是燃油单价。
- 对于汽车，每升(unit)汽油 ￥6.46 （price） 对于以太坊,每gas( unit) 是 20 GWEI (price)  继续想，就是：
- 10升汽油就是 ￥64.6 21000 个 gas 就是 20*21000 GWEI= 420000 GWEI= 0.00042 ETH  也就是说本次交易手续为 0.00042 Ether。
-发送Token一般需要 ~50000 gas 到 ~100000 gas ,因此交易手续费增加到 0.001 ETH - 0.002 ETH。
-其中以太坊ETH到GWEI的转换关系是，这些多是以太币的计算单位：
- Kwei(Babbage) = 10^{3} Wei Mwei(Lovelace) = 10^{6} Wei Gwei(Shannon) = 10^{9} Wei Microether(Szabo) = 10^{12} Wei Milliether(Finney) = 10^{15} Wei Ether = 10^{18} Wei  Gas Gas 是以太坊中一种特定的命名，表示执行一个操作所需要的多少计算工作。 比如要执行一次加密Keccak256将消耗30gas。在以太坊中每个操作动作都有对应的gas。更多内容可查看What is gas (StackExchange)。</description>
+      
+        <description>&lt;h2 id=&#34;背景介绍&#34;&gt;背景介绍&lt;/h2&gt;
+
+&lt;p&gt;以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 &lt;code&gt;Gas&lt;/code&gt;计算，最终将gas以ETH支付。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。&lt;/p&gt;
+
+&lt;p&gt;你可在 &lt;a href=&#34;etherscan.io&#34;&gt;etherscan.io&lt;/a&gt; 上查看交易手续费（&lt;code&gt;gas limit&lt;/code&gt; * &lt;code&gt;gas price&lt;/code&gt;）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+
+&lt;p&gt;当你听到&lt;code&gt;gas&lt;/code&gt;时，是在讨论两个东西：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gas Limit&lt;/li&gt;
+&lt;li&gt;Gas Price&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;交易费计算就是&lt;code&gt;Gas Limit&lt;/code&gt;*&lt;code&gt;Gas Price&lt;/code&gt;。大家说“Gas”时，一般所值得是“Gas Limit”&lt;/p&gt;
+
+&lt;p&gt;你可以把&lt;code&gt;gas limit&lt;/code&gt;看成是汽车所需多少升燃油。把&lt;code&gt;gas price&lt;/code&gt;看成是燃油单价。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对于汽车，每&lt;code&gt;升(unit)&lt;/code&gt;汽油 &lt;code&gt;￥6.46 （price）&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;对于以太坊,每&lt;code&gt;gas( unit)&lt;/code&gt; 是 &lt;code&gt;20 GWEI (price)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;继续想，就是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;10升汽油就是 ￥64.6&lt;/li&gt;
+&lt;li&gt;21000 个 gas 就是 20*21000 GWEI= 420000 GWEI= 0.00042 ETH&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;也就是说本次交易手续为 0.00042 Ether。&lt;/p&gt;
+
+&lt;p&gt;发送Token一般需要 &lt;code&gt;~50000&lt;/code&gt; gas 到 &lt;code&gt;~100000&lt;/code&gt; gas ,因此交易手续费增加到 &lt;code&gt;0.001 ETH - 0.002 ETH&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;其中以太坊ETH到GWEI的转换关系是，这些多是以太币的计算单位：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Kwei(Babbage) = 10^{3} Wei&lt;/li&gt;
+&lt;li&gt;Mwei(Lovelace) = 10^{6} Wei&lt;/li&gt;
+&lt;li&gt;Gwei(Shannon) = 10^{9} Wei&lt;/li&gt;
+&lt;li&gt;Microether(Szabo) = 10^{12} Wei&lt;/li&gt;
+&lt;li&gt;Milliether(Finney) = 10^{15} Wei&lt;/li&gt;
+&lt;li&gt;Ether = 10^{18} Wei&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;gas&#34;&gt;Gas&lt;/h2&gt;
+
+&lt;p&gt;Gas 是以太坊中一种特定的命名，表示执行一个操作所需要的多少计算工作。 比如要执行一次加密&lt;a href=&#34;https://ethereum.stackexchange.com/questions/550/which-cryptographic-hash-function-does-ethereum-use&#34;&gt;Keccak256&lt;/a&gt;将消耗30gas。在以太坊中每个操作动作都有对应的gas。更多内容可查看&lt;a href=&#34;https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas&#34;&gt;What is gas (StackExchange)&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;一般交易需要花费多少gas则取决于此完成此交易过程中的所执行的操作的累计gas。&lt;/p&gt;
+
+&lt;h2 id=&#34;gas-limit&#34;&gt;Gas Limit&lt;/h2&gt;
+
+&lt;p&gt;这个 &lt;code&gt;gas limit&lt;/code&gt;之所以称之为limit是因为它代表的是你将为此次交易所支付的每单位gas的最大费用。以避免合约中的错误引起不可预计的开销，合约执行进入一个计算死循环就势必会1ETH&amp;hellip;10ETH直至耗尽你的余额。&lt;/p&gt;
+
+&lt;p&gt;然而，一笔交易所必须支付的gas量已经在区块中通过该交易已执行的代码数记录。如果你不想支出太多在gas上，设置底的gas limit 是没有太多帮助的。你必须支付足够的gas已开销本交易所必要的计算资源，否则将出现一个 &lt;code&gt;Out of Gas&lt;/code&gt;的错误。即使交易失败，你也必须为已占用的计算资源所支付手续费。&lt;/p&gt;
+
+&lt;p&gt;未使用的gas将在交易后返回给你。比如你发送 1 ETH 到另一个账户B，设置 gas limit 为 400000，将有 400000 - 21000 返回给你。然而如果你是发送 1 ETH 到一个合约且交易失败（说，投票已截止），400000 都会被用掉，没啥返还给你。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;21000 是标准转账交易的gas limit。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;gas-price&#34;&gt;Gas Price&lt;/h2&gt;
+
+&lt;p&gt;如果你想让交易花费更少，你能够做的是降低你愿意支付的gas单价。这个价格会此交易影响的确认速度。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;正常情况下&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;50 GWEI Gas Price 几乎总能将你的交易放到下一个区块。&lt;/li&gt;
+&lt;li&gt;20 GWEI 通常会把它放到未来的几个区块中。&lt;/li&gt;
+&lt;li&gt;8 GWEI  通常会在未来几分钟内放入区块。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;在Token创建后，因为抢购太疯狂&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;50 GWEI 是创建Token时合同所定义的&lt;code&gt;max gas price&lt;/code&gt;。高于这个限制的交易都会失败，交易前你得检查该Token中所设置最大燃油单价。&lt;/li&gt;
+&lt;li&gt;50 GWEI  是你应该在抢购时所设置的燃油单价。&lt;/li&gt;
+&lt;li&gt;如果你想在在Token创建期间发送交易（非Token创建），你有两个选择：等待一会儿直到Token创建结束，或者提高燃油单价超过50 GWEI。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;提高gas-price就能快速打包确认-降低gas-price就会难以被确认&#34;&gt;提高gas price就能快速打包确认？降低gas price就会难以被确认？&lt;/h2&gt;
+
+&lt;p&gt;交易手续费将归属于挖出本本区块的矿工。当矿工挖矿时，他需要决定哪些交易放入到区块中。可以不包含任何交易，也可以随机选择交易。为了鼓励让矿工将你的交易放入区块，你会考虑将燃油单价设置得足够高，已确保能优先放入区块。但这还是一厢情愿，这个最终取决于矿工。&lt;/p&gt;
+
+&lt;p&gt;大部分矿工遵循一个简单策略，将接受到的交易按燃油单价从高到底排列，依次放入区块中直到塞满区块，或者直到以低于矿工所设置的燃油单价底限。&lt;/p&gt;
+
+&lt;p&gt;设得足够高的燃油单价交易会在下一个区块中。如果你着急，高燃油单价会使得你的交易排在别人前面。如果不着急，你只需设置一个足够让矿工包含你交易的燃油单价即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;为何要设置低gas-price&#34;&gt;为何要设置低gas price?&lt;/h2&gt;
+
+&lt;p&gt;因为以太坊的价格是浮动的，相对人民币随时都涨跌20%。按人民币考虑，相对于之前的交易，10 gas price 相当于 ￥ 0.3。而现在可能即使 ￥0.4了。所以需要根据实际情况，尽量调低 gas price 。&lt;/p&gt;
+
+&lt;p&gt;而当网络中大部分交易都是低gas price时，矿工也会去调整他的底限。&lt;/p&gt;
+
+&lt;h2 id=&#34;到底设置多少-gas-price-合适&#34;&gt;到底设置多少 gas price 合适&lt;/h2&gt;
+
+&lt;p&gt;可以看这个网站：&lt;a href=&#34;http://ethgasstation.info/&#34;&gt;http://ethgasstation.info&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;它将告诉你现在整个以太坊的情况，并给你建议的 gas price。&lt;/p&gt;</description>
+      
     </item>
     
     <item>
@@ -36,18 +136,200 @@
       <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
-      <description>挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。
-那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。
-游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。 这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。
-比特币难度值Difficulty 难度值在区块中并不记录，仅仅是为了人类直观感受解题难度而演变出的一个浮点数。公式如下： $$ diffculty = \dfrac{difficulty\_1\_target }{ currentTarget} $$
-此处的 difficulty_1_target 为一个常数，非常大的一个数字。表示矿池挖矿最大难度。目标值越小，区块生成难度越大。
-难度值如何存储在区块中的 在区块中存储的是Target，但是将Target经类似于浮点数的一种压缩表示法，字段为bits。例如，如果区块bits记录为0x1b0404cb，那么他表示的十六进制的Target值为：
-0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000 在计算时，后面3个字节0x0404cb作为底，前面1字节0x1b表示次方数。具体压缩过程如下：
- 将数字转换为256进制数 如果第一位数字大于127(0x7f),则前面添加0 压缩结果中的第一位存放该256进制数的位数 后面三个数存放该256进制数的前三位，如果不足三位，则后面补零  例如，将数字1000压缩，先转换为256进制数
-1000 = 0x03 * 256 + 0xe8 * 1 那么是由两个数字构成：
-03 e8 第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：0x0203e800 。
-有比如数字 2^(256-32)-1,转换为256进制为：
-ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 第一位已经超过0x7f,前面添加零：</description>
+      
+        <description>&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/27123601.png&#34; alt=&#34;比特币历史难度&#34; /&gt;
+挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。&lt;/p&gt;
+
+&lt;p&gt;那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/28423175.png&#34; alt=&#34;比特币历史难度&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。
+这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;比特币难度值difficulty&#34;&gt;比特币难度值Difficulty&lt;/h2&gt;
+
+&lt;p&gt;难度值在区块中并不记录，仅仅是为了人类直观感受解题难度而演变出的一个浮点数。公式如下：
+$$
+diffculty = \dfrac{difficulty\_1\_target }{ currentTarget}
+$$&lt;/p&gt;
+
+&lt;p&gt;此处的 difficulty_1_target 为一个常数，非常大的一个数字。表示矿池挖矿最大难度。&lt;strong&gt;目标值越小，区块生成难度越大&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;难度值如何存储在区块中的&#34;&gt;难度值如何存储在区块中的&lt;/h2&gt;
+
+&lt;p&gt;在区块中存储的是Target，但是将Target经类似于&lt;a href=&#34;https://en.wikipedia.org/wiki/IEEE_754&#34;&gt;浮点数&lt;/a&gt;的一种压缩表示法，字段为&lt;code&gt;bits&lt;/code&gt;。例如，如果区块bits记录为0x1b0404cb，那么他表示的十六进制的Target值为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在计算时，后面3个字节&lt;code&gt;0x0404cb&lt;/code&gt;作为底，前面1字节&lt;code&gt;0x1b&lt;/code&gt;表示次方数。具体压缩过程如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将数字转换为256进制数&lt;/li&gt;
+&lt;li&gt;如果第一位数字大于127(0x7f),则前面添加0&lt;/li&gt;
+&lt;li&gt;压缩结果中的第一位存放该256进制数的位数&lt;/li&gt;
+&lt;li&gt;后面三个数存放该256进制数的前三位，如果不足三位，则后面补零&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如，将数字1000压缩，先转换为256进制数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;1000 = 0x03 * 256 + 0xe8 * 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;那么是由两个数字构成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;03   e8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一个数未超过0x7f,则不需填0，但长度两位低于三位，在后面补零，最终表示为：&lt;code&gt;0x0203e800&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;有比如数字 2^(256-32)-1,转换为256进制为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一位已经超过0x7f,前面添加零：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在长度为28+1=29 (0x1d),则最终压缩结果为：&lt;code&gt;0x1d00ffffff&lt;/code&gt;。此时就用精度缺失，后面的26个ff 被丢弃了，因为总共才4字节，前两字节已经被长度和添加的0所占用，只剩下2个字节来存储数字。如果我们将压缩结果0x1d00ffffff解压，会是原值吗? 实际结果为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;0x00ffff *256** (0x1d - 3)  = ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而此数为比特币的最大Target值，此时难度最小为1。将其结果前面添加4位0，其结果为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;0x00000000FFFFFF0000000000000000000000000000000000000000000000000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此最小难度值1，在矿机上一般使用保留尾部的FF，则为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;称上面数字为&lt;code&gt;pool difficulty 1&lt;/code&gt; 矿池难度1，矿池难度简称pdiff。而比特币客户端表示如此精度，也许是困难的，所以不保留尾部的FF,则结果为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;0x00000000FFFFFF0000000000000000000000000000000000000000000000000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此值，在客户端上称之为bdiff。&lt;/p&gt;
+
+&lt;h3 id=&#34;如何查看当前难度值&#34;&gt;如何查看当前难度值&lt;/h3&gt;
+
+&lt;p&gt;当前难度值，可以在许多提供服务的网站上查看图表数据：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitcoinwisdom.com/bitcoin/difficulty&#34;&gt;https://bitcoinwisdom.com/bitcoin/difficulty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://data.bitcoinity.org/bitcoin/difficulty/5y?t=l&#34;&gt;https://data.bitcoinity.org/bitcoin/difficulty/5y?t=l&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://btc.com/stats/diff&#34;&gt;https://btc.com/stats/diff&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;最大难度值是多少&#34;&gt;最大难度值是多少&lt;/h3&gt;
+
+&lt;p&gt;按公式来看，当current_target=0时diffculty无穷大，标志着难以计算。而实际上current_target不会为0，最小current_traget=1时，难度值最大，接近2^(256-32)。&lt;/p&gt;
+
+&lt;h3 id=&#34;最小难度值是多少&#34;&gt;最小难度值是多少&lt;/h3&gt;
+
+&lt;p&gt;当current_target=difficulty_1_target 为最大值时，难度值为最小值1。&lt;/p&gt;
+
+&lt;h3 id=&#34;根据难度值如何计算网络算力network-hash-rate&#34;&gt;根据难度值如何计算网络算力network hash rate&lt;/h3&gt;
+
+&lt;p&gt;网络算力，表示根据难度值，要计算多少次才能找到一个随机数使得区块哈希值低于目标值。&lt;/p&gt;
+
+&lt;p&gt;由当前目标值Target决定当前难度值 。如果当前难度为D，则根据公式：
+$$ currentTarget = \dfrac{difficulty\_1\_target }{D} = \dfrac{  0xffff \ast 2^{208} }{D}  $$
+因此，为找到一个难度为D区块，我们需计算哈希值的次数为：
+$$  \dfrac{  D \ast  2 ^{256} } { 0xffff \ast 2^{208} } = \dfrac{ D \ast 2^{48} } {0xffff} = D \ast 2^{32}  $$
+目前难度计算速度要求是在10分钟内找到，即在600秒内完全计算，意味着网络算力最低必须是：
+$$    \dfrac{ D \ast 2^{32} } {600}    $$
+依上计算，当难度值D=1时，需要每秒计算7158278次哈希，即： 7.15 Mhahs/s。挖矿的每秒算力计算单位：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1 KHash/s = 1000 Hash/s&lt;/li&gt;
+&lt;li&gt;1 MHash/s = 1000 KHash/s&lt;/li&gt;
+&lt;li&gt;1 GHash/s = 1000 MHash/s&lt;/li&gt;
+&lt;li&gt;1 THash/s = 1000 GHash/s&lt;/li&gt;
+&lt;li&gt;1 PHash/s = 1000 THash/s&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;比特币区块目标值&#34;&gt;比特币区块目标值&lt;/h2&gt;
+
+&lt;p&gt;目标值是一个全网统一的一个256字节的数字，非常大。 最大目标值为0x1d00ffff。&lt;/p&gt;
+
+&lt;p&gt;比特币区块被设计为平均每10分钟生成一个新区块。那如何才能维持区块生成速度呢？ 需要动态调整区块难度，而定期自动更新目标值，则可调整难度。所以比特币设计为每隔2016个区块时全网均会自动统计过去2016个区块生成耗时，重新计算出下一个2016个区块的目标值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;按10分钟一个区块生成速度，2016个区块生成时间为2016*10分钟=14天。 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;目标值计算细节&#34;&gt;目标值计算细节&lt;/h3&gt;
+
+&lt;p&gt;目标值计算公式如下，但在实际计算时有些特别处理，将目标值控制在一定范围内。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;新目标值= 当前目标值 * 实际2016个区块出块时间 / 理论2016个区块出块时间(2周)。 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;判断是否需要更新目标值( 2016的整数倍)，如果不是则继续使用最后一个区块的目标值&lt;/li&gt;
+&lt;li&gt;计算前2016个区块出块用时&lt;/li&gt;
+&lt;li&gt;如果用时低于半周，则按半周计算。防止难度增加4倍以上。&lt;/li&gt;
+&lt;li&gt;如果用时高于8周，则按8周计算。防止难度降低到4倍以下。&lt;/li&gt;
+&lt;li&gt;用时乘以当前难度&lt;/li&gt;
+&lt;li&gt;再除以2周&lt;/li&gt;
+&lt;li&gt;如果超过最大难度限制，则按最大难度处理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;计算过程，Go代码如下。点击&lt;a href=&#34;https://github.com/bitcoin/bitcoin/blob/master/src/pow.cpp#L49&#34;&gt;查看bticoin C++源码&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var (
+    bigOne = big.NewInt(1)
+    // 最大难度：00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff，2^224，0x1d00ffff
+    mainPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 224), bigOne)
+    powTargetTimespan = time.Hour * 24 * 14 // 两周
+)
+func CalculateNextWorkTarget(prev2016block, lastBlock Block) *big.Int {
+    // 如果新区块(+1)不是2016的整数倍，则不需要更新，仍然是最后一个区块的 bits
+    if (lastBlock.Head.Height+1)%2016 != 0 {
+        return CompactToBig(lastBlock.Head.Bits)
+    }
+    // 计算 2016个区块出块时间
+    actualTimespan := lastBlock.Head.Timestamp.Sub(prev2016block.Head.Timestamp)
+    if actualTimespan &amp;lt; powTargetTimespan/4 {
+        actualTimespan = powTargetTimespan / 4
+    } else if actualTimespan &amp;gt; powTargetTimespan*4 {
+        // 如果超过8周，则按8周计算
+        actualTimespan = powTargetTimespan * 4
+    }
+    lastTarget := CompactToBig(lastBlock.Head.Bits)
+    // 计算公式： target = lastTarget * actualTime / expectTime
+    newTarget := new(big.Int).Mul(lastTarget, big.NewInt(int64(actualTimespan.Seconds())))
+    newTarget.Div(newTarget, big.NewInt(int64(powTargetTimespan.Seconds())))
+    //超过最多难度，则重置
+    if newTarget.Cmp(mainPowLimit) &amp;gt; 0 {
+        newTarget.Set(mainPowLimit)
+    }
+    return newTarget
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;测试代码如下，计算的是对高度为&lt;a href=&#34;https://btc.com/000000000000000000139d2fc37814f5efdc637a6c8e1b202f9ee12365b01403&#34;&gt;497951+1&lt;/a&gt;出块时计算的新目标值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func TestGetTarget(t *testing.T) {
+    firstTime, _ := time.Parse(&amp;quot;2006-01-02 15:04:05&amp;quot;, &amp;quot;2017-11-25 03:53:16&amp;quot;)
+    lastTime, _ := time.Parse(&amp;quot;2006-01-02 15:04:05&amp;quot;, &amp;quot;2017-12-07 00:22:42&amp;quot;)
+    prevB := Block{Head: BlockHeader{Height: 497951, Bits: 0x1800d0f6, Timestamp: lastTime}}
+    prev2016B := Block{Head: BlockHeader{Height: 495936, Bits: 0x1800d0f6, Timestamp: firstTime}}
+    result := CalculateNextWorkTarget(prev2016B, prevB)
+    bits := BigToCompact(result)
+    if bits != 0x1800b0ed {
+        t.Fatalf(&amp;quot;expect 0x1800b0ed,unexpected %x&amp;quot;, bits)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
     </item>
     
     <item>
@@ -56,11 +338,491 @@ ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
       <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
-      <description>在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：
- Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat Windows: %APPDATA%/Bitcoin/blocks/blkXXXX.dat  通过Go代码的方式，一步一步讲解比特币区块的解析逻辑。
-下图是比特币区块数据结构，主要由区块头和交易清单组成。    项 name 字节 用途     神奇数 magic 4 固定为0xD9B4BEF9,作为区块间的分隔符   区块大小 block_size 4 记录当前区块的大小   区块头信息 header 80 记录当前区块的头部信息   交易总数 tx_count 1-9 当前区块所含记录数   交易清单 tx_list * 记录当前区块交易细节    其中，神奇数固定为0xD9B4BEF9，作为区块的分隔标识符。而比特币的交易数据是以128Mb为上限记录在dat文件中的。利用此神奇数和区块大小，可将区块数据读取。
-先打开文件blk00001.bat
-f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按分隔符读取区块数据：</description>
+      
+        <description>&lt;p&gt;在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;li&gt;Windows:  %APPDATA%/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/23266460.png&#34; alt=&#34;比特币钱包&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过Go代码的方式，一步一步讲解比特币区块的解析逻辑。
+
+下图是比特币区块数据结构，主要由区块头和交易清单组成。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/26097973.png&#34; alt=&#34;比特币区块结构&#34; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;字节&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;神奇数&lt;/td&gt;
+&lt;td&gt;magic&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;固定为0xD9B4BEF9,作为区块间的分隔符&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;区块大小&lt;/td&gt;
+&lt;td&gt;block_size&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;记录当前区块的大小&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;区块头信息&lt;/td&gt;
+&lt;td&gt;header&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;记录当前区块的头部信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;交易总数&lt;/td&gt;
+&lt;td&gt;tx_count&lt;/td&gt;
+&lt;td&gt;1-9&lt;/td&gt;
+&lt;td&gt;当前区块所含记录数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;交易清单&lt;/td&gt;
+&lt;td&gt;tx_list&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;记录当前区块交易细节&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;其中，神奇数固定为&lt;code&gt;0xD9B4BEF9&lt;/code&gt;，作为区块的分隔标识符。而比特币的交易数据是以128Mb为上限记录在dat文件中的。利用此神奇数和区块大小，可将区块数据读取。&lt;/p&gt;
+
+&lt;p&gt;先打开文件&lt;code&gt;blk00001.bat&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;f, err := os.Open(name)
+if err != nil {
+   log.Fatal(err)
+}
+defer f.Close() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再按分隔符读取区块数据：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;for {
+   mg := ReadUint32(f)
+   if mg != MARGIC { // MARGIC uint32 = 0xd9b4bef9
+     Failt(fmt.Errorf(&amp;quot;expect margic %x,not %x&amp;quot;, margic, mg))
+   }
+   //get block size
+   blockSize := ReadUint32(f)
+   //get block bytes
+   blockData := ReadBytes(f, uint64(blockSize))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;区块头信息&#34;&gt;区块头信息&lt;/h2&gt;
+
+&lt;p&gt;区块头是重要的信息，保障了区块内容的不可篡改。因此一些轻钱包，可不下载完整的区块，而只需获取区块头，便可验证交易。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项&lt;/th&gt;
+&lt;th&gt;字节&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;版本号&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;区块的版本号&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;上一区块头Hash&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;上一区块的 SHA256 Hash值，以确保上一区块无法修改，继续加强稳定性&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Merkle树根值&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;交易Merkle树根节点Hash&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;时间戳&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;区块生成时间UNIX格式&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;目标值&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;本区块头Hash必须&amp;gt;=本值&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;随机数&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;一个使得本区块头Hash&amp;gt;=目标值的任意数。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;区块头信息中记录上一个区块头HASH值，是对历史交易的再次确认。比特币中只有在6次确认后才交易稳定。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/24245470.png&#34; alt=&#34;比特币区块链简图&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么此Hash是对头部所有内容经过两次SHA256加密获得，而在内容中含有交易记录的Merkle数根值，可以保障交易内容摘要也在此HASH范围内。注意每个区块的HASH并不存储在当前区块中，其他区块要引用此区块时需对此区块头进行HASH计算。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// head
+head := decodeHeader(r)
+head.Hash = DoubleHashH(blockData[:80]) //头部80个字节
+
+func decodeHeader(r io.Reader) (h BlockHeader) {
+    h.Version = ReadUint32(r)
+    h.PrevBlock = ReadHash(r)
+    h.MerkleRoot = ReadHash(r)
+    h.Timestamp = time.Unix(int64(ReadUint32(r)), 0)
+    h.Bits = ReadUint32(r)
+    h.Nonce = ReadUint32(r)
+    return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此处的Merkle树便是一个Hash二叉树。本区块中所有交易，按时间顺序将单笔交易的HASH值（TXID）两两组成一个二叉树的叶子，根便是最终的Hash值。
+通过对每笔交易进行HASH签名，构成唯一的根HASH存放在区块头中，以确保每笔交易不可伪造，不可重复。&lt;/p&gt;
+
+&lt;h2 id=&#34;交易记录&#34;&gt;交易记录&lt;/h2&gt;
+
+&lt;p&gt;交易记录便是整个账簿的一页内容，详细记录当下所有比特币交易信息。每个比特币账户下的收支被永久的记录在区块中。&lt;/p&gt;
+
+&lt;p&gt;在解析交易记录前，需要获取总记录数，这个总记录数是一个不固定长度数值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// transaction                         
+txCount := ReadVarInt(r)               
+txs := make([]*MsgTx, txCount)         
+for i := uint64(0); i &amp;lt; txCount; i++ { 
+    txs[i] = decoderTX(r)              
+}                                     
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;字节&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;版本&lt;/td&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;比特币协议版本&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;输入数&lt;/td&gt;
+&lt;td&gt;tx_in_count&lt;/td&gt;
+&lt;td&gt;1+&lt;/td&gt;
+&lt;td&gt;区块中所有输入记录数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;输入明细&lt;/td&gt;
+&lt;td&gt;tx_in&lt;/td&gt;
+&lt;td&gt;40+&lt;/td&gt;
+&lt;td&gt;区块中所有支出明细&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;输出数&lt;/td&gt;
+&lt;td&gt;tx_out_count&lt;/td&gt;
+&lt;td&gt;1+&lt;/td&gt;
+&lt;td&gt;区块中所有输出记录数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;输出明细&lt;/td&gt;
+&lt;td&gt;tx_out&lt;/td&gt;
+&lt;td&gt;40+&lt;/td&gt;
+&lt;td&gt;区块中所有输出明细&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;交易时间戳&lt;/td&gt;
+&lt;td&gt;local_time&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;交易被网络确认的UNIX时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;其中，支出和接收明细是衔接在一块，拥有相同的数据结构。每一单笔收支明细都有自己的编号以供查询。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;msg := &amp;amp;MsgTx{}
+msg.Version = ReadUint32(r)
+txInCount := ReadVarInt(r)
+msg.TxIn = make([]*TxIn, txInCount)
+for i := uint64(0); i &amp;lt; txInCount; i++ {
+    //input
+}
+txOutCount := ReadVarInt(r)
+msg.TxOut = make([]*TxOut, txOutCount)
+for i := uint64(0); i &amp;lt; txOutCount; i++ {
+    //output
+}
+msg.LockTime = ReadUint32(r)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输出和输入明细稍有不同，输入：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;字节&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;输出记录Hash&lt;/td&gt;
+&lt;td&gt;hash&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;本输入资金来源的输出记录HASH&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;脚本长度&lt;/td&gt;
+&lt;td&gt;length&lt;/td&gt;
+&lt;td&gt;1+&lt;/td&gt;
+&lt;td&gt;交易脚本可变长度值&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;脚本内容&lt;/td&gt;
+&lt;td&gt;script&lt;/td&gt;
+&lt;td&gt;+&lt;/td&gt;
+&lt;td&gt;本输入的脚本内容，包含签名信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Sequence&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;当前无用途的一个固定数值：0xFFFFFFFF&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;tx := TxIn{} 
+// prev
+tx.PreviousOutPoint.Hasx = ReadHash(r)
+tx.PreviousOutPoint.Index = ReadUint32(r)
+
+scriptLen := ReadVarInt(r)
+tx.SignatureScript = ReadBytes(r, scriptLen)
+tx.Sequence = ReadUint32(r)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输出信息仅仅包含两项信息，&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;字节&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;金额&lt;/td&gt;
+&lt;td&gt;value&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;接收方获得的金额，单位：聪&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;公钥脚本长度&lt;/td&gt;
+&lt;td&gt;length&lt;/td&gt;
+&lt;td&gt;1+&lt;/td&gt;
+&lt;td&gt;交易脚本可变长度值&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;公钥脚本&lt;/td&gt;
+&lt;td&gt;length&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;接收方信息脚本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;tx := TxOut{}                  
+tx.Value = ReadUint64(r)                 
+scriptLen := ReadVarInt(r)               
+tx.PkScript = ReadBytes(r, scriptLen)   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;区块完整数据结构&#34;&gt;区块完整数据结构&lt;/h2&gt;
+
+&lt;p&gt;比特币区块数据以节约空间和简洁为前提，布局为一个区块头和交易明细结构。下图是完整的区块结构。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/31495674.png&#34; alt=&#34;比特币区块数据结构&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;协助&#34;&gt;协助&lt;/h2&gt;
+
+&lt;p&gt;实际在解析比特币区块时，为简化代码，提取了些公共方法。以方便错误处理和获取不同类型的数据，具体如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Hash [HashSize]byte                                                  
+
+const (                                                                   
+    HashSize = 32                                                         
+)                                                                         
+
+// String returns the Hash as the hexadecimal string of the byte-reversed 
+// hash.                                                                  
+func (hash Hash) String() string {                                        
+    for i := 0; i &amp;lt; HashSize/2; i++ {                                     
+        hash[i], hash[HashSize-1-i] = hash[HashSize-1-i], hash[i]         
+    }                                                                     
+    return hex.EncodeToString(hash[:])                                    
+}                                                                         
+func DoubleHashH(b []byte) Hash {                                         
+    first := sha256.Sum256(b)                                             
+    return Hash(sha256.Sum256(first[:]))                                  
+}                                                                         
+
+func Failt(err error) {                                                   
+    log.Output(2, err.Error())                                            
+    os.Exit(1)                                                            
+}                                                                        
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;常见的读取单项值方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func ReadHash(r io.Reader) Hash {                                              
+    var h Hash                                                                 
+    _, err := io.ReadFull(r, h[:])                                             
+    if err != nil {                                                            
+        Failt(err)                                                             
+    }                                                                          
+    return h                                                                   
+}                                                                              
+func ReadBytes(r io.Reader, size uint64) []byte {                              
+    b := make([]byte, size)                                                    
+    _, err := io.ReadFull(r, b)                                                
+    if err != nil {                                                            
+        Failt(err)                                                             
+    }                                                                          
+    return b                                                                   
+}                                                                              
+func ReadUint32(r io.Reader) uint32 {                                          
+    var v uint32                                                               
+    err := binary.Read(r, binary.LittleEndian, &amp;amp;v)                             
+    if err != nil {                                                            
+        Failt(err)                                                             
+    }                                                                          
+    return v                                                                   
+}                                                                              
+
+func ReadUint64(r io.Reader) uint64 {                                          
+    var v uint64                                                               
+    err := binary.Read(r, binary.LittleEndian, &amp;amp;v)                             
+    if err != nil {                                                            
+        Failt(err)                                                             
+    }                                                                          
+    return v                                                                   
+}                                                                              
+
+// ReadVarInt reads a variable length integer from r and returns it as a uint64
+func ReadVarInt(r io.Reader) uint64 {                                          
+    var discriminant uint8                                                     
+    err := binary.Read(r, binary.LittleEndian, &amp;amp;discriminant)                  
+    if err != nil {                                                            
+        Failt(err)                                                             
+    }                                                                          
+
+    var rv uint64                                                              
+    switch discriminant {                                                      
+    case 0xff:                                                                 
+        err = binary.Read(r, binary.LittleEndian, &amp;amp;rv)                         
+        if err != nil {                                                        
+            Failt(err)                                                         
+        }                                                                      
+
+        // The encoding is not canonical if the value could have been          
+        // encoded using fewer bytes.                                          
+        min := uint64(0x100000000)                                             
+        if rv &amp;lt; min {                                                          
+            Failt(fmt.Errorf(&amp;quot;var int %x &amp;lt; min value %x&amp;quot;, rv, min))            
+        }                                                                      
+
+    case 0xfe:                                                                 
+        var v uint32                                                           
+        err = binary.Read(r, binary.LittleEndian, &amp;amp;v)                          
+        if err != nil {                                                        
+            Failt(err)                                                         
+        }                                                                      
+        rv = uint64(v)                                                         
+
+        // The encoding is not canonical if the value could have been          
+        // encoded using fewer bytes.                                          
+        min := uint64(0x10000)                                                 
+        if rv &amp;lt; min {                                                          
+            Failt(fmt.Errorf(&amp;quot;var int %x &amp;lt; min value %x&amp;quot;, rv, min))            
+        }                                                                      
+
+    case 0xfd:                                                                 
+        var v uint16                                                           
+        err = binary.Read(r, binary.LittleEndian, &amp;amp;v)                          
+        if err != nil {                                                        
+            Failt(err)                                                         
+        }                                                                      
+        rv = uint64(v)                                                         
+
+        // The encoding is not canonical if the value could have been          
+        // encoded using fewer bytes.                                          
+        min := uint64(0xfd)                                                    
+        if rv &amp;lt; min {                                                          
+            Failt(fmt.Errorf(&amp;quot;var int %x &amp;lt; min value %x&amp;quot;, rv, min))            
+        }                                                                      
+
+    default:                                                                   
+        rv = uint64(discriminant)                                              
+    }                                                                          
+
+    return rv                                                                  
+}                                                                             
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;结尾&#34;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;上文中还有许多内容未详细说明，如脚本是什么？Merkle树如何构建的？交易费如何计算？交易中的脚本的用途等。待后续一一写文。&lt;/p&gt;
+
+&lt;p&gt;本文完整源代码见：&lt;a href=&#34;https://gist.github.com/ysqi/62820e5955a3e3b56efb8b396585f44a&#34;&gt;github gist&lt;/a&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/ysqi/62820e5955a3e3b56efb8b396585f44a.js&#34;&gt;&lt;/script&gt;</description>
+      
     </item>
     
     <item>
@@ -69,34 +831,83 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
       <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</guid>
-      <description>周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。 也请你行动起来，花两个小时了解区块链的原理，你会被其巧妙的运作方式所折服，拜倒在中本聪的石榴裙下。
-区块链是什么？ &amp;gt;区块链（Blockchain）是由节点参与的分布式数据库系统，它的特点是不可更改，不可伪造，也可以将其理解为账簿系统(ledger)。它是比特币的一个重要概念，完整比特币区块链的副本，记录了其代币（token）的每一笔交易。通过这些信息，我们可以找到每一个地址，在历史上任何一点所拥有的价值。
- 区块链是由一串使用密码学方法产生的数据块组成的，每一个区块都包含了上一个区块的哈希值（hash），从创始区块（genesis block）开始连接到当前区块，形成块链。每一个区块都确保按照时间顺序在上一个区块之后产生，否则前一个区块的哈希值是未知的。这些特征使得比特币的双花非常困难。区块链是比特币的核心创新。
- 下图是比特币下半年行情，2017年是爆发年，国内9月底一个比特币暴跌到1.6万，而国庆后不久突破4万。
-谈论区块链，最好的代表是比特币。这里谈及比特币不是鼓励你去炒币，而是方便说明区块链技术的重要性。
-为何程序员应该去了解区块链呢？我将从三个角度聊聊我的看法。
-区块链的价值 首先是真正意义的“去中心化”。
-中心化对程序员不陌生，怕单机故障所以要搞备机，又分热备，冷备等。为了突破性能瓶颈，又搞分布式，一直在追求去中心化。
-哪怕现在互联网让世界平坦，但现在又趋向于中心化。Facebook左右美国总统大选，百度搜索让你进莆田医院，微信不让你逛淘宝。实际我们还是离不开中心化。而区块链技术不一样，会像移动互联一样，改变生活方式。一个任何个体都无法干涉运行的系统，没有国界，24小时运转，永不宕机。
-区块链带来的是真正意义上的去中心化，世界更加平坦。
-其次是可信任和存在性证明。
-当前各种产品设计，系统架构都在考虑不可靠、不可信任问题。分布式要解决一致性问题、证券交易记录归档20年，以方便合规检查、域名需要由域名服务商维护拥有者、产品证书需要时间戳服务器支持等等。
-在互联网中没有谁能相信谁，特别是大范围的信任。而区块链技术却巧妙的解决此问题，比特币利用POW工作量证明算法让所有矿工花大量精力竞争解决一道数学难题，解题后其他矿工却可秒级验证其正确性。这就在不可信任的环境中，轻易的验证某一答案，从而确认对方的正确性，不信任环境提供可信任。
-另一方面在解题的过程中，派生出另一个价值：存在性证明。区块链技术中是使用密码学知识解决数学难题，一个核心要素是时间戳。解出难题，公布答案的同时，便同时证明了某一事物在某一时间发生的真实性。
-而区块链中环环相扣，任何人都难以在去中心化的环境中，篡改数据。除非你能得到全网51%以上同盟军。区块产生时间越长、就越难以篡改，新区块会将强旧区块的不可篡改强度，最终趋向不可篡改。
-谁都无法篡改，给可信任提供重要依据，同时给存在性提供可靠证明。利用区块链技术思考产品设计，将是一种新的思维逻辑。
-改变金融格局 区块链技术诞生于比特币，比特币是当下区块链最成功的项目。一种无人可敢于的数字货币，不会通货膨胀，不受政府控制。中本聪的初衷也是想改变全球金融模式，不受国家或地区影响，实现资产的安全性和隐秘性。所以区块链首当其冲的是金融领域的实践。
-为何中国要禁止比特币，却要发布自己的数字货币，还要不遗余力的推动区块链技术研究。比特币就是区块链平台上一杀手级应用，野蛮成长，必引火烧身。 不管是什么币，只要是基于区块链技术的数字货币，必将改变现有金融格局。有人高兴，有人紧张。区块链技术是无中介的，这使得资金流动更加顺畅。无国界货币，宇宙币。
-这都是有利于老百姓的，你的资产不会因国家政治动荡而一夜变白纸，也不会随意贬值，更加无法阻碍你投资全球的折腾。也能极大的缩短资金转移速度，当下跨国转账周期有一个星期，且手续费极高。这在区块链数字货币中，不会存在。
-对金融格局的变化时，各国态度的不一致，各国政府必然是需控制本国法定货币地位，这毕竟是政府的命根子。但持乐观态度还积极参与比特币，一般都是小国。因为小国都没有自己的货币，自己的命挂在别人的腰间。所以他们是非常欢迎比特币。所以大概的情况是，大国要消灭比特币，而小国要支持顶起比特币。最终金融格局是，大国没法消灭比特币，还越打击越顽强。只能是监管安抚，可以在本国做小弟，但不能取代我做大哥。
-程序员是天然的跟随者 实际也是如此，比特币一直在极客间盛行，美味无比。金融从业者都很难看懂为何比特币那么火，还越打击越坚强。我认为最重要的一点是，每次高调打击，实际是在提高比特币的知名度。大量新的人员开始去了解比特币，而从中不乏好奇心强的程序员。
-程序员比普通人的优势是能深入代码层看懂原理，无需金融知识背书，花一天时间便可了解其原理。会发现区块链技术真他妈是天才创意，以最简单粗暴的方式解决了程序员曾遇到过的各种难题。
-当程序员能看到区块链技术的价值，能清楚比特币的前景时，必然会成为区块链的跟随者，宣传者。区块链技术应用也会愈加普及，程序员艺术性创造生活。为何华尔街的大佬批判比特币，而交易员却大肆参与比特币交易。肤浅的看是交易员有计算机背景，能看得更加深入，能清楚区块链背后所能代表的实际意义。
-引发新的技术革命 如前所说，去中心化、可信任、可证明存在性。必然引起新一轮技术革命。现在我们花大量时间在解决网络的不安全、不稳定、不健壮等系列问题，而当下却横空跳出了区块链技术，一种糅合了现有成熟技术的组合，却天马行空般的解决了网络难题。
-有了这份药方，什么病都能治。活跃在产品一线、创业一线的朋友，在看懂区块链后，将给你带来巨大的认知性挑战，以前不可能的现在可成为可能。区块链技术给你现在所困惑的问题提供了一扇新的窗户，新的思维模式。
-从此你不需要证明你妈是你妈，世界趋向真实的平坦。而对程序员来说，关注业务本身的实现才是你该花时间做的事情，借助区块链去实现曾经的不可能！
-错过了移动互联网，云计算。而当下热火的大数据、人工智能已在进行时。唯独区块链技术还在调研尝试中，程序员不入红海谁入红海。
-那么程序员如何开始了解区块链技术，这里我把我的学习路线图给你知乎-比特币是什么，从此区块链大军中多了一个你！</description>
+      
+        <description>
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/110501.jpg-one&#34; alt=&#34;&amp;quot;区块链技术&amp;quot;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。
+也请你行动起来，花两个小时了解区块链的原理，你会被其巧妙的运作方式所折服，拜倒在中本聪的石榴裙下。&lt;/p&gt;
+
+&lt;p&gt;区块链是什么？
+&amp;gt;区块链（Blockchain）是由节点参与的分布式数据库系统，它的特点是不可更改，不可伪造，也可以将其理解为账簿系统(ledger)。它是比特币的一个重要概念，完整比特币区块链的副本，记录了其代币（token）的每一笔交易。通过这些信息，我们可以找到每一个地址，在历史上任何一点所拥有的价值。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;区块链是由一串使用密码学方法产生的数据块组成的，每一个区块都包含了上一个区块的哈希值（hash），从创始区块（genesis block）开始连接到当前区块，形成块链。每一个区块都确保按照时间顺序在上一个区块之后产生，否则前一个区块的哈希值是未知的。这些特征使得比特币的双花非常困难。区块链是比特币的核心创新。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下图是比特币下半年行情，2017年是爆发年，国内9月底一个比特币暴跌到1.6万，而国庆后不久突破4万。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/110502.png-one&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;谈论区块链，最好的代表是比特币。这里谈及比特币&lt;strong&gt;不是&lt;/strong&gt;鼓励你去炒币，而是方便说明区块链技术的重要性。&lt;/p&gt;
+
+&lt;p&gt;为何程序员应该去了解区块链呢？我将从三个角度聊聊我的看法。&lt;/p&gt;
+
+&lt;h2 id=&#34;区块链的价值&#34;&gt;区块链的价值&lt;/h2&gt;
+
+&lt;p&gt;首先是真正意义的&lt;strong&gt;“去中心化”&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;中心化对程序员不陌生，怕单机故障所以要搞备机，又分热备，冷备等。为了突破性能瓶颈，又搞分布式，一直在追求去中心化。&lt;/p&gt;
+
+&lt;p&gt;哪怕现在互联网让世界平坦，但现在又趋向于中心化。Facebook左右美国总统大选，百度搜索让你进莆田医院，微信不让你逛淘宝。实际我们还是离不开中心化。而区块链技术不一样，会像移动互联一样，改变生活方式。一个任何个体都无法干涉运行的系统，没有国界，24小时运转，永不宕机。&lt;/p&gt;
+
+&lt;p&gt;区块链带来的是真正意义上的去中心化，世界更加平坦。&lt;/p&gt;
+
+&lt;p&gt;其次是&lt;strong&gt;可信任&lt;/strong&gt;和&lt;strong&gt;存在性证明&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;当前各种产品设计，系统架构都在考虑不可靠、不可信任问题。分布式要解决一致性问题、证券交易记录归档20年，以方便合规检查、域名需要由域名服务商维护拥有者、产品证书需要时间戳服务器支持等等。&lt;/p&gt;
+
+&lt;p&gt;在互联网中没有谁能相信谁，特别是大范围的信任。而区块链技术却巧妙的解决此问题，比特币利用POW工作量证明算法让所有矿工花大量精力竞争解决一道数学难题，解题后其他矿工却可秒级验证其正确性。这就在不可信任的环境中，轻易的验证某一答案，从而确认对方的正确性，不信任环境提供可信任。&lt;/p&gt;
+
+&lt;p&gt;另一方面在解题的过程中，派生出另一个价值：存在性证明。区块链技术中是使用密码学知识解决数学难题，一个核心要素是时间戳。解出难题，公布答案的同时，便同时证明了某一事物在某一时间发生的真实性。&lt;/p&gt;
+
+&lt;p&gt;而区块链中环环相扣，任何人都难以在去中心化的环境中，篡改数据。除非你能得到全网51%以上同盟军。区块产生时间越长、就越难以篡改，新区块会将强旧区块的不可篡改强度，最终趋向不可篡改。&lt;/p&gt;
+
+&lt;p&gt;谁都无法篡改，给可信任提供重要依据，同时给存在性提供可靠证明。利用区块链技术思考产品设计，将是一种新的思维逻辑。&lt;/p&gt;
+
+&lt;h2 id=&#34;改变金融格局&#34;&gt;改变金融格局&lt;/h2&gt;
+
+&lt;p&gt;区块链技术诞生于比特币，比特币是当下区块链最成功的项目。一种无人可敢于的数字货币，不会通货膨胀，不受政府控制。中本聪的初衷也是想改变全球金融模式，不受国家或地区影响，实现资产的安全性和隐秘性。所以区块链首当其冲的是金融领域的实践。&lt;/p&gt;
+
+&lt;p&gt;为何中国要禁止比特币，却要发布自己的数字货币，还要不遗余力的推动区块链技术研究。比特币就是区块链平台上一杀手级应用，野蛮成长，必引火烧身。
+不管是什么币，只要是基于区块链技术的数字货币，必将改变现有金融格局。有人高兴，有人紧张。区块链技术是无中介的，这使得资金流动更加顺畅。无国界货币，宇宙币。&lt;/p&gt;
+
+&lt;p&gt;这都是有利于老百姓的，你的资产不会因国家政治动荡而一夜变白纸，也不会随意贬值，更加无法阻碍你投资全球的折腾。也能极大的缩短资金转移速度，当下跨国转账周期有一个星期，且手续费极高。这在区块链数字货币中，不会存在。&lt;/p&gt;
+
+&lt;p&gt;对金融格局的变化时，各国态度的不一致，各国政府必然是需控制本国法定货币地位，这毕竟是政府的命根子。但持乐观态度还积极参与比特币，一般都是小国。因为小国都没有自己的货币，自己的命挂在别人的腰间。所以他们是非常欢迎比特币。所以大概的情况是，大国要消灭比特币，而小国要支持顶起比特币。最终金融格局是，大国没法消灭比特币，还越打击越顽强。只能是监管安抚，可以在本国做小弟，但不能取代我做大哥。&lt;/p&gt;
+
+&lt;h2 id=&#34;程序员是天然的跟随者&#34;&gt;程序员是天然的跟随者&lt;/h2&gt;
+
+&lt;p&gt;实际也是如此，比特币一直在极客间盛行，美味无比。金融从业者都很难看懂为何比特币那么火，还越打击越坚强。我认为最重要的一点是，每次高调打击，实际是在提高比特币的知名度。大量新的人员开始去了解比特币，而从中不乏好奇心强的程序员。&lt;/p&gt;
+
+&lt;p&gt;程序员比普通人的优势是能深入代码层看懂原理，无需金融知识背书，花一天时间便可了解其原理。会发现区块链技术真他妈是天才创意，以最简单粗暴的方式解决了程序员曾遇到过的各种难题。&lt;/p&gt;
+
+&lt;p&gt;当程序员能看到区块链技术的价值，能清楚比特币的前景时，必然会成为区块链的跟随者，宣传者。区块链技术应用也会愈加普及，程序员艺术性创造生活。为何华尔街的大佬批判比特币，而交易员却大肆参与比特币交易。肤浅的看是交易员有计算机背景，能看得更加深入，能清楚区块链背后所能代表的实际意义。&lt;/p&gt;
+
+&lt;h2 id=&#34;引发新的技术革命&#34;&gt;引发新的技术革命&lt;/h2&gt;
+
+&lt;p&gt;如前所说，去中心化、可信任、可证明存在性。必然引起新一轮技术革命。现在我们花大量时间在解决网络的不安全、不稳定、不健壮等系列问题，而当下却横空跳出了区块链技术，一种糅合了现有成熟技术的组合，却天马行空般的解决了网络难题。&lt;/p&gt;
+
+&lt;p&gt;有了这份药方，什么病都能治。活跃在产品一线、创业一线的朋友，在看懂区块链后，将给你带来巨大的认知性挑战，以前不可能的现在可成为可能。区块链技术给你现在所困惑的问题提供了一扇新的窗户，新的思维模式。&lt;/p&gt;
+
+&lt;p&gt;从此你不需要证明你妈是你妈，世界趋向真实的平坦。而对程序员来说，关注业务本身的实现才是你该花时间做的事情，借助区块链去实现曾经的不可能！&lt;/p&gt;
+
+&lt;p&gt;错过了移动互联网，云计算。而当下热火的大数据、人工智能已在进行时。唯独区块链技术还在调研尝试中，程序员不入红海谁入红海。&lt;/p&gt;
+
+&lt;p&gt;那么程序员如何开始了解区块链技术，这里我把我的学习路线图给你&lt;a href=&#34;https://www.zhihu.com/question/22076666/answer/232628039&#34;&gt;知乎-比特币是什么&lt;/a&gt;，从此区块链大军中多了一个你！&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -105,14 +916,136 @@ f, err := os.Open(name) if err != nil { log.Fatal(err) } defer f.Close()  再按
       <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
-      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。
-第一次创建镜像过程中遇到些问题，我在这里记录，希望能帮助到别人和自己。
-国内如何加速拉取Docker镜像 通过 Docker 镜像加速，国内能够快速访问最流行的 Docker 镜像。国内用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。
- Docker官方提供的加速器 DaoClund提供的加速器，需注册 Aliyun 提供的加速器，需注册，适合在阿里云购买的服务器使用。  Docker-runc not installed on system CentOS通过命令安装Docker时，并没有安装完整。一般在重新安装Docker后出现该问题。 只运行某镜像时，出现如下错误信息：
-docker run docker.io/ysqi/gotestreport /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system. 咋回事？原本好好的怎么就出问题了？原来是命令卸载Docker并没有卸载干净，导致重装或更新Docker后出问题。
-这个在红帽上有一个Issue：https://access.redhat.com/solutions/2876431 有说明此问题，暂时只能是新建一个link到最终版本：
-cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenkins: Can&amp;rsquo;t connect to Docker daemon 当Jenkins的Pipeline基于Docker运行时，提示此错误信息：
- Cannot connect to the Docker daemon. Is the docker daemon running on this host?</description>
+      
+        <description>
+
+&lt;p&gt;接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。&lt;/p&gt;
+
+&lt;p&gt;第一次创建镜像过程中遇到些问题，我在这里记录，希望能帮助到别人和自己。&lt;/p&gt;
+
+&lt;h2 id=&#34;国内如何加速拉取docker镜像&#34;&gt;国内如何加速拉取Docker镜像&lt;/h2&gt;
+
+&lt;p&gt;通过 Docker 镜像加速，国内能够快速访问最流行的 Docker 镜像。国内用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.docker-cn.com/registry-mirror&#34;&gt;Docker官方提供的加速器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.daocloud.io/mirror&#34;&gt;DaoClund提供的加速器&lt;/a&gt;，需注册&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cr.console.aliyun.com&#34;&gt;Aliyun 提供的加速器&lt;/a&gt;，需注册，适合在阿里云购买的服务器使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-runc-not-installed-on-system&#34;&gt;Docker-runc not installed on system&lt;/h2&gt;
+
+&lt;p&gt;CentOS通过命令安装Docker时，并没有安装完整。一般在重新安装Docker后出现该问题。
+只运行某镜像时，出现如下错误信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run docker.io/ysqi/gotestreport
+/usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;咋回事？原本好好的怎么就出问题了？原来是命令卸载Docker并没有卸载干净，导致重装或更新Docker后出问题。&lt;/p&gt;
+
+&lt;p&gt;这个在红帽上有一个Issue：&lt;a href=&#34;https://access.redhat.com/solutions/2876431&#34;&gt;https://access.redhat.com/solutions/2876431&lt;/a&gt; 有说明此问题，暂时只能是新建一个link到最终版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /usr/libexec/docker/
+ls -all
+sudo ln -s docker-runc-current docker-runc 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;jenkins-can-t-connect-to-docker-daemon&#34;&gt;Jenkins: Can&amp;rsquo;t connect to Docker daemon&lt;/h2&gt;
+
+&lt;p&gt;当Jenkins的Pipeline基于Docker运行时，提示此错误信息：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Cannot connect to the Docker daemon. Is the docker daemon running on this host?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这是因为CentOS安装Docker时使用的独立的用户组Docker，而Jenkins运行也是独立的用户Jenkins，需要将Jenkins用户添加到Docker的用户组中：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo gpasswd -a jenkins docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再重启Docker服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;systemctl daemon-reload
+systemctl restart docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后重启Jenkins&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo service jenkins restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Done！&lt;/p&gt;
+
+&lt;h2 id=&#34;docker-如何将本地文件载入docker容器中&#34;&gt;Docker: 如何将本地文件载入Docker容器中&lt;/h2&gt;
+
+&lt;p&gt;运行Docker镜像时，是支持参数配置的。参数&lt;code&gt;-v&lt;/code&gt;是表示映射本地目录到Docker容器中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-v, 
+--volume list Bind mount a volume 
+--volume-driver string Optional volume driver for the container 
+--volumes-from list Mount volumes from the specified container(s) 预先设置将本机路径
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;例如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;export src=$HOME/goproject/ysqi/com
+export target=/go/src/github.com/ysqi/com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再启动容器时设置挂载：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -v $src:$target  ysqi/gotestreport
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;表示什么意思呢？即将本地的目录$src映射到Docker容器中的一个目录$target, 在Docker容器内部访问/go/src/github.com/ysqi/com，实际上就是在访问本机目录：$HOME/goproject/ysqi/com。&lt;/p&gt;
+
+&lt;p&gt;Docker实际上做了一个 volume 映射，就想VM上添加了一个映射盘。那如何把当前目录映射到Docker容器的指定位置？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -v ${pwd}:/go/src/pkg ysqi/gotestreport
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样就把本地的当前目录，映射到了/go/src/pkg 目录。&lt;/p&gt;
+
+&lt;h2 id=&#34;docker-如何在主机和容器间拷贝文件&#34;&gt;Docker: 如何在主机和容器间拷贝文件&lt;/h2&gt;
+
+&lt;p&gt;上面所说得中使用-v 参数将主机与容器中相关目录联系在一起（挂载），所以我们可以用这个通道将想要互相拷贝的数据放入其中，这样就可以用 cp 命令来复制文件了。&lt;/p&gt;
+
+&lt;p&gt;除了这个办法，我们还可以分别用不同的命令来拷贝数据。&lt;/p&gt;
+
+&lt;p&gt;先&lt;code&gt;docker cp -h&lt;/code&gt;查看命令使用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Flag shorthand -h has been deprecated, please use --help
+
+Usage:	docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH
+	    docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+
+Copy files/folders between a container and the local filesystem 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以Nginx为例：先运行Nginx容器：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -p 8080:80 -d nginx
+a54b77dbef541a7fce911b3298b32f4d4884665f88d2d23b690181a3dd684439
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;本机测试Nginx访问：&lt;code&gt;curl  http://localhost:8080&lt;/code&gt;，正常。&lt;/p&gt;
+
+&lt;p&gt;再从主机拷贝文件到容器：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker cp  ./test a54b77dbef54:/usr/share/nginx/html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时将主机当前目录下的 test 文件夹全部拷贝到容器内部的 /usr/share/nginx/html目录下。&lt;/p&gt;
+
+&lt;p&gt;反之，则可将文件或文件夹从容器内部拷贝到主机指定目录：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker cp  a54b77dbef54:/etc/nginx/conf.d/default.conf .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时，便将容器内部的nginx默认配置文件拷贝的主机的当前目录下。&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -121,42 +1054,114 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Mon, 18 Sep 2017 12:02:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</guid>
-      <description>小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。 注意：某些网站也许得翻墙。
-比特币-基础篇 比特币实际是一个去中心化的共识网络，可看作在云端的账簿，但此云是任意一人都可加入的环境，一帮子人共同维护一个账本。 比特币他爹是中本聪，2008年中本聪在邮件组中抛出了一份点对点的电子现金交易系统白皮书，同时他也着手开始技术实现。从比特币白皮书：一种点对点的电子现金系统开始了解比特币技术与原理。文中所谈及比特币术语在比特币官网有简介。
-技术小白不要看直接看白皮书，学习任何技术应该从官网开始，而比特币官网所提供的中文资料对小白来说完全够用。到官网看关于比特币的常见问题。可直接看莱特币矿池创始人江卓尔关于“比特币是什么&amp;ldquo;的知乎回答(赞超11K，收藏超24K)。
-比特币引入一重量级角色：挖矿，比特币是被矿工算出来的， 什么是挖矿？小白先看巴比特CEO的一篇文章：什么是比特币挖矿，不过瘾则看技术文章比特币挖矿原理。
-比特币劈荆斩刺，从2008年论文，到2009年1月比特币网络上线，再到2017年连中国大妈开始入场，跌宕起伏。在批评怀疑中壮大，关于比特币的看法各有不同，可从几篇文章中了解一二：美银美林详解比特币六大优缺点、区块链信息越来越大怎么办、8年后，你还买得起一个比特币吗、如何看待比特币、如何看待2017年9月监管管当局决定关闭中国境内虚拟货币交易所关闭、百度搜索“如何看待比特币”。
-比特币-进阶 上面仅仅是一些基本概念，但中本聪所设计的比特币是基于P2P对等网络技术和密码学原理。对于技术控，强烈建议程序员了解比特币背后的原理，先从一个故事感性比特币的原理及运作机制，再看白话版解释比特币原理，另外提供张信息图了解比特币工作原理。最后从从技术上了解比特币，推荐给开发人员的三份信息：动手写项目上深入浅出比特币、比特币是如何运行的、再动手写个Demo50 行 Python 代码构建一个区块链。
-小白们不急，这样有一份万向区块链实验室提供动画视频讲解什么是区块链的共识机制。而各位程序猿们，写代码前先了解下比特币的三大技术基石：密码学、p2p网络和共识机制。先浅谈比特币共识机制，而比特币一笔交易需1小时后才能稳定，为提高交易速度，而一帮不安分的人提出了闪电网络以满足及时支付。需要一小时稳定的原因是因为比特币中的存储为区块+链的模式，而每10分钟才生成一个区块，每区块最多1M，如何让一个区块包含更多的交易，如何加快交易确认速度便是2013年来一直想解决的问题，那什么方案嗯？不同利益方能接收的方案各不相同，而一直拉锯这扩容之争。先来一发5分钟读懂区块链扩容之争，争论之久，足已写本比特币扩容简史。
-扩容意味修改代码，认同方升级程序即可，而反对方也许就不升级了。那问题来了，会出现分叉吗？先搞懂区块链的硬分叉和软分叉，也许扩容边会导致分叉，来看看吃瓜群众的各路看法：【比特币扩容与分叉】比特币将顺利扩容还是走向分裂。
-比特币不是120%的完美，催生了不少改进版的比特币，俗称竞争币(莱特币、以太坊等)。那么如何让不同币直接进行价值置换呢？2014年一篇关于论文首次提出侧链的概念，中文版比特币侧链白皮书见：百度百科，但更推荐看英文版白皮书。
-比特币-交易 看到比特币的美好，手痒想亲自动手试试？在2017年09月18日1个比特币价格￥21,500。我穷，我买不起一个币呀！不担心，至少可以买0.00000001个比特币的。如何进行交易呢？先看官网的推荐，可选择交易所进行，后续小编再另外写文章分享如何进行比特币交易。
-说完比特币，在说神奇的区块链技术。
-区块链-基础 一直在谈比特币，实际很多内容便涉及区块链。中本聪为涉及安全可信任的比特币而提出了一种由多想技术组合而成的新技术”区块链“，巴比特对什么是区块链的解释非常到位，而一位区块链新生意见领袖暴走恭亲王龚明也提供了不一样的见解。
-虽然区块链源于比特币，但区块链的应用不止于此。出现了更多的改进版加强版比特币，具体看看区块链发展史&amp;gt;。区块链技术会如何发展？看看虎嗅网这篇译文区块链的真相。
-区块链-深入理解 程序猿有必要深入了解区块链技术！有必要！有必要！有必要！
-比特币和区块链是信息技术发展的产物，而只有懂编程的人员才能深入代码层了解区块链了解比特币。当深入了解时，才能发现比特币的美！
-当发现其中的美，及时你不懂经济学也能看到因为比特币而发生的金融变革。也许比特币会被替代，但后续任何形式的数字货币必将基于区块链技术。互联网技术带来的是信息革命，区块链技术将带来金融革命。
-如果你深入了解区块链，便会认同我的观点。不是比特币解决了中心问题、信任问题而应是区块链技术赋予了比特币特性。基于成熟的现有技术和加入巧妙的Pow共识算法而形成了区块链技术。其中技术点包括密码学、分布式共识和p2p网络通信技术。
-1、密码学
-区块链技术中利用哈希算法中的非对称加密算法-椭圆曲线密码学(ECC)作为基础，实现内容的不可篡改保证其安全性。这里ECC实际是一种非对称加密算法，知乎好友这里有用通俗易懂的话来解释非对称加密，当然非对称加密算法有多种，如RSA，知名博主阮一峰老师有讲解RSA算法原理两篇。
-非对称加密是在对称加密算法上进行改进的，一篇白话解释对称加密算法vs非对称加密算法。常见的对称加密算法有DES、AES、RC4等。
-一群密码朋克研究贡献各类密码学知识，而自70年代到如今百花齐放的分布式系统中一致性问题的发展和演化，却给区块链技术可远行的翅膀。
-2、分布式一致性共识
-分布式系统如何保持一致性，贯穿整个分布式发展史，而在在1982年Leslie Lamport与另外两人提出了一个著名的问题：拜占庭将军问题，描述的是如何达成进攻一致性，延伸到分布式领域，是了不起的共识问题讨论，如何在分布式系统达成共识？
-自1982年后，不少科学家提出了拜占庭问题的不同解法，Lamport也于1998年发表该问题的第一个算法论文Paxos,阿里团队贡献了中译版论文。 Lamport在2011年重新整理，重新发布该论文，题为Leaderless Byzantine Paxos，而他觉得同行无法接受他的幽默感，于是有用容易接受的方法重新表述了一遍，题为Paxos Made Simple。到底啥是Paxos,请看知乎回答：如何浅显易懂地解说Paxos算法，有梯子的可看维基百科。
-因为Paxos算法过于复杂，直到2014年斯坦福两位博士生围绕此发表博士学位论文提出了Raft算法，力求得到一个正常智商的大学生都能看懂，且工程上也容易实现的分布式系统一致性算法为目标。InfoQ有一篇高质量Raft论文中译版内容。这里再提供一份动画版演示Raft算法流程。
-分布式的一致性难以解决，在仅50年的研究中发展出三个观点成为分布式的三项重要定理：FLP不可能性原理，篇二、事务处理中的ACID原则以及CAP原理。关于分布式可再看看分布式系统原理：困难与不可能性。
-分布式处理如此困难，而比特币设计者中本聪却巧妙地提出了另一种解法，漂亮至极。在比特币中使用Pow工作量证明算法简化拜占庭问题模型。Pow是实现零工作量证明的，即证明者在不向验证者提供任何有用的信息的前提下，使验证者相信某个论断是正确的。每个将军基于工作量证明，解决一个难度适当的Hash难题，每个难题有足够的难度，仅当在所有的将军同时工作时，平均10Mins会找到一个难题的答案（solution）。当一个将军找到问题的答案，它会把这个答案连同攻击计划在网络中广播。一旦收到Solution，每个将军调整难题为在广播中收到的攻击时间，攻击计划。
-然而Pow需要不断消耗CPU资源、电能以求快速找到答案。2012年开发者Sunny King 首次提出了Pos（权益证明）概念，Pos相对于POW是种完全不一样的机制，Pos不需要大量的算力来维持网络安全，只是需要每个参与者打开自己的钱包在线增加网络权重，同时获取相应的奖励，也就是Pos机制本身所说的利息。
-后面不安分的社区，又提出了改进版的Pos，名为DPOS(委托权益证明)。
-3、p2p网络
-在去中心化的比特币系统中，全网各个节点通讯是基于p2p点对点对等网络。不存在中心节点，每个节点同时担任客户端和服务端角色。
-从此比特币无国界，活生生的一只打不死的小强。
-资源集合 官网告诉你比特币入门，看完此文，必然清楚如何开始比特币交易，同时另一个网站可以不基于交易所也看在市场上直接买入别人的比特币，类似于58同城的二手交易。
-电子书：  《精通比特币》 《区块链技术指南》  中文比特币资讯网站与论坛 国内比特币发展迅速，有几个做得不错的资讯网站推荐给大家。 + 巴比特,国内早先的比特币内容制作者，所提报的内容值得一看。力建。 + 比特币中文网,纯粹的比特币资讯网站 + 搜搜比特网，同样是比特币资讯网站，当流量量非常高。
-当然还有很多，但关注前面几个网站完全够用。
-查看行情 想关注比特币行情？现在没有特别推荐，也行国内将无法查看行情，也行你得翻墙！</description>
+      
+        <description>
+
+&lt;p&gt;小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。
+&lt;strong&gt;注意&lt;/strong&gt;：某些网站也许得翻墙。&lt;/p&gt;
+
+&lt;h2 id=&#34;比特币-基础篇&#34;&gt;比特币-基础篇&lt;/h2&gt;
+
+&lt;p&gt;比特币实际是一个去中心化的共识网络，可看作在云端的账簿，但此云是任意一人都可加入的环境，一帮子人共同维护一个账本。
+比特币他爹是中本聪，2008年中本聪在邮件组中抛出了一份点对点的电子现金交易系统白皮书，同时他也着手开始技术实现。从&lt;a href=&#34;http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system&#34;&gt;比特币白皮书：一种点对点的电子现金系统&lt;/a&gt;开始了解比特币技术与原理。文中所谈及&lt;a href=&#34;https://bitcoin.org/zh_CN/vocabulary&#34;&gt;比特币术语&lt;/a&gt;在比特币官网有简介。&lt;/p&gt;
+
+&lt;p&gt;技术小白不要看直接看白皮书，学习任何技术应该从官网开始，而比特币官网所提供的中文资料对小白来说完全够用。到官网看&lt;a href=&#34;https://bitcoin.org/zh_CN/faq#what-is-bitcoin&#34;&gt;关于比特币的常见问题&lt;/a&gt;。可直接看莱特币矿池创始人江卓尔关于“&lt;a href=&#34;https://www.zhihu.com/question/22076666/answer/69638270&#34;&gt;比特币是什么&lt;/a&gt;&amp;ldquo;的知乎回答(赞超11K，收藏超24K)。&lt;/p&gt;
+
+&lt;p&gt;比特币引入一重量级角色：&lt;strong&gt;挖矿&lt;/strong&gt;，比特币是被矿工算出来的， 什么是挖矿？小白先看巴比特CEO的一篇文章：&lt;a href=&#34;http://8btc.com/article-109-1.html&#34;&gt;什么是比特币挖矿&lt;/a&gt;，不过瘾则看技术文章&lt;a href=&#34;https://wk588.com/1670.html&#34;&gt;比特币挖矿原理&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;比特币劈荆斩刺，从2008年论文，到2009年1月比特币网络上线，再到2017年连中国大妈开始入场，跌宕起伏。在批评怀疑中壮大，关于比特币的看法各有不同，可从几篇文章中了解一二：&lt;a href=&#34;http://finance.sina.com.cn/money/forex/20131206/112717553394.shtml&#34;&gt;美银美林详解比特币六大优缺点&lt;/a&gt;、&lt;a href=&#34;https://www.zhihu.com/question/39067000/answer/110878081&#34;&gt;区块链信息越来越大怎么办&lt;/a&gt;、&lt;a href=&#34;https://www.aganjinrong.com/articles/231&#34;&gt;8年后，你还买得起一个比特币吗&lt;/a&gt;、&lt;a href=&#34;http://www.cwzg.cn/politics/201709/38508.html&#34;&gt;如何看待比特币&lt;/a&gt;、&lt;a href=&#34;https://www.zhihu.com/question/65086321&#34;&gt;如何看待2017年9月监管管当局决定关闭中国境内虚拟货币交易所关闭&lt;/a&gt;、百度搜索“&lt;a href=&#34;https://www.baidu.com/s?ie=UTF-8&amp;amp;wd=“如何看待比特币”&#34;&gt;如何看待比特币&lt;/a&gt;”。&lt;/p&gt;
+
+&lt;h2 id=&#34;比特币-进阶&#34;&gt;比特币-进阶&lt;/h2&gt;
+
+&lt;p&gt;上面仅仅是一些基本概念，但中本聪所设计的比特币是基于P2P对等网络技术和密码学原理。对于技术控，&lt;strong&gt;强烈建议程序员了解比特币背后的原理&lt;/strong&gt;，先从&lt;a href=&#34;http://blog.codinglabs.org/articles/bitcoin-mechanism-make-easy.html&#34;&gt;一个故事&lt;/a&gt;感性比特币的原理及运作机制，再看&lt;a href=&#34;http://tech2ipo.com/62406&#34;&gt;白话版&lt;/a&gt;解释比特币原理，另外提供张&lt;a href=&#34;http://www.wanbizu.com/uploads/allimg/140812/123P91P7-0.jpg&#34;&gt;信息图&lt;/a&gt;了解比特币工作原理。最后从从技术上了解比特币，推荐给开发人员的三份信息：动手写项目上&lt;a href=&#34;https://www.zhihu.com/question/20941124/answer/16668373&#34;&gt;深入浅出比特币&lt;/a&gt;、&lt;a href=&#34;https://www.zhihu.com/question/20941124/answer/20411491&#34;&gt;比特币是如何运行的&lt;/a&gt;、再动手写个Demo&lt;a href=&#34;http://blog.csdn.net/simple_the_best/article/details/75448617&#34;&gt;50 行 Python 代码构建一个区块链&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;小白们不急，这样有一份万向区块链实验室提供动画视频讲解&lt;a href=&#34;https://v.qq.com/x/page/n0329wgvcz7.html&#34;&gt;什么是区块链的共识机制&lt;/a&gt;。而各位程序猿们，写代码前先了解下比特币的三大技术基石：密码学、p2p网络和共识机制。先&lt;a href=&#34;https://bitshuo.com/topic/58ad85b108d6a0f32a5bc045&#34;&gt;浅谈比特币共识机制&lt;/a&gt;，而比特币一笔交易需1小时后才能稳定，为提高交易速度，而一帮不安分的人提出了&lt;a href=&#34;http://8btc.com/doc-view-399.html&#34;&gt;闪电网络&lt;/a&gt;以满足及时支付。需要一小时稳定的原因是因为比特币中的存储为区块+链的模式，而每10分钟才生成一个区块，每区块最多1M，如何让一个区块包含更多的交易，如何加快交易确认速度便是2013年来一直想解决的问题，那什么方案嗯？不同利益方能接收的方案各不相同，而一直拉锯这扩容之争。先来一发&lt;a href=&#34;http://www.jpm.cn/article-29224-1.html&#34;&gt;5分钟读懂区块链扩容之争&lt;/a&gt;，争论之久，足已写本&lt;a href=&#34;https://m.wabi.com/news/20658.html&#34;&gt;比特币扩容简史&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;扩容意味修改代码，认同方升级程序即可，而反对方也许就不升级了。那问题来了，会出现分叉吗？先搞懂&lt;a href=&#34;http://geek.csdn.net/news/detail/138580&#34;&gt;区块链的硬分叉和软分叉&lt;/a&gt;，也许扩容边会导致分叉，来看看吃瓜群众的各路看法：&lt;a href=&#34;http://www.8btc.com/bitcoin-scaling-2017&#34;&gt;【比特币扩容与分叉】比特币将顺利扩容还是走向分裂&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;比特币不是120%的完美，催生了不少改进版的比特币，俗称竞争币(&lt;a href=&#34;https://litecoin.org/cn/&#34;&gt;莱特币&lt;/a&gt;、&lt;a href=&#34;https://ethereum.org/&#34;&gt;以太坊&lt;/a&gt;等)。那么如何让不同币直接进行价值置换呢？2014年一篇关于论文首次提出侧链的概念，中文版比特币侧链白皮书见：&lt;a href=&#34;https://wenku.baidu.com/view/1126507452d380eb62946db7.html&#34;&gt;百度百科&lt;/a&gt;，但更推荐看&lt;a href=&#34;https://www.blockstream.com/sidechains.pdf&#34;&gt;英文版&lt;/a&gt;白皮书。&lt;/p&gt;
+
+&lt;h2 id=&#34;比特币-交易&#34;&gt;比特币-交易&lt;/h2&gt;
+
+&lt;p&gt;看到比特币的美好，手痒想亲自动手试试？在2017年09月18日1个比特币价格￥21,500。我穷，我买不起一个币呀！不担心，至少可以买0.00000001个比特币的。如何进行交易呢？先看官网的推荐，可&lt;a href=&#34;https://bitcoin.org/en/exchanges&#34;&gt;选择交易&lt;/a&gt;所进行，后续小编再另外写文章分享如何进行比特币交易。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;说完比特币，在说神奇的区块链技术。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;区块链-基础&#34;&gt;区块链-基础&lt;/h2&gt;
+
+&lt;p&gt;一直在谈比特币，实际很多内容便涉及区块链。中本聪为涉及安全可信任的比特币而提出了一种由多想技术组合而成的新技术”区块链“，巴比特对&lt;a href=&#34;http://www.8btc.com/what-is-blockchain&#34;&gt;什么是区块链&lt;/a&gt;的解释非常到位，而一位区块链新生意见领袖暴走恭亲王龚明也提供了&lt;a href=&#34;http://chainb.com/?P=Cont&amp;amp;id=6&#34;&gt;不一样的见解&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;虽然区块链源于比特币，但区块链的应用不止于此。出现了更多的改进版加强版比特币，具体看看&lt;a href=&#34;https://yq.aliyun.com/articles/60132&#34;&gt;区块链发展史&lt;/a&gt;&amp;gt;。区块链技术会如何发展？看看虎嗅网这篇译文&lt;a href=&#34;https://www.huxiu.com/article/180629.html&#34;&gt;区块链的真相&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;区块链-深入理解&#34;&gt;区块链-深入理解&lt;/h2&gt;
+
+&lt;p&gt;程序猿有必要深入了解区块链技术！&lt;strong&gt;有必要！有必要！有必要！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;比特币和区块链是信息技术发展的产物，而只有懂编程的人员才能深入代码层了解区块链了解比特币。当深入了解时，才能发现比特币的美！&lt;/p&gt;
+
+&lt;p&gt;当发现其中的美，及时你不懂经济学也能看到因为比特币而发生的金融变革。也许比特币会被替代，但后续任何形式的数字货币必将基于区块链技术。&lt;strong&gt;互联网技术带来的是信息革命，区块链技术将带来金融革命&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果你深入了解区块链，便会认同我的观点。不是比特币解决了中心问题、信任问题而应是区块链技术赋予了比特币特性。基于成熟的现有技术和加入巧妙的Pow共识算法而形成了区块链技术。其中技术点包括密码学、分布式共识和p2p网络通信技术。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1、密码学&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;区块链技术中利用&lt;a href=&#34;https://baike.baidu.com/item/哈希算法&#34;&gt;哈希算法&lt;/a&gt;中的非对称加密算法-&lt;a href=&#34;http://8btc.com/article-138-1.html&#34;&gt;椭圆曲线密码学&lt;/a&gt;(ECC)作为基础，实现内容的不可篡改保证其安全性。这里ECC实际是一种非对称加密算法，知乎好友这里有&lt;a href=&#34;https://www.zhihu.com/question/33645891&#34;&gt;用通俗易懂的话来解释非对称加密&lt;/a&gt;，当然非对称加密算法有多种，如RSA，知名博主阮一峰老师有讲解&lt;a href=&#34;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&#34;&gt;RSA算法原理&lt;/a&gt;两篇。&lt;/p&gt;
+
+&lt;p&gt;非对称加密是在对称加密算法上进行改进的，一篇&lt;a href=&#34;https://segmentfault.com/a/1190000004461428&#34;&gt;白话解释对称加密算法vs非对称加密算法&lt;/a&gt;。常见的对称加密算法有DES、AES、RC4等。&lt;/p&gt;
+
+&lt;p&gt;一群密码朋克研究贡献各类密码学知识，而自70年代到如今百花齐放的分布式系统中一致性问题的发展和演化，却给区块链技术可远行的翅膀。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2、分布式一致性共识&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;分布式系统如何保持一致性，贯穿整个&lt;a href=&#34;https://36kr.com/p/5037166.html&#34;&gt;分布式发展史&lt;/a&gt;，而在在1982年Leslie Lamport与另外两人提出了一个著名的问题：&lt;a href=&#34;http://www.8btc.com/baizhantingjiangjun&#34;&gt;拜占庭将军问题&lt;/a&gt;，描述的是如何达成进攻一致性，延伸到分布式领域，是了不起的共识问题讨论，如何在分布式系统达成共识？&lt;/p&gt;
+
+&lt;p&gt;自1982年后，不少科学家提出了拜占庭问题的不同解法，Lamport也于1998年发表该问题的第一个&lt;a href=&#34;http://lamport.azurewebsites.net/pubs/lamport-paxos.pdf&#34;&gt;算法论文Paxos&lt;/a&gt;,阿里团队贡献了&lt;a href=&#34;https://wenku.baidu.com/view/87276e1dfad6195f312ba6d7.html&#34;&gt;中译版论文&lt;/a&gt;。 Lamport在2011年重新整理，重新发布该论文，题为&lt;a href=&#34;https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/Leaderless-Byzantine-Paxos.pdf&#34;&gt;Leaderless Byzantine Paxos&lt;/a&gt;，而他觉得同行无法接受他的幽默感，于是有用容易接受的方法重新表述了一遍，题为&lt;a href=&#34;https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/paxos-simple-Copy.pdf&#34;&gt;Paxos Made Simple&lt;/a&gt;。到底啥是Paxos,请看知乎回答：&lt;a href=&#34;https://www.zhihu.com/question/19787937&#34;&gt;如何浅显易懂地解说Paxos算法&lt;/a&gt;，有梯子的可看&lt;a href=&#34;https://zh.wikipedia.org/wiki/Paxos算法&#34;&gt;维基百科&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;因为Paxos算法过于复杂，直到2014年斯坦福两位博士生围绕此发表&lt;a href=&#34;https://ramcloud.stanford.edu/~ongaro/thesis.pdf&#34;&gt;博士学位论文&lt;/a&gt;提出了&lt;a href=&#34;https://raft.github.io/raft.pdf&#34;&gt;Raft&lt;/a&gt;算法，力求得到一个正常智商的大学生都能看懂，且工程上也容易实现的分布式系统一致性算法为目标。InfoQ有一篇高质量&lt;a href=&#34;http://www.infoq.com/cn/articles/raft-paper&#34;&gt;Raft论文中译版&lt;/a&gt;内容。这里再提供一份&lt;a href=&#34;http://thesecretlivesofdata.com/raft/&#34;&gt;动画版演示Raft算法&lt;/a&gt;流程。&lt;/p&gt;
+
+&lt;p&gt;分布式的一致性难以解决，在仅50年的研究中发展出三个观点成为分布式的三项重要定理：&lt;a href=&#34;http://danielw.cn/FLP-proof&#34;&gt;FLP不可能性原理&lt;/a&gt;，&lt;a href=&#34;http://blog.csdn.net/chen77716/article/details/27963079&#34;&gt;篇二&lt;/a&gt;、事务处理中的&lt;a href=&#34;http://www.cnblogs.com/CareySon/archive/2012/01/29/2331088.html&#34;&gt;ACID原则&lt;/a&gt;以及&lt;a href=&#34;http://blog.csdn.net/chen77716/article/details/30635543&#34;&gt;CAP原理&lt;/a&gt;。关于分布式可再看看&lt;a href=&#34;https://www.genedock.com/blog/2016/05/27/20160527_distributed_system&#34;&gt;分布式系统原理：困难与不可能性&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;分布式处理如此困难，而比特币设计者中本聪却巧妙地提出了另一种解法，漂亮至极。在比特币中使用&lt;a href=&#34;http://www.blockchainbrother.com/article/9&#34;&gt;Pow工作量证明算法&lt;/a&gt;简化拜占庭问题模型。Pow是实现&lt;a href=&#34;https://baike.baidu.com/item/零工作量证明&#34;&gt;零工作量证明&lt;/a&gt;的，即证明者在不向验证者提供任何有用的信息的前提下，使验证者相信某个论断是正确的。每个将军基于工作量证明，解决一个难度适当的Hash难题，每个难题有足够的难度，仅当在所有的将军同时工作时，平均10Mins会找到一个难题的答案（solution）。当一个将军找到问题的答案，它会把这个答案连同攻击计划在网络中广播。一旦收到Solution，每个将军调整难题为在广播中收到的攻击时间，攻击计划。&lt;/p&gt;
+
+&lt;p&gt;然而Pow需要不断消耗CPU资源、电能以求快速找到答案。2012年开发者Sunny King 首次提出了&lt;a href=&#34;https://cn.linkedin.com/pulse/深度探讨pos机制-鲲-王&#34;&gt;Pos&lt;/a&gt;（权益证明）概念，Pos相对于POW是种完全不一样的机制，Pos不需要大量的算力来维持网络安全，只是需要每个参与者打开自己的钱包在线增加网络权重，同时获取相应的奖励，也就是Pos机制本身所说的利息。&lt;/p&gt;
+
+&lt;p&gt;后面不安分的社区，又提出了改进版的Pos，名为&lt;a href=&#34;https://www.leiphone.com/news/201706/JfsBmaf6Y0ZtV11R.html&#34;&gt;DPOS(委托权益证明)&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3、p2p网络&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在去中心化的比特币系统中，全网各个节点通讯是基于&lt;a href=&#34;https://baike.baidu.com/item/对等网络&#34;&gt;p2p点对点对等网络&lt;/a&gt;。不存在中心节点，每个节点同时担任客户端和服务端角色。&lt;/p&gt;
+
+&lt;p&gt;从此比特币无国界，活生生的一只打不死的小强。&lt;/p&gt;
+
+&lt;h2 id=&#34;资源集合&#34;&gt;资源集合&lt;/h2&gt;
+
+&lt;p&gt;官网告诉你&lt;a href=&#34;https://bitcoin.org/zh_CN/getting-started&#34;&gt;比特币入门&lt;/a&gt;，看完此文，必然清楚如何开始比特币交易，同时另一个网站可以不基于交易所也看在市场上&lt;a href=&#34;https://localbitcoins.com/guides/how-to-buy-bitcoins&#34;&gt;直接买入别人的比特币&lt;/a&gt;，类似于58同城的二手交易。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子书&#34;&gt;电子书：&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://book.8btc.com/master_bitcoin&#34;&gt;《精通比特币》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://book.8btc.com/blockchain_guide&#34;&gt;《区块链技术指南》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;中文比特币资讯网站与论坛&#34;&gt;中文比特币资讯网站与论坛&lt;/h3&gt;
+
+&lt;p&gt;国内比特币发展迅速，有几个做得不错的资讯网站推荐给大家。
++ &lt;a href=&#34;http://www.8btc.com/&#34;&gt;巴比特&lt;/a&gt;,国内早先的比特币内容制作者，所提报的内容值得一看。力建。
++ &lt;a href=&#34;http://www.bitecoin.com/&#34;&gt;比特币中文网&lt;/a&gt;,纯粹的比特币资讯网站
++ &lt;a href=&#34;https://www.sosobtc.com&#34;&gt;搜搜比特网&lt;/a&gt;，同样是比特币资讯网站，当流量量非常高。&lt;/p&gt;
+
+&lt;p&gt;当然还有很多，但关注前面几个网站完全够用。&lt;/p&gt;
+
+&lt;h3 id=&#34;查看行情&#34;&gt;查看行情&lt;/h3&gt;
+
+&lt;p&gt;想关注比特币行情？现在没有特别推荐，也行国内将无法查看行情，也行你得翻墙！&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -165,10 +1170,434 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</guid>
-      <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以go-ethereum和以太坊钱包为例，详细步骤记录如何在Mac下搭建以太坊私有链运行环境。
-配置前环境准备 安装以太坊客户端 实际以太坊运行有多个不同语言实现的客户端，是多样的。可为不同用户选择他们所熟悉的客户端。
-   客户端 开发语言 开发者     go-ethereum Go 以太坊基金会   Parity Rust Ethcore   cpp-ethereum C++ 以太坊基金会   pyethapp Python 以太坊基金会   ethereumjs-lib Javascript 以太坊基金会   Ethereum(J) Java ether camp   ruby-ethereum Ruby 国人Xie Jan   ethereumH Haskell BlockApps    因为以太坊客户端以 go-ethereum 为主，故搭建私有链也使用该客户端。
- Mac OS X上安装说明 Windows 上安装说明  在Mac上安装细节如下： 在使用brew前，需自行安装brew软件管理工具(http://brew.</description>
+      
+        <description>
+
+&lt;p&gt;在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。
+小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以go-ethereum和以太坊钱包为例，详细步骤记录如何在Mac下搭建以太坊私有链运行环境。&lt;/p&gt;
+
+&lt;h2 id=&#34;配置前环境准备&#34;&gt;配置前环境准备&lt;/h2&gt;
+
+&lt;h3 id=&#34;安装以太坊客户端&#34;&gt;安装以太坊客户端&lt;/h3&gt;
+
+&lt;p&gt;实际以太坊运行有多个不同语言实现的客户端，是多样的。可为不同用户选择他们所熟悉的客户端。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;客户端&lt;/th&gt;
+&lt;th&gt;开发语言&lt;/th&gt;
+&lt;th&gt;开发者&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/go-ethereum/index.html#go-ethereum&#34;&gt;go-ethereum&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Go&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://ethereum.org/foundation&#34;&gt;以太坊基金会&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/parity/index.html#parity&#34;&gt;Parity&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Rust&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://parity.io/&#34;&gt;Ethcore&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html#cpp-ethereum&#34;&gt;cpp-ethereum&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;C++&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://ethereum.org/foundation&#34;&gt;以太坊基金会&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/pyethapp/index.html#pyethapp&#34;&gt;pyethapp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://ethereum.org/foundation&#34;&gt;以太坊基金会&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/ethereumjs-lib/index.html#ethereumjs-lib&#34;&gt;ethereumjs-lib&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Javascript&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://ethereum.org/foundation&#34;&gt;以太坊基金会&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/ethereumj/index.html#ethereum-j&#34;&gt;Ethereum(J)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.ether.camp&#34;&gt;ether camp&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/ruby-ethereum/index.html#ruby-ethereum&#34;&gt;ruby-ethereum&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Ruby&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/janx/&#34;&gt;国人Xie Jan&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://ethdocs.org/en/latest/ethereum-clients/ethereumh/index.html#ethereumh&#34;&gt;ethereumH&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Haskell&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.blockapps.net/&#34;&gt;BlockApps&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;因为以太坊客户端以 go-ethereum 为主，故搭建私有链也使用该客户端。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac&#34;&gt;Mac OS X上安装说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows&#34;&gt;Windows 上安装说明&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在Mac上安装细节如下：
+在使用brew前，需自行安装brew软件管理工具(&lt;a href=&#34;http://brew.sh)。&#34;&gt;http://brew.sh)。&lt;/a&gt;
+因为以太坊客户端涉及到多个依赖安装，故先tap再安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew tap ethereum/ethereum 
+brew install ethereum 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可通过参数&lt;code&gt;--devel&lt;/code&gt;直接安装开发版本(&lt;strong&gt;可选&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew install ethereum --devel 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装完成后，可执行命令&lt;code&gt;geth version&lt;/code&gt;查看版本信息，结果如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Geth
+Version: 1.6.7-stable
+Git Commit: ab5646c532292b51e319f290afccf6a44f874372
+Architecture: amd64
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.9
+Operating System: darwin
+GOPATH=/Users/one/Documents/dev/go
+GOROOT=/usr/local/Cellar/go/1.9/libexec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中 &lt;code&gt;geth&lt;/code&gt;为客户端命令。&lt;/p&gt;
+
+&lt;h3 id=&#34;初始化创世区块&#34;&gt;初始化创世区块&lt;/h3&gt;
+
+&lt;p&gt;因为geth默认的文件存储路径是：&lt;code&gt;$HOME/Library/Ethereum/&lt;/code&gt; ，故为运行方便，小编将配置文件等均放置在此目录。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;坑&lt;/strong&gt; : geth 是支持指定存储目录的&lt;code&gt;--datadir&lt;/code&gt;，但后面会遇到各种奇怪问题，如矿工一直不挖矿&lt;a href=&#34;https://github.com/ethereum/go-ethereum/issues/2174&#34;&gt;Issue&lt;/a&gt;等。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;nonce&amp;quot;: &amp;quot;0x0000000000000042&amp;quot;,
+  &amp;quot;difficulty&amp;quot;: &amp;quot;0x020000&amp;quot;,
+  &amp;quot;mixhash&amp;quot;: &amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,
+  &amp;quot;coinbase&amp;quot;: &amp;quot;0x0000000000000000000000000000000000000000&amp;quot;,
+  &amp;quot;timestamp&amp;quot;: &amp;quot;0x00&amp;quot;,
+  &amp;quot;parentHash&amp;quot;: &amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,
+  &amp;quot;extraData&amp;quot;: &amp;quot;0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa&amp;quot;,
+  &amp;quot;gasLimit&amp;quot;: &amp;quot;0x4c4b40&amp;quot;,
+  &amp;quot;config&amp;quot;: {
+      &amp;quot;chainId&amp;quot;: 15,
+      &amp;quot;homesteadBlock&amp;quot;: 0,
+      &amp;quot;eip155Block&amp;quot;: 0,
+      &amp;quot;eip158Block&amp;quot;: 0
+  },
+  &amp;quot;alloc&amp;quot;: { }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将创世初始化文件保存到&lt;code&gt;$HOME/Library/Ethereum/&lt;/code&gt;下文件名genesis.json。
+初始区块是区块链的起始 — 第一个区块，区块0，唯一没有指向前面区块的一个区块。协议确保其他节点不会和你的区块链一致，除非他们和你有相同的初始区块，这样你想创建多少私有测试网区块链，就可以创建多少！&lt;/p&gt;
+
+&lt;p&gt;执行初始化：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd $HOME/Library/Ethereum/
+geth  init genesis.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行后，将提示成功初始化创世区。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;geth  init genesis.json
+WARN [09-09|10:27:44] No etherbase set and no accounts found as default
+INFO [09-09|10:27:44] Allocated cache and file handles        database=/Users/one/Library/Ethereum/geth/chaindata cache=16 handles=16
+INFO [09-09|10:27:44] Writing custom genesis block
+INFO [09-09|10:27:44] Successfully wrote genesis state        database=chaindata                                        hash=bd0e7a…9aadd0
+INFO [09-09|10:27:44] Allocated cache and file handles        database=/Users/one/Library/Ethereum/geth/lightchaindata cache=16 handles=16
+INFO [09-09|10:27:44] Writing custom genesis block
+INFO [09-09|10:27:44] Successfully wrote genesis state        database=lightchaindata                                        hash=bd0e7a…9aadd0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时可看到该目录下会多出两个文件夹:geth和keystore&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;├── genesis.json
+├── geth
+│  ├── chaindata
+│  │  ├── 000001.log
+│  │  ├── CURRENT
+│  │  ├── LOCK
+│  │  ├── LOG
+│  │  └── MANIFEST-000000
+│  └── lightchaindata
+│      ├── 000001.log
+│      ├── CURRENT
+│      ├── LOCK
+│      ├── LOG
+│      └── MANIFEST-000000
+└── keystore
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;初始化账号&#34;&gt;初始化账号&lt;/h3&gt;
+
+&lt;p&gt;向将密码明文保存到文本文件中，本文中密码将全部是&lt;code&gt;abc&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd $HOME/Library/Ethereum/
+echo &amp;quot;abc&amp;quot; &amp;gt; pwd.txt 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行命令创建账户&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;geth  -password pwd.txt account new
+WARN [09-09|10:33:10] No etherbase set and no accounts found as default
+Address: {e7a614776754b7c7ef3a1ef6430d29e90411fd75}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;虽然此账户可以在以太坊的JavaScript控制台中生成，但我一般直接通过命令工具生成，关于&lt;code&gt;geth account&lt;/code&gt;命令还有更多信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;SAGE:
+  geth account [options] command [command options] [arguments...] 
+
+COMMANDS:
+  list    汇总打印所有账号
+  new     创建一个新账号
+  update  更新已存在的账户
+  import  导入私钥生成新的账号
+  help, h 帮助
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;geth account list 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你应该可以看到上面所创建的账号。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Account #0: {e7a614776754b7c7ef3a1ef6430d29e90411fd75} keystore:///Users/one/Library/Ethereum/keystore/UTC--2017-09-09T02-33-10.598872595Z--e7a614776754b7c7ef3a1ef6430d29e90411fd75
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;表明账号的私钥保存在keystore文件夹下。&lt;/p&gt;
+
+&lt;h3 id=&#34;进入控制台&#34;&gt;进入控制台&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;geth  --networkid 9999 console
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行命令，将进入控制台，打印出如下信息。该信息非常重要。能告诉你运行时环境与配置信息。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Allocated cache and file handles 缓存存放目录&lt;/li&gt;
+&lt;li&gt;Disk storage enabled for ethash caches 数据存放目录&lt;/li&gt;
+&lt;li&gt;Disk storage enabled for ethash DAGs DAG数据存放目录&lt;/li&gt;
+&lt;li&gt;IPC endpoint opened IPC地址，&lt;strong&gt;重要&lt;/strong&gt;，关系到后续以太坊钱包的链接&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;INFO [09-09|10:40:36] Starting peer-to-peer node              instance=Geth/v1.6.7-stable-ab5646c5/darwin-amd64/go1.9
+INFO [09-09|10:40:36] Allocated cache and file handles        database=/Users/one/Library/Ethereum/geth/chaindata cache=128 handles=1024
+WARN [09-09|10:40:36] Upgrading chain database to use sequential keys
+INFO [09-09|10:40:36] Database conversion successful
+INFO [09-09|10:40:36] Initialised chain configuration          config=&amp;quot;{ChainID: 15 Homestead: 0 DAO: &amp;lt;nil&amp;gt; DAOSupport: false EIP150: &amp;lt;nil&amp;gt; EIP155: 0 EIP158: 0 Metropolis: &amp;lt;nil&amp;gt; Engine: unknown}&amp;quot;
+INFO [09-09|10:40:36] Disk storage enabled for ethash caches  dir=/Users/one/Library/Ethereum/geth/ethash count=3
+INFO [09-09|10:40:36] Disk storage enabled for ethash DAGs    dir=/Users/one/.ethash                      count=2
+WARN [09-09|10:40:36] Upgrading db log bloom bins
+INFO [09-09|10:40:36] Bloom-bin upgrade completed              elapsed=68.449µs
+INFO [09-09|10:40:36] Initialising Ethereum protocol          versions=&amp;quot;[63 62]&amp;quot; network=9999
+INFO [09-09|10:40:36] Loaded most recent local header          number=0 hash=bd0e7a…9aadd0 td=131072
+INFO [09-09|10:40:36] Loaded most recent local full block      number=0 hash=bd0e7a…9aadd0 td=131072
+INFO [09-09|10:40:36] Loaded most recent local fast block      number=0 hash=bd0e7a…9aadd0 td=131072
+INFO [09-09|10:40:36] Starting P2P networking
+INFO [09-09|10:40:38] UDP listener up                          self=enode://f28939fbbd6038c074f322b656f314250bbf7372523ee6d7d2fd6b67f86dba3f41cdf394ab3c57bd105cb96bec70337c6c19a09ca794b6f0c36c3d04119c7c39@[::]:30303
+INFO [09-09|10:40:38] RLPx listener up                        self=enode://f28939fbbd6038c074f322b656f314250bbf7372523ee6d7d2fd6b67f86dba3f41cdf394ab3c57bd105cb96bec70337c6c19a09ca794b6f0c36c3d04119c7c39@[::]:30303
+INFO [09-09|10:40:38] IPC endpoint opened: /Users/one/Library/Ethereum/geth.ipc
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.6.7-stable-ab5646c5/darwin-amd64/go1.9
+coinbase: 0xe7a614776754b7c7ef3a1ef6430d29e90411fd75
+at block: 0 (Thu, 01 Jan 1970 08:00:00 CST)
+datadir: /Users/one/Library/Ethereum
+modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;能在控制台中执行多种命令，具体见官方文档：&lt;a href=&#34;https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console&#34;&gt;JavaScript-Console Wiki&lt;/a&gt;。
+这是一个交互式的Javascript执行环境，在这里面可以执行Javascript代码，其中&amp;gt;是命令提示符。在这个环境里也内置了一些用来操作以太坊的Javascript对象，可以直接使用这些对象。这些对象主要包括：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;eth：包含一些跟操作区块链相关的方法&lt;/li&gt;
+&lt;li&gt;net：包含以下查看p2p网络状态的方法&lt;/li&gt;
+&lt;li&gt;admin：包含一些与管理节点相关的方法&lt;/li&gt;
+&lt;li&gt;miner：包含启动&amp;amp;停止挖矿的一些方法&lt;/li&gt;
+&lt;li&gt;personal：主要包含一些管理账户的方法&lt;/li&gt;
+&lt;li&gt;txpool：包含一些查看交易内存池的方法&lt;/li&gt;
+&lt;li&gt;web3：包含了以上对象，还包含一些单位换算的方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;启动挖矿&#34;&gt;启动挖矿&lt;/h2&gt;
+
+&lt;p&gt;如果你之前有部署运行过以太坊，请先将此目录下的DAG文件删除&lt;code&gt;rm -rf $HOME/.ethash/&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;参数说明&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--nodiscover
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用这个命令可以确保你的节点不会被&lt;strong&gt;非手动&lt;/strong&gt;添加你的人发现。否则，你的节点可能因为你与他有相同的创世文件和网络ID而被陌生人的区块链无意添加。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--maxpeers 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你不希望其他人连接到你的测试链，可以使用maxpeers 0。反之，如果你确切知道希望多少人连接到你的节点，你也可以通过调整数字来实现。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--rpc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个指令可以激活你节点上的RPC界面。它在geth中通常被默认激活。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--rpcapi &amp;quot;db,eth,net,web3&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令可以决定允许什么API通过RPC进入。在默认情况下，geth可以在RPC激活web3界面。
+&lt;strong&gt;记住&lt;/strong&gt;：在RPC/IPC界面提供API，会使每个可以进入这个界面（例如dapp&amp;rsquo;s）的人都有权限访问这个API。注意你激活的是哪个API。Geth会默认激活IPC界面上所有的API，以及RPC界面上的db,eth,net和web3 API。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--rpcport &amp;quot;8080&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将8000改变为你网络上开放的任何端口。Geth的默认设置是8080.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;```shell
+--rpccorsdomain &amp;quot;https://yushuangqi.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个可以指示什么URL能连接到你的节点来执行RPC定制端任务。务必谨慎，输入一个特定的URL而不是wildcard ( * )，后者会使所有的URL都能连接到你的RPC实例。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--datadir &amp;quot;/home/TestChain1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是你的私有链数据所储存在的数据目录（在nubits下）。选择一个与你以太坊公有链文件夹分开的位置。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--identity &amp;quot;TestnetMainNode&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这会为你的节点设置一个身份，使之更容易在端点列表中被辨认出来。这个例子说明了这些身份如何在网络上出现。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--networkid 1999
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;数字，区分与其他的网络ID，以太坊公链的网络ID=1。必须区分，以放置钱包等误认为是以太坊公链。 ,2=Morden (disused), 3=Ropsten, 4=Rinkeby，默认为1。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--port 30303
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;P2P网络监听端口，默认30303。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--fast 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令是 Geth1.6.0之前的，只会被改成&lt;code&gt;--syncmode=fast&lt;/code&gt;，但该命令继续有效。配置此命令能够快速的同步区块&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;--cache=1024
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;程序内置的可用内存，单位MB。默认是16MB(最小值)。可以根据服务器能力配置到56, 512, 1024 (1GB), or 2048 (2GB)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;geth --identity &amp;quot;OneTestETH&amp;quot; --rpccorsdomain &amp;quot;*&amp;quot; --nodiscover --rpcapi &amp;quot;*&amp;quot;  --fast --cache=1024 --networkid 1999  console
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;进入控制台后，可以启动矿工开始挖矿。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;gt; miner.start(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里的&lt;code&gt;1&lt;/code&gt;表示只使用一个线程运行，如果配置过高我的MAC会卡。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;INFO [09-09|11:17:36] Updated mining threads                  threads=1
+INFO [09-09|11:17:36] Transaction pool price threshold updated price=18000000000
+INFO [09-09|11:17:36] Starting mining operation
+null
+&amp;gt; INFO [09-09|11:17:36] Commit new mining work                  number=1 txs=0 uncles=0 elapsed=134.574µs
+INFO [09-09|11:17:38] Generating DAG in progress              epoch=0 percentage=0 elapsed=1.051s
+INFO [09-09|11:17:39] Generating DAG in progress              epoch=0 percentage=1 elapsed=2.087s
+INFO [09-09|11:17:40] Generating DAG in progress              epoch=0 percentage=2 elapsed=3.129s
+INFO [09-09|11:17:41] Generating DAG in progress              epoch=0 percentage=3 elapsed=4.229s
+......
+INFO [09-09|11:19:24] Generating DAG in progress              epoch=0 percentage=98 elapsed=1m47.287s
+INFO [09-09|11:19:25] Generating DAG in progress              epoch=0 percentage=99 elapsed=1m48.790s
+INFO [09-09|11:19:25] Generated ethash verification cache      epoch=0 elapsed=1m48.792s
+INFO [09-09|11:19:29] Generating DAG in progress              epoch=1 percentage=0  elapsed=1.365s
+INFO [09-09|11:19:30] Generating DAG in progress              epoch=1 percentage=1  elapsed=2.666s
+INFO [09-09|11:19:31] Successfully sealed new block            number=1 hash=19b30c…c712b6
+INFO [09-09|11:19:31] 🔨 mined potential block                  number=1 hash=19b30c…c712b6
+INFO [09-09|11:19:31] Commit new mining work                  number=2 txs=0 uncles=0 elapsed=421.087µs
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一次运行时将开始创建DAG文件，只需等待进度条到100，则将开始挖矿。 实际你看到的挖矿速度很快，这是因为我们已经在初始化创世区块时配置为:&lt;code&gt;&amp;quot;nonce&amp;quot;: &amp;quot;0x0000000000000042&amp;quot;&lt;/code&gt;。
+&amp;ldquo;0x42&amp;rdquo;难度能让你在私有测试网链上快速挖以太币。几分钟就会有上百个以太币，远远超过了在网络上测试交易所需的数量。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;coinbase: 0xe7a614776754b7c7ef3a1ef6430d29e90411fd75
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;挖矿时必然有矿工账户，而系统默认使用创建的第一个账号。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;gt; miner.stop()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;停止挖矿，此时可以查看将挖出不少以太币。在控制台中可查询矿工余额。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;gt; eth.accounts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这会返回到你拥有的账户地址排列。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;gt; eth.getBalance(eth.accounts[0])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个控制台指令会返回到你第一个以太坊地址。因为我们只创建了一个账号，也将是矿工的账号。
+而&lt;code&gt;eth.getBalance()&lt;/code&gt;返回的余额是以太币的最小面额wei，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;gt; primary = eth.accounts[0]
+&amp;gt; balance = web3.fromWei(eth.getBalance(primary), &amp;quot;ether&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将返回矿工的以太币余额，将wei转换为以太币ether。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装使用以太坊钱包&#34;&gt;安装使用以太坊钱包&lt;/h2&gt;
+
+&lt;p&gt;以太坊钱包，当前以改名为Mist，到&lt;a href=&#34;https://ethereum.org/&#34;&gt;以太坊官网&lt;/a&gt;下载最新版本。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/42295563.png&#34; alt=&#34;&#34; /&gt;
+下载后，启动Mist,稍等片刻将在右上角显示&lt;code&gt;PRIVATE-NEW&lt;/code&gt;，随后点击[Launch Application]进入主页。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/42012731.png&#34; alt=&#34;&#34; /&gt;
+主页左下角红色标记为私有链，中间账号显示的是前面步骤中创建的账号，并有注明为主账号。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/42169193.png&#34; alt=&#34;&#34; /&gt;
+此时你可以继续使用命令新建账号，也可在钱包中创建账号。以太坊钱包Mist使用教程请另行&lt;a href=&#34;https://github.com/EthFans/wiki/wiki/以太坊钱包-Mist-使用教程&#34;&gt;查看&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;结尾&#34;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;不知是否有疑问以太坊钱包Mist是如何关联上你运行的私有链的？&lt;/p&gt;
+
+&lt;p&gt;这是因为在运行私有链控制台时，实际以开启了IPC服务，显示的路径为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;INFO [09-09|10:40:38] IPC endpoint opened: /Users/one/Library/Ethereum/geth.ipc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而钱包在启动时默认在本机查找的IPC路径，而Mac OS上默认查找路径为: &lt;code&gt;$HOME/Library/Ethereum/geth.ipc&lt;/code&gt;。所以钱包启动后能自动识别到你的私有链。
+其他OS的默认查找路径如下,具体可查看&lt;a href=&#34;https://github.com/ethereum/mist/blob/master/modules/settings.js#L248&#34;&gt;源代码&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;windows: .\pipe\geth.ipc&lt;/li&gt;
+&lt;li&gt;linux: /.ethereum/geth.ipc&lt;/li&gt;
+&lt;li&gt;freebsd: /.ethereum/geth.ipc&lt;/li&gt;
+&lt;li&gt;sunos: /.ethereum/geth.ipc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;至此，如上为Mac下搭建运行以太坊私有链环境的操作过程，如有疑问可在下方留言。&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -177,26 +1606,65 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Thu, 07 Sep 2017 22:10:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</guid>
-      <description>对于“技术宅”有不同解释，我更倾向于理解为：善于钻研各种知识和技术而忽略社交的人。
-我也是技术宅，但时常在想我这周末要宅在家中？可出门干点什么？但总因感觉离不开电脑而愈加宅在家中。
-在求职的时候，相信有不少人被问及：“你的职业规划是什么”，自然的，你的内心会想：我要变得很牛！或者至少成为一个很牛的程序员。但实际回答有可能另一个用于敷衍面试官的。为何没有说出内心的想法？
-严肃的看待更深层次的问题：程序员应该有个怎样的职业规划？ 很庆幸能进入这行，爱上这行。像变魔术搬展示神奇的东西。
-王侯将相宁有种乎！作为程序员，如何才能让自己同周边的大牛一样牛逼起来呢？
-回顾与思考 毫无疑问，成为大牛，首先必须得编码，持续不断地编码，要达到一定的量。 但量变到质变不是必然，持续编码的两个结果是，一个是到达质变，水平不断提升；一个是重复重复最终麻木。
-要想质变与提升，必须有目的的停下编码！ 要周期性的回顾自己！
-看看以前的代码，分析下现在的设计，与同事、同行一起讨论。看看哪些可以改善，有多少种改善思路…… 这样就能看出以前的自己与现在的自己这两者之间的差距。
-如果你觉得自己以前的代码是翔，那恭喜你，你绝对提升了不少。
-沟通 很多人觉得程序员较难沟通，说程序员不太会说话……你觉得呢？
-我想说的是：要想成为牛逼的程序员，沟通一定要过硬！
-程序员是干嘛的？不是写代码的，而是解决问题的。
-怎样才能让别人正确理解你的话，怎样才能让你正确听懂别人的话，这都需要不断的学习、练习。
-找到你的小伙伴 程序员干的是技术活，找到一个谈得来的小伙伴很重要，可以相互促进。 一个人孤独的前行，为何不去找到同频的人一起前行，消除登顶路上的寂寞。 可能你需要在不同的阶段找不同的伙伴，最好是找某方面比你牛的人一起研究技术，这样可以学到东西。
-分享 这个，真的很重要，千万别掖着藏着！建立个人品牌，给别人带去价值。
-深圳Gopher线下讨论组 愿意一起走上Gopher大牛的成长之路吗？虞双齐发起深圳Gopher线下讨论组活动，扫描下面二维码，加入微信深圳Gopher讨论组，开启线下交流之旅！
-会议主题：由微信群内共同拟定本次讨论2个主题
-会议时间：某个周末4小时，一次/月
-会议人数：固定12人
-会议地点：Gopher们推荐地点，如公司、咖啡厅等。</description>
+      
+        <description>
+
+&lt;p&gt;对于“技术宅”有不同解释，我更倾向于理解为：善于钻研各种知识和技术而忽略社交的人。&lt;/p&gt;
+
+&lt;p&gt;我也是技术宅，但时常在想我这周末要宅在家中？可出门干点什么？但总因感觉离不开电脑而愈加宅在家中。&lt;/p&gt;
+
+&lt;p&gt;在求职的时候，相信有不少人被问及：“你的职业规划是什么”，自然的，你的内心会想：我要变得很牛！或者至少成为一个很牛的程序员。但实际回答有可能另一个用于敷衍面试官的。为何没有说出内心的想法？&lt;/p&gt;
+
+&lt;p&gt;严肃的看待更深层次的问题：程序员应该有个怎样的职业规划？
+很庆幸能进入这行，爱上这行。像变魔术搬展示神奇的东西。&lt;/p&gt;
+
+&lt;p&gt;王侯将相宁有种乎！作为程序员，如何才能让自己同周边的大牛一样牛逼起来呢？&lt;/p&gt;
+
+&lt;h2 id=&#34;回顾与思考&#34;&gt;回顾与思考&lt;/h2&gt;
+
+&lt;p&gt;毫无疑问，成为大牛，首先必须得编码，持续不断地编码，要达到一定的量。 但量变到质变不是必然，持续编码的两个结果是，一个是到达质变，水平不断提升；一个是重复重复最终麻木。&lt;/p&gt;
+
+&lt;p&gt;要想质变与提升，必须有目的的停下编码！ 要周期性的回顾自己！&lt;/p&gt;
+
+&lt;p&gt;看看以前的代码，分析下现在的设计，与同事、同行一起讨论。看看哪些可以改善，有多少种改善思路…… 这样就能看出以前的自己与现在的自己这两者之间的差距。&lt;/p&gt;
+
+&lt;p&gt;如果你觉得自己以前的代码是翔，那恭喜你，你绝对提升了不少。&lt;/p&gt;
+
+&lt;h2 id=&#34;沟通&#34;&gt;沟通&lt;/h2&gt;
+
+&lt;p&gt;很多人觉得程序员较难沟通，说程序员不太会说话……你觉得呢？&lt;/p&gt;
+
+&lt;p&gt;我想说的是：要想成为牛逼的程序员，沟通一定要过硬！&lt;/p&gt;
+
+&lt;p&gt;程序员是干嘛的？不是写代码的，而是解决问题的。&lt;/p&gt;
+
+&lt;p&gt;怎样才能让别人正确理解你的话，怎样才能让你正确听懂别人的话，这都需要不断的学习、练习。&lt;/p&gt;
+
+&lt;h2 id=&#34;找到你的小伙伴&#34;&gt;找到你的小伙伴&lt;/h2&gt;
+
+&lt;p&gt;程序员干的是技术活，找到一个谈得来的小伙伴很重要，可以相互促进。
+一个人孤独的前行，为何不去找到同频的人一起前行，消除登顶路上的寂寞。
+可能你需要在不同的阶段找不同的伙伴，最好是找某方面比你牛的人一起研究技术，这样可以学到东西。&lt;/p&gt;
+
+&lt;h2 id=&#34;分享&#34;&gt;分享&lt;/h2&gt;
+
+&lt;p&gt;这个，真的很重要，千万别掖着藏着！建立个人品牌，给别人带去价值。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;深圳gopher线下讨论组&#34;&gt;深圳Gopher线下讨论组&lt;/h2&gt;
+
+&lt;p&gt;愿意一起走上Gopher大牛的成长之路吗？虞双齐发起深圳Gopher线下讨论组活动，扫描下面二维码，加入微信深圳Gopher讨论组，开启线下交流之旅！&lt;/p&gt;
+
+&lt;p&gt;会议主题：由微信群内共同拟定本次讨论2个主题&lt;/p&gt;
+
+&lt;p&gt;会议时间：某个周末4小时，&lt;code&gt;一次/月&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;会议人数：固定&lt;code&gt;12&lt;/code&gt;人&lt;/p&gt;
+
+&lt;p&gt;会议地点：Gopher们推荐地点，如公司、咖啡厅等。&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -205,20 +1673,66 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Fri, 01 Sep 2017 21:33:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</guid>
-      <description> 爱折腾好吗？折腾非贬义词。 每个人都在不停折腾，有的折腾亲爹、有的折腾亲儿子、更有折腾丈母娘的。谁的青春没折腾，折腾过才更懂生活。
-我是一个爱折腾的人但只折腾IT技术。折腾给我不一样的青春，分享三个我的青春故事。
- 一个如何小兵折腾到券商运维经理的故事 一个如何折腾到旅行经费的故事 一个如何折腾到新风口从新开始的故事  折腾为券商运维经理 工作8年4家公司，酬薪也翻倍上涨。从高中便热爱计算机技术，不好好参加高考，折腾于编程培训和参加信息技术奥利匹克竞赛。2010年3月8号和7个同学到北京找工作，9号到达，10号面试，11号便直接上班，同时工资在7个同学里面最高。
-2012年，拿到3个Offer，在一家金融技术公司上班。2014年，中国大城市那么多，我要到深圳去看看。公司便将我安排到深圳分公司。2015年，做乙方的我，被券商甲领导赏识，便被进入甲的香港公司上班，随后深港两地上班，担任信息技术部运维经理。
-工资曲线: 对，我爱折腾，爱折腾技术。2017年离职，进入创业公司。折腾技术，给自己底气去选择工作。
-折腾到旅行经费 爱折腾技术，业余接单，赚取旅行费。大单小单不少，两小口日子甜蜜蜜。是技术实力，是折腾技术的收获。技术服务于生活，爱折腾但也要更爱生活。
-2016年通过平台交易的记录: 折腾到从新开始 不断走出舒适区，寻找新的起点，开始新的折腾。从开发再到折腾运维管理，让做技术的我学到不少知识，特别是对系统、对文档、对操作的各方知识。 充电完毕，我依然离开运维，重新做开发 ，继续折腾。
-2017年进入区块链创业公司，把工作当做自己的事业来干，折腾于技术创业。
-火热的区块链、比特币、以太坊将会给爱折腾的我带来新的机会和价值增长。
-折腾不息 是的，上面就是我折腾的故事，都是基于我折腾技术后对自身IT技术的自信。做技术就要做到第一，折腾不息。
-折腾技术的过程坎坷，但我的背后有一双强有力的推手。来，上照~~
-你也想折腾？想快速成长起来？想提高薪水？想建立个人网络品牌？
-这些坑我都经历过，欢迎关注我，关注我后面的折腾：
- 区块链：给你朋友圈牛逼的谈资 Go开发技巧：提升你的专业能力 高效工具：提高你的办公效率  </description>
+      
+        <description>
+
+&lt;p&gt;爱折腾好吗？&lt;strong&gt;折腾&lt;/strong&gt;非贬义词。 每个人都在不停折腾，有的折腾亲爹、有的折腾亲儿子、更有折腾丈母娘的。谁的青春没折腾，折腾过才更懂生活。&lt;/p&gt;
+
+&lt;p&gt;我是一个爱折腾的人但只折腾IT技术。折腾给我不一样的青春，分享三个我的青春故事。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个如何小兵折腾到券商运维经理的故事&lt;/li&gt;
+&lt;li&gt;一个如何折腾到旅行经费的故事&lt;/li&gt;
+&lt;li&gt;一个如何折腾到新风口从新开始的故事&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;折腾为券商运维经理&#34;&gt;折腾为券商运维经理&lt;/h2&gt;
+
+&lt;p&gt;工作8年4家公司，酬薪也翻倍上涨。从高中便热爱计算机技术，不好好参加高考，折腾于编程培训和参加信息技术奥利匹克竞赛。2010年3月8号和7个同学到北京找工作，9号到达，10号面试，11号便直接上班，同时工资在7个同学里面最高。&lt;/p&gt;
+
+&lt;p&gt;2012年，拿到3个Offer，在一家金融技术公司上班。2014年，中国大城市那么多，我要到深圳去看看。公司便将我安排到深圳分公司。2015年，做乙方的我，被券商甲领导赏识，便被进入甲的香港公司上班，随后深港两地上班，担任信息技术部运维经理。&lt;/p&gt;
+
+&lt;p&gt;工资曲线:
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/1847102.png&#34; alt=&#34;我的收入&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对，我爱折腾，爱折腾技术。2017年离职，进入创业公司。折腾技术，给自己底气去选择工作。&lt;/p&gt;
+
+&lt;h2 id=&#34;折腾到旅行经费&#34;&gt;折腾到旅行经费&lt;/h2&gt;
+
+&lt;p&gt;爱折腾技术，业余接单，赚取旅行费。大单小单不少，两小口日子甜蜜蜜。是技术实力，是折腾技术的收获。技术服务于生活，爱折腾但也要更爱生活。&lt;/p&gt;
+
+&lt;p&gt;2016年通过平台交易的记录:
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/86291270.png&#34; alt=&#34;2016年通过平台交易的记录&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;折腾到从新开始&#34;&gt;折腾到从新开始&lt;/h2&gt;
+
+&lt;p&gt;不断走出舒适区，寻找新的起点，开始新的折腾。从开发再到折腾运维管理，让做技术的我学到不少知识，特别是对系统、对文档、对操作的各方知识。 充电完毕，我依然离开运维，重新做开发 ，继续折腾。&lt;/p&gt;
+
+&lt;p&gt;2017年进入区块链创业公司，把工作当做自己的事业来干，&lt;strong&gt;折腾于技术创业&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;火热的区块链、比特币、以太坊将会给爱折腾的我带来新的机会和价值增长。&lt;/p&gt;
+
+&lt;h2 id=&#34;折腾不息&#34;&gt;折腾不息&lt;/h2&gt;
+
+&lt;p&gt;是的，上面就是我折腾的故事，都是基于我折腾技术后对自身IT技术的自信。做技术就要做到第一，折腾不息。&lt;/p&gt;
+
+&lt;p&gt;折腾技术的过程坎坷，但我的背后有一双强有力的推手。来，上照~~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/1548062.png&#34; alt=&#34;我和我的妻子在海边&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;你也想折腾？想快速成长起来？想提高薪水？想建立个人网络品牌？&lt;/p&gt;
+
+&lt;p&gt;这些坑我都经历过，欢迎关注我，关注我后面的折腾：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;区块链：给你朋友圈牛逼的谈资&lt;/li&gt;
+&lt;li&gt;Go开发技巧：提升你的专业能力&lt;/li&gt;
+&lt;li&gt;高效工具：提高你的办公效率&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/assets/qrcode_itysqi.jpg&#34; alt=&#34;虞双齐公众号&#34; /&gt;&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -227,37 +1741,126 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Thu, 17 Aug 2017 17:30:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html</guid>
-      <description>想成为斜杠青年？那知晓自己的优势吗？ 如何发现自我优势？如何成长为斜杠青年？下面聊了如何发现与成长自我优势。
- 百度百科：斜杠青年，指的是这样一个人群：他们不满足单一职业和身份的束缚，而是选择一种能够拥有多重职业和多重身份的多元生活。这些人在自我介绍中会用斜杠来区分，例如，张三，记者/演员/摄影师。
- 发现自我优势的意义 张爱玲说过“出名要趁早”，成功也一样。只有越早认识和发现自我优势，才能越早成功。
-用心观察那些成大事者，他们都有一个共同的特征：无论他们的智力高低，他们所做的都是自己擅长的事情。
-调查显示，有25％的人正是因为找到自己最擅长的领域，才将自己的专长发挥得淋漓尽致，得以掌握自己的命运。另外75％的人，不知道自己擅长什么，没有找到适合自己的职业和领域，所以终生一事无成。
-这也充分体现28法则，一个行业只有20%属于精英。
- 80%的成绩，归功于20%的努力 市场上80%的产品可能是20%的企业生产的 20%拥有80%的财富，80%拥有20%的财富 20%首先改变自己，80%希望改变别人  当你并不能在工作中发挥优势时，你也行会焦虑，害怕，消极工作等负面能量。公司刚招聘一枚传媒专业员工，入职后安排他写稿，两个星期后，他反应说这两星期过得难受，写不出，想离开。虽然上司找他聊天，了解后原来他更擅长于市场，手握人脉资源。随后他在市场部干得如鱼得水，市场业绩也有十多万。
-你不清楚自己的优势，把自己放在错误的位置上，导致一直无法充分发货自己的优点。还有的人生活了一辈子根本不知道自己的性格和兴趣, 导致经常疲于生计, 选择了许多错误的决定, 忙忙碌碌、随波逐流。假如我们能够了解自己：知道我们的优点及如何利用, 那么, 我们就可以开始了解&amp;lsquo;真我&amp;rsquo;，整合自我，更容易成功。
-自我发展的误区 在我们自我发展的过程大部分人有陷入误区：穷尽一生改善劣势。
-更多的在关注改善劣势，而更少关注自己的优势。
-小时候，父母总在担心我个头不高、英语成绩不好、不会唱歌、踢不好足球等，而琢磨报各种培训班。即使数学、物理成绩非常好，也要我别骄傲。
-潜移默化地，在工作中也在不断关注自己的劣势，想各种办法去改善劣势。英语口语不好、不够幽默、情商低&amp;hellip; 天呀，我怎么这么多不足！！！
-自然的时间也花在如何改善劣势上！有必要去花大量金钱、时间去改善劣势吗？诗人洛威尔曾说：“做我们的天赋所不擅长的事往往是徒劳无益的。而在人类历史上，因为做自己所不擅长的事儿导致理想破灭、一事无成的例子不胜枚举。”人生的发展的路上，更容易成功。
-你应有的意识 慎重改变，改变不了的，就放弃，可以去弥补劣势，但不要过度关注。只有1米6就不用把自己训练为职业篮球运动员。 改进劣势是很难走的路，虽然到达成功的彼岸是艰苦的，但发展自我优势来得更容易些。
-关注自我优势，将更多时间用在成长自我优势上，而不是改善劣势。
-木桶理论不适合自我发展，一只木桶能盛多少水，并不取决于最长的那块木板，而是取决于最短的那块木板。在团队管理中，拖累团队的往往是综合能力较差的那位。但在个人自我发展中，决定我们获得竞争力的不是短板，恰恰是长板。个人优势才是旗帜，突显才能发展。
-发现自我优势的途径 你觉得你足够了解自己么？如果要列出你自己最突出的五个优势，分别是什么？从三个方面着手来发现自我优势：
- “大多数人都自认为知道自己最擅长什么。其实不然……然而，一个人要有所作为，只能靠发挥自己的优势。” ——管理大师彼得 德鲁克（1909-2005）
- 自我评估 首先将自己同周边的人对比，罗列出你比他们有哪些优势？如：
-与我合作伙伴相比：我能管理好一家公司，我更加要求项目标准，他没有的我有，这样可互补，这样就有价值。
-与我妻子相比： 我更能坚持，我不会轻言放弃。我更理性，可以理性的帮妻子分析问题。
-与我同事相比： 我对行业更加敏感，更加熟悉新媒体。
-在评估时，也要清楚自己有哪些技能、天赋。 优点不等于技能，技能是拿得出手的，经得起市场考验的，是可以量化的。而天赋则是不需大量学习就可以快速理解融会贯通的。
-同时列出出你最自豪的事情，去总结你为什么会成功，从中发现你的优点。也行可发展为你的优势。
-你有哪些技能是别人愿意付费的呢？这就是价值交互你的优势就是他人的劣势，别人愿意花五千块让我帮她写软文，这就是我的优势。
-熟人评估法 再找对你熟悉的人对你进行评估，可以是家人、上司、同时。同他们沟通，总结出他们认为你的优势有哪些，哪些又是你喜欢的。
-工具评估法 利用专业工具对自我进行优势评估，这里推荐使用》盖洛普优势识别器2.0》书中所提高的在线评估对进行优势评估，这里提高一个免费版评估工具。 &amp;gt; 汤姆·拉思（Tom Rath），盖洛普公司全球咨询业务负责人。他领导了一系列的研发项目，包括评估工具、专著和其他专业研究，著有畅销书：《你的幸福可以测量》、《现在，发现你的领导力优势》、《铁杆朋友》、《你的水桶有多满》（少儿版）等，其作品销量已突破300万册，在《华尔街日报》畅销书榜上出现超过250次。
-了解自己的优势之后呢 答案只有一个字：用，专注的用、坚持的用。在有意识地运用自己的优势的过程中，不断去强化它们。不要想着去改自己的缺点，如果不妨碍你的发展的话，搁一边，多想想怎么发挥优势更经济。改正缺点是木桶思维，如果真的有短板，短板本来只有50分，改正过后最好不过70分了吧？这得是多大的提高啊，如果你的优势有70分，加以联系和强化，很可能可以达到90分。
-专注 特长(专业) * 投入时间 =优势，投入时间越长，得分越高。
-设计师，有的很出色，大部分平庸。发现他们没有正确对待优势，没有想过怎么更好的学好这们技能，更好的输出。通过自己的讲解、培训、总结。将给同事听。
-有正确的认识和对待优势。 在运营上，别人是怎么做的，怎么讲的。你再运用到你的运营上，等有了成果。那就成了你的优势，你就尝试做培训、讲课。 很多人不能在某个专业上坚持，一会做着一会做那。你在专业上投入的时间少，你就难以成为你的优势。 如果你选准了你的优势，你就有要不断的去学习，不断的投入，成为你的优势。 在下班后，没有有意识的强化，继续学习，那么你的优势就没那么明显。 那专注与特长/专业， 不要去不停的换。换得勤，浪费时间。</description>
+      
+        <description>
+
+&lt;p&gt;想成为斜杠青年？那知晓自己的优势吗？ 如何发现自我优势？如何成长为斜杠青年？下面聊了如何发现与成长自我优势。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;百度百科：斜杠青年，指的是这样一个人群：他们不满足单一职业和身份的束缚，而是选择一种能够拥有多重职业和多重身份的多元生活。这些人在自我介绍中会用斜杠来区分，例如，张三，记者/演员/摄影师。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;发现自我优势的意义&#34;&gt;发现自我优势的意义&lt;/h2&gt;
+
+&lt;p&gt;张爱玲说过“出名要趁早”，成功也一样。只有越早认识和发现自我优势，才能越早成功。&lt;/p&gt;
+
+&lt;p&gt;用心观察那些成大事者，他们都有一个共同的特征：无论他们的智力高低，他们所做的都是自己擅长的事情。&lt;/p&gt;
+
+&lt;p&gt;调查显示，有25％的人正是因为找到自己最擅长的领域，才将自己的专长发挥得淋漓尽致，得以掌握自己的命运。另外75％的人，不知道自己擅长什么，没有找到适合自己的职业和领域，所以终生一事无成。&lt;/p&gt;
+
+&lt;p&gt;这也充分体现28法则，一个行业只有20%属于精英。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;80%的成绩，归功于20%的努力&lt;/li&gt;
+&lt;li&gt;市场上80%的产品可能是20%的企业生产的&lt;/li&gt;
+&lt;li&gt;20%拥有80%的财富，80%拥有20%的财富&lt;/li&gt;
+&lt;li&gt;20%首先改变自己，80%希望改变别人&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当你并不能在工作中发挥优势时，你也行会焦虑，害怕，消极工作等负面能量。公司刚招聘一枚传媒专业员工，入职后安排他写稿，两个星期后，他反应说这两星期过得难受，写不出，想离开。虽然上司找他聊天，了解后原来他更擅长于市场，手握人脉资源。随后他在市场部干得如鱼得水，市场业绩也有十多万。&lt;/p&gt;
+
+&lt;p&gt;你不清楚自己的优势，把自己放在错误的位置上，导致一直无法充分发货自己的优点。还有的人生活了一辈子根本不知道自己的性格和兴趣, 导致经常疲于生计, 选择了许多错误的决定, 忙忙碌碌、随波逐流。假如我们能够了解自己：知道我们的优点及如何利用,  那么, 我们就可以开始了解&lt;strong&gt;&amp;lsquo;真我&amp;rsquo;&lt;/strong&gt;，整合自我，更容易成功。&lt;/p&gt;
+
+&lt;h2 id=&#34;自我发展的误区&#34;&gt;自我发展的误区&lt;/h2&gt;
+
+&lt;p&gt;在我们自我发展的过程大部分人有陷入误区：&lt;strong&gt;穷尽一生改善劣势&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;更多的在关注改善劣势，而更少关注自己的优势。&lt;/p&gt;
+
+&lt;p&gt;小时候，父母总在担心我个头不高、英语成绩不好、不会唱歌、踢不好足球等，而琢磨报各种培训班。即使数学、物理成绩非常好，也要我别骄傲。&lt;/p&gt;
+
+&lt;p&gt;潜移默化地，在工作中也在不断关注自己的劣势，想各种办法去改善劣势。英语口语不好、不够幽默、情商低&amp;hellip; 天呀，我怎么这么多不足！！！&lt;/p&gt;
+
+&lt;p&gt;自然的时间也花在如何改善劣势上！&lt;strong&gt;有必要去花大量金钱、时间去改善劣势吗&lt;/strong&gt;？诗人洛威尔曾说：“做我们的天赋所不擅长的事往往是徒劳无益的。而在人类历史上，因为做自己所不擅长的事儿导致理想破灭、一事无成的例子不胜枚举。”人生的发展的路上，更容易成功。&lt;/p&gt;
+
+&lt;h3 id=&#34;你应有的意识&#34;&gt;你应有的意识&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;慎重改变&lt;/strong&gt;，改变不了的，就放弃，可以去弥补劣势，但不要过度关注。只有1米6就不用把自己训练为职业篮球运动员。
+改进劣势是很难走的路，虽然到达成功的彼岸是艰苦的，但发展自我优势来得更容易些。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;关注自我优势&lt;/strong&gt;，将更多时间用在成长自我优势上，而不是改善劣势。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;木桶理论不适合自我发展&lt;/strong&gt;，一只木桶能盛多少水，并不取决于最长的那块木板，而是取决于最短的那块木板。在团队管理中，拖累团队的往往是综合能力较差的那位。但在个人自我发展中，决定我们获得竞争力的不是短板，恰恰是长板。个人优势才是旗帜，突显才能发展。&lt;/p&gt;
+
+&lt;h3 id=&#34;发现自我优势的途径&#34;&gt;发现自我优势的途径&lt;/h3&gt;
+
+&lt;p&gt;你觉得你足够了解自己么？如果要列出你自己最突出的五个优势，分别是什么？从三个方面着手来发现自我优势：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;“大多数人都自认为知道自己最擅长什么。其实不然……然而，一个人要有所作为，只能靠发挥自己的优势。”
+       ——管理大师彼得 德鲁克（1909-2005）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;自我评估&lt;/strong&gt;
+首先将自己同周边的人对比，罗列出你比他们有哪些优势？如：&lt;/p&gt;
+
+&lt;p&gt;与我合作伙伴相比：我能管理好一家公司，我更加要求项目标准，他没有的我有，这样可互补，这样就有价值。&lt;/p&gt;
+
+&lt;p&gt;与我妻子相比： 我更能坚持，我不会轻言放弃。我更理性，可以理性的帮妻子分析问题。&lt;/p&gt;
+
+&lt;p&gt;与我同事相比： 我对行业更加敏感，更加熟悉新媒体。&lt;/p&gt;
+
+&lt;p&gt;在评估时，也要清楚自己有哪些技能、天赋。 优点不等于技能，技能是拿得出手的，经得起市场考验的，是可以量化的。而天赋则是不需大量学习就可以快速理解融会贯通的。&lt;/p&gt;
+
+&lt;p&gt;同时列出出你最自豪的事情，去总结你为什么会成功，从中发现你的优点。也行可发展为你的优势。&lt;/p&gt;
+
+&lt;p&gt;你有哪些技能是别人愿意付费的呢？这就是价值交互你的优势就是他人的劣势，别人愿意花五千块让我帮她写软文，这就是我的优势。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;熟人评估法&lt;/strong&gt;
+ 再找对你熟悉的人对你进行评估，可以是家人、上司、同时。同他们沟通，总结出他们认为你的优势有哪些，哪些又是你喜欢的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;工具评估法&lt;/strong&gt;
+利用专业工具对自我进行优势评估，这里推荐使用》&lt;a href=&#34;https://baike.baidu.com/item/盖洛普优势识别器2.0&#34;&gt;盖洛普优势识别器2.0&lt;/a&gt;》书中所提高的在线评估对进行优势评估，这里提高一个&lt;a href=&#34;http://www.apesk.com/Advantage-detecting/index_hr.asp?hr_email=18670054561&#34;&gt;免费版评估工具&lt;/a&gt;。
+&amp;gt; 汤姆·拉思（Tom Rath），盖洛普公司全球咨询业务负责人。他领导了一系列的研发项目，包括评估工具、专著和其他专业研究，著有畅销书：《你的幸福可以测量》、《现在，发现你的领导力优势》、《铁杆朋友》、《你的水桶有多满》（少儿版）等，其作品销量已突破300万册，在《华尔街日报》畅销书榜上出现超过250次。&lt;/p&gt;
+
+&lt;h2 id=&#34;了解自己的优势之后呢&#34;&gt;了解自己的优势之后呢&lt;/h2&gt;
+
+&lt;p&gt;答案只有一个字：&lt;strong&gt;用&lt;/strong&gt;，专注的用、坚持的用。在有意识地运用自己的优势的过程中，不断去强化它们。不要想着去改自己的缺点，如果不妨碍你的发展的话，搁一边，多想想怎么发挥优势更经济。改正缺点是木桶思维，如果真的有短板，短板本来只有50分，改正过后最好不过70分了吧？这得是多大的提高啊，如果你的优势有70分，加以联系和强化，很可能可以达到90分。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;专注&lt;/strong&gt;
+ 特长(专业) * 投入时间 =优势，投入时间越长，得分越高。&lt;/p&gt;
+
+&lt;p&gt;设计师，有的很出色，大部分平庸。发现他们没有正确对待优势，没有想过怎么更好的学好这们技能，更好的输出。通过自己的讲解、培训、总结。将给同事听。&lt;/p&gt;
+
+&lt;p&gt;有正确的认识和对待优势。
+在运营上，别人是怎么做的，怎么讲的。你再运用到你的运营上，等有了成果。那就成了你的优势，你就尝试做培训、讲课。
+很多人不能在某个专业上坚持，一会做着一会做那。你在专业上投入的时间少，你就难以成为你的优势。
+如果你选准了你的优势，你就有要不断的去学习，不断的投入，成为你的优势。
+在下班后，没有有意识的强化，继续学习，那么你的优势就没那么明显。
+那专注与特长/专业， 不要去不停的换。换得勤，浪费时间。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;坚持&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;个人能力发展是S型曲线，缓慢起步，在快速上升期需坚持，熬过上升期便可进入高原期。&lt;/p&gt;
+
+&lt;p&gt;前期上升缓慢，也会遇到瓶颈，可找圈子里比你厉害的人去学习沟通。&lt;/p&gt;
+
+&lt;p&gt;不要轻易放弃，进入高原期也许需5到8年时间，再次起航是非常浪费时间的。坚持下去，持久的投入时间去提升个人能力。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;做T型人才&lt;/strong&gt;
+发展自我优势，你必须有养活自己的根基，根基必须要稳。如同“T”下面的柱子，越粗越稳。这也是成长为斜杠青年的根本，在根基的继承上再做其他事情。&lt;/p&gt;
+
+&lt;p&gt;发现自己的优势后，要强化自己的本职工作，再去额外的拓展，再去获得额外的收入。&lt;/p&gt;
+
+&lt;p&gt;成长为斜杠青年的周期会长，孤独是成功之母，耐得住孤独。投入一年、两年时间去增长自己的优势，提高自我能力。&lt;/p&gt;
+
+&lt;p&gt;自己要清楚自己要什么，希望五年后你靠什么吃饭。靠工资？靠退休金？ 以未来为导向，去专注你的优势，成为斜杠青年。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;PS:本文是参加斜杠青年训练营，在&lt;a href=&#34;http://www.juwang.com/&#34;&gt;郑剑波&lt;/a&gt;老师（微信号:zhengjianbo_Eric）讲课内容基础上自我理解成文。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      
     </item>
     
     <item>
@@ -266,15 +1869,525 @@ cd /usr/libexec/docker/ ls -all sudo ln -s docker-runc-current docker-runc  Jenk
       <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
-      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明generate命令的神奇之处。
-命令诉求 通用计算有一特性——图灵完备。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。
-通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。
-type Status int const ( Offline Status = iota Online Disable Deleted ) var statusText = []string{&amp;#34;Offline&amp;#34;, &amp;#34;Online&amp;#34;, &amp;#34;Desable&amp;#34;, &amp;#34;Deleted&amp;#34;} func (s Status) String() string { v := int(s) if v &amp;lt; 0 || v &amp;gt; len(statusText) { return fmt.Sprintf(&amp;#34;Status(%d)&amp;#34;, s) } return statusText[v] } 当遇到枚举调整时，则必须要再同步修改statusText，而此事常容被忽视。
-Generate命令说明 早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。
-如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等
-go generate用于一键式批量执行任何命令，创建或更新Go文件或者输出结果。
-Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：
-go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
+      
+        <description>
+
+&lt;p&gt;前期有专门利用&lt;code&gt;go generate&lt;/code&gt;自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明&lt;code&gt;generate&lt;/code&gt;命令的神奇之处。&lt;/p&gt;
+
+&lt;h2 id=&#34;命令诉求&#34;&gt;命令诉求&lt;/h2&gt;
+
+&lt;p&gt;通用计算有一特性——&lt;a href=&#34;https://baike.baidu.com/item/图灵完备&#34;&gt;图灵完备&lt;/a&gt;。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。&lt;/p&gt;
+
+&lt;p&gt;通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Status int
+
+const (
+	Offline Status = iota
+	Online
+	Disable
+	Deleted
+)
+
+var statusText = []string{&amp;quot;Offline&amp;quot;, &amp;quot;Online&amp;quot;, &amp;quot;Desable&amp;quot;, &amp;quot;Deleted&amp;quot;}
+
+func (s Status) String() string {
+	v := int(s)
+	if v &amp;lt; 0 || v &amp;gt; len(statusText) {
+		return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, s)
+	}
+	return statusText[v]
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当遇到枚举调整时，则必须要再同步修改&lt;code&gt;statusText&lt;/code&gt;，而此事常容被忽视。&lt;/p&gt;
+
+&lt;h2 id=&#34;generate命令说明&#34;&gt;Generate命令说明&lt;/h2&gt;
+
+&lt;p&gt;早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。&lt;/p&gt;
+
+&lt;p&gt;如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;go generate&lt;/strong&gt;用于一键式批量执行&lt;strong&gt;任何&lt;/strong&gt;命令，创建或更新Go文件或者输出结果。&lt;/p&gt;
+
+&lt;p&gt;Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.go... | packages]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;参数说明：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-run 正则表达式匹配命令行，仅执行匹配的命令&lt;/li&gt;
+&lt;li&gt;-v 打印已被检索处理的文件。&lt;/li&gt;
+&lt;li&gt;-n 打印出将被执行的命令，此时将不真实执行命令&lt;/li&gt;
+&lt;li&gt;-x 打印已执行的命令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;执行举例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 打印当前目录下所有文件，将被执行的命令
+go generate -n ./...
+# 对包下所有Go文件进行处理
+go generate github.com/ysqi/repo
+# 打印包下所有文件，将被执行的命令
+go generate -n runtime
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;如何使用generate命令&#34;&gt;如何使用Generate命令&lt;/h2&gt;
+
+&lt;p&gt;需在的代码中配置generate标记，则在执行&lt;code&gt;go generate&lt;/code&gt;时可被检测到。&lt;code&gt;go generate&lt;/code&gt;执行时，实际在扫描如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;//go:generate command argument...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;generate命令不是解析文件，而是逐行匹配以&lt;strong&gt;//go:generate&lt;/strong&gt; 开头的行(前面不要有空格)。故命令可以写在任何位置，也可存在多个命令行。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;//go:generate&lt;/strong&gt; 后跟随具体的命令。命令为可执行程序，形同在Shell下执行。所以命令是在环境变量中存在，也可是完整路径。如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+import &amp;quot;fmt&amp;quot;
+//go:generate echo hello
+//go:generate go run main.go
+//go:generate  echo file=$GOFILE pkg=$GOPACKAGE
+func main() {
+	fmt.Println(&amp;quot;main func&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ go generate
+hello
+man func
+file=main.go pkg=main
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在执行&lt;code&gt;go generate&lt;/code&gt;时将会加入些信息到环境变量，可在命令程序中使用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$GOARCH
+	架构 (arm, amd64, etc.)
+$GOOS
+	OS (linux, windows, etc.)
+$GOFILE
+	当前处理中的文件名
+$GOLINE
+	当前命令在文件中的行号
+$GOPACKAGE
+    当前处理文件的包名
+$DOLLAR
+	固定的&amp;quot;$&amp;quot;,不清楚用途
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同时该命令是在所处理文件的目录下执行，故利用上述信息和当前目录，边可获得丰富的DIY功能。&lt;/p&gt;
+
+&lt;h2 id=&#34;generate实战&#34;&gt;Generate实战&lt;/h2&gt;
+
+&lt;p&gt;如前面所述，现在练手来实现对枚举String函数以打印友好信息。 最终调用为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//go:generate  myenumstr -type Status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;自动生成如下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package user
+
+import &amp;quot;fmt&amp;quot;
+
+func (c Status) String() string {
+	switch c {
+	case Offline:
+		return &amp;quot;Offline&amp;quot;
+	case Online:
+		return &amp;quot;Online&amp;quot;
+	case Disable:
+		return &amp;quot;Disable&amp;quot;
+	case Deleted:
+		return &amp;quot;Deleted&amp;quot;
+	}
+	return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, c)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;业务逻辑&#34;&gt;业务逻辑&lt;/h3&gt;
+
+&lt;p&gt;该如何实现呢？实际我们需要获得三项:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;包名：user，该文件将存放在当前目录，需要知晓包名称&lt;/li&gt;
+&lt;li&gt;类型名：Status，参数传递&lt;/li&gt;
+&lt;li&gt;所有同类型var:  Offline，Online，Disable，Deleted&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;再生成代码后将其保存到当前目录，同时进行gofmt。&lt;/p&gt;
+
+&lt;h3 id=&#34;具体实现&#34;&gt;具体实现&lt;/h3&gt;
+
+&lt;p&gt;1.通过环境变量获取包名称&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;pkgName = os.Getenv(&amp;quot;GOPACKAGE&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.获取当前目录包信息
+这里利用Go内置的库&lt;code&gt;go/build&lt;/code&gt;解析目录，则可以获得该文件夹下包信息。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var err error
+pkgInfo, err = build.ImportDir(&amp;quot;.&amp;quot;, 0)
+if err != nil {
+	log.Fatal(err)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;至此便能获得目录下所有Go文件&lt;code&gt;pkgInfo.GoFiles&lt;/code&gt;，用于语法树解析。&lt;/p&gt;
+
+&lt;p&gt;3.解析Go文件语法树，提取Status相关信息。
+需要注意的是，我们约定所定义的枚举信息实际应该全部是Const。需从语法树中
+提取出所有的Const，并判断类型是否符合条件。&lt;/p&gt;
+
+&lt;p&gt;这里利用的是Go的语法树库&lt;a href=&#34;https://golang.org/pkg/go/ast&#34;&gt;go/ast&lt;/a&gt;(abstract syntax tree)和解析库&lt;a href=&#34;https://golang.org/pkg/go/parser&#34;&gt;go/parser&lt;/a&gt;，语法树是按语句块&lt;code&gt;()&lt;/code&gt;形成树结构。从中过滤&lt;code&gt;const&lt;/code&gt;语句块&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;fset := token.NewFileSet()
+//解析go文件
+f, err := parser.ParseFile(fset, gofile, nil, 0)
+if err != nil {
+	log.Fatal(err)
+}
+//遍历每个树节点
+ast.Inspect(f, func(n ast.Node) bool {
+	decl, ok := n.(*ast.GenDecl)
+	if !ok || decl.Tok != token.CONST {
+		return true
+	}
+	//...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再循环const语句块中最小部分：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;for _, spec := range decl.Specs {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对每小部分判断，并获得对应的Type，如果Type为空则同上一行的一致。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// Const 代码块
+const (
+	Offline Status = iota
+	Online
+	Disable
+	Deleted
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;行内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;vspec := spec.(*ast.ValueSpec) 
+if vspec.Type == nil &amp;amp;&amp;amp; len(vspec.Values) &amp;gt;0 {
+	// 排除 v = 1 这种结构
+	typ = &amp;quot;&amp;quot;
+	continue
+}
+//如果Type不为空，则确认typ
+if vspec.Type != nil {
+	ident, ok := vspec.Type.(*ast.Ident)
+	if !ok {
+		continue
+	}
+	typ = ident.Name
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但我们只需要获得符合要求的Type，获得符合要求的Const信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;consts, ok := typesMap[typ]
+if !ok {
+	continue
+}
+for _, n := range vspec.Names {
+	consts = append(consts, n.Name)
+}
+typesMap[typ] = consts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里的typesMap是根据程序入参建立：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var ( 
+	typeNames = flag.String(&amp;quot;type&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+)
+types := strings.Split(*typeNames, &amp;quot;,&amp;quot;)
+typesMap := make(map[string][]string, len(types))
+for _, v := range types {
+	typesMap[strings.TrimSpace(v)] = []string{}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4.根据收集的Const，生成String函数&lt;/p&gt;
+
+&lt;p&gt;使用模板生成内容，同时进行gofmt&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func genString(types map[string][]string) []byte {
+
+	const strTmp = `
+	package {{.pkg}}
+	import &amp;quot;fmt&amp;quot;
+	
+	{{range $typ,$consts :=.types}}
+	func (c {{$typ}}) String() string{
+		switch c { {{range $consts}}
+			case {{.}}:return &amp;quot;{{.}}&amp;quot;{{end}}
+		}
+		return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, c)	
+	}
+	{{end}}
+	`
+	pkgName := os.Getenv(&amp;quot;GOPACKAGE&amp;quot;)
+	if pkgName == &amp;quot;&amp;quot; {
+		pkgName = pkgInfo.Name
+	}
+	data := map[string]interface{}{
+		&amp;quot;pkg&amp;quot;:   pkgName,
+		&amp;quot;types&amp;quot;: types,
+	}
+
+	//利用模板库，生成代码文件
+	t, err := template.New(&amp;quot;&amp;quot;).Parse(strTmp)
+	if err != nil {
+		log.Fatal(err)
+	}
+	buff := bytes.NewBufferString(&amp;quot;&amp;quot;)
+	err = t.Execute(buff, data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//进行格式化
+	src, err := format.Source(buff.Bytes())
+	if err != nil {
+		log.Fatal(err)
+	}
+	return src
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5.保存代码到文件
+将文件直接保存到当前目录下，文件名已&amp;rdquo;_string&amp;rdquo;结尾&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;src := genString(consts) 
+
+outputName := &amp;quot;&amp;quot;
+if outputName == &amp;quot;&amp;quot; {
+	types := strings.Split(*typeNames, &amp;quot;,&amp;quot;)
+	baseName := fmt.Sprintf(&amp;quot;%s_string.go&amp;quot;, types[0])
+	outputName = filepath.Join(&amp;quot;.&amp;quot;, strings.ToLower(baseName))
+}
+err := ioutil.WriteFile(outputName, src, 0644)
+if err != nil {
+	log.Fatalf(err)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6.在status.go源文件配置标记&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;//go:generate myenumstr -type Status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行&lt;code&gt;go generate&lt;/code&gt;，出现错误：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;user/status.go:5: running &amp;quot;myenumstr&amp;quot;: exec: &amp;quot;myenumstr&amp;quot;: executable file not found in $PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时需要将myenumstr.go install&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;go install github.com/ysqi/string/myenumstr.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装后，我们可以在status.go使用两种方式调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;//go:generate myenumstr -type Status
+//go:generate go run github.com/ysqi/string/myenumstr.go -type Status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;至此写完，完整代码如下：&lt;/p&gt;
+
+&lt;h4 id=&#34;源代码-user-go&#34;&gt;源代码-user.go&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package user
+
+type Status int
+
+//go:generate myenumstr -type Status,Color
+const (
+	Offline Status = iota
+	Online
+	Disable
+	Deleted
+)
+
+type Color int
+
+const (
+	Write Color = iota
+	Red
+	Blue
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;源代码-myenumstr-go&#34;&gt;源代码-myenumstr.go&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;bytes&amp;quot;
+	&amp;quot;flag&amp;quot;
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;go/ast&amp;quot;
+	&amp;quot;go/build&amp;quot;
+	&amp;quot;go/format&amp;quot;
+	&amp;quot;go/parser&amp;quot;
+	&amp;quot;go/token&amp;quot;
+	&amp;quot;io/ioutil&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;os&amp;quot;
+	&amp;quot;path/filepath&amp;quot;
+	&amp;quot;strings&amp;quot;
+	&amp;quot;text/template&amp;quot;
+)
+
+var (
+	pkgInfo *build.Package
+)
+var (
+	typeNames = flag.String(&amp;quot;type&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;必填，逗号连接的多个Type名&amp;quot;)
+)
+
+func main() {
+	flag.Parse()
+
+	if len(*typeNames) == 0 {
+		log.Fatal(&amp;quot;-type 必填&amp;quot;)
+	}
+	consts := getConsts()
+	src := genString(consts)
+
+	//保存到文件
+	outputName := &amp;quot;&amp;quot;
+	if outputName == &amp;quot;&amp;quot; {
+		types := strings.Split(*typeNames, &amp;quot;,&amp;quot;)
+		baseName := fmt.Sprintf(&amp;quot;%s_string.go&amp;quot;, types[0])
+		outputName = filepath.Join(&amp;quot;.&amp;quot;, strings.ToLower(baseName))
+	}
+	err := ioutil.WriteFile(outputName, src, 0644)
+	if err != nil {
+		log.Fatalf(&amp;quot;writing output: %s&amp;quot;, err)
+	}
+
+}
+
+func getConsts() map[string][]string {
+	//获得待处理的Type
+	types := strings.Split(*typeNames, &amp;quot;,&amp;quot;)
+	typesMap := make(map[string][]string, len(types))
+	for _, v := range types {
+		typesMap[strings.TrimSpace(v)] = []string{}
+	}
+
+	//解析当前目录下包信息
+	var err error
+	pkgInfo, err = build.ImportDir(&amp;quot;.&amp;quot;, 0)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fset := token.NewFileSet()
+	for _, file := range pkgInfo.GoFiles {
+		f, err := parser.ParseFile(fset, file, nil, 0)
+		if err != nil {
+			log.Fatal(err)
+		}
+		typ := &amp;quot;&amp;quot;
+		ast.Inspect(f, func(n ast.Node) bool {
+			decl, ok := n.(*ast.GenDecl)
+			// 只需要const
+			if !ok || decl.Tok != token.CONST {
+				return true
+			}
+			for _, spec := range decl.Specs {
+				vspec := spec.(*ast.ValueSpec)
+				if vspec.Type == nil &amp;amp;&amp;amp; len(vspec.Values) &amp;gt; 0 {
+					// 排除 v = 1 这种结构
+					typ = &amp;quot;&amp;quot;
+					continue
+				}
+				//如果Type不为空，则确认typ
+				if vspec.Type != nil {
+					ident, ok := vspec.Type.(*ast.Ident)
+					if !ok {
+						continue
+					}
+					typ = ident.Name
+				}
+				//typ是否是需处理的类型
+				consts, ok := typesMap[typ]
+				if !ok {
+					continue
+				}
+				//将所有const变量名保存
+				for _, n := range vspec.Names {
+					consts = append(consts, n.Name)
+				}
+				typesMap[typ] = consts
+			}
+			return true
+		})
+	}
+	return typesMap
+}
+
+func genString(types map[string][]string) []byte {
+
+	const strTmp = `
+	package {{.pkg}}
+	import &amp;quot;fmt&amp;quot;
+	
+	{{range $typ,$consts :=.types}}
+	func (c {{$typ}}) String() string{
+		switch c { {{range $consts}}
+			case {{.}}:return &amp;quot;{{.}}&amp;quot;{{end}}
+		}
+		return fmt.Sprintf(&amp;quot;Status(%d)&amp;quot;, c)	
+	}
+	{{end}}
+	`
+	pkgName := os.Getenv(&amp;quot;GOPACKAGE&amp;quot;)
+	if pkgName == &amp;quot;&amp;quot; {
+		pkgName = pkgInfo.Name
+	}
+	data := map[string]interface{}{
+		&amp;quot;pkg&amp;quot;:   pkgName,
+		&amp;quot;types&amp;quot;: types,
+	}
+
+	//利用模板库，生成代码文件
+	t, err := template.New(&amp;quot;&amp;quot;).Parse(strTmp)
+	if err != nil {
+		log.Fatal(err)
+	}
+	buff := bytes.NewBufferString(&amp;quot;&amp;quot;)
+	err = t.Execute(buff, data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//格式化
+	src, err := format.Source(buff.Bytes())
+	if err != nil {
+		log.Fatal(err)
+	}
+	return src
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;实际上Go官方已实现该功能，查看具体&lt;a href=&#34;https://godoc.org/golang.org/x/tools/cmd/stringer&#34;&gt;stringer文档&lt;/a&gt;&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -283,11 +2396,394 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
       <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
-      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。
-准备工作  下载安装通达信,通达信官网 下载历史行情数据  下载操作路径：系统-&amp;gt;盘后数据下载
-下载后数据按股票市场分别存放：
- 上海交易所：{通达信安装目录}\vipdoc\sh\lday\*.day 深圳交易所：{通达信安装目录}\vipdoc\sz\lday\*.day  通达信历史日线数据文件格式 每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：
-   数据含义 数据类型 数据长度 举例 单位     日期 Integer 4 20170703    开盘价 Integer 4 2476 当前值/100,元   最高价 Integer 4 2520 当前值 /100,元   最低价 Integer 4 2436 当前值 / 100,元   收盘价 Integer 4 2457 当前值 / 100,元   成交金额 single 4 1317335898 元   成交量 Integer 4 45293799 股   保留 Integer 4      注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。</description>
+      
+        <description>
+
+&lt;p&gt;突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。&lt;/p&gt;
+
+&lt;h3 id=&#34;准备工作&#34;&gt;准备工作&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;下载安装通达信,&lt;a href=&#34;http://www.tdx.com.cn/index.html&#34; title=&#34;通达信官网下载地址&#34;&gt;通达信官网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载历史行情数据&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;下载操作路径：系统-&amp;gt;盘后数据下载&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/201772601.png&#34; alt=&#34;通达信下载盘后数据&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下载后数据按股票市场分别存放：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上海交易所：&lt;code&gt;{通达信安装目录}\vipdoc\sh\lday\*.day&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;深圳交易所：&lt;code&gt;{通达信安装目录}\vipdoc\sz\lday\*.day&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;通达信历史日线数据文件格式&#34;&gt;通达信历史日线数据文件格式&lt;/h3&gt;
+
+&lt;p&gt;每只股票一个day文件，如：sh000001.day。文件中每一天数据总共32字节。其中每32字节数据格式如下：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;数据含义&lt;/th&gt;
+&lt;th&gt;数据类型&lt;/th&gt;
+&lt;th&gt;数据长度&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;th&gt;单位&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;日期&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;20170703&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;开盘价&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2476&lt;/td&gt;
+&lt;td&gt;当前值/100,元&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;最高价&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2520&lt;/td&gt;
+&lt;td&gt;当前值 /100,元&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;最低价&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2436&lt;/td&gt;
+&lt;td&gt;当前值 / 100,元&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;收盘价&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2457&lt;/td&gt;
+&lt;td&gt;当前值 / 100,元&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;成交金额&lt;/td&gt;
+&lt;td&gt;single&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;1317335898&lt;/td&gt;
+&lt;td&gt;元&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;成交量&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;45293799&lt;/td&gt;
+&lt;td&gt;股&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;保留&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;注意，因为价格均是两位小数，故文件中的价格放大100倍，以便按数字存储。&lt;/p&gt;
+
+&lt;h3 id=&#34;go读取日线数据文件&#34;&gt;Go读取日线数据文件&lt;/h3&gt;
+
+&lt;p&gt;文件每32字节存储一天数据，在Go中只需读取指定长度的字节，再转换为int即可。&lt;/p&gt;
+
+&lt;p&gt;第一步：读取文件
+以万科股票为例，打开该day文件，获得 reader。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;f, err := os.Open(`D:\new_tdx\vipdoc\sz\lday\sz000002.day`)
+if err != nil {
+	log.Fatal(err)
+}
+defer f.Close()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第二步：获取32字节数据&lt;/p&gt;
+
+&lt;p&gt;从文件流中填充32个字节的数据到oneDay中，如果无错误则可以按照数据格式读取单独一天的日行情数据。&lt;/p&gt;
+
+&lt;p&gt;注意取价格时需再除以100，已显示正确的金额。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;oneDay := make([]byte, 32)
+_, err = f.Read(oneDay)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(&amp;quot;日期:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[0:4]))
+fmt.Println(&amp;quot;开盘价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[4:8]))/100)
+fmt.Println(&amp;quot;最高价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[8:12]))/100)
+fmt.Println(&amp;quot;最低价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[12:16]))/100)
+fmt.Println(&amp;quot;收盘价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[16:20]))/100)
+fmt.Println(&amp;quot;成交金额(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[20:24]))/100)
+fmt.Println(&amp;quot;成交量:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[24:28]))
+fmt.Println(&amp;quot;Other:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[28:32]))
+
+//output:
+/*
+日期:    20170703
+开盘价(元):      24.76
+最高价(元):      25.2
+最低价(元):      24.36
+收盘价(元):      24.57
+成交金额(元):    1.317335898e+07
+成交量:  45293799
+Other:   65536
+*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第三步：遍历获取所有日线数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;oneDay := make([]byte, 32)
+for {
+	l, err := f.Read(oneDay)
+	if err == io.EOF {
+		break
+	} else if err != nil {
+		log.Fatal(err)
+	} else if l != 32 {
+		log.Fatal(&amp;quot;数据不完整，终止&amp;quot;)
+	}
+    //Date
+	fmt.Printf(&amp;quot;%d,&amp;quot;, binary.LittleEndian.Uint32(oneDay[0:4]))
+	//other
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;历史数据可在其他网站上查看，下图来自搜狐数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/20170726115452.png&#34; alt=&#34;通达信下载盘后数据&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;完整代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;bytes&amp;quot;
+	&amp;quot;encoding/binary&amp;quot;
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;io&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;os&amp;quot; 
+)
+
+func main() {
+	f, err := os.Open(`D:\new_tdx\vipdoc\sz\lday\sz000002.day`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	oneDay := make([]byte, 32)
+	fmt.Println(&amp;quot;日期\t\t开盘价(元)\t最高价(元)\t最低价(元)\t收盘价(元)\t成交金额(元)\t成交量\tOther&amp;quot;)
+	for {
+		l, err := f.Read(oneDay)
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			log.Fatal(err)
+		} else if l != 32 {
+			log.Fatal(&amp;quot;数据不完整，终止&amp;quot;)
+		}
+		fmt.Printf(&amp;quot;%d\t%f\t%f\t%f\t%f\t%f\t%d\t%d\t\n&amp;quot;,
+			binary.LittleEndian.Uint32(oneDay[0:4]),
+			(float64)(binary.LittleEndian.Uint32(oneDay[4:8]))/100,
+			(float64)(binary.LittleEndian.Uint32(oneDay[8:12]))/100,
+			(float64)(binary.LittleEndian.Uint32(oneDay[12:16]))/100,
+			(float64)(binary.LittleEndian.Uint32(oneDay[16:20]))/100,
+			(float64)(binary.LittleEndian.Uint32(oneDay[20:24]))/100,
+			binary.LittleEndian.Uint32(oneDay[24:28]),
+			binary.LittleEndian.Uint32(oneDay[28:32]),
+		)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;进价&#34;&gt;进价&lt;/h3&gt;
+
+&lt;p&gt;有没有更好的办法来进行数据转换？如下格式处理，过于麻烦，幸好该格式数据不多。但容易弄错，或者调整麻烦。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;fmt.Println(&amp;quot;日期:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[0:4]))
+fmt.Println(&amp;quot;开盘价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[4:8]))/100)
+fmt.Println(&amp;quot;最高价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[8:12]))/100)
+fmt.Println(&amp;quot;最低价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[12:16]))/100)
+fmt.Println(&amp;quot;收盘价(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[16:20]))/100)
+fmt.Println(&amp;quot;成交金额(元):\t&amp;quot;, (float64)(binary.LittleEndian.Uint32(oneDay[20:24]))/100)
+fmt.Println(&amp;quot;成交量:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[24:28]))
+fmt.Println(&amp;quot;Other:\t&amp;quot;, binary.LittleEndian.Uint32(oneDay[28:32])) `
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以利用Go的&lt;code&gt;encoding/binary&lt;/code&gt;包从reader中读取二元数据到指针对象中:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// Read reads structured binary data from r into data.
+// Data must be a pointer to a fixed-size value or a slice
+// of fixed-size values.
+// Bytes read from r are decoded using the specified byte order
+// and written to successive fields of the data.
+// When decoding boolean values, a zero byte is decoded as false, and
+// any other non-zero byte is decoded as true.
+// When reading into structs, the field data for fields with
+// blank (_) field names is skipped; i.e., blank field names
+// may be used for padding.
+// When reading into a struct, all non-blank fields must be exported.
+//
+// The error is EOF only if no bytes were read.
+// If an EOF happens after reading some but not all the bytes,
+// Read returns ErrUnexpectedEOF.
+func binary.Read(r io.Reader, order ByteOrder, data interface{}) error{}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样便可以方便的将byte读取到对象中，下面我们定义data结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type DayData struct {
+	Date                   int32
+	Open, High, Low, Close int32
+	Amount, Qty            int32
+	Other                  int32
+}
+
+var d DataData
+buf := bytes.NewBuffer(oneDay)
+binary.Read(buf, binary.LittleEndian, &amp;amp;d)
+fmt.Printf(&amp;quot;%v\n&amp;quot;, d)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，在binary读取buf到对象时，是依次遍历对象的内存结构赋值的，因为文件中各数据均是4位长度。故在定义字段类型时，选择int32,占4个字节。字段定义顺序便是内存结构顺序，同文件数据定义顺序保持一致。&lt;/p&gt;
+
+&lt;p&gt;但因为数据中均存放的是int32，而收盘价等需要进行转换，故对外时提供另一个结构体，已方便正常访问各数据。
+在解析时，进行一次解析即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;//DayQuotaion 日线行情
+type DayQuotaion struct {
+	Marker    string  //股票市场
+	StockCode string  //股票代码
+	Date      int     //日期
+	Open      float32 //开盘价
+	High      float32 //最高价
+	Low       float32 //最低价
+	Close     float32 //收盘价
+	Amount    float32 //总成交金额
+	Qty       float32 //  总成交量
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;完整代码&#34;&gt;完整代码&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;bytes&amp;quot;
+	&amp;quot;encoding/binary&amp;quot;
+	&amp;quot;errors&amp;quot;
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;io&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;os&amp;quot;
+	&amp;quot;path/filepath&amp;quot;
+	&amp;quot;strings&amp;quot;
+)
+
+const historyDailyQuotationPath = `D:\new_tdx\vipdoc`
+
+type dayData struct {
+	Date                   int32
+	Open, High, Low, Close int32
+	Amount, Qty            int32
+	Other                  int32
+}
+
+// To 转换为日线行情数据
+func (d *dayData) To() *DayQuotation {
+	return &amp;amp;DayQuotation{
+		Date:   d.Date,
+		Open:   float32(d.Open) / 100,
+		High:   float32(d.High) / 100,
+		Low:    float32(d.Low) / 100,
+		Close:  float32(d.Close) / 100,
+		Amount: float32(d.Amount),
+		Qty:    d.Qty,
+	}
+}
+
+// DayQuotation 日线行情
+type DayQuotation struct {
+	Date   int32   //日期
+	Open   float32 //开盘价
+	High   float32 //最高价
+	Low    float32 //最低价
+	Close  float32 //收盘价
+	Amount float32 //总成交金额
+	Qty    int32   //  总成交量
+}
+
+//GetStockQuoation 获取股票历史行情
+func GetStockQuoation(marker, stockCode string) ([]*DayQuotation, error) {
+	marker = strings.ToLower(strings.TrimSpace(marker))
+	stockCode = strings.ToLower(strings.TrimSpace(stockCode))
+	if marker == &amp;quot;&amp;quot; || stockCode == &amp;quot;&amp;quot; {
+		return nil, errors.New(&amp;quot;marker和stockCode不能为空&amp;quot;)
+	}
+	//文件路径，e.g. D:\new_tdx\vipdoc\sz\lday\sz000002.day
+	name := filepath.Join(historyDailyQuotationPath, marker, &amp;quot;lday&amp;quot;, fmt.Sprintf(&amp;quot;%s%s.day&amp;quot;, marker, stockCode))
+	f, err := os.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	quos := []*DayQuotation{}
+	oneDay := make([]byte, 32)
+	data := &amp;amp;dayData{}
+	for {
+		l, err := f.Read(oneDay)
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			return quos, err
+		} else if l != 32 {
+			return quos, errors.New(&amp;quot;数据不完整&amp;quot;)
+		}
+		buf := bytes.NewBuffer(oneDay)
+		err = binary.Read(buf, binary.LittleEndian, data)
+		if err != nil {
+			return quos, err
+		}
+		quos = append(quos, data.To())
+	}
+	return quos, nil
+}
+
+func main() {
+	quos, err := GetStockQuoation(&amp;quot;sz&amp;quot;, &amp;quot;000002&amp;quot;)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, v := range quos {
+		fmt.Printf(&amp;quot;%v\n&amp;quot;, v)
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      
     </item>
     
     <item>
@@ -296,7 +2792,26 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
       <pubDate>Mon, 24 Jul 2017 07:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</guid>
-      <description>一、前期准备 1、申根签证 （深圳希腊签证中心可直接送签，地址是福田区福华一路大中华国际交易广场北门西区，上班时间为9：00-15：00）： （1）申根签申请表（网上下载打印好爱你按照模板填写） （2）境外保险单（淘宝、携程等都可以购买，出单后打印出来） （3）机票预定单 （4）酒店预定单（在Booking英文版上订住宿，需要用到信用卡，订好了之后，把确认信息页保存为PDF格式，然后再把订单取消，要找取消订单不收费的酒店。） （5）行程单 （6）银行卡近三个月流水单（银行网点有自助机打印，听说卡里余额要三万以上，我一万也通过了） （7）在职证明 （8）公司或单位营业执照复印件 （9）户口簿复印件 （10）护照原件及复印件 Ps ：酒店预定单和行程单这两个我们嫌麻烦，都是找万能的淘宝搞定的。</description>
+      
+        <description>
+
+&lt;h3 id=&#34;一-前期准备&#34;&gt;一、前期准备&lt;/h3&gt;
+
+&lt;p&gt;1、申根签证
+（深圳希腊签证中心可直接送签，地址是福田区福华一路大中华国际交易广场北门西区，上班时间为9：00-15：00）：
+（1）申根签申请表（网上下载打印好爱你按照模板填写）
+（2）境外保险单（淘宝、携程等都可以购买，出单后打印出来）
+（3）机票预定单
+（4）酒店预定单（在Booking英文版上订住宿，需要用到信用卡，订好了之后，把确认信息页保存为PDF格式，然后再把订单取消，要找取消订单不收费的酒店。）
+（5）行程单
+（6）银行卡近三个月流水单（银行网点有自助机打印，听说卡里余额要三万以上，我一万也通过了）
+（7）在职证明
+（8）公司或单位营业执照复印件
+（9）户口簿复印件
+（10）护照原件及复印件
+Ps ：酒店预定单和行程单这两个我们嫌麻烦，都是找万能的淘宝搞定的。&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -305,14 +2820,462 @@ go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.</description>
       <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
-      <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。
-1、写出下面代码输出内容。 package main import ( &amp;#34;fmt&amp;#34; ) func main() { defer_call() } func defer_call() { defer func() { fmt.Println(&amp;#34;打印前&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印中&amp;#34;) }() defer func() { fmt.Println(&amp;#34;打印后&amp;#34;) }() panic(&amp;#34;触发异常&amp;#34;) }  在线运行
-答： 输出内容为：
-打印后 打印中 打印前 panic: 触发异常 解析：
-考察对defer的理解，defer函数属延迟执行，延迟到调用者函数执行 return 命令前被执行。多个defer之间按LIFO先进后出顺序执行。
-故考题中，在Panic触发时结束函数运行，在return前先依次打印:打印后、打印中、打印前 。最后由runtime运行时抛出打印panic异常信息。
-需要注意的是，函数的return value 不是原子操作.而是在编译器中分解为两部分：返回值赋值 和 return 。而defer刚好被插入到末尾的return前执行。故可以在derfer函数中修改返回值。如下示例：
-package main import ( &amp;#34;fmt&amp;#34; ) func main() { fmt.Println(doubleScore(0)) //0 	fmt.Println(doubleScore(20.0)) //40 	fmt.</description>
+      
+        <description>
+
+&lt;p&gt;昨天AstaXie发布&lt;a href=&#34;https://gocn.io/question/947&#34;&gt;GoCN每日新闻(2017-07-19)&lt;/a&gt;含一篇&lt;a href=&#34;https://zhuanlan.zhihu.com/p/26972862&#34;&gt;Go面试题&lt;/a&gt;。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度，以及Go实战经验。这也是在Go中容易遇到的坑，我也曾遇到过。于是快马加鞭，抢在原作者前发布Go面试题答案和解析说明，供大家参考。如有错误请指出，谢谢。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-写出下面代码输出内容&#34;&gt;1、写出下面代码输出内容。&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+)
+
+func main() {
+	defer_call()
+}
+
+func defer_call() {
+	defer func() { fmt.Println(&amp;quot;打印前&amp;quot;) }()
+	defer func() { fmt.Println(&amp;quot;打印中&amp;quot;) }()
+	defer func() { fmt.Println(&amp;quot;打印后&amp;quot;) }()
+
+	panic(&amp;quot;触发异常&amp;quot;)
+}     
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/309ba15c7e2cde23076852f21838ac0f.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+输出内容为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;打印后
+打印中
+打印前
+panic: 触发异常
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;解析：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;考察对defer的理解，&lt;strong&gt;defer&lt;/strong&gt;函数属延迟执行，延迟到调用者函数执行 return 命令前被执行。多个defer之间按LIFO先进后出顺序执行。&lt;/p&gt;
+
+&lt;p&gt;故考题中，在Panic触发时结束函数运行，在return前先依次打印:打印后、打印中、打印前 。最后由runtime运行时抛出打印panic异常信息。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，函数的&lt;code&gt;return value&lt;/code&gt; 不是原子操作.而是在编译器中分解为两部分：返回值赋值 和 return 。而defer刚好被插入到末尾的return前执行。故可以在derfer函数中修改返回值。如下示例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+)
+
+func main() {
+	fmt.Println(doubleScore(0))    //0
+	fmt.Println(doubleScore(20.0)) //40
+	fmt.Println(doubleScore(50.0)) //50
+}
+func doubleScore(source float32) (score float32) {
+	defer func() {
+		if score &amp;lt; 1 || score &amp;gt;= 100 {
+			//将影响返回值
+			score = source
+		}
+	}()
+	score = source * 2
+	return
+
+	//或者
+	//return source * 2
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/fd3defcc67256fefc60c63c135c5b64f.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;该实例可以在defer中修改返回值score的值。具体参见&lt;a href=&#34;https://golang.org/doc/effective_go.html#defer&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-以下代码有什么问题-说明原因&#34;&gt;2、以下代码有什么问题，说明原因&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+)
+
+type student struct {
+	Name string
+	Age  int
+}
+
+func pase_student() map[string]*student {
+	m := make(map[string]*student)
+	stus := []student{
+		{Name: &amp;quot;zhou&amp;quot;, Age: 24},
+		{Name: &amp;quot;li&amp;quot;, Age: 23},
+		{Name: &amp;quot;wang&amp;quot;, Age: 22},
+	}
+	for _, stu := range stus {
+		m[stu.Name] = &amp;amp;stu
+	}
+	return m
+}
+func main() {
+	students := pase_student()
+	for k, v := range students {
+		fmt.Printf(&amp;quot;key=%s,value=%v \n&amp;quot;, k, v)
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/362fde0b97440e9354efe63eefb3a1ae.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;输出的均是相同的值：&amp;amp;{wang 22}&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;
+因为for遍历时，变量&lt;code&gt;stu&lt;/code&gt;指针不变，每次遍历仅进行struct值拷贝，故&lt;code&gt;m[stu.Name]=&amp;amp;stu&lt;/code&gt;实际上一致指向同一个指针，最终该指针的值为遍历的最后一个struct的值拷贝。形同如下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var stu student 
+for _, stu = range stus {
+	m[stu.Name] = &amp;amp;stu
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修正方案，取数组中原始值的指针：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;for i, _ := range stus {
+	stu:=stus[i]
+	m[stu.Name] = &amp;amp;stu
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-下面的代码会输出什么-并说明原因&#34;&gt;3、下面的代码会输出什么，并说明原因&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	runtime.GOMAXPROCS(1)
+	wg := sync.WaitGroup{}
+	wg.Add(20)
+	for i := 0; i &amp;lt; 10; i++ {
+		go func() {
+			fmt.Println(&amp;quot;i: &amp;quot;, i)
+			wg.Done()
+		}()
+	}
+	for i := 0; i &amp;lt; 10; i++ {
+		go func(i int) {
+			fmt.Println(&amp;quot;i: &amp;quot;, i)
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/0bc5162cf88188d75a2e59ef537085d0.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+将随机输出数字，但前面一个循环中并不会输出所有值。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;实际上第一行是否设置CPU为1都不会影响后续代码&lt;/del&gt;。&lt;/p&gt;
+
+&lt;p&gt;2017年7月25日：将GOMAXPROCS设置为1，将影响goroutine的并发，后续代码中的&lt;code&gt;go func()&lt;/code&gt;相当于串行执行。&lt;/p&gt;
+
+&lt;p&gt;两个for循环内部go func 调用参数&lt;code&gt;i&lt;/code&gt;的方式是不同的，导致结果完全不同。这也是新手容易遇到的坑。&lt;/p&gt;
+
+&lt;p&gt;第一个go func中&lt;code&gt;i&lt;/code&gt;是外部for的一个变量，地址不变化。遍历完成后，最终i=10。故go func执行时，&lt;code&gt;i&lt;/code&gt;的值始终是&lt;code&gt;10&lt;/code&gt;（10次遍历很快完成）。&lt;/p&gt;
+
+&lt;p&gt;第二个go func中&lt;code&gt;i&lt;/code&gt;是函数参数，与外部for中的&lt;code&gt;i&lt;/code&gt;完全是两个变量。尾部&lt;code&gt;(i)&lt;/code&gt;将发生值拷贝，go func内部指向值拷贝地址。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-下面代码会输出什么&#34;&gt;4、下面代码会输出什么？&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type People struct{}
+
+func (p *People) ShowA() {
+	fmt.Println(&amp;quot;showA&amp;quot;)
+	p.ShowB()
+}
+func (p *People) ShowB() {
+	fmt.Println(&amp;quot;showB&amp;quot;)
+}
+
+type Teacher struct {
+	People
+}
+
+func (t *Teacher) ShowB() {
+	fmt.Println(&amp;quot;teacher showB&amp;quot;)
+}
+
+func main() {
+	t := Teacher{}
+	t.ShowA()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/f5949e74a9f2fb40b0003cd690ffdb10.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+将输出：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;showA
+showB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Go中&lt;strong&gt;没有继承！&lt;/strong&gt; 没有继承！没有继承！是叫&lt;strong&gt;组合&lt;/strong&gt;！组合！组合！&lt;/p&gt;
+
+&lt;p&gt;这里People是匿名组合People。被组合的类型People所包含的方法虽然升级成了外部类型Teacher这个组合类型的方法，但他们的方法(&lt;code&gt;ShowA()&lt;/code&gt;)调用时接受者并没有发生变化。&lt;/p&gt;
+
+&lt;p&gt;这里仍然是People。毕竟这个People类型并不知道自己会被什么类型组合，当然也就无法调用方法时去使用未知的组合者Teacher类型的功能。&lt;/p&gt;
+
+&lt;p&gt;因此这里执行t.ShowA()时，在执行ShowB()时该函数的接受者是People，而非Teacher。&lt;a href=&#34;https://golang.org/doc/effective_go.html#Embedding&#34;&gt;具体参见官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;5-下面代码会触发异常吗-请详细说明&#34;&gt;5、下面代码会触发异常吗？请详细说明&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	runtime.GOMAXPROCS(1)
+	int_chan := make(chan int, 1)
+	string_chan := make(chan string, 1)
+	int_chan &amp;lt;- 1
+	string_chan &amp;lt;- &amp;quot;hello&amp;quot;
+	select {
+	case value := &amp;lt;-int_chan:
+		fmt.Println(value)
+	case value := &amp;lt;-string_chan:
+		panic(value)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/4bc46159a2b1b499bf496ec1e5b174d9.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+有可能触发异常，是随机事件。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;单个chan如果无缓冲时，将会阻塞。但结合 &lt;code&gt;select&lt;/code&gt;可以在多个chan间等待执行。有三点原则：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;select 中只要有一个case能return，则立刻执行。&lt;/li&gt;
+&lt;li&gt;当如果同一时间有多个case均能return则伪随机方式抽取任意一个执行。&lt;/li&gt;
+&lt;li&gt;如果没有一个case能return则可以执行&amp;rdquo;default&amp;rdquo;块。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;此考题中的两个case中的两个chan均能return，则会随机执行某个case块。故在执行程序时，有可能执行第二个case，触发异常。&lt;a href=&#34;https://golang.org/ref/spec#Select_statements&#34;&gt;具体参见官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;6-下面代码输出什么&#34;&gt;6、下面代码输出什么？&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func calc(index string, a, b int) int {
+	ret := a + b
+	fmt.Println(index, a, b, ret)
+	return ret
+}
+
+func main() {
+	a := 1                                             //line 1
+	b := 2                                             //2
+	defer calc(&amp;quot;1&amp;quot;, a, calc(&amp;quot;10&amp;quot;, a, b))  //3
+	a = 0                                              //4
+	defer calc(&amp;quot;2&amp;quot;, a, calc(&amp;quot;20&amp;quot;, a, b))  //5
+	b = 1                                              //6
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/b234243ee983929ae51ba77874a4f3d6.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答&lt;/strong&gt;
+输出结果为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;10 1 2 3
+20 0 2 2
+2 0 2 2
+1 1 3 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在解题前需要明确两个概念：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;defer是在函数末尾的return前执行，先进后执行，具体见问题1。&lt;/li&gt;
+&lt;li&gt;函数调用时 int 参数发生值拷贝。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不管代码顺序如何，defer calc func中参数b必须先计算，故会在运行到第三行时，执行&lt;code&gt;calc(&amp;quot;10&amp;quot;,a,b)&lt;/code&gt;输出：&lt;code&gt;10 1 2 3&lt;/code&gt;得到值&lt;code&gt;3&lt;/code&gt;，将&lt;code&gt;cal(&amp;quot;1&amp;quot;,1,3)&lt;/code&gt;存放到延后执执行函数队列中。&lt;/p&gt;
+
+&lt;p&gt;执行到第五行时，现行计算&lt;code&gt;calc(&amp;quot;20&amp;quot;, a, b)&lt;/code&gt;即&lt;code&gt;calc(&amp;quot;20&amp;quot;, 0, 2)&lt;/code&gt;输出：&lt;code&gt;20 0 2 2&lt;/code&gt;得到值&lt;code&gt;2&lt;/code&gt;,将&lt;code&gt;cal(&amp;quot;2&amp;quot;,0,2)&lt;/code&gt;存放到延后执行函数队列中。&lt;/p&gt;
+
+&lt;p&gt;执行到末尾行，按队列先进后出原则依次执行：&lt;code&gt;cal(&amp;quot;2&amp;quot;,0,2)&lt;/code&gt;、&lt;code&gt;cal(&amp;quot;1&amp;quot;,1,3)&lt;/code&gt; ，依次输出：&lt;code&gt;2 0 2 2&lt;/code&gt;、&lt;code&gt;1 1 3 4&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;7-请写出以下输入内容&#34;&gt;7、请写出以下输入内容&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	s := make([]int, 5)
+	s = append(s, 1, 2, 3)
+	fmt.Println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/ef2548849a64ecae5475612cdbcca59e.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+将输出：[0 0 0 0 0 1 2 3]&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;make可用于初始化数组，第二个可选参数表示数组的长度。数组是不可变的。&lt;/p&gt;
+
+&lt;p&gt;当执行&lt;code&gt;make([]int,5)&lt;/code&gt;时返回的是一个含义默认值(int的默认值为0)的数组:&lt;code&gt;[0,0,0,0,0]&lt;/code&gt;。而append函数是便是在一个数组或slice后面追加新的元素，并返回一个新的数组或slice。&lt;/p&gt;
+
+&lt;p&gt;这里&lt;code&gt;append(s,1,2,3)&lt;/code&gt;是在数组s的继承上追加三个新元素:1、2、3，故返回的新数组为&lt;code&gt;[0 0 0 0 0 1 2 3]&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;8-下面的代码有什么问题&#34;&gt;8、下面的代码有什么问题?&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type UserAges struct {
+	ages map[string]int
+	sync.Mutex
+}
+
+func (ua *UserAges) Add(name string, age int) {
+	ua.Lock()
+	defer ua.Unlock()
+	ua.ages[name] = age
+}
+
+func (ua *UserAges) Get(name string) int {
+	if age, ok := ua.ages[name]; ok {
+		return age
+	}
+	return -1
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/ec2c79ef867858648b0adb1dedeb4e2b.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt;
+在执行 Get方法时可能被panic&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然有使用&lt;code&gt;sync.Mutex&lt;/code&gt;做写锁，但是&lt;code&gt;map&lt;/code&gt;是并发读写不安全的。map属于引用类型，并发读写时多个协程见是通过指针访问同一个地址，即访问共享变量，此时同时读写资源存在竞争关系。会报错误信息:&amp;ldquo;fatal error: concurrent map read and map write&amp;rdquo;。&lt;/p&gt;
+
+&lt;p&gt;可以在在线运行中执行，复现该问题。那么如何改善呢? 当然Go1.9新版本中将提供并发安全的map。首先需要了解两种锁的不同：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;sync.Mutex&lt;/code&gt;互斥锁&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sync.RWMutex&lt;/code&gt;读写锁，基于互斥锁的实现，可以加多个读锁或者一个写锁。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;利用读写锁可实现对map的安全访问，&lt;a href=&#34;https://wide.b3log.org/playground/b2c07ccddc52fc8d408f63ea37786754.go&#34;&gt;在线运行改进版&lt;/a&gt;
+。利用RWutex进行读锁。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type RWMutex
+    func (rw *RWMutex) Lock() 
+    func (rw *RWMutex) RLock()
+    func (rw *RWMutex) RLocker() Locker
+    func (rw *RWMutex) RUnlock()
+    func (rw *RWMutex) Unlock()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;9-下面的迭代会有什么问题&#34;&gt;9、下面的迭代会有什么问题？&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (set *threadSafeSet) Iter() &amp;lt;-chan interface{} {
+	ch := make(chan interface{})
+	go func() {
+		set.RLock()
+
+		for elem := range set.s {
+			ch &amp;lt;- elem
+		}
+
+		close(ch)
+		set.RUnlock()
+
+	}()
+	return ch
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/08a39230e163cb8c9ecd0073e4f6e93d.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt; 内部迭代出现阻塞。默认初始化时无缓冲区，需要等待接收者读取后才能继续写入。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;chan在使用make初始化时可附带一个可选参数来设置缓冲区。默认无缓冲，题目中便初始化的是无缓冲区的chan，这样只有写入的元素直到被读取后才能继续写入，不然就一直阻塞。&lt;/p&gt;
+
+&lt;p&gt;设置缓冲区大小后，写入数据时可连续写入到缓冲区中，直到缓冲区被占满。从chan中接收一次便可从缓冲区中释放一次。可以理解为chan是可以设置吞吐量的处理池。&lt;/p&gt;
+
+&lt;p&gt;来自社区&lt;a href=&#34;https://gocn.io/people/fiisio&#34;&gt;fiisio&lt;/a&gt;的说明&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ch := make(chan interface{}) 和 ch := make(chan interface{},1)是不一样的
+
+无缓冲的 不仅仅是只能向 ch 通道放 一个值 而是一直要有人接收，那么ch &amp;lt;- elem才会继续下去，要不然就一直阻塞着，也就是说有接收者才去放，没有接收者就阻塞。
+
+而缓冲为1则即使没有接收者也不会阻塞，因为缓冲大小是1只有当 放第二个值的时候 第一个还没被人拿走，这时候才会阻塞 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;10-以下代码能编译过去吗-为什么&#34;&gt;10、以下代码能编译过去吗？为什么？&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+)
+
+type People interface {
+	Speak(string) string
+}
+
+type Stduent struct{}
+
+func (stu *Stduent) Speak(think string) (talk string) {
+	if think == &amp;quot;bitch&amp;quot; {
+		talk = &amp;quot;You are a good boy&amp;quot;
+	} else {
+		talk = &amp;quot;hi&amp;quot;
+	}
+	return
+}
+
+func main() {
+	var peo People = Stduent{}
+	think := &amp;quot;bitch&amp;quot;
+	fmt.Println(peo.Speak(think))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wide.b3log.org/playground/adf1dc3339b87b8f1d1a49f2f4ebb2d7.go&#34;&gt;在线运行&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;答：&lt;/strong&gt; 编译失败，值类型 Student{} 未实现接口People的方法，不能定义为 People类型。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解析&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;考题中的 &lt;code&gt;func (stu *Stduent) Speak(think string) (talk string)&lt;/code&gt; 是表示结构类型&lt;code&gt;*Student&lt;/code&gt;的指针有提供该方法，但该方法并不属于结构类型&lt;code&gt;Student&lt;/code&gt;的方法。因为struct是值类型。&lt;/p&gt;
+
+&lt;p&gt;修改方法：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义为指针
+&lt;code&gt;go
+var peo People = &amp;amp;Stduent{}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;方法定义在值类型上,指针类型本身是包含值类型的方法。
+&lt;code&gt;go
+func (stu Stduent) Speak(think string) (talk string) { 
+	//...
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;想评论? 请到：&lt;strong&gt;&lt;a href=&#34;https://gocn.io/article/395&#34;&gt;GoCN社区&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
@@ -321,29 +3284,952 @@ package main import ( &amp;#34;fmt&amp;#34; ) func main() { fmt.Println(doubleSc
       <pubDate>Sat, 15 Jul 2017 09:32:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</guid>
-      <description>一说蟑螂，就鸡皮疙瘩一顿爆。其实你误会蟑螂了！
-对蟑螂的普遍看法
- 恶心 南方蟑螂大，会飞 跑得快 有传染病  其实你的偏见都是来自于出没于居家环境中的蟑螂。
-蟑螂的种类约有6000多种，只有约数十种才会入侵家居环境，其他的都被作为宠物饲养、或在野外山涧树林、或昆虫博客管中。只有30种能算得上是害虫。这少数的30种害虫使整个蟑螂类群蒙上了污名。而在国内南北方家居环境中常见的是：德国小镰。
-在开始为蟑螂正名之前，先来个愉快的心情： 
-蟑螂名 蟑螂是俗称，学名为“蜚蠊目”昆虫。其俗名有：
- 黄嚓（客家方言） 小强（广东香港地区） 曱甴（yuēyóu，粤语、闽南语、客家话均同，粤语拼作gaat6 zaat6，潮州话拼作ga1zuah8） 黄婆娘、骚甲（桂林方言） 油夹虫（溆浦方言） 偷油婆（四川话） 焕嚓（梅州话） 活朗额（大连方言） 灶妈子（武汉方言） 油灶婆（衡阳方言） 扎（zhā）马（mā）虫（云南方言）  原来全世界都有蟑螂 以前总认为蟑螂是广东特产，原来蟑螂是这个星球上最古老的昆虫之一，曾与恐龙生活在同一时代。与恐龙相比，蟑螂是更早的地球定居者，蟑螂要先于恐龙数百万年出现在地球上。
-亿万年来它的外貌并没什么大的变化，但生命力和适应力却越来越顽强，一直繁衍到今天，广泛分布在世界各个角落。
-原来繁殖力牛逼 一对儿德国小蠊如果条件合适一年可生产一千万只。
-一只被摘头的蟑螂可以存活9天，9天后死亡的原因则是过度饥饿。
-如果有一天地球上发生了全球核子大战，在影响区内的所有生物包括人类和甚至鱼类等都会消失殆尽，只有蟑螂会继续它们的生活！
-不是打不死，而是蟑螂的繁殖能力很强！！！
-原来蟑螂不会传播疾病 由于缺乏有效传播途径，至今没有蟑螂传播疾病的案例。实际上蟑螂仅仅是携带病源。
-但也别在家吃蟑螂呀，不是不卫生而是蟑螂的分泌物、排泄物、呕吐物可以引起人体的过敏反应。如果有易过敏家人，则尽量消灭蟑螂。
-实际上蟑螂有用作药材和食用的。当然食用的野生蟑螂，贝爷就是洗干净煮着吃滴。 原来蟑螂在国外很流行当宠物 6000多种蟑螂，还不少难得一见。奇葩的是，把蟑螂当宠物的也是很多的。
-在美国10岁的小萝莉对蟑螂钟爱无比，不但和蟑螂同吃同睡，而且还养了1000多只蟑螂陪伴自己，任由蟑螂在自己身上爬来爬去。 这可不是家里的小强，它是马岛发声蟑螂，在西方也是普及度非常高的宠物；在美国是博物馆动物园学校等教育机构进行昆虫学科普的首选动物之一。
-澳大利亚一年一度的赛蟑螂大赛是澳大利亚国庆日最大的一个娱乐项目之一。 用于赛跑的是美洲大蠊，大家也乐在其中。
-“鲜花会凋谢，烛光会熄灭，只有小强才是永远。” 参与这项活动的是动物园饲养的马达加斯加发声蟑螂。这是纽约布朗克斯动物园的情人节传统：只要献祭一小笔金钱，就可以用爱人——或者不那么爱的人——的名字来命名动物园里的一只小强。园方称，蟑螂不被大众所理解，它们其实是情深义重的好情侣。
-昆虫学家Naskrecki的万圣节博文称：人类喜欢用的吓人方式之一是随便找个又小又无害的生物，硬说它们很危险；蝙蝠/蜘蛛/蟑螂都是常见的受害者。在任何情况下，我都更愿意撞上这些小东西，而不是黑白相间的巨大怪兽（熊猫）。 来自虫爷ChenZ的话 如果没有大熊猫，自然只是会失去一丝色彩；但如果没有苍蝇蟑螂秃鹫蜣螂等等清除垃圾腐肉粪便的生物，这个星球就会变成一个令人作呕的垃圾堆。
-虽然可以在一定程度上理解人类文化对于这类动物的习惯性丑化，但是我无法接受。
-仔细想想，地球上的人类每天排泄9亿公斤的粪便，同时将不计其数的动物变成尸体，远超自己能吃下去的量。这个地球上最大的粪便和腐尸生产机器居然认为那些清理粪便和尸体的清洁工们肮脏又恶心？
- 虫爷ChenZ：一位沉迷虫子和续命的绅士，微博科学科普帐号@虫爷ChenZ
- 结尾 居家环境中放肆的蟑螂还是得消灭，但这仅仅是蟑螂世界里的极小的一部分。就像人类也有善恶之分，不要一棍子敲死所有人。 已知的蟑螂中，只有不到1%的种类会给人类的生活带来困扰，但几乎没人愿意进一步了解剩下的99%。</description>
+      
+        <description>
+
+&lt;p&gt;一说蟑螂，就鸡皮疙瘩一顿爆。其实你误会蟑螂了！&lt;/p&gt;
+
+&lt;p&gt;对蟑螂的普遍看法&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;恶心&lt;/li&gt;
+&lt;li&gt;南方蟑螂大，会飞&lt;/li&gt;
+&lt;li&gt;跑得快&lt;/li&gt;
+&lt;li&gt;有传染病&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其实你的偏见都是来自于出没于居家环境中的蟑螂。&lt;/p&gt;
+
+&lt;p&gt;蟑螂的种类约有6000多种，只有约数十种才会入侵家居环境，其他的都被作为宠物饲养、或在野外山涧树林、或昆虫博客管中。只有30种能算得上是害虫。这少数的30种害虫使整个蟑螂类群蒙上了污名。而在国内南北方家居环境中常见的是：&lt;strong&gt;德国小镰&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;在开始为蟑螂正名之前，先来个愉快的心情：
+&lt;embed src=&#34;https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&amp;v=20161117&amp;vid=l03373d3vjc&amp;auto=0&#34; allowFullScreen=&#34;true&#34; quality=&#34;high&#34; width=&#34;480&#34; height=&#34;400&#34; align=&#34;middle&#34; allowScriptAccess=&#34;always&#34; type=&#34;application/x-shockwave-flash&#34;&gt;&lt;/embed&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;蟑螂名&#34;&gt;蟑螂名&lt;/h3&gt;
+
+&lt;p&gt;蟑螂是俗称，学名为“蜚蠊目”昆虫。其俗名有：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;黄嚓（客家方言）&lt;/li&gt;
+&lt;li&gt;小强（广东香港地区）&lt;/li&gt;
+&lt;li&gt;曱甴（yuēyóu，粤语、闽南语、客家话均同，粤语拼作gaat6 zaat6，潮州话拼作ga1zuah8）&lt;/li&gt;
+&lt;li&gt;黄婆娘、骚甲（桂林方言）&lt;/li&gt;
+&lt;li&gt;油夹虫（溆浦方言）&lt;/li&gt;
+&lt;li&gt;偷油婆（四川话）&lt;/li&gt;
+&lt;li&gt;焕嚓（梅州话）&lt;/li&gt;
+&lt;li&gt;活朗额（大连方言）&lt;/li&gt;
+&lt;li&gt;灶妈子（武汉方言）&lt;/li&gt;
+&lt;li&gt;油灶婆（衡阳方言）&lt;/li&gt;
+&lt;li&gt;扎（zhā）马（mā）虫（云南方言）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;原来全世界都有蟑螂&#34;&gt;原来全世界都有蟑螂&lt;/h3&gt;
+
+&lt;p&gt;以前总认为蟑螂是广东特产，原来蟑螂是这个星球上最古老的昆虫之一，曾与恐龙生活在同一时代。与恐龙相比，蟑螂是更早的地球定居者，蟑螂要先于恐龙数百万年出现在地球上。&lt;/p&gt;
+
+&lt;p&gt;亿万年来它的外貌并没什么大的变化，但生命力和适应力却越来越顽强，一直繁衍到今天，广泛分布在世界各个角落。&lt;/p&gt;
+
+&lt;h3 id=&#34;原来繁殖力牛逼&#34;&gt;原来繁殖力牛逼&lt;/h3&gt;
+
+&lt;p&gt;一对儿德国小蠊如果条件合适一年可生产一千万只。&lt;/p&gt;
+
+&lt;p&gt;一只被摘头的蟑螂可以存活9天，9天后死亡的原因则是过度饥饿。&lt;/p&gt;
+
+&lt;p&gt;如果有一天地球上发生了全球核子大战，在影响区内的所有生物包括人类和甚至鱼类等都会消失殆尽，只有蟑螂会继续它们的生活！&lt;/p&gt;
+
+&lt;p&gt;不是打不死，而是蟑螂的繁殖能力很强！！！&lt;/p&gt;
+
+&lt;h3 id=&#34;原来蟑螂不会传播疾病&#34;&gt;原来蟑螂不会传播疾病&lt;/h3&gt;
+
+&lt;p&gt;由于缺乏有效传播途径，至今没有蟑螂传播疾病的案例。实际上蟑螂仅仅是携带病源。&lt;/p&gt;
+
+&lt;p&gt;但也别在家吃蟑螂呀，不是不卫生而是蟑螂的分泌物、排泄物、呕吐物可以引起人体的过敏反应。如果有&lt;strong&gt;易过敏&lt;/strong&gt;家人，则尽量消灭蟑螂。&lt;/p&gt;
+
+&lt;p&gt;实际上蟑螂有用作药材和食用的。当然食用的野生蟑螂，贝爷就是洗干净煮着吃滴。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/37381880.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;原来蟑螂在国外很流行当宠物&#34;&gt;原来蟑螂在国外很流行当宠物&lt;/h3&gt;
+
+&lt;p&gt;6000多种蟑螂，还不少难得一见。奇葩的是，把蟑螂当宠物的也是很多的。&lt;/p&gt;
+
+&lt;p&gt;在美国10岁的小萝莉对蟑螂钟爱无比，不但和蟑螂同吃同睡，而且还养了1000多只蟑螂陪伴自己，任由蟑螂在自己身上爬来爬去。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/38056815.png&#34; alt=&#34;美国10岁的小萝莉玩蟑螂&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这可不是家里的小强，它是马岛发声蟑螂，在西方也是普及度非常高的宠物；在美国是博物馆动物园学校等教育机构进行昆虫学科普的首选动物之一。&lt;/p&gt;
+
+&lt;p&gt;澳大利亚一年一度的赛蟑螂大赛是澳大利亚国庆日最大的一个娱乐项目之一。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/38152672.png&#34; alt=&#34;澳大利亚赛蟑螂大赛&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;用于赛跑的是美洲大蠊，大家也乐在其中。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;“鲜花会凋谢，烛光会熄灭，只有小强才是永远。”&lt;/strong&gt;
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/38735300.png&#34; alt=&#34;纽约布朗克斯动物园的情人节&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;参与这项活动的是动物园饲养的马达加斯加发声蟑螂。这是纽约布朗克斯动物园的情人节传统：只要献祭一小笔金钱，就可以用爱人——或者不那么爱的人——的名字来命名动物园里的一只小强。园方称，蟑螂不被大众所理解，它们其实是情深义重的好情侣。&lt;/p&gt;
+
+&lt;p&gt;昆虫学家Naskrecki的万圣节博文称：人类喜欢用的吓人方式之一是随便找个又小又无害的生物，硬说它们很危险；蝙蝠/蜘蛛/蟑螂都是常见的受害者。在任何情况下，我都更愿意撞上这些小东西，而不是黑白相间的巨大怪兽（熊猫）。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/38911455.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;来自虫爷chenz的话&#34;&gt;来自虫爷ChenZ的话&lt;/h3&gt;
+
+&lt;p&gt;如果没有大熊猫，自然只是会失去一丝色彩；但如果没有苍蝇蟑螂秃鹫蜣螂等等清除垃圾腐肉粪便的生物，这个星球就会变成一个令人作呕的垃圾堆。&lt;/p&gt;
+
+&lt;p&gt;虽然可以在一定程度上理解人类文化对于这类动物的习惯性丑化，但是我无法接受。&lt;/p&gt;
+
+&lt;p&gt;仔细想想，地球上的人类每天排泄9亿公斤的粪便，同时将不计其数的动物变成尸体，远超自己能吃下去的量。这个地球上最大的粪便和腐尸生产机器居然认为那些清理粪便和尸体的清洁工们肮脏又恶心？&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;虫爷ChenZ：一位沉迷虫子和续命的绅士，微博科学科普帐号@虫爷ChenZ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;结尾&#34;&gt;结尾&lt;/h3&gt;
+
+&lt;p&gt;居家环境中放肆的蟑螂还是得消灭，但这仅仅是蟑螂世界里的极小的一部分。就像人类也有善恶之分，不要一棍子敲死所有人。 已知的蟑螂中，只有不到1%的种类会给人类的生活带来困扰，但几乎没人愿意进一步了解剩下的99%。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>如何提高邮件件打开率和回复率</title>
+      <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</link>
+      <pubDate>Sun, 09 Jul 2017 22:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</guid>
+      
+        <description>
+
+&lt;p&gt;现在虽有即时通讯软件，但邮件依旧是日常办公必备的沟通方式。那么如何写出牛哄哄的、得体的、打开率高、回复即时的邮件呢？ 小编我虞双齐结合实际工作，总结出四个字：&lt;strong&gt;礼貌&lt;/strong&gt;、&lt;strong&gt;清晰&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/79920834.png&#34; alt=&#34;用语礼貌&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;凡人之所以贵于禽兽者，以有礼也。
+                                  ——《晏子春秋》&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;写好开场白&#34;&gt;写好开场白&lt;/h3&gt;
+
+&lt;p&gt;谁会讨厌礼貌地人儿？礼多人不怪，礼貌性的称呼是邮件不可或缺的内容。&lt;/p&gt;
+
+&lt;p&gt;在适合的场景下，使用合适的开场白，能让收件人舒心的开始阅读邮件。而不会感觉别扭或被冒犯。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关系&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;平级同事&lt;/td&gt;
+&lt;td&gt;双齐，你好&lt;/td&gt;
+&lt;td&gt;尽量不要带姓，直接称呼名。&lt;br&gt;如果写成“虞双齐，你好”便显得有距离感，生硬&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;上级领导&lt;/td&gt;
+&lt;td&gt;黎总，你好&lt;/td&gt;
+&lt;td&gt;所有上级都是&lt;strong&gt;xx总&lt;/strong&gt;，谁不爱听呢？ &lt;br&gt;但不建议使用尊称“您”，显得做作。除非是写给顶级Boss&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;不了解&lt;/td&gt;
+&lt;td&gt;黎经理，你好&lt;/td&gt;
+&lt;td&gt;知道职称时，可以按职称称呼&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;不了解&lt;/td&gt;
+&lt;td&gt;黎总，你好&lt;/td&gt;
+&lt;td&gt;不清楚职称时&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;不了解&lt;/td&gt;
+&lt;td&gt;黎老师，你好&lt;/td&gt;
+&lt;td&gt;国企总爱称呼为老师&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;当然也有许多人并不关心你如何称呼他， 但我们得保持礼貌。&lt;/p&gt;
+
+&lt;h3 id=&#34;语气友好&#34;&gt;语气友好&lt;/h3&gt;
+
+&lt;p&gt;根据收件人同自己的熟络程度、等级关系，以及内容性质等，选择恰当的语气进行论述，以免引起对方不适。&lt;/p&gt;
+
+&lt;p&gt;同时对别人的意见做出谨慎而客观的评论，谨记邮件可轻易转发，防止陷入“邮件门”。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;理性论述，少感性激动&lt;/li&gt;
+&lt;li&gt;少用感叹号，也许会互掐&lt;/li&gt;
+&lt;li&gt;少用语气词 “啊”，“咦”等&lt;/li&gt;
+&lt;li&gt;改“要求语气”为“请求语气”&lt;/li&gt;
+&lt;li&gt;慎用表情符，使用不当被曲解&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;写好落款&#34;&gt;写好落款&lt;/h3&gt;
+
+&lt;p&gt;什么样的落款最好？因人而异，实际没有人关注你结尾的问候语，但你可以在结尾给收件人留下&lt;strong&gt;联系方式&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;当收件人想同你电话沟通时，立马可拨号给你。而不至于还得翻看通讯录，白白浪费时间，也许会取消给你电话的冲动。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/79970376.png&#34; alt=&#34;结构清晰&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;主题明了&#34;&gt;主题明了&lt;/h3&gt;
+
+&lt;p&gt;主题应简短并能含有关键信息。 如下：
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/35425758.png&#34; alt=&#34;&#34; /&gt;
+前后对比，孰优孰劣，一看便知。&lt;/p&gt;
+
+&lt;p&gt;特别是给Boss发邮件，即使他们不看邮件内容，也能知晓大概。&lt;/p&gt;
+
+&lt;p&gt;再者主题可通过符号突出关键字，如：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;【通知】下周一(2017-07-10)全公司放假&lt;/li&gt;
+&lt;li&gt;【紧急】iPhone版APP被强制下线&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如此，在邮件量大的情况下，可方便别人搜索和掌握紧急程度。&lt;/p&gt;
+
+&lt;p&gt;切记：
++ 不要发空主题邮件
++ 不要发冗长复杂的主题邮件&lt;/p&gt;
+
+&lt;h3 id=&#34;内容单一&#34;&gt;内容单一&lt;/h3&gt;
+
+&lt;p&gt;邮件内容需单一，一封邮件不要说两件事，除非两种关系紧密。&lt;/p&gt;
+
+&lt;p&gt;有新的内容需讨论沟通时可以等当前事情结束在继续，或者再写一封信邮件来讨论。&lt;/p&gt;
+
+&lt;p&gt;另外电子邮件是可作为作为法律证据的，所以邮件中不是什么内容都可以说的。特别是公务邮件，如有任何不清楚的地方，发邮件前务必同上司和合规部门沟通。即时公司内部邮件也应谨慎对待。&lt;/p&gt;
+
+&lt;h3 id=&#34;不要术语堆砌&#34;&gt;不要术语堆砌&lt;/h3&gt;
+
+&lt;p&gt;写给同行能理解，问题是包括Boss在内，别人是不懂行业术语的。&lt;/p&gt;
+
+&lt;p&gt;虽然为了说清事情，术语是不可避免的。但邮件是给Boss，给销售部门，给客服部门，请别陷入“知识陷阱”，得尽量避免术语。&lt;/p&gt;
+
+&lt;h3 id=&#34;标出重点&#34;&gt;标出重点&lt;/h3&gt;
+
+&lt;p&gt;通过红色背景、加粗、加大可突出重点，但一封邮件内容只应有极少的突出点。如果有10处，那相当于没标出重点。&lt;/p&gt;
+
+&lt;p&gt;例如的某个位置说明需要某位同事做什么时候，这时候就可以写成：“请&lt;strong&gt;xxx&lt;/strong&gt;做什么事情”。这样收件人就能立刻看到自己的名字，明确自己的任务。&lt;/p&gt;
+
+&lt;h3 id=&#34;结构清晰&#34;&gt;结构清晰&lt;/h3&gt;
+
+&lt;p&gt;要废话少说，突出重点。先说&lt;strong&gt;结论 → 证据支撑（123）→提出解决方案&lt;/strong&gt;*，进行商讨。&lt;/p&gt;
+
+&lt;p&gt;工作邮件不是写自己想写的，而是写对方需要知道的，不是按照你最自然的顺序去写，而是按照对方最容易读懂的顺序去写。&lt;/p&gt;
+
+&lt;p&gt;三个凡是：
+1. 凡是能分段，尽量分段；
+2. 凡是能用小标题，尽量用小标题；
+3. 凡是能用数据的尽量用数据。&lt;/p&gt;
+
+&lt;p&gt;只放必须要的信息，不该说的不说。这不是在写高考作文，没有必要搞大篇幅的排比反问或感叹，用最直白的话，说明白这封邮件的意图。&lt;/p&gt;
+
+&lt;h3 id=&#34;严待附件&#34;&gt;严待附件&lt;/h3&gt;
+
+&lt;p&gt;总会附待文件等，请在邮件内容中说明有附件，已提醒别人。&lt;/p&gt;
+
+&lt;p&gt;附件过大，请压缩打包。&lt;/p&gt;
+
+&lt;p&gt;超过6M，30M的附件，也行会被拦截。要善用云盘等共享大文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;邮件示例&#34;&gt;邮件示例&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/39956823.png&#34; alt=&#34;邮件示例&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;结尾&#34;&gt;结尾&lt;/h3&gt;
+
+&lt;p&gt;提高工作邮件打开率，回复率是职场必备技能。提高自身的办公效率，提高个人品牌能力，望大家都能成为邮件小能手！&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>简述电子邮件发展历史</title>
+      <link>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</link>
+      <pubDate>Sun, 02 Jul 2017 21:01:02 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</guid>
+      
+        <description>
+
+&lt;p&gt;平均每天发送10封邮件，日常工作中邮件是重要的沟通方式。虽然现在也有QQ消息，微信等其他即使通讯工具，但思想都源于电子邮件。&lt;/p&gt;
+
+&lt;p&gt;是否有兴趣了解电子邮件的发展历史？这里虞双齐多方收集资料，整理成文，以简述电子邮件发展历史。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子邮件的启蒙期&#34;&gt;电子邮件的启蒙期&lt;/h3&gt;
+
+&lt;p&gt;70年代计算机已被各研究机构使用，美国军方机构为最。当时美国军方分支机构ARPA「高等研究计划署 （Advanced Research Projects Agency）」为美国军事机构之间的信息交流做防护而设计为异地间的计算机之间进行信息交换的网络ARPANET（阿帕网），此网乃当今互联网的鼻祖。&lt;/p&gt;
+
+&lt;p&gt;而当时工作者（科学家）只能通过哑终端(Dumb Terminal)，经串型接口连接到大型计算机工作。哑终端没有内存和硬盘，输入字符指令到主机才能执行计算。&lt;/p&gt;
+
+&lt;p&gt;可是，连接到同一个大型计算机的哑终端，是在不同时区的工作者手中。打电话有时候很难联系到人。在1965年麻省理工学院开发了世界第一个用于在同一主机上发消息的程序MailBox。&lt;/p&gt;
+
+&lt;p&gt;初期的邮件实际上就是一个有特殊保护的文件夹。其他人可以往文件夹里面存放消息文件，当别人登陆到主机时可看到消息。类似于一个桌面记事本。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子邮件的诞生&#34;&gt;电子邮件的诞生&lt;/h3&gt;
+
+&lt;p&gt;在1967年，一位谦虚的计算机工程师Ray Tomlinson获得麻省理工学院计算机工程博士学位后，到BBN「博尔特·贝拉尼克—纽曼(Bolt Beranek and Newman)」公司从事计算机研究工作。刚好该公司受聘于美国国防部，参与阿帕网（Arpanet）的建设和维护工作。他在这里留下了他在计算机行业的辉煌。&lt;/p&gt;
+
+&lt;p&gt;尽管MaiBox能发消息，但仅仅局限在同一计算机下。那么如何才能让不同计算机间能发送消息呢？&lt;/p&gt;
+
+&lt;p&gt;1971年的一天，Tomlinson完成了世界上第一封真正名义上的电子邮件发送。他在PDP-10机器上运行的TENEX操作系统上写了一个邮件程序名为SENDMSG，并起草一个简单的文件传输协议CPYNET，来使得SENDMSG程序能将消息从一台计算机发送到另外一台计算机。&lt;/p&gt;
+
+&lt;p&gt;他在BBN剑桥办事处并排的两台PDP-10计算机上测试，此两台计算机间仅有的物理连接是都接入到ARPANET。他从一台计算机往另一台计算机发送测试消息给自己。因为测试内容太多，他也不记得第一条测试消息是什么内容。他回忆也许是QWERTYUIOP或类似的消息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/63925225.png&#34; alt=&#34;第一台发送邮件的计算机&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;测试成功后，他非常满意，于是给他们组的其他人员发消息告诉他们是如何实现在两台计算机间发生消息的。 尽管第一封电子邮件的内容连Tomlinson本人也记不起来了，但那一刻仍然具备了十足的历史意义：电子邮件诞生了。&lt;/p&gt;
+
+&lt;p&gt;在1972年初，TENEX的下一个版本发布，便包括具有网络邮件功能的SNDMSG版本。 CPYNET协议很快就被具有特定邮件处理功能的真正的文件传输协议所取代。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子邮件中-标识符的来由&#34;&gt;电子邮件中&amp;rsquo;@&amp;lsquo;标识符的来由&lt;/h3&gt;
+
+&lt;p&gt;Ray Tomlinson因SENDMSG和CPYNET而出名。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/65732603.png&#34; alt=&#34;Ray Tomlinson&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在1972年末，他为了实现两台计算机间发消息，将CPYNET的代码并入到了SENDMGS中，以提供区分本地邮件和网络邮件的方式。 应该如何表示呢？如何找一个字符进行区分呢，还不会出现在人名中。他低头盯着电传打印机(Model 33 Teletype)键盘，随后选择了&lt;strong&gt;@&lt;/strong&gt;来进行区分。他表示&amp;rdquo;@&amp;ldquo;不会出现在人名中，也有&lt;strong&gt;at&lt;/strong&gt;(在)的意思。表示某人在其他计算机上，user-name@the-computer-name。当时的他压根就没意识到，他创造了世界无人不晓的&amp;rdquo;@&amp;ldquo;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/65820591.png&#34; alt=&#34;电传打印机&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;后因Tomlinson发明电子邮件 ，他因此入选由被互联网协会（ISOC）评选的首届互联网名人堂，美国《福布斯》杂志曾对汤姆林森评价说：“对他个人来说，‘@’只不过是一件小发明，但对整个世界来讲，则无疑是一件伟大的发明。”&lt;/p&gt;
+
+&lt;p&gt;不幸的是，这位电子邮件之父Ray Tomlinson 于2016年3月5日逝世，年享74岁。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子邮件的成长期&#34;&gt;电子邮件的成长期&lt;/h3&gt;
+
+&lt;p&gt;这个“@”被ARPANET的工作人员所接受，开始推广使用电子邮件。在1974年，ARPNET下有一百多人使用电子邮件，电子邮件成为ARPANET的首选沟通方式。&lt;/p&gt;
+
+&lt;p&gt;有趣的是，另一个计算机工程师 Larry Roberts 给邮件服务器添加了文件夹功能。初衷是为了方便他老板给电子邮件分类以方便查找邮件。&lt;/p&gt;
+
+&lt;p&gt;到1976年，电子邮件开始流行，商业工具也开始涌现。而APRNET计算机间75%的流量都是电子邮件内容。紧随而来的是广告邮件，世界第一封电子邮件广告出现在美国政府和大学的网络上。&lt;/p&gt;
+
+&lt;p&gt;1981年 IBM推出IBM5150新款计算机，个人电脑随之诞生。跟随个人电脑的普及，高傲的网络连接费是笔不小的负担，一分钟的电话费需要很多钱。这也促使了电子邮件的一个小进步。名为&amp;rdquo;offline readers&amp;rdquo;软件应世而出，它允许电子邮件用户将邮件存储到个人电脑上。可以随时阅读邮件和回复邮件，在发送邮件时才需要联网。能够离线邮件再联线发送电子邮件是十分节约连接费。&lt;/p&gt;
+
+&lt;p&gt;1982年，简单邮件传输协议SMTP(Simple Mail Transfer Protocol)被定制，用于使用统一标准接发电子邮件。 同年电子邮件的世界里也出现了著名的表情符笑脸-&lt;strong&gt;:)&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;1888年,Steve Dorner开发世界上第一个图形操作界面的电子邮件客户端程序，名为Eudora
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/65577096.png&#34; alt=&#34;Eudor email client&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1989年，配音员在美国在线录制了为电子邮件录制了“欢迎”、“已完成”、“再见”、“您有新邮件” 等声音。&lt;/p&gt;
+
+&lt;h3 id=&#34;电子邮件的高速发展期&#34;&gt;电子邮件的高速发展期&lt;/h3&gt;
+
+&lt;p&gt;90年代， 万维网发展，雅虎和Hotmail推出免费WEB版电子邮箱。每个人员极易获得电子邮箱账号，全球几亿人使用电子邮件。
++ 1997年，微软花4亿收购Hotmail ，同年推出Outlook。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1998年，垃圾邮件(spam)一词入选牛津字典。&lt;/li&gt;
+&lt;li&gt;2004年，“LOL“(互联网缩略语，意为哈哈)和其他缩略语被写入牛津辞典。&lt;/li&gt;
+&lt;li&gt;2004年，世界多媒体信息服务大会，在维也纳召开。他讲多媒体技术引入到电子邮件使用当中。&lt;/li&gt;
+&lt;li&gt;2007年，谷歌开放Gmail电子邮件系统&lt;/li&gt;
+&lt;li&gt;2011年，《美联社写作风格指南》一书中开始讲“e-mail”简写为“email”&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2003年，超77亿人使用电子邮件。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2007年，互联网工程任务组(IETF)通过了反钓鱼的安全协议-电子邮件验证标准(DKIM)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2008年，美国总统候选人奥巴马发送1300万封电子邮件为自己拉票造势。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2003年，美国总统乔治-布什签署《控制不请自来的色情和营销行为攻击的法案》。这是第一次针对商业电子邮件立法。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;email-历史发展图&#34;&gt;email 历史发展图&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/a3904ee6-cbcf-48aa-a175-8ce38b8d2380.png&#34; alt=&#34;email 历史发展图&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料：&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://openmap.bbn.com/~tomlinso/ray/firstemailframe.html&#34;&gt;The First Network Email&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.nethistory.info/History%20of%20the%20Internet/email.html&#34;&gt;The history of email&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.olografix.org/gubi/estate/libri/wizards/email.html&#34;&gt;History of Email&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://openmap.bbn.com/~tomlinso/ray/home.html&#34;&gt;Ray Tomlinso&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://openmap.bbn.com/~tomlinso/ray/ka10.html&#34;&gt;The First Email Computer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://instiller.co.uk/blog/the-history-of-email-and-email-design-infographic/&#34;&gt;The history of email and email design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.reachmail.net/blog/emails-40th-anniversary-history-email&#34;&gt;Email’s 40th Anniversary – The History of Email&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.bitrebels.com/technology/history-email-44-years-infographic/&#34;&gt;History Of Email – 44 Years Of Electronic Mail [Infographic]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Eudora_(email_client)&#34;&gt;Eudora&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://edition.cnn.com/2016/03/06/us/ray-tomlinson-email-creator-obit/index.html&#34;&gt;Ray Tomlinson, the creator of email, has died&lt;/a&gt;
+
+
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>给电脑小白精挑细选的五个免费软件</title>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
+      <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
+      
+        <description>
+
+&lt;p&gt;不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？&lt;/p&gt;
+
+&lt;p&gt;下面虞双齐结合日常工作，为大家从13个软件中挑选出5个免费软件，以提升效率。挑选原则：
++ 免费&lt;br /&gt;
++ 提升效率&lt;br /&gt;
++ 性能稳定
++ 本人亲自使用超过2年&lt;/p&gt;
+
+&lt;p&gt;请公账号中回复：&lt;strong&gt;工具&lt;/strong&gt; 两字获取此5个免费软件的下载地址清单。&lt;/p&gt;
+
+&lt;h2 id=&#34;5个可以提升办公效率的免费软件&#34;&gt;5个可以提升办公效率的免费软件&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-文件搜索工具-everything&#34;&gt;1.文件搜索工具：Everything&lt;/h3&gt;
+
+&lt;p&gt;找不到文件存在哪里？文件藏的太深，需点击N次鼠标才能看到？那就使用Everything来解决痛点，配合快捷键启动。找文档，打开文档超快！&lt;/p&gt;
+
+&lt;p&gt;Everything是Windows桌面搜索引擎，实时搜索几乎瞬间完成、占用资源极低 。这些特性在如今磁盘容量越来越大、用户文件越来越多的情况下使得Everything超越了传统桌面搜索工具而广受欢迎，它能在几秒钟内从数百GB的硬盘中精确搜索到需要的内容，支持高级搜索、正则表达式、网络搜索、离线搜索等等。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/9946694708938328.png&#34; alt=&#34;Everything&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-文件压缩解压工具-7-zip&#34;&gt;2. 文件压缩解压工具： 7-zip&lt;/h3&gt;
+
+&lt;p&gt;还在用破解版的WinRar? 赶快换成高速的7-zip。&lt;/p&gt;
+
+&lt;p&gt;7z 是一种全新的压缩格式，它拥有极高的压缩比。通常使用 7-Zip 的 7z 格式能比使用 zip 格式的压缩档案小 30-70%。并且使用 7-Zip 创建的 zip 格式比大多数其它压缩软件创建的都小 2-10%。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/e6b2d567-ffd6-4b95-81fb-5495296d137c.png&#34; alt=&#34;7-zip&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;3-文本编辑工具-notepad&#34;&gt;3. 文本编辑工具：Notepad++&lt;/h3&gt;
+
+&lt;p&gt;window中的记事本有一个天生的设计缺陷，有些软件无法读取被你通过记事本修改过的文件。&lt;/p&gt;
+
+&lt;p&gt;杜绝窘迫，请使用Notepad++替代记事本。Notepad++是多次获得SourceForge社区最佳开发工具奖，开源软件，知名度极高，来自宝岛台湾。
+!(Notepad++)(&lt;a href=&#34;https://static.yushuangqi.com/blog/2017/28955498546793.png&#34;&gt;https://static.yushuangqi.com/blog/2017/28955498546793.png&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h3 id=&#34;4-远程工具-teamviewer&#34;&gt;4. 远程工具：TeamViewer&lt;/h3&gt;
+
+&lt;p&gt;想在家远程操控办公室电脑？想iPad远程操控电脑？想IT远程技术支持？&lt;/p&gt;
+
+&lt;p&gt;也许你有使过QQ的远程功能，但TeamViewer才是专业的TeamViewer是专业、功能强大，使用简单，对个人用户免费的一个多功能软件，核心功能是执行远程操控和传送文件。可以不注册，但是注册成个人账户后，可方便免密远程操控。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/227e6ea3-0a8d-4204-afef-21fafffadcfb.png&#34; alt=&#34;TeamViewer&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;5-电子书阅读器-sumatra-pdf&#34;&gt;5. 电子书阅读器：  Sumatra PDF&lt;/h3&gt;
+
+&lt;p&gt;想阅读pdf、eBook(ePub,Mobi)、CHM帮助文档 ？&lt;/p&gt;
+
+&lt;p&gt;Sumatra 是一款开源免费的 电子书阅读器, 小巧、迅速是其最大的特点。&lt;/p&gt;
+
+&lt;p&gt;Sumatra PDF 是你的首选，因为日常以阅读pdf为主，快速的打开和阅读pdf才是办公刚需。即使你在使用福昕阅读器，也赶快再安装Sumatra。深有体会的是福昕从一个简单好用的优秀国产软件变成了一个臃肿的软件。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/3983592190066534.png&#34; alt=&#34;Sumatra PDF&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结束语&#34;&gt;结束语&lt;/h2&gt;
+
+&lt;p&gt;给电脑小白的你，精挑细选五个可以提升效率的免费软件。提供办公效率从用好的软件开始，一步实际行动比一打纲领更重要。赶紧在公众号下直接回复“工具”两字，获取下载地址吧！&lt;/p&gt;
+
+&lt;p&gt;分享是一种生活的信念，明白了分享的同时，明白了存在的意义。如果本文有给你带来价值，请分享给你的朋友吧！&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>终于找到我要的读书方法了</title>
+      <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
+      <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
+      
+        <description>
+
+&lt;p&gt;自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。&lt;/p&gt;
+
+&lt;h1 id=&#34;曾遭遇的困惑&#34;&gt;曾遭遇的困惑&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;买过很多不需要的书，在角落里干灰。&lt;/li&gt;
+&lt;li&gt;我好像读过这本书。&lt;/li&gt;
+&lt;li&gt;一口气读完一本书，就没有然后了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;现在买书很克制，不读完并吸收掌握就不继续买。先放到购物车或购书清单中，反正电商的图书活动不断，不怕下次没法优惠购。&lt;/p&gt;
+
+&lt;p&gt;如果你有同感请继续看，否则请打道回府，欢迎下次光临🙈。&lt;/p&gt;
+
+&lt;h1 id=&#34;新招式破解困局&#34;&gt;新招式破解困局&lt;/h1&gt;
+
+&lt;p&gt;我在《如何有效阅读一本书》中找到了良药：&lt;strong&gt;用笔记本管理读书生活&lt;/strong&gt;
+&amp;gt;  一次偶然的机会，在西西弗购物公园店看书时，拿到本日本作家奥野宣之著的《如何有效阅读一本书》。当时看得入迷，时间紧迫。当晚京东下单，接着感受其中的方法论。
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/c5286456-8563-4a64-9626-bacbf9180d48.png&#34; alt=&#34;《如何有效阅读一本书》封面&#34; /&gt;
+&amp;gt;  豆瓣书评传送门：&lt;a href=&#34;http://t.cn/RJLVnDL&#34;&gt;http://t.cn/RJLVnDL&lt;/a&gt;
+此法乃大简之道，力荐给爱好读书的你。 &lt;strong&gt;原始，简单，有效！&lt;/strong&gt;前后细读两次，越发认为通过笔记管理读书生活有趣而实用。&lt;/p&gt;
+
+&lt;h1 id=&#34;笔记本&#34;&gt;笔记本&lt;/h1&gt;
+
+&lt;p&gt;高中时一开学，得买好几个高大上的笔记本。每门各一本，然后在封面写上XX课笔记本虞双齐。好傻包的行为😂。搞得最后是，一上课就找笔记本，期末还每个笔记本一大半纸是空白的&amp;hellip;.&lt;/p&gt;
+
+&lt;p&gt;直到现在，也经常给各中东西细分类，没过多久就一团乱有得收拾。其实将东西放在一个筐下也是非常不错的，实际中大部分东西都是大半年用不上。与其分类细放，还不如一个纸箱子全部堆放。自然而然，经常用的东西在最上面。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;东西细分类，是在添加心智负担&lt;/strong&gt; 关于生活、工作、随想、心情都可以通通按时间顺序写到一个普通笔记本上。&lt;/p&gt;
+
+&lt;p&gt;字迹潦草无所谓，只要自己能看懂就好，别人才没时间看~~~&lt;/p&gt;
+
+&lt;p&gt;用一个普通的笔记本开始我崭新的学习之旅，之前用用过MyBase，Evernote、有道云笔记、为知笔记。在电脑上始终没法体验原始笔记本书写。更何况，我🐢般的打字速度，要命勒，要命勒！！ 所以现在回归到原始，结合为知笔记软件，重新管理我的知识。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;功夫不负有心人&lt;/strong&gt; 耳濡墨染的一个真理，假设一篇文章抄在笔记本上需要花三十分钟时间。而用智能手机拍成照片或扫描成纯文字文档却只要一分钟，想抄写的文字就能永久地保存下来。&lt;/p&gt;
+
+&lt;p&gt;那么，&lt;strong&gt;只要使用智能手机，读书效率就能提高三十倍吗？&lt;/strong&gt; 我想不是的。&lt;/p&gt;
+
+&lt;p&gt;即使你使用手机拍照，花三十分钟保存了三十本书的信息，也不如花三十分钟抄写一本书的内容有效。无论在手机里面保存了多少本书，书里面的内容都不会被保存在脑子里。这些内容&lt;strong&gt;既不能融入你的身心，也不能变成你无形的财富&lt;/strong&gt;，与此相反，尽管抄完本也不一定能记住全部内容，但某段文章、某个词、作者的语气和思想等等，都会随着抄写时的身体感觉被深深地刻印在头脑和身体里。&lt;/p&gt;
+
+&lt;p&gt;就笔记本抄写文章内容，写感悟，记心情等都是简单有效快捷的方法。&lt;strong&gt;当做练字也好，请拾起笔，随便找一个干净的笔记本开始写笔记！&lt;/strong&gt;
+&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/9577af2e-7de4-4a56-bf79-9e16e8c2634b.JPG&#34; alt=&#34;虞双齐的读书笔记&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;结尾&#34;&gt;结尾&lt;/h1&gt;
+
+&lt;p&gt;一脑的想法，可提笔记录时，却难以下笔。需整理思路，如同和别人对话，得组织语言逻辑。才能让其听明白你所表达的意思。纵有千万灵感，只有用文字记录，让&lt;strong&gt;思想书面化&lt;/strong&gt;，让灵感脱离之前的抽象状态，会更容易将其理解消化，也能促使你把灵感用作创意材料，想用的时候就能信手拈来。&lt;/p&gt;
+
+&lt;p&gt;我喜欢将知识，思想形成文字分享给他人。特别是工作内容，只有书面化，才能让自己理清思路完善知识，传播价值。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;用笔记管理读书生活&lt;/strong&gt;是值得一试的读书方法，我已服此良药，你会行动嘛？三个月后呢？&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>gRPC服务发现&amp;amp;负载均衡</title>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;grpc服务发现-负载均衡&#34;&gt;gRPC服务发现&amp;amp;负载均衡&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的位置不同，通常可分为以下三种解决方案：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;1-集中式lb-proxy-model&#34;&gt;&lt;strong&gt;1、集中式LB（Proxy Model）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;在服务消费者和服务提供者之间有一个独立的LB，通常是专门的硬件设备如
+F5，或者基于软件如
+LVS，HAproxy等实现。LB上有所有服务的地址映射表，通常由运维配置注册，当服务消费方调用某个目标服务时，它向LB发起请求，由LB以某种策略，比如轮询（Round-Robin）做负载均衡后将请求转发到目标服务。LB一般具备健康检查能力，能自动摘除不健康的服务实例。
+该方案主要问题：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;单点问题，所有服务调用流量都经过LB，当服务数量和调用量大的时候，LB容易成为瓶颈，且一旦LB发生故障影响整个系统；&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务消费方、提供方之间增加了一级，有一定性能开销。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;2-进程内lb-balancing-aware-client&#34;&gt;&lt;strong&gt;2、进程内LB（Balancing-aware Client）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;针对第一个方案的不足，此方案将LB的功能集成到服务消费方进程里，也被称为软负载或者客户端负载方案。服务提供方启动时，首先将服务地址注册到服务注册表，同时定期报心跳到服务注册表以表明服务的存活状态，相当于健康检查，服务消费方要访问某个服务时，它通过内置的LB组件向服务注册表查询，同时缓存并定期刷新目标服务地址列表，然后以某种负载均衡策略选择一个目标服务地址，最后向目标服务发起请求。LB和服务发现能力被分散到每一个服务消费者的进程内部，同时服务消费方和服务提供方之间是直接调用，没有额外开销，性能比较好。该方案主要问题：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;开发成本，该方案将服务调用方集成到客户端的进程里头，如果有多种不同的语言栈，就要配合开发多种不同的客户端，有一定的研发和维护成本；&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;另外生产环境中，后续如果要对客户库进行升级，势必要求服务调用方修改代码并重新发布，升级较复杂。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;3-独立-lb-进程-external-load-balancing-service&#34;&gt;&lt;strong&gt;3、独立 LB 进程（External Load Balancing Service）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;该方案是针对第二种方案的不足而提出的一种折中方案，原理和第二种方案基本类似。&lt;br /&gt;
+不同之处是将LB和服务发现功能从进程内移出来，变成主机上的一个独立进程。主机上的一个或者多个服务要访问目标服务时，他们都通过同一主机上的独立LB进程做服务发现和负载均衡。该方案也是一种分布式方案没有单点问题，一个LB进程挂了只影响该主机上的服务调用方，服务调用方和LB之间是进程内调用性能好，同时该方案还简化了服务调用方，不需要为不同语言开发客户库，LB的升级不需要服务调用方改代码。
+&lt;br /&gt;
+该方案主要问题：部署较复杂，环节多，出错调试排查问题不方便。&lt;/p&gt;
+
+&lt;h2 id=&#34;grpc服务发现及负载均衡实现&#34;&gt;&lt;strong&gt;gRPC服务发现及负载均衡实现&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;gRPC开源组件官方并未直接提供服务注册与发现的功能实现，但其设计文档已提供实现的思路，并在不同语言的gRPC代码API中已提供了命名解析和负载均衡接口供扩展。&lt;/p&gt;
+
+&lt;p&gt;其基本实现原理：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;服务启动后gRPC客户端向命名服务器发出名称解析请求，名称将解析为一个或多个IP地址，每个IP地址标示它是服务器地址还是负载均衡器地址，以及标示要使用那个客户端负载均衡策略或服务配置。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;客户端实例化负载均衡策略，如果解析返回的地址是负载均衡器地址，则客户端将使用grpclb策略，否则客户端使用服务配置请求的负载均衡策略。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;负载均衡策略为每个服务器地址创建一个子通道（channel）。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;当有rpc请求时，负载均衡策略决定那个子通道即grpc服务器将接收请求，当可用服务器为空时客户端的请求将被阻塞。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;根据gRPC官方提供的设计思路，基于进程内LB方案（即第2个案，阿里开源的服务框架
+Dubbo
+也是采用类似机制），结合分布式一致的组件（如Zookeeper、Consul、Etcd），可找到gRPC服务发现和负载均衡的可行解决方案。接下来以GO语言为例，简单介绍下基于Etcd3的关键代码实现：&lt;/p&gt;
+
+&lt;p&gt;1）命名解析实现：resolver.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package etcdv3
+
+import (
+    &amp;quot;errors&amp;quot;
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;strings&amp;quot;
+
+    etcd3 &amp;quot;github.com/coreos/etcd/clientv3&amp;quot;
+    &amp;quot;google.golang.org/grpc/naming&amp;quot;
+)
+
+// resolver is the implementaion of grpc.naming.Resolver
+type resolver struct {
+    serviceName string // service name to resolve
+}
+
+// NewResolver return resolver with service name
+func NewResolver(serviceName string) *resolver {
+    return &amp;amp;resolver{serviceName: serviceName}
+}
+
+// Resolve to resolve the service from etcd, target is the dial address of etcd
+// target example: &amp;quot;http://127.0.0.1:2379,http://127.0.0.1:12379,http://127.0.0.1:22379&amp;quot;
+func (re *resolver) Resolve(target string) (naming.Watcher, error) {
+    if re.serviceName == &amp;quot;&amp;quot; {
+        return nil, errors.New(&amp;quot;grpclb: no service name provided&amp;quot;)
+    }
+
+    // generate etcd client
+    client, err := etcd3.New(etcd3.Config{
+        Endpoints: strings.Split(target, &amp;quot;,&amp;quot;),
+    })
+    if err != nil {
+        return nil, fmt.Errorf(&amp;quot;grpclb: creat etcd3 client failed: %s&amp;quot;, err.Error())
+    }
+
+    // Return watcher
+    return &amp;amp;watcher{re: re, client: *client}, nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2）服务发现实现：watcher.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package etcdv3
+
+import (
+    &amp;quot;fmt&amp;quot;
+    etcd3 &amp;quot;github.com/coreos/etcd/clientv3&amp;quot;
+    &amp;quot;golang.org/x/net/context&amp;quot;
+    &amp;quot;google.golang.org/grpc/naming&amp;quot;
+    &amp;quot;github.com/coreos/etcd/mvcc/mvccpb&amp;quot;
+)
+
+// watcher is the implementaion of grpc.naming.Watcher
+type watcher struct {
+    re            *resolver // re: Etcd Resolver
+    client        etcd3.Client
+    isInitialized bool
+}
+
+// Close do nothing
+func (w *watcher) Close() {
+}
+
+// Next to return the updates
+func (w *watcher) Next() ([]*naming.Update, error) {
+    // prefix is the etcd prefix/value to watch
+    prefix := fmt.Sprintf(&amp;quot;/%s/%s/&amp;quot;, Prefix, w.re.serviceName)
+
+    // check if is initialized
+    if !w.isInitialized {
+        // query addresses from etcd
+        resp, err := w.client.Get(context.Background(), prefix, etcd3.WithPrefix())
+        w.isInitialized = true
+        if err == nil {
+            addrs := extractAddrs(resp)
+            //if not empty, return the updates or watcher new dir
+            if l := len(addrs); l != 0 {
+                updates := make([]*naming.Update, l)
+                for i := range addrs {
+                    updates[i] = &amp;amp;naming.Update{Op: naming.Add, Addr: addrs[i]}
+                }
+                return updates, nil
+            }
+        }
+    }
+
+    // generate etcd Watcher
+    rch := w.client.Watch(context.Background(), prefix, etcd3.WithPrefix())
+    for wresp := range rch {
+        for _, ev := range wresp.Events {
+            switch ev.Type {
+            case mvccpb.PUT:
+                return []*naming.Update{{Op: naming.Add, Addr: string(ev.Kv.Value)}}, nil
+            case mvccpb.DELETE:
+                return []*naming.Update{{Op: naming.Delete, Addr: string(ev.Kv.Value)}}, nil
+            }
+        }
+    }
+    return nil, nil
+}
+
+func extractAddrs(resp *etcd3.GetResponse) []string {
+    addrs := []string{}
+
+    if resp == nil || resp.Kvs == nil {
+        return addrs
+    }
+
+    for i := range resp.Kvs {
+        if v := resp.Kvs[i].Value; v != nil {
+            addrs = append(addrs, string(v))
+        }
+    }
+
+    return addrs
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3）服务注册实现：register.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package etcdv3
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;log&amp;quot;
+    &amp;quot;strings&amp;quot;
+    &amp;quot;time&amp;quot;
+
+    etcd3 &amp;quot;github.com/coreos/etcd/clientv3&amp;quot;
+    &amp;quot;golang.org/x/net/context&amp;quot;
+    &amp;quot;github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes&amp;quot;
+)
+
+// Prefix should start and end with no slash
+var Prefix = &amp;quot;etcd3_naming&amp;quot;
+var client etcd3.Client
+var serviceKey string
+
+var stopSignal = make(chan bool, 1)
+
+// Register
+func Register(name string, host string, port int, target string, interval time.Duration, ttl int) error {
+    serviceValue := fmt.Sprintf(&amp;quot;%s:%d&amp;quot;, host, port)
+    serviceKey = fmt.Sprintf(&amp;quot;/%s/%s/%s&amp;quot;, Prefix, name, serviceValue)
+
+    // get endpoints for register dial address
+    var err error
+    client, err := etcd3.New(etcd3.Config{
+        Endpoints: strings.Split(target, &amp;quot;,&amp;quot;),
+    })
+    if err != nil {
+        return fmt.Errorf(&amp;quot;grpclb: create etcd3 client failed: %v&amp;quot;, err)
+    }
+
+    go func() {
+        // invoke self-register with ticker
+        ticker := time.NewTicker(interval)
+        for {
+            // minimum lease TTL is ttl-second
+            resp, _ := client.Grant(context.TODO(), int64(ttl))
+            // should get first, if not exist, set it
+            _, err := client.Get(context.Background(), serviceKey)
+            if err != nil {
+                if err == rpctypes.ErrKeyNotFound {
+                    if _, err := client.Put(context.TODO(), serviceKey, serviceValue, etcd3.WithLease(resp.ID)); err != nil {
+                        log.Printf(&amp;quot;grpclb: set service &#39;%s&#39; with ttl to etcd3 failed: %s&amp;quot;, name, err.Error())
+                    }
+                } else {
+                    log.Printf(&amp;quot;grpclb: service &#39;%s&#39; connect to etcd3 failed: %s&amp;quot;, name, err.Error())
+                }
+            } else {
+                // refresh set to true for not notifying the watcher
+                if _, err := client.Put(context.Background(), serviceKey, serviceValue, etcd3.WithLease(resp.ID)); err != nil {
+                    log.Printf(&amp;quot;grpclb: refresh service &#39;%s&#39; with ttl to etcd3 failed: %s&amp;quot;, name, err.Error())
+                }
+            }
+            select {
+            case &amp;lt;-stopSignal:
+                return
+            case &amp;lt;-ticker.C:
+            }
+        }
+    }()
+
+    return nil
+}
+
+// UnRegister delete registered service from etcd
+func UnRegister() error {
+    stopSignal &amp;lt;- true
+    stopSignal = make(chan bool, 1) // just a hack to avoid multi UnRegister deadlock
+    var err error;
+    if _, err := client.Delete(context.Background(), serviceKey); err != nil {
+        log.Printf(&amp;quot;grpclb: deregister &#39;%s&#39; failed: %s&amp;quot;, serviceKey, err.Error())
+    } else {
+        log.Printf(&amp;quot;grpclb: deregister &#39;%s&#39; ok.&amp;quot;, serviceKey)
+    }
+    return err
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4）接口描述文件：helloworld.proto&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;syntax = &amp;quot;proto3&amp;quot;;
+
+option java_multiple_files = true;
+option java_package = &amp;quot;com.midea.jr.test.grpc&amp;quot;;
+option java_outer_classname = &amp;quot;HelloWorldProto&amp;quot;;
+option objc_class_prefix = &amp;quot;HLW&amp;quot;;
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+    //   Sends a greeting
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+    }
+}
+
+// The request message containing the user&#39;s name.
+message HelloRequest {
+    string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5）实现服务端接口：helloworldserver.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;flag&amp;quot;
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;log&amp;quot;
+    &amp;quot;net&amp;quot;
+    &amp;quot;os&amp;quot;
+    &amp;quot;os/signal&amp;quot;
+    &amp;quot;syscall&amp;quot;
+    &amp;quot;time&amp;quot;
+
+    &amp;quot;golang.org/x/net/context&amp;quot;
+    &amp;quot;google.golang.org/grpc&amp;quot;
+
+    grpclb &amp;quot;com.midea/jr/grpclb/naming/etcd/v3&amp;quot;
+    &amp;quot;com.midea/jr/grpclb/example/pb&amp;quot;
+)
+
+var (
+    serv = flag.String(&amp;quot;service&amp;quot;, &amp;quot;hello_service&amp;quot;, &amp;quot;service name&amp;quot;)
+    port = flag.Int(&amp;quot;port&amp;quot;, 50001, &amp;quot;listening port&amp;quot;)
+    reg = flag.String(&amp;quot;reg&amp;quot;, &amp;quot;http://127.0.0.1:2379&amp;quot;, &amp;quot;register etcd address&amp;quot;)
+)
+
+func main() {
+    flag.Parse()
+
+    lis, err := net.Listen(&amp;quot;tcp&amp;quot;, fmt.Sprintf(&amp;quot;0.0.0.0:%d&amp;quot;, *port))
+    if err != nil {
+        panic(err)
+    }
+
+    err = grpclb.Register(*serv, &amp;quot;127.0.0.1&amp;quot;, *port, *reg, time.Second*10, 15)
+    if err != nil {
+        panic(err)
+    }
+
+    ch := make(chan os.Signal, 1)
+    signal.Notify(ch, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL, syscall.SIGHUP, syscall.SIGQUIT)
+    go func() {
+        s := &amp;lt;-ch
+        log.Printf(&amp;quot;receive signal &#39;%v&#39;&amp;quot;, s)
+        grpclb.UnRegister()
+        os.Exit(1)
+    }()
+
+    log.Printf(&amp;quot;starting hello service at %d&amp;quot;, *port)
+    s := grpc.NewServer()
+    pb.RegisterGreeterServer(s, &amp;amp;server{})
+    s.Serve(lis)
+}
+
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+    fmt.Printf(&amp;quot;%v: Receive is %s\n&amp;quot;, time.Now(), in.Name)
+    return &amp;amp;pb.HelloReply{Message: &amp;quot;Hello &amp;quot; + in.Name}, nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6）实现客户端接口：helloworldclient.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;flag&amp;quot;
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+
+    grpclb &amp;quot;com.midea/jr/grpclb/naming/etcd/v3&amp;quot;
+    &amp;quot;com.midea/jr/grpclb/example/pb&amp;quot;
+    &amp;quot;golang.org/x/net/context&amp;quot;
+    &amp;quot;google.golang.org/grpc&amp;quot;
+    &amp;quot;strconv&amp;quot;
+)
+
+var (
+    serv = flag.String(&amp;quot;service&amp;quot;, &amp;quot;hello_service&amp;quot;, &amp;quot;service name&amp;quot;)
+    reg = flag.String(&amp;quot;reg&amp;quot;, &amp;quot;http://127.0.0.1:2379&amp;quot;, &amp;quot;register etcd address&amp;quot;)
+)
+
+func main() {
+    flag.Parse()
+    r := grpclb.NewResolver(*serv)
+    b := grpc.RoundRobin(r)
+
+    ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+    conn, err := grpc.DialContext(ctx, *reg, grpc.WithInsecure(), grpc.WithBalancer(b))
+    if err != nil {
+        panic(err)
+    }
+
+    ticker := time.NewTicker(1 * time.Second)
+    for t := range ticker.C {
+        client := pb.NewGreeterClient(conn)
+        resp, err := client.SayHello(context.Background(), &amp;amp;pb.HelloRequest{Name: &amp;quot;world &amp;quot; + strconv.Itoa(t.Second())})
+        if err == nil {
+            fmt.Printf(&amp;quot;%v: Reply is %s\n&amp;quot;, t, resp.Message)
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7）运行测试&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;运行3个服务端S1、S2、S3，1个客户端C，观察各服务端接收的请求数是否相等？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;关闭1个服务端S1，观察请求是否会转移到另外2个服务端？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;重新启动S1服务端，观察另外2个服务端请求是否会平均分配到S1？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;关闭Etcd3服务器，观察客户端与服务端通信是否正常？ &lt;br /&gt;
+关闭通信仍然正常，但新服务端不会注册进来，服务端掉线了也无法摘除掉。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;重新启动Etcd3服务器，服务端上下线可自动恢复正常。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;关闭所有服务端，客户端请求将被阻塞。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://www.grpc.io/docs/
+https://github.com/grpc/grpc/blob/master/doc/load-balancing.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</description>
+      
     </item>
     
   </channel>

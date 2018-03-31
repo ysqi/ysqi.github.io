@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>测试 on 虞双齐的博客</title>
+    <title>测试 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E6%B5%8B%E8%AF%95.html</link>
-    <description>在 虞双齐的博客上关于in 测试 的内容</description>
+    <description>Recent content in 测试 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:51 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%B5%8B%E8%AF%95.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>编写可测试的Go代码</title>
@@ -17,12 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:51 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</guid>
-      <description>原文链接：http://tabalt.net/blog/golang&amp;hellip;
-Golang作为一门标榜工程化的语言，提供了非常简便、实用的编写单元测试的能力。本文通过Golang源码包中的用法，来学习在实际项目中如何编写可测试的Go代码。
-第一个测试 “Hello Test!” 首先，在我们$GOPATH/src目录下创建hello目录，作为本文涉及到的所有示例代码的根目录。
-然后，新建名为hello.go的文件，定义一个函数hello()，功能是返回一个由若干单词拼接成句子：
-package hello func hello() string { words := []string{&amp;quot;hello&amp;quot;, &amp;quot;func&amp;quot;, &amp;quot;in&amp;quot;, &amp;quot;package&amp;quot;, &amp;quot;hello&amp;quot;} wl := len(words) sentence := &amp;quot;&amp;quot; for key, word := range words { sentence += word if key &amp;lt; wl-1 { sentence += &amp;quot; &amp;quot; } else { sentence += &amp;quot;.&amp;quot; } } return sentence }  接着，新建名为hello_test.go的文件，填入如下内容：
-package hello import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; ) func TestHello(t *testing.T) { got := hello() expect := &amp;quot;hello func in package hello.</description>
+      <description>原文链接：http://tabalt.net/blog/golang&amp;hellip; Golang作为一门标榜工程化的语言，提供了非常简便、实</description>
     </item>
     
   </channel>

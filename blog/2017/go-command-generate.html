@@ -1,61 +1,48 @@
-<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Golang Generate命令说明与使用 |虞双齐的博客</title><meta name="description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令"><meta name="keywords" content="Golang, command, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go-command-generate.html"><meta property="og:title" content="Golang Generate命令说明与使用"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-08-14 18:52:10"><meta property="article:modified_time" content="2017-08-14 18:52:10"><meta property="article:tag" content="Golang"><meta property="article:tag" content="command"><meta name="og:description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
-	doc.removeAttribute('class', 'no-js');
-	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
-		var page = document.getElementById("page");		
-		if (page.getAttribute("class") === "not-active") {
-			page.setAttribute("class", "active-sidebar");		
-		} else if (page.getAttribute("class") === "active-sidebar") {
-			page.setAttribute("class", "not-active");
-		}		
-	}
-	
-	window.onload = function() {
-		if(document.getElementById("sidebar-button")) {
-			var sidebar_button = document.getElementById("sidebar-button");
-			sidebar_button.onclick = function(event) {
-				changeActive();
-				event.preventDefault();
-			}
-		}
-		
-	}
-	
-	window.onresize = function() {
-		var page = document.getElementById("page");	
-		page.setAttribute("class", "not-active");	
-	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2017/go-command-generate.html">Golang Generate命令说明与使用</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2017-08-14">2017年08月14日</time></span></p></header><div itemprop="articleBody"><p>前期有专门利用<code>go generate</code>自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明<code>generate</code>命令的神奇之处。</p><h2 id="命令诉求">命令诉求</h2><p>通用计算有一特性——<a href="https://baike.baidu.com/item/图灵完备">图灵完备</a>。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。</p><p>通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">type</span> Status <span style="color:#902000">int</span>
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Golang Generate命令说明与使用 - 虞双齐爱折腾</title><link rel="alternate" hreflang="zh" href="https://yushuangqi.com"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="applicable-device" content="pc,mobile"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="theme-color" content="#f8f5ec"><meta name="msapplication-navbutton-color" content="#f8f5ec"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec"><meta name="mobile-web-app-capable" content="yes"><meta name="author" content="虞双齐"><meta name="description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene"><meta name="keywords" content="智能合约开发, Go语言, 区块链技术"><meta name="generator" content="Hugo 0.37.1"><link rel="canonical" href="https://yushuangqi.com/blog/2017/go-command-generate.html"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/manifest.json"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet"><link href="https://cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" rel="stylesheet" crossorigin="anonymous"><meta property="og:title" content="Golang Generate命令说明与使用"><meta property="og:description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene"><meta property="og:type" content="article"><meta property="og:url" content="https://yushuangqi.com/blog/2017/go-command-generate.html"><meta property="article:published_time" content="2017-08-14T18:52:10&#43;08:00"><meta property="article:modified_time" content="2017-08-14T18:52:10&#43;08:00"><meta itemprop="name" content="Golang Generate命令说明与使用"><meta itemprop="description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene"><meta itemprop="datePublished" content="2017-08-14T18:52:10&#43;08:00"><meta itemprop="dateModified" content="2017-08-14T18:52:10&#43;08:00"><meta itemprop="wordCount" content="2806"><meta itemprop="keywords" content="Golang,command,"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Golang Generate命令说明与使用"><meta name="twitter:description" content="前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene"><!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]--><!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]--></head><body><div id="mobile-navbar" class="mobile-navbar"><div class="mobile-header-logo"><a href="/" class="logo">虞双齐爱折腾</a></div><div class="mobile-navbar-icon"><span></span> <span></span> <span></span></div></div><nav id="mobile-menu" class="mobile-menu slideout-menu"><ul class="mobile-menu-list"><a href="/"><li class="mobile-menu-item">首页</li></a><a href="/post.html"><li class="mobile-menu-item">归档</li></a><a href="/tags.html"><li class="mobile-menu-item">标签</li></a><a href="/categories.html"><li class="mobile-menu-item">分类</li></a><a href="/about.html"><li class="mobile-menu-item">关于</li></a></ul></nav><header id="header" class="header container"><div class="logo-wrapper"><a href="/" class="logo">虞双齐爱折腾</a></div><nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item"><a class="menu-item-link" href="/">首页</a></li><li class="menu-item"><a class="menu-item-link" href="/post.html">归档</a></li><li class="menu-item"><a class="menu-item-link" href="/tags.html">标签</a></li><li class="menu-item"><a class="menu-item-link" href="/categories.html">分类</a></li><li class="menu-item"><a class="menu-item-link" href="/about.html">关于</a></li></ul></nav></header><div id="mobile-panel"><main id="main" class="main bg-llight"><div class="content-wrapper"><div id="content" class="content container"><article class="post bg-white"><header class="post-header"><h1 class="post-title">Golang Generate命令说明与使用</h1><div class="post-meta"><span class="post-time">2017-08-14</span><div class="post-category"><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91/">编程语言与开发</a></div><span class="more-meta">约 2806 字 </span><span class="more-meta">预计阅读 6 分钟</span></div></header><div class="post-toc" id="post-toc"><h2 class="post-toc-title">文章目录</h2><div class="post-toc-content always-active"><nav id="TableOfContents"><ul><li><ul><li><a href="#命令诉求">命令诉求</a></li><li><a href="#generate命令说明">Generate命令说明</a></li><li><a href="#如何使用generate命令">如何使用Generate命令</a></li><li><a href="#generate实战">Generate实战</a><ul><li><a href="#业务逻辑">业务逻辑</a></li><li><a href="#具体实现">具体实现</a><ul><li><a href="#源代码-user-go">源代码-user.go</a></li><li><a href="#源代码-myenumstr-go">源代码-myenumstr.go</a></li></ul></li></ul></li></ul></li></ul></nav></div></div><div class="post-content"><p>前期有专门利用<code>go generate</code>自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明<code>generate</code>命令的神奇之处。</p><h2 id="命令诉求">命令诉求</h2><p>通用计算有一特性——<a href="https://baike.baidu.com/item/图灵完备">图灵完备</a>。是一个计算机程序能编写一个计算机程序。既能写程序的程序。按规则定义描述内容，则可以根据描述生成程序代码。10年时刚做项目便以增删改查为主，代码生成器生成代码那是杠杠的。</p><p>通过定义便可高效生成代码，无需手工编码。如当定义一个枚举后，为了打印友好内容，我们经常手工定义String方法。</p><pre><code class="language-go">type Status int
 
-<span style="color:#007020;font-weight:700">const</span> (
-	Offline Status = <span style="color:#007020;font-weight:700">iota</span>
+const (
+	Offline Status = iota
 	Online
 	Disable
 	Deleted
 )
 
-<span style="color:#007020;font-weight:700">var</span> statusText = []<span style="color:#902000">string</span>{<span style="color:#4070a0">&#34;Offline&#34;</span>, <span style="color:#4070a0">&#34;Online&#34;</span>, <span style="color:#4070a0">&#34;Desable&#34;</span>, <span style="color:#4070a0">&#34;Deleted&#34;</span>}
+var statusText = []string{&quot;Offline&quot;, &quot;Online&quot;, &quot;Desable&quot;, &quot;Deleted&quot;}
 
-<span style="color:#007020;font-weight:700">func</span> (s Status) String() <span style="color:#902000">string</span> {
-	v <span style="color:#666">:=</span> <span style="color:#007020">int</span>(s)
-	<span style="color:#007020;font-weight:700">if</span> v &lt; <span style="color:#40a070">0</span> <span style="color:#666">||</span> v &gt; <span style="color:#007020">len</span>(statusText) {
-		<span style="color:#007020;font-weight:700">return</span> fmt.Sprintf(<span style="color:#4070a0">&#34;Status(%d)&#34;</span>, s)
+func (s Status) String() string {
+	v := int(s)
+	if v &lt; 0 || v &gt; len(statusText) {
+		return fmt.Sprintf(&quot;Status(%d)&quot;, s)
 	}
-	<span style="color:#007020;font-weight:700">return</span> statusText[v]
-}</code></pre></div><p>当遇到枚举调整时，则必须要再同步修改<code>statusText</code>，而此事常容被忽视。</p><h2 id="generate命令说明">Generate命令说明</h2><p>早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。</p><p>如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等</p><p><strong>go generate</strong>用于一键式批量执行<strong>任何</strong>命令，创建或更新Go文件或者输出结果。</p><p>Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go generate <span style="color:#666">[</span>-run regexp<span style="color:#666">]</span> <span style="color:#666">[</span>-n<span style="color:#666">]</span> <span style="color:#666">[</span>-v<span style="color:#666">]</span> <span style="color:#666">[</span>-x<span style="color:#666">]</span> <span style="color:#666">[</span>build flags<span style="color:#666">]</span> <span style="color:#666">[</span>file.go... | packages<span style="color:#666">]</span></code></pre></div><p>参数说明：</p><ul><li>-run 正则表达式匹配命令行，仅执行匹配的命令</li><li>-v 打印已被检索处理的文件。</li><li>-n 打印出将被执行的命令，此时将不真实执行命令</li><li>-x 打印已执行的命令</li></ul><p>执行举例：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#60a0b0;font-style:italic"># 打印当前目录下所有文件，将被执行的命令
-</span><span style="color:#60a0b0;font-style:italic"></span>go generate -n ./...
-<span style="color:#60a0b0;font-style:italic"># 对包下所有Go文件进行处理
-</span><span style="color:#60a0b0;font-style:italic"></span>go generate github.com/ysqi/repo
-<span style="color:#60a0b0;font-style:italic"># 打印包下所有文件，将被执行的命令
-</span><span style="color:#60a0b0;font-style:italic"></span>go generate -n runtime</code></pre></div><h2 id="如何使用generate命令">如何使用Generate命令</h2><p>需在的代码中配置generate标记，则在执行<code>go generate</code>时可被检测到。<code>go generate</code>执行时，实际在扫描如下内容：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#666">//</span><span style="color:#007020;font-weight:700">go</span>:generate command argument<span style="color:#666">...</span></code></pre></div><p>generate命令不是解析文件，而是逐行匹配以<strong>//go:generate</strong> 开头的行(前面不要有空格)。故命令可以写在任何位置，也可存在多个命令行。</p><p><strong>//go:generate</strong> 后跟随具体的命令。命令为可执行程序，形同在Shell下执行。所以命令是在环境变量中存在，也可是完整路径。如：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">package</span> main
-<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
-<span style="color:#60a0b0;font-style:italic">//go:generate echo hello
-</span><span style="color:#60a0b0;font-style:italic">//go:generate go run main.go
-</span><span style="color:#60a0b0;font-style:italic">//go:generate  echo file=$GOFILE pkg=$GOPACKAGE
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">func</span> main() {
-	fmt.Println(<span style="color:#4070a0">&#34;main func&#34;</span>)
-}</code></pre></div><p>执行：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ go generate
+	return statusText[v]
+}
+
+</code></pre><p>当遇到枚举调整时，则必须要再同步修改<code>statusText</code>，而此事常容被忽视。</p><h2 id="generate命令说明">Generate命令说明</h2><p>早在Go1.4版本实现，所以你现在可以看到Go源码中大量含有的该命令使用。</p><p>如：在unicode包中生产Unicode表，为encoding/gob创建有效的编解码方法，在time包中创建时区数据等等</p><p><strong>go generate</strong>用于一键式批量执行<strong>任何</strong>命令，创建或更新Go文件或者输出结果。</p><p>Generate 命令和其他go build、go get、go test等没半毛钱关系。需特定执行，命令如下：</p><pre><code class="language-shell">go generate [-run regexp] [-n] [-v] [-x] [build flags] [file.go... | packages]
+</code></pre><p>参数说明：</p><ul><li>-run 正则表达式匹配命令行，仅执行匹配的命令</li><li>-v 打印已被检索处理的文件。</li><li>-n 打印出将被执行的命令，此时将不真实执行命令</li><li>-x 打印已执行的命令</li></ul><p>执行举例：</p><pre><code class="language-shell"># 打印当前目录下所有文件，将被执行的命令
+go generate -n ./...
+# 对包下所有Go文件进行处理
+go generate github.com/ysqi/repo
+# 打印包下所有文件，将被执行的命令
+go generate -n runtime
+</code></pre><h2 id="如何使用generate命令">如何使用Generate命令</h2><p>需在的代码中配置generate标记，则在执行<code>go generate</code>时可被检测到。<code>go generate</code>执行时，实际在扫描如下内容：</p><pre><code class="language-go">//go:generate command argument...
+</code></pre><p>generate命令不是解析文件，而是逐行匹配以<strong>//go:generate</strong> 开头的行(前面不要有空格)。故命令可以写在任何位置，也可存在多个命令行。</p><p><strong>//go:generate</strong> 后跟随具体的命令。命令为可执行程序，形同在Shell下执行。所以命令是在环境变量中存在，也可是完整路径。如：</p><pre><code class="language-go">package main
+import &quot;fmt&quot;
+//go:generate echo hello
+//go:generate go run main.go
+//go:generate  echo file=$GOFILE pkg=$GOPACKAGE
+func main() {
+	fmt.Println(&quot;main func&quot;)
+}
+</code></pre><p>执行：</p><pre><code class="language-shell">$ go generate
 hello
 man func
-<span style="color:#bb60d5">file</span><span style="color:#666">=</span>main.go <span style="color:#bb60d5">pkg</span><span style="color:#666">=</span>main</code></pre></div><p>在执行<code>go generate</code>时将会加入些信息到环境变量，可在命令程序中使用。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$GOARCH
+file=main.go pkg=main
+</code></pre><p>在执行<code>go generate</code>时将会加入些信息到环境变量，可在命令程序中使用。</p><pre><code class="language-text">$GOARCH
 	架构 (arm, amd64, etc.)
 $GOOS
 	OS (linux, windows, etc.)
@@ -66,309 +53,330 @@ $GOLINE
 $GOPACKAGE
     当前处理文件的包名
 $DOLLAR
-	固定的&#34;$&#34;,不清楚用途</code></pre></div><p>同时该命令是在所处理文件的目录下执行，故利用上述信息和当前目录，边可获得丰富的DIY功能。</p><h2 id="generate实战">Generate实战</h2><p>如前面所述，现在练手来实现对枚举String函数以打印友好信息。 最终调用为：</p><pre><code>//go:generate  myenumstr -type Status
-</code></pre><p>自动生成如下代码：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">package</span> user
+	固定的&quot;$&quot;,不清楚用途
+</code></pre><p>同时该命令是在所处理文件的目录下执行，故利用上述信息和当前目录，边可获得丰富的DIY功能。</p><h2 id="generate实战">Generate实战</h2><p>如前面所述，现在练手来实现对枚举String函数以打印友好信息。 最终调用为：</p><pre><code>//go:generate  myenumstr -type Status
+</code></pre><p>自动生成如下代码：</p><pre><code class="language-go">package user
 
-<span style="color:#007020;font-weight:700">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
+import &quot;fmt&quot;
 
-<span style="color:#007020;font-weight:700">func</span> (c Status) String() <span style="color:#902000">string</span> {
-	<span style="color:#007020;font-weight:700">switch</span> c {
-	<span style="color:#007020;font-weight:700">case</span> Offline:
-		<span style="color:#007020;font-weight:700">return</span> <span style="color:#4070a0">&#34;Offline&#34;</span>
-	<span style="color:#007020;font-weight:700">case</span> Online:
-		<span style="color:#007020;font-weight:700">return</span> <span style="color:#4070a0">&#34;Online&#34;</span>
-	<span style="color:#007020;font-weight:700">case</span> Disable:
-		<span style="color:#007020;font-weight:700">return</span> <span style="color:#4070a0">&#34;Disable&#34;</span>
-	<span style="color:#007020;font-weight:700">case</span> Deleted:
-		<span style="color:#007020;font-weight:700">return</span> <span style="color:#4070a0">&#34;Deleted&#34;</span>
+func (c Status) String() string {
+	switch c {
+	case Offline:
+		return &quot;Offline&quot;
+	case Online:
+		return &quot;Online&quot;
+	case Disable:
+		return &quot;Disable&quot;
+	case Deleted:
+		return &quot;Deleted&quot;
 	}
-	<span style="color:#007020;font-weight:700">return</span> fmt.Sprintf(<span style="color:#4070a0">&#34;Status(%d)&#34;</span>, c)
-}</code></pre></div><h3 id="业务逻辑">业务逻辑</h3><p>该如何实现呢？实际我们需要获得三项:</p><ul><li>包名：user，该文件将存放在当前目录，需要知晓包名称</li><li>类型名：Status，参数传递</li><li>所有同类型var: Offline，Online，Disable，Deleted</li></ul><p>再生成代码后将其保存到当前目录，同时进行gofmt。</p><h3 id="具体实现">具体实现</h3><p>1.通过环境变量获取包名称</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">pkgName = os.Getenv(<span style="color:#4070a0">&#34;GOPACKAGE&#34;</span>)</code></pre></div><p>2.获取当前目录包信息 这里利用Go内置的库<code>go/build</code>解析目录，则可以获得该文件夹下包信息。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">var</span> err <span style="color:#902000">error</span>
-pkgInfo, err = build.ImportDir(<span style="color:#4070a0">&#34;.&#34;</span>, <span style="color:#40a070">0</span>)
-<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-	log.Fatal(err)
-}</code></pre></div><p>至此便能获得目录下所有Go文件<code>pkgInfo.GoFiles</code>，用于语法树解析。</p><p>3.解析Go文件语法树，提取Status相关信息。 需要注意的是，我们约定所定义的枚举信息实际应该全部是Const。需从语法树中 提取出所有的Const，并判断类型是否符合条件。</p><p>这里利用的是Go的语法树库<a href="https://golang.org/pkg/go/ast">go/ast</a>(abstract syntax tree)和解析库<a href="https://golang.org/pkg/go/parser">go/parser</a>，语法树是按语句块<code>()</code>形成树结构。从中过滤<code>const</code>语句块</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fset <span style="color:#666">:=</span> token.NewFileSet()
-<span style="color:#60a0b0;font-style:italic">//解析go文件
-</span><span style="color:#60a0b0;font-style:italic"></span>f, err <span style="color:#666">:=</span> parser.ParseFile(fset, gofile, <span style="color:#007020;font-weight:700">nil</span>, <span style="color:#40a070">0</span>)
-<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	return fmt.Sprintf(&quot;Status(%d)&quot;, c)
+}
+</code></pre><h3 id="业务逻辑">业务逻辑</h3><p>该如何实现呢？实际我们需要获得三项:</p><ul><li>包名：user，该文件将存放在当前目录，需要知晓包名称</li><li>类型名：Status，参数传递</li><li>所有同类型var: Offline，Online，Disable，Deleted</li></ul><p>再生成代码后将其保存到当前目录，同时进行gofmt。</p><h3 id="具体实现">具体实现</h3><p>1.通过环境变量获取包名称</p><pre><code class="language-go">pkgName = os.Getenv(&quot;GOPACKAGE&quot;)
+</code></pre><p>2.获取当前目录包信息 这里利用Go内置的库<code>go/build</code>解析目录，则可以获得该文件夹下包信息。</p><pre><code class="language-go">var err error
+pkgInfo, err = build.ImportDir(&quot;.&quot;, 0)
+if err != nil {
 	log.Fatal(err)
 }
-<span style="color:#60a0b0;font-style:italic">//遍历每个树节点
-</span><span style="color:#60a0b0;font-style:italic"></span>ast.Inspect(f, <span style="color:#007020;font-weight:700">func</span>(n ast.Node) <span style="color:#902000">bool</span> {
-	decl, ok <span style="color:#666">:=</span> n.(<span style="color:#666">*</span>ast.GenDecl)
-	<span style="color:#007020;font-weight:700">if</span> !ok <span style="color:#666">||</span> decl.Tok <span style="color:#666">!=</span> token.CONST {
-		<span style="color:#007020;font-weight:700">return</span> <span style="color:#007020;font-weight:700">true</span>
+</code></pre><p>至此便能获得目录下所有Go文件<code>pkgInfo.GoFiles</code>，用于语法树解析。</p><p>3.解析Go文件语法树，提取Status相关信息。 需要注意的是，我们约定所定义的枚举信息实际应该全部是Const。需从语法树中 提取出所有的Const，并判断类型是否符合条件。</p><p>这里利用的是Go的语法树库<a href="https://golang.org/pkg/go/ast">go/ast</a>(abstract syntax tree)和解析库<a href="https://golang.org/pkg/go/parser">go/parser</a>，语法树是按语句块<code>()</code>形成树结构。从中过滤<code>const</code>语句块</p><pre><code class="language-go">fset := token.NewFileSet()
+//解析go文件
+f, err := parser.ParseFile(fset, gofile, nil, 0)
+if err != nil {
+	log.Fatal(err)
+}
+//遍历每个树节点
+ast.Inspect(f, func(n ast.Node) bool {
+	decl, ok := n.(*ast.GenDecl)
+	if !ok || decl.Tok != token.CONST {
+		return true
 	}
-	<span style="color:#60a0b0;font-style:italic">//...
-</span><span style="color:#60a0b0;font-style:italic"></span>}</code></pre></div><p>再循环const语句块中最小部分：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">for</span> _, spec <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> decl.Specs {}</code></pre></div><p>对每小部分判断，并获得对应的Type，如果Type为空则同上一行的一致。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// Const 代码块
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">const</span> (
-	Offline Status = <span style="color:#007020;font-weight:700">iota</span>
+	//...
+}
+</code></pre><p>再循环const语句块中最小部分：</p><pre><code class="language-go">for _, spec := range decl.Specs {}
+</code></pre><p>对每小部分判断，并获得对应的Type，如果Type为空则同上一行的一致。</p><pre><code class="language-go">// Const 代码块
+const (
+	Offline Status = iota
 	Online
 	Disable
 	Deleted
-)</code></pre></div><p>行内容</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">vspec <span style="color:#666">:=</span> spec.(<span style="color:#666">*</span>ast.ValueSpec) 
-<span style="color:#007020;font-weight:700">if</span> vspec.Type <span style="color:#666">==</span> <span style="color:#007020;font-weight:700">nil</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#007020">len</span>(vspec.Values) &gt;<span style="color:#40a070">0</span> {
-	<span style="color:#60a0b0;font-style:italic">// 排除 v = 1 这种结构
-</span><span style="color:#60a0b0;font-style:italic"></span>	typ = <span style="color:#4070a0">&#34;&#34;</span>
-	<span style="color:#007020;font-weight:700">continue</span>
+)
+</code></pre><p>行内容</p><pre><code class="language-go">vspec := spec.(*ast.ValueSpec) 
+if vspec.Type == nil &amp;&amp; len(vspec.Values) &gt;0 {
+	// 排除 v = 1 这种结构
+	typ = &quot;&quot;
+	continue
 }
-<span style="color:#60a0b0;font-style:italic">//如果Type不为空，则确认typ
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">if</span> vspec.Type <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-	ident, ok <span style="color:#666">:=</span> vspec.Type.(<span style="color:#666">*</span>ast.Ident)
-	<span style="color:#007020;font-weight:700">if</span> !ok {
-		<span style="color:#007020;font-weight:700">continue</span>
+//如果Type不为空，则确认typ
+if vspec.Type != nil {
+	ident, ok := vspec.Type.(*ast.Ident)
+	if !ok {
+		continue
 	}
 	typ = ident.Name
-}</code></pre></div><p>但我们只需要获得符合要求的Type，获得符合要求的Const信息：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">consts, ok <span style="color:#666">:=</span> typesMap[typ]
-<span style="color:#007020;font-weight:700">if</span> !ok {
-	<span style="color:#007020;font-weight:700">continue</span>
 }
-<span style="color:#007020;font-weight:700">for</span> _, n <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> vspec.Names {
-	consts = <span style="color:#007020">append</span>(consts, n.Name)
+</code></pre><p>但我们只需要获得符合要求的Type，获得符合要求的Const信息：</p><pre><code class="language-go">consts, ok := typesMap[typ]
+if !ok {
+	continue
 }
-typesMap[typ] = consts</code></pre></div><p>这里的typesMap是根据程序入参建立：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">var</span> ( 
-	typeNames = flag.String(<span style="color:#4070a0">&#34;type&#34;</span>, <span style="color:#4070a0">&#34;&#34;</span>, <span style="color:#4070a0">&#34;&#34;</span>)
+for _, n := range vspec.Names {
+	consts = append(consts, n.Name)
+}
+typesMap[typ] = consts
+</code></pre><p>这里的typesMap是根据程序入参建立：</p><pre><code class="language-go">var ( 
+	typeNames = flag.String(&quot;type&quot;, &quot;&quot;, &quot;&quot;)
 )
-types <span style="color:#666">:=</span> strings.Split(<span style="color:#666">*</span>typeNames, <span style="color:#4070a0">&#34;,&#34;</span>)
-typesMap <span style="color:#666">:=</span> <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>][]<span style="color:#902000">string</span>, <span style="color:#007020">len</span>(types))
-<span style="color:#007020;font-weight:700">for</span> _, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> types {
-	typesMap[strings.TrimSpace(v)] = []<span style="color:#902000">string</span>{}
-}</code></pre></div><p>4.根据收集的Const，生成String函数</p><p>使用模板生成内容，同时进行gofmt</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">func</span> genString(types <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>][]<span style="color:#902000">string</span>) []<span style="color:#902000">byte</span> {
+types := strings.Split(*typeNames, &quot;,&quot;)
+typesMap := make(map[string][]string, len(types))
+for _, v := range types {
+	typesMap[strings.TrimSpace(v)] = []string{}
+}
+</code></pre><p>4.根据收集的Const，生成String函数</p><p>使用模板生成内容，同时进行gofmt</p><pre><code class="language-go">func genString(types map[string][]string) []byte {
 
-	<span style="color:#007020;font-weight:700">const</span> strTmp = <span style="color:#4070a0">`
-</span><span style="color:#4070a0">	package {{.pkg}}
-</span><span style="color:#4070a0">	import &#34;fmt&#34;
-</span><span style="color:#4070a0">	
-</span><span style="color:#4070a0">	{{range $typ,$consts :=.types}}
-</span><span style="color:#4070a0">	func (c {{$typ}}) String() string{
-</span><span style="color:#4070a0">		switch c { {{range $consts}}
-</span><span style="color:#4070a0">			case {{.}}:return &#34;{{.}}&#34;{{end}}
-</span><span style="color:#4070a0">		}
-</span><span style="color:#4070a0">		return fmt.Sprintf(&#34;Status(%d)&#34;, c)	
-</span><span style="color:#4070a0">	}
-</span><span style="color:#4070a0">	{{end}}
-</span><span style="color:#4070a0">	`</span>
-	pkgName <span style="color:#666">:=</span> os.Getenv(<span style="color:#4070a0">&#34;GOPACKAGE&#34;</span>)
-	<span style="color:#007020;font-weight:700">if</span> pkgName <span style="color:#666">==</span> <span style="color:#4070a0">&#34;&#34;</span> {
+	const strTmp = `
+	package {{.pkg}}
+	import &quot;fmt&quot;
+	
+	{{range $typ,$consts :=.types}}
+	func (c {{$typ}}) String() string{
+		switch c { {{range $consts}}
+			case {{.}}:return &quot;{{.}}&quot;{{end}}
+		}
+		return fmt.Sprintf(&quot;Status(%d)&quot;, c)	
+	}
+	{{end}}
+	`
+	pkgName := os.Getenv(&quot;GOPACKAGE&quot;)
+	if pkgName == &quot;&quot; {
 		pkgName = pkgInfo.Name
 	}
-	data <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>]<span style="color:#007020;font-weight:700">interface</span>{}{
-		<span style="color:#4070a0">&#34;pkg&#34;</span>:   pkgName,
-		<span style="color:#4070a0">&#34;types&#34;</span>: types,
+	data := map[string]interface{}{
+		&quot;pkg&quot;:   pkgName,
+		&quot;types&quot;: types,
 	}
 
-	<span style="color:#60a0b0;font-style:italic">//利用模板库，生成代码文件
-</span><span style="color:#60a0b0;font-style:italic"></span>	t, err <span style="color:#666">:=</span> template.New(<span style="color:#4070a0">&#34;&#34;</span>).Parse(strTmp)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	//利用模板库，生成代码文件
+	t, err := template.New(&quot;&quot;).Parse(strTmp)
+	if err != nil {
 		log.Fatal(err)
 	}
-	buff <span style="color:#666">:=</span> bytes.NewBufferString(<span style="color:#4070a0">&#34;&#34;</span>)
+	buff := bytes.NewBufferString(&quot;&quot;)
 	err = t.Execute(buff, data)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	if err != nil {
 		log.Fatal(err)
 	}
-	<span style="color:#60a0b0;font-style:italic">//进行格式化
-</span><span style="color:#60a0b0;font-style:italic"></span>	src, err <span style="color:#666">:=</span> format.Source(buff.Bytes())
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	//进行格式化
+	src, err := format.Source(buff.Bytes())
+	if err != nil {
 		log.Fatal(err)
 	}
-	<span style="color:#007020;font-weight:700">return</span> src
-}</code></pre></div><p>5.保存代码到文件 将文件直接保存到当前目录下，文件名已&rdquo;_string&rdquo;结尾</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">src <span style="color:#666">:=</span> genString(consts) 
-
-outputName <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;&#34;</span>
-<span style="color:#007020;font-weight:700">if</span> outputName <span style="color:#666">==</span> <span style="color:#4070a0">&#34;&#34;</span> {
-	types <span style="color:#666">:=</span> strings.Split(<span style="color:#666">*</span>typeNames, <span style="color:#4070a0">&#34;,&#34;</span>)
-	baseName <span style="color:#666">:=</span> fmt.Sprintf(<span style="color:#4070a0">&#34;%s_string.go&#34;</span>, types[<span style="color:#40a070">0</span>])
-	outputName = filepath.Join(<span style="color:#4070a0">&#34;.&#34;</span>, strings.ToLower(baseName))
+	return src
 }
-err <span style="color:#666">:=</span> ioutil.WriteFile(outputName, src, <span style="color:#40a070">0644</span>)
-<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+</code></pre><p>5.保存代码到文件 将文件直接保存到当前目录下，文件名已&rdquo;_string&rdquo;结尾</p><pre><code class="language-go">src := genString(consts) 
+
+outputName := &quot;&quot;
+if outputName == &quot;&quot; {
+	types := strings.Split(*typeNames, &quot;,&quot;)
+	baseName := fmt.Sprintf(&quot;%s_string.go&quot;, types[0])
+	outputName = filepath.Join(&quot;.&quot;, strings.ToLower(baseName))
+}
+err := ioutil.WriteFile(outputName, src, 0644)
+if err != nil {
 	log.Fatalf(err)
-}</code></pre></div><p>6.在status.go源文件配置标记</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#666">//</span><span style="color:#007020;font-weight:700">go</span>:generate myenumstr <span style="color:#666">-</span><span style="color:#007020;font-weight:700">type</span> Status</code></pre></div><p>运行<code>go generate</code>，出现错误：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">user/status.go:5: running &#34;myenumstr&#34;: exec: &#34;myenumstr&#34;: executable file not found in $PATH</code></pre></div><p>此时需要将myenumstr.go install</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go install github.com/ysqi/string/myenumstr.go</code></pre></div><p>安装后，我们可以在status.go使用两种方式调用：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">//go:generate myenumstr -type Status
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">//</span><span style="color:#007020;font-weight:700">go</span>:generate <span style="color:#007020;font-weight:700">go</span> run github.com<span style="color:#666">/</span>ysqi<span style="color:#666">/</span><span style="color:#902000">string</span><span style="color:#666">/</span>myenumstr.<span style="color:#007020;font-weight:700">go</span> <span style="color:#666">-</span><span style="color:#007020;font-weight:700">type</span> Status</code></pre></div><p>至此写完，完整代码如下：</p><h4 id="源代码-user-go">源代码-user.go</h4><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">package</span> user
+}
+</code></pre><p>6.在status.go源文件配置标记</p><pre><code class="language-go">//go:generate myenumstr -type Status
+</code></pre><p>运行<code>go generate</code>，出现错误：</p><pre><code class="language-text">user/status.go:5: running &quot;myenumstr&quot;: exec: &quot;myenumstr&quot;: executable file not found in $PATH
+</code></pre><p>此时需要将myenumstr.go install</p><pre><code class="language-shell">go install github.com/ysqi/string/myenumstr.go
+</code></pre><p>安装后，我们可以在status.go使用两种方式调用：</p><pre><code class="language-go">//go:generate myenumstr -type Status
+//go:generate go run github.com/ysqi/string/myenumstr.go -type Status
+</code></pre><p>至此写完，完整代码如下：</p><h4 id="源代码-user-go">源代码-user.go</h4><pre><code class="language-go">package user
 
-<span style="color:#007020;font-weight:700">type</span> Status <span style="color:#902000">int</span>
+type Status int
 
-<span style="color:#60a0b0;font-style:italic">//go:generate myenumstr -type Status,Color
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">const</span> (
-	Offline Status = <span style="color:#007020;font-weight:700">iota</span>
+//go:generate myenumstr -type Status,Color
+const (
+	Offline Status = iota
 	Online
 	Disable
 	Deleted
 )
 
-<span style="color:#007020;font-weight:700">type</span> Color <span style="color:#902000">int</span>
+type Color int
 
-<span style="color:#007020;font-weight:700">const</span> (
-	Write Color = <span style="color:#007020;font-weight:700">iota</span>
+const (
+	Write Color = iota
 	Red
 	Blue
-)</code></pre></div><h4 id="源代码-myenumstr-go">源代码-myenumstr.go</h4><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:700">package</span> main
+)
+</code></pre><h4 id="源代码-myenumstr-go">源代码-myenumstr.go</h4><pre><code class="language-go">package main
 
-<span style="color:#007020;font-weight:700">import</span> (
-	<span style="color:#4070a0">&#34;bytes&#34;</span>
-	<span style="color:#4070a0">&#34;flag&#34;</span>
-	<span style="color:#4070a0">&#34;fmt&#34;</span>
-	<span style="color:#4070a0">&#34;go/ast&#34;</span>
-	<span style="color:#4070a0">&#34;go/build&#34;</span>
-	<span style="color:#4070a0">&#34;go/format&#34;</span>
-	<span style="color:#4070a0">&#34;go/parser&#34;</span>
-	<span style="color:#4070a0">&#34;go/token&#34;</span>
-	<span style="color:#4070a0">&#34;io/ioutil&#34;</span>
-	<span style="color:#4070a0">&#34;log&#34;</span>
-	<span style="color:#4070a0">&#34;os&#34;</span>
-	<span style="color:#4070a0">&#34;path/filepath&#34;</span>
-	<span style="color:#4070a0">&#34;strings&#34;</span>
-	<span style="color:#4070a0">&#34;text/template&#34;</span>
+import (
+	&quot;bytes&quot;
+	&quot;flag&quot;
+	&quot;fmt&quot;
+	&quot;go/ast&quot;
+	&quot;go/build&quot;
+	&quot;go/format&quot;
+	&quot;go/parser&quot;
+	&quot;go/token&quot;
+	&quot;io/ioutil&quot;
+	&quot;log&quot;
+	&quot;os&quot;
+	&quot;path/filepath&quot;
+	&quot;strings&quot;
+	&quot;text/template&quot;
 )
 
-<span style="color:#007020;font-weight:700">var</span> (
-	pkgInfo <span style="color:#666">*</span>build.Package
+var (
+	pkgInfo *build.Package
 )
-<span style="color:#007020;font-weight:700">var</span> (
-	typeNames = flag.String(<span style="color:#4070a0">&#34;type&#34;</span>, <span style="color:#4070a0">&#34;&#34;</span>, <span style="color:#4070a0">&#34;必填，逗号连接的多个Type名&#34;</span>)
+var (
+	typeNames = flag.String(&quot;type&quot;, &quot;&quot;, &quot;必填，逗号连接的多个Type名&quot;)
 )
 
-<span style="color:#007020;font-weight:700">func</span> main() {
+func main() {
 	flag.Parse()
 
-	<span style="color:#007020;font-weight:700">if</span> <span style="color:#007020">len</span>(<span style="color:#666">*</span>typeNames) <span style="color:#666">==</span> <span style="color:#40a070">0</span> {
-		log.Fatal(<span style="color:#4070a0">&#34;-type 必填&#34;</span>)
+	if len(*typeNames) == 0 {
+		log.Fatal(&quot;-type 必填&quot;)
 	}
-	consts <span style="color:#666">:=</span> getConsts()
-	src <span style="color:#666">:=</span> genString(consts)
+	consts := getConsts()
+	src := genString(consts)
 
-	<span style="color:#60a0b0;font-style:italic">//保存到文件
-</span><span style="color:#60a0b0;font-style:italic"></span>	outputName <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;&#34;</span>
-	<span style="color:#007020;font-weight:700">if</span> outputName <span style="color:#666">==</span> <span style="color:#4070a0">&#34;&#34;</span> {
-		types <span style="color:#666">:=</span> strings.Split(<span style="color:#666">*</span>typeNames, <span style="color:#4070a0">&#34;,&#34;</span>)
-		baseName <span style="color:#666">:=</span> fmt.Sprintf(<span style="color:#4070a0">&#34;%s_string.go&#34;</span>, types[<span style="color:#40a070">0</span>])
-		outputName = filepath.Join(<span style="color:#4070a0">&#34;.&#34;</span>, strings.ToLower(baseName))
+	//保存到文件
+	outputName := &quot;&quot;
+	if outputName == &quot;&quot; {
+		types := strings.Split(*typeNames, &quot;,&quot;)
+		baseName := fmt.Sprintf(&quot;%s_string.go&quot;, types[0])
+		outputName = filepath.Join(&quot;.&quot;, strings.ToLower(baseName))
 	}
-	err <span style="color:#666">:=</span> ioutil.WriteFile(outputName, src, <span style="color:#40a070">0644</span>)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-		log.Fatalf(<span style="color:#4070a0">&#34;writing output: %s&#34;</span>, err)
+	err := ioutil.WriteFile(outputName, src, 0644)
+	if err != nil {
+		log.Fatalf(&quot;writing output: %s&quot;, err)
 	}
 
 }
 
-<span style="color:#007020;font-weight:700">func</span> getConsts() <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>][]<span style="color:#902000">string</span> {
-	<span style="color:#60a0b0;font-style:italic">//获得待处理的Type
-</span><span style="color:#60a0b0;font-style:italic"></span>	types <span style="color:#666">:=</span> strings.Split(<span style="color:#666">*</span>typeNames, <span style="color:#4070a0">&#34;,&#34;</span>)
-	typesMap <span style="color:#666">:=</span> <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>][]<span style="color:#902000">string</span>, <span style="color:#007020">len</span>(types))
-	<span style="color:#007020;font-weight:700">for</span> _, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> types {
-		typesMap[strings.TrimSpace(v)] = []<span style="color:#902000">string</span>{}
+func getConsts() map[string][]string {
+	//获得待处理的Type
+	types := strings.Split(*typeNames, &quot;,&quot;)
+	typesMap := make(map[string][]string, len(types))
+	for _, v := range types {
+		typesMap[strings.TrimSpace(v)] = []string{}
 	}
 
-	<span style="color:#60a0b0;font-style:italic">//解析当前目录下包信息
-</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:700">var</span> err <span style="color:#902000">error</span>
-	pkgInfo, err = build.ImportDir(<span style="color:#4070a0">&#34;.&#34;</span>, <span style="color:#40a070">0</span>)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	//解析当前目录下包信息
+	var err error
+	pkgInfo, err = build.ImportDir(&quot;.&quot;, 0)
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	fset <span style="color:#666">:=</span> token.NewFileSet()
-	<span style="color:#007020;font-weight:700">for</span> _, file <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> pkgInfo.GoFiles {
-		f, err <span style="color:#666">:=</span> parser.ParseFile(fset, file, <span style="color:#007020;font-weight:700">nil</span>, <span style="color:#40a070">0</span>)
-		<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	fset := token.NewFileSet()
+	for _, file := range pkgInfo.GoFiles {
+		f, err := parser.ParseFile(fset, file, nil, 0)
+		if err != nil {
 			log.Fatal(err)
 		}
-		typ <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;&#34;</span>
-		ast.Inspect(f, <span style="color:#007020;font-weight:700">func</span>(n ast.Node) <span style="color:#902000">bool</span> {
-			decl, ok <span style="color:#666">:=</span> n.(<span style="color:#666">*</span>ast.GenDecl)
-			<span style="color:#60a0b0;font-style:italic">// 只需要const
-</span><span style="color:#60a0b0;font-style:italic"></span>			<span style="color:#007020;font-weight:700">if</span> !ok <span style="color:#666">||</span> decl.Tok <span style="color:#666">!=</span> token.CONST {
-				<span style="color:#007020;font-weight:700">return</span> <span style="color:#007020;font-weight:700">true</span>
+		typ := &quot;&quot;
+		ast.Inspect(f, func(n ast.Node) bool {
+			decl, ok := n.(*ast.GenDecl)
+			// 只需要const
+			if !ok || decl.Tok != token.CONST {
+				return true
 			}
-			<span style="color:#007020;font-weight:700">for</span> _, spec <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> decl.Specs {
-				vspec <span style="color:#666">:=</span> spec.(<span style="color:#666">*</span>ast.ValueSpec)
-				<span style="color:#007020;font-weight:700">if</span> vspec.Type <span style="color:#666">==</span> <span style="color:#007020;font-weight:700">nil</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#007020">len</span>(vspec.Values) &gt; <span style="color:#40a070">0</span> {
-					<span style="color:#60a0b0;font-style:italic">// 排除 v = 1 这种结构
-</span><span style="color:#60a0b0;font-style:italic"></span>					typ = <span style="color:#4070a0">&#34;&#34;</span>
-					<span style="color:#007020;font-weight:700">continue</span>
+			for _, spec := range decl.Specs {
+				vspec := spec.(*ast.ValueSpec)
+				if vspec.Type == nil &amp;&amp; len(vspec.Values) &gt; 0 {
+					// 排除 v = 1 这种结构
+					typ = &quot;&quot;
+					continue
 				}
-				<span style="color:#60a0b0;font-style:italic">//如果Type不为空，则确认typ
-</span><span style="color:#60a0b0;font-style:italic"></span>				<span style="color:#007020;font-weight:700">if</span> vspec.Type <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-					ident, ok <span style="color:#666">:=</span> vspec.Type.(<span style="color:#666">*</span>ast.Ident)
-					<span style="color:#007020;font-weight:700">if</span> !ok {
-						<span style="color:#007020;font-weight:700">continue</span>
+				//如果Type不为空，则确认typ
+				if vspec.Type != nil {
+					ident, ok := vspec.Type.(*ast.Ident)
+					if !ok {
+						continue
 					}
 					typ = ident.Name
 				}
-				<span style="color:#60a0b0;font-style:italic">//typ是否是需处理的类型
-</span><span style="color:#60a0b0;font-style:italic"></span>				consts, ok <span style="color:#666">:=</span> typesMap[typ]
-				<span style="color:#007020;font-weight:700">if</span> !ok {
-					<span style="color:#007020;font-weight:700">continue</span>
+				//typ是否是需处理的类型
+				consts, ok := typesMap[typ]
+				if !ok {
+					continue
 				}
-				<span style="color:#60a0b0;font-style:italic">//将所有const变量名保存
-</span><span style="color:#60a0b0;font-style:italic"></span>				<span style="color:#007020;font-weight:700">for</span> _, n <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> vspec.Names {
-					consts = <span style="color:#007020">append</span>(consts, n.Name)
+				//将所有const变量名保存
+				for _, n := range vspec.Names {
+					consts = append(consts, n.Name)
 				}
 				typesMap[typ] = consts
 			}
-			<span style="color:#007020;font-weight:700">return</span> <span style="color:#007020;font-weight:700">true</span>
+			return true
 		})
 	}
-	<span style="color:#007020;font-weight:700">return</span> typesMap
+	return typesMap
 }
 
-<span style="color:#007020;font-weight:700">func</span> genString(types <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>][]<span style="color:#902000">string</span>) []<span style="color:#902000">byte</span> {
+func genString(types map[string][]string) []byte {
 
-	<span style="color:#007020;font-weight:700">const</span> strTmp = <span style="color:#4070a0">`
-</span><span style="color:#4070a0">	package {{.pkg}}
-</span><span style="color:#4070a0">	import &#34;fmt&#34;
-</span><span style="color:#4070a0">	
-</span><span style="color:#4070a0">	{{range $typ,$consts :=.types}}
-</span><span style="color:#4070a0">	func (c {{$typ}}) String() string{
-</span><span style="color:#4070a0">		switch c { {{range $consts}}
-</span><span style="color:#4070a0">			case {{.}}:return &#34;{{.}}&#34;{{end}}
-</span><span style="color:#4070a0">		}
-</span><span style="color:#4070a0">		return fmt.Sprintf(&#34;Status(%d)&#34;, c)	
-</span><span style="color:#4070a0">	}
-</span><span style="color:#4070a0">	{{end}}
-</span><span style="color:#4070a0">	`</span>
-	pkgName <span style="color:#666">:=</span> os.Getenv(<span style="color:#4070a0">&#34;GOPACKAGE&#34;</span>)
-	<span style="color:#007020;font-weight:700">if</span> pkgName <span style="color:#666">==</span> <span style="color:#4070a0">&#34;&#34;</span> {
+	const strTmp = `
+	package {{.pkg}}
+	import &quot;fmt&quot;
+	
+	{{range $typ,$consts :=.types}}
+	func (c {{$typ}}) String() string{
+		switch c { {{range $consts}}
+			case {{.}}:return &quot;{{.}}&quot;{{end}}
+		}
+		return fmt.Sprintf(&quot;Status(%d)&quot;, c)	
+	}
+	{{end}}
+	`
+	pkgName := os.Getenv(&quot;GOPACKAGE&quot;)
+	if pkgName == &quot;&quot; {
 		pkgName = pkgInfo.Name
 	}
-	data <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">map</span>[<span style="color:#902000">string</span>]<span style="color:#007020;font-weight:700">interface</span>{}{
-		<span style="color:#4070a0">&#34;pkg&#34;</span>:   pkgName,
-		<span style="color:#4070a0">&#34;types&#34;</span>: types,
+	data := map[string]interface{}{
+		&quot;pkg&quot;:   pkgName,
+		&quot;types&quot;: types,
 	}
 
-	<span style="color:#60a0b0;font-style:italic">//利用模板库，生成代码文件
-</span><span style="color:#60a0b0;font-style:italic"></span>	t, err <span style="color:#666">:=</span> template.New(<span style="color:#4070a0">&#34;&#34;</span>).Parse(strTmp)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	//利用模板库，生成代码文件
+	t, err := template.New(&quot;&quot;).Parse(strTmp)
+	if err != nil {
 		log.Fatal(err)
 	}
-	buff <span style="color:#666">:=</span> bytes.NewBufferString(<span style="color:#4070a0">&#34;&#34;</span>)
+	buff := bytes.NewBufferString(&quot;&quot;)
 	err = t.Execute(buff, data)
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	if err != nil {
 		log.Fatal(err)
 	}
-	<span style="color:#60a0b0;font-style:italic">//格式化
-</span><span style="color:#60a0b0;font-style:italic"></span>	src, err <span style="color:#666">:=</span> format.Source(buff.Bytes())
-	<span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
+	//格式化
+	src, err := format.Source(buff.Bytes())
+	if err != nil {
 		log.Fatal(err)
 	}
-	<span style="color:#007020;font-weight:700">return</span> src
-}</code></pre></div><p>实际上Go官方已实现该功能，查看具体<a href="https://godoc.org/golang.org/x/tools/cmd/stringer">stringer文档</a></p></div><aside id="meta"><meta itemprop="wordCount" content="959"><meta itemprop="url" content="https://yushuangqi.com/blog/2017/go-command-generate.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">Golang</a> <a href="/tags/command.html" rel="tag">command</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html">如何发现自我优势成为斜杠青年</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html">Go读取通达信历史日线数据</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="80a70a8e1d8920dd6868585b7f14336d"></div><div id="cyReward" role="cylabs" data-use="reward" sid="80a70a8e1d8920dd6868585b7f14336d" style="text-align:center"></div><div id="SOHUCS" sid="80a70a8e1d8920dd6868585b7f14336d"></div><script type="text/javascript">(function(){ 
-var appid = 'cyt7HM6Iq'; 
-var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
-}else{ 
-  var loadJs=function(d,a){
-    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
-    b.setAttribute("type","text/javascript");
-    b.setAttribute("charset","UTF-8");
-    b.setAttribute("src",d);
-    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
-   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside><div><section id="author"><h4>关于作者</h4><p><strong>虞双齐</strong>，一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男</p><p>活跃在 <a href="https://www.zhihu.com/people/_ysqi" title="虞双齐知乎主页">知乎</a>，开源项目在<a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐的博客">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-command-generate.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2017%2fgo-command-generate.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+	return src
+}
+</code></pre><p>实际上Go官方已实现该功能，查看具体<a href="https://godoc.org/golang.org/x/tools/cmd/stringer">stringer文档</a></p></div><div style="height:130px"><div class="post-copyright" style="float:left"><p class="copyright-item"><span class="item-title">文章作者</span> <span class="item-content">虞双齐</span></p><p class="copyright-item"><span class="item-title">上次更新</span> <span class="item-content">2017-08-14</span></p><p class="copyright-item"><span class="item-title">许可协议</span> <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></p></div><div class="post-copyright" style="float:right"><a href="https://info.flagcounter.com/8B1z"><img src="https://s05.flagcounter.com/countxl/8B1z/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_12/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a></div></div><div class="post-reward"><input type="checkbox" name="reward" id="reward" hidden> <label class="reward-button" for="reward">赞赏支持</label><div class="qr-code"><label class="qr-code-image" for="reward"><img class="image" src="/img/donateMe_wechat.png"> <span>微信打赏</span></label></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/golang.html">Golang</a> <a href="/tags/command.html">command</a></div><nav class="post-nav"><a class="prev" href="/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html"><i class="iconfont icon-left"></i> <span class="prev-text nav-default">如何发现自我优势成为斜杠青年</span> <span class="prev-text nav-mobile">上一篇</span> </a><a class="next" href="/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html"><span class="next-text nav-default">Go读取通达信历史日线数据</span> <span class="prev-text nav-mobile">下一篇</span> <i class="iconfont icon-right"></i></a></nav></footer><div id="comments-gitment"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous"><script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script><script type="text/javascript">const gitment = new Gitment({
+    id: '2017-08-14 18:52:10 \x2b0800 \x2b0800',
+    title: 'Golang Generate命令说明与使用',
+    link: decodeURI(location.href),
+    desc: '前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene',
+    owner: 'ysqi',
+    repo: 'ysqi\/ysqi.github.io',
+    oauth: {
+      client_id: '639ba986c281b9fcf382',
+      client_secret: 'b5862135f283dd308a7f226c06980cf50b8e82f1'
+    }
+  })
+  gitment.render('comments-gitment')</script><noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript></article></div></div></main><footer id="footer" class="footer"><div class="social-links"><a href="mailto:ysqi@yushuangqi.com" rel="me" class="iconfont icon-email" title="email"></a> <a href="http://github.com/ysqi" rel="me" class="iconfont icon-github" title="github"></a> <a href="https://weibo.com/234665601" rel="me" class="iconfont icon-weibo" title="weibo"></a> <a href="https://www.zhihu.com/people/_ysqi/" rel="me" class="iconfont icon-zhihu" title="zhihu"></a> <a href="https://yushuangqi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a></div><div class="copyright"><span class="power-by">Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a> </span><span class="division">|</span> <span class="theme-info">Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a> </span><span class="copyright-year">&copy; 2014 - 2018 <span class="heart"><i class="iconfont icon-heart"></i> </span><span class="author">虞双齐</span></span></div></footer><div class="back-to-top" id="back-to-top"><i class="iconfont icon-up"></i></div></div><script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="https://cdn.bootcss.com/slideout/1.0.1/slideout.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="https://cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script><script type="text/javascript">window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };</script><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script><script id="baidu_analytics">var _hmt = _hmt || [];
   (function() {
-    var hm = document.createElement("script");
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
     hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
-    var s = document.getElementsByTagName("script")[0]; 
+    var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();</script></body></html>

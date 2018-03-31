@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pipe on 虞双齐的博客</title>
+    <title>Pipe on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/pipe.html</link>
-    <description>在 虞双齐的博客上关于in Pipe 的内容</description>
+    <description>Recent content in Pipe on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:00 +0800</lastBuildDate>
-    <atom:link href="/tags/pipe.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/pipe/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>使用go的io_Pipe优雅的优化中间缓存</title>
@@ -17,10 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-gode-io_pipeyou-ya-de-you-hua-zhong-jian-huan-cun.html</guid>
-      <description>BEFORE 今天发现，go的优势除了它的轻量线程(goroutine)提供了更方便灵活的并发编程模式之外，它的I/O机制也设计的非常给力。
-之前，我在向其他服务器发送json数据时，都需要先声明一个bytes缓存，然后通过json库把结构体中的内容mashal成字节流，再通过Post函数发送。
-代码如下：
-package main import ( &amp;quot;bytes&amp;quot; &amp;quot;encoding/json&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; ) func init() { log.SetFlags(log.Lshortfile) } func main() { cli := http.Client{} msg := struct { Name, Addr string Price float64 }{ Name: &amp;quot;hello&amp;quot;, Addr: &amp;quot;beijing&amp;quot;, Price: 123.56, } buf := bytes.NewBuffer(nil) json.NewEncoder(buf).Encode(msg) resp, err := cli.Post(&amp;quot;http://localhost:9999/json&amp;quot;, &amp;quot;application/json&amp;quot;, buf) if err != nil { log.Fatalln(err) } body := resp.Body defer body.Close() if body_bytes, err := ioutil.ReadAll(body); err == nil { log.</description>
+      <description>BEFORE 今天发现，go的优势除了它的轻量线程(goroutine)提供了更方便灵活的并发编程模式之外，它的I/O机制也设计的非常给力。 之前，我在向</description>
     </item>
     
   </channel>

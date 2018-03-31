@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zeromq on 虞双齐的博客</title>
+    <title>Zeromq on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/zeromq.html</link>
-    <description>在 虞双齐的博客上关于in Zeromq 的内容</description>
+    <description>Recent content in Zeromq on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:49 +0800</lastBuildDate>
-    <atom:link href="/tags/zeromq.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/zeromq/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang在windows平台使用zmq</title>
@@ -17,26 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:49 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangzai-windowsping-tai-shi-yong-zmq.html</guid>
-      <description>zmq官方推荐的golang库,guthub地址是http://github.com/pebbe/zmq4
-测试代码就不发了,上面的地址有具体示例,
-前几天碰到的问题是在windows 7 64位系统环境下go get github.com\pebbe\zmq4的时候无法完成
-最开始可能是提示SOCKET未定义,
-查看这个包的代码可以发现这套库使用了cgo,这是需要gcc等一些环境支持了
-不推荐cygwin,因为我测试的时候,在这套环境下仍然无法编译成功
-这时需要安装mingw,注意系统是32还是64的,一定要安装对应的版本,否则无法编译成功
-环境装好后编译,再报错找不到zmq.h
-去zmq安装目录\include文件夹下复制.h头文件
-放到mingw64\lib\gcc\x86_64-w64-mingw32\4.9.1\include文件夹下,
-目录可能不同,只要在mingw安装目录搜索.h文件,查看目录就知道了
-再次编译报错,提示
-ld.exe cannot find -lzmq
-这是缺少zmq库的意思,去zmq安装目录/lib文件夹下
-复制libzmq-v120-mt-gd-4_0_4.lib到mingw64\x86_64-w64-mingw32\lib目录下
-改名为zmq.lib即可
-zmq安装目录lib文件夹下有好多个lib,具体使用哪一个zmq官方网站有说明.
-请见http://zeromq.org/distro:microsoft-windows
-再次编译,即可成功,
-在%GOPATH%\pkg\windows_amd64\github.com\pebbe目录下就能看到编译好的zmq4.a文件了</description>
+      <description>zmq官方推荐的golang库,guthub地址是http://github.com/pebbe/zmq4 测试代码就不发了,上面的地址有具体</description>
     </item>
     
   </channel>

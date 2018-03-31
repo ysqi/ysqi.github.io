@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>后端开发 on 虞双齐的博客</title>
+    <title>后端开发 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.html</link>
-    <description>在 虞双齐的博客上关于in 后端开发 的内容</description>
+    <description>Recent content in 后端开发 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:29 +0800</lastBuildDate>
-    <atom:link href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>年度语言golang使用感受</title>
@@ -17,12 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</guid>
-      <description>https://segmentfault.com/a/
-首先，无意进行语言之争，毕竟，PHP是世界上最好的语言，没有之一。这个话题可以停下来了。
-2016年已经过去，16年的年度语言给了go语言，而正好这一年我都是用go用得比较多，而且版本从1.2一直用到了1.8，有一些感受，来说说我对这个年度编程语言的一些粗浅理解吧。之前也写过一篇go语言的文章，但是那时候用得还不是很多，有些特性没有用上，所以理解上和今天的有些不同。
-这篇文章就不分什么优势和劣势了，想到哪里说到哪里。
-指针还是很重要 先看一个小坑，可能很多初次接触go的会遇到，go的range迭代用得也很多，下面这个例子不知道你之前遇到过没有，其实值是不会变的，还是1，2，3。
-type a struct { b int } func main() { m := make([]a, 0) m = append(m, a{b: 0, c: 0}) m = append(m, a{b: 1, c: 1}) m = append(m, a{b: 2, c: 2}) for _, e := range m { e.b = 9 } for _, x := range m { fmt.Printf(&amp;quot;%v\n&amp;quot;, x.b) } }  在range中，后面那个元素是值传递，这个很关键，所以修改不了元素的内容，而且如果元素很大的话，迭代的开销还是挺大的，所以要么你就变成for idx, _ := range m这样的形式，用下标更新，要么就变成m := make([]*a, 0)这样的指针，这样虽然传的还是值，不过是个指针的值，一是开销小，二是可以直接修改元素内容了。</description>
+      <description>https://segmentfault.com/a/ 首先，无意进行语言之争，毕竟，PHP是世界上最好的语言，没有之一。这个话题可以停下来了。 2016年已经过去，16年的年度语言给了go语言，</description>
     </item>
     
   </channel>

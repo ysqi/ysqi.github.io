@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Http on 虞双齐的博客</title>
+    <title>Http on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/http.html</link>
-    <description>在 虞双齐的博客上关于in Http 的内容</description>
+    <description>Recent content in Http on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:34 +0800</lastBuildDate>
-    <atom:link href="/tags/http.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>ngrok从服务端跟踪所有HTTP请求并回放</title>
@@ -17,18 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:34 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</guid>
-      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况：
-一、后端测试了一下发现没有问题
-“我这里测试了是好的啊”，就只能让客户端工程师再操作一遍，亲眼看到错误之后就肯定是有问题了，就得去找问题，这时候这台手机，以及这台手机里面的数据都非常重要，因为这些数据可以让 Bug 重现。
-二、测试了也有问题
-这时候后端就去修改程序了，但是每一次的测试是否有问题都需要在客户端中操作，有时候的操作非常的复杂，在这上面花的时间会比较多。最后使了各种神通才终于找到问题，原来是这个用户的某某数据有异常才会出现这种情况。
-以上这种情况屡见不鲜，最麻烦的点就在于，每次都要以出现 Bug 的相同参数去请求，有时候你知道这些请求的参数，可以把它们放到 Postman 这种工具里面，但大部分时候你并不知道它对应的参数 (token)
-如果我们可以在服务端跟踪所有的请求：接口地址，Header，Body，后端返回的 Header、Body，这样我们就能查到对应的请求参数和返回值，可以直接填到 Postman 里面，要是还能一键重新请求就好了，因为我们不想修改请求的参数，只是想再以相同的参数请求一遍，这样我们来调试对应的程序。
-正好以前用过 ngrok，发现它有一个非常好的 debug 界面，可以达到以上的要求，但现在不需要它的内网穿透功能，于是只能自己写一个程序，只包含以下功能：
- 记录接口所有的 Request 和 Response
- 可以一键重新请求某个 Request
-  基本工作原理
-HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求并进行反向代理 | Response 200 OK | ---------------------------&amp;gt; | --------------------------&amp;gt; | ------┐ | | | | | | 记录返回信息并转发给客户端 | &amp;lt;----┘ | &amp;lt;--------------------------- | &amp;lt;-------------------------- | ┌----------------------------------------------------------------------------┐ | url: http://localhost:8081 | | ---------------------------------------------------------------------------| | All Transactions ┌ - - - - - - - - - - - - - - - - - - - - - - - ┐ | | ---------------------- | time: 10 hours ago Client: 127.</description>
+      <description>客户端工程师：“xxx 接口坏了，我的程序都没动过”，后端经常会收到这样的质问，但是我们现在如何重现这个问题？有以下几种情况： 一、后端测试了一</description>
     </item>
     
     <item>
@@ -37,26 +28,7 @@ HTTP 客户端 Boast Web 服务器 | GET http://localhost:8080/ | 记录请求�
       <pubDate>Sat, 31 Dec 2016 11:35:10 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</guid>
-      <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极了。
-其一，一个好的中间件拥有单一的功能，可插拔并且是自我约束的。这就意味着你可以在接口的层次上把它放到应用中，并能很好的工作。中间件并不影响你的代码风格，它也不是一个框架，仅仅是你处理请求流程中额外一层罢了。根本不需要重写代码：如果你想用一个中间件，就把它加上应用中；如果你改变主意了，去掉就好了。就这么简单。
-来看看Go，HTTP中间件非常流行，标准库中也是这样。或许咋看上去并不明显，net/http包中的函数，如StripPrefix 和TimeoutHandler 正是我们上面定义的中间件：封装处理过程并在处理输入或输出时增加额外的动作。
-我最近的Go包 nosurf 也是一个中间件。我从一开始就有意的这样设计。大多数情况下，你根本不必在应用层关心CSRF检查。nosurf，和其他中间件一样，非常独立，可以和实现标准库net/http接口的工具配合使用。
-你也可以使用中间件做这些：
-* 通过隐藏长度缓解BREACH攻击
-* 频率限制
-* 屏蔽恶意自动程序
-* 提供调试信息
-* 添加HSTS, X-Frame-Options头
-* 从异常中优雅恢复
-* 以及其他等等。
-写一个简单的中间件 第一个例子中，我写了一个中间件，只允许用户从特定的域（在HTTP的Host头中有域信息）来访问服务器。这样的中间件可以保护应用程序不受“主机欺骗攻击”
-定义类型 为了方便，让我们为这个中间件定义一种类型，叫做SingleHost。
-type SingleHost struct { handler http.Handler allowedHost string }  只包含两个字段：
-* 封装的Handler。如果是有效的Host访问，我们就调用这个Handler。
-* 允许的主机值。
-由于我们把字段名小写了，使得该字段只对我们自己的包可见。我们还应该写一个初始化函数。
-func NewSingleHost(handler http.Handler, allowedHost string) *SingleHost { return &amp;amp;SingleHost{handler: handler, allowedHost: allowedHost} }  处理请求 现在才是实际的逻辑。为了实现http.Handler，我们的类型秩序实现一个方法：
-type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们实现的方法：</description>
+      <description>在web开发过程中，中间件一般是指应用程序中封装原始信息，添加额外功能的组件。不知道为什么，中间件通常是一种不太受欢迎的概念。但我认为它棒极</description>
     </item>
     
     <item>
@@ -65,11 +37,7 @@ type Handler interface { ServeHTTP(ResponseWriter, *Request) }  这就是我们�
       <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</guid>
-      <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法
-type RoundTripper interface { RoundTrip(*Request) (*Response, error) }  RoundTrip executes a single HTTP transaction, returning the Response for the request req. (RoundTrip 代表一个http事务，给一个请求返回一个响应)
-说白了，就是你给它一个request,它给你一个response
-下面我们来看一下他的实现，对应源文件net/http/transport.go，我感觉这里是http package里面的精髓所在，go里面一个struct就跟一个类一样，transport这个类长这样的
-type Transport struct { idleMu sync.Mutex wantIdle bool // user has requested to close all idle conns idleConn map[connectMethodKey][]*persistConn idleConnCh map[connectMethodKey]chan *persistConn reqMu sync.Mutex reqCanceler map[*Request]func() altMu sync.RWMutex altProto map[string]RoundTripper // nil or map of URI scheme =&amp;gt; RoundTripper //Dial获取一个tcp 连接，也就是net.</description>
+      <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法 type RoundTripper interface { RoundTrip(*Request) (*Response, error) } RoundTrip executes a single HTTP transaction, returning the Response</description>
     </item>
     
     <item>
@@ -78,13 +46,7 @@ type Transport struct { idleMu sync.Mutex wantIdle bool // user has requested to
       <pubDate>Sat, 31 Dec 2016 11:33:09 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</guid>
-      <description>原文链接：http://targetliu.com/golang-http-router/
- 还是在继续学习Go的路上，曾经在使用PHP的时候吃过过度依赖框架的亏。现在学习Go的时候决定先打好基础，从标准库学起走。
- 源码分析 我们知道最简单的建立http服务器代码基本上都是这样的：
-http.HandleFunc(&#39;/&#39;, func(w http.ResponseWriter, r *http.Request){ fmt.Fprint(w, &amp;quot;Hello world&amp;quot;) }) http.ListenAndServe(&amp;quot;:8080&amp;quot;, nil)  这样就成功的建立了一个监听 8080 端口的http服务器，当访问的时候输出 Hello world
-我们顺藤摸瓜来看看 HandleFunc 做了些什么事：
-func HandleFunc(pattern string, handler func(ResponseWriter, *Request)) { DefaultServeMux.HandleFunc(pattern, handler) }  这里继续通过调用 DefaultServeMux 的 HandleFunc 方法注册路由，这个 DefaultServeMux 又是何方圣神：
-type ServeMux struct { mu sync.RWMutex m map[string]muxEntry hosts bool // whether any patterns contain hostnames } type muxEntry struct { explicit bool h Handler pattern string } // NewServeMux allocates and returns a new ServeMux.</description>
+      <description>原文链接：http://targetliu.com/golang-http-router/ 还是在继续学习Go的路上，曾经在使用PHP的时候吃</description>
     </item>
     
   </channel>

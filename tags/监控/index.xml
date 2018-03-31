@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>监控 on 虞双齐的博客</title>
+    <title>监控 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E7%9B%91%E6%8E%A7.html</link>
-    <description>在 虞双齐的博客上关于in 监控 的内容</description>
+    <description>Recent content in 监控 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:45 +0800</lastBuildDate>
-    <atom:link href="/tags/%E7%9B%91%E6%8E%A7.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E7%9B%91%E6%8E%A7/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Kubernetes监控之InfluxDB</title>
@@ -17,36 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
-      <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
-该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
-InfluxDB特征：
- 无结构(无模式)：可以是任意数量的列
- 可以设置metric的保存时间
- 支持与时间有关的相关函数(如min、max、sum、count、mean、median等)，方便统计
- 支持存储策略:可以用于数据的删改。(influxDB没有提供数据的删除与修改方法)
- 支持连续查询:是数据库中自动定时启动的一组语句，和存储策略搭配可以降低InfluxDB的系统占用量。
- 原生的HTTP支持，内置HTTP API
- 支持类似sql语法
- 支持设置数据在集群中的副本数
- 支持定期采样数据，写入另外的measurement，方便分粒度存储数据。
- 自带web管理界面，方便使用(登入方式：http://%3C InfluxDB-IP &amp;gt;:8083)
-  关键概念 InfluxDB关键概念列表：
-database
-field key
-field set
-field value
-measurement
-point
-retention policy
-series
-tag key
-tag set
-tag value
-timestamp
-下面举个例子进行概念介绍：
-我们虚拟一组数据，其中有一张数据表(measurement)为census，该表记录了由两个科学家(langstroth和perpetua)在两个不同的位置(1和2)，统计了butterflies和honeybees的数据，时间段是2015-08-18 00: 00:00 &amp;ndash; 2015-08-18 06: 12:00. 我们假设这些数据属于叫my_database的数据库(database)，且该数据存储在autogen的存储策略(retention policy)中。
-数据展示如下：
-name: census --------------------- time butterflies honeybees location scientist 2015-08-18T00:00:00Z 12 23 1 langstroth 2015-08-18T00:00:00Z 1 30 1 perpetua 2015-08-18T00:06:00Z 11 28 1 langstroth 2015-08-18T00:06:00Z 3 28 1 perpetua 2015-08-18T05:54:00Z 2 11 2 langstroth 2015-08-18T06:00:00Z 1 10 2 langstroth 2015-08-18T06:06:00Z 8 23 2 perpetua 2015-08-18T06:12:00Z 7 22 2 perpetua  我们针对数据来进行概念分析：</description>
+      <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。 该数据库现</description>
     </item>
     
     <item>
@@ -55,30 +28,7 @@ name: census --------------------- time butterflies honeybees location scientist
       <pubDate>Sat, 31 Dec 2016 11:32:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html</guid>
-      <description>什么是Heapster？ Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
-Kubernetes有个出名的监控agent&amp;mdash;cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
-在较新的版本中，K8S已经将cAdvisor功能集成到kubelet组件中。每个Node节点可以直接进行web访问。
- cAdvisor web界面访问： http://%3C Node-IP &amp;gt;:4194
-cAdvisor也提供Restful API: https://github.com/google/cad&amp;hellip;
- Heapster是一个收集者，将每个Node上的cAdvisor的数据进行汇总，然后导到第三方工具(如InfluxDB)。
-框架图：
-Heapster首先从K8S Master获取集群中所有Node的信息，然后通过这些Node上的kubelet获取有用数据，而kubelet本身的数据则是从cAdvisor得到。所有获取到的数据都被推到Heapster配置的后端存储中，并还支持数据的可视化。现在后端存储 + 可视化的方法，如InfluxDB + grafana。
-Heapster使用 这里主要介绍Heapster的API使用，及可获取的Metrics。
-参考资料：
-API文档： https://github.com/kubernetes&amp;hellip;
-Metrics: https://github.com/kubernetes&amp;hellip;
-API文档及可用Metrics在官方文档中都介绍的比较齐全。下面用几条测试命令来解释API使用：
-# 获取支持的metrics # curl -L http://&amp;lt;heapster-IP&amp;gt;:8082/api/v1/model/metrics # 列出所有的Nodes支持的metrics # curl -L http://&amp;lt;heapster-IP&amp;gt;:8082/api/v1/model/nodes/metrics # 查看对应Pod的cpu使用率 # curl -L http://&amp;lt;heapster-IP&amp;gt;:8082/api/v1/model/namespaces/&amp;lt;namespace-name&amp;gt;/pods/&amp;lt;pod-name&amp;gt;/metrics/cpu-usage  Heapster系统部署 我们采用Heapster以InfluxDB作为数据存储后端，再配合Grafana的前端进行数据可视化的系统监控方案，进行部署。
-镜像制作： Heapster的版本：v0.19.0
- 没有采用最新的Heapster版本，是因为我们使用的Kubernets版本为较旧的v1.0.3，较新的Heapster版本不兼容该K8S版本。
- Heapster镜像：
-进入heapster-0.19.0//deploy/docker,使用build.sh进行镜像制作。 该脚本会依赖go环境进行heapster源码编译，所以需要提前安装go环境(go和godep的安装)。
-InfluxDB和Grafana镜像：
-这两个镜像的Dockerfile分别在根目录下的对应文件中，只需查看Makefile进行对应的命令编译制作镜像即可。Dockerfile会依赖一些基础镜像，最好提前下载好。
-容器的运行 Heapster容器的运行可以依赖Kubernetes进行部署，也可以单独使用docker命令进行部署。
-Kubernetes部署：
-直接依赖heapster-0.19.0/deploy/kube-config/influxdb/目录下的yaml文件，
-使用kubectl create -f heapster-0.</description>
+      <description>什么是Heapster？ Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。 Kubernetes有个</description>
     </item>
     
   </channel>

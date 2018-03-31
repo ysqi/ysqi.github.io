@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>数据类型 on 虞双齐的博客</title>
+    <title>数据类型 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html</link>
-    <description>在 虞双齐的博客上关于in 数据类型 的内容</description>
+    <description>Recent content in 数据类型 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:44 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>为什么Go语言把类型放在后面？</title>
@@ -17,16 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</guid>
-      <description>本文整理自知乎，原文作者 @林建入。
-不是为了与众不同。而是为了更加清晰易懂。
-Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blog.golang.org/gos-declaration-syntax），简略翻译如下（水平有限翻译的不对的地方见谅）：
-引言 Go语言新人常常会很疑惑为什么这门语言的声明语法（declaration syntax）会和传统的C家族语言不同。在这篇博文里，我们会进行一个比较，并做出解答。
-C 的语法 首先，先看看 C 的语法。C 采用了一种聪明而不同寻常的声明语法。声明变量时，只需写出一个带有目标变量名的表达式，然后在表达式里指明该表达式本身的类型即可。比如：
-int x;  上面的代码声明了 x 变量，并且其类型为 int——即，表达式 x 为 int 类型。一般而言，为了指明新变量的类型，我们得写出一个表达式，其中含有我们要声明的变量，这个表达式运算的结果值属于某种基本类型，我们把这种基本类型写到表达式的左边。所以，下述声明：
-int *p; int a[3];  指明了 p 是一个int类型的指针，因为 *p 的类型为 int。而 a 是一个 int 数组，因为 a[3] 的类型为 int（别管这里出现的索引值，它只是用于指明数组的长度）。
-我们接下来看看函数声明的情况。C 的函数声明中关于参数的类型是写在括号外的，像下面这样：
-int main(argc, argv) int argc; char *argv[]; { /* ... */ }  如前所述，我们可以看到 main 之所以是函数，是因为表达式 main(argc, argv) 返回 int。在现代记法中我们是这么写的：
-int main(int argc, char *argv[]) { /* .</description>
+      <description>本文整理自知乎，原文作者 @林建入。 不是为了与众不同。而是为了更加清晰易懂。 Rob Pike 曾经在 Go 官方博客解释过这个问题（原文地址：http://blo</description>
     </item>
     
     <item>
@@ -35,20 +28,7 @@ int main(int argc, char *argv[]) { /* .</description>
       <pubDate>Sat, 31 Dec 2016 11:34:33 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html</guid>
-      <description>https://segmentfault.com/a/
-一直在 Segment Fault 上面实行自己的拿来主义，但其实我是一直很乐意分享的人，而且特别喜欢写，以前一直都是在自己的博客里面写，但是没啥人看，也形成不了交流，所以，申请在 Segment Fault 上面开个专栏，以后还忘大家多多指教，这篇文章只是想试试 Segment Fault的编辑器，内容是前几天写的。
-Go语言的语言符号又称记法元素，共包括5类，标签符（identifier）、关键字（keyword）、操作符（operator）、分隔符（delimiter）、字面量（literal），它们是组成Go语言代码和程序的最基本单位。
-Go语言的所有源代码都必须由 Unicode 编码规范的 UTF-8 编码格式进行编码。
-一、标识符 在Go语言代码中，每一个标识符可以代表一个变更或者一个类型（即标识符可以被看作是变量或者类型的代号或者名称），标识符是由若干字母、下划线（_）和数字组成的字符序列，第一个字符必须为字母。同时，使用一个标识符在使用前都必须先声明。在一个代码块中，不允许重复声明同一个标识。
- 代码包声明（package PKG_NAME）并不算是一个声明，因为代码包名称并不出现在任何一个作用域中，代码包声明语句的目的只是为了鉴别若干源码文件是否属于同一个代码包，或者指定导入代码包时的默认代码包引用名称。
-一个限定标识符代表了对另一个代码包中的某个标识符的访问，这需要两个条件：
- 另一个代码包必须事情由Go语言的导入声明 import 导入； 某个标识符在代码包中是可导出的。  标识符可导出的前提条件有下面这两个：
- 标识符名称中的第一个字符必须是大写； 标识必须是被声明在一个代码包中的变量或者类型的名称，或者是属于某个结构体类型的字段名称或者方法名称。   在Go语言中还存在一类特殊的标识符，叫作预定义标识符，这类标识符随Go语言的源码一同出现，主要包括以下几种：
- 所有基本数据类型的名称 接口类型 error 常量 true、false 以及 iota 所有内奸函数的名称，即 append、cap、close、complex、copy、delete、imag、len、make、new、panic、print、println、real和 recover  由一个下划线表示的标识 _ 为空标识符，它一般被用在一需要引入一个新绑定声明中，如：
-import _ &amp;quot;runtime/cgo&amp;quot;  二、关键字 关键字是指被编程语言保留页不让编程人员作为标识符使用的字符序列。因此，关键字也称为保留字。
-Go 语言中所有的关键只有25个：
- 程序声明：import、package 程序实体声明和定义：chan、const、func、interface、map、struct、type、var 程序流程控制：go、select、break、case、continue、default、defer、else、fallthrough、for、goto、if、range、return、switch  三、字面量 简单来说，字面量就是表示值的一种标记法，但是在Go语言中，字面量的含义要更广一些：
- 用于表示基础数据类型值的各种字面量。 用户构造各种自定义的复合数据类型的类型字面量，如下面这个字面量表示了一个名称为 Person 的自定义结构体类型：</description>
+      <description>https://segmentfault.com/a/ 一直在 Segment Fault 上面实行自己的拿来主义，但其实我是一直很乐意分享的人，而且特别喜欢写，以前一直都是在自己的博客里面写，但是没啥人看，也形成不了交</description>
     </item>
     
   </channel>

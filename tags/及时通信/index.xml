@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>及时通信 on 虞双齐的博客</title>
+    <title>及时通信 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E5%8F%8A%E6%97%B6%E9%80%9A%E4%BF%A1.html</link>
-    <description>在 虞双齐的博客上关于in 及时通信 的内容</description>
+    <description>Recent content in 及时通信 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:28 +0800</lastBuildDate>
-    <atom:link href="/tags/%E5%8F%8A%E6%97%B6%E9%80%9A%E4%BF%A1.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E5%8F%8A%E6%97%B6%E9%80%9A%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>及时通信最佳实践</title>
@@ -17,17 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:28 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html</guid>
-      <description>描述 Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长连接的应用。
-使用Lhttp可以大量减少服务端开发的工作量，实现非常好的模块化和业务功能的解耦合。
-可以定制任何你想要的功能。
-项目地址
-特点  使用简单，功能强大
- 性能高，使用gnatsd消息队列 publish 10000 条消息耗时0.04s(single-core CPU,1G memory).
- 支持集群，横向扩展，通过增加服务器来获取更高的服务能力
- 非常容器进行定制与扩展
- 可以非常好的与http服务协同工作，如利用http发送消息，将消息转发给上游http服务器等。所以即便你不会go语言也可以开发一些应用。
-  聊天室demo 前端sdk
-协议栈: +--------------------+ | lhttp | +--------------------+ | websocket | +--------------------+ | TCP | +--------------------+  系统架构  +---------------------------------------+ | message center cluster (gnatsd) | +---------------------------------------+ ........|.................|...............|.................. | +-------------+ +-------------+ +-------------+ | | |lhttp server | |lhttp server | |lhttp server | ... | lhttp 服务集群 | +-------------+ +-------------+ +-------------+ | .</description>
+      <description>描述 Lhttp是一个基于websocket服务端框架，提供一个类似http的协议去帮助开发者开发长连接的应用。 使用Lhttp可以大量减少服务</description>
     </item>
     
   </channel>

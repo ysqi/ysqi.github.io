@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>热加载 on 虞双齐的博客</title>
+    <title>热加载 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E7%83%AD%E5%8A%A0%E8%BD%BD.html</link>
-    <description>在 虞双齐的博客上关于in 热加载 的内容</description>
+    <description>Recent content in 热加载 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:37 +0800</lastBuildDate>
-    <atom:link href="/tags/%E7%83%AD%E5%8A%A0%E8%BD%BD.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E7%83%AD%E5%8A%A0%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>[转载]Golanghotconfigurationreload</title>
@@ -17,9 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:37 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html</guid>
-      <description>原文：http://openmymind.net/Golang-Hot-Configuration-Reload/
-Like most, I&amp;rsquo;ve always appreciated a software package that lets me hot-reload the configuration without having to restart. Nginx immediately comes to mind, as does Postgresql (not for all settings, but most). This is something I&amp;rsquo;ve never done; so I was pretty happy when the opportunity presented itself.
-I&amp;rsquo;m not sure how anyone else does this, but it&amp;rsquo;s pretty basic stuff. When you get past the meaningless fact that you&amp;rsquo;re reloading a configuration, it&amp;rsquo;s just about providing concurrent read and write access to a shared object.</description>
+      <description>原文：http://openmymind.net/Golang-Hot-Configuration-Reload/ Like most, I&amp;rsquo;ve always appreciated a software package that lets me hot-reload the</description>
     </item>
     
   </channel>

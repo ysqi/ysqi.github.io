@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go语言 on 虞双齐的博客</title>
+    <title>Go语言 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/go%E8%AF%AD%E8%A8%80.html</link>
-    <description>在 虞双齐的博客上关于in Go语言 的内容</description>
+    <description>Recent content in Go语言 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:02 +0800</lastBuildDate>
-    <atom:link href="/tags/go%E8%AF%AD%E8%A8%80.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/go%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golang时间格式化的奇怪设定-为什么你一直出错</title>
@@ -17,15 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html</guid>
-      <description>首发于：http://blog.shajiquan.com/2015/12/golang-time-format/
-今天有人在群里问：
-问一个时间格式化问题： fmt.Println(time.Now().Format(&amp;quot;2006year 01month 02day&amp;quot;)) 2015year 12month 18day fmt.Println(time.Now().Format(&amp;quot;2015year 01month 01day&amp;quot;)) 181253year 12month 12day 为什么？ 困扰好久  首先，这是一个很奇葩的问题。
-其次，我，以及比我对 Golang 更了解的朋友，都掉过这个坑。我们曾在这个问题上，花了很多时间，最后发现是 Golang 自己的奇怪设定导致。尤其是，一段时间不用 time 包后，过段时间居然又忘了。
-然后，怪我们没看文档，可是&amp;hellip;
-结论：年、月、日、时、分、秒，英文、数字，必须精确地限定到 golang 指定的时间原点：2006-01-02 15:04:05
-示例：
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { fmt.Println(&amp;quot;hello &amp;quot;) now := time.Now() nowRight := now.Format(&amp;quot;2006-01-02 15:04&amp;quot;) fmt.Println(nowRight) nowWrong := now.Format(&amp;quot;2006-01-03日错了 15:05 分错了&amp;quot;) fmt.Println(nowWrong) fmt.Println(now.Format(&amp;quot;Mon Jan _2 15:04:05 2006 年&amp;quot;)) fmt.Println(&amp;quot;变态吧！&amp;quot;) }  附，格式化字符串模板：
-const ( ANSIC = &amp;quot;Mon Jan _2 15:04:05 2006&amp;quot; UnixDate = &amp;quot;Mon Jan _2 15:04:05 MST 2006&amp;quot; RubyDate = &amp;quot;Mon Jan 02 15:04:05 -0700 2006&amp;quot; RFC822 = &amp;quot;02 Jan 06 15:04 MST&amp;quot; RFC822Z = &amp;quot;02 Jan 06 15:04 -0700&amp;quot; // RFC822 with numeric zone RFC850 = &amp;quot;Monday, 02-Jan-06 15:04:05 MST&amp;quot; RFC1123 = &amp;quot;Mon, 02 Jan 2006 15:04:05 MST&amp;quot; RFC1123Z = &amp;quot;Mon, 02 Jan 2006 15:04:05 -0700&amp;quot; // RFC1123 with numeric zone RFC3339 = &amp;quot;2006-01-02T15:04:05Z07:00&amp;quot; RFC3339Nano = &amp;quot;2006-01-02T15:04:05.</description>
+      <description>首发于：http://blog.shajiquan.com/2015/12/golang-time-format/ 今天有人在群里问： 问一个时</description>
     </item>
     
     <item>
@@ -34,29 +28,7 @@ const ( ANSIC = &amp;quot;Mon Jan _2 15:04:05 2006&amp;quot; UnixDate = &amp;quo
       <pubDate>Sat, 31 Dec 2016 11:34:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html</guid>
-      <description>1.下载 并且 安装 Go安装包
-百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg
-===========================================================
-注意：千万不要在安装路径中出现中文。否则之后将无法正常使用Go语言开发工具
-安装说明的链接：（可能需要翻墙）
-https://code.google.com/p/golang-china/wiki/Install
-下载Go安装包的链接：
-http://pan.baidu.com/s/1bjg9zg
-2.配置环境变量
-(1). 新建 变量名：GOBIN 变量值 ：c:\go\bin
-(2). 新建 变量名：GOARCH 变量值：amd64
-(3). 新建 变量名：GOOS 变量值：windows
-(4). 新建 变量名： GOROOT 变量值：c:\go
-(5). 编辑 Path 在Path的变量值的最后加上 %GOBIN% (默认已加)
-如果是msi安装文件，Go语言的环境变量会自动设置好。如果后面的测试无法通过，可以重新设置环境变量。
-3.测试安装是否成功
-打开Windows中的命令提示符（cmd.exe）执行命令：go version 或者 go help
-正常情况下会显示：
-4.访问Go安装包中的文档
-打开Windows中的命令提示符（cmd.exe）执行命令: godoc -http=:8080
-5.输出“Hello World!”
-1）在C盘新建一个文件：hello.go
-2）输入或者直接复制粘贴代码： package main import &amp;quot;fmt&amp;quot; func main(){ fmt.Printf(&amp;quot;Hello Word!\n&amp;quot;); } 注意：大括号一定要这么写，这是因为go在语法中加入一些代码规范，按照下面这样写是错误的： func main() { fmt.Printf(&amp;quot;Hello Word!\n&amp;quot;); } 打开Windows中的命令提示符（cmd.exe）执行命令： go build -o C:\hello.</description>
+      <description>1.下载 并且 安装 Go安装包 百度网盘上传了最新GO版本，供大家下载：http://pan.baidu.com/s/1bjg9zg =========================================================== 注意：千万不</description>
     </item>
     
     <item>
@@ -65,12 +37,7 @@ http://pan.baidu.com/s/1bjg9zg
       <pubDate>Sat, 31 Dec 2016 11:33:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</guid>
-      <description>https://segmentfault.com/a/
-package main
-import (
-&amp;quot;fmt&amp;quot; &amp;quot;strings&amp;quot; //&amp;quot;unicode/utf8&amp;quot;  )
-func main() {
-fmt.Println(&amp;quot;查找子串是否在指定的字符串中&amp;quot;) fmt.Println(&amp;quot; Contains 函数的用法&amp;quot;) fmt.Println(strings.Contains(&amp;quot;seafood&amp;quot;, &amp;quot;foo&amp;quot;)) //true fmt.Println(strings.Contains(&amp;quot;seafood&amp;quot;, &amp;quot;bar&amp;quot;)) //false fmt.Println(strings.Contains(&amp;quot;seafood&amp;quot;, &amp;quot;&amp;quot;)) //true fmt.Println(strings.Contains(&amp;quot;&amp;quot;, &amp;quot;&amp;quot;)) //true 这里要特别注意 fmt.Println(strings.Contains(&amp;quot;我是中国人&amp;quot;, &amp;quot;我&amp;quot;)) //true fmt.Println(&amp;quot;&amp;quot;) fmt.Println(&amp;quot; ContainsAny 函数的用法&amp;quot;) fmt.Println(strings.ContainsAny(&amp;quot;team&amp;quot;, &amp;quot;i&amp;quot;)) // false fmt.Println(strings.ContainsAny(&amp;quot;failure&amp;quot;, &amp;quot;u &amp;amp; i&amp;quot;)) // true fmt.Println(strings.ContainsAny(&amp;quot;foo&amp;quot;, &amp;quot;&amp;quot;)) // false fmt.Println(strings.ContainsAny(&amp;quot;&amp;quot;, &amp;quot;&amp;quot;)) // false fmt.Println(&amp;quot;&amp;quot;) fmt.Println(&amp;quot; ContainsRune 函数的用法&amp;quot;) fmt.Println(strings.ContainsRune(&amp;quot;我是中国&amp;quot;, &#39;我&#39;)) // true 注意第二个参数，用的是字符 fmt.Println(&amp;quot;&amp;quot;) fmt.Println(&amp;quot; Count 函数的用法&amp;quot;) fmt.Println(strings.Count(&amp;quot;cheese&amp;quot;, &amp;quot;e&amp;quot;)) // 3 fmt.</description>
+      <description>https://segmentfault.com/a/ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;strings&amp;quot; //&amp;quot;unicode/utf8&amp;quot; ) func main() { fmt.Println(&amp;quot;查找子串是否在指定的字符串中&amp;quot;) fmt.Println(&amp;quot; Contains 函数的用法&amp;quot;) fmt.Println(strings.Contains(&amp;quot;seafood&amp;quot;, &amp;quot;foo&amp;quot;)) //true fmt.Println(strings.Contains(&amp;quot;seafood&amp;quot;, &amp;quot;bar&amp;quot;))</description>
     </item>
     
     <item>
@@ -79,13 +46,7 @@ fmt.Println(&amp;quot;查找子串是否在指定的字符串中&amp;quot;) fmt.
       <pubDate>Sat, 31 Dec 2016 11:33:21 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html</guid>
-      <description>主要是看《the way to go》时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。
- 标签（空格分隔）： go 监控
-关键字 break default func interface select case defer go map struct chan else goto
-package switch const fallthrough if range type continue for import return var
-基本类型，内置函数 append bool byte cap close complex complex64 complex128 uint16 copy false float32 float64
-imag int int8 int16 uint32 int32 int64 iota len make new nil panic uint64 print println
-real recover string true uint uint8 uintptr</description>
+      <description>主要是看《the way to go》时的一些笔记，比较凌乱，内容也不全，以后慢慢补充。 标签（空格分隔）： go 监控 关键字 break default func interface select case defer go map struct chan else goto package switch const fallthrough</description>
     </item>
     
     <item>
@@ -94,30 +55,7 @@ real recover string true uint uint8 uintptr</description>
       <pubDate>Sat, 31 Dec 2016 11:33:21 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html</guid>
-      <description>最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释
- 代码地址：https://github.com/beyondskyw&amp;hellip;
-标签（空格分隔）： falcon go
-监控数据  机器性能指标：cpu，mem，网卡，磁盘……
- 业务监控
- 开源软件状态：Nginx，Redis，MySQL
- snmp采集网络设备指标
-  设计原理  自发现采集值
- 不同类型数据采集分不同goroutine
- 进程和端口通过用户配置进行监控
-  配置文件  hostname和ip默认留空，agent自动探测
- hbs和transfer都是配置其rpc地址
- collector网卡采集前缀
- ignore为true时取消上报
-  组织结构  cron：间隔执行的代码，即定时任务
- funcs：信息采集
- g:全局数据结构
- http：简单的dashboard的server，获取单机监控指标数据
- plugins：插件处理机制
- public：静态资源文件
-  心跳机制  了解agent、plugin版本信息，方便升级
- 获取监听的进程和端口
- 获取本机执行的插件列表
-  与HBS、Transfer交互 调用关系 代码解读  main入口  go cron.</description>
+      <description>最近学习falcon，看了源码和极客学院的视频解析，画了调用结构、关系，对主要的代码进行了注释 代码地址：https://github.com</description>
     </item>
     
     <item>
@@ -126,24 +64,7 @@ real recover string true uint uint8 uintptr</description>
       <pubDate>Sat, 31 Dec 2016 11:33:20 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html</guid>
-      <description>open-falcon-hbs 标签（空格分隔）： go falcon
-主要功能  处理agent心跳请求，填充host表
- ip白名单下发所有agent
- 下发执行插件信息
- 下发监控端口、进程
- 缓存监控策略
-  模块结构 内存数据Map结构  HostMap:
-(hostname, hostId int)
- HostGroupsMap:
-(hostId, groupsId []int)
- GroupPlugins:
-(groupId, pluginsPath []string)
- GroupTemplates:
-(groupId, templatesID []int)
- TemplateCache:
-(templateId, Template)
-  type Template struct { Id int `json:&amp;quot;id&amp;quot;` Name string `json:&amp;quot;name&amp;quot;` ParentId int `json:&amp;quot;parentId&amp;quot;` ActionId int `json:&amp;quot;actionId&amp;quot;` Creator string `json:&amp;quot;creator&amp;quot;` }   Strategies:
-(strategryID, Strategry)  type Strategy struct { Id int `json:&amp;quot;id&amp;quot;` Metric string `json:&amp;quot;metric&amp;quot;` Tags map[string]string `json:&amp;quot;tags&amp;quot;` Func string `json:&amp;quot;func&amp;quot;` // e.</description>
+      <description>open-falcon-hbs 标签（空格分隔）： go falcon 主要功能 处理agent心跳请求，填充host表 ip白名单下发所有agent 下发执行插件信息 下发监控端口、进程 缓存监控</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nginx on 虞双齐的博客</title>
+    <title>Nginx on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/nginx.html</link>
-    <description>在 虞双齐的博客上关于in Nginx 的内容</description>
+    <description>Recent content in Nginx on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:35 +0800</lastBuildDate>
-    <atom:link href="/tags/nginx.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Caddy新兴的web服务器caddy</title>
@@ -17,24 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
-      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。
-你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单，
-然后呢，它还有下面这些开箱即用的特性:
- HTTP/2 全自动支持HTTP/2协议，无需任何配置。
- Auto HTTPS Caddy 使用 Let&amp;rsquo;s Encrypt 让你的站点全自动变成全站HTTPS，无需任何配置。当然你想使用自己的证书也是可以的。
- Multi-core 因为caddy是golang写的，所以当然可以合理使用多核啦。
- IPv6 完全支持IPv6环境.
- WebSockets Caddy 对WebSockets有很好的支持.
- Markdown 自动把md转成 HTML ，当然，我后续要给大家介绍更强大的hugo来干这个事情.
- Logging Caddy 对log格式的定义很容易，更好的满足你日志收集的需求。
- Easy Deployment 得益于go的特性，caddy只是一个小小的二进制文件，没有依赖，很好部署。
-  那么在什么场景下适合尝试使用caddy呢，我推荐从以下场景开始：
- 作为静态页面的webserver
- 转发 fastcgi 请求到 php-fpm 服务，比如替换apache或nginx作为wordpress的server
- 反向代理，管理多个站点
- 微服务的 API gateway ，我会专门写一篇文章。
- 有些在nginx上难以开发的需求，为caddy写插件太方便了。
-  入门 安装caddy  下载 caddy</description>
+      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单， 然后呢，它还有</description>
     </item>
     
     <item>
@@ -43,12 +28,7 @@
       <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</guid>
-      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远程连接到服务器，然后使用命令去控制服务器。Windows 用户可以使用 Putty ，Mac 用户可以使用系统自带的终端工具。然后用 ssh 命令，连接到你的服务器。像这样：
-ssh root@218.244.147.196 @ 左边的 root 是连接时使用的用户的名字，@ 右边的数字是你的服务器的 IP 地址。这行命令的意思就是，使用 root 用户，登录到 218.244.147.196 这台服务器上。回车以后，会提示你输入 root 用户的密码（这个密码阿里云会发送到你手机上）。
-安装 Nginx 想在 CentOS 系统上安装 Nginx ，你得先去添加一个资源库，像这样：
-vim /etc/yum.repos.d/nginx.repo 使用 vim 命令去打开 /etc/yum.repos.d/nginx.repo ，如果 nginx.repo 不存在，就会去创建一个这样的文件，打开以后按一下小 i 键，进入编辑模式，然后复制粘贴下面这几行代码，完成以后按 esc 键退出，再输入 :wq （保存并退出）
-[nginx] name=nginx repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=0 enabled=1 完成以后，我们就可以使用 yum 命令去安装 nginx 了，像这样：
-yum install nginx 安装好以后测试一下 nginx 服务： service nginx status 应该会返回：</description>
+      <description>远程控制你的服务器 远程控制 Linux 类型的系统的服务器，比如 CentOS 系统的服务器，一般不像 Windows 服务器那样，使用图形界面的远程控制。我们需要使用命令行工具，远</description>
     </item>
     
   </channel>

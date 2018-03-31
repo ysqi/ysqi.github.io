@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Base64 on 虞双齐的博客</title>
+    <title>Base64 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/base64.html</link>
-    <description>在 虞双齐的博客上关于in Base64 的内容</description>
+    <description>Recent content in Base64 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:16 +0800</lastBuildDate>
-    <atom:link href="/tags/base64.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/base64/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golang实现RSA加密解密(附带php)</title>
@@ -17,30 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</guid>
-      <description>https://segmentfault.com/a/
-安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES加密算法本身，请查阅相关资料）
-在PHP中，很多功能经常是一个函数解决；而Go中的却不是。本文会通过PHP加密，Go解密；Go加密，PHP解密来学习Go的RSA和DES相关的API。
-该文讨论Go RSA加密解密。所有操作在linux下完成。
-一、概要 这是一个非对称加密算法，一般通过公钥加密，私钥解密。
-在加解密过程中，使用openssl生产密钥。执行如下操作：
-1）创建私钥：
-openssl genrsa -out private.pem 1024 //密钥长度，1024觉得不够安全的话可以用2048，但是代价也相应增大  2）创建公钥：
-openssl rsa -in private.pem -pubout -out public.pem  这样便生产了密钥。
-一般地，各个语言也会提供API，用于生成密钥。在Go中，可以查看encoding/pem包和crypto/x509包。具体怎么产生，可查看《GO加密解密RSA番外篇：生成RSA密钥》。
-加密解密这块，涉及到很多标准，个人建议需要的时候临时学习一下。
-二、Go RSA加密解密 1、rsa加解密，必然会去查crypto/ras这个包
- Package rsa implements RSA encryption as specified in PKCS#1.
- 这是该包的说明：实现RSA加密技术，基于PKCS#1规范。
-对于什么是PKCS#1，可以查阅相关资料。PKCS（公钥密码标准），而#1就是RSA的标准。可以查看：PKCS系列简介
-从该包中函数的名称，可以看到有两对加解密的函数。
-EncryptOAEP和DecryptOAEP EncryptPKCS1v15和DecryptPKCS1v15  这称作加密方案，详细可以查看，PKCS #1 v2.1 RSA 算法标准
-可见，当与其他语言交互时，需要确定好使用哪种方案。
-PublicKey和PrivateKey两个类型分别代表公钥和私钥，关于这两个类型中成员该怎么设置，这涉及到RSA加密算法，本文中，这两个类型的实例通过解析文章开头生成的密钥得到。
-2、解析密钥得到PublicKey和PrivateKey的实例
-这个过程，我也是花了好些时间（主要对各种加密的各种东东不熟）：怎么将openssl生成的密钥文件解析到公钥和私钥实例呢？
-在encoding/pem包中，看到了—–BEGIN Type—–这样的字样，这正好和openssl生成的密钥形式差不多，那就试试。
-在该包中，一个block代表的是PEM编码的结构，关于PEM，请查阅相关资料。我们要解析密钥，当然用Decode方法：
-func Decode(data []byte) (p *Block, rest []byte)  这样便得到了一个Block的实例（指针）。</description>
+      <description>https://segmentfault.com/a/ 安全总是很重要的，各个语言对于通用的加密算法都会有实现。前段时间，用Go实现了RSA和DES的加密解密，在这分享一下。（对于RSA和DES</description>
     </item>
     
   </channel>

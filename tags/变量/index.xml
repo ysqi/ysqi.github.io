@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>变量 on 虞双齐的博客</title>
+    <title>变量 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E5%8F%98%E9%87%8F.html</link>
-    <description>在 虞双齐的博客上关于in 变量 的内容</description>
+    <description>Recent content in 变量 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:04 +0800</lastBuildDate>
-    <atom:link href="/tags/%E5%8F%98%E9%87%8F.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E5%8F%98%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>GO学习笔记(一)</title>
@@ -17,16 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:04 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html</guid>
-      <description>https://segmentfault.com/a/
-变量 变量声明 通过关键字var声明变量，数据类型在变量名后。
-var a int var b int = 10  变量声明语句可以不需要使用分号作为结束符。
-可以将若干个需要声明的变量放置在一起，避免重复写var关键字。
-var ( a int b string )  初始化变量 初始化变量时可以不用声明数据类型，go编译器会根据表达式右值推导出该声明为哪种类型。
-var a int = 10 var a = 10  可以使用 := 操作符，用于明确表达同时进行变量声明和初始化工作，可以减少写关键字var跟数据类型。
-变量赋值 go支持多重赋值
-var i var j i, j = j, i  这样就可以减少引入一个中间变量。
-var t = i; var i = j; var j = t;  匿名变量 在函数返回多个值，但只希望获取个别返回值的情况下，可以使用匿名变量，这样就可以省去定义没用的变量。
-func GetName() (firstName, lastName, nickName string) { return &amp;quot;May&amp;quot;, &amp;quot;Chan&amp;quot;, &amp;quot;Chibi Maruko&amp;quot; }  取nickName的值，可以写成下面的写法</description>
+      <description>https://segmentfault.com/a/ 变量 变量声明 通过关键字var声明变量，数据类型在变量名后。 var a int var b int = 10 变量声明语句可以不需要使用分号作为结束符。 可以将若干个需要声明的</description>
     </item>
     
   </channel>

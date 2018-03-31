@@ -1,137 +1,136 @@
-<!DOCTYPE html><html xmlns="https://www.w3.org/1999/xhtml" xmlns:og="https://ogp.me/ns#" lang="zh" id="doc" class="no-js"><head><title>Go开发规范之常见问题汇总 |虞双齐的博客</title><meta name="description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见"><meta name="keywords" content="Golang, 编码规范, "><meta name="author" content="虞双齐"><meta name="generator" content="Hugo 0.31.1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="renderer" content="webkit"><meta name="applicable-device" content="pc,mobile"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="32x32" href="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="虞双齐"><link rel="apple-touch-icon-precomposed" href="/img/app-icon64x64.png"><meta name="msapplication-TileImage" content="/img/app-icon128x128.png"><meta name="msapplication-TileColor" content="#0e90d2"><meta property="og:site_name" content="虞双齐的博客"><meta property="og:locale" content="zh"><meta property="og:url" content="https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html"><meta property="og:title" content="Go开发规范之常见问题汇总"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-01-27 00:00:00"><meta property="article:modified_time" content="2016-01-27 00:00:00"><meta property="article:tag" content="Golang"><meta property="article:tag" content="编码规范"><meta name="og:description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见"><link rel="stylesheet" type="text/css" href="/css/jiandan.css?v=201709"><script type="text/javascript">var doc = document.getElementById('doc');
-	doc.removeAttribute('class', 'no-js');
-	doc.setAttribute('class', 'js');</script><script type="text/javascript">var changeActive = function() {
-		var page = document.getElementById("page");		
-		if (page.getAttribute("class") === "not-active") {
-			page.setAttribute("class", "active-sidebar");		
-		} else if (page.getAttribute("class") === "active-sidebar") {
-			page.setAttribute("class", "not-active");
-		}		
-	}
-	
-	window.onload = function() {
-		if(document.getElementById("sidebar-button")) {
-			var sidebar_button = document.getElementById("sidebar-button");
-			sidebar_button.onclick = function(event) {
-				changeActive();
-				event.preventDefault();
-			}
-		}
-		
-	}
-	
-	window.onresize = function() {
-		var page = document.getElementById("page");	
-		page.setAttribute("class", "not-active");	
-	}</script></head><body id="page" class="not-active"><div class="container"><header class="header writingsheader"><nav class="off-canvas-nav-links"><ul><li class="menuli"><a class="menubutton" href="#menu">Menu</a></li><li id="site-title"><a class="menulogo" id="sidebar-button" href="#sidebar">附件信息</a></li></ul></nav></header><section role="main"><article class="entry writingsentry" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 itemprop="headline"><a rel="bookmark" href="https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html">Go开发规范之常见问题汇总</a></h1><p class="attribution"><span itemprop="author"><span itemscope itemtype="http://schema.org/Person">文/ <a href="https://yushuangqi.com"><span itemprop="name">虞双齐</span></a> </span></span><span class="right"><time itemprop="datePublished" datetime="2016-01-27">2016年01月27日</time></span></p></header><div itemprop="articleBody"><p>这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是一份规范指引。可以当作一份GO开发规范的补充信息。</p><h3 id="goimports">goimports</h3><p>虽 Go 默认带有 gofmt 工具，但还是强烈推荐增强性工具 <a href="https://github.com/bradfitz/goimports">goimport</a> ,该工具在 gofmt 工具基础上增强提供自动删除和引入包功能。</p><p>你可在保存文件时，让编辑器自动执行命令，如 Sublime 编辑器插件 <code>GoSublime</code> 和 Atom 编辑器插件 <code>go-plus</code>均可实现。</p><p>在使用前，你需要获取包到本地：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ go get golang.org/x/tools/cmd/goimports</code></pre></div><ul><li>在 Sublime 中使用：具体参见: <a href="http://michaelwhatcott.com/gosublime-goimports">插件说明文档</a></li><li>在 LiteIDE 中使用：默认支持，如果不起作用，可手工配置：属性配置 -&gt; golangfmt -&gt; <code>勾选</code>goimports</li><li>在 Atom 中使用：具体参见：<a href="https://atom.io/packages/go-plus">插件说明文档</a></li></ul><h3 id="注释">注释</h3><p>注释应该是一个完整的句子，这有利于在 <code>godoc</code> 文档中能看到有效的完整文字。既然是完整的句子，就应该有始有终，末尾以<code>.</code>结束。如：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#60a0b0;font-style:italic">// A Request represents a request to run a command.
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">type</span> Request <span style="color:#007020;font-weight:700">struct</span> { <span style="color:#666">...</span>
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Go开发规范之常见问题汇总 - 虞双齐爱折腾</title><link rel="alternate" hreflang="zh" href="https://yushuangqi.com"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="applicable-device" content="pc,mobile"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="theme-color" content="#f8f5ec"><meta name="msapplication-navbutton-color" content="#f8f5ec"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec"><meta name="mobile-web-app-capable" content="yes"><meta name="author" content="虞双齐"><meta name="description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是"><meta name="keywords" content="智能合约开发, Go语言, 区块链技术"><meta name="generator" content="Hugo 0.37.1"><link rel="canonical" href="https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/manifest.json"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet"><link href="https://cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" rel="stylesheet" crossorigin="anonymous"><meta property="og:title" content="Go开发规范之常见问题汇总"><meta property="og:description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是"><meta property="og:type" content="article"><meta property="og:url" content="https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html"><meta property="article:published_time" content="2016-01-27T00:00:00&#43;00:00"><meta property="article:modified_time" content="2016-01-27T00:00:00&#43;00:00"><meta itemprop="name" content="Go开发规范之常见问题汇总"><meta itemprop="description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是"><meta itemprop="datePublished" content="2016-01-27T00:00:00&#43;00:00"><meta itemprop="dateModified" content="2016-01-27T00:00:00&#43;00:00"><meta itemprop="wordCount" content="2971"><meta itemprop="keywords" content="Golang,编码规范,"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Go开发规范之常见问题汇总"><meta name="twitter:description" content="这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是"><!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]--><!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]--></head><body><div id="mobile-navbar" class="mobile-navbar"><div class="mobile-header-logo"><a href="/" class="logo">虞双齐爱折腾</a></div><div class="mobile-navbar-icon"><span></span> <span></span> <span></span></div></div><nav id="mobile-menu" class="mobile-menu slideout-menu"><ul class="mobile-menu-list"><a href="/"><li class="mobile-menu-item">首页</li></a><a href="/post.html"><li class="mobile-menu-item">归档</li></a><a href="/tags.html"><li class="mobile-menu-item">标签</li></a><a href="/categories.html"><li class="mobile-menu-item">分类</li></a><a href="/about.html"><li class="mobile-menu-item">关于</li></a></ul></nav><header id="header" class="header container"><div class="logo-wrapper"><a href="/" class="logo">虞双齐爱折腾</a></div><nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item"><a class="menu-item-link" href="/">首页</a></li><li class="menu-item"><a class="menu-item-link" href="/post.html">归档</a></li><li class="menu-item"><a class="menu-item-link" href="/tags.html">标签</a></li><li class="menu-item"><a class="menu-item-link" href="/categories.html">分类</a></li><li class="menu-item"><a class="menu-item-link" href="/about.html">关于</a></li></ul></nav></header><div id="mobile-panel"><main id="main" class="main bg-llight"><div class="content-wrapper"><div id="content" class="content container"><article class="post bg-white"><header class="post-header"><h1 class="post-title">Go开发规范之常见问题汇总</h1><div class="post-meta"><span class="post-time">2016-01-27 </span><span class="more-meta">约 2971 字 </span><span class="more-meta">预计阅读 6 分钟</span></div></header><div class="post-toc" id="post-toc"><h2 class="post-toc-title">文章目录</h2><div class="post-toc-content always-active"><nav id="TableOfContents"><ul><li><ul><li><ul><li><a href="#goimports">goimports</a></li><li><a href="#注释">注释</a></li><li><a href="#定义空slices">定义空Slices</a></li><li><a href="#文档说明">文档说明</a></li><li><a href="#不要painc">不要Painc</a></li><li><a href="#错误信息">错误信息</a></li><li><a href="#错误处理">错误处理</a></li><li><a href="#导入包">导入包</a></li><li><a href="#精简错误处理">精简错误处理</a></li><li><a href="#命名简称">命名简称</a></li><li><a href="#单行长度">单行长度</a></li><li><a href="#返回参数命名">返回参数命名</a></li><li><a href="#包注释">包注释</a></li><li><a href="#包内命名">包内命名</a></li><li><a href="#值传递">值传递</a></li><li><a href="#对象方法">对象方法</a></li><li><a href="#入参类型">入参类型</a></li><li><a href="#准确反馈测试失败信息">准确反馈测试失败信息</a></li><li><a href="#变量命名">变量命名</a></li></ul></li></ul></li></ul></nav></div></div><div class="post-content"><p>这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是一份规范指引。可以当作一份GO开发规范的补充信息。</p><h3 id="goimports">goimports</h3><p>虽 Go 默认带有 gofmt 工具，但还是强烈推荐增强性工具 <a href="https://github.com/bradfitz/goimports">goimport</a> ,该工具在 gofmt 工具基础上增强提供自动删除和引入包功能。</p><p>你可在保存文件时，让编辑器自动执行命令，如 Sublime 编辑器插件 <code>GoSublime</code> 和 Atom 编辑器插件 <code>go-plus</code>均可实现。</p><p>在使用前，你需要获取包到本地：</p><pre><code class="language-bash">$ go get golang.org/x/tools/cmd/goimports
+</code></pre><ul><li>在 Sublime 中使用：具体参见: <a href="http://michaelwhatcott.com/gosublime-goimports">插件说明文档</a></li><li>在 LiteIDE 中使用：默认支持，如果不起作用，可手工配置：属性配置 -&gt; golangfmt -&gt; <code>勾选</code>goimports</li><li>在 Atom 中使用：具体参见：<a href="https://atom.io/packages/go-plus">插件说明文档</a></li></ul><h3 id="注释">注释</h3><p>注释应该是一个完整的句子，这有利于在 <code>godoc</code> 文档中能看到有效的完整文字。既然是完整的句子，就应该有始有终，末尾以<code>.</code>结束。如：</p><pre><code class="language-Go">// A Request represents a request to run a command.
+type Request struct { ...
 
-<span style="color:#60a0b0;font-style:italic">// Encode writes the JSON encoding of req to w.
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">func</span> Encode(w io.Writer, req <span style="color:#666">*</span>Request) { <span style="color:#666">...</span></code></pre></div><h3 id="定义空slices">定义空Slices</h3><p>当定义一个空的 Slices 时，应该写成：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">var</span> t []<span style="color:#902000">string</span></code></pre></div><p>而不是：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">t <span style="color:#666">:=</span> []<span style="color:#902000">string</span>{}</code></pre></div><p>这样的好处是避免在正式使用前分配内存。</p><h3 id="文档说明">文档说明</h3><p>作为最顶级的，可以供包外部使用的信息均应该写文档说明。</p><h3 id="不要painc">不要Painc</h3><p>不要到处使用<code>Panic</code> ,对于普通的错误，应该更多的使用包含 <code>error</code> 的多值返回。关于 Error 使用，可参见<a href="http://golang.org/doc/effective_go.html#errors">官方文档</a>。</p><h3 id="错误信息">错误信息</h3><p>error 错误信息作为和上下文相关的信息不需要大写(除非是特定名词),也不需要以<code>.</code>结束。如使用<code>fmt.Errorf(&quot;something bad&quot;)</code> 而不写成：<code>fmt.Errorf(&quot;Something bad.&quot;)</code>,这样在结合 log 使用时便有完整的信息：<code>log.Print(&quot;Reading %s: %v&quot;, filename, err)</code>。</p><h3 id="错误处理">错误处理</h3><p>不要使用<code>_</code>来忽略错误信息，如果一个方法有返回 error，则必须对 error 处理，已确保方法执行成功。处理 Error 时可以返回给上一层，也可以在特殊场景下 <code>panic</code></p><h3 id="导入包">导入包</h3><p>对导入包进行特定分组，按标准包, 项目包，第三方包 依次分组，组与组间用空行隔开，其中标准包放在最前面。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">package</span> main
+// Encode writes the JSON encoding of req to w.
+func Encode(w io.Writer, req *Request) { ...
+</code></pre><h3 id="定义空slices">定义空Slices</h3><p>当定义一个空的 Slices 时，应该写成：</p><pre><code class="language-Go">var t []string
+</code></pre><p>而不是：</p><pre><code class="language-Go">t := []string{}
+</code></pre><p>这样的好处是避免在正式使用前分配内存。</p><h3 id="文档说明">文档说明</h3><p>作为最顶级的，可以供包外部使用的信息均应该写文档说明。</p><h3 id="不要painc">不要Painc</h3><p>不要到处使用<code>Panic</code> ,对于普通的错误，应该更多的使用包含 <code>error</code> 的多值返回。关于 Error 使用，可参见<a href="http://golang.org/doc/effective_go.html#errors">官方文档</a>。</p><h3 id="错误信息">错误信息</h3><p>error 错误信息作为和上下文相关的信息不需要大写(除非是特定名词),也不需要以<code>.</code>结束。如使用<code>fmt.Errorf(&quot;something bad&quot;)</code> 而不写成：<code>fmt.Errorf(&quot;Something bad.&quot;)</code>,这样在结合 log 使用时便有完整的信息：<code>log.Print(&quot;Reading %s: %v&quot;, filename, err)</code>。</p><h3 id="错误处理">错误处理</h3><p>不要使用<code>_</code>来忽略错误信息，如果一个方法有返回 error，则必须对 error 处理，已确保方法执行成功。处理 Error 时可以返回给上一层，也可以在特殊场景下 <code>panic</code></p><h3 id="导入包">导入包</h3><p>对导入包进行特定分组，按标准包, 项目包，第三方包 依次分组，组与组间用空行隔开，其中标准包放在最前面。</p><pre><code class="language-Go">package main
 
-<span style="color:#007020;font-weight:700">import</span> (
-    <span style="color:#4070a0">&#34;fmt&#34;</span>
-    <span style="color:#4070a0">&#34;hash/adler32&#34;</span>
-    <span style="color:#4070a0">&#34;os&#34;</span>
+import (
+    &quot;fmt&quot;
+    &quot;hash/adler32&quot;
+    &quot;os&quot;
 
-    <span style="color:#4070a0">&#34;appengine/foo&#34;</span>
-    <span style="color:#4070a0">&#34;appengine/user&#34;</span>
+    &quot;appengine/foo&quot;
+    &quot;appengine/user&quot;
 
-    <span style="color:#4070a0">&#34;code.google.com/p/x/y&#34;</span>
-    <span style="color:#4070a0">&#34;github.com/ysqi/beego&#34;</span>
-)</code></pre></div><p>高兴的是，goimprots 工具可以自动处理分组。</p><h3 id="精简错误处理">精简错误处理</h3><p>尽量让代码按常规逻辑处理，先处理错误信息，缩短和精简错误处理范围，有利于提高代码可读性。不要写成：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-    <span style="color:#60a0b0;font-style:italic">// 错误处理
-</span><span style="color:#60a0b0;font-style:italic"></span>} <span style="color:#007020;font-weight:700">else</span> {
-    <span style="color:#60a0b0;font-style:italic">// 常规逻辑
-</span><span style="color:#60a0b0;font-style:italic"></span>}</code></pre></div><p>而应写成：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-    <span style="color:#60a0b0;font-style:italic">// 错误处理
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:700">return</span> <span style="color:#60a0b0;font-style:italic">// 或者继续.
-</span><span style="color:#60a0b0;font-style:italic"></span>}
-<span style="color:#666">//</span> 常规逻辑</code></pre></div><p>如果包含变量赋值，大部分人会写成：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">if</span> x, err <span style="color:#666">:=</span> f(); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-  <span style="color:#60a0b0;font-style:italic">// 错误处理
-</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:700">return</span>
-} <span style="color:#007020;font-weight:700">else</span> {
-  <span style="color:#60a0b0;font-style:italic">// 使用变量 x
-</span><span style="color:#60a0b0;font-style:italic"></span>}
-这时可以将赋值放到前面<span style="">，</span>精简错误处理<span style="">：</span>
-<span style="color:#4070a0">``</span><span style="">`</span>Go
-x, err <span style="color:#666">:=</span> f();
-<span style="color:#007020;font-weight:700">if</span>  err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:700">nil</span> {
-  <span style="color:#60a0b0;font-style:italic">// 错误处理
-</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:700">return</span>
+    &quot;code.google.com/p/x/y&quot;
+    &quot;github.com/ysqi/beego&quot;
+)
+</code></pre><p>高兴的是，goimprots 工具可以自动处理分组。</p><h3 id="精简错误处理">精简错误处理</h3><p>尽量让代码按常规逻辑处理，先处理错误信息，缩短和精简错误处理范围，有利于提高代码可读性。不要写成：</p><pre><code class="language-Go">if err != nil {
+    // 错误处理
+} else {
+    // 常规逻辑
+}
+</code></pre><p>而应写成：</p><pre><code class="language-Go">if err != nil {
+    // 错误处理
+    return // 或者继续.
+}
+// 常规逻辑
+</code></pre><p>如果包含变量赋值，大部分人会写成：</p><pre><code class="language-Go">if x, err := f(); err != nil {
+  // 错误处理
+  return
+} else {
+  // 使用变量 x
+}
+这时可以将赋值放到前面，精简错误处理：
+```Go
+x, err := f();
+if  err != nil {
+  // 错误处理
+  return
 } 
-<span style="color:#666">//</span> 使用变量 x</code></pre></div><h3 id="命名简称">命名简称</h3><p>在使用简称或者缩写 (如：&rdquo;URL&rdquo; , &ldquo;RMB&rdquo; ) 时需保持命名一致性。例如<code>URL</code>使用时要么是<code>URL</code>，要么是<code>url</code>,不应该写出<code>Url</code>(如：&rdquo;urlPony&rdquo; , &ldquo;URLPony&rdquo;)。Go语言中一个很好的例子是<code>ServerHTTP</code>,而不是ServerHttp。</p><p>该规则也适合于简称，如<code>ID</code>是 identifier 的简称，使用是应该写出<code>appID</code>而不是<code>appId</code>。</p><p>规范命名能有效提高可阅读性。</p><h3 id="单行长度">单行长度</h3><p>这不是 Go 的的硬性规定，但单行长文字给人看得不舒服，如果单号超过越80个字符，请换行。长文字是不利于阅读的，分多行精简内容才是王道。看过报纸就知道，不是一篇文章从报纸最左边写到最右边，而是分成多个小区域排版的。当然Go 和 godoc 作为程序是能很好的展示的。</p><h3 id="返回参数命名">返回参数命名</h3><p>根据实际情况给返还参数命名，想想看如果在 godoc 中看到：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">func</span> (n <span style="color:#666">*</span>Node) Parent1() (node <span style="color:#666">*</span>Node)
-<span style="color:#007020;font-weight:700">func</span> (n <span style="color:#666">*</span>Node) Parent2() (node <span style="color:#666">*</span>Node, err <span style="color:#902000">error</span>)</code></pre></div><p>这个命名就完全没必要，还不如写成：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">func</span> (n <span style="color:#666">*</span>Node) Parent1() <span style="color:#666">*</span>Node
-<span style="color:#007020;font-weight:700">func</span> (n <span style="color:#666">*</span>Node) Parent2() (<span style="color:#666">*</span>Node, <span style="color:#902000">error</span>)</code></pre></div><p>实际上一两个参数，通过返回类型就能明白含义的话，就没必要给返回参数命名。但另一方面，如果返回参数包含多个相同类型，或者没法推断含义的话，则需要给返回参数命名，如：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">func</span> (f <span style="color:#666">*</span>Foo) Location() (<span style="color:#902000">float64</span>, <span style="color:#902000">float64</span>, <span style="color:#902000">error</span>)</code></pre></div><p>此时，更好的写法是：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#60a0b0;font-style:italic">// Location returns f&#39;s latitude and longitude.
-</span><span style="color:#60a0b0;font-style:italic">// Negative values mean south and west, respectively.
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">func</span> (f <span style="color:#666">*</span>Foo) Location() (lat ,long <span style="color:#902000">float64</span>, err <span style="color:#902000">error</span>)</code></pre></div><p>不管项目规模大写，合理的给返回参数命名和添加注释，以此给项目增强可读性比你节约几个单词更为重要。</p><h3 id="包注释">包注释</h3><p>包注释是完整的现实在 godoc 中，用于描述此包的用途，可包含包使用指南。注释内容和包之间不能有空行，单号注释使用<code>//</code>，多行注释使用<code>/* */</code>包裹。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#60a0b0;font-style:italic">// Package math provides basic constants and mathematical functions.
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:700">package</span> math
+// 使用变量 x
+</code></pre><h3 id="命名简称">命名简称</h3><p>在使用简称或者缩写 (如：&rdquo;URL&rdquo; , &ldquo;RMB&rdquo; ) 时需保持命名一致性。例如<code>URL</code>使用时要么是<code>URL</code>，要么是<code>url</code>,不应该写出<code>Url</code>(如：&rdquo;urlPony&rdquo; , &ldquo;URLPony&rdquo;)。Go语言中一个很好的例子是<code>ServerHTTP</code>,而不是ServerHttp。</p><p>该规则也适合于简称，如<code>ID</code>是 identifier 的简称，使用是应该写出<code>appID</code>而不是<code>appId</code>。</p><p>规范命名能有效提高可阅读性。</p><h3 id="单行长度">单行长度</h3><p>这不是 Go 的的硬性规定，但单行长文字给人看得不舒服，如果单号超过越80个字符，请换行。长文字是不利于阅读的，分多行精简内容才是王道。看过报纸就知道，不是一篇文章从报纸最左边写到最右边，而是分成多个小区域排版的。当然Go 和 godoc 作为程序是能很好的展示的。</p><h3 id="返回参数命名">返回参数命名</h3><p>根据实际情况给返还参数命名，想想看如果在 godoc 中看到：</p><pre><code class="language-Go">func (n *Node) Parent1() (node *Node)
+func (n *Node) Parent2() (node *Node, err error)
+</code></pre><p>这个命名就完全没必要，还不如写成：</p><pre><code class="language-Go">func (n *Node) Parent1() *Node
+func (n *Node) Parent2() (*Node, error)
+</code></pre><p>实际上一两个参数，通过返回类型就能明白含义的话，就没必要给返回参数命名。但另一方面，如果返回参数包含多个相同类型，或者没法推断含义的话，则需要给返回参数命名，如：</p><pre><code class="language-Go">func (f *Foo) Location() (float64, float64, error)
+</code></pre><p>此时，更好的写法是：</p><pre><code class="language-Go">// Location returns f's latitude and longitude.
+// Negative values mean south and west, respectively.
+func (f *Foo) Location() (lat ,long float64, err error)
+</code></pre><p>不管项目规模大写，合理的给返回参数命名和添加注释，以此给项目增强可读性比你节约几个单词更为重要。</p><h3 id="包注释">包注释</h3><p>包注释是完整的现实在 godoc 中，用于描述此包的用途，可包含包使用指南。注释内容和包之间不能有空行，单号注释使用<code>//</code>，多行注释使用<code>/* */</code>包裹。</p><pre><code class="language-Go">// Package math provides basic constants and mathematical functions.
+package math
 
-<span style="color:#60a0b0;font-style:italic">/*
-</span><span style="color:#60a0b0;font-style:italic">Package regexp implements a simple library for regular expressions.
-</span><span style="color:#60a0b0;font-style:italic">
-</span><span style="color:#60a0b0;font-style:italic">The syntax of the regular expressions accepted is:
-</span><span style="color:#60a0b0;font-style:italic">
-</span><span style="color:#60a0b0;font-style:italic">    regexp:
-</span><span style="color:#60a0b0;font-style:italic">        concatenation { &#39;|&#39; concatenation }
-</span><span style="color:#60a0b0;font-style:italic">    concatenation:
-</span><span style="color:#60a0b0;font-style:italic">        { closure }
-</span><span style="color:#60a0b0;font-style:italic">    closure:
-</span><span style="color:#60a0b0;font-style:italic">        term [ &#39;*&#39; | &#39;+&#39; | &#39;?&#39; ]
-</span><span style="color:#60a0b0;font-style:italic">    term:
-</span><span style="color:#60a0b0;font-style:italic">        &#39;^&#39;
-</span><span style="color:#60a0b0;font-style:italic">        &#39;$&#39;
-</span><span style="color:#60a0b0;font-style:italic">        &#39;.&#39;
-</span><span style="color:#60a0b0;font-style:italic">        character
-</span><span style="color:#60a0b0;font-style:italic">        &#39;[&#39; [ &#39;^&#39; ] character-ranges &#39;]&#39;
-</span><span style="color:#60a0b0;font-style:italic">        &#39;(&#39; regexp &#39;)&#39;
-</span><span style="color:#60a0b0;font-style:italic">*/</span>
-<span style="color:#007020;font-weight:700">package</span> regexp</code></pre></div><p>关于注释书写，可参考 Go <a href="https://golang.org/doc/effective_go.html#commentary">官方文档说明</a></p><h3 id="包内命名">包内命名</h3><p>在包内定义方法，类型时，外部必须使用包名调用。这样，你在给方法命名就不需要在包含包名了。如你不应将方法命名为<code>ChubbyFile</code>，别人调用时会变成<code>chubby.ChubbyFile</code>。实际上，你应命名为<code>File</code>，调用为<code>chubby.File</code>。</p><p>更多包内命名规范，可参考 Go <a href="http://golang.org/doc/effective_go.html#package-names">官方文档说明</a>。</p><h3 id="值传递">值传递</h3><p>不要为了节省少量的内存空间，而将值类型数据通过指针方式传递给方法。值类型数据本身是固定大小的，不会太大，是可以直接传递的。当然这适合 struct 类型数据，不管多大多小。</p><h3 id="对象方法">对象方法</h3><p>在定义对象方法时，对象名应该对象类型简称，一两个单词表示即可。如：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">func</span> (cl <span style="color:#666">*</span>Client) Say(){<span style="color:#666">...</span>}</code></pre></div><p>不要使用面向对象语言中常来指向自己的特定词，<code>this</code>，<code>me</code>，<code>self</code>等。这个命名不是描述方法的一部分，它的作用非常明显，该类型下所有方法定义时都应该使用一致的简称。不要在一个方法中定义为<code>cl</code>，而在其他方法中定义为<code>c</code>。在 Go 中应该保持代码的一致和精简。</p><h3 id="入参类型">入参类型</h3><p>常常非常困惑方法入参是定义传值还是传指针，尤其是对新手。如果困惑，那么你就传指针，但有时候传值也是有道理的。总得判断标准是看执行效率，如大小不变的固定结构和基础类型数据，一些经验规则：</p><ul><li>如果是 map，func，chan 则不需要用指针，本身即是引用类型。</li><li>如果是 slice ,而方法内部又不需要修改它们，则不需要用指针。</li><li>如果是 func ，也需要方法内部替换，则需要使用指针</li><li>如果是包含 sysnc.Mutex 的 struct ，则需要使用指针，避免对象复制。</li><li>如果是一个大的 struct 或者 array ，则使用指针更加高效。到底多大才是大呢？粗暴点就是比方法对象还大。</li><li>更多&hellip;</li></ul><h3 id="准确反馈测试失败信息">准确反馈测试失败信息</h3><p>在 Testing 中，测试失败打印的错误信息应该包含输入的是什么，期望的是什么，得到的又是什么。也许会促使你写一个帮助类，但不管如何，你都需要让错误信息是有用的。即是别人来调试使用你的程序，也能明白意思。一个测试失败的示例：</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">if</span> got <span style="color:#666">!=</span> tt.want {
-	<span style="color:#60a0b0;font-style:italic">//or Fatalf, if test can&#39;t test anything more past this point
-</span><span style="color:#60a0b0;font-style:italic"></span>    t.Errorf(<span style="color:#4070a0">&#34;Foo(%q) = %d; want %d&#34;</span>, tt.in, got, tt.want)    
-}</code></pre></div><p>注意这里的顺序是<strong>实际</strong>!=<strong>预期</strong>，是消息提示的顺序，而 Go 中不需要想其他语言鼓励写出反向的。<code>0 != x</code>或者<code>expected 0, got x</code>。</p><p>这里提供一个 Go 官方的具有代表性的测试代码，源自 <a href="http://golang.org/pkg/fmt/">fmt</a> 包。</p><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#007020;font-weight:700">var</span> flagtests = []<span style="color:#007020;font-weight:700">struct</span> {
-    in  <span style="color:#902000">string</span>
-    out <span style="color:#902000">string</span>
+/*
+Package regexp implements a simple library for regular expressions.
+
+The syntax of the regular expressions accepted is:
+
+    regexp:
+        concatenation { '|' concatenation }
+    concatenation:
+        { closure }
+    closure:
+        term [ '*' | '+' | '?' ]
+    term:
+        '^'
+        '$'
+        '.'
+        character
+        '[' [ '^' ] character-ranges ']'
+        '(' regexp ')'
+*/
+package regexp
+</code></pre><p>关于注释书写，可参考 Go <a href="https://golang.org/doc/effective_go.html#commentary">官方文档说明</a></p><h3 id="包内命名">包内命名</h3><p>在包内定义方法，类型时，外部必须使用包名调用。这样，你在给方法命名就不需要在包含包名了。如你不应将方法命名为<code>ChubbyFile</code>，别人调用时会变成<code>chubby.ChubbyFile</code>。实际上，你应命名为<code>File</code>，调用为<code>chubby.File</code>。</p><p>更多包内命名规范，可参考 Go <a href="http://golang.org/doc/effective_go.html#package-names">官方文档说明</a>。</p><h3 id="值传递">值传递</h3><p>不要为了节省少量的内存空间，而将值类型数据通过指针方式传递给方法。值类型数据本身是固定大小的，不会太大，是可以直接传递的。当然这适合 struct 类型数据，不管多大多小。</p><h3 id="对象方法">对象方法</h3><p>在定义对象方法时，对象名应该对象类型简称，一两个单词表示即可。如：</p><pre><code class="language-Go">func (cl *Client) Say(){...}
+</code></pre><p>不要使用面向对象语言中常来指向自己的特定词，<code>this</code>，<code>me</code>，<code>self</code>等。这个命名不是描述方法的一部分，它的作用非常明显，该类型下所有方法定义时都应该使用一致的简称。不要在一个方法中定义为<code>cl</code>，而在其他方法中定义为<code>c</code>。在 Go 中应该保持代码的一致和精简。</p><h3 id="入参类型">入参类型</h3><p>常常非常困惑方法入参是定义传值还是传指针，尤其是对新手。如果困惑，那么你就传指针，但有时候传值也是有道理的。总得判断标准是看执行效率，如大小不变的固定结构和基础类型数据，一些经验规则：</p><ul><li>如果是 map，func，chan 则不需要用指针，本身即是引用类型。</li><li>如果是 slice ,而方法内部又不需要修改它们，则不需要用指针。</li><li>如果是 func ，也需要方法内部替换，则需要使用指针</li><li>如果是包含 sysnc.Mutex 的 struct ，则需要使用指针，避免对象复制。</li><li>如果是一个大的 struct 或者 array ，则使用指针更加高效。到底多大才是大呢？粗暴点就是比方法对象还大。</li><li>更多&hellip;</li></ul><h3 id="准确反馈测试失败信息">准确反馈测试失败信息</h3><p>在 Testing 中，测试失败打印的错误信息应该包含输入的是什么，期望的是什么，得到的又是什么。也许会促使你写一个帮助类，但不管如何，你都需要让错误信息是有用的。即是别人来调试使用你的程序，也能明白意思。一个测试失败的示例：</p><pre><code class="language-Go">if got != tt.want {
+	//or Fatalf, if test can't test anything more past this point
+    t.Errorf(&quot;Foo(%q) = %d; want %d&quot;, tt.in, got, tt.want)    
+}
+</code></pre><p>注意这里的顺序是<strong>实际</strong>!=<strong>预期</strong>，是消息提示的顺序，而 Go 中不需要想其他语言鼓励写出反向的。<code>0 != x</code>或者<code>expected 0, got x</code>。</p><p>这里提供一个 Go 官方的具有代表性的测试代码，源自 <a href="http://golang.org/pkg/fmt/">fmt</a> 包。</p><pre><code class="language-Go">var flagtests = []struct {
+    in  string
+    out string
 }{
-    {<span style="color:#4070a0">&#34;%a&#34;</span>, <span style="color:#4070a0">&#34;[%a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%-a&#34;</span>, <span style="color:#4070a0">&#34;[%-a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%+a&#34;</span>, <span style="color:#4070a0">&#34;[%+a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%#a&#34;</span>, <span style="color:#4070a0">&#34;[%#a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;% a&#34;</span>, <span style="color:#4070a0">&#34;[% a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%0a&#34;</span>, <span style="color:#4070a0">&#34;[%0a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%1.2a&#34;</span>, <span style="color:#4070a0">&#34;[%1.2a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%-1.2a&#34;</span>, <span style="color:#4070a0">&#34;[%-1.2a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%+1.2a&#34;</span>, <span style="color:#4070a0">&#34;[%+1.2a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%-+1.2a&#34;</span>, <span style="color:#4070a0">&#34;[%+-1.2a]&#34;</span>},
-    {<span style="color:#4070a0">&#34;%-+1.2abc&#34;</span>, <span style="color:#4070a0">&#34;[%+-1.2a]bc&#34;</span>},
-    {<span style="color:#4070a0">&#34;%-1.2abc&#34;</span>, <span style="color:#4070a0">&#34;[%-1.2a]bc&#34;</span>},
+    {&quot;%a&quot;, &quot;[%a]&quot;},
+    {&quot;%-a&quot;, &quot;[%-a]&quot;},
+    {&quot;%+a&quot;, &quot;[%+a]&quot;},
+    {&quot;%#a&quot;, &quot;[%#a]&quot;},
+    {&quot;% a&quot;, &quot;[% a]&quot;},
+    {&quot;%0a&quot;, &quot;[%0a]&quot;},
+    {&quot;%1.2a&quot;, &quot;[%1.2a]&quot;},
+    {&quot;%-1.2a&quot;, &quot;[%-1.2a]&quot;},
+    {&quot;%+1.2a&quot;, &quot;[%+1.2a]&quot;},
+    {&quot;%-+1.2a&quot;, &quot;[%+-1.2a]&quot;},
+    {&quot;%-+1.2abc&quot;, &quot;[%+-1.2a]bc&quot;},
+    {&quot;%-1.2abc&quot;, &quot;[%-1.2a]bc&quot;},
 }
 
-<span style="color:#007020;font-weight:700">func</span> TestFlagParser(t <span style="color:#666">*</span>testing.T) {
-    <span style="color:#007020;font-weight:700">var</span> flagprinter flagPrinter
-    <span style="color:#007020;font-weight:700">for</span> _, tt <span style="color:#666">:=</span> <span style="color:#007020;font-weight:700">range</span> flagtests {
-        s <span style="color:#666">:=</span> Sprintf(tt.in, <span style="color:#666">&amp;</span>flagprinter)
-        <span style="color:#007020;font-weight:700">if</span> s <span style="color:#666">!=</span> tt.out {
-            t.Errorf(<span style="color:#4070a0">&#34;Sprintf(%q, &amp;flagprinter) =&gt; %q, want %q&#34;</span>, tt.in, s, tt.out)
+func TestFlagParser(t *testing.T) {
+    var flagprinter flagPrinter
+    for _, tt := range flagtests {
+        s := Sprintf(tt.in, &amp;flagprinter)
+        if s != tt.out {
+            t.Errorf(&quot;Sprintf(%q, &amp;flagprinter) =&gt; %q, want %q&quot;, tt.in, s, tt.out)
         }
     }
-}</code></pre></div><p>上述示例中，在测试不通过时，能非常清晰的知道哪个方法测试不通过。<code>t.Errorf</code>不是断言，而是提示错误信息，并继续运行。</p><h3 id="变量命名">变量命名</h3><p>变量命名以精简为佳，但也有具有描述性。特别是局部变量可以使用更短的命名，用<strong>c</strong>比 lineCount 好，用<strong>i</strong>比 sliceIndex 好。</p><p>基本规则：命名必须具有描述性。对于对象方法，对象名用前面一两个单词做简称即可，优先使用一些常见的惯用词<strong>i</strong>，但全局性变量和不常见信息还是需要使用更多描述性内容的名称。</p><p>这篇文章能用来4小时断断续续才写完，当然是根据 Go 官方 <a href="https://github.com/golang/go/wiki/CodeReviewComments">Wiki-CodeReviewComments</a> 所写。对于 Go 编码规范和开发习惯具有非常高的参考价值，经过验证提炼的指导意见，能帮助我们写出更优美更极致的 Go 代码。</p></div><aside id="meta"><meta itemprop="wordCount" content="528"><meta itemprop="url" content="https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html"></aside></article><div><div class="attribution"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","tqq","tieba","douban","sqq","youdao","qingbiji","mail","evernotecn","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div><div><ul class="rel_links"><li class="rel_linksli"><span id="topics">分类: <a href="/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html" rel="category">编程语言与开发</a> </span><span id="tags">标签: <a href="/tags/golang.html" rel="tag">Golang</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.html" rel="tag">编码规范</a></span></li><li class="rel_linksli rel_prev"><a href="https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html">beego框架源码解读计划</a></li><li class="rel_linksli rel_next"><a href="https://yushuangqi.com/about.html">关于虞双齐</a></li></ul></div><aside id="comments"><div><div id="cyEmoji" role="cylabs" data-use="emoji" sid="97bed7fb6015a4171090601f50c2901c"></div><div id="cyReward" role="cylabs" data-use="reward" sid="97bed7fb6015a4171090601f50c2901c" style="text-align:center"></div><div id="SOHUCS" sid="97bed7fb6015a4171090601f50c2901c"></div><script type="text/javascript">(function(){ 
-var appid = 'cyt7HM6Iq'; 
-var conf = 'prod_90e85fc8b207249a2493340f99075c94'; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
-}else{ 
-  var loadJs=function(d,a){
-    var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");
-    b.setAttribute("type","text/javascript");
-    b.setAttribute("charset","UTF-8");
-    b.setAttribute("src",d);
-    if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};
-   loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script><script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt7HM6Iq"></script></div></aside><div><section id="author"><h4>关于作者</h4><p><strong>虞双齐</strong>，一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男</p><p>活跃在 <a href="https://www.zhihu.com/people/_ysqi" title="虞双齐知乎主页">知乎</a>，开源项目在<a href="http://github.com/ysqi" rel="nofollow">Github</a>，博文分享在 <a href="https://yushuangqi.com" title="虞双齐的博客">个人博客</a>上。</p></section></div></div></section><section id="sidebar" role="complementary"><aside class="writings"><a href="/" class="sideimg sideimgwritings">Home</a> <q class="dquote">读书之法，莫贵于循序而致精。<cite>—宋·朱熹《性理精义》</cite></q><ul class="rel_links"><li class="rel_linksli"><a href="http://weibo.com/234665601" title="关注虞双齐的微博" rel="nofollow">我的微博</a></li><li class="rel_linksli"><a href="https://github.com/ysqi" title="访问虞双齐的Github" rel="nofollow">我的 Github</a></li><li class="rel_linksli"><a href="https://www.zhihu.com/people/_ysqi" title="访问虞双齐的知乎" rel="nofollow">我的 知乎</a></li></ul></aside><aside><div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div></aside></section><nav id="menu" role="navigation"><ul id="nav" class="navlist"><li class="navtop"><a class="navtoplink" href="#page"><span>Top</span></a></li><li><a class="navabout" href="https://yushuangqi.com"><span>首页</span></a></li><li><a class="navwritings" href="/topics.html"><span>博文</span></a></li><li><a class="navpresos" href="/book.html"><span>电子书</span></a></li><li><a class="navabout" href="/about.html"><span>关于我</span></a></li></ul></nav></div><footer class="site-footer"><ul class="footeractions"><li><a class="footeraction" href="http://weibo.com/234665601" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionWeibo">Weibo</span></a></li><li><a class="footeraction" href="https://www.zhihu.com/people/_ysqi" rel="nofollow" title="在微博关注 虞双齐"><span class="footeractionZhiHu">知乎</span></a></li><li><a class="footeraction" href="/index.xml" title="RSS订阅 虞双齐"><span class="footeractionRSS">Feed</span></a></li><li><a class="footeraction" href="http://validator.w3.org/check?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fcommon_problems-in-go_development_specifications.html" rel="nofollow" target="blank"><span class="footeractionW3CHTML">Valid XHTMl 4.0</span></a></li><li><a class="footeraction" href="http://jigsaw.w3.org/css-validator/validator?uri=https%3a%2f%2fyushuangqi.com%2fblog%2f2016%2fcommon_problems-in-go_development_specifications.html" rel="nofollow" target="blank"><span class="footeractionW3CCSS">Valid CSS Leval2</span></a></li></ul><p>©2015-2016 虞双齐-全栈开发。欢迎<a href="/about.html" rel="nofollow">联系我</a>，<a href="http://www.miitbeian.gov.cn/" target="bank" rel="nofollow" style="color:#c9c9c9">粤ICP备14032560号-4</a></p></footer><script>var _hmt = _hmt || [];
+}
+</code></pre><p>上述示例中，在测试不通过时，能非常清晰的知道哪个方法测试不通过。<code>t.Errorf</code>不是断言，而是提示错误信息，并继续运行。</p><h3 id="变量命名">变量命名</h3><p>变量命名以精简为佳，但也有具有描述性。特别是局部变量可以使用更短的命名，用<strong>c</strong>比 lineCount 好，用<strong>i</strong>比 sliceIndex 好。</p><p>基本规则：命名必须具有描述性。对于对象方法，对象名用前面一两个单词做简称即可，优先使用一些常见的惯用词<strong>i</strong>，但全局性变量和不常见信息还是需要使用更多描述性内容的名称。</p><p>这篇文章能用来4小时断断续续才写完，当然是根据 Go 官方 <a href="https://github.com/golang/go/wiki/CodeReviewComments">Wiki-CodeReviewComments</a> 所写。对于 Go 编码规范和开发习惯具有非常高的参考价值，经过验证提炼的指导意见，能帮助我们写出更优美更极致的 Go 代码。</p></div><div style="height:130px"><div class="post-copyright" style="float:left"><p class="copyright-item"><span class="item-title">文章作者</span> <span class="item-content">虞双齐</span></p><p class="copyright-item"><span class="item-title">上次更新</span> <span class="item-content">2016-01-27</span></p><p class="copyright-item"><span class="item-title">许可协议</span> <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></p></div><div class="post-copyright" style="float:right"><a href="https://info.flagcounter.com/8B1z"><img src="https://s05.flagcounter.com/countxl/8B1z/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_12/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a></div></div><div class="post-reward"><input type="checkbox" name="reward" id="reward" hidden> <label class="reward-button" for="reward">赞赏支持</label><div class="qr-code"><label class="qr-code-image" for="reward"><img class="image" src="/img/donateMe_wechat.png"> <span>微信打赏</span></label></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/golang.html">Golang</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.html">编码规范</a></div><nav class="post-nav"><a class="prev" href="/blog/2016/beego-webframework-analysis-plan.html"><i class="iconfont icon-left"></i> <span class="prev-text nav-default">beego框架源码解读计划</span> <span class="prev-text nav-mobile">上一篇</span> </a><a class="next" href="/blog/2015/centos7-install-nginx-php-mysql.html"><span class="next-text nav-default">如何在阿里云Centos7服务器下安装部署Nginx&#43;PHP&#43;Mysql&#43;PHP扩展</span> <span class="prev-text nav-mobile">下一篇</span> <i class="iconfont icon-right"></i></a></nav></footer><div id="comments-gitment"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous"><script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script><script type="text/javascript">const gitment = new Gitment({
+    id: '2016-01-27 00:00:00 \x2b0000 UTC',
+    title: 'Go开发规范之常见问题汇总',
+    link: decodeURI(location.href),
+    desc: '这篇文章是Golang官方在Review代码时发现的一些常见问题，也是讨论比较多的，应此罗列这些常见问题供大家参考，这仅仅是一份共识，而不是',
+    owner: 'ysqi',
+    repo: 'ysqi\/ysqi.github.io',
+    oauth: {
+      client_id: '639ba986c281b9fcf382',
+      client_secret: 'b5862135f283dd308a7f226c06980cf50b8e82f1'
+    }
+  })
+  gitment.render('comments-gitment')</script><noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript></article></div></div></main><footer id="footer" class="footer"><div class="social-links"><a href="mailto:ysqi@yushuangqi.com" rel="me" class="iconfont icon-email" title="email"></a> <a href="http://github.com/ysqi" rel="me" class="iconfont icon-github" title="github"></a> <a href="https://weibo.com/234665601" rel="me" class="iconfont icon-weibo" title="weibo"></a> <a href="https://www.zhihu.com/people/_ysqi/" rel="me" class="iconfont icon-zhihu" title="zhihu"></a> <a href="https://yushuangqi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a></div><div class="copyright"><span class="power-by">Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a> </span><span class="division">|</span> <span class="theme-info">Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a> </span><span class="copyright-year">&copy; 2014 - 2018 <span class="heart"><i class="iconfont icon-heart"></i> </span><span class="author">虞双齐</span></span></div></footer><div class="back-to-top" id="back-to-top"><i class="iconfont icon-up"></i></div></div><script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="https://cdn.bootcss.com/slideout/1.0.1/slideout.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="https://cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" crossorigin="anonymous"></script><script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script><script type="text/javascript">window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };</script><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script><script id="baidu_analytics">var _hmt = _hmt || [];
   (function() {
-    var hm = document.createElement("script");
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
     hm.src = "https://hm.baidu.com/hm.js?a16b3275b071ec0efc507a05422a7156";
-    var s = document.getElementsByTagName("script")[0]; 
+    var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();</script></body></html>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>性能分析 on 虞双齐的博客</title>
+    <title>性能分析 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90.html</link>
-    <description>在 虞双齐的博客上关于in 性能分析 的内容</description>
+    <description>Recent content in 性能分析 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:42 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go程序的性能调试问题-内存篇</title>
@@ -17,15 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html</guid>
-      <description>标签（空格分隔）： Go Memory Profiler 性能调试 性能分析
- 注：该文作者是 Dmitry Vyukov，原文地址 Debugging performance issues in Go programs
-这个是原文中的 Memory Profiler 段落
- 内存分析器显示了函数分配堆内存的情况。你可以以 CPU profile 相似的方式收集：使用 go test &amp;ndash;memprofile，通过 http://myserver:6060:/debug/pprof/heap 使用 net/http/pprof 或是通过调用 runtime/pprof.WriteHeapProfile。
-你仅可以显示在概要文件收集的时间分配的内存（默认，pprof 的 &amp;ndash;inuse_space 标志），或是从程序启动起的所有分配（pprof 的 &amp;ndash;alloc_space 标志）。前者对对于 net/http/pprof 的现场应用的概要文件收集非常有用，后者对程序结束的时候的概要文件收集非常有用（否则你将看到空荡荡的概要文件）。
- 注意：内存分析器很简单，也就是说，它收集的信息仅仅是关于内存分配的一些子集。概率抽样对象与它的大小成正比，你可以使用 go test --memprofilerate 标志改变抽样比率，或者是在程序启动的时候设置 runtime.MemProfileRate 变量。比率 1 将导致收集所有分配的信息。但是它可能导致执行很慢，默认的采样率是每 512kb 的内存分配 1个样本。
- 你也可以显示分配的字节数，或者是分配的对象数量（--inuse/alloc_space 和 --inuse/alloc_objects 标志）。分析器在分析时更倾向于大样本对象。但是更重要的是要明白大对象影响内存消耗和 GC 时间，然而大量微小的分配影响执行速度（同样是某种程度的 GC 时间），所以两个都观察可能是非常有用的。
-对象可以是持久的或是瞬态的。如果在程序开始的时候，你有一些大的持久化对象分配，它们将最有可能被分析器采样（因为它们足够大）。这样的对象会影响内存的消耗和 GC 时间，但是它们不影响正常的执行速度（没有内存管理操作发生在它们身上）。换句话说，如果你有大量的生命周期非常短暂的对象，在概要文件中，它们几乎可以代表（如果你使用默认的 &amp;ndash;inuse_space 模式），但它们很明显的会影响执行速度。因为它们在不断的分配和释放。因此，再一次声明，观察两种类型的对象是非常有用的。
-因此，通常如果你想降低内存消耗，在正常的程序操作期间，你需要查看 --inuse_space 概要文件收集。如果你想提升执行速度，查看 --alloc_objects 概要文件收集，在重要的运行时间或程序结束之后。</description>
+      <description>标签（空格分隔）： Go Memory Profiler 性能调试 性能分析 注：该文作者是 Dmitry Vyukov，原文地址 Debugging performance issues in Go programs 这个是原文中的 Memory Profiler 段落 内存分析器显示了函数分配堆内</description>
     </item>
     
   </channel>

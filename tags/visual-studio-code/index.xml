@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Visual Studio Code on 虞双齐的博客</title>
+    <title>Visual Studio Code on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/visual-studio-code.html</link>
-    <description>在 虞双齐的博客上关于in Visual Studio Code 的内容</description>
+    <description>Recent content in Visual Studio Code on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:18 +0800</lastBuildDate>
-    <atom:link href="/tags/visual-studio-code.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/visual-studio-code/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>VSCODE中godef无法跳转到定义的问题</title>
@@ -17,13 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</guid>
-      <description>原文链接：http://targetliu.com/vscode-can-not-go-to-def/
- 之前研究GOLANG时一直用LiteIDE，不得不说，LiteIDE的确不错，但是总感觉缺乏美感，是一款很中规中矩的编辑器。网上看到大家对VSCODE评价不错，尝试后发现的确不错，布局简洁、插件化、支持中文，通过VSCODE GO扩展能够很舒服的写GO的代码。
- 问题描述 不过在实际使用过程中发现 net 包无法正常跳转到定义，如下段代码 ResolveTCPAddr就无法正常跳转
-package main import ( &amp;quot;net&amp;quot; ) func main() { _, err := net.ResolveTCPAddr(&amp;quot;tcp&amp;quot;, &amp;quot;:4040&amp;quot;) }  由于VSCODE GO中跳转到定义使用的是godef，遂通过godef的debug模式查看
-问题原因：
-godef -debug -f main.go net.ResolveTCPAddr  运行结果如下：
-2016/08/02 01:17:30 exprType tuple:false pkg: *ast.SelectorExpr net.ListenTCP [ 2016/08/02 01:17:30 exprType tuple:false pkg: *ast.Ident net [ 2016/08/02 01:17:30 exprType tuple:false pkg: *ast.ImportSpec &amp;quot;net&amp;quot; [ 2016/08/02 01:17:30 ] -&amp;gt; 0x0, Type{package &amp;quot;&amp;quot; *ast.ImportSpec &amp;quot;net&amp;quot;} 2016/08/02 01:17:30 ] -&amp;gt; 0xc820157860, Type{package &amp;quot;&amp;quot; *ast.</description>
+      <description>原文链接：http://targetliu.com/vscode-can-not-go-to-def/ 之前研究GOLANG时一直用LiteI</description>
     </item>
     
   </channel>

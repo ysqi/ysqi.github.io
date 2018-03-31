@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on 虞双齐的博客</title>
+    <title>Web on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/web.html</link>
-    <description>在 虞双齐的博客上关于in Web 的内容</description>
+    <description>Recent content in Web on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:32 +0800</lastBuildDate>
-    <atom:link href="/tags/web.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>对echo框架进行统一的自定义错误处理</title>
@@ -17,21 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</guid>
-      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行，
-用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表，
-你可以用不输 python/ruby 这类动态语言的速度，写出性能高出一两个数量级的后端 API 。
-ECHO 框架 由于 golang 的标准库在网络方面已经很完善，导致框架发挥余地不大。很多高手都说，
-用什么框架，用标准库就写好了，框架只是语法糖而已，还会限制项目的发展。 不过我们并不是高手，语法糖也是糖，用一个趁手的框架还是能提高不少效率的。 要是在半年前，你让我推荐框架，我会说有很多，都各有优缺点，除了 beego 随便选一个就可以。
-但是来到2017年，一个叫 Echo 的框架脱颖而出。这是我目前最推荐的框架。 Echo 的宣传语用的是 “高性能，易扩展，极简 Go Web 框架” 。它的一些特性如下图所示：
-这些特性里，HTTP/2，Auto HTTPS，听着很熟？这是我之前介绍的 Caddy 也有的特性，
-因为 golang 实现这些太容易了。还有 Middleware 里的一大堆功能也差不多。
-我们在做微服务的时候，这些通用的东西由 API Gateway 统一实现就好了，
-如果你写的是个小的独立应用的后端，这些开箱即用的功能倒是能提供很大的帮助。
-其实今天我主要想说说最后一个特性里提到的，“中心化的 HTTP 错误处理”。
-RESTful API 错误返回 一个团队应当有一份 RESTful API 的规范，而在规范中应该规范响应格式，包括所有错误响应的格式。
-比如微软的规范，
-jsonapi.org 推荐规范等等。 大部分时候我们不需要实现的那么繁琐，我们规定一个简单的结构：
-STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot;, &amp;quot;message&amp;quot;: &amp;quot;invalid id in your url query parameters&amp;quot; }  传统的错误响应可能只有一个伴随 HTTP Status code 的 string 类型的 message，</description>
+      <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行， 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表， 你可以用不输 python/ruby 这类动态</description>
     </item>
     
     <item>
@@ -40,9 +28,7 @@ STATUS 400 Bad Request { &amp;quot;error&amp;quot;: &amp;quot;InvalidID&amp;quot
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</guid>
-      <description>https://segmentfault.com/a/
-fasthttp中的协程池实现  协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，我们可以参考他的设计，写出高性能的应用。
- 入口 // server.go func (s *Server) Serve(ln net.Listener) error { var lastOverflowErrorTime time.Time var lastPerIPErrorTime time.Time var c net.Conn var err error maxWorkersCount := s.getConcurrency() s.concurrencyCh = make(chan struct{}, maxWorkersCount) wp := &amp;amp;workerPool{ WorkerFunc: s.serveConn, MaxWorkersCount: maxWorkersCount, LogAllErrors: s.LogAllErrors, Logger: s.logger(), } // break-00 wp.Start() for { // break-02 if c, err = acceptConn(s, ln, &amp;amp;lastPerIPErrorTime); err != nil { wp.Stop() if err == io.</description>
+      <description>https://segmentfault.com/a/ fasthttp中的协程池实现 协程池可以控制并行度，复用协程。fasthttp 比 net/http 效率高很多倍的重要原因，就是利用了协程池。实现并不复杂，</description>
     </item>
     
     <item>
@@ -51,10 +37,7 @@ fasthttp中的协程池实现  协程池可以控制并行度，复用协程。f
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</guid>
-      <description>Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架，TGW的诞生是因为作者在使用beego时有种挫败感，决定自己重新写一个适合自己网站用的(私人借书网，因为网站没有完成备案，暂时由托管在US的vps进行反向代理到ucloud主机，访问可能会有一定的延时)，从构思到完成总共只花了一天时间，因为觉得它已经够用了，就没有继续添加新的功能。
-项目地址:[](http://github.com/icattlecoder/tgw)http://github.com/icattlecoder/tgw
-Qiuck Start &amp;gt; go get github.com/icattlecoder/tgw &amp;gt; cd src/github.com/icattlecoder/tgw/example &amp;gt; go build &amp;gt; ./example  控制器 控制器实现自动路由注册，例如有以下的结构
-type Server struct { //成员由业务逻辑而定，如mgo的数据库连接信息等 } func NewServer( /*入参，例如从配置文件中读取*/) *Server { return &amp;amp;Server{} } //对应模板为index.html ,返回值data用于渲染模板 func (s *Server) Index() (data map[string]interface{}) { data = map[string]interface{}{} author := Author{ Name: &amp;quot;icattlecoder&amp;quot;, Email: []string{&amp;quot;icattlecoder@gmail.com&amp;quot;, &amp;quot;iwangming@hotmail.com&amp;quot;}, QQ: &amp;quot;405283013&amp;quot;, Blog: &amp;quot;http://blog.segmentfault.com/icattlecoder&amp;quot;, } data[&amp;quot;author&amp;quot;] = author return } //由于没有json.html模板，但是却有data返回值，此data将以json字符串的格式返回 func (s *Server) Json() (data map[string]interface{}) { data = map[string]interface{}{} author := Author{ Name: &amp;quot;icattlecoder&amp;quot;, Email: []string{&amp;quot;icattlecoder@gmail.</description>
+      <description>Tiny Go Web (TGW)是一个非常简单的Web框架，甚至谈不上框架。TGW无意取代任何框架，TGW的诞生是因为作者在使用beego时有种挫败感，决定</description>
     </item>
     
   </channel>

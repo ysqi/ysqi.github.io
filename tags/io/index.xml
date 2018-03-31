@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Io on 虞双齐的博客</title>
+    <title>Io on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/io.html</link>
-    <description>在 虞双齐的博客上关于in Io 的内容</description>
+    <description>Recent content in Io on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:24 +0800</lastBuildDate>
-    <atom:link href="/tags/io.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/io/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golangtransferfilewithsocket</title>
@@ -17,8 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</guid>
-      <description>https://segmentfault.com/a/
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;code.google.com/p/mahonia&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net&amp;quot; &amp;quot;os&amp;quot; ) func main() { fmt.Println(&amp;quot;create a server or client?&amp;quot;) reader := bufio.NewReader(os.Stdin) input, _, _ := reader.ReadLine() if string(input) == &amp;quot;server&amp;quot; { Server() } if string(input) == &amp;quot;client&amp;quot; { Client() } else { fmt.Println(Show(&amp;quot;err arguments,entering again!.\r\n alternaltive argument is server or client&amp;quot;)) os.Exit(0) } } func Show(s string) string { enc := mahonia.NewEncoder(&amp;quot;gbk&amp;quot;) //中文转码有错误的函数。 return enc.ConvertString(s) } func Server() { exit := make(chan bool) ip := net.</description>
+      <description>https://segmentfault.com/a/ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;code.google.com/p/mahonia&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io&amp;quot; &amp;quot;net&amp;quot; &amp;quot;os&amp;quot; ) func main() { fmt.Println(&amp;quot;create a server or client?&amp;quot;) reader := bufio.NewReader(os.Stdin) input, _, _ := reader.ReadLine() if string(input) == &amp;quot;server&amp;quot; { Server() } if string(input) == &amp;quot;client&amp;quot; { Client() } else { fmt.Println(Show(&amp;quot;err arguments,entering again!.\r\n alternaltive argument is server or client&amp;quot;)) os.Exit(0) } } func Show(s string) string { enc := mahonia.NewEncoder(&amp;quot;gbk&amp;quot;) //中文转码</description>
     </item>
     
     <item>
@@ -27,10 +28,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;code.google.com/p/maho
       <pubDate>Sat, 31 Dec 2016 11:33:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-gode-io_pipeyou-ya-de-you-hua-zhong-jian-huan-cun.html</guid>
-      <description>BEFORE 今天发现，go的优势除了它的轻量线程(goroutine)提供了更方便灵活的并发编程模式之外，它的I/O机制也设计的非常给力。
-之前，我在向其他服务器发送json数据时，都需要先声明一个bytes缓存，然后通过json库把结构体中的内容mashal成字节流，再通过Post函数发送。
-代码如下：
-package main import ( &amp;quot;bytes&amp;quot; &amp;quot;encoding/json&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; ) func init() { log.SetFlags(log.Lshortfile) } func main() { cli := http.Client{} msg := struct { Name, Addr string Price float64 }{ Name: &amp;quot;hello&amp;quot;, Addr: &amp;quot;beijing&amp;quot;, Price: 123.56, } buf := bytes.NewBuffer(nil) json.NewEncoder(buf).Encode(msg) resp, err := cli.Post(&amp;quot;http://localhost:9999/json&amp;quot;, &amp;quot;application/json&amp;quot;, buf) if err != nil { log.Fatalln(err) } body := resp.Body defer body.Close() if body_bytes, err := ioutil.ReadAll(body); err == nil { log.</description>
+      <description>BEFORE 今天发现，go的优势除了它的轻量线程(goroutine)提供了更方便灵活的并发编程模式之外，它的I/O机制也设计的非常给力。 之前，我在向</description>
     </item>
     
   </channel>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大数据 on 虞双齐爱折腾</title>
+    <link>https://yushuangqi.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE.html</link>
+    <description>Recent content in 大数据 on 虞双齐爱折腾</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <lastBuildDate>Tue, 08 Sep 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何提取Piwik中记录的访客IP地址</title>
+      <link>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</link>
+      <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</guid>
+      <description>最近在使用Piwik做网站数据统计，基于PIWIK做二次开发，各种文档，而昨天死活不知道PIWIK中记录访客IP的格式是什么，拉个粑粑后茅塞</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Beanstalk on 虞双齐的博客</title>
+    <title>Beanstalk on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/beanstalk.html</link>
-    <description>在 虞双齐的博客上关于in Beanstalk 的内容</description>
+    <description>Recent content in Beanstalk on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:27 +0800</lastBuildDate>
-    <atom:link href="/tags/beanstalk.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/beanstalk/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Beanstalk队列服务器控制台Aurora-Console</title>
@@ -17,21 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/beanstalk-dui-lie-fu-wu-qi-kong-zhi-tai--aurora-console.html</guid>
-      <description> aurora 是一个 Golang 编写的基于 Web 的 Beanstalk 消息队列服务器管理工具，单文件无需依赖其他组件，支持管理本地和远程多个队列服务器。
-项目地址 github.com/Luxurioust/aurora
-特点  跨平台支持 macOS/Linux/Windows 32&amp;frasl;64-bit
- 单文件简单易部署
- 不依赖其他组件
- 支持读取配置文件方式启动 + 登陆用户认证
- 定时刷新 Beanstalk 队列服务器状态
- 对每个 Tube 的 ready/delayed/buried 状态进行管理
- 支持批量清空 Tube 中的 Job
- 支持 Job 文本高亮显示
- 支持 Job 模糊搜索
- 自定义队列服务器状态监控项
-  界面截图  Beanstalk 服务器列表
- Tube 管理页面
-  </description>
+      <description>aurora 是一个 Golang 编写的基于 Web 的 Beanstalk 消息队列服务器管理工具，单文件无需依赖其他组件，支持管理本地和远程多个队列服务器。 项目地址 github.com/Luxurioust/aurora 特点 跨平台支持 macOS/Linux/Windows 32&amp;frasl;64-bit 单文</description>
     </item>
     
   </channel>

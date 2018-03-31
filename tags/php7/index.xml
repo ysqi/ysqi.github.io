@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Php7 on 虞双齐的博客</title>
+    <title>Php7 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/php7.html</link>
-    <description>在 虞双齐的博客上关于in Php7 的内容</description>
+    <description>Recent content in Php7 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:47 +0800</lastBuildDate>
-    <atom:link href="/tags/php7.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/php7/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang调用php7</title>
@@ -17,10 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</guid>
-      <description>使用 https://github.com/taowen/go-php7
-基于 https://github.com/deuill/go-php 修改而来，fork缘由（https://github.com/deuill/go-&amp;hellip;）
-执行php文件 func Test_exec(t *testing.T) { engine.Initialize() ctx := &amp;amp;engine.Context{ Output: os.Stdout, } err := engine.RequestStartup(ctx) if err != nil { fmt.Println(err) } defer engine.RequestShutdown(ctx) err = ctx.Exec(&amp;quot;/tmp/index.php&amp;quot;) if err != nil { fmt.Println(err) } }  其中 /tmp/index.php 的内容为
-&amp;lt;?php echo(&amp;quot;hello\n&amp;quot;);  Eval，返回值 func Test_eval(t *testing.T) { engine.Initialize() ctx := &amp;amp;engine.Context{} err := engine.RequestStartup(ctx) if err != nil { fmt.Println(err) } defer engine.RequestShutdown(ctx) val, err := ctx.</description>
+      <description>使用 https://github.com/taowen/go-php7 基于 https://github.com/deuill/go-php 修改而来，fork缘由（https://github.com/deuill/go-&amp;hellip;） 执行php文件 func Test_exec(t *testing.T) { engine.Initialize() ctx :=</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>闭包 on 虞双齐的博客</title>
+    <title>闭包 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E9%97%AD%E5%8C%85.html</link>
-    <description>在 虞双齐的博客上关于in 闭包 的内容</description>
+    <description>Recent content in 闭包 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:56 +0800</lastBuildDate>
-    <atom:link href="/tags/%E9%97%AD%E5%8C%85.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E9%97%AD%E5%8C%85/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang使用闭包降低测试代码行数</title>
@@ -17,11 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangshi-yong-bi-bao-jiang-di-ce-shi-dai-ma-hang-shu.html</guid>
-      <description>https://segmentfault.com/a/
-有如下函数，简单来说就是有错误则直接返回，没错误则执行f函数。
-func (t *transaction) Do(f func()) *transaction { if t.fail || t.rollback || t.finish { return t } f() return t }  函数很简单，但如何测试呢，简单但丑陋的方法：
-func Test_func(t *testing.T) { isCalled := false f := func() { isCalled = true } trans := New() // do something trans.Do(f) // check if isCalled { // do something } }  在f中修改外部变量，然后判断变量是否变化就可以知道f是否被执行。但我们一般需要测试多种情况，比如对于Do函数，我们需要将 t.fail t.rollback t.finish设置不同值进行测试，将上面测试代码扩充（如果需要测试这三个变量组合的情况，代码就更长了）：
-func Test_func(t *testing.T) { isCalled1 := false isCalled2 := false isCalled3 := false f1 := func() { isCalled1 = true } f2 := func() { isCalled2 = true } f3 := func() { isCalled3 = true } trans := New() // do something trans.</description>
+      <description>https://segmentfault.com/a/ 有如下函数，简单来说就是有错误则直接返回，没错误则执行f函数。 func (t *transaction) Do(f func()) *transaction { if t.fail || t.rollback || t.finish { return t } f() return t } 函数很简单，但如何测试呢，简单但丑</description>
     </item>
     
   </channel>

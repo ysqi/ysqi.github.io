@@ -1,4896 +1,5315 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml-stylesheet type="text/xsl" href="https://yushuangqi.com/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
     <loc>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</loc>
     <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</loc>
     <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</loc>
     <lastmod>2017-12-12T06:55:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</loc>
     <lastmod>2017-11-05T08:24:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</loc>
     <lastmod>2017-10-11T07:11:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</loc>
     <lastmod>2017-09-18T12:02:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</loc>
     <lastmod>2017-09-09T10:22:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</loc>
     <lastmod>2017-09-07T22:10:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</loc>
     <lastmod>2017-09-01T21:33:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html</loc>
     <lastmod>2017-08-17T17:30:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-command-generate.html</loc>
     <lastmod>2017-08-14T18:52:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</loc>
     <lastmod>2017-07-26T10:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</loc>
     <lastmod>2017-07-24T07:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</loc>
     <lastmod>2017-07-20T12:58:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</loc>
     <lastmod>2017-07-15T09:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</loc>
     <lastmod>2017-07-09T22:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</loc>
     <lastmod>2017-07-02T21:01:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</loc>
     <lastmod>2017-06-28T21:01:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</loc>
     <lastmod>2017-06-25T20:12:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</loc>
     <lastmod>2017-05-24T09:17:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</loc>
     <lastmod>2017-05-24T09:17:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/redigo-lian-jie-chi-dai-ma-fen-xi.html</loc>
     <lastmod>2017-05-24T09:17:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/fen-xiang-yi-ge-xiao-gong-ju--boastru-he-cong-fu-wu-duan-gen-zong-suo-you--http-qing-qiu-bing-fang.html</loc>
     <lastmod>2017-05-24T09:17:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/xie-zuo-shi-gocheng.html</loc>
     <lastmod>2017-05-24T09:17:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangli-de-future_promise.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/dui--echo-kuang-jia-jin-hang-tong-yi-de-zi-ding-yi-cuo-wu-chu-li.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/fasthttpzhong-de-xie-cheng-chi-shi-xian.html</loc>
     <lastmod>2017-05-24T09:17:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</loc>
     <lastmod>2017-05-24T09:17:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangshi-yong-yuan-shi-tao-jie-zi-gou-zao-udpbao.html</loc>
     <lastmod>2017-05-24T09:17:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi.html</loc>
     <lastmod>2017-05-24T09:17:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/goyu-yan-bao-li-ru-men-2-gong-yu-shan-ji-shi.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/gocron---ding-shi-ren-wu-webguan-li-ji-tong.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangshi-yong-protobuf.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golang-dou-xie--excel.html</loc>
     <lastmod>2017-05-24T09:17:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/beanstalk-dui-lie-fu-wu-qi-kong-zhi-tai--aurora-console.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/yan-jin-zai-gong-zuo-de-qian-san-nian-li-kuai-su-cheng-chang-lian-xi-pian-.html</loc>
     <lastmod>2017-05-24T08:58:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ke-shi-hua-guan-li-liu-yuan-ze.html</loc>
     <lastmod>2017-05-24T08:58:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/wo-de-shi-cao-jing-yan-fen-xiang-ru-he-tong-guo-adsensezhuan-3mo-mei-jin.html</loc>
     <lastmod>2017-05-24T08:58:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangpei-zhi-wen-jian-re-geng-xin.html</loc>
     <lastmod>2017-03-13T08:39:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</loc>
     <lastmod>2017-03-13T08:34:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/fen-bu-shi-shi-wu-yi-zhi-xing-fang-an.html</loc>
     <lastmod>2017-03-13T08:20:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/goyu-yan-shi-zhan-bi-ji-san--go-doc-wen-dang.html</loc>
     <lastmod>2017-03-13T08:20:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go_jsjian-jie-ji-shi-li-yan-shi.html</loc>
     <lastmod>2017-03-13T08:20:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go_jsmo-xing-yang-shi-shua-ze.html</loc>
     <lastmod>2017-03-13T08:20:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go_jsjie-dian-zi-ti-she-zhi.html</loc>
     <lastmod>2017-03-13T08:20:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ru-he-yong-goshi-xian-yi-kuan-lei-shi-di-di-you-bu-de-wang-lao-yao-che-ruan-jian-han-yuan-ma-.html</loc>
     <lastmod>2017-03-03T08:36:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/cha-qu-guan-yu-di-gui.html</loc>
     <lastmod>2017-03-03T08:36:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/wei-shen-me-goyu-yan-zai-zhong-guo-ge-wai-de-huo-amp.html</loc>
     <lastmod>2017-03-03T08:36:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/li-jie-goyu-yan-de-nil.html</loc>
     <lastmod>2017-03-03T08:36:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/xie-meng-jun-the-state-of-go.html</loc>
     <lastmod>2017-03-03T08:36:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/bian-xie-de-dao-de-godai-ma.html</loc>
     <lastmod>2017-02-24T08:31:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-net_httpbao.html</loc>
     <lastmod>2017-02-24T08:31:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-yi-chu-shi.html</loc>
     <lastmod>2017-02-24T08:31:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangyu-yan-chang-yong-suan-fa.html</loc>
     <lastmod>2017-02-24T08:31:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-san-han-shu.html</loc>
     <lastmod>2017-02-24T08:31:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-er-kong-zhi-yu-gou.html</loc>
     <lastmod>2017-02-24T08:31:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-qi-bing-fa.html</loc>
     <lastmod>2017-02-24T08:31:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-wu-jin-jie.html</loc>
     <lastmod>2017-02-24T08:31:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-liu-jie-kou.html</loc>
     <lastmod>2017-02-24T08:31:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangxue-xi-zhai-lu-si-bao.html</loc>
     <lastmod>2017-02-24T08:31:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-reflectbao.html</loc>
     <lastmod>2017-02-24T08:31:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ming-ling--go-build.html</loc>
     <lastmod>2017-02-22T08:37:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</loc>
     <lastmod>2017-02-22T08:37:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</loc>
     <lastmod>2017-02-22T08:37:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/shen-du-xue-xi-di-yi-ke.html</loc>
     <lastmod>2017-02-21T13:20:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/wo-de-jia-gou-gan-wu-cong-mei-guo-xian-fa-xue-xi-jia-gou-she-ji-yuan-ze.html</loc>
     <lastmod>2017-02-21T13:20:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/ji-suan-ji-zhuan-ye-bi-dou-shu-ji.html</loc>
     <lastmod>2017-02-21T13:19:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/hu-lian-wang-gao-ke-yong-jia-gou-ji-shu-shi-jian.html</loc>
     <lastmod>2017-02-21T13:19:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/jia-gou-she-ji-ke-yi-xue-mei-guo-zhi-xian-jia-gou-gai-zao-ke-yi-xue-zhong-guo-gai-ge.html</loc>
     <lastmod>2017-02-21T13:19:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang.html</loc>
     <lastmod>2017-02-18T11:13:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-unsafebao.html</loc>
     <lastmod>2017-02-18T11:13:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</loc>
     <lastmod>2017-02-18T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go1_8zheng-shi-fa-bu.html</loc>
     <lastmod>2017-02-18T11:13:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</loc>
     <lastmod>2017-02-18T11:13:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-grpcan-zhuang.html</loc>
     <lastmod>2017-02-18T11:13:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golang-appendde-bing-fa-wen-ti.html</loc>
     <lastmod>2017-02-18T11:13:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/she-ji-mo-shi-golang.html</loc>
     <lastmod>2017-02-18T11:13:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/diao-zha-tian-de-xin-ban-go-gczhi-twitchde-gcyou-hua-zhi-lu.html</loc>
     <lastmod>2017-02-18T11:13:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/shu-ju-ku-bu-kuo-ge-dockerji-rong-qi-hua-de-7da-yuan-yin.html</loc>
     <lastmod>2017-02-18T11:13:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/gozui-xin-de-depxiang-jie.html</loc>
     <lastmod>2017-02-18T11:13:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/you-xiu-de-go-cun-chu-kai-yuan-xiang-mu-he-ku.html</loc>
     <lastmod>2017-02-18T11:13:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/mac-golangxia-zai-mgo.html</loc>
     <lastmod>2017-02-18T11:13:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/jian-xi-goyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu.html</loc>
     <lastmod>2017-02-18T11:13:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/cmdbfa-bu-ping-tai-gofa-bu-guan-li.html</loc>
     <lastmod>2017-02-18T11:13:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/shen-ru-le-jie-gojie-kou.html</loc>
     <lastmod>2017-02-18T11:13:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8-http-graceful-ti-yan.html</loc>
     <lastmod>2017-02-18T10:33:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</loc>
     <lastmod>2017-02-17T08:17:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-token.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/jsoniter-0_9_8-fa-bu--json-xing-neng-dui-biao--protobuf.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-scanner.html</loc>
     <lastmod>2017-02-17T08:17:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/shi-yong-homebrewan-zhuang-pei-zhi-golanghuan-jing.html</loc>
     <lastmod>2017-02-17T08:17:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-cmd-go.html</loc>
     <lastmod>2017-02-17T08:17:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/go-1_8rc3-yuan-dai-ma-xue-xi-parser.html</loc>
     <lastmod>2017-02-17T08:17:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/golangzai-bian-yi-shi-yong-ldflagsshe-zhi-bian-liang-de-zhi.html</loc>
     <lastmod>2017-02-17T08:17:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--raft-fen-bu-shi-yi-zhi-xing-xie-yi.html</loc>
     <lastmod>2017-02-08T13:41:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2017/gbyi-.html</loc>
     <lastmod>2017-02-08T13:41:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gox--jian-chan-shi-zai-de-goping-tai-jiao-cha-bian-yi-gong-ju.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/mac-os-10_9-mavericks-bian-yi-zhi-chi--zeromq-4_0_1-ban-ben-de--gozmq.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-bian-xie-de-kua-ping-tai-de-emlogzheng-zhan-shou-xie-wen-zhang-jing-tai-hua-gon.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</loc>
     <lastmod>2016-12-31T11:35:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shen-ru--go-playground-nei-mu.html</loc>
     <lastmod>2016-12-31T11:35:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-goyu-yan-xie-httpzhong-jian-jian.html</loc>
     <lastmod>2016-12-31T11:35:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangbiao-zhun-ku-de-fen-xi-osbao-6.html</loc>
     <lastmod>2016-12-31T11:35:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangjiang-jie-goyu-yan-biao-zhun-ku-fen-xi-zhi-os7.html</loc>
     <lastmod>2016-12-31T11:35:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fen-xiang-ji-ben-golangxue-xi-de-shu.html</loc>
     <lastmod>2016-12-31T11:35:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</loc>
     <lastmod>2016-12-31T11:35:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/150hang-godai-ma-shi-xian-git-checkoutgong-neng.html</loc>
     <lastmod>2016-12-31T11:35:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</loc>
     <lastmod>2016-12-31T11:35:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/lru-suan-fa.html</loc>
     <lastmod>2016-12-31T11:35:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/100hang-dai-ma-xie-yi-ge-golangshang-chuan-xia-zai-jing-tai-fu-wu-qi.html</loc>
     <lastmod>2016-12-31T11:35:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golint---golangdai-ma-zhi-liang-jian-ce.html</loc>
     <lastmod>2016-12-31T11:35:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ben-ren-xie-de-golangjie-xi-jsonshu-ju-de-bao.html</loc>
     <lastmod>2016-12-31T11:35:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ben-ren-yong-golangxie-de-mysql-orm-huan-ying-shi-yong-di-jiao-bug-you-hua-ji-geng-xin.html</loc>
     <lastmod>2016-12-31T11:35:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shu-mei-pa-shang-bian-yi--go-and-an-zhuang--cow.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</loc>
     <lastmod>2016-12-31T11:35:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/heartbleeder-zi-dong-jian-ce--openssl-xin-zang-chu-xie-lou-dong--fu-xiu-fu-zhi-na-.html</loc>
     <lastmod>2016-12-31T11:35:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangbian-ma-gui-fan.html</loc>
     <lastmod>2016-12-31T11:34:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-godai-ti-rubyjiang-fu-wu-qi-shu-liang-cong-30jiang-dao-2.html</loc>
     <lastmod>2016-12-31T11:34:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goji---ji-yu--go-yu-yan-de-wei-xing--web-kuang-jia.html</loc>
     <lastmod>2016-12-31T11:34:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/how-to-install-go-1_2-on-ubuntu-12_04-lts.html</loc>
     <lastmod>2016-12-31T11:34:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-webkuang-jia--tiny-go-web.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-by-example-ji-lie-fei-zu-sai--channels-cao-zuo.html</loc>
     <lastmod>2016-12-31T11:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xue-xi-bi-ji--er-.html</loc>
     <lastmod>2016-12-31T11:34:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-ru-men--an-zhuang--bian-xie--yun-hang-yi-.html</loc>
     <lastmod>2016-12-31T11:34:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/jin-tian-zai-githubshang-fa-xian-yi-ge-goyu-yan-chu-xue-de-wen-dang.html</loc>
     <lastmod>2016-12-31T11:34:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----cpu-pian.html</loc>
     <lastmod>2016-12-31T11:34:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gode-sync_mutexshi-xian.html</loc>
     <lastmod>2016-12-31T11:34:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gnvm----windowsxia-node_jsduo-ban-ben-guan-li-qi.html</loc>
     <lastmod>2016-12-31T11:34:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go---channel-yuan-li.html</loc>
     <lastmod>2016-12-31T11:34:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-jiang-zhi-chi-android.html</loc>
     <lastmod>2016-12-31T11:34:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goan-zhuang.html</loc>
     <lastmod>2016-12-31T11:34:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangzai-windowsping-tai-shi-yong-zmq.html</loc>
     <lastmod>2016-12-31T11:34:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/chuang-jian-jin-ke-neng-xiao-de--docker-rong-qi.html</loc>
     <lastmod>2016-12-31T11:34:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-kai-fa-zhe-dui--go-chu-xue-zhe-de-jian-yi.html</loc>
     <lastmod>2016-12-31T11:34:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/xie-objectivecjie-kou-de-shi-hou-lan-chong-shang-nao-yong--golang-xie-le-ge-jian-chan-de-dai-ma-she.html</loc>
     <lastmod>2016-12-31T11:34:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-dai-ma-shen-cha-jian-yi.html</loc>
     <lastmod>2016-12-31T11:34:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-for-gophers.html</loc>
     <lastmod>2016-12-31T11:34:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/iota-golang-zhong-you-ya-de-chang-liang.html</loc>
     <lastmod>2016-12-31T11:34:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogit-gofmt-pre-commit-hook.html</loc>
     <lastmod>2016-12-31T11:34:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/wei-shen-me--go-yu-yan-ba-lei-xing-fang-zai-hou-mian-.html</loc>
     <lastmod>2016-12-31T11:34:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangshi-xian-kuai-su-pai-xu.html</loc>
     <lastmod>2016-12-31T11:34:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/jie-shao--gdb-diao-shi--go.html</loc>
     <lastmod>2016-12-31T11:34:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-read-file-line-by-line.html</loc>
     <lastmod>2016-12-31T11:34:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-cheng-xu-de-xing-neng-diao-shi-wen-ti----nei-cun-pian.html</loc>
     <lastmod>2016-12-31T11:34:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangde-lei-xing-zhuai-huan-de-keng-he-fen-xi.html</loc>
     <lastmod>2016-12-31T11:34:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogolangzhi-slicede-xiao-xiang-fa-1.html</loc>
     <lastmod>2016-12-31T11:34:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/leetcode-find-minimum-in-rotated-sorted-array-ii.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fan-yi-goshi-mian-xiang-dui-xiang-yu-yan-ma-.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong--etcd-he--haproxy-zuo--docker-fu-wu-fa-xian.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/leetcode-wordsearch.html</loc>
     <lastmod>2016-12-31T11:34:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/zhuai-zai-goyu-yan-she-ji-mo-shi-shi-jian-die-dai-qi-iterator.html</loc>
     <lastmod>2016-12-31T11:34:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fanout---geng-rong-yi-de-xie-bing-fa-dai-ma.html</loc>
     <lastmod>2016-12-31T11:34:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/leetcode-wordladder-ii.html</loc>
     <lastmod>2016-12-31T11:34:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/zhuai-zai--golang-hot-configuration-reload.html</loc>
     <lastmod>2016-12-31T11:34:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/xstringsgo-yu-yan-zi-fu-chuan-ku-de-bu-wan.html</loc>
     <lastmod>2016-12-31T11:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/xin-gong-neng-gitcafe-yi-jing-zhi-chi--go-yu-yan--package-tuo-guan.html</loc>
     <lastmod>2016-12-31T11:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go.html</loc>
     <lastmod>2016-12-31T11:34:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-huan-jing-pei-zhi-jian-yi.html</loc>
     <lastmod>2016-12-31T11:34:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-fa.html</loc>
     <lastmod>2016-12-31T11:34:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-de-biao-shi-fu-guan-jian-zi-zi-mian-liang-lei-xing.html</loc>
     <lastmod>2016-12-31T11:34:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/jin-shi-nian-lai-zui-hao-de-yu-yan-shi-shen-me--lai-gopher-chinada-hui-zhao-da-an.html</loc>
     <lastmod>2016-12-31T11:34:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-zhong-importbu-yun-hu-xun-huan-bao-han.html</loc>
     <lastmod>2016-12-31T11:34:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-zhong-iotade-yi-ge-li-zi.html</loc>
     <lastmod>2016-12-31T11:34:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-mo-fang-javamian-xiang-jie-kou-_lian-shi-bian-cheng.html</loc>
     <lastmod>2016-12-31T11:34:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-reflectbao-shi-yong-de-ji-ge-chang-jing.html</loc>
     <lastmod>2016-12-31T11:34:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--1-12.html</loc>
     <lastmod>2016-12-31T11:34:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-yu-yan-cong-xin-shou-dao-da-shen-mei-ge-ren-dou-hui-cai-de-wu-shi-ge-keng--13-22.html</loc>
     <lastmod>2016-12-31T11:34:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/bu-shi-yu-yan-zhi-zheng----go-vs-erlang.html</loc>
     <lastmod>2016-12-31T11:34:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/xin-dong-you-hu-mian-shi-zong-jie.html</loc>
     <lastmod>2016-12-31T11:34:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang.html</loc>
     <lastmod>2016-12-31T11:34:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-ru-he-shi-yong--simd-zhi-ling.html</loc>
     <lastmod>2016-12-31T11:34:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-de-yi-xie-tu-cao.html</loc>
     <lastmod>2016-12-31T11:34:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-ge-gode-mi-ni-wang-lao-ku.html</loc>
     <lastmod>2016-12-31T11:34:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangzhong-jsonde-shi-yong.html</loc>
     <lastmod>2016-12-31T11:34:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kingshard--yi-ge-zhi-chi-shardingde-mysql-proxyxiang-mu.html</loc>
     <lastmod>2016-12-31T11:34:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</loc>
     <lastmod>2016-12-31T11:34:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tong-guo--mesosdocker-he--goshi-yong--300-hang-dai-ma-chuang-jian-yi-ge-fen-bu-shi-ji-tong.html</loc>
     <lastmod>2016-12-31T11:34:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-kuang-jia-jin-hang-webkai-fa-bi-ji.html</loc>
     <lastmod>2016-12-31T11:34:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-go-get-dao-ru-guan-fang-yi-lai-de-jie-jue-fang-fa.html</loc>
     <lastmod>2016-12-31T11:34:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gomacan-zhuang-he-ce-shi-go.html</loc>
     <lastmod>2016-12-31T11:34:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogoyu-yan-xue-xi-bi-ji--1-jian-jie.html</loc>
     <lastmod>2016-12-31T11:34:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogoyu-yan-xue-xi-bi-ji--2-han-shu.html</loc>
     <lastmod>2016-12-31T11:34:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogoyu-yan-xue-xi-bi-ji--3-bao.html</loc>
     <lastmod>2016-12-31T11:34:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gogoyu-yan-xue-xi-bi-ji--4-jin-jie.html</loc>
     <lastmod>2016-12-31T11:34:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</loc>
     <lastmod>2016-12-31T11:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/minijavayu-yan-bian-yi-qi-de-golangshi-xian-.html</loc>
     <lastmod>2016-12-31T11:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gomethodde-zhi-zhen-sheng-ming-ji-fei-zhi-zhen-sheng-ming.html</loc>
     <lastmod>2016-12-31T11:34:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/duo-jin-cheng-guan-li-gong-ju-goreman.html</loc>
     <lastmod>2016-12-31T11:34:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/godepshi-yong-zhu-yi.html</loc>
     <lastmod>2016-12-31T11:34:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltyi-ampgt.html</loc>
     <lastmod>2016-12-31T11:34:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-amplter-ampgt.html</loc>
     <lastmod>2016-12-31T11:34:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsan-ampgt.html</loc>
     <lastmod>2016-12-31T11:34:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gozhua-qu-wang-xie-shu-ju-bing-cun-ru-mysqlhe-fan-hui-jsonshu-ju-ampltsi-ampgt.html</loc>
     <lastmod>2016-12-31T11:34:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-kuai-su-ru-men.html</loc>
     <lastmod>2016-12-31T11:34:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangzai-mac-osshang-de-huan-jing-pei-zhi.html</loc>
     <lastmod>2016-12-31T11:34:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-intellijzuo-wei-golangde-ide.html</loc>
     <lastmod>2016-12-31T11:34:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gocao-zuo-redis.html</loc>
     <lastmod>2016-12-31T11:34:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-xiang-mu-kingshardxing-neng-you-hua-shi-li-pou-xi.html</loc>
     <lastmod>2016-12-31T11:34:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/registry-v2-jie-xi-yi-ji-ru-he-shi-xian-tokenyan-zheng.html</loc>
     <lastmod>2016-12-31T11:34:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tong-yi-pei-zhi-guan-li-gong-ju-confd.html</loc>
     <lastmod>2016-12-31T11:34:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-fa-bu.html</loc>
     <lastmod>2016-12-31T11:34:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shipyardyan-fa-ji-lie-1-shipyardan-zhuang-zhi-na.html</loc>
     <lastmod>2016-12-31T11:34:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/leanote-fu-wu-qi-an-zhuang.html</loc>
     <lastmod>2016-12-31T11:34:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/mac-osx-gokai-fa-huan-jing-da-jian-liteide.html</loc>
     <lastmod>2016-12-31T11:34:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/md5yu-crc32xing-neng-dui-bi.html</loc>
     <lastmod>2016-12-31T11:34:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi--cockroachdb-gcyou-hua-zong-jie.html</loc>
     <lastmod>2016-12-31T11:34:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-ge-gao-xing-neng-mysql-proxykingshardde-xing-neng-ce-shi-bao-gao.html</loc>
     <lastmod>2016-12-31T11:34:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/phpbian-cheng-zhong-de-bing-fa.html</loc>
     <lastmod>2016-12-31T11:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</loc>
     <lastmod>2016-12-31T11:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangzhong-ji-chong-jia-mi-fang-shi-de-chu-li.html</loc>
     <lastmod>2016-12-31T11:34:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-shi-jian-ge-shi-hua-de-ji-guai-she-ding----wei-shen-me-ni-yi-zhi-chu-cuo.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/install-golang-kai-fa-huan-jing--with-win-64.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/blog/2016/ecug-con-yao-nin-gong-yi-fu-wu-duan-kai-fa-zui-shen-du-shi-jian.html</loc>
-    <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ecugshe-ou-fa-qi-ren-hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/centos-7-xia--an-zhuang-goyu-yan.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ecug-2015hu-shi-wei-dui-bian-cheng-yu-yan-de-shua-ze-mo-guan-zhen-ying-guan-hu-pin-wei.html</loc>
     <lastmod>2016-12-31T11:34:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangbao-yi-lai-guan-li-gong-ju-gb.html</loc>
     <lastmod>2016-12-31T11:33:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/raspberry-pi-with-go-lang.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kingshard-sqlhei-ming-chan-gong-neng-jie-shao.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/xie-le-ge-pa-qu-tao-bao-gou-mai-wen-xiong-de-ping-lun-de-pa-chong-shu-ju-gong-xiang-.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangkai-fa-zhi-chi-ping-hua-sheng-ji-you-ya-chong-qi-de-httpfu-wu.html</loc>
     <lastmod>2016-12-31T11:33:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-oci8bian-yi-an-zhuang-guo-cheng-you-bie-yu-guan-fang-shui-ming-.html</loc>
     <lastmod>2016-12-31T11:33:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</loc>
     <lastmod>2016-12-31T11:33:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-ban-ben-de--ring-buffer-bian-chang-chi-jiu-hua-.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kingshardan-shi-jian-fen-biao-gong-neng-jie-shao.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-ge-shi-xian--twitter-snowflake-suan-fa--de--go-fen-bu-shi--uid-sheng-cheng-qi.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goshi-xian-de-wei-bo-xiao-xi-dui-lie.html</loc>
     <lastmod>2016-12-31T11:33:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beegode-orm-pei-zhi-shu-ju-ku.html</loc>
     <lastmod>2016-12-31T11:33:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</loc>
     <lastmod>2016-12-31T11:33:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangde-chan-yin-hao-shuang-yin-hao-yu-fan-yin-hao.html</loc>
     <lastmod>2016-12-31T11:33:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gochu-ti-yan-macshang-an-zhuang-go.html</loc>
     <lastmod>2016-12-31T11:33:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gochu-ti-yan-ji-chu.html</loc>
     <lastmod>2016-12-31T11:33:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x00----cong-ling-kai-shi.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x01----ji-ben-gai-nian.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x02----dao-pai-suo-yin-ji-shu.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-atompei-zhi-golangkai-fa-huan-jing.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x03----tiao-yue-biao-ha-xi-biao.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x05----wen-ben-xiang-guan-xing-pai-xu.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x06----suo-yin-gou-jian.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goxing-neng-you-hua-ji-qiao--1_10.html</loc>
     <lastmod>2016-12-31T11:33:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x07----zheng-pai-suo-yin.html</loc>
     <lastmod>2016-12-31T11:33:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--2_10.html</loc>
     <lastmod>2016-12-31T11:33:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--3_10.html</loc>
     <lastmod>2016-12-31T11:33:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html</loc>
     <lastmod>2016-12-31T11:33:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--4_10.html</loc>
     <lastmod>2016-12-31T11:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html</loc>
     <lastmod>2016-12-31T11:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--5_10.html</loc>
     <lastmod>2016-12-31T11:33:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--6_10.html</loc>
     <lastmod>2016-12-31T11:33:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--7_10.html</loc>
     <lastmod>2016-12-31T11:33:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--8_10.html</loc>
     <lastmod>2016-12-31T11:33:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--9_10.html</loc>
     <lastmod>2016-12-31T11:33:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beegoxia-gen-ju-bu-shu-huan-jing-jia-zai-xiang-ying-pei-zhi-wen-jian.html</loc>
     <lastmod>2016-12-31T11:33:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x08----suo-yin-de-duan.html</loc>
     <lastmod>2016-12-31T11:33:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-xing-neng-you-hua-ji-qiao--10_10.html</loc>
     <lastmod>2016-12-31T11:33:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/zai--golang-zhong-shi-yong--go-guan-jian-zi-he--channel-shi-xian-bing-hang.html</loc>
     <lastmod>2016-12-31T11:33:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-readonly-variable.html</loc>
     <lastmod>2016-12-31T11:33:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/zai-centosxia-li-yong-ffmpegdui-shi-pin-jin-hang-zhuai-ma.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tu-niu-yuan-chuang-tu-niu-zhou-kan.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangfu-wu-qi-de-wang-lao-ceng-shi-xian.html</loc>
     <lastmod>2016-12-31T11:33:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing-0x0b----di-yi-bu-fen-jie-shu.html</loc>
     <lastmod>2016-12-31T11:33:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</loc>
     <lastmod>2016-12-31T11:33:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beegozi-dong-hua-bu-shu.html</loc>
     <lastmod>2016-12-31T11:33:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kai-yuan-le-yi-ge-jian-chan-de-httpfu-wu-ya-ce-gong-ju-alexzi-dai-web-uigolangshi-xian.html</loc>
     <lastmod>2016-12-31T11:33:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-yu-fa-tu-cao.html</loc>
     <lastmod>2016-12-31T11:33:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong--delve-diao-shi--golang-cheng-xu.html</loc>
     <lastmod>2016-12-31T11:33:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-zhong-httpbao-mo-ren-lu-you-pi-pei-gui-ze-yue-dou-bi-ji.html</loc>
     <lastmod>2016-12-31T11:33:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangde-yi-ge-chou-lou-shi-xian.html</loc>
     <lastmod>2016-12-31T11:33:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/guan-bo-yi-wen-ke-ce-shi-de--golang-dai-ma-shi-li.html</loc>
     <lastmod>2016-12-31T11:33:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</loc>
     <lastmod>2016-12-31T11:33:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</loc>
     <lastmod>2016-12-31T11:33:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-jian-jie-yi-.html</loc>
     <lastmod>2016-12-31T11:33:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-jian-jie-er-.html</loc>
     <lastmod>2016-12-31T11:33:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/baakuang-jia-zhong-de-yi-lai-zhu-ru-dishi-ge-shen-me-gui-.html</loc>
     <lastmod>2016-12-31T11:33:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/cong-baakai-fa-zhong-zong-jie-goyu-yan-xing-neng-jian-jin-you-hua.html</loc>
     <lastmod>2016-12-31T11:33:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-stringsbao-han-shu-yong-fa.html</loc>
     <lastmod>2016-12-31T11:33:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</loc>
     <lastmod>2016-12-31T11:33:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goxue-xi-er-xue-xi-zi-liao.html</loc>
     <lastmod>2016-12-31T11:33:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goxue-xi-yi-jie-shao.html</loc>
     <lastmod>2016-12-31T11:33:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shen-ru-li-jie-gode-slicehe-dao-de-shen-me-shi-hou-gai-yong-slice.html</loc>
     <lastmod>2016-12-31T11:33:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-transfer-file-with-socket.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tong-guo-ca-fen-duo-zhen-de-fang-shi-websocketfa-song-tu-pian.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goxue-xi-san-yi-ge-jian-chan-de-orm.html</loc>
     <lastmod>2016-12-31T11:33:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-dou-qu-qie-fen-cun-chu-byteliu-wen-jian.html</loc>
     <lastmod>2016-12-31T11:33:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/glideshi-yong.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangbing-fa-bian-cheng-de-liang-chong-xian-su-fang-fa.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-xue-xi-bi-ji-yi-.html</loc>
     <lastmod>2016-12-31T11:33:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/open-falcon-agentyuan-ma-xue-xi.html</loc>
     <lastmod>2016-12-31T11:33:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/open-falcon-hbsxue-xi.html</loc>
     <lastmod>2016-12-31T11:33:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shen-ru-li-jie-goyu-yan-de-slice.html</loc>
     <lastmod>2016-12-31T11:33:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x00---wo-wei-shen-me-yao-zuo--dit.html</loc>
     <lastmod>2016-12-31T11:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x01---zong-jue.html</loc>
     <lastmod>2016-12-31T11:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangmo-fang-qi-niu-tu-pian-chu-li-api.html</loc>
     <lastmod>2016-12-31T11:33:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/vscodezhong-godefmo-fa-tiao-zhuai-dao-ding-yi-de-wen-ti.html</loc>
     <lastmod>2016-12-31T11:33:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x03---dang-qian-mu-lu-huan-cun-pian.html</loc>
     <lastmod>2016-12-31T11:33:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/du-gu-jiu-jian-0x04---ce-shi-pian.html</loc>
     <lastmod>2016-12-31T11:33:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-shi-xian-rsa-jia-mi-jie-mi-fu-dai-php.html</loc>
     <lastmod>2016-12-31T11:33:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shen-ru-ti-yan-bash-on-windowszai-windowsshang-da-jian-yuan-sheng-de-linuxkai-fa-huan-jing-ku-.html</loc>
     <lastmod>2016-12-31T11:33:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html</loc>
     <lastmod>2016-12-31T11:33:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-yu-yan-fan-she-san-ding-lv.html</loc>
     <lastmod>2016-12-31T11:33:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-yi----yuan-li-pian.html</loc>
     <lastmod>2016-12-31T11:33:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-bu-yi-bu-jiao-ni-xie-btchong-zi-xiu-tan-qi-zhi-er----dhtpian.html</loc>
     <lastmod>2016-12-31T11:33:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/jie-cao-dai-ma-xiu-yang-mei-zi-he-ji-ta-goyu-yan-ban-.html</loc>
     <lastmod>2016-12-31T11:33:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</loc>
     <lastmod>2016-12-31T11:33:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-yi-bing-hang-chu-li-md5wei-li.html</loc>
     <lastmod>2016-12-31T11:33:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-zhi--gong-cheng-jie-gou.html</loc>
     <lastmod>2016-12-31T11:33:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-xian-su-qi.html</loc>
     <lastmod>2016-12-31T11:33:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--context.html</loc>
     <lastmod>2016-12-31T11:33:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangxue-xi-bi-ji----biao-zhun-ku-ampquotnet_httpampquotde-jian-xi-ji-zi-zhi-jian-chan-lu-you-kuang-j.html</loc>
     <lastmod>2016-12-31T11:33:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangshen-me-shi-hou-ying-gai-ba-fang-fa-bang-ding-zai-structde-zhi-shang-er-bu-shi-zhi-zhen-shang.html</loc>
     <lastmod>2016-12-31T11:33:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-yu-yan-net_http-bao-shi-yong-mo-shi.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</loc>
     <lastmod>2016-12-31T11:33:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-defer-shi-yong-xiao-jie-yu-zhu-yi-yao-dian.html</loc>
     <lastmod>2016-12-31T11:33:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-shu-zu-yu-qie-pian.html</loc>
     <lastmod>2016-12-31T11:33:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</loc>
     <lastmod>2016-12-31T11:33:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kai-yuan-yi-ge-golangxie-de-excelxlsxdao-ru-mysqlxiao-gong-ju.html</loc>
     <lastmod>2016-12-31T11:33:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goxue-xi-bi-ji-yi-.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-golangxie-le-ge-jian-chan-yi-yong-de-wei-xin-sdk.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/remotetail-ji-qun-ri-zhi-tong-bu-cha-kan-xiao-gong-ju.html</loc>
     <lastmod>2016-12-31T11:33:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-shi-xian-yi-ge-liao-tian-shi.html</loc>
     <lastmod>2016-12-31T11:33:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</loc>
     <lastmod>2016-12-31T11:33:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-redis-cao-zuo-chu-ti-yan.html</loc>
     <lastmod>2016-12-31T11:33:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/interfaces-and-composition-for-effective-unit-testing-in-golang.html</loc>
     <lastmod>2016-12-31T11:33:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-gode-io_pipeyou-ya-de-you-hua-zhong-jian-huan-cun.html</loc>
     <lastmod>2016-12-31T11:33:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html</loc>
     <lastmod>2016-12-31T11:33:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/mac-xia--vim#43golang-kai-fa-huan-jing-da-jian.html</loc>
     <lastmod>2016-12-31T11:32:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/48xiao-shi-de-jiao-xun-gao-su-ni-ru-he-zai-qi-niu-ufopxia-an-zhuang-imagemagick.html</loc>
     <lastmod>2016-12-31T11:32:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/dui-beegode-kong-zhi-qi-han-shu-jin-hang-chan-ce.html</loc>
     <lastmod>2016-12-31T11:32:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/php-hun-ge--go-xie-cheng-bing-fa.html</loc>
     <lastmod>2016-12-31T11:32:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fen-xiang-xue-xi-goyu-yan-de-ru-men-jiao-cheng.html</loc>
     <lastmod>2016-12-31T11:32:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-chan-yuan-ce-shi-zhi-yin.html</loc>
     <lastmod>2016-12-31T11:32:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golangshi-yong-bi-bao-jiang-di-ce-shi-dai-ma-hang-shu.html</loc>
     <lastmod>2016-12-31T11:32:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/govpr--golangshi-xian-de-gmm-ubmsuan-fa-de-shui-hua-ren-shi-bie-sheng-wen-shi-bie-yin-qing.html</loc>
     <lastmod>2016-12-31T11:32:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-diao-yong--cgo-coredump-huo-de-fang-fa.html</loc>
     <lastmod>2016-12-31T11:32:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-shi-xian-chan-lian-biao.html</loc>
     <lastmod>2016-12-31T11:32:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/li-yong-panic-he--recover-shi-xian-yi-ge-bu-bao-han-return-yu-gou-dan-shi-fan-hui-yi-ge-fei-ling-zhi.html</loc>
     <lastmod>2016-12-31T11:32:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/_gozk_zookeeper_zk_go-fatal-error-zookeeper_h-file-not-found.html</loc>
     <lastmod>2016-12-31T11:32:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/shi-yong-contextshi-xian-duo-ge-goroutinede-yi-lai-guan-li.html</loc>
     <lastmod>2016-12-31T11:32:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/zai-beegozhong-shi-yong-jademo-ban.html</loc>
     <lastmod>2016-12-31T11:32:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/bian-xie-ke-ce-shi-de-godai-ma.html</loc>
     <lastmod>2016-12-31T11:32:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yong-goshi-xian-kua-ping-tai-autoit_autohotkeyhe-an-jian-jing-ling-gong-neng-shi-li-dai-ma.html</loc>
     <lastmod>2016-12-31T11:32:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/liao-liao-tcplian-jie-chi.html</loc>
     <lastmod>2016-12-31T11:32:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/easyproxyjian-chan-yi-yong-de-tcpdai-li.html</loc>
     <lastmod>2016-12-31T11:32:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang-zui-xin-ban-.html</loc>
     <lastmod>2016-12-31T11:32:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-diao-yong--php7.html</loc>
     <lastmod>2016-12-31T11:32:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</loc>
     <lastmod>2016-12-31T11:32:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-gong-ju-lie-biao.html</loc>
     <lastmod>2016-12-31T11:32:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-liu-shi-jie-xi--json.html</loc>
     <lastmod>2016-12-31T11:32:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-1_8de-pluginshi-yong.html</loc>
     <lastmod>2016-12-31T11:32:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-heapsterjie-shao.html</loc>
     <lastmod>2016-12-31T11:32:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-json-jie-xi-qi-na-jia-jiang-.html</loc>
     <lastmod>2016-12-31T11:32:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ji-yu-duo--goroutine-shi-xian-ling-pai-tong.html</loc>
     <lastmod>2016-12-31T11:32:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/mock-go-cheng-xu-de-xin-fang-fa.html</loc>
     <lastmod>2016-12-31T11:32:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</loc>
     <lastmod>2016-12-31T11:32:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</loc>
     <lastmod>2016-12-31T11:32:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html</loc>
     <lastmod>2016-12-31T11:32:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-san--protobufyu-fa.html</loc>
     <lastmod>2016-12-31T11:32:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-er--hello-grpc.html</loc>
     <lastmod>2016-12-31T11:32:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-si--grpcren-zheng.html</loc>
     <lastmod>2016-12-31T11:32:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/yi--xian-dai-la-ji-hui-shou.html</loc>
     <lastmod>2016-12-31T11:32:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/goyu-yan-chan-yuan-ce-shi.html</loc>
     <lastmod>2016-12-31T11:32:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--cuo-wu-zhu-ru.html</loc>
     <lastmod>2016-12-31T11:32:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-wu--lan-jie-qi--interceptor.html</loc>
     <lastmod>2016-12-31T11:32:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--xin-xin-de-hui-mie-yu-chong-jian.html</loc>
     <lastmod>2016-12-31T11:32:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--multi-raft-she-ji-yu-shi-xian.html</loc>
     <lastmod>2016-12-31T11:32:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie--ru-he-shi-yong--raft.html</loc>
     <lastmod>2016-12-31T11:32:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/da-jian-golangban-ssfu-wu.html</loc>
     <lastmod>2016-12-31T11:32:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ideaxie-golangde-yi-xie-cao-zuo-_ji-qiao.html</loc>
     <lastmod>2016-12-31T11:32:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ji-yu-golangde-ipde-zhi-xin-xi-cha-xun-fu-wu.html</loc>
     <lastmod>2016-12-31T11:32:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tikv-yuan-ma-jie-xi-ji-lie---placement-driver.html</loc>
     <lastmod>2016-12-31T11:32:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html</loc>
     <lastmod>2016-12-31T11:32:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tidb-you-hua-qi-shi-xian-de-ji-chu-tong-ji-xin-xi-de-shou-ji.html</loc>
     <lastmod>2016-12-31T11:32:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-liu--nei-zhi-trace.html</loc>
     <lastmod>2016-12-31T11:32:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/tidb-yuan-ma-chu-tan.html</loc>
     <lastmod>2016-12-31T11:32:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-qi--httpxie-yi-zhuai-huan.html</loc>
     <lastmod>2016-12-31T11:32:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/nian-du-yu-yan--golang-shi-yong-gan-shou.html</loc>
     <lastmod>2016-12-31T11:32:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-bi-ji.html</loc>
     <lastmod>2016-12-31T11:32:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/ji-shi-tong-xin-zui-jia-shi-jian.html</loc>
     <lastmod>2016-12-31T11:32:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gobian-cheng-ji-qiao---goroutinede-you-ya-kong-zhi.html</loc>
     <lastmod>2016-12-31T11:32:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beego-ormzhong-shi-ou-de-wen-ti.html</loc>
     <lastmod>2016-12-31T11:32:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/lao-si-ji-dai-ni-yong--go-yu-yan-shi-xian--mapreduce-kuang-jia.html</loc>
     <lastmod>2016-12-31T11:32:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/go-1_8rc3-yuan-dai-ma-xue-xi-cong-yuan-dai-ma-bian-yi--go.html</loc>
     <lastmod>2016-12-31T11:32:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gode-nei-cun-mo-xing.html</loc>
     <lastmod>2016-12-31T11:32:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/golang-bing-fa-mo-shi-chao-shi-he-ji-xu--go-concurrency-patterns-timing-out-moving-on.html</loc>
     <lastmod>2016-12-31T11:18:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/how-to-know-running-within-gotest.html</loc>
     <lastmod>2016-10-03T19:51:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</loc>
     <lastmod>2016-08-12T09:08:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/wercker-deploy-github-qa.html</loc>
     <lastmod>2016-03-10T14:21:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/understanding-golang-import-package.html</loc>
     <lastmod>2016-03-08T10:44:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/go-example-zh.html</loc>
-    <lastmod>2016-03-04T13:17:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/signals.html</loc>
-    <lastmod>2016-03-04T13:13:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/exit.html</loc>
-    <lastmod>2016-03-04T13:13:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/execing-processes.html</loc>
-    <lastmod>2016-03-04T13:13:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/spawning-processes.html</loc>
-    <lastmod>2016-03-04T13:13:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-arguments.html</loc>
-    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/command-line-flags.html</loc>
-    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/environment-variables.html</loc>
-    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/line-filters.html</loc>
-    <lastmod>2016-03-04T13:13:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/writing-files.html</loc>
-    <lastmod>2016-03-04T13:13:35+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/reading-files.html</loc>
-    <lastmod>2016-03-04T13:13:35+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/base64-encoding.html</loc>
-    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sha1-hashes.html</loc>
-    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/url-parsing.html</loc>
-    <lastmod>2016-03-04T13:13:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/number-parsing.html</loc>
-    <lastmod>2016-03-04T13:13:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/random-numbers.html</loc>
-    <lastmod>2016-03-04T13:13:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/time.html</loc>
-    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/epoch.html</loc>
-    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/time-formatting-parsing.html</loc>
-    <lastmod>2016-03-04T13:13:32+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/json.html</loc>
-    <lastmod>2016-03-04T13:13:31+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/regular-expressions.html</loc>
-    <lastmod>2016-03-04T13:13:31+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/string-functions.html</loc>
-    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/string-formatting.html</loc>
-    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/collection-functions.html</loc>
-    <lastmod>2016-03-04T13:13:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/defer.html</loc>
-    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/panic.html</loc>
-    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sorting-by-functions.html</loc>
-    <lastmod>2016-03-04T13:13:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/stateful-goroutines.html</loc>
-    <lastmod>2016-03-04T13:13:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/sorting.html</loc>
-    <lastmod>2016-03-04T13:13:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/mutexes.html</loc>
-    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/atomic-counters.html</loc>
-    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/rate-limiting.html</loc>
-    <lastmod>2016-03-04T13:13:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/worker-pools.html</loc>
-    <lastmod>2016-03-04T13:13:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/tickers.html</loc>
-    <lastmod>2016-03-04T13:13:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/timers.html</loc>
-    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/closing-channels.html</loc>
-    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/range-over-channels.html</loc>
-    <lastmod>2016-03-04T13:13:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/timeouts.html</loc>
-    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/select.html</loc>
-    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/non-blocking-channel-operations.html</loc>
-    <lastmod>2016-03-04T13:13:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-synchronization.html</loc>
-    <lastmod>2016-03-04T13:13:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-directions.html</loc>
-    <lastmod>2016-03-04T13:13:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/goroutines.html</loc>
-    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channels.html</loc>
-    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/channel-buffering.html</loc>
-    <lastmod>2016-03-04T13:13:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/interfaces.html</loc>
-    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/methods.html</loc>
-    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/errors.html</loc>
-    <lastmod>2016-03-04T13:13:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/pointers.html</loc>
-    <lastmod>2016-03-04T13:13:20+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/structs.html</loc>
-    <lastmod>2016-03-04T13:13:20+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/variadic-functions.html</loc>
-    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/recursion.html</loc>
-    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/closures.html</loc>
-    <lastmod>2016-03-04T13:13:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/functions.html</loc>
-    <lastmod>2016-03-04T13:13:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/multiple-return-values.html</loc>
-    <lastmod>2016-03-04T13:13:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/range.html</loc>
-    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/maps.html</loc>
-    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/slices.html</loc>
-    <lastmod>2016-03-04T13:13:17+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/if-else.html</loc>
-    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/switch.html</loc>
-    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/arrays.html</loc>
-    <lastmod>2016-03-04T13:13:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/for.html</loc>
-    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/variables.html</loc>
-    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/constants.html</loc>
-    <lastmod>2016-03-04T13:13:15+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/hello-world.html</loc>
-    <lastmod>2016-03-04T13:13:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/gobyexample/values.html</loc>
-    <lastmod>2016-03-04T13:13:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/goexamplelib/home.html</loc>
-    <lastmod>2016-03-04T11:57:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/images.html</loc>
-    <lastmod>2016-02-26T17:53:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/exercise-images.html</loc>
-    <lastmod>2016-02-26T17:53:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/http-web-server.html</loc>
-    <lastmod>2016-02-26T17:53:44+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0http%E5%A4%84%E7%90%86.html</loc>
-    <lastmod>2016-02-26T17:53:44+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/readers.html</loc>
-    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/%E7%BB%83%E4%B9%A0reader.html</loc>
-    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/exercise-rot-reader.html</loc>
-    <lastmod>2016-02-26T17:53:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/exercise-errors.html</loc>
-    <lastmod>2016-02-26T17:53:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/errors.html</loc>
-    <lastmod>2016-02-26T17:53:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/exercise-stringer.html</loc>
-    <lastmod>2016-02-26T17:53:41+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/stringers.html</loc>
-    <lastmod>2016-02-26T17:53:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/%E9%9A%90%E5%BC%8F%E6%8E%A5%E5%8F%A3.html</loc>
-    <lastmod>2016-02-26T17:53:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/interfaces.html</loc>
-    <lastmod>2016-02-26T17:53:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/methods-with-pointer-receivers.html</loc>
-    <lastmod>2016-02-26T17:53:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/methods-continued.html</loc>
-    <lastmod>2016-02-26T17:53:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/methods.html</loc>
-    <lastmod>2016-02-26T17:53:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/function-closures.html</loc>
-    <lastmod>2016-02-26T17:46:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-fibonacci-closure.html</loc>
-    <lastmod>2016-02-26T17:46:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/mutating-maps.html</loc>
-    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/function-values.html</loc>
-    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-map.html</loc>
-    <lastmod>2016-02-26T17:46:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/map-literals.html</loc>
-    <lastmod>2016-02-26T17:46:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/map-literals-con.html</loc>
-    <lastmod>2016-02-26T17:46:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/map.html</loc>
-    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/range-continued.html</loc>
-    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/exercise-slice.html</loc>
-    <lastmod>2016-02-26T17:46:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/nilslice.html</loc>
-    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/range.html</loc>
-    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/mutating-slices.html</loc>
-    <lastmod>2016-02-26T17:46:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/slices-to-slices.html</loc>
-    <lastmod>2016-02-26T17:46:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/making-slices.html</loc>
-    <lastmod>2016-02-26T17:46:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/slice.html</loc>
-    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/slices-of-slice.html</loc>
-    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/array.html</loc>
-    <lastmod>2016-02-26T17:46:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-pointers.html</loc>
-    <lastmod>2016-02-26T17:46:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-literals.html</loc>
-    <lastmod>2016-02-26T17:46:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/pointer.html</loc>
-    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/struct.html</loc>
-    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/struct-fields.html</loc>
-    <lastmod>2016-02-26T17:46:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/defer-multi.html</loc>
-    <lastmod>2016-02-26T17:45:31+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/defer.html</loc>
-    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch-evaluation-order.html</loc>
-    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch-with-no-condition.html</loc>
-    <lastmod>2016-02-26T17:45:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/switch.html</loc>
-    <lastmod>2016-02-26T17:45:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/exercise-loops-and-functions.html</loc>
-    <lastmod>2016-02-26T17:45:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if.html</loc>
-    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if-and-else.html</loc>
-    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/if-with-a-short-statement.html</loc>
-    <lastmod>2016-02-26T17:45:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for-is-gos-while.html</loc>
-    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for-continued.html</loc>
-    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/forever.html</loc>
-    <lastmod>2016-02-26T17:45:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/for.html</loc>
-    <lastmod>2016-02-26T17:45:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/exercise-web-crawler.html</loc>
-    <lastmod>2016-02-26T17:42:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/wheretogofromhere.html</loc>
-    <lastmod>2016-02-26T17:42:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/sync.mutex.html</loc>
-    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/exercise-equivalent-binary-trees.html</loc>
-    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/default-selection.html</loc>
-    <lastmod>2016-02-26T17:42:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/select.html</loc>
-    <lastmod>2016-02-26T17:42:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/channel-close.html</loc>
-    <lastmod>2016-02-26T17:42:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/channel.html</loc>
-    <lastmod>2016-02-26T17:42:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/buffered-channels.html</loc>
-    <lastmod>2016-02-26T17:42:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/goroutine.html</loc>
-    <lastmod>2016-02-26T17:42:50+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/function.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/init-var.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/package.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/variables.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/named-returns.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/basic-type.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/multi_value_return.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/import.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/import-name.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/const.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/const-number.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/short-variable-declarations.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/type-inference.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/type-conversions.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/zero.html</loc>
-    <lastmod>2016-02-26T16:56:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/function2.html</loc>
-    <lastmod>2016-02-26T16:56:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gos-declaration-syntax.html</loc>
     <lastmod>2016-02-26T11:00:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/moretypes/home.html</loc>
-    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/methods/home.html</loc>
-    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/flowcontrol/home.html</loc>
-    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/basics/home.html</loc>
-    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/concurrency/home.html</loc>
-    <lastmod>2016-02-25T15:42:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book/gotour/home.html</loc>
-    <lastmod>2016-02-25T15:00:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/gosublime-goimports.html</loc>
     <lastmod>2016-02-25T13:32:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/statics-folder-file_numbers.html</loc>
     <lastmod>2016-02-18T11:05:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/liunx%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%89%B9%E5%91%BD%E4%BB%A4.html</loc>
     <lastmod>2016-02-15T13:06:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/linux-find-multiple-filenames-patterns-command-example.html</loc>
     <lastmod>2016-02-15T12:44:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beego-webframework-config.html</loc>
     <lastmod>2016-02-13T08:04:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/beego-webframework-analysis-plan.html</loc>
     <lastmod>2016-02-11T13:14:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2016/common_problems-in-go_development_specifications.html</loc>
     <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/about.html</loc>
     <lastmod>2015-12-29T20:29:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/centos7-install-nginx-php-mysql.html</loc>
     <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/nodejs-error-promise_is_not_defined.html</loc>
     <lastmod>2015-10-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/7_things-you-may-not-pay-attation-to-in-go.html</loc>
     <lastmod>2015-09-18T12:55:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</loc>
     <lastmod>2015-09-18T08:22:13+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/mql5-can-use-in-shanghai-a.html</loc>
     <lastmod>2015-09-14T08:18:14+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/wang_yuan_zong-xi_zang-xi_kong.html</loc>
     <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/piwik-get-visit_ip.html</loc>
     <lastmod>2015-09-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/net-map-use-do-error.html</loc>
     <lastmod>2015-09-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</loc>
     <lastmod>2015-08-31T10:01:36+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</loc>
     <lastmod>2015-08-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/youhua-jishu-in-db.html</loc>
     <lastmod>2015-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</loc>
     <lastmod>2015-08-15T09:12:01+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</loc>
     <lastmod>2015-08-15T08:45:07+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2015/golang-php-gzencode-difrent.html</loc>
     <lastmod>2015-07-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-if-for-select-switch.html</loc>
     <lastmod>2013-04-08T23:31:47+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-function-1.html</loc>
     <lastmod>2013-04-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-string.html</loc>
     <lastmod>2013-04-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-const.html</loc>
     <lastmod>2013-04-05T23:31:47+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-array-slice.html</loc>
     <lastmod>2013-04-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-var-init.html</loc>
     <lastmod>2013-04-03T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-golang-code-formate.html</loc>
     <lastmod>2013-04-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/ysqi-why_studay_golang.html</loc>
     <lastmod>2013-04-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/blog/2013/golang-demo-hello_world.html</loc>
     <lastmod>2013-01-22T08:33:32+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags.html</loc>
     <lastmod>2017-03-03T08:36:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/blog/1.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/3des.html</loc>
     <lastmod>2016-12-31T11:33:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/7zip.html</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/android.html</loc>
     <lastmod>2016-12-31T11:34:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/angular.js.html</loc>
     <lastmod>2016-12-31T11:35:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/angular2.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/api.html</loc>
     <lastmod>2016-12-31T11:32:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/api%E8%AE%BE%E8%AE%A1.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/architecture.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/asp.net.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/atom.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/autohotkey.html</loc>
     <lastmod>2016-12-31T11:32:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/b#43%E6%A0%91.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/baa.html</loc>
     <lastmod>2016-12-31T11:33:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/base64.html</loc>
     <lastmod>2016-12-31T11:33:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/beanstalk.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/beanstalkd.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/bee.html</loc>
     <lastmod>2016-12-31T11:33:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/beego.html</loc>
     <lastmod>2016-12-31T11:34:27+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/blog.html</loc>
-    <lastmod>2018-01-13T08:53:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/book.html</loc>
-    <lastmod>2016-03-04T13:17:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/boom.html</loc>
     <lastmod>2016-12-31T11:33:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/bytecode.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/c.html</loc>
     <lastmod>2016-12-31T11:34:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/c#43%2343.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/caddy.html</loc>
     <lastmod>2017-05-24T09:17:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/categories.html</loc>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/centos.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/cgo.html</loc>
     <lastmod>2016-12-31T11:32:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/channel.html</loc>
     <lastmod>2016-12-31T11:33:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/channels.html</loc>
     <lastmod>2016-12-31T11:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/chrome.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/closure.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/cockroachdb.html</loc>
     <lastmod>2016-12-31T11:34:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/command.html</loc>
     <lastmod>2017-08-14T18:52:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/concurrency.html</loc>
     <lastmod>2016-12-31T11:34:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/config.html</loc>
     <lastmod>2016-12-31T11:34:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/console.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/container.html</loc>
     <lastmod>2016-12-31T11:33:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/context.html</loc>
     <lastmod>2016-12-31T11:33:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/coroutine.html</loc>
     <lastmod>2016-12-31T11:32:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/debug.html</loc>
     <lastmod>2016-12-31T11:34:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/defer.html</loc>
     <lastmod>2016-12-31T11:33:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/delve.html</loc>
     <lastmod>2016-12-31T11:33:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/di.html</loc>
     <lastmod>2016-12-31T11:33:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/doc.html</loc>
     <lastmod>2016-12-31T11:34:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/docker.html</loc>
     <lastmod>2017-10-11T07:11:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/dockerfile.html</loc>
     <lastmod>2016-12-31T11:34:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/emacs.html</loc>
     <lastmod>2016-12-31T11:32:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/email.html</loc>
     <lastmod>2017-07-09T22:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/emlog.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/erlang.html</loc>
     <lastmod>2016-12-31T11:34:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/etcd.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/evernote.html</loc>
     <lastmod>2016-12-31T11:34:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/excel.html</loc>
     <lastmod>2017-05-24T09:17:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ffmpeg.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/foreman.html</loc>
     <lastmod>2016-12-31T11:34:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/future.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gc.html</loc>
     <lastmod>2016-12-31T11:34:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gdb.html</loc>
     <lastmod>2016-12-31T11:34:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/git.html</loc>
     <lastmod>2016-12-31T11:35:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gitbook.cn.html</loc>
     <lastmod>2017-03-13T08:34:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gitbook.cn#%23%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95.html</loc>
     <lastmod>2017-05-24T08:58:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gitbook.cn#%23%E7%AB%99%E9%95%BF.html</loc>
     <lastmod>2017-05-24T08:58:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gitbook.cn#%23%E7%AE%A1%E7%90%86.html</loc>
     <lastmod>2017-05-24T08:58:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/github.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/glide.html</loc>
     <lastmod>2016-12-31T11:33:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go.html</loc>
     <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go-plus.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go-test.html</loc>
     <lastmod>2016-10-03T19:51:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go-web-framework.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go1.8.html</loc>
     <lastmod>2017-02-18T11:13:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gojs.html</loc>
     <lastmod>2017-03-13T08:20:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/golang.html</loc>
     <lastmod>2017-08-14T18:52:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/golang#grpc.html</loc>
     <lastmod>2017-02-18T11:13:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/golang#%E5%BE%AE%E6%9C%8D%E5%8A%A1.html</loc>
     <lastmod>2017-02-22T08:37:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/golang#%E6%9E%B6%E6%9E%84.html</loc>
     <lastmod>2017-02-22T08:37:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gopher.html</loc>
     <lastmod>2016-12-31T11:34:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/goroutine.html</loc>
     <lastmod>2017-05-24T09:17:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gox.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go%E5%85%A5%E9%97%A8.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go%E5%AE%98%E6%96%B9%E5%8D%9A%E5%AE%A2.html</loc>
     <lastmod>2016-02-26T11:00:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/go%E8%AF%AD%E8%A8%80.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gpio.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/grpc.html</loc>
     <lastmod>2017-05-24T09:17:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/gzip.html</loc>
     <lastmod>2015-07-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/haproxy.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/haskell.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/heapster.html</loc>
     <lastmod>2016-12-31T11:32:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/hexo.html</loc>
     <lastmod>2015-08-31T10:01:36+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/homebrew.html</loc>
     <lastmod>2016-12-31T11:34:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/html5.html</loc>
     <lastmod>2016-12-31T11:32:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/http.html</loc>
     <lastmod>2017-05-24T09:17:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/httproxy.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ide.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/idea.html</loc>
     <lastmod>2016-12-31T11:32:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/import.html</loc>
     <lastmod>2016-03-08T10:44:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/influxdb.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/intellij-idea.html</loc>
     <lastmod>2016-12-31T11:34:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/interface.html</loc>
     <lastmod>2016-12-31T11:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/io.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/iota.html</loc>
     <lastmod>2016-12-31T11:34:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ip.html</loc>
     <lastmod>2016-12-31T11:32:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/jade.html</loc>
     <lastmod>2016-12-31T11:32:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/java.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/javascript.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/jquery.html</loc>
     <lastmod>2016-12-31T11:35:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/json.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/kingshard.html</loc>
     <lastmod>2016-12-31T11:34:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/kubernetes.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/leanote.html</loc>
     <lastmod>2016-12-31T11:34:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/leanote%E6%9C%8D%E5%8A%A1%E5%99%A8.html</loc>
     <lastmod>2016-12-31T11:34:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/led.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/leetcode.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/linux.html</loc>
     <lastmod>2017-05-24T09:17:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/lisp.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/liteide.html</loc>
     <lastmod>2016-12-31T11:34:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/liunx.html</loc>
     <lastmod>2016-02-18T11:05:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/lucene.html</loc>
     <lastmod>2016-12-31T11:34:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mac.html</loc>
     <lastmod>2016-08-12T09:08:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/macos.html</loc>
     <lastmod>2016-12-31T11:34:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mapreduce.html</loc>
     <lastmod>2016-12-31T11:32:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/martini.html</loc>
     <lastmod>2016-12-31T11:34:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mesos.html</loc>
     <lastmod>2016-12-31T11:34:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/method.html</loc>
     <lastmod>2016-12-31T11:34:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/metrics.html</loc>
     <lastmod>2016-12-31T11:32:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mgo.html</loc>
     <lastmod>2016-12-31T11:35:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mmap.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mock.html</loc>
     <lastmod>2016-12-31T11:32:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mongodb.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mql5.html</loc>
     <lastmod>2015-09-14T08:18:14+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mysql.html</loc>
     <lastmod>2016-12-31T11:34:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/mysql-proxy.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/nas.html</loc>
     <lastmod>2016-02-15T13:06:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/net.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/nginx.html</loc>
     <lastmod>2017-05-24T09:17:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ngrok.html</loc>
     <lastmod>2017-05-24T09:17:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/node.js.html</loc>
     <lastmod>2016-12-31T11:34:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/nodejs.html</loc>
     <lastmod>2015-10-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/non-blocking-channel.html</loc>
     <lastmod>2016-12-31T11:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/nosql.html</loc>
     <lastmod>2016-12-31T11:32:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/nsq.html</loc>
     <lastmod>2017-05-24T09:17:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/openssh.html</loc>
     <lastmod>2016-12-31T11:35:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/openssl.html</loc>
     <lastmod>2016-12-31T11:35:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/openxml.html</loc>
     <lastmod>2017-05-24T09:17:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/oracle.html</loc>
     <lastmod>2016-12-31T11:33:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/orm.html</loc>
     <lastmod>2016-12-31T11:33:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/package.html</loc>
     <lastmod>2016-03-08T10:44:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/performance.html</loc>
     <lastmod>2016-12-31T11:34:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/perl.html</loc>
     <lastmod>2016-12-31T11:34:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/php.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/php7.html</loc>
     <lastmod>2016-12-31T11:32:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/pipe.html</loc>
     <lastmod>2016-12-31T11:33:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/piwik.html</loc>
     <lastmod>2015-09-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/post.html</loc>
+    <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/pprof.html</loc>
     <lastmod>2016-12-31T11:34:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/profiler.html</loc>
     <lastmod>2016-12-31T11:34:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/promise.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/protobuf.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/python.html</loc>
     <lastmod>2016-12-31T11:33:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/queue.html</loc>
     <lastmod>2017-05-24T09:17:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/raspberry-pi.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/raspberry-pi-2.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/redis.html</loc>
     <lastmod>2017-05-24T09:17:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/reflect.html</loc>
     <lastmod>2016-12-31T11:33:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/revel.html</loc>
     <lastmod>2016-12-31T11:35:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/rsa.html</loc>
     <lastmod>2016-12-31T11:33:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ruby.html</loc>
     <lastmod>2016-12-31T11:34:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/ruby-on-rails.html</loc>
     <lastmod>2016-12-31T11:34:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/rust.html</loc>
     <lastmod>2017-02-17T08:17:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/sdk.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/select.html</loc>
     <lastmod>2016-12-31T11:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/shadowsocks.html</loc>
     <lastmod>2016-12-31T11:32:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/shell.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/shipyard.html</loc>
     <lastmod>2016-12-31T11:34:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/socket.html</loc>
     <lastmod>2016-12-31T11:33:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/socket%E6%9C%8D%E5%8A%A1%E7%AB%AF.html</loc>
     <lastmod>2016-12-31T11:33:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/sort.html</loc>
     <lastmod>2016-12-31T11:32:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/sql.html</loc>
     <lastmod>2017-02-17T08:17:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/string.html</loc>
     <lastmod>2016-12-31T11:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/struct.html</loc>
     <lastmod>2016-12-31T11:32:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/sublime.html</loc>
     <lastmod>2016-02-25T13:32:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/swagger.html</loc>
     <lastmod>2016-12-31T11:32:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/swarm.html</loc>
     <lastmod>2016-12-31T11:34:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags.html</loc>
     <lastmod>2017-03-03T08:36:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/tcp.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/test.html</loc>
     <lastmod>2016-12-31T11:32:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/testing.html</loc>
     <lastmod>2016-12-31T11:33:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/tf-idf.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/time.html</loc>
     <lastmod>2016-12-31T11:33:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/tool.html</loc>
     <lastmod>2016-02-25T13:32:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/topics.html</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/top.html</loc>
-    <lastmod>2015-12-29T20:29:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/twitter.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/typescript.html</loc>
     <lastmod>2016-12-31T11:33:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/vegeta.html</loc>
     <lastmod>2016-12-31T11:33:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/vim.html</loc>
     <lastmod>2016-12-31T11:33:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/virtualenv.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/visual-studio-code.html</loc>
     <lastmod>2016-12-31T11:33:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/web.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/webide.html</loc>
     <lastmod>2015-08-31T10:01:36+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/websocket.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/weekly.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/wercker.html</loc>
     <lastmod>2016-03-10T14:21:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/wget.html</loc>
     <lastmod>2015-08-15T08:45:07+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/win10.html</loc>
     <lastmod>2016-08-12T09:08:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/window.html</loc>
     <lastmod>2015-09-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/windows.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/zeromq.html</loc>
     <lastmod>2016-12-31T11:34:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/zookeeper.html</loc>
     <lastmod>2016-12-31T11:32:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%B8%83%E7%89%9B.html</loc>
     <lastmod>2015-08-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%B8%AA%E4%BA%BA.html</loc>
     <lastmod>2017-09-01T21:33:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%B9%A6%E7%B1%8D.html</loc>
     <lastmod>2017-02-21T13:19:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BA%8B%E5%8A%A1.html</loc>
     <lastmod>2017-03-13T08:20:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6.html</loc>
     <lastmod>2016-12-31T11:33:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BA%91%E8%AE%A1%E7%AE%97.html</loc>
-    <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <lastmod>2016-12-31T11:34:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BA%92%E8%81%94%E7%BD%91.html</loc>
-    <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <lastmod>2016-12-31T11:34:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1.html</loc>
     <lastmod>2016-12-31T11:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.html</loc>
     <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BC%98%E5%8A%BF.html</loc>
     <lastmod>2017-08-17T17:30:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BC%98%E5%8C%96.html</loc>
     <lastmod>2015-09-18T12:55:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%85%A8%E9%87%8F%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%86%85%E5%AD%98.html</loc>
     <lastmod>2016-12-31T11:35:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F.html</loc>
     <lastmod>2017-02-08T13:41:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E5%8A%9E%E5%85%AC.html</loc>
+    <loc>https://yushuangqi.com/categories/%E5%8A%9E%E5%85%AC.html</loc>
     <lastmod>2017-07-09T22:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.html</loc>
     <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.html</loc>
     <lastmod>2016-12-31T11:32:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html</loc>
     <lastmod>2016-12-31T11:33:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8E%8B%E7%BC%A9.html</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8F%82%E6%95%B0.html</loc>
     <lastmod>2016-12-31T11:33:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8F%8A%E6%97%B6%E9%80%9A%E4%BF%A1.html</loc>
     <lastmod>2016-12-31T11:32:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8F%8D%E5%B0%84.html</loc>
     <lastmod>2016-12-31T11:33:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8F%98%E9%87%8F.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91.html</loc>
     <lastmod>2016-12-31T11:32:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%93%88%E5%B8%8C%E8%A1%A8.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%9B%BE%E7%81%B5%E8%AE%BF%E8%B0%88.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%A2%9E%E9%87%8F%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE.html</loc>
+    <lastmod>2015-09-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE.html</loc>
     <lastmod>2017-02-21T13:20:04+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/topics/%E5%A4%A7%E6%95%B0%E6%8D%AE.html</loc>
-    <lastmod>2015-09-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%A4%A7%E7%A5%9E.html</loc>
     <lastmod>2016-12-31T11:34:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html</loc>
     <lastmod>2016-12-31T11:33:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF.html</loc>
     <lastmod>2016-12-31T11:33:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%AE%89%E5%85%A8.html</loc>
     <lastmod>2016-12-31T11:35:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html</loc>
     <lastmod>2017-05-24T09:17:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%AE%A0%E7%89%A9.html</loc>
     <lastmod>2017-07-15T09:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%B7%A5%E5%85%B7.html</loc>
     <lastmod>2017-07-02T21:01:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%B8%8C%E8%85%8A.html</loc>
     <lastmod>2017-07-24T07:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%B9%B6%E5%8F%91.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html</loc>
     <lastmod>2016-12-31T11:34:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BC%80%E6%94%BE%E6%BA%90%E4%BB%A3%E7%A0%81.html</loc>
     <lastmod>2016-12-31T11:34:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BD%92%E6%A1%A3.html</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BE%AE%E4%BF%A1.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0.html</loc>
     <lastmod>2016-12-31T11:33:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1.html</loc>
     <lastmod>2017-05-24T09:17:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BE%AE%E6%A1%86%E6%9E%B6.html</loc>
     <lastmod>2016-12-31T11:34:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90.html</loc>
     <lastmod>2016-12-31T11:34:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html</loc>
     <lastmod>2016-12-31T11:34:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%88%90%E9%95%BF.html</loc>
     <lastmod>2017-09-07T22:10:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%8A%80%E5%B7%A7.html</loc>
     <lastmod>2017-07-09T22:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E6%91%84%E5%BD%B1.html</loc>
+    <loc>https://yushuangqi.com/categories/%E6%91%84%E5%BD%B1.html</loc>
     <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%95%88%E7%8E%87.html</loc>
     <lastmod>2017-06-28T21:01:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%95%99%E7%A8%8B.html</loc>
     <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93.html</loc>
+    <lastmod>2015-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.html</loc>
     <lastmod>2017-03-13T08:34:22+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/topics/%E6%95%B0%E6%8D%AE%E5%BA%93.html</loc>
-    <lastmod>2015-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html</loc>
     <lastmod>2016-12-31T11:34:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%96%87%E6%9C%AC%E7%9B%B8%E5%85%B3%E6%80%A7.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%96%9C%E6%9D%A0%E9%9D%92%E5%B9%B4.html</loc>
     <lastmod>2017-08-17T17:30:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%96%B0%E6%89%8B.html</loc>
     <lastmod>2016-12-31T11:34:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%97%85%E6%B8%B8.html</loc>
     <lastmod>2017-07-24T07:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%97%A5%E5%BF%97.html</loc>
     <lastmod>2016-12-31T11:33:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84.html</loc>
     <lastmod>2017-02-21T13:20:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html</loc>
     <lastmod>2016-12-31T11:35:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81.html</loc>
     <lastmod>2016-12-31T11:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%AD%A3%E6%8E%92%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%AF%94%E7%89%B9%E5%B8%81.html</loc>
     <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc>
     <lastmod>2016-12-31T11:33:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%B5%8B%E8%AF%95.html</loc>
     <lastmod>2016-12-31T11:32:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91.html</loc>
     <lastmod>2016-12-31T11:33:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html</loc>
     <lastmod>2016-12-31T11:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%83%AD%E5%8A%A0%E8%BD%BD.html</loc>
     <lastmod>2016-12-31T11:34:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%8E%8B%E6%BA%90%E5%AE%97.html</loc>
     <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E7%94%9F%E6%B4%BB.html</loc>
+    <loc>https://yushuangqi.com/categories/%E7%94%9F%E6%B4%BB.html</loc>
     <lastmod>2017-09-07T22:10:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%99%BE%E5%BA%A6.html</loc>
     <lastmod>2015-08-31T10:01:36+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%9B%91%E6%8E%A7.html</loc>
     <lastmod>2016-12-31T11:32:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html</loc>
     <lastmod>2016-12-31T11:34:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%A8%8B%E5%BA%8F%E5%91%98.html</loc>
     <lastmod>2016-12-31T11:33:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%AC%94%E8%AE%B0.html</loc>
     <lastmod>2017-06-25T20:12:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%AE%97%E6%B3%95.html</loc>
     <lastmod>2017-03-03T08:36:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html</loc>
     <lastmod>2016-12-31T11:34:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BA%BF%E7%A8%8B.html</loc>
     <lastmod>2016-12-31T11:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8.html</loc>
     <lastmod>2016-12-31T11:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.html</loc>
     <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html</loc>
+    <loc>https://yushuangqi.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%BC%80%E5%8F%91.html</loc>
     <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BC%96%E8%AF%91%E5%99%A8.html</loc>
     <lastmod>2017-02-17T08:17:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BD%91%E7%AB%99.html</loc>
     <lastmod>2016-12-31T11:34:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BD%91%E9%A1%B5%E7%88%AC%E8%99%AB.html</loc>
     <lastmod>2016-12-31T11:33:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E7%BF%BB%E8%AF%91.html</loc>
     <lastmod>2016-12-31T11:34:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%81%8A%E5%A4%A9%E5%AE%A4.html</loc>
     <lastmod>2016-12-31T11:32:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/</loc>
     <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%9F%91%E8%9E%82.html</loc>
     <lastmod>2017-07-15T09:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%A1%8C%E6%83%85.html</loc>
     <lastmod>2017-07-26T10:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%A5%BF%E8%97%8F%E9%A3%8E%E6%99%AF.html</loc>
     <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86.html</loc>
     <lastmod>2016-12-31T11:33:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%AE%B8%E5%BC%8F%E4%BC%9F.html</loc>
     <lastmod>2016-12-31T11:34:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html</loc>
     <lastmod>2016-12-31T11:34:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95.html</loc>
     <lastmod>2016-12-31T11:34:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90.html</loc>
     <lastmod>2017-02-17T08:17:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E8%AF%BB%E4%B9%A6.html</loc>
+    <loc>https://yushuangqi.com/categories/%E8%AF%BB%E4%B9%A6.html</loc>
     <lastmod>2017-06-25T20:12:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%AF%BB%E6%BA%90%E7%A0%81.html</loc>
     <lastmod>2016-12-31T11:34:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%B5%84%E6%BA%90.html</loc>
     <lastmod>2017-09-18T12:02:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%B7%B3%E8%B7%83%E8%A1%A8.html</loc>
     <lastmod>2016-12-31T11:33:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%BD%AC%E8%BD%BD.html</loc>
     <lastmod>2016-12-31T11:34:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E8%BD%AF%E4%BB%B6.html</loc>
+    <loc>https://yushuangqi.com/categories/%E8%BD%AF%E4%BB%B6.html</loc>
     <lastmod>2017-06-28T21:01:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E8%BF%90%E7%BB%B4.html</loc>
+    <loc>https://yushuangqi.com/categories/%E8%BF%90%E7%BB%B4.html</loc>
     <lastmod>2016-02-18T11:05:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E8%BF%9B%E7%A8%8B.html</loc>
     <lastmod>2016-12-31T11:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%80%9A%E8%BE%BE%E4%BF%A1.html</loc>
     <lastmod>2017-07-26T10:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%83%A8%E7%BD%B2.html</loc>
     <lastmod>2016-12-31T11:33:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86.html</loc>
     <lastmod>2016-12-31T11:34:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yushuangqi.com/topics/%E9%87%91%E8%9E%8D.html</loc>
+    <loc>https://yushuangqi.com/categories/%E9%87%91%E8%9E%8D.html</loc>
     <lastmod>2017-07-26T10:32:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%97%AD%E5%8C%85.html</loc>
     <lastmod>2016-12-31T11:32:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%97%AE%E9%A2%98.html</loc>
     <lastmod>2015-10-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91.html</loc>
     <lastmod>2015-12-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%9D%99%E6%80%81%E5%8C%96.html</loc>
     <lastmod>2016-12-31T11:35:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98.html</loc>
     <lastmod>2017-07-20T12:58:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yushuangqi.com/tags/%E9%A3%8E%E6%99%AF.html</loc>
     <lastmod>2015-09-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   

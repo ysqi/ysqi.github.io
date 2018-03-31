@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 虞双齐爱折腾</title>
+    <link>https://yushuangqi.com/post.html</link>
+    <description>Recent content in Posts on 虞双齐爱折腾</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解以太坊Gas</title>
+      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
+      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
+      <description>&lt;h2 id=&#34;背景介绍&#34;&gt;背景介绍&lt;/h2&gt;
+
+&lt;p&gt;以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 &lt;code&gt;Gas&lt;/code&gt;计算，最终将gas以ETH支付。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。&lt;/p&gt;
+
+&lt;p&gt;你可在 &lt;a href=&#34;etherscan.io&#34;&gt;etherscan.io&lt;/a&gt; 上查看交易手续费（&lt;code&gt;gas limit&lt;/code&gt; * &lt;code&gt;gas price&lt;/code&gt;）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>理解与计算比特币难度值Difficulty</title>
+      <link>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</link>
+      <pubDate>Mon, 25 Dec 2017 07:29:55 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/understand-bitcoin-difficulty.html</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/27123601.png&#34; alt=&#34;比特币历史难度&#34; /&gt;
+挖矿实际就是在暴力猜谜，而要猜多少次，全凭全网共识的一个难度值。只有猜出一个数字能使得区块的哈希符合难度，才算答对谜题。&lt;/p&gt;
+
+&lt;p&gt;那么这个猜谜游戏由于越来越多人的加入，势必会更快猜出。所以为了维持一个恒定的游戏时间(两周)，每次游戏难度均会根据上次游戏的用时而重新计算。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/28423175.png&#34; alt=&#34;比特币历史难度&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;游戏越来越难，如何抢在别人前面猜出呢？所以开启了抱团团战模式（矿池）加入游戏，使得解谜速度更快也更难。速度与难度总是此消彼长。
+这也是为何在2014，2015年后难度值呈几何级数式增长。当然也因解谜的设备（矿机）更新换代越来越快。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解析比特币区块</title>
+      <link>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</link>
+      <pubDate>Tue, 12 Dec 2017 06:55:15 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/decode-bitcoin-blockchain-with-go.html</guid>
+      <description>&lt;p&gt;在解析前，需要准备比特币区块数据。可在安装比特币QT客户端后，到指定目录下获取。注意不需要全部同步完成，只需要开启同步后，有第一个区块数据即可。文件路径，分别是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac: $HOME/Library/Application Support/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;li&gt;Windows:  %APPDATA%/Bitcoin/blocks/blkXXXX.dat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://static.yushuangqi.com/blog/2017/23266460.png&#34; alt=&#34;比特币钱包&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>程序员该掌握区块链技术</title>
+      <link>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</link>
+      <pubDate>Sun, 05 Nov 2017 08:24:33 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/developer-need-known-blockchain.html</guid>
+      <description>周日，深圳的天气特别适合写文字。所以动笔给程序员们写写区块链，这是一篇动员的积极的文章，区块链会改变你们的思维模式，去实现以往的不可能。 也请</description>
+    </item>
+    
+    <item>
+      <title>Docker使用问题集</title>
+      <link>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</link>
+      <pubDate>Wed, 11 Oct 2017 07:11:07 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/use-docker-question-answer.html</guid>
+      <description>接触Docker时间不长，折腾不少。实际上Docker还是蛮简单的，基于Go开发，容器化资源。 第一次创建镜像过程中遇到些问题，我在这里记录，</description>
+    </item>
+    
+    <item>
+      <title>区块链比特币学习路线与资源</title>
+      <link>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</link>
+      <pubDate>Mon, 18 Sep 2017 12:02:35 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/qukuailian-bitebi-xuexi-luxian-ziyuan.html</guid>
+      <description>小编研究比特币一段时间，入门不易，没有学习线路图。故将小编学习比特币和区块链的学习路线和相关资源整理提供给大家，值得收藏。 注意：某些网站也许</description>
+    </item>
+    
+    <item>
+      <title>Mac下搭建以太坊私有链</title>
+      <link>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</link>
+      <pubDate>Sat, 09 Sep 2017 10:22:26 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/setup-ethereum-private-network-on-mac.html</guid>
+      <description>在熟悉了解以太坊Ethereum时，为加快测试和掌握。在本机搭建私有链环境是必须的。 小编摸索一段时间，总算了解到以太坊的总体运行环境。下面以</description>
+    </item>
+    
+    <item>
+      <title>技术大牛成长</title>
+      <link>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</link>
+      <pubDate>Thu, 07 Sep 2017 22:10:09 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ji-shu-da-niu-cheng-zhang.html</guid>
+      <description>对于“技术宅”有不同解释，我更倾向于理解为：善于钻研各种知识和技术而忽略社交的人。 我也是技术宅，但时常在想我这周末要宅在家中？可出门干点什么</description>
+    </item>
+    
+    <item>
+      <title>做爱折腾的技术人</title>
+      <link>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</link>
+      <pubDate>Fri, 01 Sep 2017 21:33:42 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/zuo-ai-zhe-teng-de-ji-shu-ren.html</guid>
+      <description>爱折腾好吗？折腾非贬义词。 每个人都在不停折腾，有的折腾亲爹、有的折腾亲儿子、更有折腾丈母娘的。谁的青春没折腾，折腾过才更懂生活。 我是一个爱折</description>
+    </item>
+    
+    <item>
+      <title>如何发现自我优势成为斜杠青年</title>
+      <link>https://yushuangqi.com/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html</link>
+      <pubDate>Thu, 17 Aug 2017 17:30:18 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/zi-wo-you-shi-xie-gan-qing-nian.html</guid>
+      <description>想成为斜杠青年？那知晓自己的优势吗？ 如何发现自我优势？如何成长为斜杠青年？下面聊了如何发现与成长自我优势。 百度百科：斜杠青年，指的是这样一个</description>
+    </item>
+    
+    <item>
+      <title>Golang Generate命令说明与使用</title>
+      <link>https://yushuangqi.com/blog/2017/go-command-generate.html</link>
+      <pubDate>Mon, 14 Aug 2017 18:52:10 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-command-generate.html</guid>
+      <description>前期有专门利用go generate自动生成Go代码，今日在查看Go源代码时发现有大量使用此命令已生成各类代码。故在此特写文章说明gene</description>
+    </item>
+    
+    <item>
+      <title>Go读取通达信历史日线数据</title>
+      <link>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</link>
+      <pubDate>Wed, 26 Jul 2017 10:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-du-qu-tong-da-xin-li-shi-ri-xian-shu-ju.html</guid>
+      <description>突然间想使用Go从通达信读取A股历史行情信息，其实也蛮简单的。从通达信获取数据难点在于分析数据结构，而读取则各类语言分分钟搞定。 准备工作 下载</description>
+    </item>
+    
+    <item>
+      <title>希腊八日游游记</title>
+      <link>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</link>
+      <pubDate>Mon, 24 Jul 2017 07:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/%E5%B8%8C%E8%85%8A%E5%85%AB%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0.html</guid>
+      <description>一、前期准备 1、申根签证 （深圳希腊签证中心可直接送签，地址是福田区福华一路大中华国际交易广场北门西区，上班时间为9：00-15：00）： （1</description>
+    </item>
+    
+    <item>
+      <title>Go面试题答案与解析</title>
+      <link>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</link>
+      <pubDate>Thu, 20 Jul 2017 12:58:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html</guid>
+      <description>昨天AstaXie发布GoCN每日新闻(2017-07-19)含一篇Go面试题。阅读和评论量挺高，是测试面试者对Go本身基础概念理解掌握程度</description>
+    </item>
+    
+    <item>
+      <title>你误会蟑螂了</title>
+      <link>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</link>
+      <pubDate>Sat, 15 Jul 2017 09:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ni-wu-hui-zhang-liang-le.html</guid>
+      <description>一说蟑螂，就鸡皮疙瘩一顿爆。其实你误会蟑螂了！ 对蟑螂的普遍看法 恶心 南方蟑螂大，会飞 跑得快 有传染病 其实你的偏见都是来自于出没于居家环境中的蟑螂</description>
+    </item>
+    
+    <item>
+      <title>如何提高邮件件打开率和回复率</title>
+      <link>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</link>
+      <pubDate>Sun, 09 Jul 2017 22:32:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/ru-he-ti-gao-you-jian-da-kai-li-he-hui-fu-li.html</guid>
+      <description>现在虽有即时通讯软件，但邮件依旧是日常办公必备的沟通方式。那么如何写出牛哄哄的、得体的、打开率高、回复即时的邮件呢？ 小编我虞双齐结合实际工作</description>
+    </item>
+    
+    <item>
+      <title>简述电子邮件发展历史</title>
+      <link>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</link>
+      <pubDate>Sun, 02 Jul 2017 21:01:02 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/jian-shu-dian-zi-you-jian-fa-zhan-li-shi.html</guid>
+      <description>平均每天发送10封邮件，日常工作中邮件是重要的沟通方式。虽然现在也有QQ消息，微信等其他即使通讯工具，但思想都源于电子邮件。 是否有兴趣了解电</description>
+    </item>
+    
+    <item>
+      <title>给电脑小白精挑细选的五个免费软件</title>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
+      <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
+      <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？ 下面虞</description>
+    </item>
+    
+    <item>
+      <title>终于找到我要的读书方法了</title>
+      <link>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</link>
+      <pubDate>Sun, 25 Jun 2017 20:12:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/find-the-best-way-to-read-book-for-me.html</guid>
+      <description>自认爱好读书，纸质书，电子书堆积成山。但一直困扰我的是：未能高效Get到知识。 曾遭遇的困惑 买过很多不需要的书，在角落里干灰。 我好像读过这本书</description>
+    </item>
+    
+    <item>
+      <title>gRPC服务发现&amp;amp;负载均衡</title>
+      <link>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:36 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
+      <description>gRPC服务发现&amp;amp;负载均衡 构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sql on 虞双齐的博客</title>
+    <title>Sql on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/sql.html</link>
-    <description>在 虞双齐的博客上关于in Sql 的内容</description>
+    <description>Recent content in Sql on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 17 Feb 2017 08:17:16 +0800</lastBuildDate>
-    <atom:link href="/tags/sql.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>TiDB架构的演进和开发哲学</title>
@@ -17,17 +19,7 @@
       <pubDate>Fri, 17 Feb 2017 08:17:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/tidb-jia-gou-de-yan-jin-he-kai-fa-zhe-xue.html</guid>
-      <description>https://segmentfault.com/a/
- 本文来自 CSDN《程序员》2017 年 2 月的封面报道。
-对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太多的问题需要去考量。
- 在本篇文章中，PingCAP 联合创始人兼 CTO 黄东旭对 TiDB 的开发历程进行了详细简介，为大家还原 TiDB 的架构演进全过程。
-在大约两年前，我有一次做 MySQL 分库分表和中间件的经历，那时在中间件里做 sharding，把 16 个节点的 MySQL 扩到 32 节点，差不多要提前一个月做演练，再用一个礼拜来上线。我就在想，能不能有一个数据库可以让我们不再想分库分表这些东西？当时我们也刚刚做完 Codis，觉得分布式是个比较合适的解决方案。另外我一直在关注学术圈关于分布式数据库的最新进展，有看到谷歌在 2013 年发的 Spanner 和 F1 的论文，所以决定干脆就重新开始写一个数据库，从根本上解决 MySQL 扩展性的问题。
-而决定之后发现面对的问题非常复杂：选择什么语言，整个架构怎么做，到底要不要开源……做基础软件有一个很重要的事情：写出来并不难，难的是你怎么保证这个东西写对了。尤其是对于业务方，他们所有的业务正确性是构建在基础软件的正确性上。所以，对于分布式系统来说，什么是写对了，怎么去测试，这都是很重要的问题。关于这些我想了很久。
-一开始总是要起步的。当时就决定冷静一下，先确定一个目标：解决 MySQL 的问题。MySQL 是单机型数据库，它没有办法做全扩展，我们选择 MySQL 兼容，首先选择在协议和语法层面的兼容，因为已有的社区里边很多的海量的测试。第二点是用户的迁移成本，能让用户迁移得很顺畅。第三是因为万事开头难，必须得有一个明确的目标，选定一个目标去做，对开发人员来说心理的压力最小。确定目标以后，我们 3 个人的创始团队从原来的公司出来，拿了一笔比较大的风险投资，开始正式做这件事情。
-兼容 MySQL 最简单的方案，就是直接用 MySQL。为了让这个东西尽快地做起来，我们一开始做了一个最简单的版本，复用 MySQL前端 代码，做一个分布式的存储引擎就可以了，这个事情想想还是蛮简单的，所以非常乐观，觉得这个战略很完美。
-上图是我在 2015 年 4 月份用六个礼拜完成的第一个版本的框架，但是后来没好意思开源出来，虽然能跑，但是在性能上完全无法接受。我就想这个东西为什么这么慢？一步一步去看每一层，就想动手改，但是发现工程量巨大，比如 MySQL 的 SQL 优化器， 事务模型等等，完全没有办法下手。就像这个架构图里看到的，因为在 MySQL Engine 这一层，我们能做的事情太少了，所以就没有办法。
-第一版实验到此宣告失败，现在看起来写 SQL parser 和优化器等这些已经是绕不开了，我们索性决定从头开始写，唯一给我安慰的就是终于可以使用我们最爱的编程语言了，就是 Go。
-我们跟其他做这种软件的工程师的思路相反，选择了从上往下写，先写最顶层的 SQL 的接口 SQL Layer，我要保证这个东西长得跟 MySQL 一模一样，包括网络协议和语法层。从 TiDB 网络协议、SQL 的语法解析器、到 SQL 的优化器、执行器等基本从上到下写了一遍。这个阶段持续了大概三个月左右。从这个阶段开始，我们慢慢摸索出了几个实践中深有体会的开发哲学。</description>
+      <description>https://segmentfault.com/a/ 本文来自 CSDN《程序员》2017 年 2 月的封面报道。 对于一个从零开始的数据库来说：选择什么语言，整体架构怎么做，要不要开源，如何去测试…太</description>
     </item>
     
     <item>
@@ -36,13 +28,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
-      <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
- 概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
-使用DB 导入driver 这里使用的是MySQL drivers
-import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; )  连接DB func main() { db, err := sql.Open(&amp;quot;mysql&amp;quot;, &amp;quot;user:password@tcp(127.0.0.1:3306)/hello&amp;quot;) if err != nil { log.Fatal(err) } defer db.Close() }  sql.Open的第一个参数是driver名称，第二个参数是driver连接数据库的信息，各个driver可能不同。DB不是连接，并且只有当需要使用时才会创建连接，如果想立即验证连接，需要用Ping()方法，如下：
-err = db.Ping() if err != nil { // do something here }  sql.DB的设计就是用来作为长连接使用的。不要频繁Open, Close。比较好的做法是，为每个不同的datastore建一个DB对象，保持这些对象Open。如果需要短连接，那么把DB作为参数传入function，而不要在function中Open, Close。
-读取DB 如果方法包含Query，那么这个方法是用于查询并返回rows的。其他情况应该用Exec()。
-var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from users where id = ?</description>
+      <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在g</description>
     </item>
     
     <item>
@@ -51,15 +37,7 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
       <pubDate>Sat, 31 Dec 2016 11:33:05 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-sql-cao-zuo-chu-ti-yan.html</guid>
-      <description>https://segmentfault.com/a/
-简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了.
-对于 sql.DB, 我们需要强调的是, 它并不代表一个数据库连接, 它是一个已存在的数据库的抽象访问接口. sql.DB 为我们提供了两个重要的功能:
- sql.DB 通过数据库驱动为我们管理底层数据库连接的打开和关闭操作.
- sql.DB 为我们管理数据库连接池
-  有一点需要注意的是, 正因为 sql.DB 是以连接池的方式管理数据库连接, 我们每次进行数据库操作时, 都需要从连接池中取出一个连接, 当操作任务完成时, 我们需要将此连接返回到连接池中, 因此如果我们没有正确地将连接返回给连接池, 那么会造成 db.SQL 打开过多的数据库连接, 使数据库连接资源耗尽.
-MySQL 数据库的基本操作 数据库驱动的导入 有过数据库开发经验的朋友就知道了, 我们需要借助于一个数据库驱动才能和具体的数据库进行连接. 这在 Golang 中也不例外. 例如以 MySQL 数据库为例:
-import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; )  需要注意的是, 通常来说, 我们不应该直接使用驱动所提供的方法, 而是应该使用 sql.DB, 因此在导入 mysql 驱动时, 我们使用了匿名导入的方式(在包路径前添加 _).
-当导入了一个数据库驱动后, 此驱动会自行初始化并注册自己到 Golang 的 database/sql 上下文中, 因此我们就可以通过 database/sql 包提供的方法访问数据库了.</description>
+      <description>https://segmentfault.com/a/ 简介 Golang 提供了 database/sql 包用于对 SQL 的数据库的访问, 在这个包中, 最重要的自然就是 sql.DB 了. 对于 sql.DB, 我们需要强调的是, 它并不代表一个数据库连接, 它是一个已存在</description>
     </item>
     
     <item>
@@ -68,19 +46,7 @@ import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/m
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/fen-bu-shi-ji-tong-ce-shi-na-xie-shi-er--li-nian.html</guid>
-      <description>https://segmentfault.com/a/
-本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。
-文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。
-今天主要是介绍分布式系统测试。对于 PingCAP 目前的现状来说，我们是觉得做好分布式系统测试比做一个分布式系统更难。就是你把它写出来不是最难的，把它测好才是最难的。大家肯定会觉得有这么夸张吗？那我们先从一个最简单的、每个人都会写的 Hello world 开始。
- A simple “Hello world” is a miracle
-We should walk through all of the bugs in:
- Compiler
- Linker
- VM (maybe)
- OS
-  其实这个 Hello world 能够每次都正确运行已经是一个奇迹了，为什么呢？首先，编译器得没 bug，链接器得没 bug ；然后我们可能跑在 VM 上，那 VM 还得没 bug；并且 Hello world 那还有一个 syscall，那我们还得保证操作系统没有 bug；到这还不算吧，我们还得要硬件没有 bug。所以一个最简单程序它能正常运行起来，我们要穿越巨长的一条路径，然后这个路径里面所有的东西都不能出问题，我们才能看到一个最简单的 Hello world。
- 但是分布式系统里面呢，就更加复杂了。比如大家现在用的很典型的微服务。假设你提供了一个微服务，然后在微服务提供的功能就是输出一个 Hello world ，然后让别人来 Call。
- A RPC “Hello world” is a miracle</description>
+      <description>https://segmentfault.com/a/ 本文整理自 PingCAP NewSQL Meetup 第 26 期刘奇分享的《深度探索分布式系统测试》议题现场实录。 文章较长，为方便大家阅读，会分为上中下三篇，本文为上篇。 今天主要是</description>
     </item>
     
     <item>
@@ -89,12 +55,7 @@ We should walk through all of the bugs in:
       <pubDate>Fri, 18 Sep 2015 08:22:13 +0000</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2015/beego-orm-insert-error.html</guid>
-      <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。
-当时代码是这样写的
-o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err } 在执行此代码报错，错误信息：
-&amp;lt;Ormer&amp;gt; table: `.` not found, maybe not RegisterModel 上面代码的错误性是否非常明显的，是因为本身record是指针对性，而在Insert时又传入的是指针的指针&amp;amp;record
-来看下Beego ORM 内部是如何获取表名的 源代码如下：
-// get model info and model reflect value func (o *orm) getMiInd(md interface{}, needPtr bool) (mi *modelInfo, ind reflect.Value) { val := reflect.ValueOf(md) ind = reflect.Indirect(val) typ := ind.Type() if needPtr &amp;amp;&amp;amp; val.Kind() != reflect.Ptr { panic(fmt.</description>
+      <description>前几天在使用Beego的ORM往Mysql中写入数据时失败，这里记录下原因。 当时代码是这样写的 o,err := orm.NewOrm() if err!=nil{ return err } record := &amp;amp;models.User{} err=o.Insert(&amp;amp;record) if err!=nil { return err } 在执行此代</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mongodb on 虞双齐的博客</title>
+    <title>Mongodb on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/mongodb.html</link>
-    <description>在 虞双齐的博客上关于in Mongodb 的内容</description>
+    <description>Recent content in Mongodb on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:27 +0800</lastBuildDate>
-    <atom:link href="/tags/mongodb.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>谈谈一些关于mgo的用法</title>
@@ -17,13 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/tan-tan-yi-xie-guan-yu-mgode-yong-fa.html</guid>
-      <description>前言 最近在项目中使用mongodb进行简单的数据分析，在使用mongodb驱动mgo时遇到一些问题，比如在mongodb中执行命令成功，到了mgo中就执行失败。在这里谈一谈实践过程中遇到的问题，基础的用法不再说明了，可以自行百度。
-使用 查找(Find) 这个估计是mongodb里用的最多的了吧，mgo中使用Find(query interface{})，query参数一般传入[]bson.M。下面给个例子：
-m := bson.M{ &amp;quot;CurTimestamp&amp;quot;: bson.M{ &amp;quot;$gte&amp;quot;: start, &amp;quot;$lte&amp;quot;: end, }, &amp;quot;Account&amp;quot;: account, &amp;quot;ToNodeType&amp;quot;: &amp;quot;cloud&amp;quot;, } session.DB(&amp;quot;db&amp;quot;).C(&amp;quot;collect&amp;quot;).Find(m).Count()  这里查找时间戳内，账号为account，节点类型为cloud的数据并统计个数。
-聚合管道（Aggregation Pipeline） 聚合管道在mgo中为Pipe(pipeline interface{}) ，这个和bash中使用的管道很像，数据可以被层层处理。一般传入的参数为[]bson.M。这个[]bson.M里如果还有嵌套则还要使用[]bson.M(刚开始使用就被坑了一下)。比如这里首先匹配节点类型和账号，时间戳在一段时间内，然后根据名字分组统计数量，最后排序取最前面的三个。
- //这个就可以传入Pipe m := []bson.M{ {&amp;quot;$match&amp;quot;: bson.M{&amp;quot;NodeType&amp;quot;: &amp;quot;cloud&amp;quot;, &amp;quot;Account&amp;quot;: account, &amp;quot;CurTimestamp&amp;quot;: bson.M{&amp;quot;$gte&amp;quot;: start, &amp;quot;$lte&amp;quot;: end}}}, {&amp;quot;$group&amp;quot;: bson.M{&amp;quot;_id&amp;quot;: &amp;quot;$TagName&amp;quot;, &amp;quot;count&amp;quot;: bson.M{&amp;quot;$sum&amp;quot;: 1}}}, {&amp;quot;$sort&amp;quot;: bson.M{&amp;quot;count&amp;quot;: -1}}, {&amp;quot;$limit&amp;quot;: 3}, } //这里就可以取到输出的数据 var values []result session.DB(&amp;quot;db&amp;quot;).C(&amp;quot;collect&amp;quot;).Pipe(m).All(&amp;amp;values)  数据是一层一层过滤下来的。当然mongodb中的聚合命令不止这些，用法大同小异
-MapReduce 如果要实现一些高级功能，mongodb的基本命令满足不了你，可能就要使用这个了。mongodb中要实现MapReduce就要实现Map函数和Reduce函数，Map函数调用emit将key和value传给Reduce函数处理。这里给的例子首先计时间戳在哪个时间范围内，然后累加这个值，js不是很精通，写的不好请见谅。
-m := new(mgo.MapReduce) m.Map = `function() { var date = new Date(); date.</description>
+      <description>前言 最近在项目中使用mongodb进行简单的数据分析，在使用mongodb驱动mgo时遇到一些问题，比如在mongodb中执行命令成功，到了</description>
     </item>
     
     <item>
@@ -32,14 +28,7 @@ m := new(mgo.MapReduce) m.Map = `function() { var date = new Date(); date.</desc
       <pubDate>Sat, 31 Dec 2016 11:35:01 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-mgoqu-dong-zhi-ding-mongofu-wu-qi-dou-qu.html</guid>
-      <description>Replica Sets搭建 服务器采用Replica Sets搭建，可参考Deploy a Replica Set
-读模式 Mongod的读模式共有五种：
- primary. 在主节点上进行所有的读操作 primaryPreferred. 优先在主节点上进行读操作，如果主节点不可用，再从从节点操作。 secondary.所有的读操作在从节点上进行。 secondaryPreferred.优先在从节点进行读操作，如果所有从节点都不可用，再从主节点操作。 nearest. 根据网络延迟时间 ，就近进行读操作，不考虑节点类型。  配置节点Tags Sets Tag sets 允许指定一个replica set进行读操作，其中Mongod的读模式必须是以下四种之一：
-primaryPreferred、secondary、secondaryPreferred、nearest
-Tags Sets配置参考：Configure Replica Set Tag Sets
-主要操作如下：
-conf = rs.conf() conf.members[0].tags = { &amp;quot;dc&amp;quot;: &amp;quot;east&amp;quot;, &amp;quot;use&amp;quot;: &amp;quot;production&amp;quot; } conf.members[1].tags = { &amp;quot;dc&amp;quot;: &amp;quot;east&amp;quot;, &amp;quot;use&amp;quot;: &amp;quot;reporting&amp;quot; } conf.members[2].tags = { &amp;quot;use&amp;quot;: &amp;quot;production&amp;quot; } rs.reconfig(conf)  mgo代码示例 根据以上的配置，如果需要指定从members 1中进行数据库读操作，可采取以下代码：
-session, err := mgo.Dial(&amp;quot;localhost&amp;quot;) if err !</description>
+      <description>Replica Sets搭建 服务器采用Replica Sets搭建，可参考Deploy a Replica Set 读模式 Mongod的读模式共有五种： primary. 在主节点上进行所有的读操作</description>
     </item>
     
     <item>
@@ -48,8 +37,7 @@ session, err := mgo.Dial(&amp;quot;localhost&amp;quot;) if err !</description>
       <pubDate>Sat, 31 Dec 2016 11:33:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang----mgojie-xi-ge-chong-shu-ju-lei-xing-fen-xi.html</guid>
-      <description>https://segmentfault.com/a/
-package main import ( &amp;quot;gopkg.in/mgo.v2&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; ) func main() { session, err := mgo.Dial(&amp;quot;usr:pwd@127.0.0.1:27017/dbname&amp;quot;) if err != nil { log.Fatal(&amp;quot;无法打开MongoDB！&amp;quot;) return } defer session.Close() clt := session.DB(&amp;quot;mydb&amp;quot;).C(&amp;quot;userinfo&amp;quot;) type row struct { UserName, Telephone string } var _row, _row2 interface{} // _row和_row2 都是interface，也就是说它们可以指向任意类型，此时是指向row结构的指针 _row = new(row) _row2 = new(row) // _row3 是具体struct _row3 := row{} log.Printf(&amp;quot;type of &amp;amp;row: %v\n&amp;quot;, reflect.TypeOf(&amp;amp;_row)) log.Printf(&amp;quot;type of row: %v\n&amp;quot;, reflect.TypeOf(_row2)) log.Printf(&amp;quot;type of &amp;amp;row3: %v\n&amp;quot;, reflect.</description>
+      <description>https://segmentfault.com/a/ package main import ( &amp;quot;gopkg.in/mgo.v2&amp;quot; &amp;quot;log&amp;quot; &amp;quot;reflect&amp;quot; ) func main() { session, err := mgo.Dial(&amp;quot;usr:pwd@127.0.0.1:27017/dbname&amp;quot;) if err != nil { log.Fatal(&amp;quot;无法打开MongoDB！&amp;quot;) return } defer session.Close() clt := session.DB(&amp;quot;mydb&amp;quot;).C(&amp;quot;userinfo&amp;quot;) type row struct { UserName, Telephone string</description>
     </item>
     
     <item>
@@ -58,16 +46,7 @@ package main import ( &amp;quot;gopkg.in/mgo.v2&amp;quot; &amp;quot;log&amp;quot
       <pubDate>Sat, 31 Dec 2016 11:33:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/li-yong-mongode-findandmodifyyuan-zi-xing-cao-zuo-shi-xian-auto-increment-id.html</guid>
-      <description>https://segmentfault.com/a/
-实际情况 默认情况下，mongo使用_id自动生成uniq id，而且在mongo自带的命令里，无法指定一个自增字段。自增字段在多线程时必须是原子性的，这在大数据情况下很难实现伸缩性(scalability)。
- Generally in MongoDB, you would not use an auto-increment pattern for
-the _id field, or any field, because it does not scale for databases
-with large numbers of documents. Typically the default value ObjectId
-is more ideal for the _id.
- 不过好消息是，_id不一定非得是ObjectId类型，它可以是任何类型。而且，在mongo里面，有一个findAndModify命令是原子性的。我们可以使用它实现auto increment ID。
-在golang的mgo库里，Apply命令可以实现findAndModify功能
-具体策略和代码 策略 假设我们要把test表的_id字段设置为自增的，我们需要先创建一个counter表，这个表里面保存一个seq字段，通过在seq上使用Apply，获取新doc的seq值作为test表中下一个id的值。
-代码如下： package main import ( &amp;quot;fmt&amp;quot; &amp;quot;gopkg.in/mgo.v2&amp;quot; &amp;quot;gopkg.in/mgo.v2/bson&amp;quot; &amp;quot;log&amp;quot; &amp;quot;math/rand&amp;quot; &amp;quot;sync&amp;quot; ) func init() { log.SetFlags(log.Lshortfile | log.</description>
+      <description>https://segmentfault.com/a/ 实际情况 默认情况下，mongo使用_id自动生成uniq id，而且在mongo自带的命令里，无法指定一个自增字段。自增字段在多线程时必须是</description>
     </item>
     
   </channel>

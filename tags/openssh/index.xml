@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Openssh on 虞双齐的博客</title>
+    <title>Openssh on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/openssh.html</link>
-    <description>在 虞双齐的博客上关于in Openssh 的内容</description>
+    <description>Recent content in Openssh on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:35:06 +0800</lastBuildDate>
-    <atom:link href="/tags/openssh.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>PDO批量并发执行SSH工具介绍</title>
@@ -17,14 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:35:06 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/pdopi-liang-bing-fa-zhi-hang-sshgong-ju-jie-shao.html</guid>
-      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具.
-本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离出其中都可以使用的部分.
- 工具名称: pdo(parallel do something) https://github.com/ohlinux/pdo  安装 依赖  需要有一个中控机与被管理机器建立了无密码的密钥关系. 需要有go语言的环境,进行编译安装.这里没有提供bin文件. 自己所测试的环境有,centos macos.  编译 先获取依赖的第三方库:
-go get github.com/cihub/seelog go get github.com/robfig/config  安装go 环境.
-go build pdo.go  配置文件目录,默认在~/.pdo.如果不在此处指定.
-pdo 结构 pdo 处理对象来源 获取机器列表和相对应的路径有三种途径.(这里去掉了数据库这种特定的)
- -f 文件,host的列表文件,可以是一列,也可以是两列有相关的目录依赖.后面有例子. -a app名字;-p 产品名;-a支持多app采用 app1,app2逗号分隔. (这个是数据库的来源,因为是特定环境的所以不再有) 标准输入 cat 1.host | pdo -R当使用的时候,可以自动生成失败的列表.详细查看例子&amp;rdquo;Retry功能&amp;rdquo;  pdo 列表过滤 如果列表名称是这样的结构,xxx.yyy 那么过滤的就是yyy,如果没有这个需要,可以忽略.
- -i yf01,dbl01,cq02 过滤物理机房名称,多个可用逗号隔开. -I JX/TC 过滤逻辑机房,配置在-c configure file 中  配置文件中:</description>
+      <description>批量并发执行工具PDO,主要是解决批量执行的繁锁,更安全便捷的操作工具. 本身是解决公司内部的一些问题,并且有很多特定环境的一些使用,现在抽离</description>
     </item>
     
   </channel>

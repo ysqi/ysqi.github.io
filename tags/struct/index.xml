@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Struct on 虞双齐的博客</title>
+    <title>Struct on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/struct.html</link>
-    <description>在 虞双齐的博客上关于in Struct 的内容</description>
+    <description>Recent content in Struct on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:32 +0800</lastBuildDate>
-    <atom:link href="/tags/struct.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/struct/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang对自定义类型排序</title>
@@ -17,11 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:32 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-dui-zi-ding-yi-lei-xing-pai-xu.html</guid>
-      <description>https://segmentfault.com/a/
-golang 对自定义类型排序  在实际项目中，我们常常需要根据一个结构体类型的某个字段进行排序。之前遇到这个问题不知道如何解决，后来在网上搜索了相关问题，找到了一些好的解决方案，此处参考下，做个总结吧。
- 由于 golang 的 sort 包本身就提供了相应的功能， 我们就没必要重复的造个轮子了，来看看如何利用 sort 包来实现吧。
-sort包浅谈  sort 包 在内部实现了四种基本的排序算法：插入排序（insertionSort）、归并排序（symMerge）、堆排序（heapSort）和快速排序（quickSort）； sort 包会依据实际数据自动选择最优的排序算法。所以我们写代码时只需要考虑实现 sort.Interface 这个类型就可以了。
- 粗略的看看sort包 func Sort(data Interface) { // Switch to heapsort if depth of 2*ceil(lg(n+1)) is reached. n := data.Len() maxDepth := 0 for i := n; i &amp;gt; 0; i &amp;gt;&amp;gt;= 1 { maxDepth++ } maxDepth *= 2 quickSort(data, 0, n, maxDepth) } type Interface interface { // Len is the number of elements in the collection.</description>
+      <description>https://segmentfault.com/a/ golang 对自定义类型排序 在实际项目中，我们常常需要根据一个结构体类型的某个字段进行排序。之前遇到这个问题不知道如何解决，后来在网上搜索了相关问题</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>归档 on 虞双齐的博客</title>
+    <title>归档 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E5%BD%92%E6%A1%A3.html</link>
-    <description>在 虞双齐的博客上关于in 归档 的内容</description>
+    <description>Recent content in 归档 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Mon, 05 Oct 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/%E5%BD%92%E6%A1%A3.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E5%BD%92%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>日志文件自动归档工具</title>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on 虞双齐的博客</title>
+    <title>Python on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/python.html</link>
-    <description>在 虞双齐的博客上关于in Python 的内容</description>
+    <description>Recent content in Python on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:53 +0800</lastBuildDate>
-    <atom:link href="/tags/python.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>谷歌:谁拥有下一代云平台的DNA？机器学习和云端智能是云的未来</title>
@@ -17,21 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:53 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gu-ge-shei-yong-you-xia-yi-dai-yun-ping-tai-de-dnaji-qi-xue-xi-he-yun-duan-zhi-neng-shi-yun-de-wei.html</guid>
-      <description>在“NEXT2016”会议上，Google的Eric Schmidt提到Google所占最大的优势之一就是站在云计算下一个十年的前沿。它不是基础设施或者软件，也不像纯数据一样简单。
-Crowdsourced 智能，是个进化，可以创建更加智能的从上到下各级用户都可以利用、重新训练、改变、为自己目的输出的系统。这一切将会点燃新一代云平台的未来发展方向。
-Crowdsourcing数据的这个概念会令训练变得更好、变得更加智能、范围更加宽广，这也是谷歌在接下来云计算的十年里有竞争力的核心优势，Schmidt说道。“我坚信快速评估模型，谷歌云计算，机器学习，以及crowdsourcing将会是每一个IPO的基础，在下一个5年里成为赢家。”这会是一个跟产生应用程序的过程很相似的评估——将用户眼下真正需要的智能创建然后放进去，在这背后还有着底层基础设施，很多这样的抽象层次才会让用户有无缝体验。Schmidt比较说，这跟汽车产业十分相像——从早期的时候，到离合器，再到未来的自驾。
-“Google云平台跟未来要发生的简直同步到完美。这个平台还不是终结，而是底层——总有些&amp;rdquo;什么&amp;rdquo;在这上面。这个“什么”就是机器学习，包括狭义的AI和广义的AI，就是下一代的转化。编程范型改就这样改变了。除了让电脑编程，还可以让电脑做你想让它做的事情。这是编程的一个基本变化。”
-Schmidt说，为这次转变作的最好的准备就是在Linux的上面、Google云平台上面和Kubernetes上面开始创建。从开发角度来说，是为了可扩展的、便携的像Go，Python，node.js，java这样的语言结合工作，以及创建在Google App Engine上面。但是在这个清单再往上，就是应用TensorFlow的问题了，这将是未来5年内谷歌机器学习和分析策略的核心（他估计，许多其它企业也一样）。
-关于TensorFlow 请点击这里
-随着谷歌新机器学习平台的首次展示，等于在这片沙地上首次插入了这面旗帜，后续会有比如AWS，Microsoft的Azure等等有着高级机器学习和云基础设施的公司比如IBM纷至沓来。因为不像其它那些公司，Google拥有自身已有的而很多其它公司所没有的诸如照片，声音和文本的服务为资源来做crowdsource服务，来促进下图列出来的这些服务。
-Jeff Dean，谷歌System Infrastructure组，也是Google Brain项目主导人说道：“在过去的几年里，我们已经将机器学习创建塞入我们做的每件事情中。” 这就是为什么公司安卓语音识别系统运行得如此好，也是为什么他们的翻译服务如此深远，相对准确，也是为什么照片脸和对象识别与分类可以做到无缝。crowdsourced服务，就是Google提供最丰富的档案和流媒体数据来做更加智能的机器，并且更加高级的深层学习能力。针对其他之前由硬件统治见长的云，Google将会采取更加温和的方法（通过软件）来抗衡。
-安装了TensorFlow来允许复杂的深层学习作为全面管理服务，云计算未来的十年会是非常不同的，更不用说下一代将是数据分析的天下。我们已经从需要用同样的旧工具（一些新的框架比如MapReduce和Hadoop）来处理很多数据得出方法的时代解放出来，通过让数据自己计算来实现“量子跳跃”，至少理论上是这样的。而且那会是一件大事——一件可以威胁到目前云霸权地位的大事，谷歌可能会全栈关注以及拥有crowdsource－able服务。
-即使TensorFLow只是在2015年底刚出现，Schmidt坚信这是下一代谷歌用复杂的分析工作负载为大型企业提供更加深层大范围的服务的能力。这是下一个应用程序和云应用范例浪潮的开始——而且很可能，对于谷歌自己作为推动的地位以及在500强公司的推动下，500强公司和AWS也会迈出他们的第一步。
-不久之前，就像我们在AWS的第一个十年快到之前评论的那样，即使是在弹性非常大的应用程序里，重点也仍然在基础设施的进化上，而且与之相关的工具和服务都是互相挂钩的。云的头十年是强烈植根于这些基础之上在考量的：考量安全，网络，当然还有所需的大型主机来推动呈爆发增长的用户应用程序。毋庸置疑，AWS走在云平台前沿，这是众所周知的，随着附加的元素通过其它一样缺乏初始动机的公司也开始出租备用基础设备（相比较于仅仅只是为主持基于云端服务来创建数据中心来说）。
-AWS之前所有的努力都值得被认可，然而现在AWS和他的云计算领域同伴面临的，是安装了crowdsourced数据、机器学习和深层次学习框架并用它来做一些高层次的业务，支持新的已经存在的服务；在这些服务上，谷歌的定位是让用户获得超值的服务。这一年会是谷歌云在某种程度上找到它的立足点，之前它并没有跟大规模企业合作过，这些企业之前通过Amazon的服务对公有云（通常通过混合模型）有了初步的尝试，需要一些过程来信服来摆脱最初经历的那些恐惧、成本、冒险，从而从纯粹云的基础设施来经历再一次的转变。
-可以让大家刮目相看的云平台一定不再是硬件设施了。这其实是差不多的一个过程，可以预料到，谷歌会采取进一步努力来支持谷歌可提供的云端服务“实例”，就像AWS之前的过程一样，AWS在存储、加速、CPU和网络选项多方面都提供服务来抢占市场。核心竞争力一定是来自于一个对大多数公司来说很难做到的事情——下一代智能分析能力，可以做到如此智能、协调，这会是扰动原有云生态布局，在未来主导游戏规则改变的事情，至少在谷歌眼里是这样。
-原文链接
-（如果需要转载，请联系我们哦，尊重知识产权人人有责）</description>
+      <description>在“NEXT2016”会议上，Google的Eric Schmidt提到Google所占最大的优势之一就是站在云计算下一个十年的前沿。它不是基</description>
     </item>
     
     <item>
@@ -40,14 +28,7 @@ AWS之前所有的努力都值得被认可，然而现在AWS和他的云计算�
       <pubDate>Sat, 31 Dec 2016 11:33:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/yi-tiao-ming-ling-ji-ke-jiang--vim-pei-zhi-wei-gong-neng-jiang-da-de--ide.html</guid>
-      <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需要的 ycm_core library ，这或许是目前为止安装 YouCompleteMe 插件最简单的姿势。
-安装：
-curl -o - https://raw.githubusercontent.com/HmyBmny/vimrc/master/install-vim-plugins | sh  部分插件的使用需要安装一些依赖，诸如 ctags 之类的，具体请参考：https://github.com/HmyBmny/vimrc
-支持所有 Linux 平台， Mac 没试过，默认是 C/C++, 如果想用来开发 Python， Go 或者其它的语言，只需要找到相应的 Vim 插件并将仓库名加到 .vimrc 文件即可。
-开发 Python 只需将下面的代码添加到 .vimrc 文件
-Plug `klen/python-mode`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。
-开发 Go 只需将下面的代码添加到 .vimrc 文件
-Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配置完成。</description>
+      <description>一条命令即可将 Vim 配置为功能强大的 C/C++ IDE 。包括安装不太方便的 YouCompleteMe 插件也是自动安装，并且会自动从官网下载最新版本的 libclang，然后编译 YouCompleteMe 插件需</description>
     </item>
     
     <item>
@@ -56,21 +37,7 @@ Plug `fatih/vim-go`  在终端运行 vim :PlugInstall +qall 安装插件后配�
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/open-falcon-kai-fa-bi-ji-yi-cong-ling-kai-shi-da-jian-xu-ni-fu-wu-qi-he-jian-ce-huan-jing.html</guid>
-      <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在
-open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以有必要写篇文章记一下。
-这篇文章主要包括：
- 如何搭一个虚拟的 linux 服务器和相关配置
- 按照官方的中文介绍安装，会踩到哪些坑。
-  目标只有一个：尽快跑起来。
-服务器选择 笔者最终选择的是 ubuntu-server 16.04 LTS 64bit。基于这款服务器，许多安装指令和介绍中不一样。具体包括
- yum 替换为 apt-get
- mysql-devel 替换为 libmysqld-dev,libmysqlclient-dev
-  等。并且 ubuntu 的源需要配置。笔者配置的是阿里云的ubuntu 16.04 源，参考 ubuntu 16.04 国内快速更新源
-这里有几点需要注意。
- open-falcon 需要 64 位的操作系统以实现快速安装，即便是源码安装也需要你手动调整命令区别。非熟悉者别擅自尝试。
- 尽量别选择 desktop 的操作系统。卡的要死。
- 安装之前会有一坨提示，别随便从电脑前走开。会问你要不要安装一些网络服务包，记得 openssh 要装，到时用什么 Xshell 啊，Powershell 啊去远程连接，支持文本复制到命令行和 vim 什么的还是很好的。当然了你到时手动装也行。
-  虚拟机选择的是Virtual Box for Windows。分配了 2G 内存和 8G 硬盘（应该够用了吧 QAQ ）。第一次启动会提示你装载ISO。之后需要配置设备-网络-高级-端口转发。以及可能需要从主机传文件过去，一会讲。</description>
+      <description>收到新的任务研究一下 open-falcon 监控公司的服务器指标玩玩。说实话现在连要重视哪些监控指标都不知道，但在 open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所以</description>
     </item>
     
     <item>
@@ -79,22 +46,7 @@ open-falcon 中文介绍 中，就安装这一块，踩的坑实在好多，所�
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
-      <description>https://segmentfault.com/a/
-开发规范  版本控制git
- 开发流程git flow
-  接口 请求方式 url 动作 中文说明
-GET /resources/ list 列表 POST /resources/ create 创建 GET /resources/:id retrieve 详细 PUT /resources/:id update 更新 PATCH /resources/:id partial_update 部分更新 DELETE /resources/:id destroy 删除
-数据  请求支持form-date,json,x-www-form-urlencode
- 返回格式统一为json
- 一个请求对应一个serializer
-  错误  错误信息包含在返回内容里
- 不同的错误对应不同的错误信息代码
- http错误码按照标准用法使用
-  认证  jwt
- token
- oauth2
-  权限  以中间件形式作为权限鉴别插件，根据http请求格式直接判断权限
- 用户登录成功时，将用户信息与权限信息缓存保证效率</description>
+      <description>https://segmentfault.com/a/ 开发规范 版本控制git 开发流程git flow 接口 请求方式 url 动作 中文说明 GET /resources/ list 列表 POST /resources/ create 创建 GET /resources/:id retrieve 详细 PUT /resources/:id update 更新 PATCH /resources/:id partial_update 部分更新 DELETE /resources/:id destroy 删除 数据 请求支</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Container on 虞双齐的博客</title>
+    <title>Container on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/container.html</link>
-    <description>在 虞双齐的博客上关于in Container 的内容</description>
+    <description>Recent content in Container on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:56 +0800</lastBuildDate>
-    <atom:link href="/tags/container.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/container/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>shipyard中文版v3_0_2更新</title>
@@ -17,15 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shipyardzhong-wen-ban-v3_0_2geng-xin.html</guid>
-      <description>Shipyard中文版官方同步更新
- 中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://github.com/dockerclubgroup/shipyard
- 本次更新内容包括
-1、不列出中间镜像列表
-  2、修复docker 1.2.1版本以上的网络状态与链接Bug
-3、修复多个容器部署bug
-4、golang依赖库更新，迁移google依赖至github
-5、支持多网络模式的部署
-欢迎大家体验新版本的镜像，镜像地址hub:https://hub.docker.com/r/dockerclub/shipyard/</description>
+      <description>Shipyard中文版官方同步更新 中文版shipyard v3.0.2与官方同步更新，更新内容详细可见GITHUB:https://githu</description>
     </item>
     
   </channel>

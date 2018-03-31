@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Angular.js on 虞双齐的博客</title>
+    <title>Angular.js on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/angular.js.html</link>
-    <description>在 虞双齐的博客上关于in Angular.js 的内容</description>
+    <description>Recent content in Angular.js on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:35:08 +0800</lastBuildDate>
-    <atom:link href="/tags/angular.js.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/angular.js/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>jquery和angular的ajax请求的区别</title>
@@ -17,23 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:35:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/jqueryhe-angularde-ajaxqing-qiu-de-ou-bie.html</guid>
-      <description>最近用angular替换我blog的部分页面。结果悲剧的发现，post请求到revel以后，revel的ParamsFilter解析不粗来参数。
-看了下请求信息，发现jquery和angular的post请求是有些不同的。
-jquery的content type是application/x-www-form-urlencoded，会把post的参数拼接到url上，格式如foo=bar&amp;amp;baz=moe这样的。
-而angular里，默认content type 是application/json，数据是以json格式发过去的。
-但是在revel的params.go里面，没有对json格式的请求做参数处理。
-用作者的原话说，这个json的处理没有什么用，而且在controller里用encoding/json处理也只是几行代码的事情。所以，就没有所以了。。。
-关于这个问题的解决方法，有很多，可以从angular层面解决，把angular的post请求也按照jquery的方法做些改变，如下：
-[](http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/)http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
-[](https://github.com/petersirka/total.js/issues/26)https://github.com/petersirka/total.js/issues/26
-也可以从revel服务端解决。
-[](https://github.com/robfig/revel/issues/97)https://github.com/robfig/revel/issues/97
-本页的代码修改如下：
-func (c *Task) NewTask() revel.Result { decoder := json.NewDecoder(c.Request.Body) var content ToDoContent if err := decoder.Decode(&amp;amp;content); err != nil { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;err:&amp;quot;, err) } else { print(&amp;quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;content:&amp;quot;, content.Content) } json.Marshal(content) return c.RenderJson(content) }  虽然这样代码确实不多，不过瞬间感觉比rails弱爆了。。。
-顺带的提一下，如果是jquery的请求，也需要稍微改动一下的，否则，revel一样的解析不粗来。
-在jquery里要把post的jsonstringify一下。
-具体参考这里[](https://github.com/robfig/revel/issues/126)https://github.com/robfig/revel/issues/126
-$.ajax({ type:&amp;quot;POST&amp;quot;, url:&amp;quot;/Application/Index&amp;quot;, data:JSON.stringify({ name: &amp;quot;John&amp;quot;, time: &amp;quot;2pm&amp;quot; }), contentType:&amp;quot;application/json&amp;quot;, dataType:&amp;quot;json&amp;quot; } )  </description>
+      <description>最近用angular替换我blog的部分页面。结果悲剧的发现，post请求到revel以后，revel的ParamsFilter解析不粗来参</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Concurrency on 虞双齐的博客</title>
+    <title>Concurrency on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/concurrency.html</link>
-    <description>在 虞双齐的博客上关于in Concurrency 的内容</description>
+    <description>Recent content in Concurrency on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:45 +0800</lastBuildDate>
-    <atom:link href="/tags/concurrency.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Goforgophers</title>
@@ -17,17 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-for-gophers.html</guid>
-      <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote
-25 April 2014 上的演讲，原文地址为 Go for gophers
-注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING.
- Interfaces Interfaces: 第一印象 我曾经对 classes 和 types 感兴趣。
-Go 反对这些：
- 没有继承 没有子类型多态 没有泛型  它反而强调 interfaces。
-Interfaces: Go 的方式 Go interfaces 是小的。
-type Stringer interface { String() string }  Stringer 能完美的打印它自己。
-任何实现了 String 的都是一个 Stringer。
-一个 interface 示例 一个 io.Reader 的值发出了一个二进制的数据流。
-type Reader interface { Read([]byte) (int, error) }  像一个 UNIX 管道。</description>
+      <description>注：该文是作者 Andrew Gerrand 在 GopherCon closing keynote 25 April 2014 上的演讲，原文地址为 Go for gophers 注：这个是视频集合 Watch the talk on YouTube，赞伟大的长城，需要翻墙INGINGING</description>
     </item>
     
     <item>
@@ -36,20 +28,7 @@ type Reader interface { Read([]byte) (int, error) }  像一个 UNIX 管道。</d
       <pubDate>Sat, 31 Dec 2016 11:33:13 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-xiang-unix-pipena-yang-shi-yong-channel.html</guid>
-      <description>简介 Go语言的并发原语允许开发者以类似于 Unix Pipe 的方式构建数据流水线 (data pipelines)，数据流水线能够高效地利用 I/O和多核 CPU 的优势。
-本文要讲的就是一些使用流水线的一些例子，流水线的错误处理也是本文的重点。
-阅读建议 数据流水线充分利用了多核特性，代码层面是基于 channel 类型 和 go 关键字。
-channel 和 go 贯穿本文的始终。如果你对这两个概念不太了解，建议先阅读之前公众号发布的两篇文章：Go 语言内存模型(上/下)。
-如果你对操作系统中&amp;rdquo;生产者&amp;rdquo;和&amp;rdquo;消费者&amp;rdquo;模型比较了解的话，也将有助于对本文中流水线的理解。
-本文中绝大多数讲解都是基于代码进行的。换句话说，如果你看不太懂某些代码片段，建议补全以后，在机器或play.golang.org 上运行一下。对于某些不明白的细节，可以手动添加一些语句以助于理解。
-由于 Go语言并发模型 的英文原文 Go Concurrency Patterns: Pipelines and cancellation 篇幅比较长，本文只包含 理论推导和简单的例子。
-下一篇文章我们会对 &amp;ldquo;并行MD5&amp;rdquo; 这个现实生活的例子进行详细地讲解。
-什么是 &amp;ldquo;流水线&amp;rdquo; (pipeline)? 对于&amp;rdquo;流水线&amp;rdquo;这个概念，Go语言中并没有正式的定义，它只是很多种并发方式的一种。这里我给出一个非官方的定义：一条流水线是 是由多个阶段组成的，相邻的两个阶段由 channel 进行连接；
-每个阶段是由一组在同一个函数中启动的 goroutine 组成。在每个阶段，这些 goroutine 会执行下面三个操作：
- 通过 inbound channels 从上游接收数据
- 对接收到的数据执行一些操作，通常会生成新的数据
- 将新生成的数据通过 outbound channels 发送给下游
-  除了第一个和最后一个阶段，每个阶段都可以有任意个 inbound 和 outbound channel。</description>
+      <description>简介 Go语言的并发原语允许开发者以类似于 Unix Pipe 的方式构建数据流水线 (data pipelines)，数据流水线能够高效地利用 I/O和多核 CPU 的优势。 本文要</description>
     </item>
     
     <item>
@@ -58,10 +37,7 @@ channel 和 go 贯穿本文的始终。如果你对这两个概念不太了解�
       <pubDate>Sat, 31 Dec 2016 11:33:07 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goyu-yan-bing-fa-mo-xing-shi-yong--select.html</guid>
-      <description>简介 作为一种现代语言，go语言实现了对并发的原生支持。上几期文章中，我们对goroutine 和 channel进行了详细的讲解。但是要实现对 channel 的控制，从语言层面上来说，select 语句是必不可少的部分。本文中，我们就 select 语句的行为和使用方法进行深入讨论。
-阅读建议 本文中的内容是 Go语言并发模型的一篇，但是与上几期关系不是特别密切，可以独立阅读。本文的内容源自于 [go language specifications]() 和 Rob Pike 在2012年进行的一场名为&amp;ldquo;concurrency&amp;rdquo; 的演讲。如果有时间的话，建议在 YouTube 上看一下他本人的演讲。
-select 语句的行为 为了便于理解，我们首先给出一个代码片段：
-// https://talks.golang.org/2012/concurrency.slide#32 select { case v1 := &amp;lt;-c1: fmt.Printf(&amp;quot;received %v from c1\n&amp;quot;, v1) case v2 := &amp;lt;-c2: fmt.Printf(&amp;quot;received %v from c2\n&amp;quot;, v1) case c3 &amp;lt;- 23: fmt.Printf(&amp;quot;sent %v to c3\n&amp;quot;, 23) default: fmt.Printf(&amp;quot;no one was ready to communicate\n&amp;quot;) }  上面这段代码中，select 语句有四个 case 子语句，前两个是 receive 操作，第三个是 send 操作，最后一个是默认操作。代码执行到 select 时，case 语句会按照源代码的顺序被评估，且只评估一次，评估的结果会出现下面这几种情况：</description>
+      <description>简介 作为一种现代语言，go语言实现了对并发的原生支持。上几期文章中，我们对goroutine 和 channel进行了详细的讲解。但是要实现对 channel</description>
     </item>
     
     <item>
@@ -70,9 +46,7 @@ select 语句的行为 为了便于理解，我们首先给出一个代码片段
       <pubDate>Sat, 31 Dec 2016 11:33:00 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ru-men-goroutinebing-fa-she-ji-mo-shi-yi-ji-goroutineke-shi-hua-gong-ju.html</guid>
-      <description>Daisy-Chain 首先，为了防止过于枯燥，我先列出我最喜欢的一个模式：Daisy-Chain。这个模式比较复杂，对go的并发编程不太熟悉的同学，可以先看下面的模式。然后回过头来看这个。
-daisy chain会创建很多channel，然后把这些channel首尾相接级联起来，组成一条单向链，每个channel都在处理不同的子任务，最后的结果在链的末端输出。这是在2012年的golang talks中由Rob Pike提出的：
-func f(left, right chan int) { // 这个函数就把right的输出和left的输入联系起来了。 left &amp;lt;- 1 + &amp;lt;-right } func main() { const n = 10000 leftmost := make(chan int) right := leftmost left := leftmost // 创建长度为n的daisy链 for i := 0; i &amp;lt; n; i++ { right = make(chan int) go f(left, right) left = right } // 在链的最右端输入1，那么最左端就会得到10001 go func(c chan int) { c &amp;lt;- 1 }(right) fmt.</description>
+      <description>Daisy-Chain 首先，为了防止过于枯燥，我先列出我最喜欢的一个模式：Daisy-Chain。这个模式比较复杂，对go的并发编程不太熟悉的同学，可以先看下面</description>
     </item>
     
   </channel>

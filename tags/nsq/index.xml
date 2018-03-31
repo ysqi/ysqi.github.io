@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nsq on 虞双齐的博客</title>
+    <title>Nsq on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/nsq.html</link>
-    <description>在 虞双齐的博客上关于in Nsq 的内容</description>
+    <description>Recent content in Nsq on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 24 May 2017 09:17:31 +0800</lastBuildDate>
-    <atom:link href="/tags/nsq.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/nsq/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang使用Nsq</title>
@@ -17,37 +19,7 @@
       <pubDate>Wed, 24 May 2017 09:17:31 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/golangshi-yong-nsq.html</guid>
-      <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现了Nsq这个由golang开发的消息队列，毕竟是golang原汁原味的东西，功能齐全，关键是性能还不错。其中支持动态拓展，消除单点故障等特性， 都可以很好的满足我的需求
-下面上一张Nsq与其他mq的对比图，看上去的确强大。下面简单记录一下Nsq的使用方法
-图片来自golang2017开发者大会
-Nsq服务端 Nsq服务端简介 在使用Nsq服务之前，还是有必要了解一下Nsq的几个核心组件
-整个Nsq服务包含三个主要部分
-nsqlookupd 先看看官方的原话是怎么说：
-nsqlookupd是守护进程负责管理拓扑信息。客户端通过查询 nsqlookupd 来发现指定话题（topic）的生产者，并且 nsqd 节点广播话题（topic）和通道（channel）信息
-简单的说nsqlookupd就是中心管理服务，它使用tcp(默认端口4160)管理nsqd服务，使用http(默认端口4161)管理nsqadmin服务。同时为客户端提供查询功能
-总的来说，nsqlookupd具有以下功能或特性
- 唯一性，在一个Nsq服务中只有一个nsqlookupd服务。当然也可以在集群中部署多个nsqlookupd，但它们之间是没有关联的
- 去中心化，即使nsqlookupd崩溃，也会不影响正在运行的nsqd服务
- 充当nsqd和naqadmin信息交互的中间件
- 提供一个http查询服务，给客户端定时更新nsqd的地址目录   nsqadmin 官方原话：是一套 WEB UI，用来汇集集群的实时统计，并执行不同的管理任务
-总的来说，nsqadmin具有以下功能或特性
- 提供一个对topic和channel统一管理的操作界面以及各种实时监控数据的展示，界面设计的很简洁，操作也很简单
- 展示所有message的数量，恩&amp;hellip;.装X利器
- 能够在后台创建topic和channel，这个应该不常用到
- nsqadmin的所有功能都必须依赖于nsqlookupd，nsqadmin只是向nsqlookupd传递用户操作并展示来自nsqlookupd的数据
-  nsqadmin默认的访问地址是http://127.0.0.1:4171/ nsqd 官方原话：nsqd 是一个守护进程，负责接收，排队，投递消息给客户端
-简单的说，真正干活的就是这个服务，它主要负责message的收发，队列的维护。nsqd会默认监听一个tcp端口(4150)和一个http端口(4151)以及一个可选的https端口
-总的来说，nsqd 具有以下功能或特性
- 对订阅了同一个topic，同一个channel的消费者使用负载均衡策略（不是轮询）
- 只要channel存在，即使没有该channel的消费者，也会将生产者的message缓存到队列中（注意消息的过期处理）
- 保证队列中的message至少会被消费一次，即使nsqd退出，也会将队列中的消息暂存磁盘上(结束进程等意外情况除外)
- 限定内存占用，能够配置nsqd中每个channel队列在内存中缓存的message数量，一旦超出，message将被缓存到磁盘中
- topic，channel一旦建立，将会一直存在，要及时在管理台或者用代码清除无效的topic和channel，避免资源的浪费
-  这是官方的图，第一个channel(meteics)因为有多个消费者，所以触发了负载均衡机制。后面两个channel由于没有消费者，所有的message均会被缓存在相应的队列里，直到消费者出现
-这里想到一个问题是，如果一个channel只有生产者不停的在投递message，会不会导致服务器资源被耗尽？也许nsqd内部做了相应处理，但还是要避免这种情况的出现
-Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费者和生产者的关系
-消费者 消费者有两种方式与nsqd建立连接
- 消费者直连nsqd，这是最简单的方式，缺点是nsqd服务无法实现动态伸缩了(当然，自己去实现一个也是可以的)  消费者通过http查询nsqlookupd获取该nsqlookupd上所有nsqd的连接地址，然后再分别和这些nsqd建立连接(官方推荐的做法)，但是客户端会不停的向nsqlookupd查询最新的nsqd地址目录(不喜欢用http轮询这种方式&amp;hellip;)</description>
+      <description>为什么要使用Nsq 最近一直在寻找一个高性能，高可用的消息队列做内部服务之间的通讯。一开始想到用zeromq，但在查找资料的过程中，意外的发现</description>
     </item>
     
     <item>
@@ -56,13 +28,7 @@ Nsq服务端与客户端的关系 了解nsqlookupd，nsqd与客户端中消费�
       <pubDate>Sat, 31 Dec 2016 11:33:35 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/nsqjske-hu-duan-de-bu-shu.html</guid>
-      <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。
-首先安装nsq，这个没什么好说的，我是直接在官网下载bin文件，直接部署的，环境是centOS 6.7，安装在/opt/nsq-0.3.7.linux-amd64.go1.6目录下；
-其次是安装nodejs，我安装的是v6.1.0版本，这步也没什么好讲；
-然后安装nsqjs这个遇到了些坑，这里先记录下
-1、要看下gcc的版本；
-$ gcc -v使用内建 specs。 目标：x86_64-redhat-linux 配置为：../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux 线程模型：posix gcc 版本 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC)  2、因为node.js 4升级了v8引擎，要求gcc的版本在4.8以上，所以要先更新gcc版本；
-$ rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-6-x86_64/download/rhscl-devtoolset-3-epel-6-x86_64.noarch.rpm $ yum install devtoolset-3-gcc-c++ 临时使用最新版gcc： $ scl enable devtoolset-3 bash 系统默认使用gcc-4.9 $ echo &amp;quot;source /opt/rh/devtoolset-3/enable&amp;quot; &amp;gt;&amp;gt;/etc/profile  3、然后安装nsqjs，为了项目的复用，我就用了全局安装，然后把nsqjs复制到项目的node_modules中就可以了；</description>
+      <description>因为公司在业务中需要用到消息队列产品，我选用了基于golang开源的nsq产品，记录下我遇到的那些部署中的坑。 首先安装nsq，这个没什么好说</description>
     </item>
     
   </channel>

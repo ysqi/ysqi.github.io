@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Swagger on 虞双齐的博客</title>
+    <title>Swagger on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/swagger.html</link>
-    <description>在 虞双齐的博客上关于in Swagger 的内容</description>
+    <description>Recent content in Swagger on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:48 +0800</lastBuildDate>
-    <atom:link href="/tags/swagger.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/swagger/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Beego自动化文档(最新版)</title>
@@ -17,13 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/beegozi-dong-hua-wen-dang-zui-xin-ban-.html</guid>
-      <description>之前写过一篇使用Beego自动化api文档的文章：Beego自动化文档,随着Beego的更新，1.7.0之后Beego自动化文档的方法也有了更新，最显著的更新是去掉了docs.go，使用了swagger.json,更加的符合swagger的特点。这篇文章是上一篇文章的修正和补充。
-环境要求 需要安装最新的Go语言环境，安装Go可以参考Golang在Mac OS上的环境配置,还需要安装最新的Beego框架。如果是你的Beego框架还是旧版本的就需要升级Beego:
- go get -u github.com/astaxie/beego
-go get -u github.com/beego/bee
- 查看bee的最新版本：
- bee version
- | ___ \ | |_/ / ___ ___ | ___ \ / _ \ / _ \ | |_/ /| __/| __/ \____/ \___| \___| v1.5.2 ├── Beego : 1.7.1 ├── GoVersion : go1.7.3 ├── GOOS : darwin ├── GOARCH : amd64 ├── NumCPU : 8 ├── GOPATH : /Users/jjz/Documents/go ├── GOROOT : /usr/local/Cellar/go/1.</description>
+      <description>之前写过一篇使用Beego自动化api文档的文章：Beego自动化文档,随着Beego的更新，1.7.0之后Beego自动化文档的方法也有了</description>
     </item>
     
   </channel>

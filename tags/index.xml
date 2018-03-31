@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 虞双齐的博客</title>
+    <title>Tags on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags.html</link>
-    <description>在 虞双齐的博客上关于in Tags 的内容</description>
+    <description>Recent content in Tags on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Fri, 03 Mar 2017 08:36:25 +0800</lastBuildDate>
-    <atom:link href="/tags.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title></title>
@@ -143,6 +145,51 @@
       <pubDate>Sat, 31 Dec 2016 11:33:16 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/tags/base64.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beanstalk</title>
+      <link>https://yushuangqi.com/tags/beanstalk.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/tags/beanstalk.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beanstalkd</title>
+      <link>https://yushuangqi.com/tags/beanstalkd.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/tags/beanstalkd.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bee</title>
+      <link>https://yushuangqi.com/tags/bee.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:34 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/tags/bee.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beego</title>
+      <link>https://yushuangqi.com/tags/beego.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:34:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/tags/beego.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Boom</title>
+      <link>https://yushuangqi.com/tags/boom.html</link>
+      <pubDate>Sat, 31 Dec 2016 11:33:33 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/tags/boom.html</guid>
       <description></description>
     </item>
     

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>静态化 on 虞双齐的博客</title>
+    <title>静态化 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E9%9D%99%E6%80%81%E5%8C%96.html</link>
-    <description>在 虞双齐的博客上关于in 静态化 的内容</description>
+    <description>Recent content in 静态化 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:35:12 +0800</lastBuildDate>
-    <atom:link href="/tags/%E9%9D%99%E6%80%81%E5%8C%96.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E9%9D%99%E6%80%81%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>使用Go语言编写的跨平台的emlog整站(首页&#43;文章)静态化工具</title>
@@ -17,14 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:35:12 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-goyu-yan-bian-xie-de-kua-ping-tai-de-emlogzheng-zhan-shou-xie-wen-zhang-jing-tai-hua-gon.html</guid>
-      <description> emlog_static.go 项目地址： https://github.com/johnlui/emlog_static.go ====================
-功能  新闻博客类非数据交互网站通用首页静态化 emlog博客系统文章页静态化 使用Go语言编写，跨平台  条件  需要能够管理服务器，需要编译、运行软件 需要Go语言编译环境，请去The Go Programming Language 下载  使用方法  两个文件单独编译，分别运行 emlog_static_homepage 首页静态化 使用方法为：
-./emlog_static_homepage -url=http://example.com/index.php -t=30
-t为间隔时间，单位是秒
- emlog_static_articles 文章页静态化 使用方法为：
-./emlog_static_articles -url=http://example.com/index.php -c=10 -n=100
-c为并发数，n为总文章数，即文章id最大值
-  </description>
+      <description>emlog_static.go 项目地址： https://github.com/johnlui/emlog_static.go ==================== 功能 新闻博客类非数据交互网站通用首页静态化 emlog博客系统文章页静态化 使用Go语言编写，跨平台 条件 需要能够管理服务器，需要</description>
     </item>
     
   </channel>

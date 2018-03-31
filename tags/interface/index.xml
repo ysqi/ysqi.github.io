@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Interface on 虞双齐的博客</title>
+    <title>Interface on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/interface.html</link>
-    <description>在 虞双齐的博客上关于in Interface 的内容</description>
+    <description>Recent content in Interface on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:04 +0800</lastBuildDate>
-    <atom:link href="/tags/interface.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang中cannotuse**(typeinterface{})astype**解决方案</title>
@@ -17,14 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:04 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-zhong--cannot-use--type-interface--as-type-jie-jue-fang-an.html</guid>
-      <description>https://segmentfault.com/a/
-在beego中从session中取值的时候，取出来的是intergace{}，但是我先返回的值是int型，或者是string，这个时候会出现一个错误：
-cannot use ** （变量）(type interface {}) as type **（类型）
-错误代码：
-func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&amp;quot;user_id&amp;quot;) return userStr }  从session中取出来的是一个interface类型，无法直接转换，我在给user_id赋值的时候是给的int类型。
-因此直接对userStr进行转换即可。
-正确代码如下：
-func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&amp;quot;user_id&amp;quot;) return userStr.(int) }  </description>
+      <description>https://segmentfault.com/a/ 在beego中从session中取值的时候，取出来的是intergace{}，但是我先返回的值是int型，或者是string，这个时候会出</description>
     </item>
     
     <item>
@@ -33,14 +28,7 @@ func CurrentId(ctx *context.Context) int { userStr := ctx.Input.CruSession.Get(&
       <pubDate>Sat, 31 Dec 2016 11:33:26 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-ke-bian-can-shu.html</guid>
-      <description>https://segmentfault.com/a/
-今天在尝试用go写一个简单的orm的时候 发现 在调用可变参数函数时，不是总能使用省略号将一个切片展开，有时候编译器可能会报错 再此用几个简单的例子作为说明
-当不太确定数据类型的时候我们通常采用空接口
-tests1(789) fmt.Println(&amp;quot;-------------&amp;quot;) tests1(&amp;quot;789&amp;quot;) func tests1(arg interface{}) { fmt.Println(&amp;quot;value:&amp;quot;, arg) fmt.Println(&amp;quot;type:&amp;quot;, reflect.TypeOf(arg).Name()) }  输出结果
-value: 789 type: int ------------- value: 789 type: string  在使用相同类型的可变入参时
-tests([]string{&amp;quot;4&amp;quot;, &amp;quot;5&amp;quot;, &amp;quot;6&amp;quot;}...) func tests(args ...string) { for i, v := range args { fmt.Println(i, &amp;quot;----&amp;quot;, v) } }  输出结果
-0 ---- 4 1 ---- 5 2 ---- 6  当使用interface{}作为可变入参时
-func testParams(args ...interface{}) { for i, v := range args { if s, ok := v.</description>
+      <description>https://segmentfault.com/a/ 今天在尝试用go写一个简单的orm的时候 发现 在调用可变参数函数时，不是总能使用省略号将一个切片展开，有时候编译器可能会报错 再此用几个简单的</description>
     </item>
     
   </channel>

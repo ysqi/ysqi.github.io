@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javascript on 虞双齐的博客</title>
+    <title>Javascript on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/javascript.html</link>
-    <description>在 虞双齐的博客上关于in Javascript 的内容</description>
+    <description>Recent content in Javascript on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:56 +0800</lastBuildDate>
-    <atom:link href="/tags/javascript.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>采用一门新编程语言或不采用</title>
@@ -17,20 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:56 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/cai-yong-yi-men-xin-bian-cheng-yu-yan-huo-bu-cai-yong.html</guid>
-      <description>我大体上对编程语言感兴趣。特别低，我一直对另一门编程语言 如何能够提供给我表达程序的新特性以及允许我成长为一名程序员 感到好奇。
-我在校时学到了第一门语言。那儿的电脑&amp;mdash;&amp;mdash;一屋子都是PET 2001，那时候他们是新潮的&amp;mdash;&amp;mdash;只有BASIC，很快就让我失望了。在大学，我开始了一门Pascal的课程，闲暇做了很多编程。Pascal很快填补了我在BASIC发现的恼人的不足。
-带着兴趣我学习了FORTRAN基础，但是从来没有真正用过。Modula 2 出现了，甚至有更大的编程分配，但是没有真正引起我的兴趣。我发现Ada更有意思，不过在进程控制课程之外很少有机会使用。我接触了一点儿Forth，但是再一次没有真正的应用程序来实践。
-当我接触C时，最终被吸引住了。那是，最终的，“真正的语言”，在某种程度上，我可以完全掌控的一门语言，不仅在技术情景&amp;mdash;&amp;mdash;对于我的大部分专业生涯，它是让我过得很好的主要因素之一。
-我在大学还学了其它有意思的语言，比如，Tcl，不是最伟大的语言，但它是一个非常易于嵌入的解释器。很快，我把它嵌入了我写的每一个主要程序。我学了一点儿Prolog，但还不够，我很遗憾。
-但是我对函数式语言产生了极大兴趣，并在那个领域取得了更多进步&amp;mdash;&amp;mdash;主要是Lisp、Hope、ML，Lisp是我自己构建实现的唯一语言&amp;mdash;&amp;mdash;或者，不止一个。起初对于一项任务，和一名合作学生一起，在Modula 2上。我们不喜欢那门课程里的某些要求，没有如此多的实现语言，因此随后，我们用C做了一个相似的。数年后，我用Java做了一个Lisp解释器，后来还用C做了另一个Lisp解释器。所有这些都不是真正完全的&amp;mdash;&amp;mdash;特别是后面的垃圾回收有点儿着急，回收了它不应该回收的东东，但是两者都实现了一个小型但“真正”的Lisp，能够使用递归和高阶函数，有可用的基本内建命令。在此期间我用Go写了一个，它是它们当中最完整的，尽管还在我收藏的玩具语言分类、而不是有用的编程环境。
-正如前面提到的，C对于我的大部分专业工作是有帮助的，也是我目前在用的。但是其他语言进入了视野，主要是Perl。当我想尝试某个东东或不得不只实现一点儿功能时，Perl甚至变成了我的默认语言。这不是因为我对Perl的技术有点有着高度评价，不过它随处可用，每个人了解它，因此和C比起来，很多事情用Perl不可否认地更加容易，所以Perl已经变成了一种习惯。虽然我不是Perl的最大粉丝；我发现它处处不雅和粗野，总在试图鼓励其它语言的有疑问的编程习惯。还有，它用相对较少的努力就能把事情搞定。
-在此过程中还有其它语言我发现有意思，但是没有找到足够时间（或实践机会）去真正学习它们&amp;mdash;&amp;mdash;LUA、SNOBOL，APL（或J）浮现在脑海。我迟早不得不要用JavaScript工作，但是我认为它非常无聊。
-然后我看了越来越多的Go。Rob Pike的一篇文章最终让我深入进去，关于我一直想去做的东东。现在它貌似是一门好的语言，内建了伟大思想，还有继承了与C和其后代语言一起成长的程序员的习惯。Go有潜力把我带回20年前我脑子里充满C的那种愉悦，结合了一门最终的优雅语言（虽然不如Lisp或更加现代的函数式语言优雅）的舒适和实用（像Perl）。我将拭目以待；现在除了一些简单程序和用Go实现的上面提及的Lisp解释器，我没有做更多。
-后来有了Haskell。我在90年代早期就对Haskell感到好奇，当时我做为一名学生（参考上面）接触了其它函数式语言。有人给我一篇关于在ACM SIGPLAN Notics上面的Haskell的文章。Haskell那时候还是新的，但是它已经成长了数十年，它仍然存在，我认为这是好的信号。由于我总是喜欢函数式编程，这或许是我一起成长的语言。
-现在对我来说，采用一门新语言的最大障碍不是学习的难度和为了实际任务的加速学习，而是其他人。让我遗憾的是，我的工作场所有一种文化，人们大部分在独立地做他们的开发项目，当原作者在度假、或者原作者离开后做进一步开发时，其他人能够修复问题，这仍然被认为是重要的。当然我同意这一点。但是当其他人只是对同样事情不感兴趣时，才会使得采用一门新语言变得困难。哎，他们好像不是这样。
-除了使用shell脚本，我们工作时用C，差不多也用Perl，不过我爱用Go或Haskell工作。我愿意在工作中使用，来让我的工作更加简单和有趣。但是由于没有人能够接手用这些语言做的项目，我还不能那样做。（有个人对Go有足够的兴趣，我猜的，但他是名学生，一两年后会离开我们。）太让人失望了。或许我应当尽量发起 下一步我们应当采用哪种语言的 某种共识&amp;mdash;&amp;mdash;不过我担心兴趣不够而剩下C和Perl的老路。毕竟，他们已经采用Perl做为一门新语言甚至不到20年，那么，为什么同样的情景这么快就再来一次呢？
-原文地址：http://jyrgenn.dreamwidth.org/30953.html
-文章首发：腊八粥</description>
+      <description>我大体上对编程语言感兴趣。特别低，我一直对另一门编程语言 如何能够提供给我表达程序的新特性以及允许我成长为一名程序员 感到好奇。 我在校时学到了第</description>
     </item>
     
     <item>
@@ -39,27 +28,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:29 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gcla-ji-hui-shou-ji-zhi--jian-xi-yu-li-jie.html</guid>
-      <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念
-基本概念  内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有东西，或者说要求你必须全权处理所有细节更合适。C 语言中虽然标准库函数提供一些内存管理支持，但是对于之前调用 malloc 申请的内存，还是依赖于你亲自 free 掉。从C++、Python、Swift 和 Java 开始，才在不同程度上支持内存管理。
- 内存压缩：对内存碎片进行压缩。（和win10的那个“内存压缩”不太一样啦）
- win10内存压缩：物理内存已经见底，将一部分不常使用的内存数据打包压缩起来，等到有程序需要访问那些数据的时候，再解压缩出来。
- 引用与指针：
- 引用被创建的同时必须被初始化（指针则可以在任何时候被初始化）。
- 不能有NULL 引用，引用必须与合法的存储单元关联（指针则可以是NULL）。
- 一旦引用被初始化，就不能改变引用的关系（指针则可以随时改变所指的对象）。
- 引用只是某块内存的别名。
- 实际上“引用”可以做的任何事情“指针”也都能够做，为什么还要“引用” 这东西？
-答案是“用适当的工具做恰如其分的工作”。比如说，某人需要一份证明，本来在文件上盖 上公章的印子就行了，如果把取公章的钥匙交给他，那么他就获得了不该有的权利。（什么情况下，就用什么对策）
- 为什么还要说“只有指针，没有引用是一个重要改变？”？
-答案是虽然引用在某些情况下好用，但他也会导致致命错误。如下：
-char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指向空值   这是非常有害的，毫无疑问。结果将是不确定的（编译器能产生一些输出，导致任何事情都有可能发生），应该躲开写出这样代码的人除非他们同意改正错误。如果你担心这样的代码会出现在你的软件里，那么你最好完全避免使用引用，要不然就去让更优秀的程序员去做。
- 最后上附图，帮助理解
-  堆（heap）和栈（stack）
- 平常说的“堆栈”其实是栈。
- 栈，就是那些由编译器在需要的时候分配，在不需要的时候自动清除的变量的存储区。里面的变量通常是局部变量、函数参数等。
- 堆，就是那些由new分配的内存块，他们的释放编译器不去管，由我们的应用程序去控 制，一般一个new就要对应一个delete。如果程序员没有释放掉，那么在程序结束后，操作系统会自动回收。
-  程序的栈结构
- 程序的地址空间布局： 程序运行靠四个东西：代码、栈、堆、数据段。代码段主要存放的就是可执行文件(通常可执行文件内，含有以二进制编码的微处理器指令，也因此可执行文件有时称为二进制文件)中的代码；数据段存放的就是程序中全局变量和静态变量；堆中是程序的动态内存区域，当程序使用malloc或new得到的内存是来自堆的；栈中维护的是函数调用的上下文，离开了栈就不可能实现函数的调用。</description>
+      <description>GC垃圾回收机制： 浅析与理解 对垃圾回收进行分析前，我们先来了解一些基本概念 基本概念 内存管理：内存管理对于编程语言至关重要。汇编允许你操作所有</description>
     </item>
     
     <item>
@@ -68,36 +37,7 @@ char *pc = 0; // 设置指针为空值 char&amp;amp; rc = *pc; // 让引用指�
       <pubDate>Sat, 31 Dec 2016 11:33:08 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/javascriptxin-xian-shi-di-6ji.html</guid>
-      <description>微软公布TypeScript 2.0 RC版本 在8月30日，微软公布了TypeScript 2.0 RC版本，增加了一些特性，已经离正式版不远了，目测功能应该不会再有太大的变化。
-原文地址：https://blogs.msdn.microsoft.com/typescript/2016/08/30/announcing-typescript-2-0-rc/
-Angular 2.0 RC6发布 总感觉Angular 2.0在跟谁TypeScript 2.0的脚步，在8月的最后一天，也就是TypeScript 2.0 RC发布后的第二天，Angular 2.0发布了第6个RC版本。增强了静态编译、表单功能和国际化。Angular 2.0难道要等TypeScript 2.0出正式版才肯Release吗？
-原文地址：http://angularjs.blogspot.com/2016/09/angular-2-rc6_1.html
-Google Closure Compiler发布纯JavaScript版本 老同学们可曾记得Google的Closure Compiler，当时是继YUI Compressor之后的另一个JavaScript压缩工具，不过跟YUI Compressor一样，都是需要Java环境的。后来在Node.js时代，终于被UglifyJS所替代，现在，Google的Closure Compiler出了纯JavaScript的版本，可以直接在Node.js环境使用，据说这并不是一个重写的版本，而是把Java代码转成了JavaScript代码，至于怎么做到的，Google并没有告诉我们……
-原文链接：https://developers.googleblog.com/2016/08/closure-compiler-in-javascript.html
-Babel 6.14.0发布 上周早些时候Babel发布了6.14.0版本，增加了es2017的preset。
-原文地址：https://babeljs.io/blog/2016/08/24/6.14.0
-babili Babel出的一个代码压缩工具，但只转化到ES6，需要浏览器原生支持ES6+。
-项目地址：https://github.com/babel/babili
-xterm.js 一个浏览器里的xterm组件，完全支持xterm，在你的页面里加入命令行。
-项目地址：https://github.com/sourcelair/xterm.js
-Cesium 一个基于JavaScript和WebGL技术的虚拟地球。
-http://cesiumjs.org
-react-dates 由Airbnb开发的一个React日期选择组件，轻松选择开始时间和结束时间。
-项目地址：https://github.com/airbnb/react-dates
-dext 类似Alfred或macOS自身Spotlight的一个东西，又是使用Atom的Electron编写。
-项目地址：https://github.com/vutran/dext
-WebMonkeys 使用GPU进行运算，大量的数据运算可以扔给GPU去处理。
-项目地址：https://github.com/MaiaVictor/WebMonkeys
-KeystoneJS 4.0.0 Beta KeystoneJS发布4.0.0 Beta版本，一个基于Node.js的CMS。
-官网：http://keystonejs.com/
-Push.js 让你轻易的弹出浏览器通知，号称支持所有浏览器（IE除外）。
-官网：http://nickersoft.github.io/push.js
-Grade.js 根据图片的生成对应的渐变色，可以参考一下demo，是否真的有用。
-官网：http://benhowdle.im/grade/
-最近好多从各种语言转JavaScript的编译器，这两周又冒出来三个……
-BuckleScript 1.0 金融界的彭博也来凑热闹，发布了BuckleScript 1.0版本，一个OCaml转JavaScript的编译器。
-原文地址：http://bloomberg.github.io/bucklescript/blog/index.html
-GopherJS 1.</description>
+      <description>微软公布TypeScript 2.0 RC版本 在8月30日，微软公布了TypeScript 2.0 RC版本，增加了一些特性，已经离正式版不远了，目测功能应</description>
     </item>
     
     <item>
@@ -106,24 +46,7 @@ GopherJS 1.</description>
       <pubDate>Sat, 31 Dec 2016 11:32:47 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/goshi-xian-gao-xing-neng-zhi-bo-fu-wu.html</guid>
-      <description>livego
-go 实现直播服务
-服务器部署
-chmod 755 server.sh
-./server.sh &amp;amp;（依赖go环境，有些情况需要用vim 打开 set ff=unix 然后:wq）
-或者直接执行 ./LiveGoServer (不依赖go环境)
-本地部署
-直接执行 LiveGoServer.exe
-use
-采用vue+webpack实现ui
-所有在config里
-日志在logs里
-http://localhost:8080/ (视频直播)
-http://localhost:8080/camera (录视频)(由于chrome的安全限制，建议在firefox下打开录视频页面)
-使用效果
-交流使用
-交流群：337937322
-项目地址：[](https://github.com/qieangel2013/livego)[https://github.com/qieangel20...](https://github.com/qieangel2013/livego)</description>
+      <description>livego go 实现直播服务 服务器部署 chmod 755 server.sh ./server.sh &amp;amp;（依赖go环境，有些情况需要用vim 打开 set ff=unix 然后:wq） 或者直接执行 ./LiveGoServer (不依赖go环境) 本地部署</description>
     </item>
     
     <item>
@@ -132,22 +55,7 @@ http://localhost:8080/camera (录视频)(由于chrome的安全限制，建议在
       <pubDate>Sat, 31 Dec 2016 11:32:42 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/ji-yu-httpbiao-zhun-xie-yi-de-apijie-kou-she-ji-gui-fan-gou-sai.html</guid>
-      <description>https://segmentfault.com/a/
-开发规范  版本控制git
- 开发流程git flow
-  接口 请求方式 url 动作 中文说明
-GET /resources/ list 列表 POST /resources/ create 创建 GET /resources/:id retrieve 详细 PUT /resources/:id update 更新 PATCH /resources/:id partial_update 部分更新 DELETE /resources/:id destroy 删除
-数据  请求支持form-date,json,x-www-form-urlencode
- 返回格式统一为json
- 一个请求对应一个serializer
-  错误  错误信息包含在返回内容里
- 不同的错误对应不同的错误信息代码
- http错误码按照标准用法使用
-  认证  jwt
- token
- oauth2
-  权限  以中间件形式作为权限鉴别插件，根据http请求格式直接判断权限
- 用户登录成功时，将用户信息与权限信息缓存保证效率</description>
+      <description>https://segmentfault.com/a/ 开发规范 版本控制git 开发流程git flow 接口 请求方式 url 动作 中文说明 GET /resources/ list 列表 POST /resources/ create 创建 GET /resources/:id retrieve 详细 PUT /resources/:id update 更新 PATCH /resources/:id partial_update 部分更新 DELETE /resources/:id destroy 删除 数据 请求支</description>
     </item>
     
   </channel>

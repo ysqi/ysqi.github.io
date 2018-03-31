@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>数据库 on 虞双齐的博客</title>
+    <title>数据库 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.html</link>
-    <description>在 虞双齐的博客上关于in 数据库 的内容</description>
+    <description>Recent content in 数据库 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Mon, 13 Mar 2017 08:34:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>互联网数据库“跨库分页”架构技术实践</title>
@@ -17,16 +19,7 @@
       <pubDate>Mon, 13 Mar 2017 08:34:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/hu-lian-wang-shu-ju-ku-kua-ku-fen-xie-jia-gou-ji-shu-shi-jian.html</guid>
-      <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如：
- 微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城，查看第N页帖子。  这些业务场景对应的消息表，订单表，帖子表分页拉取需求有这样一些特点：
- 有一个业务主键id，例如msg_id，order_id，tiezi_id 分页排序是按照非业务主键id来排序的，业务中经常按照时间time来排序order by  在数据量不大时，可以通过在排序字段time上建立索引，利用SQL提供的offset/limit功能就能满足分页查询需求：
-select * from t_msg order by time offset 200 limit 100 select * from t_order order by time offset 200 limit 100 select * from t_tiezi order by time offset 200 limit 100  此处假设一页数据为100条，均拉取第3页数据。
-分库需求 高并发大流量的互联网架构，一般通过服务层来访问数据库，随着数据量的增大，数据库需要进行水平切分，分库后将数据分布到不同的数据库实例（甚至物理机器）上，以达到降低数据量，增加实例数的扩容目的。
-一旦涉及分库，逃不开“分库依据”patition key的概念，使用哪一个字段来水平切分数据库呢：大部分的业务场景，会使用业务主键id。
-确定了分库依据patition key后，接下来要确定的是分库算法：大部分的业务场景，会使用业务主键id取模的算法来分库，这样即能够保证每个库的数据分布是均匀的，又能够保证每个库的请求分布是均匀的，实在是简单实现负载均衡的好方法，此法在互联网架构中应用颇多。
-举一个更具体的例子：
-用户库user，水平切分后变为两个库，分库依据patition key是uid，分库算法是uid取模：uid%2余0的数据会落到db0，uid%2余1的数据会落到db1。
-问题的提出 仍然是上述用户库的例子，如果业务要查询“最近注册的第3页用户”，该如何实现呢？单库上，可以select * from t_user order by time offset 200 limit 100，变成两个库后，分库依据是uid，排序依据是time，数据库层失去了time排序的全局视野，数据分布在两个库上，此时该怎么办呢？</description>
+      <description>一、需求缘起 分页需求 互联网很多业务都有分页拉取数据的需求，例如： 微信消息过多时，拉取第N页消息。 京东下单过多时，拉取第N页订单。 浏览58同城</description>
     </item>
     
     <item>
@@ -35,13 +28,7 @@ select * from t_msg order by time offset 200 limit 100 select * from t_order ord
       <pubDate>Sat, 31 Dec 2016 11:35:11 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/shi-yong-golangzai-yu-shu-ju-ku-fang-wen-guo-cheng-zhong-de-yi-dian-xiang-fa.html</guid>
-      <description> https://segmentfault.com/a/
-遇到的问题 golang对于基本类型初始化的处理，是自动给基本类型赋值为默认值。比如：
-var i int//在这里如果不对i做任何赋值，那么i的值为零  这个特性在很多地方能够避免访问到未初始化变量的尴尬，但是由此也引出了另外一个问题，就是在进行数据库访问操作时应该如果对待这样的默认值。
-现在我们假设一个场景，表A有3个字段{AID int,AField1 string,AField2 string}，表B也有3个字段{ID int,BField1 string,REF_AID int}，其中表B中的REF_AID是外键对应表A中的AID。对应在GO中的数据结构应该为：
-type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BID int//主键 BField1 string REF_AID int//外键，对应AID }  在new对象B的时候，B中的三个值就分别被默认的初始化为{0,&amp;ldquo;&amp;rdquo;,0}，如果此时不对内容做任何操作，直接执行插入，问题就可能会变得很严重，因为A中很可能并没有任何一条记录的ID值为0，数据库报错，这条插入是一定会失败。但是仅仅在数据库层面上来看，数据库的结构是没问题的，表B中的REF_AID可以为空，在其他的语言中，如果没有对具体数据进行初始化，该属性会为空，对应插入的时候也会为空，但是在golang中，由于语言级别的默认初始化，使得这个插入过程会有大量的0的存在，触犯到原本表的约束规则而导致插入失败。
-在orm中也没有看到能够解决这个问题的办法，可能是我用的不够仔细，这个留待以后再说。
-自己的一点想法  把所有的数据库中相关的表都添加一条默认的以0为id的记录，该记录不需要有意义，只是用来防止歧义以及违反约束引起的操作失败，特别是一些ref_表，因为其中数据变动不大，却经常与其他一些表存在外键关系。这样做会给数据库带来一些额外的开销，但是作为一个临时的解决办法似乎还不错，至少能让数据处理流程正确的运行。 从orm中解决问题。这个只是一个想法，不过这很可能变成一种无理的要求，因为这需要orm去判断你的Field中存放的这个0到底是你自己就想指定的0值，还是你不想要却被语言默认初始化出来的0。 自己写SQL语句执行，这可能是最傻的一种方法了，不过却能保证事情完全按照自己的想法执行。  </description>
+      <description>https://segmentfault.com/a/ 遇到的问题 golang对于基本类型初始化的处理，是自动给基本类型赋值为默认值。比如： var i int//在这里如果不对i做任何赋值，那么i的值为</description>
     </item>
     
     <item>
@@ -50,13 +37,7 @@ type A struct{ AID int//主键 AField1 string AField2 string } type B struct{ BI
       <pubDate>Sat, 31 Dec 2016 11:34:24 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/guan-yu-golangzhong-database_sqlbao-de-xue-xi-bi-ji.html</guid>
-      <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在github上搜了很多ORM来学习，在jmoiron/sqlx中发现了一篇比较详细介绍database/sql这个包的文章，拿来和大家分享。本文并不是按字句的翻译，如果哪里表述不清楚建议阅读原文 原文地址
- 概述 sql.DB不是一个连接，它是数据库的抽象接口。它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
-使用DB 导入driver 这里使用的是MySQL drivers
-import ( &amp;quot;database/sql&amp;quot; _ &amp;quot;github.com/go-sql-driver/mysql&amp;quot; )  连接DB func main() { db, err := sql.Open(&amp;quot;mysql&amp;quot;, &amp;quot;user:password@tcp(127.0.0.1:3306)/hello&amp;quot;) if err != nil { log.Fatal(err) } defer db.Close() }  sql.Open的第一个参数是driver名称，第二个参数是driver连接数据库的信息，各个driver可能不同。DB不是连接，并且只有当需要使用时才会创建连接，如果想立即验证连接，需要用Ping()方法，如下：
-err = db.Ping() if err != nil { // do something here }  sql.DB的设计就是用来作为长连接使用的。不要频繁Open, Close。比较好的做法是，为每个不同的datastore建一个DB对象，保持这些对象Open。如果需要短连接，那么把DB作为参数传入function，而不要在function中Open, Close。
-读取DB 如果方法包含Query，那么这个方法是用于查询并返回rows的。其他情况应该用Exec()。
-var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from users where id = ?</description>
+      <description>因为最近在学习Go，所以找了revel这个框架来学习，感觉和php的面向对象有很大不同。revel没有提供db mapping的组件，所以在g</description>
     </item>
     
     <item>
@@ -65,36 +46,7 @@ var ( id int name string ) rows, err := db.Query(&amp;quot;select id, name from 
       <pubDate>Sat, 31 Dec 2016 11:32:45 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/kubernetesjian-kong-zhi-influxdb.html</guid>
-      <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。
-该数据库现在主要用于存储涉及大量的时间戳数据，如DevOps监控数据，APP metrics, loT传感器数据和实时分析数据。
-InfluxDB特征：
- 无结构(无模式)：可以是任意数量的列
- 可以设置metric的保存时间
- 支持与时间有关的相关函数(如min、max、sum、count、mean、median等)，方便统计
- 支持存储策略:可以用于数据的删改。(influxDB没有提供数据的删除与修改方法)
- 支持连续查询:是数据库中自动定时启动的一组语句，和存储策略搭配可以降低InfluxDB的系统占用量。
- 原生的HTTP支持，内置HTTP API
- 支持类似sql语法
- 支持设置数据在集群中的副本数
- 支持定期采样数据，写入另外的measurement，方便分粒度存储数据。
- 自带web管理界面，方便使用(登入方式：http://%3C InfluxDB-IP &amp;gt;:8083)
-  关键概念 InfluxDB关键概念列表：
-database
-field key
-field set
-field value
-measurement
-point
-retention policy
-series
-tag key
-tag set
-tag value
-timestamp
-下面举个例子进行概念介绍：
-我们虚拟一组数据，其中有一张数据表(measurement)为census，该表记录了由两个科学家(langstroth和perpetua)在两个不同的位置(1和2)，统计了butterflies和honeybees的数据，时间段是2015-08-18 00: 00:00 &amp;ndash; 2015-08-18 06: 12:00. 我们假设这些数据属于叫my_database的数据库(database)，且该数据存储在autogen的存储策略(retention policy)中。
-数据展示如下：
-name: census --------------------- time butterflies honeybees location scientist 2015-08-18T00:00:00Z 12 23 1 langstroth 2015-08-18T00:00:00Z 1 30 1 perpetua 2015-08-18T00:06:00Z 11 28 1 langstroth 2015-08-18T00:06:00Z 3 28 1 perpetua 2015-08-18T05:54:00Z 2 11 2 langstroth 2015-08-18T06:00:00Z 1 10 2 langstroth 2015-08-18T06:06:00Z 8 23 2 perpetua 2015-08-18T06:12:00Z 7 22 2 perpetua  我们针对数据来进行概念分析：</description>
+      <description>什么是InfluxDB？ InfluxDB介绍 InfluxDB是一款用Go语言编写的开源分布式时序、事件和指标数据库，无需外部依赖。 该数据库现</description>
     </item>
     
   </channel>

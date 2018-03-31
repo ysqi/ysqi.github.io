@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang#架构 on 虞双齐的博客</title>
+    <title>Golang#架构 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/golang#%E6%9E%B6%E6%9E%84.html</link>
-    <description>在 虞双齐的博客上关于in Golang#架构 的内容</description>
+    <description>Recent content in Golang#架构 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Wed, 22 Feb 2017 08:37:15 +0800</lastBuildDate>
-    <atom:link href="/tags/golang#%E6%9E%B6%E6%9E%84.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/golang#%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>从设计到实战:Go如何扛住100亿次请求</title>
@@ -17,29 +19,7 @@
       <pubDate>Wed, 22 Feb 2017 08:37:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/cong-she-ji-dao-shi-zhan-go-ru-he-gang-zhu-100yi-ci-qing-qiu.html</guid>
-      <description>扛住100亿次请求？我们来试一试
-作者：ppmsn2005#gmail.com
-项目:https://github.com/xiaojiaqi/10billionhongbaos
-wiki:https://github.com/xiaojiaqi/10billionhongbaos/wiki/扛住100亿次请求？我们来试一试
-​1. 前言
-前几天，偶然看到了 《扛住100亿次请求——如何做一个“有把握”的春晚红包系统”》（url）一文，看完以后，感慨良多，收益很多。正所谓他山之石，可以攻玉，虽然此文发表于2015年,我看到时已经是2016年末，但是其中的思想仍然是可以为很多后端设计借鉴，。同时作为一个工程师，看完以后又会思考，学习了这样的文章以后，是否能给自己的工作带来一些实际的经验呢？所谓纸上得来终觉浅，绝知此事要躬行，能否自己实践一下100亿次红包请求呢？否则读完以后脑子里能剩下的东西 不过就是100亿 1400万QPS整流 这样的字眼，剩下的文章将展示作者是如何以此过程为目标，在本地环境的模拟了此过程。
-实现的目标: 单机支持100万连接，模拟了摇红包和发红包过程，单机峰值QPS 6万，平稳支持了业务。
- 注：本文以及作者所有内容，仅代表个人理解和实践，过程和微信团队没有任何关系，真正的线上系统也不同，只是从一些技术点进行了实践，请读者进行区分。因作者水平有限，有任何问题都是作者的责任，有问题请联系 ppmsn2005#gmail.com. 全文内容 扛住100亿次请求？我们来试一试
-​2. 背景知识
- QPS: Queries per second 每秒的请求数目
- PPS：Packets per second 每秒数据包数目
- 摇红包：客户端发出一个摇红包的请求，如果系统有红包就会返回，用户获得红包
- 发红包：产生一个红包里面含有一定金额，红包指定数个用户，每个用户会收到红包信息，用户可以发送拆红包的请求，获取其中的部分金额。
-​3. 确定目标
- 在一切系统开始以前，我们应该搞清楚我们的系统在完成以后，应该有一个什么样的负载能力。
-3.1 用户总数:
- 通过文章我们可以了解到接入服务器638台, 服务上限大概是14.3亿用户， 所以单机负载的用户上限大概是14.3亿/638台=228万用户/台。但是目前中国肯定不会有14亿用户同时在线，参考 http://qiye.qianzhan.com/show/detail/160818-b8d1c700.html 的说法，2016年Q2 微信用户大概是8亿，月活在5.4 亿左右。所以在2015年春节期间，虽然使用的用户会很多，但是同时在线肯定不到5.4亿。
-3.2. 服务器数量：
- 一共有638台服务器，按照正常运维设计，我相信所有服务器不会完全上线，会有一定的硬件冗余，来防止突发硬件故障。假设一共有600台接入服务器。
-3.3 单机需要支持的负载数：
- 每台服务器支持的用户数：5.4亿/600 = 90万。也就是平均单机支持90万用户。如果真实情况比90万更多，则模拟的情况可能会有偏差，但是我认为QPS在这个实验中更重要。
-3.4. 单机峰值QPS：
- 文章中明确表示为1400万QPS.这个数值是非常高的，但是因为有600台服务器存在，所以单机的QPS为 1400万/600= 约为2.3万QPS, 文章曾经提及系统可以支持4000万QPS，那么系统的QPS 至少要到4000万/600 = 约为 6.</description>
+      <description>扛住100亿次请求？我们来试一试 作者：ppmsn2005#gmail.com 项目:https://github.com/xiaojiaqi/</description>
     </item>
     
   </channel>

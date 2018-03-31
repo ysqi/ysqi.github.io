@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>架构模式 on 虞双齐的博客</title>
+    <title>架构模式 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html</link>
-    <description>在 虞双齐的博客上关于in 架构模式 的内容</description>
+    <description>Recent content in 架构模式 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:35:02 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go并发模式:管道和取消</title>
@@ -17,19 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:35:02 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/gobing-fa-mo-shi-guan-dao-he-qu-xiao.html</guid>
-      <description>原地址：[](http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html)http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelines-and-cancellation.html
-译自[](http://blog.golang.org/pipelines)http://blog.golang.org/pipelines。
-这是Go官方blog的一篇文章，介绍了如何使用Go来编写并发程序，并按照程序的演化顺序，介绍了不同模式遇到的问题以及解决的问题。主要解释了用管道模式链接不同的线程，以及如何在某个线程取消工作时，保证所有线程以及管道资源的正常回收。
-Go并发模式：管道和取消
-作者：Sameer Ajmani，blog.golang.org，写于2014年3月13日。
-介绍 Go本身提供的并发特性，可以轻松构建用于处理流数据的管道，从而高效利用I/O和多核CPU。这篇文章就展示了这种管道的例子，并关注当操作失败时要处理的一些细节，并介绍了如何干净的处理错误的技巧。
-什么是管道？ Go语言里没有明确定义管道，而只是把管道当作一类并发程序。简单来说，管道是一系列由channel联通的状态（stage），而每个状态是一组运行相同函数的Goroutine。每个状态上，Goroutine
- 通过流入（inbound）channel接收上游的数值 运行一些函数来处理接收的数据，一般会产生新的数值 通过流出（outbound）channel将数值发给下游  每个语态都会有任意个流入或者流出channel，除了第一个状态（只有流出channel）和最后一个状态（只有流入channel）。第一个状态有时被称作源或者生产者；最后一个状态有时被称作槽（sink）或者消费者。
-我们先从一个简单的管道例子开始解释这些想法和技术。之后，我们再来看一些更真实的例子。
-求平方数 考虑一个管道和三个状态。
-第一个状态，gen，是一个将一系列整数一一传入channel的函数。gen函数启动一个Goroutine，将整数数列发送给channel，如果所有数都发送完成，关闭这个channel：
-func gen(nums ...int) &amp;lt;-chan int { out := make(chan int) go func() { for _, n := range nums { out &amp;lt;- n } close(out) }() return out }  第二个状态，sq，从一个channel接收整数，并求整数的平方，发送给另一个channel。当流入channel被关闭，而且状态已经把所有数值都发送给了下游，关闭流出channel：
-func sq(in &amp;lt;-chan int) &amp;lt;-chan int { out := make(chan int) go func() { for n := range in { out &amp;lt;- n * n } close(out) }() return out }  主函数建立起管道，并执行最终的状态：从第二个状态接收所有的数值并打印，直到channel被关闭：</description>
+      <description>原地址：[](http://air.googol.im/2014/03/15/go-concurrency-patterns-pipelin</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>3des on 虞双齐的博客</title>
+    <title>3des on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/3des.html</link>
-    <description>在 虞双齐的博客上关于in 3des 的内容</description>
+    <description>Recent content in 3des on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:15 +0800</lastBuildDate>
-    <atom:link href="/tags/3des.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/3des/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golang实现ECB模式3DES算法</title>
@@ -17,23 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:15 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golangshi-xian-ecbmo-shi-3dessuan-fa.html</guid>
-      <description>简介 因项目需要使用ECB模式下的3DES算法加解密信息，golang默认只提供CBC模式，只能自己实现ECB模式。
-参考[](https://segmentfault.com/a/1190000004151272)[https://segmentfault.com/a/11...](https://segmentfault.com/a/1190000004151272)，文章对ECB模式的DES有解释，并实现了部分DES算法样例。这里把算法补全，提供3DES算法实现。
-基础 3DES
-3DES算法就是采用一个长度为24字节的密钥，将密钥分成各8字节的3份子密钥：K1、k2、k3。使用这3个密钥对明文进行加密、解密处理，如下：
-E(k,d)、D(k,d)分别表示使用密钥k对数据d进行加密或解密，返回加密或解密后的数据。
-3DES加密过程：
-E(k3,D(k2,E(k1,d)))
-意思为：将明文d先用k1加密，得到密文d1；对d1再用k2做解密处理，得到密文d2；再对d2用k3做加密处理，得到最终密文。
-3DES解密过程与加密相反：
-D(k1,E(k2,D(k3,d)))
-意思为：将密文d先用k3解密，得到密文d1；对d1再用k2做加密处理，得到密文d2；再对d2用k1做解密处理，得到最终明文。
-填充
-填充方式采用PKCS5Padding，代码照搬如下：
-func PKCS5Padding(ciphertext []byte, blockSize int) []byte { padding := blockSize - len(ciphertext)%blockSize padtext := bytes.Repeat([]byte{byte(padding)}, padding) return append(ciphertext, padtext...) } func PKCS5Unpadding(origData []byte) []byte { length := len(origData) unpadding := int(origData[length-1]) return origData[:(length - unpadding)] }  填充过程就是要把明文长度凑成8的整数倍，少几个就填充几个对应的数字。如少4个字节才满8的倍数，那就填充4个0x04；如果明文刚好是8的倍数，就要再填充8个0x08。
-解密后，要把填充的数据删除，就取最后一个字节的值，按值删掉最后几个字节。(设计的很巧妙)
-代码 完整的代码：
-package tripledesecb import ( &amp;quot;bytes&amp;quot; &amp;quot;crypto/des&amp;quot; &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/crypto/pbkdf2&amp;quot; ) //ECB PKCS5Padding func PKCS5Padding(ciphertext []byte, blockSize int) []byte { padding := blockSize - len(ciphertext)%blockSize padtext := bytes.</description>
+      <description>简介 因项目需要使用ECB模式下的3DES算法加解密信息，golang默认只提供CBC模式，只能自己实现ECB模式。 参考[](https://</description>
     </item>
     
   </channel>

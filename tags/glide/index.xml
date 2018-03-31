@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Glide on 虞双齐的博客</title>
+    <title>Glide on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/glide.html</link>
-    <description>在 虞双齐的博客上关于in Glide 的内容</description>
+    <description>Recent content in Glide on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:22 +0800</lastBuildDate>
-    <atom:link href="/tags/glide.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/glide/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>glide使用</title>
@@ -17,10 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:33:22 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/glideshi-yong.html</guid>
-      <description>github: https://github.com/Masterminds/glide
-document: http://glide.readthedocs.io/en/stable/?badge=stable
-golang环境设置 设置环境变量 使用vendor目录 GO15VENDOREXPERIMENT=1  安装 获取 $ go get github.com/Masterminds/glide 进入目录 $ cd github.com/Masterminds/glide 编译 $ make build $ go build -o glide -ldflags &amp;quot;-X main.version=v0.11.0&amp;quot; glide.go  使用 # 创建glide.yaml文件 提示选择N(选择Y 是重新配置文件需手动指定) $ glide create #打开配置文件 $ open glide.yaml #使用glide获取包会自动写入glide.yaml文件中 $ glide get github.com/Masterminds/cookoo # 安装glide.yaml所需的包 $ glide install # 项目编译 $ go build # glide更新包 $ glide up  *注意 可以指定下载包的地址，版本号，下载方式
-例如(golang包需要指定下载地址):</description>
+      <description>github: https://github.com/Masterminds/glide document: http://glide.readthedocs.io/en/stable/?badge=stable golang环境设置 设置环境变量 使用vendor目录 GO15VENDOREXPERIMENT=1 安装 获取 $ go get github.com/Masterminds/glide 进入目录 $ cd github.com/Masterminds/glide 编译 $ make build $ go build -o glide -ldflags &amp;quot;-X main.version=v0.11.0&amp;quot; glide.go 使用 # 创建glide</description>
     </item>
     
   </channel>

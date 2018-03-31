@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>读源码 on 虞双齐的博客</title>
+    <title>读源码 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E8%AF%BB%E6%BA%90%E7%A0%81.html</link>
-    <description>在 虞双齐的博客上关于in 读源码 的内容</description>
+    <description>Recent content in 读源码 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:34:18 +0800</lastBuildDate>
-    <atom:link href="/tags/%E8%AF%BB%E6%BA%90%E7%A0%81.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E8%AF%BB%E6%BA%90%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go标准库剖析1(transporthttp请求的承载者)</title>
@@ -17,11 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:34:18 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/go-biao-zhun-ku-pou-xi--1transport-http-qing-qiu-de-cheng-zai-zhe-.html</guid>
-      <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法
-type RoundTripper interface { RoundTrip(*Request) (*Response, error) }  RoundTrip executes a single HTTP transaction, returning the Response for the request req. (RoundTrip 代表一个http事务，给一个请求返回一个响应)
-说白了，就是你给它一个request,它给你一个response
-下面我们来看一下他的实现，对应源文件net/http/transport.go，我感觉这里是http package里面的精髓所在，go里面一个struct就跟一个类一样，transport这个类长这样的
-type Transport struct { idleMu sync.Mutex wantIdle bool // user has requested to close all idle conns idleConn map[connectMethodKey][]*persistConn idleConnCh map[connectMethodKey]chan *persistConn reqMu sync.Mutex reqCanceler map[*Request]func() altMu sync.RWMutex altProto map[string]RoundTripper // nil or map of URI scheme =&amp;gt; RoundTripper //Dial获取一个tcp 连接，也就是net.</description>
+      <description>使用golang net/http库发送http请求，最后都是调用 transport的 RoundTrip方法 type RoundTripper interface { RoundTrip(*Request) (*Response, error) } RoundTrip executes a single HTTP transaction, returning the Response</description>
     </item>
     
   </channel>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>视频处理 on 虞双齐的博客</title>
+    <title>视频处理 on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86.html</link>
-    <description>在 虞双齐的博客上关于in 视频处理 的内容</description>
+    <description>Recent content in 视频处理 on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:33:23 +0800</lastBuildDate>
-    <atom:link href="/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang读取切分存储byte流文件</title>

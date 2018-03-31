@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs on 虞双齐的博客</title>
+    <title>Emacs on 虞双齐爱折腾</title>
     <link>https://yushuangqi.com/tags/emacs.html</link>
-    <description>在 虞双齐的博客上关于in Emacs 的内容</description>
+    <description>Recent content in Emacs on 虞双齐爱折腾</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <lastBuildDate>Sat, 31 Dec 2016 11:32:28 +0800</lastBuildDate>
-    <atom:link href="/tags/emacs.html" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://yushuangqi.com/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>golang笔记</title>
@@ -17,23 +19,7 @@
       <pubDate>Sat, 31 Dec 2016 11:32:28 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2016/golang-bi-ji.html</guid>
-      <description>emacs 开发环境 spacemacs已经集成了不少功能，但是缺少代码提示。因此还需要gocode来辅助。
- 安装所需的命令
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef go get -u -v
-golang.org/x/tools/cmd/guru go get -u -v
-golang.org/x/tools/cmd/gorename go get -u -v
-golang.org/x/tools/cmd/goimports
- 配置文件
-将gocode中的go-autocomplete.el拷贝至elpa/go-mode下
-向space macs手动添加包：dotspacemacs-additional-packages &#39;(go-autocomplete)
-在dotspacemace/user-config中添加以下内容
-(require &#39;go-autocomplete) (require &#39;auto-complete-config) (ac-config-default)   GO package 手册 、go语言圣经
-语法  声明 ：var|const|type|func name (类型) (值)
-var 显式声明一个变元。var name Type
-:= 语法可以隐式地声明一个变元。name := f() | a
-隐式声明的变元的作用域是可以被覆盖的，但显式的不能。
-var a int //1.</description>
+      <description>emacs 开发环境 spacemacs已经集成了不少功能，但是缺少代码提示。因此还需要gocode来辅助。 安装所需的命令 go get -u -v github.com/nsf/gocode go get -u -v github.com/rogpeppe/godef go get -u -v golang.org/x/tools/cmd/guru</description>
     </item>
     
   </channel>

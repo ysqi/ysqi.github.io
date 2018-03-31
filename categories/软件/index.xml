@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软件 on 虞双齐爱折腾</title>
+    <link>https://yushuangqi.com/categories/%E8%BD%AF%E4%BB%B6.html</link>
+    <description>Recent content in 软件 on 虞双齐爱折腾</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <lastBuildDate>Wed, 28 Jun 2017 21:01:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/categories/%E8%BD%AF%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>给电脑小白精挑细选的五个免费软件</title>
+      <link>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</link>
+      <pubDate>Wed, 28 Jun 2017 21:01:02 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/gei-dian-nao-xiao-bai-jing-tiao-xi-xuan-de-wu-ge-mian-fei-ruan-jian.html</guid>
+      <description>不是每一个人都精通电脑，不是每一个都在为提供办公效率而绞尽脑汁。通过软件助你提供效率，每次操作节约3秒钟，一年可为你节约多少个3秒钟？ 下面虞</description>
+    </item>
+    
+    <item>
+      <title>如何使用MAC远程连接Win10操作系统</title>
+      <link>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+      <pubDate>Fri, 12 Aug 2016 09:08:27 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2016/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</guid>
+      <description>办公室电脑为Window，在家需要使用Mac远程访问,但是发现自从升级为Win10后就无法远程连接。 那么如何才能使用Mac远程连接到Win1</description>
+    </item>
+    
+    <item>
+      <title>日志文件自动归档工具</title>
+      <link>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/log_file-job-archiving.html</guid>
+      <description>&lt;p&gt;公司生产环境日志非常大，且日志需要存档两年，以便检查的。故写了一个小工具来自动打包压缩日志文件。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411</title>
+      <link>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</link>
+      <pubDate>Mon, 31 Aug 2015 10:01:36 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/hexo-deploy-git-push-error-rpc-411.html</guid>
+      <description>终于在 Coding.net 上部署搭建了写作环境,同时提交到我的博客,但在deploy到百度应用时有报错,在这里记录下解决方案. 问题表现 执行hexo deploy 时提示er</description>
+    </item>
+    
+    <item>
+      <title>在线云开发平台coding&#43;七牛搭建超级个人博客</title>
+      <link>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</link>
+      <pubDate>Sun, 23 Aug 2015 00:00:00 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/coding-qiniu-build_blog.html</guid>
+      <description>&lt;p&gt;昨天加入了codefollow这个大家庭，话说要鼓励大家写作与分享，趁着老婆睡觉偷偷的写一篇如何利用云开发平台coding以及七牛这条大黄牛来搭建一个超级方便又稳定的个人博客。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mac下安装Redis用于开发测试</title>
+      <link>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</link>
+      <pubDate>Sat, 15 Aug 2015 09:12:01 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/install-redis-in-mac.html</guid>
+      <description>Redis作为NB的No-SQL数据，向往已久，现在在做一个网站，计数类的需求比较大，所以准使用Redis实现。下面记录下虞双齐在Mac下开</description>
+    </item>
+    
+    <item>
+      <title>MAC下快速安装Wget</title>
+      <link>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</link>
+      <pubDate>Sat, 15 Aug 2015 08:45:07 +0000</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2015/install-wget-in-mac.html</guid>
+      <description>wget是Linux下非常好用的下载工具，何奈Mac下默认不带此命令，仅有curl，下面记录上老虞在Mac下安装Wget的过程。 安装Wget</description>
+    </item>
+    
+  </channel>
+</rss>
