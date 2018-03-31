@@ -2,10 +2,24 @@ baseurl = "https://yushuangqi.com"
 languageCode = "zh"
 # language support # en / zh-cn / other...
 defaultContentLanguage = "zh-cn"
-title = "虞双齐的博客" 
-pygmentsuseclasses = false
-PygmentsCodeFences = true
-pygmentsstyle = "friendly"
+title = "虞双齐爱折腾" 
+
+# 使用自定义的 chromastyles 样式，
+# 启用时需  hugo gen chromastyles --style=monokai > syntax.css 生成指定代码高亮主题
+pygmentsUseClasses = false
+
+# 为 true 时，markdown 中代码进行 html 转换
+# PygmentsCodeFences = true 
+
+# 代码高亮主题，可用主题，见： https://help.farbox.com/pygments.html 
+# 注意：如果 pygmentsUseClasses = true 则不生效
+# pygmentsstyle = "default"
+
+# Set to true to try to do syntax highlighting on code fenced blocks in markdown without a language tag.
+# pygmentsCodefencesGuessSyntax = true 
+# If you for some reason don’t want to use the built-in Chroma highlighter, you can set pygmentsUseClassic=true
+# pygmentsUseClassic = true
+
 uglyURLs = true
 metaDataFormat = "YAML"
 # disqusShortname = "yushuangqi" 
@@ -16,6 +30,8 @@ hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否�
 paginate = 3                                              # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 
+ignoreFiles = ["book/*"]
+
 [params]
   uglyURLs = true  # 扩展hugo var 尚未公开的变量，方便在模板中使用
   #备案号，配置后网页底部将显示链接到备案系统
@@ -25,7 +41,7 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
   
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
 
-  since = "2015"            # Site creation time          # 站点建立时间
+  since = "2014"            # Site creation time          # 站点建立时间
   homeFullContent = false   # if false, show post summaries on home page. Othewise show full content.
   rssFullContent = true     # if false, Rss feed instead of the summary
 
@@ -34,11 +50,11 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
   keywords = ["智能合约开发","Go语言", "区块链技术"] 
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
-  archive-paginate = 20
+  archive-paginate = 25
 
   # paginate style, default use numbered pagination links
   # if true, use original "Previous" and "Next" links.
-  paginateOriginalStyle = true 
+  # paginateOriginalStyle = true 
 
   # The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/
   dateFormatToUse = "2006-01-02"
@@ -52,7 +68,7 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
   autoCollapseToc = false   # Auto expand and collapse toc                              # 目录自动展开/折叠
   fancybox = true           # see https://github.com/fancyapps/fancybox                 # 是否启用fancybox（图片可点击）
   bootcdn = true           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
-  mathjax = false           # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
+  mathjax = true           # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
   contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
 
 
@@ -107,6 +123,11 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
     # n-gitlab = "http://en.xianmin.org/hugo-theme-jane/"
     # o-goodreads = "http://en.xianmin.org/hug 
 
+
+  [params.plugins]
+    # enable Open Graph protocol,see https://developers.facebook.com/docs/sharing/opengraph
+    openGraph = true
+
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
   name = "虞双齐"
@@ -125,7 +146,8 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
 
 [taxonomies]
     tag = "tags"
-    topic = "topics"
+    category = "categories"
+    # topic = "topics"
 
 [permalinks]
 	post = "/blog/:year/:slug"
@@ -139,12 +161,12 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
   filename = "sitemap.xml"
 
 [[menu.main]]             # config your menu              # 配置目录
-  name = "主页"
+  name = "首页"
   weight = 10
   identifier = "home"
   url = "/"
 [[menu.main]]
-  name = "全部文章"
+  name = "归档"
   weight = 20
   identifier = "archives"
   url = "/post.html"
@@ -153,6 +175,7 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
   weight = 30
   identifier = "tags"
   url = "/tags.html"
+ 
 [[menu.main]]
   name = "分类"
   weight = 40
@@ -161,6 +184,6 @@ rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输
 
 [[menu.main]]
   name = "关于"
-  weight = 40
+  weight = 50
   identifier = "about"
   url = "/about.html"
