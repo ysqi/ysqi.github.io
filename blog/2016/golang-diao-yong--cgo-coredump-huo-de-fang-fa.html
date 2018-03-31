@@ -46,7 +46,7 @@ ulimit -c unlimited # coredump can be any large
     link: decodeURI(location.href),
     desc: 'https:\/\/segmentfault.com\/a\/ 写一个错误的c程序 package dlsym import \x26quot;testing\x26quot; func Test_intercept(t *testing.T) { Intercept(\x26quot;gethostbyname\\x00\x26quot;) } package dlsym \/\/ #cgo CFLAGS: -I. \/\/ #include \x26lt;stddef.h\x26gt; \/\/ #include \x26quot;dlsym_wrapper.h\x26quot; import \x26quot;C\x26quot; import \x26quot;unsafe\x26quot; func Intercept(symbol string) { ptr := unsafe.Pointer(\x26amp;([]byte(symbol)[0])) C.intercept((*C.char)(ptr), C.size_t(len(symbol))) } #include \x26lt;dlfcn.h\x26gt; #include \x26lt;stddef.h\x26gt; #include \x26lt;stdio.h\x26gt; void intercept(char *symbol, size_t symbol_len) { symbol = NULL; \/\/ will cause SIGSEGV printf(\x26quot;%s\\n\x26quot;, symbol); fflush(stdout); } 编',
     owner: 'ysqi',
-    repo: 'ysqi\/ysqi.github.io',
+    repo: 'ysqi.github.io',
     oauth: {
       client_id: '639ba986c281b9fcf382',
       client_secret: 'b5862135f283dd308a7f226c06980cf50b8e82f1'

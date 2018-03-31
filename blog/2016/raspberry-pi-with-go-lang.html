@@ -92,7 +92,7 @@ func main() {
     link: decodeURI(location.href),
     desc: '\/\/ This program achieves LED blink on Raspberry Pi with Go lang. \/\/ This is implemented with hard-coding and uses only main function. package main import ( \x26quot;fmt\x26quot; \x26quot;os\x26quot; \x26quot;time\x26quot; ) func main() { \/\/ Initialize GPIO25 fmt.Println(\x26quot;Initialize GPIO25\x26quot;) fd, err := os.OpenFile(\x26quot;\/sys\/class\/gpio\/export\x26quot;, os.O_WRONLY|os.O_SYNC, 0666) if err != nil { fmt.Println(\x26quot;open \/sys\/class\/gpio\/export fails\x26quot;) fmt.Println(err) return } fmt.Fprint(fd, \x26quot;25\x26quot;) fd.Close() \/\/ Check iinitialization result fmt.Println(\x26quot;Check initialization result\x26quot;) _, err = os.Stat(\x26quot;\/sys\/class\/gpio\/gpio25\x26quot;)',
     owner: 'ysqi',
-    repo: 'ysqi\/ysqi.github.io',
+    repo: 'ysqi.github.io',
     oauth: {
       client_id: '639ba986c281b9fcf382',
       client_secret: 'b5862135f283dd308a7f226c06980cf50b8e82f1'

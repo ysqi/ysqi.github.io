@@ -60,7 +60,7 @@ func init() {
     link: decodeURI(location.href),
     desc: 'https:\/\/segmentfault.com\/a\/ go的包不允许循环包含，具体例子： main.go: package main import ( \x26quot;fmt\x26quot; \x26quot;test\/pkg1\x26quot; ) func main() { fmt.Println(\x26quot;in main.main\x26quot;) fmt.Printf(\x26quot;pkg1.Black=%s\\n\x26quot;, pkg1.Black) fmt.Printf(\x26quot;pkg2.Black=%s\\n\x26quot;, pkg2.Black) } func init() { fmt.Println(\x26quot;in main.init\x26quot;) fmt.Printf(\x26quot;pkg1.Black=%s\\n\x26quot;, pkg1.Black) fmt.Printf(\x26quot;pkg2.Black=%s\\n\x26quot;, pkg2.Black) } pkg1.go: package pkg1 import ( \x26quot;fmt\x26quot; \x26quot;test\/pkg2\x26quot; ) const ( Black string = \x26quot;#000\x26quot; white string = \x26quot;#fff\x26quot; ) func init() { fmt.Println(\x26quot;in pkg1.init\x26quot;)',
     owner: 'ysqi',
-    repo: 'ysqi\/ysqi.github.io',
+    repo: 'ysqi.github.io',
     oauth: {
       client_id: '639ba986c281b9fcf382',
       client_secret: 'b5862135f283dd308a7f226c06980cf50b8e82f1'
