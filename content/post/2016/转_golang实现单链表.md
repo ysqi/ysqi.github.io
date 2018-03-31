@@ -8,7 +8,7 @@ slug: "golang-shi-xian-chan-lian-biao"
 source: "https://segmentfault.com/a/1190000007442806"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

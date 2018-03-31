@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000000410708"
 tags: 
 - golang 
 - 算法 
-topics:
+categories:
 - 编程语言与开发
 ---
 

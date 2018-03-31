@@ -8,7 +8,7 @@ slug: "【GO】MACan-zhuang-he-ce-shi-Go"
 source: "https://segmentfault.com/a/1190000003701079"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

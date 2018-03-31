@@ -8,7 +8,7 @@ slug: "xie-ObjectiveCjie-kou-de-shi-hou-lan-chong-shang-nao-yong--Golang-xie-le-
 source: "https://segmentfault.com/a/1190000000646284"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

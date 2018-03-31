@@ -2,7 +2,7 @@
 date: 2013-04-06
 title: 老虞学golang-字符串
 slug: ysqi-golang-string
-topics:
+categories:
 - 编程语言与开发
 tags:
 - Golang

@@ -7,7 +7,7 @@ tags:
 - Golang
 - Go Test
 title: 如何判断是否是在GolangTest运行代码
-topics:
+categories:
 - 编程语言与开发
 ---
 

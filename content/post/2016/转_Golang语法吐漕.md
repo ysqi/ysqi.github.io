@@ -8,7 +8,7 @@ slug: "Golang-yu-fa-tu-cao"
 source: "https://segmentfault.com/a/1190000005336434"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "Go-1_8-http-graceful-ti-yan"
 source: "https://segmentfault.com/a/1190000008383272"
 tags: 
 - Go1.8 
-topics:
+categories:
 - 编程语言与开发
 ---
 

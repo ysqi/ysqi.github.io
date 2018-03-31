@@ -8,7 +8,7 @@ slug: "go_jsjie-dian-zi-ti-she-zhi"
 source: "https://my.oschina.net/u/2391658/blog/856451"
 tags: 
 - gojs 
-topics:
+categories:
 - 编程语言与开发
 ---
 

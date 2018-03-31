@@ -12,7 +12,7 @@ tags:
 - gpio 
 - golang 
 - raspberry-pi-2 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "go_jsmo-xing-yang-shi-shua-ze"
 source: "https://my.oschina.net/u/2391658/blog/856228"
 tags: 
 - gojs 
-topics:
+categories:
 - 编程语言与开发
 ---
 

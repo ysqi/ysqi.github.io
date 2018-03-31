@@ -9,7 +9,7 @@ tags:
 - git
 - github
 title: Wecrcker自动部署到Github过程中问题记录
-topics:
+categories:
 - 编程语言与开发
 ---
 

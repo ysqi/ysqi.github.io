@@ -8,7 +8,7 @@ slug: "Goyu-yan-chan-yuan-ce-shi"
 source: "https://segmentfault.com/a/1190000007951944"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "jin-tian-zai-githubshang-fa-xian-yi-ge-goyu-yan-chu-xue-de-wen-dang"
 source: "https://segmentfault.com/a/1190000000495476"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

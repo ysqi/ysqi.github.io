@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000000656284"
 tags: 
 - iota 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

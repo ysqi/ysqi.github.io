@@ -8,7 +8,7 @@ slug: "goyu-yan-de-yi-xie-tu-cao"
 source: "https://segmentfault.com/a/1190000002981834"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -10,7 +10,7 @@ tags:
 - goroutine 
 - 并发 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

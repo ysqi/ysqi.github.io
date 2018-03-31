@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000009253715"
 tags: 
 - linux 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

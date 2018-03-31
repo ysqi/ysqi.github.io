@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000003034837"
 tags: 
 - golang 
 - json 
-topics:
+categories:
 - 编程语言与开发
 ---
 

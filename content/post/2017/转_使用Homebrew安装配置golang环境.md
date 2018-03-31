@@ -8,7 +8,7 @@ slug: "shi-yong-Homebrewan-zhuang-pei-zhi-golanghuan-jing"
 source: "https://segmentfault.com/a/1190000008317179"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

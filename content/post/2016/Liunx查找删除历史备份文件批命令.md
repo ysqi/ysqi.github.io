@@ -8,7 +8,7 @@ tags:
 - shell
 - NAS
 title: Liunx查找删除历史备份文件批命令
-topics:
+categories:
 - 运维
 ---
 

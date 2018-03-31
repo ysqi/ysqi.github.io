@@ -6,7 +6,7 @@ tags :
 - WebIDE
 - 七牛
 - 教程
-Topics: 
+categories: 
 - 软件
 description: 如何使用在线开发平台搭建基于七牛的个人博客教程
 disqus_identifier: 100002

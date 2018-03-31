@@ -8,7 +8,7 @@ slug: "go-yong-slicemo-ni-vectorgong-neng"
 source: "http://blog.csdn.net/sydnash/article/details/54966734"
 tags: 
 - golang#grpc 
-topics:
+categories:
 - 编程语言与开发
 ---
 

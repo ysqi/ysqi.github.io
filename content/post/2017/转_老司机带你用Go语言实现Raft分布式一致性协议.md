@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000008262809"
 tags: 
 - golang 
 - 分布式 
-topics:
+categories:
 - 编程语言与开发
 ---
 

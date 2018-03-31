@@ -8,7 +8,7 @@ slug: "go-mo-fang-JAVAmian-xiang-jie-kou-_lian-shi-bian-cheng"
 source: "https://segmentfault.com/a/1190000002737864"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

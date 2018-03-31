@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000007265753"
 tags: 
 - 七牛云存储 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

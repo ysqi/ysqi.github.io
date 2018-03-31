@@ -9,7 +9,7 @@ tags :
 - CentOS
 - 阿里云
 - 教程
-Topics: 
+categories: 
 - 运维
 disqus_identifier: 100003
 ---

@@ -8,7 +8,7 @@ slug: "ben-ren-yong-golangxie-de-mysql-orm-huan-ying-shi-yong-di-jiao-bug-you-hu
 source: "https://segmentfault.com/a/1190000000417651"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

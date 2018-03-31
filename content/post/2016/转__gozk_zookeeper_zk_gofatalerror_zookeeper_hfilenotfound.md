@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000007518559"
 tags: 
 - zookeeper 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

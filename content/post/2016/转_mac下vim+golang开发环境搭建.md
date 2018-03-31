@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000007204020"
 tags: 
 - golang 
 - vim 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "golangbing-fa-bian-cheng-de-liang-chong-xian-su-fang-fa"
 source: "https://segmentfault.com/a/1190000005944664"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

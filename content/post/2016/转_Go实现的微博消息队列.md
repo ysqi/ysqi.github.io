@@ -8,7 +8,7 @@ slug: "Goshi-xian-de-wei-bo-xiao-xi-dui-lie"
 source: "https://segmentfault.com/a/1190000004677575"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

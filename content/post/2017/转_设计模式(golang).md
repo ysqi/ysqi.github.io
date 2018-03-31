@@ -8,7 +8,7 @@ slug: "she-ji-mo-shi-(golang)"
 source: "https://my.oschina.net/u/1167564/blog/838997"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

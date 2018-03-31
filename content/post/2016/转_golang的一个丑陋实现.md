@@ -8,7 +8,7 @@ slug: "golangde-yi-ge-chou-lou-shi-xian"
 source: "https://segmentfault.com/a/1190000005600253"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

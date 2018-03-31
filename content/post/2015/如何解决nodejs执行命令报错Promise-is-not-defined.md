@@ -5,7 +5,7 @@ slug: nodejs-error-promise_is_not_defined
 tags : 
 - 问题
 - NodeJs
-topics: 
+categories: 
 - 编程语言与开发
 disqus_identifier: 100006
 ---

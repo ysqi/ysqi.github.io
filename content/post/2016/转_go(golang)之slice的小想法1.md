@@ -8,7 +8,7 @@ slug: "go(golang)zhi-slicede-xiao-xiang-fa-1"
 source: "https://segmentfault.com/a/1190000000718348"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

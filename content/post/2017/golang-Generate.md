@@ -7,7 +7,7 @@ slug: "go-command-generate"
 tags:
 - "Golang"
 - "command"
-topics: 
+categories: 
 - 编程语言与开发
 ---
 

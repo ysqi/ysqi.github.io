@@ -8,7 +8,7 @@ slug: "registry-v2-jie-xi-yi-ji-ru-he-shi-xian-tokenyan-zheng"
 source: "https://segmentfault.com/a/1190000003963021"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

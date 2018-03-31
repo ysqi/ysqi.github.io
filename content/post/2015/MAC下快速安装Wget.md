@@ -2,7 +2,7 @@
 title: MAC下快速安装Wget
 slug: install-wget-in-mac
 date: 2015-08-15T08:45:07
-topics:
+categories:
     - 软件
 tags:
     - mac

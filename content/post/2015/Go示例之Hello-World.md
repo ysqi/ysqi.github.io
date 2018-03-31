@@ -2,7 +2,7 @@
 date: 2013-01-22T08:33:32
 title: Go示例之Hello World
 slug: golang-demo-hello_world
-topics:
+categories:
     - 编程语言与开发 
 tags:
     - Golang

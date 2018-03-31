@@ -8,7 +8,7 @@ slug: "Goan-zhuang"
 source: "https://segmentfault.com/a/1190000000592770"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 
@@ -75,7 +75,7 @@ GOROOT只有在自定义安装目录时，才需要设置。
 >
 > Use "go help \[command\]" for more information about a command.
 >
-> Additional help topics:
+> Additional help categories:
 >
 >     c           calling between Go and C
 >     filetype    file types

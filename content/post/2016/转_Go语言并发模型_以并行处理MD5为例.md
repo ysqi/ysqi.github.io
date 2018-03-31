@@ -8,7 +8,7 @@ slug: "Goyu-yan-bing-fa-mo-xing-:yi-bing-hang-chu-li-MD5wei-li"
 source: "https://segmentfault.com/a/1190000006670880"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

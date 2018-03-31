@@ -12,7 +12,7 @@ tags:
 - beanstalkd 
 - queue 
 - console 
-topics:
+categories:
 - 编程语言与开发
 ---
 

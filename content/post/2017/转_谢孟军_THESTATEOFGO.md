@@ -8,7 +8,7 @@ slug: "xie-meng-jun-:THE-STATE-OF-GO"
 source: "http://blog.csdn.net/u010646653/article/details/56673266"
 tags: 
 -  
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "【Go】Goyu-yan-xue-xi-bi-ji--1-jian-jie"
 source: "https://segmentfault.com/a/1190000003701747"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

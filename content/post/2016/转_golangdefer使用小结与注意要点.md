@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000006823652"
 tags: 
 - defer 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

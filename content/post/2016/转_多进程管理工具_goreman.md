@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000003778084"
 tags: 
 - foreman 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

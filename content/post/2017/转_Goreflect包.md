@@ -8,7 +8,7 @@ slug: "Go-reflectbao"
 source: "https://my.oschina.net/xinxingegeya/blog/844412"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

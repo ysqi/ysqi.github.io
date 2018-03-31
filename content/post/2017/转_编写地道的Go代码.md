@@ -7,7 +7,7 @@ slug: "bian-xie-de-dao-de-Godai-ma"
 source: "http://colobu.com/2017/02/07/write-idiomatic-golang-codes/"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

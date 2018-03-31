@@ -8,7 +8,7 @@ slug: "diao-zha-tian-de-xin-ban-Go-GCzhi-twitchde-GCyou-hua-zhi-lu"
 source: "http://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&amp;mid=2653369866&amp;idx=1&amp;sn=200dfa3d5f701749499468b9557f0ce1&amp;chksm=bce4d6108b935f060404f894bf9f9062454bb9f16774600c9429d0e7c9c8d20c8f708dcaefb7&amp;mpshare=1&amp;scene=23&amp;srcid=0215LSGvOzINe2VxPi8i86A6"
 tags: 
 - docker 
-topics:
+categories:
 - 编程语言与开发
 ---
 

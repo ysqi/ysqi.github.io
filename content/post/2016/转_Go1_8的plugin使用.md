@@ -8,7 +8,7 @@ slug: "Go-1_8de-pluginshi-yong"
 source: "https://segmentfault.com/a/1190000007713877"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

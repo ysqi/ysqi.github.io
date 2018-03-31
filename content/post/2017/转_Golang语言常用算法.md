@@ -7,7 +7,7 @@ slug: "Golangyu-yan-chang-yong-suan-fa"
 source: "http://blog.csdn.net/wujieyhy2006/article/details/56484253"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

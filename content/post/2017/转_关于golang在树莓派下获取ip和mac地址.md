@@ -8,7 +8,7 @@ slug: "guan-yu-golangzai-shu-mei-pa-xia-huo-qu-iphe-macde-zhi"
 source: "https://segmentfault.com/a/1190000009228676"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

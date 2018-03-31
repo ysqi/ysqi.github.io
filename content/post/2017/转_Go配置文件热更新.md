@@ -8,7 +8,7 @@ slug: "golangpei-zhi-wen-jian-re-geng-xin"
 source: "https://segmentfault.com/a/1190000008487440"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "Mac-golangxia-zai-mgo"
 source: "https://my.oschina.net/aidelingyu/blog/838211"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

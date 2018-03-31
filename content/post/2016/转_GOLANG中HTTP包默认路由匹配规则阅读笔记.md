@@ -8,7 +8,7 @@ slug: "GOLANG-zhong-HTTPbao-mo-ren-lu-you-pi-pei-gui-ze-yue-dou-bi-ji"
 source: "https://segmentfault.com/a/1190000005591382"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "CMDBfa-bu-ping-tai-:gofa-bu-guan-li"
 source: "http://www.jianshu.com/p/4391eb7e894b"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

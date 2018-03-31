@@ -8,7 +8,7 @@ slug: "shen-ru--Go-Playground-nei-mu"
 source: "https://segmentfault.com/a/1190000000361471"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

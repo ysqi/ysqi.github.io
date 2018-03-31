@@ -7,7 +7,7 @@ tags:
 - Golang
 - beego
 title: beego框架源码解读 config 模块设计
-topics:
+categories:
 - 编程语言与开发
 ---
 

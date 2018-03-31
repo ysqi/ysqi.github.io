@@ -6,7 +6,7 @@ description: ""
 slug: "setup-ethereum-private-network-on-mac" 
 tags: 
 - "以太坊"
-topics: 
+categories: 
 - 编程语言与开发
 ---
 

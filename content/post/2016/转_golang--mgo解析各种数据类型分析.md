@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000005026413"
 tags: 
 - mongodb 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

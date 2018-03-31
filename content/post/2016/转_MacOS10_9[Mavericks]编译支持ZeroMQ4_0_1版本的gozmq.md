@@ -8,7 +8,7 @@ slug: "Mac-OS-10_9-[Mavericks]-bian-yi-zhi-chi--ZeroMQ-4_0_1-ban-ben-de--gozmq"
 source: "https://segmentfault.com/a/1190000000343907"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

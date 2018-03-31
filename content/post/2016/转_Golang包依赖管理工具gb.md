@@ -8,7 +8,7 @@ slug: "Golangbao-yi-lai-guan-li-gong-ju-gb"
 source: "https://segmentfault.com/a/1190000004346513"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

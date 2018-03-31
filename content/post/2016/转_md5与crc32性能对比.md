@@ -8,7 +8,7 @@ slug: "md5yu-crc32xing-neng-dui-bi"
 source: "https://segmentfault.com/a/1190000004000838"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

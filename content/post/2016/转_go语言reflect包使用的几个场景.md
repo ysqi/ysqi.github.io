@@ -8,7 +8,7 @@ slug: "goyu-yan-reflectbao-shi-yong-de-ji-ge-chang-jing"
 source: "https://segmentfault.com/a/1190000002736013"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

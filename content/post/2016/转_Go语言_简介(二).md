@@ -8,7 +8,7 @@ slug: "Goyu-yan-:jian-jie-(er-)"
 source: "https://segmentfault.com/a/1190000005668600"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

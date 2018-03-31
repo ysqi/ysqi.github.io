@@ -8,7 +8,7 @@ slug: "you-xiu-de- Go-cun-chu-kai-yuan-xiang-mu-he-ku"
 source: "https://my.oschina.net/editorial-story/blog/838672"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

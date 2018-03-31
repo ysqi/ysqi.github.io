@@ -8,7 +8,7 @@ slug: "Golangkai-fa-zhi-chi-ping-hua-sheng-ji-(you-ya-chong-qi-)de-HTTPfu-wu"
 source: "https://segmentfault.com/a/1190000004445975"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

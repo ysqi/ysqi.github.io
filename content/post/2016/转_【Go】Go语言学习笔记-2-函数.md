@@ -8,7 +8,7 @@ slug: "【Go】Goyu-yan-xue-xi-bi-ji--2-han-shu"
 source: "https://segmentfault.com/a/1190000003704310"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

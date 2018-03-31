@@ -11,7 +11,7 @@ tags:
 - non-blocking-channel 
 - channels 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

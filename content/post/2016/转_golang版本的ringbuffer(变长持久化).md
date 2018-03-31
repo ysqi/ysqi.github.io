@@ -8,7 +8,7 @@ slug: "golang-ban-ben-de--ring-buffer-(bian-chang-chi-jiu-hua-)"
 source: "https://segmentfault.com/a/1190000004597581"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "shen-ru-le-jie-Gojie-kou"
 source: "https://my.oschina.net/xinxingegeya/blog/837546"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

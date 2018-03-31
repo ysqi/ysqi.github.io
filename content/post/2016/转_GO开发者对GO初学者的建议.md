@@ -8,7 +8,7 @@ slug: "GO-kai-fa-zhe-dui--GO-chu-xue-zhe-de-jian-yi"
 source: "https://segmentfault.com/a/1190000000654351"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

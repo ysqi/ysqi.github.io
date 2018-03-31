@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000000507018"
 tags: 
 - channels 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

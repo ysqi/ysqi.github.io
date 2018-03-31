@@ -2,7 +2,7 @@
 title: 老虞学Golang-控制语句
 slug: ysqi-golang-if-for-select-switch
 date: 2013-04-08T23:31:47
-topics:
+categories:
 - 编程语言与开发
 tags:
 - Golang

@@ -8,7 +8,7 @@ slug: "Golangxue-xi-zhai-lu-er-:kong-zhi-yu-gou"
 source: "http://www.jianshu.com/p/1f6eb23994fc"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

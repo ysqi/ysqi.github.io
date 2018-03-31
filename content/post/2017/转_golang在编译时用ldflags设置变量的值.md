@@ -8,7 +8,7 @@ slug: "golangzai-bian-yi-shi-yong-ldflagsshe-zhi-bian-liang-de-zhi"
 source: "https://segmentfault.com/a/1190000008323048"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

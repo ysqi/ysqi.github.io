@@ -8,7 +8,7 @@ slug: "Go-unsafebao"
 source: "https://my.oschina.net/xinxingegeya/blog/841058"
 tags: 
 - Go1.8 
-topics:
+categories:
 - 编程语言与开发
 ---
 

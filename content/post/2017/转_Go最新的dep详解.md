@@ -8,7 +8,7 @@ slug: "Gozui-xin-de-depxiang-jie"
 source: "https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&amp;mid=2653369860&amp;idx=1&amp;sn=0e3b9ab8346e69087bb2050b28b34d9f&amp;chksm=bce4d61e8b935f0817f34510225ababb71491b5a5614c2b6ec105a3f103347fbb7cccabf57e8&amp;mpshare=1&amp;scene=1&amp;srcid=0214qm8bmviC4MFY2xKkygJG&amp;key=81e78a55b343"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

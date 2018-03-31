@@ -8,7 +8,7 @@ slug: "Golangxue-xi-zhai-lu-liu-:jie-kou"
 source: "http://www.jianshu.com/p/996e840629e7"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

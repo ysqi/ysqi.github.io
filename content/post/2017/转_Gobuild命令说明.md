@@ -8,7 +8,7 @@ slug: "ming-ling-:-go-build"
 source: "https://segmentfault.com/a/1190000008428749"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -7,7 +7,7 @@ tags:
 - 通达信
 - 行情
 title: Go读取通达信历史日线数据
-topics:
+categories:
 - 编程语言与开发
 - 金融
 ---

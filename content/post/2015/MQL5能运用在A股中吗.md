@@ -1,7 +1,7 @@
 ---
 title: MQL5能运用在A股中吗
 slug: mql5-can-use-in-shanghai-a
-topics:
+categories:
   - 金融
 tags:
   - MQL5

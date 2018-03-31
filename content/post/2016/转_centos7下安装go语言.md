@@ -11,7 +11,7 @@ tags:
 - 开发环境配置 
 - shell 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

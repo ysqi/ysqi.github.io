@@ -8,7 +8,7 @@ slug: "golangshen-me-shi-hou-ying-gai-ba-fang-fa-bang-ding-zai-structde-zhi-shan
 source: "https://segmentfault.com/a/1190000006803598"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

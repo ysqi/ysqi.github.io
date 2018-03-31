@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000000705218"
 tags: 
 - 类型转换 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

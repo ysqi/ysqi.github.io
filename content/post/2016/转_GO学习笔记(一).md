@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000006897440"
 tags: 
 - 变量 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

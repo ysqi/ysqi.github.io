@@ -12,7 +12,7 @@ tags:
 - redis 
 - linux 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "golangbiao-zhun-ku-de-fen-xi-osbao-(6)"
 source: "https://segmentfault.com/a/1190000000376807"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "golint---golangdai-ma-zhi-liang-jian-ce"
 source: "https://segmentfault.com/a/1190000000415636"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

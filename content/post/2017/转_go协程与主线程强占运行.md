@@ -8,7 +8,7 @@ slug: "go-xie-cheng-yu-zhu-xian-cheng-jiang-zhan-yun-hang"
 source: "http://blog.csdn.net/qo2yycc2/article/details/55251241"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

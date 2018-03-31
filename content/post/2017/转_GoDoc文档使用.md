@@ -8,7 +8,7 @@ slug: "Goyu-yan-shi-zhan-bi-ji-(san-)|-Go-Doc-wen-dang"
 source: "http://www.jianshu.com/p/ed6a6d2f1fdb"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

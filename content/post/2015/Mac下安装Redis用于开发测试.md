@@ -2,7 +2,7 @@
 title: Mac下安装Redis用于开发测试
 slug: install-redis-in-mac
 date: 2015-08-15T09:12:01
-topics:
+categories:
     - 软件
 tags:
     - Redis

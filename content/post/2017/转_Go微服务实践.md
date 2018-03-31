@@ -8,7 +8,7 @@ slug: "Go-wei-fu-wu-shi-jian"
 source: "https://my.oschina.net/ifraincoat/blog/842021"
 tags: 
 - golang#微服务 
-topics:
+categories:
 - 编程语言与开发
 ---
 

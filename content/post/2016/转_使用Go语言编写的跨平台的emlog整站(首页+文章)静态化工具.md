@@ -10,7 +10,7 @@ tags:
 - 静态化 
 - emlog 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

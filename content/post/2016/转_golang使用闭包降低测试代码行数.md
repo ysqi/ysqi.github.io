@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000007300284"
 tags: 
 - 闭包 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

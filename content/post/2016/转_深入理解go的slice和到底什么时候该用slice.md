@@ -8,7 +8,7 @@ slug: "shen-ru-li-jie-gode-slicehe-dao-de-shen-me-shi-hou-gai-yong-slice"
 source: "https://segmentfault.com/a/1190000005812839"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

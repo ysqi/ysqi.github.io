@@ -8,7 +8,7 @@ slug: "jian-xi-GOyu-yan-zhong-ru-he-you-ya-de-zhong-duan-ding-shi-ren-wu"
 source: "https://yq.aliyun.com/articles/69303?utm_campaign=wenzhang&amp;utm_medium=article&amp;utm_source=QQ-qun&amp;utm_content=m_10072"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "shi-yong-contextshi-xian-duo-ge-goroutinede-yi-lai-guan-li"
 source: "https://segmentfault.com/a/1190000007531146"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

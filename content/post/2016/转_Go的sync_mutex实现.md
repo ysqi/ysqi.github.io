@@ -8,7 +8,7 @@ slug: "Gode-sync_mutexshi-xian"
 source: "https://segmentfault.com/a/1190000000506960"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

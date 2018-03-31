@@ -8,7 +8,7 @@ tags:
 - import
 - package
 title: 理解Go import
-topics:
+categories:
 - 编程语言与开发
 ---
 

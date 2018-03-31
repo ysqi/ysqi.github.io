@@ -8,7 +8,7 @@ slug: "Golang-zhi--gong-cheng-jie-gou"
 source: "https://segmentfault.com/a/1190000006726883"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

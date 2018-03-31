@@ -8,7 +8,7 @@ slug: "Golangxue-xi-zhai-lu-si-:bao"
 source: "http://www.jianshu.com/p/d9f5224be517"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

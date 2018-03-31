@@ -10,7 +10,7 @@ tags:
 - homebrew 
 - macos 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

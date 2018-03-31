@@ -8,7 +8,7 @@ slug: "Golangbian-ma-gui-fan"
 source: "https://segmentfault.com/a/1190000000464394"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

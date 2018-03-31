@@ -8,7 +8,7 @@ slug: "shu-ju-ku-bu-kuo-ge-Dockerji-rong-qi-hua-de-7da-yuan-yin"
 source: "http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653548247&amp;idx=1&amp;sn=99d0e90fa99deec3a7dab49eac418e5c&amp;scene=0"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

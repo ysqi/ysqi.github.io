@@ -8,7 +8,7 @@ slug: "ben-ren-xie-de-golangjie-xi-jsonshu-ju-de-bao"
 source: "https://segmentfault.com/a/1190000000419166"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

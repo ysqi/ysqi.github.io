@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000007388342"
 tags: 
 - golang 
 - cgo 
-topics:
+categories:
 - 编程语言与开发
 ---
 

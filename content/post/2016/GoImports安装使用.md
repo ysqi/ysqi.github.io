@@ -8,7 +8,7 @@ tags:
 - Tool
 - Sublime
 title: GoImports安装使用
-topics:
+categories:
 - 编程语言与开发
 ---
 

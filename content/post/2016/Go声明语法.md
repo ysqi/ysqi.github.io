@@ -7,7 +7,7 @@ tags:
 - Golang
 - Go官方博客
 title: Go声明语法
-topics:
+categories:
 - 编程语言与开发
 ---
 

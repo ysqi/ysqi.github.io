@@ -8,7 +8,7 @@ slug: "How-to-install-go-1_2-on-Ubuntu-12_04-LTS"
 source: "https://segmentfault.com/a/1190000000486267"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "Go-1_8rc3-yuan-dai-ma-xue-xi-:cong-yuan-dai-ma-bian-yi--go"
 source: "https://segmentfault.com/a/1190000008228731"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

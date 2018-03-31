@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000002982384"
 tags: 
 - lucene 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

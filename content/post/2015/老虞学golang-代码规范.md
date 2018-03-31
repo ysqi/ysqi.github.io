@@ -2,7 +2,7 @@
 date: 2013-04-02
 title: 老虞学Golang-代码规范
 slug: ysqi-golang-code-formate
-topics:
+categories:
 - 编程语言与开发
 tags:
 - Golang

@@ -8,7 +8,7 @@ slug: "Interfaces-and-Composition-for-Effective-Unit-Testing-in-Golang"
 source: "https://segmentfault.com/a/1190000007064586"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

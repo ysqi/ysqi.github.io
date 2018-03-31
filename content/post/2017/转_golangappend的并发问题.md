@@ -8,7 +8,7 @@ slug: "golang-appendde-bing-fa-wen-ti"
 source: "https://my.oschina.net/u/222608/blog/839602"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

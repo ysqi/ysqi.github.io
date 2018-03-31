@@ -10,7 +10,7 @@ tags:
 - centos 
 - ffmpeg 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000001832282"
 tags: 
 - 翻译 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

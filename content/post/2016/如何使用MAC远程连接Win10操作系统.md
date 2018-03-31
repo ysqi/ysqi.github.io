@@ -7,7 +7,7 @@ tags:
 - Win10
 - Mac
 title: 如何使用MAC远程连接Win10操作系统
-topics:
+categories:
 - 软件
 ---
 

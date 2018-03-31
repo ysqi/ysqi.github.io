@@ -1,4 +1,4 @@
-
+Í
 ---
 date: 2016-12-31T11:34:01+08:00
 title: "ECUGCon邀您共议服务端开发最深度实践"
@@ -11,7 +11,7 @@ tags:
 - golang 
 - 互联网 
 - 云计算 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -12,7 +12,7 @@ tags:
 - go开发环境 
 - 开发环境 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

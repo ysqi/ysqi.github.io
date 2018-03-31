@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000008156232"
 tags: 
 - golang 
 - emacs 
-topics:
+categories:
 - 编程语言与开发
 ---
 

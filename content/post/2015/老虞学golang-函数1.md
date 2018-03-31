@@ -2,7 +2,7 @@
 date: 2013-04-07
 title: 老虞学Golang-函数上
 slug: ysqi-golang-function-1
-topics:
+categories:
 - 编程语言与开发
 tags:
 - Golang

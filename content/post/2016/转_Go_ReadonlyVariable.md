@@ -8,7 +8,7 @@ slug: "Go:-Readonly-Variable"
 source: "https://segmentfault.com/a/1190000005071763"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

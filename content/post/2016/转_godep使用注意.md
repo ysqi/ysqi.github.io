@@ -8,7 +8,7 @@ slug: "godepshi-yong-zhu-yi"
 source: "https://segmentfault.com/a/1190000003781342"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

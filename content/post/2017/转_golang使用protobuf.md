@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000009277748"
 tags: 
 - protobuf 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

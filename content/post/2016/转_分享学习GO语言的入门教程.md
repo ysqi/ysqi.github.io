@@ -8,7 +8,7 @@ slug: "fen-xiang-xue-xi-GOyu-yan-de-ru-men-jiao-cheng"
 source: "https://segmentfault.com/a/1190000007293153"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

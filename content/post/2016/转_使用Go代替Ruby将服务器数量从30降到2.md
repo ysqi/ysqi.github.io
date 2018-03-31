@@ -10,7 +10,7 @@ tags:
 - golang 
 - ruby-on-rails 
 - ruby 
-topics:
+categories:
 - 编程语言与开发
 ---
 

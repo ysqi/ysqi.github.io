@@ -8,7 +8,7 @@ slug: "golangjiang-jie-(goyu-yan-)biao-zhun-ku-fen-xi-zhi-os(7)"
 source: "https://segmentfault.com/a/1190000000377326"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

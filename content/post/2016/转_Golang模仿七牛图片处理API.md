@@ -8,7 +8,7 @@ slug: "Golangmo-fang-qi-niu-tu-pian-chu-li-API"
 source: "https://segmentfault.com/a/1190000006088096"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

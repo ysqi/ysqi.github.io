@@ -8,7 +8,7 @@ slug: "go_jsjian-jie-ji-shi-li-yan-shi"
 source: "https://my.oschina.net/u/2391658/blog/856225"
 tags: 
 - gojs 
-topics:
+categories:
 - 编程语言与开发
 ---
 

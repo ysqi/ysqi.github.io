@@ -8,7 +8,7 @@ slug: "goyu-yan-ru-men--an-zhuang--bian-xie--yun-hang-(yi-)"
 source: "https://segmentfault.com/a/1190000000493069"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "Golang-gong-ju-lie-biao"
 source: "https://segmentfault.com/a/1190000007684281"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

@@ -8,7 +8,7 @@ slug: "wei-shen-me-Goyu-yan-zai-zhong-guo-ge-wai-de-huo-&amp"
 source: "http://blog.csdn.net/wangshubo1989/article/details/55102275"
 tags: 
 - golang
-topics:
+categories:
 - 编程语言与开发
 ---
 

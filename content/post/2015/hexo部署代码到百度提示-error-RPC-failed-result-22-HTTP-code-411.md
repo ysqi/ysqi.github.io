@@ -2,7 +2,7 @@
 title: hexo部署代码到百度提示:error:RPC failed;result=22,HTTP code=411
 slug: hexo-deploy-git-push-error-rpc-411
 date: 2015-08-31T10:01:36
-topics:
+categories:
     - 软件
 tags:
     - hexo

@@ -8,7 +8,7 @@ slug: "Gobian-cheng-ji-qiao---Goroutinede-you-ya-kong-zhi"
 source: "https://segmentfault.com/a/1190000008199710"
 tags: 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

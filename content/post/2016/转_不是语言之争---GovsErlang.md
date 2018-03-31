@@ -9,7 +9,7 @@ source: "https://segmentfault.com/a/1190000002894381"
 tags: 
 - erlang 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 

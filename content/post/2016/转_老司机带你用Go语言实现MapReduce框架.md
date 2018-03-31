@@ -10,7 +10,7 @@ tags:
 - 分布式 
 - mapreduce 
 - golang 
-topics:
+categories:
 - 编程语言与开发
 ---
 
