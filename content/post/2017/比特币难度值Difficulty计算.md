@@ -12,7 +12,7 @@ tags:
 categories: 
 - 编程语言与开发
 
-mathjax: false
+mathjax: true
 ---
 
 ![比特币历史难度](https://static.yushuangqi.com/blog/2017/27123601.png) 

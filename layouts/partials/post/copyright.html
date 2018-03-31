@@ -1,0 +1,35 @@
+<div style="height:130px">
+  {{ if or .Params.contentCopyright (and .Site.Params.contentCopyright (ne .Params.contentCopyright false)) }}
+  <div class="post-copyright" style="float:left;">
+    <p class="copyright-item">
+      <span class="item-title">{{ i18n "author" }}</span>
+      <span class="item-content">{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}</span>
+    </p>
+    <p class="copyright-item">
+      <span class="item-title">{{ i18n "lastMod" }}</span>
+      <span class="item-content">{{ .Lastmod.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}</span>
+    </p>
+    {{ if $.Site.Params.linkToMarkDown -}}
+      {{ with $.OutputFormats.Get "markdown" -}}
+      <p class="copyright-item">
+        <span class="item-title">{{ i18n "markdown" }}</span>
+        <span class="item-content"><a class="link-to-markdown" href="{{ .Permalink }}" target="_blank">{{ i18n "seeMarkDown" }}</a></span>
+      </p>
+      {{- end }}
+    {{- end }}
+    <p class="copyright-item">
+      <span class="item-title">{{ i18n "license" }}</span>
+      <span class="item-content">
+      {{- if .Params.contentCopyright -}}
+        {{ .Params.contentCopyright | safeHTML }}
+      {{- else -}}
+        {{ .Site.Params.contentCopyright | safeHTML }}
+      {{- end -}}
+      </span>
+    </p>
+  </div>
+  {{- end }}
+  <div class="post-copyright" style="float:right;"> 
+    <a href="https://info.flagcounter.com/8B1z" ><img src="https://s05.flagcounter.com/countxl/8B1z/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_12/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+  </div>
+</div>
