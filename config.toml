@@ -96,7 +96,7 @@ ignoreFiles = ["book/*"]
 
   [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
     owner = "ysqi"              # Your GitHub ID
-    repo = "ysqi/ysqi.github.io"               # The repo to store comments
+    repo = "ysqi.github.io"               # The repo to store comments
     clientId = "639ba986c281b9fcf382"           # Your client ID
     clientSecret = "b5862135f283dd308a7f226c06980cf50b8e82f1"       # Your client secret
 
