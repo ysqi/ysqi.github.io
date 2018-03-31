@@ -4,7 +4,7 @@ description: ""
 slug: "" 
 tags:
 - "Go"
-topics: 
+categories: 
 - 开发
 disqus_identifier: "20160001"
 ---
