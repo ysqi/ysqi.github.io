@@ -1,4 +1,4 @@
 [submodule "jane"]
 	path = themes/jane
 	url = https://github.com/ysqi/hugo-theme-jane.git
-	branch = master
+	branch = develop
