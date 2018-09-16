@@ -4,6 +4,8 @@ languageCode = "zh"
 defaultContentLanguage = "zh-cn"
 title = "虞双齐爱折腾" 
 
+disqusShortname = "yushuangqi"
+
 # 使用自定义的 chromastyles 样式，
 # 启用时需  hugo gen chromastyles --style=monokai > syntax.css 生成指定代码高亮主题
 pygmentsUseClasses = false
@@ -94,11 +96,11 @@ ignoreFiles = ["book/*"]
     gitmentJS = '<script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>'
     gitmentCSS = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">'
 
-  [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
-    owner = "ysqi"              # Your GitHub ID
-    repo = "ysqi.github.io"               # The repo to store comments
-    clientId = "639ba986c281b9fcf382"           # Your client ID
-    clientSecret = "b5862135f283dd308a7f226c06980cf50b8e82f1"       # Your client secret
+  #[params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
+  #  owner = "ysqi"              # Your GitHub ID
+  #  repo = "ysqi.github.io"               # The repo to store comments
+  #  clientId = "639ba986c281b9fcf382"           # Your client ID
+  #  clientSecret = "b5862135f283dd308a7f226c06980cf50b8e82f1"       # Your client secret
 
 
   [params.reward]                                         # 文章打赏
