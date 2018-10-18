@@ -3354,6 +3354,13 @@
   </url>
   
   <url>
+    <loc>https://yushuangqi.com/series/ethereum.html</loc>
+    <lastmod>2018-01-13T08:53:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://yushuangqi.com/tags/evernote.html</loc>
     <lastmod>2016-12-31T11:34:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -4189,6 +4196,13 @@
   <url>
     <loc>https://yushuangqi.com/tags/select.html</loc>
     <lastmod>2016-12-31T11:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/series.html</loc>
+    <lastmod>2018-01-13T08:53:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
