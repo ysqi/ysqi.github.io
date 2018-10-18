@@ -69,7 +69,7 @@ ignoreFiles = ["book/*"]
   toc = true                                                                            # 是否开启目录
   autoCollapseToc = false   # Auto expand and collapse toc                              # 目录自动展开/折叠
   fancybox = true           # see https://github.com/fancyapps/fancybox                 # 是否启用fancybox（图片可点击）
-  bootcdn = true           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
+  bootcdn = false           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
   mathjax = true           # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
   contentCopyright = '<a target="_blank" rel="license noopener external nofollow" href="https://creativecommons.org/licenses/by/4.0/deed.zh" >署名 4.0 国际</a>'
 
@@ -150,11 +150,12 @@ ignoreFiles = ["book/*"]
     tag = "tags"
     category = "categories"
     # topic = "topics"
+    series = "series"
 
 [permalinks]
 	post = "/blog/:year/:slug"
 	# top = "/:slug.html"
-  resource = "/resource/:title"  
+  resource = "/resource/:title"
  
  
 [sitemap]                 # essential                     # 必需
@@ -167,11 +168,23 @@ ignoreFiles = ["book/*"]
   weight = 10
   identifier = "home"
   url = "/"
+
+
 [[menu.main]]
-  name = "归档"
+  name = "专题"
+  weight = 11
+  identifier = "series"
+  url = "/series.html"
+
+
+
+[[menu.main]]
+  name = "分类"
   weight = 20
-  identifier = "archives"
-  url = "/post.html"
+  identifier = "categories"
+  url = "/categories.html"
+
+
 [[menu.main]]
   name = "标签"
   weight = 30
@@ -179,10 +192,10 @@ ignoreFiles = ["book/*"]
   url = "/tags.html"
  
 [[menu.main]]
-  name = "分类"
+  name = "归档"
   weight = 40
-  identifier = "categories"
-  url = "/categories.html"
+  identifier = "archives"
+  url = "/post.html"
 
 [[menu.main]]
   name = "关于"
