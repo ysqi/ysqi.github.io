@@ -31,7 +31,7 @@ paginate = 3                                              # 首页每页显示�
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 
 ignoreFiles = ["book/*"]
-
+Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
 [params]
   uglyURLs = true  # 扩展hugo var 尚未公开的变量，方便在模板中使用
   #备案号，配置后网页底部将显示链接到备案系统
