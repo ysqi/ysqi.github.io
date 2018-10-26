@@ -1,0 +1,29 @@
+{{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+
+{{ define "content"}}
+{{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 10) }}
+<section id="archive" class="archive">
+  {{ if not $paginator.HasPrev }} 
+      <div class="archive-title category">
+        <h2 class="archive-name">专题：{{ .Title }}</h2>
+      </div>
+  {{ end }}
+
+  {{ range $paginator.Pages }}
+    <div class="archive-post">
+      <span class="archive-post-time">
+        {{ .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}
+      </span>
+      <span class="archive-post-title">
+        <a href="{{ .URL }}" class="archive-post-link">
+          {{ .Title }}
+        </a>
+      </span>
+    </div>
+  {{ end }}
+</section>
+
+<!-- pagination -->
+{{ partial "pagination.html" . }}
+
+{{ end }}
