@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dapps on 虞双齐爱折腾</title>
+    <link>https://yushuangqi.com/categories/dapps.html</link>
+    <description>Recent content in Dapps on 虞双齐爱折腾</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <copyright>虞双齐 | &lt;a href=&#39;www.miitbeian.gov.cn&#39;&gt;粤ICP备14032560号&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 17 Jan 2018 08:53:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/categories/dapps/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解以太坊Gas和手续费</title>
+      <link>https://yushuangqi.com/dapps/ethereum-gas-and-fee.html</link>
+      <pubDate>Wed, 17 Jan 2018 08:53:44 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/dapps/ethereum-gas-and-fee.html</guid>
+      <description>&lt;p&gt;Gas 中译是：瓦斯、汽油，代表一种可燃气体。这形象地比喻以太坊的交易手续费计算模式，不同于比特币中&lt;strong&gt;直接&lt;/strong&gt;支付比特币作为转账手续费，
+以太坊视为一个去中心化的计算网络，当你发送Token、执行合约、转移以太币或者在此区块上干其他的时候，计算机在处理这笔交易时需要进行计算消耗网络资源，这样你必须支付燃油费购买燃料才能让计算机为你工作。最终燃料费作为手续费支付给矿工。
+&lt;img src=&#34;https://yushuangqi.com/images/content/ethergas.jpeg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

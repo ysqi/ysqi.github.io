@@ -9,27 +9,10 @@
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <copyright>虞双齐 | &lt;a href=&#39;www.miitbeian.gov.cn&#39;&gt;粤ICP备14032560号&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Dec 2017 07:29:55 +0800</lastBuildDate>
     
 	<atom:link href="https://yushuangqi.com/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>理解以太坊Gas</title>
-      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
-      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
-      <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
-      <description>&lt;h2 id=&#34;背景介绍&#34;&gt;背景介绍&lt;/h2&gt;
-
-&lt;p&gt;以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 &lt;code&gt;Gas&lt;/code&gt;计算，最终将gas以ETH支付。&lt;/p&gt;
-
-&lt;p&gt;需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。&lt;/p&gt;
-
-&lt;p&gt;你可在 &lt;a href=&#34;etherscan.io&#34;&gt;etherscan.io&lt;/a&gt; 上查看交易手续费（&lt;code&gt;gas limit&lt;/code&gt; * &lt;code&gt;gas price&lt;/code&gt;）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>理解与计算比特币难度值Difficulty</title>
@@ -217,6 +200,15 @@
       <author>ysqi@yushuangqi.com (虞双齐)</author>
       <guid>https://yushuangqi.com/blog/2017/grpcfu-wu-fa-xian-ampampfu-zai-jun-heng.html</guid>
       <description>gRPC服务发现&amp;amp;负载均衡 构建高可用、高性能的通信服务，通常采用服务注册与发现、负载均衡和容错处理等机制实现。根据负载均衡实现所在的</description>
+    </item>
+    
+    <item>
+      <title>Caddy新兴的web服务器caddy</title>
+      <link>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</link>
+      <pubDate>Wed, 24 May 2017 09:17:35 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/xin-xing-de-webfu-wu-qi-caddy.html</guid>
+      <description>caddy 是一个像 Apache, nginx, 或 lighttpd 的web服务器。 你要问nginx已经很好了，为什么要用caddy呢? 我觉得caddy最大的特点是用起来简单， 然后呢，它还有</description>
     </item>
     
   </channel>

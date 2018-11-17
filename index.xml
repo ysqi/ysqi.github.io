@@ -9,125 +9,154 @@
     <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
     <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
     <copyright>虞双齐 | &lt;a href=&#39;www.miitbeian.gov.cn&#39;&gt;粤ICP备14032560号&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 13 Jan 2018 08:53:44 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jan 2018 08:53:44 +0800</lastBuildDate>
     
         <atom:link href="https://yushuangqi.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>理解以太坊Gas</title>
-      <link>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</link>
-      <pubDate>Sat, 13 Jan 2018 08:53:44 +0800</pubDate>
+      <title>理解以太坊Gas和手续费</title>
+      <link>https://yushuangqi.com/dapps/ethereum-gas-and-fee.html</link>
+      <pubDate>Wed, 17 Jan 2018 08:53:44 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2018/what-is-gas-ethereum.html</guid>
+      <guid>https://yushuangqi.com/dapps/ethereum-gas-and-fee.html</guid>
       
-        <description>&lt;h2 id=&#34;背景介绍&#34;&gt;背景介绍&lt;/h2&gt;
+        <description>&lt;p&gt;Gas 中译是：瓦斯、汽油，代表一种可燃气体。这形象地比喻以太坊的交易手续费计算模式，不同于比特币中&lt;strong&gt;直接&lt;/strong&gt;支付比特币作为转账手续费，
+以太坊视为一个去中心化的计算网络，当你发送Token、执行合约、转移以太币或者在此区块上干其他的时候，计算机在处理这笔交易时需要进行计算消耗网络资源，这样你必须支付燃油费购买燃料才能让计算机为你工作。最终燃料费作为手续费支付给矿工。
+&lt;img src=&#34;https://yushuangqi.com/images/content/ethergas.jpeg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
 
-&lt;p&gt;以太坊是一个区块链网络，而Ether(ETH)是这个网络的助燃器。当你发送Token、执行合约、转移ETH或者在此区块上干其他的。你必须为此计算而支出，此支出是通过 &lt;code&gt;Gas&lt;/code&gt;计算，最终将gas以ETH支付。&lt;/p&gt;
+&lt;p&gt;与比特币不同的是，无论交易成功与否，你都需要为此支付燃料费。这是因为即使交易失败，矿工依旧为此交易进行校验和计算，消耗了资源。同时你也无法在钱包中直接设置支付多少燃料费，因为实际燃料费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
 
-&lt;p&gt;需要注意的是，无论交易成功与否，你都需为此支付手续费。即使交易失败，可矿工还是得为此交易进行校验和计算，你占用使用了计算资源所以必须和成功的交易一样，为此支付手续费。&lt;/p&gt;
+&lt;p&gt;当你听到别人谈论 gas 时，实际是在讨论两个概念：gasUsed 和 gasPrice，默认情况下是指 gasUsed。你可以把 gasUsed 看成是汽车所需多少升燃油。把 gas price 看成是燃油单价。&lt;/p&gt;
 
-&lt;p&gt;你可在 &lt;a href=&#34;etherscan.io&#34;&gt;etherscan.io&lt;/a&gt; 上查看交易手续费（&lt;code&gt;gas limit&lt;/code&gt; * &lt;code&gt;gas price&lt;/code&gt;）的情况，在钱包中你是无法选择多少交易费的，因为实际交易费是矿工根据计算得出的，并记录在包含此交易的区块中。&lt;/p&gt;
+&lt;p&gt;对于汽车，每升汽油6.46元（price），10 升汽油就是64.6元。对于以太坊，每gas是20Gwei(price)，21000 个 gas 就是 20*21000 Gwei= 420000 Gwei= 0.00042 Ether。也就是说本次交易手续为 0.00042 Ether。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gwei是以太币的一种计算单位，具体见文末&lt;a href=&#34;#price&#34;&gt;附录:以太币单位&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;h2 id=&#34;gas-used&#34;&gt;Gas Used&lt;/h2&gt;
 
-&lt;p&gt;当你听到&lt;code&gt;gas&lt;/code&gt;时，是在讨论两个东西：&lt;/p&gt;
+&lt;p&gt;那么，以太坊这台计算机在处理交易时是如何统计计算量的呢？以太坊有专门的虚拟机处理交易，虚拟机根据交易中确定的一个一个的操作指令进行逐个处理，而每个操作指令都有明文规定的Gas消耗量。 比如执行一次加法运算将消耗 3Gas，这样交易需要消耗多少Gas完全取决于执行完交易中的所有操作指令的累计Gas，交易执行完成时虚拟机将反馈总消耗Gas量，称之为 gasused。而你所需支付的手续费等于&lt;strong&gt;gasPrice * gasUsed&lt;/strong&gt;。&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Gas Limit&lt;/li&gt;
-&lt;li&gt;Gas Price&lt;/li&gt;
-&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;指令&lt;/th&gt;
+&lt;th&gt;Gas Used&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
 
-&lt;p&gt;交易费计算就是&lt;code&gt;Gas Limit&lt;/code&gt;*&lt;code&gt;Gas Price&lt;/code&gt;。大家说“Gas”时，一般所值得是“Gas Limit”&lt;/p&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;STOP&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;停止执行&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;你可以把&lt;code&gt;gas limit&lt;/code&gt;看成是汽车所需多少升燃油。把&lt;code&gt;gas price&lt;/code&gt;看成是燃油单价。&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;ADD&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;两个数相加&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;对于汽车，每&lt;code&gt;升(unit)&lt;/code&gt;汽油 &lt;code&gt;￥6.46 （price）&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;对于以太坊,每&lt;code&gt;gas( unit)&lt;/code&gt; 是 &lt;code&gt;20 GWEI (price)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;tr&gt;
+&lt;td&gt;MUL&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;两个数相乘&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;继续想，就是：&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;SUB&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;两个数相减&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;ul&gt;
-&lt;li&gt;10升汽油就是 ￥64.6&lt;/li&gt;
-&lt;li&gt;21000 个 gas 就是 20*21000 GWEI= 420000 GWEI= 0.00042 ETH&lt;/li&gt;
-&lt;/ul&gt;
+&lt;tr&gt;
+&lt;td&gt;DIV&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;两个数相除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;也就是说本次交易手续为 0.00042 Ether。&lt;/p&gt;
-
-&lt;p&gt;发送Token一般需要 &lt;code&gt;~50000&lt;/code&gt; gas 到 &lt;code&gt;~100000&lt;/code&gt; gas ,因此交易手续费增加到 &lt;code&gt;0.001 ETH - 0.002 ETH&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;其中以太坊ETH到GWEI的转换关系是，这些多是以太币的计算单位：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Kwei(Babbage) = 10^{3} Wei&lt;/li&gt;
-&lt;li&gt;Mwei(Lovelace) = 10^{6} Wei&lt;/li&gt;
-&lt;li&gt;Gwei(Shannon) = 10^{9} Wei&lt;/li&gt;
-&lt;li&gt;Microether(Szabo) = 10^{12} Wei&lt;/li&gt;
-&lt;li&gt;Milliether(Finney) = 10^{15} Wei&lt;/li&gt;
-&lt;li&gt;Ether = 10^{18} Wei&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;gas&#34;&gt;Gas&lt;/h2&gt;
-
-&lt;p&gt;Gas 是以太坊中一种特定的命名，表示执行一个操作所需要的多少计算工作。 比如要执行一次加密&lt;a href=&#34;https://ethereum.stackexchange.com/questions/550/which-cryptographic-hash-function-does-ethereum-use&#34;&gt;Keccak256&lt;/a&gt;将消耗30gas。在以太坊中每个操作动作都有对应的gas。更多内容可查看&lt;a href=&#34;https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas&#34;&gt;What is gas (StackExchange)&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;一般交易需要花费多少gas则取决于此完成此交易过程中的所执行的操作的累计gas。&lt;/p&gt;
+&lt;p&gt;更多细节请参见：&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1n6mRqkBz3iWcOlRem_mO09GtSKEKrAsfO7Frgx18pNU/edit?usp=sharing&#34;&gt;Gas清单&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;gas-limit&#34;&gt;Gas Limit&lt;/h2&gt;
 
-&lt;p&gt;这个 &lt;code&gt;gas limit&lt;/code&gt;之所以称之为limit是因为它代表的是你将为此次交易所支付的每单位gas的最大费用。以避免合约中的错误引起不可预计的开销，合约执行进入一个计算死循环就势必会1ETH&amp;hellip;10ETH直至耗尽你的余额。&lt;/p&gt;
+&lt;p&gt;因为手续费等于 gasPrice * gasUsed，用户在转账，特别是执行智能合约时 gasUsed 无法提前预知。
+这样存在一个风险，当用户的交易涉及一个恶意的智能合约，该合约执行将消耗无限的燃料，这样会导致交易
+方的余额全部消耗（恶意的智能合约有可能是程序Bug，如合约执行陷入一个死循环）。&lt;/p&gt;
 
-&lt;p&gt;然而，一笔交易所必须支付的gas量已经在区块中通过该交易已执行的代码数记录。如果你不想支出太多在gas上，设置底的gas limit 是没有太多帮助的。你必须支付足够的gas已开销本交易所必要的计算资源，否则将出现一个 &lt;code&gt;Out of Gas&lt;/code&gt;的错误。即使交易失败，你也必须为已占用的计算资源所支付手续费。&lt;/p&gt;
+&lt;p&gt;为了避免合约中的错误引起不可预计的燃料消耗，用户需要在发送交易时设定允许消耗的燃料上限，即 gasLimit。
+这样不管合约是否良好，最坏情况也只是消耗 gasLimit 量的燃料。&lt;/p&gt;
 
-&lt;p&gt;未使用的gas将在交易后返回给你。比如你发送 1 ETH 到另一个账户B，设置 gas limit 为 400000，将有 400000 - 21000 返回给你。然而如果你是发送 1 ETH 到一个合约且交易失败（说，投票已截止），400000 都会被用掉，没啥返还给你。&lt;/p&gt;
+&lt;p&gt;然而，一笔交易所必须支付的燃料已经在区块中通过该交易已执行的计算量记录。如果你不想支出太多燃料，而故意设置过底的 gas limit 是没太多帮助的。你必须支付足够燃料来支付本交易所必要的计算资源。如果交易尚未执行完成，而燃料已用完，将出现一个 &lt;code&gt;Out of Gas&lt;/code&gt; 的错误。特别注意的是，即使交易失败，你也必须为已占用的计算资源所支付手续费。比如，你通过合约给 TFBOYS 投票，设置 gasPrice=2 gwei，gasLimit=40000（实现投票需要40001的燃料开销），最终你投票失败且仍然需要支付 40000*2 gwei= 80000 gwei= 0.00008 ETH。&lt;/p&gt;
+
+&lt;p&gt;另外，如果最终 gasUsed 低于 gasLimit，即燃料未用完。则剩余燃料(gasLimit - gasUsed )将在交易后退还给你。比如你发送 1 Ether 到另一个账户B，设置 gas limit 为 400000，将有 400000 - 21000 返回给你。&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;21000 是标准转账交易的gas limit。&lt;/p&gt;
+&lt;p&gt;21000 是标准转账交易的gasUsed。因此一笔标准的转账交易你可以设置 gasLimit 为21000。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;gas-price&#34;&gt;Gas Price&lt;/h2&gt;
 
-&lt;p&gt;如果你想让交易花费更少，你能够做的是降低你愿意支付的gas单价。这个价格会此交易影响的确认速度。&lt;/p&gt;
+&lt;p&gt;因为你所需要支付的燃料费为燃料单价(gasPrice) * 燃料开销(gasUsed)，如果你想让交易花费更少，你能够做的是降低你愿意支付的燃料单价。
+另一方面，降低燃料单价的坏处是交易可能需要&lt;strong&gt;等待很长时间&lt;/strong&gt;才被打包到区块中。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;正常情况下&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这是因为交易燃料费将归属于挖出本区块的矿工。当矿工挖矿时，他需要决定哪些交易放入到区块中，可以随机选择交易，也可以不包含任何交易。为了鼓励让矿工将你的交易放入区块，你会考虑将燃料单价设置得足够诱人，已确保能优先放入区块。&lt;/p&gt;
+
+&lt;p&gt;但这还是一厢情愿，因为这个最终取决于矿工。大部分矿工遵循一个简单策略，优先打包本地交易，将接受到的交易按燃油单价从高到底排列，依次放入区块中直到塞满区块，或者直到低于矿工所设置的燃料单价底限。&lt;/p&gt;
+
+&lt;p&gt;如果你着急交易，高燃料单价会使得你的交易排在别人前面。如果不着急，你只需设置一个足够让矿工包含你交易的燃油单价即可。&lt;/p&gt;
+
+&lt;p&gt;一般情况下：&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;50 GWEI Gas Price 几乎总能将你的交易放到下一个区块。&lt;/li&gt;
-&lt;li&gt;20 GWEI 通常会把它放到未来的几个区块中。&lt;/li&gt;
-&lt;li&gt;8 GWEI  通常会在未来几分钟内放入区块。&lt;/li&gt;
+&lt;li&gt;高燃料单价为50 GWEI 的交易几乎总能放到下一个区块。&lt;/li&gt;
+&lt;li&gt;高燃料单价为22 GWEI 的交易通常会把它放到未来的几个区块中。&lt;/li&gt;
+&lt;li&gt;高燃料单价为8 GWEI 的交易通常会在未来几分钟内放入区块。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;在Token创建后，因为抢购太疯狂&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下图是最近1000个区块中不同燃料价格对交易确认时间的影响：
+&lt;img src=&#34;https://yushuangqi.com/images/content/20181114-212803@2x.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以因为当前以太坊的交易处理性能(15笔/秒)，当出现交易高峰期拥堵时，你需要考虑调整燃料单价，比如在Token创建后，抢购火热，为了中签你需要设置更高的燃料单价，以能够优先抢购Token。&lt;/p&gt;
+
+&lt;p&gt;在设置燃料单价时，你还需要考虑加密货币的价格波动，相对人民币随时都涨跌20%。按人民币考虑，之前的交易 10 gas price 相当于0.3元，而现在可能已经是0.4元。所以需要根据实际情况，尽量调低燃料单价。而当网络中大部分交易都是较低燃料单价时，矿工也会去调整他的底限。&lt;/p&gt;
+
+&lt;p&gt;那么问题来了，&lt;strong&gt;到底该设置多少燃料单价才合适呢？&lt;/strong&gt; 你可以到&lt;a href=&#34;http://ethgasstation.info/&#34;&gt;ethgasstation网站&lt;/a&gt;上查看。它将告诉你现在整个以太坊的情况，并给你建议的燃料单价，下图是当前的燃料单价设置建议。&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+&lt;span class=&#34;caption-wrapper&#34;&gt;
+  &lt;img class=&#34;caption&#34; src=&#34;https://yushuangqi.com/images/content/20181114-214238@2x.png&#34; title=&#34;图3-以太坊交易燃料单价设置建议&#34; alt=&#34;图3-以太坊交易燃料单价设置建议&#34;&gt;
+  &lt;span class=&#34;caption-text&#34;&gt;图3-以太坊交易燃料单价设置建议&lt;/span&gt;
+&lt;/span&gt;
+
+
+&lt;h2 id=&#34;附录&#34;&gt;附录&lt;/h2&gt;
+
+&lt;h3 id=&#34;price&#34;&gt;以太币的计算单位&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;50 GWEI 是创建Token时合同所定义的&lt;code&gt;max gas price&lt;/code&gt;。高于这个限制的交易都会失败，交易前你得检查该Token中所设置最大燃油单价。&lt;/li&gt;
-&lt;li&gt;50 GWEI  是你应该在抢购时所设置的燃油单价。&lt;/li&gt;
-&lt;li&gt;如果你想在在Token创建期间发送交易（非Token创建），你有两个选择：等待一会儿直到Token创建结束，或者提高燃油单价超过50 GWEI。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;提高gas-price就能快速打包确认-降低gas-price就会难以被确认&#34;&gt;提高gas price就能快速打包确认？降低gas price就会难以被确认？&lt;/h2&gt;
-
-&lt;p&gt;交易手续费将归属于挖出本本区块的矿工。当矿工挖矿时，他需要决定哪些交易放入到区块中。可以不包含任何交易，也可以随机选择交易。为了鼓励让矿工将你的交易放入区块，你会考虑将燃油单价设置得足够高，已确保能优先放入区块。但这还是一厢情愿，这个最终取决于矿工。&lt;/p&gt;
-
-&lt;p&gt;大部分矿工遵循一个简单策略，将接受到的交易按燃油单价从高到底排列，依次放入区块中直到塞满区块，或者直到以低于矿工所设置的燃油单价底限。&lt;/p&gt;
-
-&lt;p&gt;设得足够高的燃油单价交易会在下一个区块中。如果你着急，高燃油单价会使得你的交易排在别人前面。如果不着急，你只需设置一个足够让矿工包含你交易的燃油单价即可。&lt;/p&gt;
-
-&lt;h2 id=&#34;为何要设置低gas-price&#34;&gt;为何要设置低gas price?&lt;/h2&gt;
-
-&lt;p&gt;因为以太坊的价格是浮动的，相对人民币随时都涨跌20%。按人民币考虑，相对于之前的交易，10 gas price 相当于 ￥ 0.3。而现在可能即使 ￥0.4了。所以需要根据实际情况，尽量调低 gas price 。&lt;/p&gt;
-
-&lt;p&gt;而当网络中大部分交易都是低gas price时，矿工也会去调整他的底限。&lt;/p&gt;
-
-&lt;h2 id=&#34;到底设置多少-gas-price-合适&#34;&gt;到底设置多少 gas price 合适&lt;/h2&gt;
-
-&lt;p&gt;可以看这个网站：&lt;a href=&#34;http://ethgasstation.info/&#34;&gt;http://ethgasstation.info&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;它将告诉你现在整个以太坊的情况，并给你建议的 gas price。&lt;/p&gt;</description>
+&lt;li&gt;Kwei(Babbage) = $10^3$ Wei&lt;/li&gt;
+&lt;li&gt;Mwei(Lovelace) = $10^6$ Wei&lt;/li&gt;
+&lt;li&gt;Gwei(Shannon) = $10^9$ Wei&lt;/li&gt;
+&lt;li&gt;Microether(Szabo) = $10^{12}$ Wei&lt;/li&gt;
+&lt;li&gt;Milliether(Finney) = $10^{15}$ Wei&lt;/li&gt;
+&lt;li&gt;Ether = $10^{18}$ Wei&lt;/li&gt;
+&lt;/ul&gt;</description>
       
     </item>
     
