@@ -2,7 +2,7 @@ baseurl = "https://yushuangqi.com"
 languageCode = "zh"
 # language support # en / zh-cn / other...
 defaultContentLanguage = "zh-cn"
-title = "虞双齐爱折腾" 
+title = "虞双齐的博客" 
 
 disqusShortname = "yushuangqi"
 
