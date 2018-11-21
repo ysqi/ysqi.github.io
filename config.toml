@@ -133,6 +133,7 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
   [params.plugins]
     # enable Open Graph protocol,see https://developers.facebook.com/docs/sharing/opengraph
     openGraph = true
+    xiongzhang = true #启用熊掌号配置
 
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
