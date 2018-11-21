@@ -125,6 +125,10 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
     # n-gitlab = "http://en.xianmin.org/hugo-theme-jane/"
     # o-goodreads = "http://en.xianmin.org/hug 
 
+  # 百度熊掌号
+  [params.xiongzhang]
+    appid = 1614189312904082
+    
 
   [params.plugins]
     # enable Open Graph protocol,see https://developers.facebook.com/docs/sharing/opengraph
