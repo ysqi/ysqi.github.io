@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>共识算法 on 虞双齐的博客</title>
+    <link>https://yushuangqi.com/series/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html</link>
+    <description>Recent content in 共识算法 on 虞双齐的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>ysqi@yushuangqi.com (虞双齐)</managingEditor>
+    <webMaster>ysqi@yushuangqi.com (虞双齐)</webMaster>
+    <copyright>虞双齐 | &lt;a href=&#39;www.miitbeian.gov.cn&#39;&gt;粤ICP备14032560号&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 04 Dec 2018 22:57:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://yushuangqi.com/series/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>共识算法PoW之算力与挖矿难度</title>
+      <link>https://yushuangqi.com/dapps/consensus-algorithms-pow-hashrate.html</link>
+      <pubDate>Tue, 04 Dec 2018 22:57:23 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/dapps/consensus-algorithms-pow-hashrate.html</guid>
+      <description>大家好，我是虞双齐，这篇文章是关于区块链共识算法系列课文章。上一篇文章《共识算法PoW之由来》中，我们讲解了工作量证明的基本原理，核心是采取</description>
+    </item>
+    
+    <item>
+      <title>共识算法PoW之由来</title>
+      <link>https://yushuangqi.com/dapps/consensus-algorithms-pow-1.html</link>
+      <pubDate>Sun, 02 Dec 2018 20:57:23 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/dapps/consensus-algorithms-pow-1.html</guid>
+      <description>大家好，我是虞双齐，当前市场上还未有系统讲解整理区块链共识算法的教程。从这篇文章起，我将系统地讲解区块链共识算法。 这篇文章是关于工作量证明的</description>
+    </item>
+    
+  </channel>
+</rss>

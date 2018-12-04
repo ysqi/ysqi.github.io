@@ -3,6 +3,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yushuangqi.com/dapps/consensus-algorithms-pow-hashrate.html</loc>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/dapps/consensus-algorithms-pow-1.html</loc>
+    <lastmod>2018-12-02T20:57:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://yushuangqi.com/dapps/ethereum-gas-and-fee.html</loc>
     <lastmod>2018-01-17T08:53:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -3271,14 +3285,7 @@
   
   <url>
     <loc>https://yushuangqi.com/dapps.html</loc>
-    <lastmod>2018-01-17T08:53:44+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yushuangqi.com/categories/dapps.html</loc>
-    <lastmod>2018-01-17T08:53:44+08:00</lastmod>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -4538,7 +4545,7 @@
   
   <url>
     <loc>https://yushuangqi.com/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A.html</loc>
-    <lastmod>2018-01-17T08:53:44+08:00</lastmod>
+    <lastmod>2018-12-02T20:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -4567,6 +4574,20 @@
   <url>
     <loc>https://yushuangqi.com/tags/%E5%85%A8%E9%87%8F%E7%B4%A2%E5%BC%95.html</loc>
     <lastmod>2016-12-31T11:33:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/series/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html</loc>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/tags/%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95.html</loc>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -4602,6 +4623,13 @@
   <url>
     <loc>https://yushuangqi.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE.html</loc>
     <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE.html</loc>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -4972,7 +5000,7 @@
   
   <url>
     <loc>https://yushuangqi.com/tags/%E6%AF%94%E7%89%B9%E5%B8%81.html</loc>
-    <lastmod>2017-12-25T07:29:55+08:00</lastmod>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -5057,6 +5085,13 @@
   <url>
     <loc>https://yushuangqi.com/tags/%E7%AC%94%E8%AE%B0.html</loc>
     <lastmod>2017-06-25T20:12:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yushuangqi.com/tags/%E7%AE%97%E5%8A%9B.html</loc>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -5154,7 +5189,7 @@
   
   <url>
     <loc>https://yushuangqi.com/</loc>
-    <lastmod>2018-01-17T08:53:44+08:00</lastmod>
+    <lastmod>2018-12-04T22:57:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
