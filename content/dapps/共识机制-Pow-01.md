@@ -1,7 +1,6 @@
 ---
-date: 2013-07-01T07:32:00Z
 title: "共识算法PoW之由来"
-date: 2018-01-17T08:53:44+08:00
+date: 2018-12-02T20:57:23+08:00
 slug: "consensus-algorithms-PoW-1"
 description: "共识算法系列之Pow第一节-由来"
 mathjax: true 
