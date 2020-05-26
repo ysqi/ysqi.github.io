@@ -1,16 +1,15 @@
 
 ---
 date: 2016-12-31T11:33:48+08:00
-title: "用Golang写一个搜索引擎(0x04)---B&#43;树"
+title: "用Golang写一个搜索引擎(0x04)---B+树"
 description: ""
 disqus_identifier: 1485833628884133851
-slug: "yong-Golangxie-yi-ge-sou-suo-yin-qing--(0x04)-----B&#43;shu"
+slug: "yong-Golangxie-yi-ge-sou-suo-yin-qing--(0x04)-----B+shu"
 source: "https://segmentfault.com/a/1190000004942880"
-tags: 
-- b&#43;树 
-- 倒排索引 
-- 搜索引擎 
-- golang 
+tags:
+- 倒排索引
+- 搜索引擎
+- golang
 categories:
 - 编程语言与开发
 ---

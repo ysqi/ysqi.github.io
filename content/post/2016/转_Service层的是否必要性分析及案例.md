@@ -6,12 +6,12 @@ description: ""
 disqus_identifier: 1485833602918246203
 slug: "Serviceceng-de-shi-fou-bi-yao-xing-fen-xi-ji-an-li"
 source: "https://segmentfault.com/a/1190000005928036"
-tags: 
-- golang 
-- rust 
-- asp.net 
-- c&#43;&#43; 
-- php 
+tags:
+- golang
+- rust
+- asp.net
+- c++
+- php
 categories:
 - 编程语言与开发
 ---
@@ -53,11 +53,11 @@ service层的作用就是把这些需要多个model参与的复杂业务逻辑�
      * //下属的线索公共数据处理逻辑
      */
     class CluesBranchService extends Chance
-    {   
+    {
         //下属的线索列表
         public static function getIndex()
-        {    
-            $SalesModel = new Sales(); 
+        {
+            $SalesModel = new Sales();
             $uids = $SalesModel->sevenChild(Yii::$app->user->id);
             if(count($uids)){
                 $query = Chance::find()->where(['in','owner_id',$uids]);

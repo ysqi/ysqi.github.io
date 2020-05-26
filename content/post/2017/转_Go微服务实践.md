@@ -6,8 +6,8 @@ description: ""
 disqus_identifier: 1487723834797940463
 slug: "Go-wei-fu-wu-shi-jian"
 source: "https://my.oschina.net/ifraincoat/blog/842021"
-tags: 
-- golang#微服务 
+tags:
+- 微服务
 categories:
 - 编程语言与开发
 ---

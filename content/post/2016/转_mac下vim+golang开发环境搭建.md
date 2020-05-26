@@ -1,14 +1,14 @@
 
 ---
 date: 2016-12-31T11:32:59+08:00
-title: "mac下vim&#43;golang开发环境搭建"
+title: "mac下vim+golang开发环境搭建"
 description: ""
 disqus_identifier: 1485833579775233057
-slug: "mac-xia--vim&#43;golang-kai-fa-huan-jing-da-jian"
+slug: "mac-xia--vim+golang-kai-fa-huan-jing-da-jian"
 source: "https://segmentfault.com/a/1190000007204020"
-tags: 
-- golang 
-- vim 
+tags:
+- golang
+- vim
 categories:
 - 编程语言与开发
 ---
