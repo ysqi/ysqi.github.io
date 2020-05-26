@@ -38,7 +38,7 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
   uglyURLs = true  # 扩展hugo var 尚未公开的变量，方便在模板中使用
   #备案号，配置后网页底部将显示链接到备案系统
   beian = "粤ICP备14032560号-4"
-  description= "Go语言,Golang开发,SRE运维实践,全栈开发-虞双齐的个人博客"
+  description= "Go语言,Golang开发,区块链智能合约开发,全栈开发-虞双齐的个人博客"
   enableDiscuss = true
 
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
