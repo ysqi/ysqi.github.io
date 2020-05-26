@@ -23,5 +23,14 @@
       <description>借助移动端的增长，如今 RESTful 风格的 API 已经十分流行， 用各种语言去写后端 API 都有很成熟方便的方案，用 golang 写后端 API 更是生产力的代表， 你可以用不输 python/ruby 这类动态</description>
     </item>
     
+    <item>
+      <title>Go微服务实践</title>
+      <link>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</link>
+      <pubDate>Wed, 22 Feb 2017 08:37:14 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-wei-fu-wu-shi-jian.html</guid>
+      <description>简介 近一两年来，微服务架构已经成为热门话题（microservices.io)，与传统的一体化应用架构相比，微服务架构在开发、测试、部署方面</description>
+    </item>
+    
   </channel>
 </rss>

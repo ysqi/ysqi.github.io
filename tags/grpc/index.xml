@@ -24,6 +24,15 @@
     </item>
     
     <item>
+      <title>go用slice模拟vector功能</title>
+      <link>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</link>
+      <pubDate>Sat, 18 Feb 2017 11:13:46 +0800</pubDate>
+      <author>ysqi@yushuangqi.com (虞双齐)</author>
+      <guid>https://yushuangqi.com/blog/2017/go-yong-slicemo-ni-vectorgong-neng.html</guid>
+      <description>appendVector ``` - 编程语言与开发 a = append(a, b&amp;hellip;) copy ==== ``` - 编程语言与开发 b = append([]T(nil), a...) ``` - 编程语言与开发 b = make([]T, len(a)) copy(b, a) cut删除一段范围i\~j =================== ``` - 编程语言与开发 copy(a[i:], a[j:]) for</description>
+    </item>
+    
+    <item>
       <title>GolanggRPC实践连载一gRPC介绍与安装</title>
       <link>https://yushuangqi.com/blog/2016/golang-grpcshi-jian--lian-zai-yi--grpcjie-shao-yu-an-zhuang.html</link>
       <pubDate>Sat, 31 Dec 2016 11:32:41 +0800</pubDate>

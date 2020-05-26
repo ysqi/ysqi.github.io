@@ -51,11 +51,11 @@
     </item>
     
     <item>
-      <title>用Golang写一个搜索引擎(0x04)---B&amp;#43;树</title>
-      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html</link>
+      <title>用Golang写一个搜索引擎(0x04)---B&#43;树</title>
+      <link>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b-shu.html</link>
       <pubDate>Sat, 31 Dec 2016 11:33:48 +0800</pubDate>
       <author>ysqi@yushuangqi.com (虞双齐)</author>
-      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b#43shu.html</guid>
+      <guid>https://yushuangqi.com/blog/2016/yong-golangxie-yi-ge-sou-suo-yin-qing--0x04-----b-shu.html</guid>
       <description>本篇较长较枯燥，请保持耐心看完。 前面两章介绍了一下倒排索引以及倒排索引字典的两种存储结构，分别是跳跃表和哈希表，本篇我们介绍另一种数据结构，</description>
     </item>
     
