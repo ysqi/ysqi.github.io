@@ -2,7 +2,7 @@ baseurl = "https://yushuangqi.com"
 languageCode = "zh"
 # language support # en / zh-cn / other...
 defaultContentLanguage = "zh-cn"
-title = "虞双齐的博客" 
+title = "虞双齐的博客"
 
 disqusShortname = "yushuangqi"
 
@@ -11,20 +11,20 @@ disqusShortname = "yushuangqi"
 pygmentsUseClasses = false
 
 # 为 true 时，markdown 中代码进行 html 转换
-# PygmentsCodeFences = true 
+# PygmentsCodeFences = true
 
-# 代码高亮主题，可用主题，见： https://help.farbox.com/pygments.html 
+# 代码高亮主题，可用主题，见： https://help.farbox.com/pygments.html
 # 注意：如果 pygmentsUseClasses = true 则不生效
 # pygmentsstyle = "default"
 
 # Set to true to try to do syntax highlighting on code fenced blocks in markdown without a language tag.
-# pygmentsCodefencesGuessSyntax = true 
+# pygmentsCodefencesGuessSyntax = true
 # If you for some reason don’t want to use the built-in Chroma highlighter, you can set pygmentsUseClassic=true
 # pygmentsUseClassic = true
 
 uglyURLs = true
 metaDataFormat = "YAML"
-# disqusShortname = "yushuangqi" 
+# disqusShortname = "yushuangqi"
 publishdir = "public"
 
 theme = "jane"
@@ -40,7 +40,7 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
   beian = "粤ICP备14032560号-4"
   description= "Go语言,Golang开发,SRE运维实践,全栈开发-虞双齐的个人博客"
   enableDiscuss = true
-  
+
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
 
   since = "2014"            # Site creation time          # 站点建立时间
@@ -49,14 +49,14 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
   # logoTitle = ""        # default: the title value    # 默认值: 上面设置的title值
-  keywords = ["智能合约开发","Go语言", "区块链技术"] 
+  keywords = ["智能合约开发","Go语言", "区块链技术"]
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archive-paginate = 25
 
   # paginate style, default use numbered pagination links
   # if true, use original "Previous" and "Next" links.
-  # paginateOriginalStyle = true 
+  # paginateOriginalStyle = true
 
   # The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/
   dateFormatToUse = "2006-01-02"
@@ -123,17 +123,17 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
     # l-tumblr = "http://localhost:1313"
     # m-instagram = "http://localhost:1313"
     # n-gitlab = "http://en.xianmin.org/hugo-theme-jane/"
-    # o-goodreads = "http://en.xianmin.org/hug 
+    # o-goodreads = "http://en.xianmin.org/hug
 
   # 百度熊掌号
   [params.xiongzhang]
     appid = 1614189312904082
-    
+
 
   [params.plugins]
     # enable Open Graph protocol,see https://developers.facebook.com/docs/sharing/opengraph
     openGraph = true
-    xiongzhang = true #启用熊掌号配置
+    xiongzhang = false #启用熊掌号配置
 
 [author]
   description = "一名全栈开发工程师，#热爱编程、#工具控、#爱读书、#宅男"
@@ -161,8 +161,8 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
 	post = "/blog/:year/:slug"
 	# top = "/:slug.html"
   resource = "/resource/:title"
- 
- 
+
+
 [sitemap]                 # essential                     # 必需
   changefreq = "weekly"
   priority = 0.5
@@ -195,7 +195,7 @@ Copyright= "虞双齐 | <a href='www.miitbeian.gov.cn'>粤ICP备14032560号</a>"
   weight = 30
   identifier = "tags"
   url = "/tags.html"
- 
+
 [[menu.main]]
   name = "归档"
   weight = 40
