@@ -9,11 +9,11 @@ disqus_identifier = 10000
 
 ## 个人简介
 
-登链学院合伙人，首席讲师，是百万阅读电子书[《以太坊技术与实现》](https://learnblockchain.cn/books/geth/)的作者，是视频课程[《说透以太坊技术》](https://learnblockchain.cn/course/1)的讲师。前国信香港证券 IT 运维经理，前 Nerthus 区块链 CTO。
+登链学院合伙人，首席讲师，是百万阅读电子书[《以太坊技术与实现》](https://learnblockchain.cn/books/geth/)的作者，是视频课程[《说透以太坊技术》](https://learnblockchain.cn/course/1)的讲师。前国信香港证券 IT 运维经理，前 Nerthus 区块链 CTO，现为 [ZeroOne](https://01.finance/) 区块链项目负责人。
 
 ## 工作经验
 
-1. 2020 - 至今    自由职业
+1. 2020 - 至今    ZeroOne，任CTO
 1. 2017 - 2019   深圳纳尔云科技有限公司（区块链公链），任 CTO；
 2. 2015 - 2016   国信香港（港股券商），任运维经理 ；
 3. 2010 - 2015   北京根网（金融工具开发商），任高级开发工程师；
@@ -26,6 +26,7 @@ disqus_identifier = 10000
 4. [今日时](https://today.toolab.xyz/)，一个今日日期展示面板，便于晨间日志写作。
 5. [区块链模型演示](https://toolab.gitee.io/simpleblockchain/)，向程序猿展示区块链。
 6. 开源电子书[《以太坊技术与实现》](https://learnblockchain.cn/books/geth/)
+7. 多链区块链借贷协议：[Flux]( https://flux.01.finance/)
 
 
 ## 我的社交
