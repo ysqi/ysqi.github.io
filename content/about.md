@@ -9,7 +9,7 @@ disqus_identifier = 10000
 
 ## 个人简介
 
-登链学院合伙人，首席讲师，是百万阅读电子书[《以太坊技术与实现》](https://learnblockchain.cn/books/geth/)的作者，是视频课程[《说透以太坊技术》](https://learnblockchain.cn/course/1)的讲师。前国信香港证券 IT 运维经理，前 Nerthus 区块链 CTO，现为 [ZeroOne](https://01.finance/) 区块链项目负责人。
+ [ZeroOne](https://01.finance/) 区块链项目技术负责人，登链学院合伙人，首席讲师，是百万阅读电子书[《以太坊技术与实现》](https://learnblockchain.cn/books/geth/)的作者，是视频课程[《说透以太坊技术》](https://learnblockchain.cn/course/1)的讲师。前国信香港证券 IT 运维经理，前 Nerthus 公链 CTO。
 
 ## 工作经验
 
